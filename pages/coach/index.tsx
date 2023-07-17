@@ -3,7 +3,8 @@ import Filter from "@components/common/Filter";
 import PageHeader from "@components/common/PageHeader";
 import Search from "@components/common/Search";
 import TabList from "@components/common/TabList";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { CoachList } from "@components/coach/List";
 
 const CoachPage = () => {
 
@@ -34,7 +35,7 @@ const CoachPage = () => {
       <Filter />
       <Search />
       <TabList state={currentTab} setState={setCurrentTab} list={tabList} borderBottom={true} />
-      <div>내용</div>
+      <CoachList />
     </>
   )
 };

@@ -2,6 +2,7 @@ import AppLayout from "@components/layout/AppLayout";
 import { globalStyles } from "@styles/styles";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App({ Component, pageProps }: AppProps) {
 
@@ -15,6 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
       {globalStyles}
       <AppLayout>
         <Component {...pageProps} />
+        <Analytics />
       </AppLayout>
       <div id="portal" />
     </>

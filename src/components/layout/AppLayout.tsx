@@ -5,15 +5,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { CSS_TYPE } from "@styles/styles";
 import doubleArrowLeft from '@icons/keyboard_double_arrow_left.svg';
-import homeIcon from '@icons/home_white.svg'; // 홈
-import scheduleIcon from '@icons/calendar_white.svg'; // 일정 관리
-import customerIcon from "@icons/customer_white.svg"; // 회원 관리
-import coachIcon from "@icons/coach_white.svg"; // 코치 관리
-import courtIcon from "@icons/court_white.svg"; // 코트 관리
-import lessonIcon from "@icons/lesson_coupon_white.svg"; // 레슨권 관리
-import communityIcon from "@icons/commuinty_white.svg"; // 커뮤니티 관리
-import statisticsIcon from "@icons/statistics_white.svg"; // 통계
-import settingIcon from "@icons/setting_white.svg"; // 설정
+import { HomeWhiteIcon, CalendarWhiteIcon, CustomerWhiteIcon, CoachWhiteIcon, CourtWhiteIcon, LessonCouponWhiteIcon, CommunityWhiteIcon, StatisticsWhiteIcon, SettingWhiteIcon } from '@icons/index';
 
 const AppLayout = ({ children }: PropsWithChildren) => {
 
@@ -43,7 +35,7 @@ const AppLayout = ({ children }: PropsWithChildren) => {
 										flexDirection={isNavSpread ? "row" : "column"}
 									>
 										<Image
-											src={homeIcon}
+											src={HomeWhiteIcon}
 											alt="home icon"
 											width={20}
 											height={20}
@@ -57,7 +49,7 @@ const AppLayout = ({ children }: PropsWithChildren) => {
 										flexDirection={isNavSpread ? "row" : "column"}
 									>
 										<Image
-											src={scheduleIcon}
+											src={CalendarWhiteIcon}
 											alt="schedule icon"
 											width={20}
 											height={20}
@@ -71,7 +63,7 @@ const AppLayout = ({ children }: PropsWithChildren) => {
 										flexDirection={isNavSpread ? "row" : "column"}
 									>
 										<Image
-											src={customerIcon}
+											src={CustomerWhiteIcon}
 											alt="customer icon"
 											width={20}
 											height={20}
@@ -85,7 +77,7 @@ const AppLayout = ({ children }: PropsWithChildren) => {
 										flexDirection={isNavSpread ? "row" : "column"}
 									>
 										<Image
-											src={coachIcon}
+											src={CoachWhiteIcon}
 											alt="coach icon"
 											width={20}
 											height={20}
@@ -99,7 +91,7 @@ const AppLayout = ({ children }: PropsWithChildren) => {
 										flexDirection={isNavSpread ? "row" : "column"}
 									>
 										<Image
-											src={courtIcon}
+											src={CourtWhiteIcon}
 											alt="court icon"
 											width={20}
 											height={20}
@@ -113,7 +105,7 @@ const AppLayout = ({ children }: PropsWithChildren) => {
 										flexDirection={isNavSpread ? "row" : "column"}
 									>
 										<Image
-											src={lessonIcon}
+											src={LessonCouponWhiteIcon}
 											alt="lesson icon"
 											width={20}
 											height={20}
@@ -127,7 +119,7 @@ const AppLayout = ({ children }: PropsWithChildren) => {
 										flexDirection={isNavSpread ? "row" : "column"}
 									>
 										<Image
-											src={communityIcon}
+											src={CommunityWhiteIcon}
 											alt="community icon"
 											width={20}
 											height={20}
@@ -141,7 +133,7 @@ const AppLayout = ({ children }: PropsWithChildren) => {
 										flexDirection={isNavSpread ? "row" : "column"}
 									>
 										<Image
-											src={statisticsIcon}
+											src={StatisticsWhiteIcon}
 											alt="statistics icon"
 											width={20}
 											height={20}
@@ -155,7 +147,7 @@ const AppLayout = ({ children }: PropsWithChildren) => {
 										flexDirection={isNavSpread ? "row" : "column"}
 									>
 										<Image
-											src={settingIcon}
+											src={SettingWhiteIcon}
 											alt="setting icon"
 											width={20}
 											height={20}

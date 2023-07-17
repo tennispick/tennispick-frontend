@@ -67,5 +67,4 @@ const Title = styled.div({
   fontWeight: "500"
 });
 
-
 export default Modal;

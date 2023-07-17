@@ -77,17 +77,24 @@ export const globalStyles = (
       }
 
       :root {
-        --business-color: rgba(41, 77, 97, 100);
+        --business-color: rgba(41, 77, 97, 100); // #294D61
         --business-sub-color: rgba(101, 165, 185, 100);
         --basic-white-color: rgba(254, 254, 254, 100); // #FEFEFE
+
         --basic-red-color: rgba(250, 8, 95, 100);
+        --basic-red2-color: rgba(250, 86, 95, 100); // #FA565F
+
         --basic-black-color: rgba(58, 58, 58, 100); // #3A3A3A
+
         --basic-yellow-color: rgba(250, 210, 100, 100);
+        
         --basic-sky-blue-color: rgba(20, 180, 199, 100); // #14B4C7
         --basic-blue-color: rgba(66, 100, 251, 100); // #4264FB
+
         --basic-grey-color: rgba(222, 222, 222, 100); // #DEDEDE
-        --basic-grey-2-color: rgba(234, 234, 234, 100); // #EAEAEA
-        --basic-grey-3-color: rgba(206, 206, 206, 100); // #CECECE
+        --basic-grey2-color: rgba(234, 234, 234, 100); // #EAEAEA
+        --basic-grey3-color: rgba(206, 206, 206, 100); // #CECECE
+        --basic-grey4-color: rgba(248, 248, 248, 100); // #F8F8F8
 
         --business-active-color: rgba(101, 165, 185, 100); // #65A5B9
         --deactive-color: rgba(204, 204, 204, 100); // #CCCCCC
@@ -167,13 +174,13 @@ export const Button = styled.button<CSS_TYPE>(
     WebkitFontSmoothing: "subpixel-antialiased",
     cursor: "pointer",
 
-    ":hover": {
-      transform: "translate3d(0, 0, 0) translateZ(0) scale(1.1)",
-    },
+    // ":hover": {
+    //   transform: "translate3d(0, 0, 0) translateZ(0) scale(1.1)",
+    // },
 
-    ":active": {
-      transform: "translate3d(0, 0, 0) translateZ(0) scale(0.95)",
-    }
+    // ":active": {
+    //   transform: "translate3d(0, 0, 0) translateZ(0) scale(0.95)",
+    // }
   },
   props => ({
     display: props.display,
@@ -203,7 +210,7 @@ export const Select = styled.select<CSS_TYPE>(
     padding: props.padding ? props.padding : '',
     margin: props.margin ? props.margin : '',
     fontSize: props.fontSize ? props.fontSize : '0.9rem',
-    border: props.border ? props.border : "1px solid var(--basic-grey-3-color)",
+    border: props.border ? props.border : "1px solid var(--basic-grey3-color)",
     borderColor: props.borderColor ? props.borderColor : '',
     borderRadius: props.borderRadius ? props.borderRadius : '8px'
   })
@@ -211,7 +218,7 @@ export const Select = styled.select<CSS_TYPE>(
 
 export const Input = styled.input<CSS_TYPE>(
   {
-    border: "1px solid var(--basic-grey-3-color)",
+    border: "1px solid var(--basic-grey3-color)",
     margin: 0,
 
     ":focus": {

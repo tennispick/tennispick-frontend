@@ -59,7 +59,7 @@ const FilterContainer = styled.div({
   width: "fit-content",
   margin: "0 0 0 auto",
   padding: "6px 16px",
-  border: "1px solid var(--basic-grey-3-color)",
+  border: "1px solid var(--basic-grey3-color)",
   borderRadius: "8px",
   cursor: "pointer"
 })
@@ -71,7 +71,7 @@ const FilterDropDownContainer = styled.div<CSS_TYPE>(
     top: "36px",
     left: "0",
     padding: "6px 16px",
-    border: "1px solid var(--basic-grey-3-color)",
+    border: "1px solid var(--basic-grey3-color)",
     borderRadius: "8px",
     backgroundColor: "var(--basic-white-color)",
     zIndex: 99
