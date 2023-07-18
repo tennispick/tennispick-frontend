@@ -20,6 +20,10 @@
     "jsxImportSource": "@emotion/react",
     "incremental": true,
     "baseUrl": "./",
+    "types": [
+      "react",
+      "@emotion/react/types/css-prop"
+    ],
     "paths": {
       "@icons/*": [
         "src/assets/icons/*"

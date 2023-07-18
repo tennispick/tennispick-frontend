@@ -1,19 +1,17 @@
 import { ImageContainer as Image } from "@styles/styles";
 import { StaticImageData } from "next/image";
 
-interface InlineImageDivProps{
+interface InlineImageDivProps {
   src: string | StaticImageData;
   alt: string;
   placeholder?: "empty" | "blur" | undefined;
-  imageCss?: { [key:string] : string; };
+  imageCss?: { [key: string]: string; };
   text: string;
 }
 
-const InlineImageDiv = ({ src, alt, placeholder = "empty", imageCss={ width: "16px", heigth: "16px", margin: "0 8px 0 0" }, text } : InlineImageDivProps) =>{
+const InlineImageDiv = ({ src, alt, placeholder = "empty", imageCss = { width: "16px", heigth: "16px", margin: "0 8px 0 0" }, text }: InlineImageDivProps) => {
 
-  // TODO Image CSS
-
-  return(
+  return (
     <div
       css={{
         position: "relative",
