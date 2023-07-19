@@ -1,20 +1,9 @@
-import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-
 import styled from "@emotion/styled";
 import Input from "@components/common/Input";
-import { UseFormProps } from "@interfaces/common";
+import Divider from '@components/common/Divider';
+import Button from "@components/common/Button";
 
 const Login = () => {
-
-  const schema = yup.object().shape({
-
-  })
-
-  const { register, handleSubmit, formState: { errors } }: UseFormProps = useForm({
-    resolver: yupResolver(schema)
-  })
 
   const onSubmitHandler = () => {
 
@@ -29,36 +18,80 @@ const Login = () => {
     >
       <LoginContainer>
         <LoginTitle>Ten Sports</LoginTitle>
-        <form onSubmit={handleSubmit(onSubmitHandler)}>
+        <form onSubmit={onSubmitHandler}>
           <div>
             <Input
-              {...register('id')}
               id={"id"}
               label={"아이디"}
-              designType={"labelBox"}
+              variant={"labelBox"}
               css={{
                 width: '60%',
                 height: '48px',
               }}
             >
-              <Input.TextField placeholder={"아이디를 입력해주세요."} />
+              <Input.TextField placeholder={"아이디를 입력해주세요."} ref={null} />
             </Input>
             <Input
               id={"naming"}
               label={"비밀번호"}
-              designType={"labelBox"}
+              variant={"labelBox"}
               css={{
                 width: '60%',
                 height: '48px'
               }}
             >
-              <Input.TextField placeholder={"비밀번호를 입력해주세요."} />
+              <Input.TextField placeholder={"비밀번호를 입력해주세요."} ref={null} />
             </Input>
           </div>
-          <div>버튼영역</div>
+          <div>
+            <Button
+              label={'로그인'}
+              variant={'radiusBtn'}
+              css={{
+                disaplay: 'block',
+                width: '60%',
+                margin: '0 0 16px 0',
+                fontWeight: '500',
+                color: 'var(--basic-white-color)',
+                backgroundColor: 'var(--basic-vivid-blue-color)',
+                border: 0
+              }}
+              onClick={() => {}}
+            />
+            <Button
+              label={"문의하기"}
+              variant={'radiusBtn'}
+              css={{
+                disaplay: 'block',
+                width: '60%',
+                fontWeight: '500',
+                color: 'var(--basic-white-color)',
+                backgroundColor: 'var(--basic-navy-color)',
+                border: 0
+              }}
+              onClick={() => {}}
+            />
+          </div>
         </form>
-        <div>또는</div>
-        <div>아이디 비밀번호 찾기 영역</div>
+        <Divider width={'60%'} content={"또는"} />
+        <span
+          css={{
+            color: 'var(--basic-navy-color)',
+            fontWeight: '600',
+            margin: '0 8px 0 0',
+            cursor: 'pointer'
+          }}
+          onClick={() => {}}
+        >아이디 찾기</span>
+        <span
+          css={{
+            color: 'var(--basic-navy-color)',
+            fontWeight: '600',
+            margin: '0 0 0 8px',
+            cursor: 'pointer'
+          }}
+          onClick={() => {}}
+        >비밀번호 찾기</span>
       </LoginContainer>
     </section>
   )
@@ -66,7 +99,7 @@ const Login = () => {
 
 const LoginContainer = styled.div({
   position: "absolute",
-  top: "40%",
+  top: "45%",
   left: "50%",
   width: '80%',
   minHeight: '360px',

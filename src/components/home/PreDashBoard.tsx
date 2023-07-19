@@ -28,7 +28,7 @@ const PreDashBoard = () => {
         <EventComment>확인이 필요한 이벤트가 있어요!</EventComment>
         <EventLists>
           <EventList
-            backgroundColor="var(--basic-sky-blue-color)"
+            backgroundColor="var(--basic-caribbean-blue-color)"
           >
             <div>출결 미처리 회원</div>
             <span>{addNumberCommas(5)} 명</span>

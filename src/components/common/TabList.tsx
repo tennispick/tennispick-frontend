@@ -12,7 +12,6 @@ interface ListProps {
 };
 
 const TabList = ({ state, setState, list, borderBottom, buttonElement }: ListProps): ReactElement => {
-
   return (
     <Container>
       <Lists borderBottom={borderBottom ? "1px solid var(--basic-grey-color)" : ""}>
@@ -31,13 +30,20 @@ const TabList = ({ state, setState, list, borderBottom, buttonElement }: ListPro
           })
         }
       </Lists>
+      {
+        buttonElement && <div css={{ position: 'absolute', top: '2%', right: '0'}}>{buttonElement}</div>
+      }
     </Container>
   )
 };
 
-const Container = styled.div({
-  padding: "8px 0 0 0",
-});
+const Container = styled.div<CSS_TYPE>(
+  {
+    position: 'relative',
+    padding: "8px 0 0 0",
+    margin: '4px 0 0 0'
+  },
+);
 const Lists = styled.ul<CSS_TYPE>(
   {
     display: "flex",
@@ -50,7 +56,7 @@ const Lists = styled.ul<CSS_TYPE>(
 const List = styled.li<CSS_TYPE>(
   {
     margin: "0 36px 0 0",
-    padding: "0 0 8px 0",
+    padding: "8px 0 12px 0",
     // transition: "all 0.2s ease-in-out",
     cursor: "pointer"
   },

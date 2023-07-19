@@ -1,15 +1,16 @@
 import { Children, ForwardedRef, cloneElement, forwardRef, InputHTMLAttributes, ReactElement } from "react";
+import { ObjectProps } from "@interfaces/common";
 
 interface InputProps {
   id?: string;
-  designType?: 'default' | 'labelBox';
+  variant?: 'default' | 'labelBox';
   label?: string;
   children: ReactElement | never[];
 }
 
 const Input = ({
   id,
-  designType = 'default',
+  variant = 'default',
   label,
   children,
   ...props
@@ -23,7 +24,7 @@ const Input = ({
     <div
       css={{
         position: "relative",
-        ...CONTAINER_VARIANT_STYLE[designType]
+        ...CONTAINER_VARIANT_STYLE[variant]
       }}
       {...props}
     >
@@ -32,7 +33,7 @@ const Input = ({
         <label
           htmlFor={id}
           css={{
-            ...LABEL_VARIANT_STYLE[designType]
+            ...LABEL_VARIANT_STYLE[variant]
           }}
         >{label}</label>
       }
@@ -40,7 +41,7 @@ const Input = ({
         id,
         ...child.props,
         css: {
-          ...INPUT_TEXTFIELD_VARIANT_STYLE[designType]
+          ...INPUT_TEXTFIELD_VARIANT_STYLE[variant]
         }
       })}
     </div>
@@ -58,7 +59,7 @@ Input.TextField = forwardRef((props: any, ref: ForwardedRef<HTMLInputElement>): 
   )
 })
 
-const CONTAINER_VARIANT_STYLE: any = {
+const CONTAINER_VARIANT_STYLE: ObjectProps<object> = {
   default: {
 
   },
@@ -70,7 +71,7 @@ const CONTAINER_VARIANT_STYLE: any = {
   }
 };
 
-const LABEL_VARIANT_STYLE: any = {
+const LABEL_VARIANT_STYLE: ObjectProps<object> = {
   default: {
 
   },
@@ -87,7 +88,7 @@ const LABEL_VARIANT_STYLE: any = {
   }
 }
 
-const INPUT_TEXTFIELD_VARIANT_STYLE: any = {
+const INPUT_TEXTFIELD_VARIANT_STYLE: ObjectProps<object> = {
   default: {
 
   },

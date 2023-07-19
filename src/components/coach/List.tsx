@@ -3,12 +3,12 @@ import { v4 as uuidV4 } from "uuid";
 import { CardList } from '@components/list/CardList';
 import { coachList } from 'src/mocks/data';
 import NoResult from "@components/common/NoResult";
-import { Button } from '@styles/styles';
 import ProfileManIcon from "@icons/profile_man.svg";
 import ProfileWomanIcon from "@icons/profile_woman.svg";
 import { ImageContainer as Image } from "@styles/styles";
 import InlineImageDiv from "@components/common/InlineImageDiv";
 import { CallBlackIcon, GuideBlackIcon, MailBlackIcon, SupportAgentBlackIcon } from "@icons/index";
+import Button from '@components/common/Button';
 
 export const CoachList = () =>{
 
@@ -24,7 +24,7 @@ export const CoachList = () =>{
               position: "relative",
               display: "flex",
               flexWrap: "wrap",
-              height: "calc(80% - 24px)",
+              height: "80%",
               overflowY: "scroll",
               padding: "0 0 24px 0",
               
@@ -101,25 +101,33 @@ export const CoachList = () =>{
                         display: "flex",
                         justifyContent: "center",
                         gap: "8px",
-                        margin: "12px 0 0 0"
+                        margin: "16px 0 0 0"
                       }}
                     >
                       <Button
-                        backgroundColor={"var(--basic-red2-color)"}
-                        color={"var(--basic-white-color)"}
-                        borderRadius={"25px"}
-                        padding={"0.5rem 1.3rem"}
-                        fontSize={"1rem"}
+                        label={'삭제하기'}
+                        variant={'radiusBtn'}
+                        css={{
+                          border: 0,
+                          backgroundColor: 'var(--basic-red2-color)',
+                          color: 'var(--basic-white-color)',
+                          padding: '8px 20px',
+                          fontSize: '0.95rem'
+                        }}
                         onClick={() => {}}
-                      >삭제하기</Button>
+                      />
                       <Button
-                        backgroundColor={"var(--business-color)"}
-                        color={"var(--basic-white-color)"}
-                        borderRadius={"25px"}
-                        padding={"0.5rem 1.3rem"}
-                        fontSize={"1rem"}
+                        label={'상세보기'}
+                        variant={'radiusBtn'}
+                        css={{
+                          border: 0,
+                          backgroundColor: 'var(--business-color)',
+                          color: 'var(--basic-white-color)',
+                          padding: '8px 20px',
+                          fontSize: '0.95rem'
+                        }}
                         onClick={() => {}}
-                      >상세보기</Button>
+                      />
                     </div>
                   </div>
                 </CardList>

@@ -53,6 +53,7 @@ export type CSS_TYPE = {
   rotate?: string;
   flex?: string;
   flexDirection?: any;
+  content?: string | number;
 
   /* Etc */
   isActive?: boolean;
@@ -87,9 +88,12 @@ export const globalStyles = (
         --basic-black-color: rgba(58, 58, 58, 100); // #3A3A3A
 
         --basic-yellow-color: rgba(250, 210, 100, 100);
-        
-        --basic-sky-blue-color: rgba(20, 180, 199, 100); // #14B4C7
+
         --basic-blue-color: rgba(66, 100, 251, 100); // #4264FB
+        --basic-caribbean-blue-color: rgba(20, 180, 199, 100); // #14B4C7
+        --basic-vivid-blue-color: rgba(55, 159, 255, 100); // #379FFF
+
+        --basic-navy-color: rgba(29, 55, 99, 100); // #1D3763
 
         --basic-grey-color: rgba(222, 222, 222, 100); // #DEDEDE
         --basic-grey2-color: rgba(234, 234, 234, 100); // #EAEAEA
