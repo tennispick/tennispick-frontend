@@ -3,10 +3,8 @@ import type { NextRequest } from "next/server";
 
 export const middleware = (request: NextRequest) => {
 
-  
-
 }
 
-export const config = {
-  matcher: "/:path*"
-}
+// export const config = {
+//   matcher: "/:path*"
+// }

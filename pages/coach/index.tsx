@@ -55,7 +55,7 @@ const CoachPage = () => {
               backgroundColor: 'var(--business-active-color)',
               color: 'var(--basic-white-color)',
             }}
-            onClick={() => {}}
+            onClick={() => { }}
           />
         }
       />

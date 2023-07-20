@@ -56,7 +56,7 @@ const Login = () => {
                 backgroundColor: 'var(--basic-vivid-blue-color)',
                 border: 0
               }}
-              onClick={() => {}}
+              onClick={() => { }}
             />
             <Button
               label={"문의하기"}
@@ -69,7 +69,7 @@ const Login = () => {
                 backgroundColor: 'var(--basic-navy-color)',
                 border: 0
               }}
-              onClick={() => {}}
+              onClick={() => { }}
             />
           </div>
         </form>
@@ -81,7 +81,7 @@ const Login = () => {
             margin: '0 8px 0 0',
             cursor: 'pointer'
           }}
-          onClick={() => {}}
+          onClick={() => { }}
         >아이디 찾기</span>
         <span
           css={{
@@ -90,7 +90,7 @@ const Login = () => {
             margin: '0 0 0 8px',
             cursor: 'pointer'
           }}
-          onClick={() => {}}
+          onClick={() => { }}
         >비밀번호 찾기</span>
       </LoginContainer>
     </section>

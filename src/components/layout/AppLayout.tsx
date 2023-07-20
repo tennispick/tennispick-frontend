@@ -1,18 +1,16 @@
 import { PropsWithChildren, useState } from 'react';
 import styled from '@emotion/styled';
-import Link from "next/link";
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { CSS_TYPE } from "@styles/styles";
 import doubleArrowLeft from '@icons/keyboard_double_arrow_left.svg';
-import { HomeWhiteIcon, CalendarWhiteIcon, CustomerWhiteIcon, CoachWhiteIcon, CourtWhiteIcon, LessonCouponWhiteIcon, CommunityWhiteIcon, StatisticsWhiteIcon, SettingWhiteIcon } from '@icons/index';
+import NavigationLayout from './NavigationLayout';
 
 const AppLayout = ({ children }: PropsWithChildren) => {
 
-	const [isNavSpread, setIsNavSpread] = useState(true);
-	const router = useRouter();
+	const [isNavSpread, setIsNavSpread] = useState<boolean>(true);
 	const pathName = usePathname();
-	const firstPathName = pathName.split('/')[1];
+	const firstPathName = pathName?.split('/')[1];
 
 	return (
 		<>
@@ -22,142 +20,10 @@ const AppLayout = ({ children }: PropsWithChildren) => {
 				<LayoutContainer
 					padding={isNavSpread ? "20px" : "20px 20px 20px 0"}
 				>
-					<NavContainer
-						width={isNavSpread ? "10%" : "5%"}
-						padding={isNavSpread ? "0 20px 0 0" : "0"}
-					>
-						<nav>
-							<LogoWraaper>로고</LogoWraaper>
-							<NavLists>
-								<Link href="" as="/" passHref>
-									<NavList
-										isActive={isNavSpread}
-										flexDirection={isNavSpread ? "row" : "column"}
-									>
-										<Image
-											src={HomeWhiteIcon}
-											alt="home icon"
-											width={20}
-											height={20}
-										/>
-										<span>홈</span>
-									</NavList>
-								</Link>
-								<Link href="/schedule" passHref>
-									<NavList
-										isActive={isNavSpread}
-										flexDirection={isNavSpread ? "row" : "column"}
-									>
-										<Image
-											src={CalendarWhiteIcon}
-											alt="schedule icon"
-											width={20}
-											height={20}
-										/>
-										<span>일정 관리</span>
-									</NavList>
-								</Link>
-								<Link href="" as="/customer" passHref>
-									<NavList
-										isActive={isNavSpread}
-										flexDirection={isNavSpread ? "row" : "column"}
-									>
-										<Image
-											src={CustomerWhiteIcon}
-											alt="customer icon"
-											width={20}
-											height={20}
-										/>
-										<span>회원 관리</span>
-									</NavList>
-								</Link>
-								<Link href="" as="/coach" passHref>
-									<NavList
-										isActive={isNavSpread}
-										flexDirection={isNavSpread ? "row" : "column"}
-									>
-										<Image
-											src={CoachWhiteIcon}
-											alt="coach icon"
-											width={20}
-											height={20}
-										/>
-										<span>코치 관리</span>
-									</NavList>
-								</Link>
-								<Link href="" as="/court" passHref>
-									<NavList
-										isActive={isNavSpread}
-										flexDirection={isNavSpread ? "row" : "column"}
-									>
-										<Image
-											src={CourtWhiteIcon}
-											alt="court icon"
-											width={20}
-											height={20}
-										/>
-										<span>코트 관리</span>
-									</NavList>
-								</Link>
-								<Link href="" as="/lesson" passHref>
-									<NavList
-										isActive={isNavSpread}
-										flexDirection={isNavSpread ? "row" : "column"}
-									>
-										<Image
-											src={LessonCouponWhiteIcon}
-											alt="lesson icon"
-											width={20}
-											height={20}
-										/>
-										<span>레슨권 관리</span>
-									</NavList>
-								</Link>
-								<Link href="" as="/community" passHref>
-									<NavList
-										isActive={isNavSpread}
-										flexDirection={isNavSpread ? "row" : "column"}
-									>
-										<Image
-											src={CommunityWhiteIcon}
-											alt="community icon"
-											width={20}
-											height={20}
-										/>
-										<span>커뮤니티 관리</span>
-									</NavList>
-								</Link>
-								<Link href="" as="/statistics" passHref>
-									<NavList
-										isActive={isNavSpread}
-										flexDirection={isNavSpread ? "row" : "column"}
-									>
-										<Image
-											src={StatisticsWhiteIcon}
-											alt="statistics icon"
-											width={20}
-											height={20}
-										/>
-										<span>통계</span>
-									</NavList>
-								</Link>
-								<Link href="" as="/setting" passHref>
-									<NavList
-										isActive={isNavSpread}
-										flexDirection={isNavSpread ? "row" : "column"}
-									>
-										<Image
-											src={SettingWhiteIcon}
-											alt="setting icon"
-											width={20}
-											height={20}
-										/>
-										<span>설정</span>
-									</NavList>
-								</Link>
-							</NavLists>
-						</nav>
-					</NavContainer>
+					<NavigationLayout
+						isNavSpread={isNavSpread}
+						firstPathName={firstPathName}
+					/>
 					<MainContainer
 						width={isNavSpread ? "90%" : "95%"}
 					>
@@ -194,72 +60,6 @@ const LayoutContainer = styled.div<CSS_TYPE>(
 		padding: props.padding
 	})
 );
-const NavContainer = styled.div<CSS_TYPE>(
-	{
-		position: 'relative',
-		height: 'calc(100vh - 48px)',
-		transition: "all 0.35s ease-in-out"
-	},
-	props => ({
-		width: props.width,
-		padding: props.padding
-	})
-);
-const LogoWraaper = styled.div({
-	minHeight: "8vh"
-})
-const NavLists = styled.ul({
-	margin: "16px 0 0 0"
-});
-const NavList = styled.li<CSS_TYPE>(
-	{
-		display: 'flex',
-		position: "relative",
-		alignItems: 'center',
-		fontSize: '16px',
-		margin: "8px 0",
-		cursor: "pointer",
-
-		img: {
-			zIndex: "2"
-		},
-
-		"::before": {
-			transition: "width 0.25s",
-			position: "absolute",
-			content: "''",
-			width: "0%",
-			height: "100%",
-			top: "0",
-			left: "-6px",
-			backgroundColor: "var(--business-sub-color)",
-			borderRadius: "16px",
-			zIndex: "1"
-		},
-	},
-	props => ({
-		flexDirection: props.flexDirection,
-		padding: props.isActive ? "14px 12px" : "16px 0",
-		margin: props.isActive ? "8px 0" : "2px 0",
-
-		span: {
-			fontSize: props.isActive ? "16px" : "14px",
-			margin: props.isActive ? "0 0 0 12px" : "4px 0 0 0",
-			zIndex: "2"
-		},
-
-		"::before": {
-			left: props.isActive ? "-6px" : "0",
-			borderRadius: props.isActive ? "16px" : "0",
-		},
-
-		":hover": {
-			"::before": {
-				width: props.isActive ? "calc(100% + 12px)" : "100%",
-			},
-		}
-	})
-);
 const MainContainer = styled.main<CSS_TYPE>(
 	{
 		position: 'relative',
@@ -276,10 +76,8 @@ const ChildrenContainer = styled.div({
 	position: "relative",
 	width: "100%",
 	height: "100%",
-	// minHeight: "100%",
-	// maxHeight: "100%",
 	padding: "24px",
-	color: "var(--basic-black-color)"
+	color: "var(--basic-black-color)",
 });
 const NavControlBtnWrapper = styled.i({
 	position: "absolute",

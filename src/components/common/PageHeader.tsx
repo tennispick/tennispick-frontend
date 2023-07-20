@@ -9,6 +9,8 @@ const PageHeader = ({ title }: { title: string }) => {
 };
 
 const Container = styled.div({
+  position: 'relative',
+  height: '40px',
   fontSize: "1.2rem",
   fontWeight: "600",
   borderBottom: "1px solid var(--basic-grey-color)",

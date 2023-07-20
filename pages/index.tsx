@@ -7,7 +7,7 @@ import Sales from '@components/home/Sales'
 export default function Home() {
 
   return (
-    <>
+    <div css={{ height: '100%', overflowY: 'scroll' }}>
       <Head>
         <title>테니스 닥터 - 홈</title>
       </Head>
@@ -16,7 +16,7 @@ export default function Home() {
         <CoachLesson />
         <Sales />
       </ItemLists>
-    </>
+    </div>
   )
 };
 

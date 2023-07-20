@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
 import { CSS_TYPE } from "@styles/styles";
 
-const Divider = ({ width, content }: { width: string, content: string }) =>{
+const Divider = ({ width, margin, content }: { width: string, margin?: string, content?: string }) => {
   return (
     <DividerWrapper
       width={width}
       content={content}
+      margin={margin}
     />
   )
 }
@@ -14,9 +15,8 @@ const DividerWrapper = styled.div<CSS_TYPE>(
   {
     height: '0',
     borderTop: `1px solid var(--basic-grey-color)`,
-    margin: '32px auto',
     textAlign: 'center',
-  
+
     ':before': {
       position: 'relative',
       fontSize: '1rem',
@@ -29,9 +29,11 @@ const DividerWrapper = styled.div<CSS_TYPE>(
   },
   props => ({
     width: props.width ? props.width : "100%",
+    margin: props.margin ? props.margin : '32px auto',
 
     ':before': {
-      content: `"${props.content}"`,
+      display: props.content ? 'inline' : 'block',
+      content: props.content ? `"${props.content}"` : '""',
     }
   })
 )
