@@ -1,4 +1,5 @@
 import BusinessPerformance from "@components/coach/detail/BusinessPerformance";
+import CustomerList from "@components/coach/detail/CustomerList";
 import PersonalData from "@components/coach/detail/PersonalData";
 import Button from "@components/common/Button";
 import PageHeader from "@components/common/PageHeader";
@@ -25,13 +26,16 @@ const CoachDetail = () => {
             height: '100%'
           }}
         />
-        <BusinessPerformance
+        <div
           css={{
             position: 'relative',
             width: '65%',
             height: '100%'
           }}
-        />
+        >
+          <BusinessPerformance />
+          <CustomerList />
+        </div>
       </div>
       <div
         css={{
