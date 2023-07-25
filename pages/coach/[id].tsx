@@ -6,9 +6,6 @@ import PageHeader from "@components/common/PageHeader";
 import { DeleteWhiteIcon, EditWhiteIcon } from "@icons/index";
 
 const CoachDetail = () => {
-
-  console.log('상세 페이지');
-
   return (
     <>
       <PageHeader title={"다니엘 코치님"} />
@@ -22,14 +19,15 @@ const CoachDetail = () => {
         <PersonalData
           css={{
             position: 'relative',
-            width: '35%',
-            height: '100%'
+            width: '30%',
+            height: '100%',
+            padding: '0 32px 0 0'
           }}
         />
         <div
           css={{
             position: 'relative',
-            width: '65%',
+            width: '70%',
             height: '100%'
           }}
         >

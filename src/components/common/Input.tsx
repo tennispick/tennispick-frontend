@@ -48,8 +48,7 @@ const Input = ({
   )
 };
 
-Input.TextField = forwardRef((props: any, ref: ForwardedRef<HTMLInputElement>): ReactElement<InputHTMLAttributes<HTMLInputElement>> => {
-
+Input.TextField = forwardRef(({ ...props }: InputHTMLAttributes<HTMLInputElement>, ref: ForwardedRef<HTMLInputElement>): ReactElement<InputHTMLAttributes<HTMLInputElement>> => {
   return (
     <input
       type={props.type ? props.type : "text"}
@@ -90,7 +89,15 @@ const LABEL_VARIANT_STYLE: ObjectProps<object> = {
 
 const INPUT_TEXTFIELD_VARIANT_STYLE: ObjectProps<object> = {
   default: {
-
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    padding: '2px 0 2px 10px',
+    fontSize: '0.95rem',
+    border: '1px solid var(--basic-grey3-color)',
+    borderRadius: '8px',
+    outline: 0,
+    zIndex: '1'
   },
   labelBox: {
     position: 'relative',
