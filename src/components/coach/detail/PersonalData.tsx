@@ -9,10 +9,14 @@ const PersonalData = ({ ...props }) => {
       <div
         css={{
           position: 'relative',
-          height: '40%'
+          height: '50%'
         }}
       >
-        <Input>
+        <Input
+          label={' '}
+          id={'profileImage'}
+          variant={'file'}
+        >
           <Input.TextField
             type={'file'}
           />
@@ -22,7 +26,7 @@ const PersonalData = ({ ...props }) => {
       <div
         css={{
           position: 'relative',
-          height: '60%'
+          height: 'auto'
         }}
       >
         <Row>

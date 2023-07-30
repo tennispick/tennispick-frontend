@@ -6,7 +6,7 @@ interface Props extends PropsWithChildren {
 
 const Select = forwardRef((props: Props, ref?: ForwardedRef<HTMLSelectElement>) => {
 
-  console.log(props);
+  // console.log(props);
 
   return (
     <select

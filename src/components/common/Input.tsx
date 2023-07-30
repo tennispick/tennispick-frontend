@@ -3,7 +3,7 @@ import { ObjectProps } from "@interfaces/common";
 
 interface InputProps {
   id?: string;
-  variant?: 'default' | 'labelBox';
+  variant?: 'default' | 'labelBox' | 'file';
   label?: string;
   children: ReactElement | never[];
 }
@@ -19,6 +19,8 @@ const Input = ({
   // TODO Text Length
 
   const child = Children.only(children);
+
+  console.log(id);
 
   return (
     <div
@@ -41,6 +43,7 @@ const Input = ({
         id,
         ...child.props,
         css: {
+          ...child.props.css,
           ...INPUT_TEXTFIELD_VARIANT_STYLE[variant]
         }
       })}
@@ -48,7 +51,7 @@ const Input = ({
   )
 };
 
-Input.TextField = forwardRef(({ ...props }: InputHTMLAttributes<HTMLInputElement>, ref: ForwardedRef<HTMLInputElement>): ReactElement<InputHTMLAttributes<HTMLInputElement>> => {
+Input.TextField = forwardRef(({ ...props }: InputHTMLAttributes<HTMLInputElement> , ref: ForwardedRef<HTMLInputElement>): ReactElement<InputHTMLAttributes<HTMLInputElement>> => {
   return (
     <input
       type={props.type ? props.type : "text"}
@@ -67,6 +70,10 @@ const CONTAINER_VARIANT_STYLE: ObjectProps<object> = {
     border: '1px solid var(--basic-grey-color)',
     borderRadius: '4px',
     padding: '10px 16px 6px 16px'
+  },
+  file: {
+    width: '100%',
+    height: '100%'
   }
 };
 
@@ -84,6 +91,12 @@ const LABEL_VARIANT_STYLE: ObjectProps<object> = {
     color: 'var(--business-color)',
     backgroundColor: 'var(--basic-white-color)',
     zIndex: '2'
+  },
+  file: {
+    position: 'relative',
+    display: 'block',
+    width: '100%',
+    height: '100%',
   }
 }
 
@@ -108,6 +121,9 @@ const INPUT_TEXTFIELD_VARIANT_STYLE: ObjectProps<object> = {
     border: 0,
     outline: 0,
     zIndex: '1'
+  },
+  file: {
+    display: 'none'
   }
 }
 

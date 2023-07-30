@@ -10,7 +10,7 @@ const Intro = () =>{
   return(
     <Container>
       <AdvertiseContainer>
-        <AdvertiseWrapper>Ten:) SPORTS</AdvertiseWrapper>  
+        <AdvertiseWrapper>광고 및 소개영역</AdvertiseWrapper>  
       </AdvertiseContainer>
       <SiteMapContainer>
         <Image src={HomeIcon} alt={"home"} width={28} height={28} margin={"0"} />
