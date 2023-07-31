@@ -2,6 +2,7 @@ import Divider from "@components/common/Divider";
 import Input from "@components/common/Input";
 import Select from "@components/common/Select";
 import styled from "@emotion/styled";
+import ProfileManIcon from '@icons/profile_man.svg';
 
 const PersonalData = ({ ...props }) => {
   return (
@@ -16,6 +17,7 @@ const PersonalData = ({ ...props }) => {
           label={' '}
           id={'profileImage'}
           variant={'file'}
+          src={ProfileManIcon.src}
         >
           <Input.TextField
             type={'file'}
@@ -39,19 +41,22 @@ const PersonalData = ({ ...props }) => {
         </Row>
         <Row>
           <InputHead>생년월일</InputHead>
-          <InputItem>
-            <Input.TextField
-              placeholder={'성명을 입력해주세요.'}
-            />
-          </InputItem>
+          <Select width={'calc(25% - 4px)'} >
+            <option>코치</option>
+          </Select>
+          <Select width={'calc(25% - 4px)'} margin={'0 6px'} >
+            <option>코치</option>
+          </Select>
+          <Select width={'calc(25% - 4px)'} >
+            <option>코치</option>
+          </Select>
         </Row>
         <Row>
           <InputHead>성별</InputHead>
-          <InputItem>
-            <Input.TextField
-              placeholder={'성명을 입력해주세요.'}
-            />
-          </InputItem>
+          <Select width={'40%'} >
+            <option>남자</option>
+            <option>여자</option>
+          </Select>
         </Row>
         <Row>
           <InputHead>연락처</InputHead>
@@ -63,8 +68,8 @@ const PersonalData = ({ ...props }) => {
         </Row>
         <Row>
           <InputHead>직책</InputHead>
-          <Select>
-            <option>전체</option>
+          <Select width={'40%'} >
+            <option>코치</option>
           </Select>
         </Row>
       </div>

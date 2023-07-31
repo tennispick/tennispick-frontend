@@ -129,6 +129,12 @@ export const globalStyles = (
         margin: 0;
       }
 
+      select{
+        outline: 0;
+        appearance: none;
+        background: url("${ArrowDropDownIcon.src}") no-repeat right 9px center
+      }
+
       a {
         text-decoration: none;
         color: inherit;
@@ -206,9 +212,6 @@ export const Button = styled.button<CSS_TYPE>(
 
 export const Select = styled.select<CSS_TYPE>(
   {
-    outline: 0,
-    appearance: "none",
-    background: `url("${ArrowDropDownIcon.src}") no-repeat right 9px center`
   },
   props => ({
     width: props.width ? props.width : '',

@@ -2,16 +2,20 @@ import { ForwardedRef, PropsWithChildren, SelectHTMLAttributes, forwardRef } fro
 
 interface Props extends PropsWithChildren {
   props?: SelectHTMLAttributes<HTMLSelectElement>;
+  width?: string;
+  height?: string;
+  margin?: string;
 }
 
-const Select = forwardRef((props: Props, ref?: ForwardedRef<HTMLSelectElement>) => {
-
-  // console.log(props);
+const Select = forwardRef(({ ...props }: Props, ref?: ForwardedRef<HTMLSelectElement>) => {
 
   return (
     <select
       css={{
-        ...VARIANT_STYLE
+        width: props.width,
+        height: props.height,
+        margin: props.margin,
+        ...VARIANT_STYLE,
       }}
     >
       {props.children}
@@ -19,8 +23,14 @@ const Select = forwardRef((props: Props, ref?: ForwardedRef<HTMLSelectElement>) 
   )
 });
 
-const VARIANT_STYLE = {
-
+const VARIANT_STYLE: object = {
+  position: 'relative',
+  height: '100%',
+  padding: '2px 0 2px 10px',
+  fontSize: '0.95rem',
+  border: '1px solid var(--basic-grey3-color)',
+  borderRadius: '8px',
+  outline: 0,
 }
 
 export default Select;

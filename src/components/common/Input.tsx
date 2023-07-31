@@ -5,6 +5,7 @@ interface InputProps {
   id?: string;
   variant?: 'default' | 'labelBox' | 'file';
   label?: string;
+  src?: string;
   children: ReactElement | never[];
 }
 
@@ -20,8 +21,6 @@ const Input = ({
 
   const child = Children.only(children);
 
-  console.log(id);
-
   return (
     <div
       css={{
@@ -35,7 +34,9 @@ const Input = ({
         <label
           htmlFor={id}
           css={{
-            ...LABEL_VARIANT_STYLE[variant]
+            ...LABEL_VARIANT_STYLE[variant],
+            background: props.src ? `url("${props.src}") no-repeat center` : '',
+            backgroundSize: props.src ? 'contain' : ''
           }}
         >{label}</label>
       }
@@ -51,7 +52,7 @@ const Input = ({
   )
 };
 
-Input.TextField = forwardRef(({ ...props }: InputHTMLAttributes<HTMLInputElement> , ref: ForwardedRef<HTMLInputElement>): ReactElement<InputHTMLAttributes<HTMLInputElement>> => {
+Input.TextField = forwardRef(({ ...props }: InputHTMLAttributes<HTMLInputElement>, ref: ForwardedRef<HTMLInputElement>): ReactElement<InputHTMLAttributes<HTMLInputElement>> => {
   return (
     <input
       type={props.type ? props.type : "text"}

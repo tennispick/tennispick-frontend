@@ -82,7 +82,7 @@ const Login = () => {
             cursor: 'pointer'
           }}
           onClick={() => { }}
-        >아이디 찾기</span>
+        >이용약관</span>
         <span
           css={{
             color: 'var(--basic-navy-color)',
@@ -91,7 +91,7 @@ const Login = () => {
             cursor: 'pointer'
           }}
           onClick={() => { }}
-        >비밀번호 찾기</span>
+        >개인정보 처리방침</span>
       </LoginContainer>
     </section>
   )
