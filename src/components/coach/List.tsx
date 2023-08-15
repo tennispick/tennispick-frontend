@@ -1,16 +1,12 @@
 import { useState } from 'react';
 import { v4 as uuidV4 } from "uuid";
-import { CardList } from '@components/list/CardList';
-import { coachList } from 'src/mocks/data';
-import NoResult from "@components/common/NoResult";
-import ProfileManIcon from "@icons/profile_man.svg";
-import ProfileWomanIcon from "@icons/profile_woman.svg";
-import { ImageContainer as Image } from "@styles/styles";
-import InlineImageDiv from "@components/common/InlineImageDiv";
-import { CallBlackIcon, GuideBlackIcon, MailBlackIcon, SupportAgentBlackIcon } from "@icons/index";
-import Button from '@components/common/Button';
 
-export const CoachList = () =>{
+import { NoResult, InlineImageDiv, CardList, Button } from '@components/index';
+import { coachList } from 'src/mocks/data';
+import { ImageContainer as Image } from "@styles/styles";
+import { ProfileManIcon, ProfileWomanIcon, CallBlackIcon, GuideBlackIcon, MailBlackIcon, SupportAgentBlackIcon } from "@icons/index";
+
+const CoachList = () =>{
 
   // TODO Mocks Data
   const [data, setData] = useState<Array<{ [key:string] : string | number }>>(coachList);
@@ -149,3 +145,5 @@ export const CoachList = () =>{
     </>
   )
 }
+
+export default CoachList;

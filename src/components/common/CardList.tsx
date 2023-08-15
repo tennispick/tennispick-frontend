@@ -5,7 +5,7 @@ interface CardListProps{
   children: ReactNode;
 }
 
-export const CardList = ({ list, children }: CardListProps) =>{
+const CardList = ({ list, children }: CardListProps) =>{
 
   return(
     <li
@@ -31,3 +31,5 @@ export const CardList = ({ list, children }: CardListProps) =>{
     </li>
   )
 }
+
+export default CardList;

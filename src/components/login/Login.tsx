@@ -1,12 +1,30 @@
+import { FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import styled from "@emotion/styled";
 import Input from "@components/common/Input";
 import Divider from '@components/common/Divider';
 import Button from "@components/common/Button";
+import useInput from "@hooks/useInput";
+import { axios } from "@utils/axios";
+import { setCookie } from "@lib/cookie";
 
 const Login = () => {
 
-  const onSubmitHandler = () => {
+  const router = useRouter();
+  const [login, onChangeLogin, setLogin] = useInput({
+    id: '',
+    password: ''
+  });
 
+  const onSubmitHandler = async (e: FormEvent) => {
+    e.preventDefault();
+
+    const { data } = await axios.post('/auth/login', { ...login });
+
+    if(data.statusCode !== 401){
+      setCookie(data.accessToken);
+      router.push('/');
+    }
   }
 
   return (
@@ -29,7 +47,13 @@ const Login = () => {
                 height: '48px',
               }}
             >
-              <Input.TextField placeholder={"아이디를 입력해주세요."} ref={null} />
+              <Input.TextField
+                name={'id'}
+                placeholder={"아이디를 입력해주세요."}
+                value={login.id}
+                ref={null}
+                onChange={onChangeLogin}
+              />
             </Input>
             <Input
               id={"naming"}
@@ -40,11 +64,19 @@ const Login = () => {
                 height: '48px'
               }}
             >
-              <Input.TextField placeholder={"비밀번호를 입력해주세요."} ref={null} />
+              <Input.TextField
+                type={'password'}
+                name={'password'}
+                placeholder={"비밀번호를 입력해주세요."}
+                value={login.password}
+                ref={null}
+                onChange={onChangeLogin}
+              />
             </Input>
           </div>
           <div>
             <Button
+              type={'submit'}
               label={'로그인'}
               variant={'radiusBtn'}
               css={{

@@ -28,7 +28,7 @@ const PersonalData = ({ ...props }) => {
       <div
         css={{
           position: 'relative',
-          height: 'auto'
+          height: 'auto',
         }}
       >
         <Row>

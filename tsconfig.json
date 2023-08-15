@@ -34,14 +34,20 @@
       "@components/*": [
         "src/components/*"
       ],
+      "@hooks/*": [
+        "src/hooks/*"
+      ],
       "@containers/*": [
         "src/containers/*"
+      ],
+      "@interfaces/*": [
+        "src/interfaces/*"
       ],
       "@lib/*": [
         "src/lib/*"
       ],
-      "@interfaces/*": [
-        "src/interfaces/*"
+      "@mocks/*": [
+        "src/mocks/*"
       ],
       "@styles/*": [
         "src/styles/*"

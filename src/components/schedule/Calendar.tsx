@@ -1,13 +1,15 @@
 import { Dispatch, SetStateAction } from "react";
-import styled from "@emotion/styled";
 import { v4 as uuidV4 } from "uuid";
+import styled from "@emotion/styled";
+
 import { Button, CSS_TYPE, ImageContainer as Image } from "@styles/styles";
 import { colorList } from "@utils/colorSet";
 import { ObjectProps } from "@interfaces/common";
-import { getTimeZoneList, getPrevNextMonth } from "@utils/date";
-import SingleArrowLeftIcon from "@icons/grey_single_arrow_left.svg";
-import SingleArrowRightIcon from "@icons/grey_single_arrow_right.svg";
-import WriteIcon from "@icons/edit_white.svg";
+import { getTimeZoneList, getPrevNextMonth, isCheckTimeInRange } from "@utils/date";
+
+import { EditWhiteIcon, GreySingleArrowLeft, GreySingleArrowRight } from "@icons/index";
+import { getScheduleQuery } from "src/queries/schedule";
+import { numberZeroFillFormat } from "@utils/numberForm";
 
 interface U{
   [key: string]: number;
@@ -33,11 +35,14 @@ const Calendar = ({ courtList, dateWeekList, calendarDate, setCalendarDate, setS
   const { year, month } = calendarDate;
   const currentWeekDayList = dateWeekList.dateWeekList;
 
+  const startWeekDate = `${year}-${numberZeroFillFormat(month, 2)}-${currentWeekDayList[0].date} 00:00:00`;
+  const endWeekDate = `${year}-${numberZeroFillFormat(month, 2)}-${currentWeekDayList[currentWeekDayList.length - 1].date} 23:59:59`;
+
+  const { data }: any = getScheduleQuery({ startWeekDate, endWeekDate });
+
   const { timeList } = getTimeZoneList();
 
   // 코트의 갯수 및 종류
-
-  // 예약리스트
 
   // 공휴일 체크하고 이벤트 표시
 
@@ -78,7 +83,7 @@ const Calendar = ({ courtList, dateWeekList, calendarDate, setCalendarDate, setS
         </CourtLists>
         <CalendarHeaderContainer>
           <Image
-            src={SingleArrowLeftIcon}
+            src={GreySingleArrowLeft}
             alt="prev button"
             width={24}
             height={24}
@@ -87,7 +92,7 @@ const Calendar = ({ courtList, dateWeekList, calendarDate, setCalendarDate, setS
           />
           {year}년 {month}월
           <Image
-            src={SingleArrowRightIcon}
+            src={GreySingleArrowRight}
             alt="next button"
             width={24}
             height={24}
@@ -107,7 +112,7 @@ const Calendar = ({ courtList, dateWeekList, calendarDate, setCalendarDate, setS
             onClick={() => setShowModal(true)}
           >
             <Image
-              src={WriteIcon}
+              src={EditWhiteIcon}
               alt={"calendar register"}
               width={16}
               height={16}
@@ -126,6 +131,7 @@ const Calendar = ({ courtList, dateWeekList, calendarDate, setCalendarDate, setS
                 >
                   {typeof(item.date) === "number" ? item.date + `(${item.day_KR})` : ""}
                 </DayWrapper>
+                {/* 공휴일 및 이벤트 */}
                 <DayEventContainer></DayEventContainer>
               </WeekDayContainer>
             )
@@ -148,14 +154,53 @@ const Calendar = ({ courtList, dateWeekList, calendarDate, setCalendarDate, setS
         </TimeZoneContainer>
         <WeekContainer>
           {
-            (currentWeekDayList && currentWeekDayList.length > 0) && currentWeekDayList.map((item, index) => {
+            (currentWeekDayList && currentWeekDayList.length > 0) && currentWeekDayList.map((element) => {
+              {/* 스케줄 노출 */}
               return(
                 <DateContainer key={uuidV4()}>
                   {
-                    (timeList && timeList.length > 0) && timeList.map((event) => {
+                    (timeList && timeList.length > 0) && timeList.map((item, index) => {
                       return (
                         <DateEventLists key={uuidV4()}>
-                          <DateEventList></DateEventList>
+                          <DateEventList>
+                            {
+                              (data?.data && data.data.length > 0) && data.data.map((event: any, ) => {
+
+                                // 시작 및 종료 스케줄 기준 시간값
+                                const prevTime = item;
+                                const nextTime = timeList[index + 1];
+
+                                const isTimeInRange = isCheckTimeInRange(prevTime, nextTime, event.start_time);
+
+                                const startTimeString = event.start_time.split(':')[1];
+                                const eventPositionTop = (Number(startTimeString) / 60) * 100;
+                                const startTime = new Date(event.origin_start_time);
+                                const endTime = new Date(event.origin_end_time);
+                                const eventBackgroundHeight = (endTime.getTime() - startTime.getTime()) / (60 * 60 * 1000) * 100;
+
+                                // TODO Width 설정
+
+                                // TODO 24시일 때, 가정하자
+
+                                return(
+                                  (isTimeInRange && element.date === Number(event.date)) &&
+                                  <div
+                                    key={uuidV4()}
+                                    css={{
+                                      position: 'relative',
+                                      top: `${eventPositionTop}%`,
+                                      height: `${eventBackgroundHeight}%`,
+                                      backgroundColor: '#26AD8D',
+                                      borderRadius: '8px',
+                                      cursor: 'pointer',
+                                      zIndex: 99
+                                    }}
+                                    onClick={() => alert('야호')}
+                                  />
+                                )
+                              })
+                            }
+                          </DateEventList>
                         </DateEventLists>
                       )
                     })
@@ -172,7 +217,7 @@ const Calendar = ({ courtList, dateWeekList, calendarDate, setCalendarDate, setS
 
 const Container = styled.div({
   position: "relative",
-  height: "calc(80% - 16px)",
+  height: "calc(80% - 24px)",
   margin: "8px 0 0 0",
   padding: "8px 0 0 0"
 });
@@ -286,7 +331,7 @@ const DateEventList = styled.li(
   {
     position: "relative",
     height: "52px",
-    padding: "0.4rem 0.6rem",
+    padding: "0 0.6rem",
     borderBottom: "1px solid var(--basic-grey-color)",
     borderLeft: "1px solid var(--basic-grey-color)",
   },

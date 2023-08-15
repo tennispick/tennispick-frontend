@@ -125,17 +125,20 @@ const SchedulePage = () => {
 
   return (
     <>
-      <PageHeader title={"스케줄"} />
+      <PageHeader title={"스케줄 관리"} />
       <TabList state={currentCoach} setState={setCurrentCoach} list={coachList} />
       <ButtonContainer viewCategory={viewCategory} setViewCategory={setViewCategory} />
       <TabList state={currentWeek} setState={setCurrentWeek} list={weekList} borderBottom={true} />
-      <Calendar
-        courtList={courtList}
-        dateWeekList={dateWeekList}
-        calendarDate={calendarDate}
-        setCalendarDate={setCalendarDate}
-        setShowModal={setShowModal}
-      />
+      {
+        mount &&
+        <Calendar
+          courtList={courtList}
+          dateWeekList={dateWeekList}
+          calendarDate={calendarDate}
+          setCalendarDate={setCalendarDate}
+          setShowModal={setShowModal}
+        />
+      }
       {
         showModal &&
         <Portal id={"#portal"}>

@@ -1,11 +1,7 @@
-import { v4 as uuidV4 } from "uuid";
-import Filter from "@components/common/Filter";
-import PageHeader from "@components/common/PageHeader";
-import Search from "@components/common/Search";
-import TabList from "@components/common/TabList";
 import { useState } from "react";
-import { CoachList } from "@components/coach/List";
-import Button from "@components/common/Button";
+import { v4 as uuidV4 } from "uuid";
+
+import { Filter, PageHeader, Search, TabList, Button, CoachList } from '@components/index';
 import { CustomerWhiteIcon } from "@icons/index";
 
 const CoachPage = () => {

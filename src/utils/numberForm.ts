@@ -3,7 +3,7 @@ export const addNumberCommas = (numebr: number) => {
   return returnString;
 };
 
-// 입력한 숫자가 두자리수보다 아래일 때, 입력된 갯수만큼 0을 채워서 반환.
+// 입력한 숫자가 두자리수보다 아래일 때, 입력된 자릿수부터 0을 채워서 반환.
 export const numberZeroFillFormat = (str: string | number, fillCount: number): string => {
 
   let argNumber: number;

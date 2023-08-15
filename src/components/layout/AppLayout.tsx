@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { CSS_TYPE } from "@styles/styles";
 import doubleArrowLeft from '@icons/keyboard_double_arrow_left.svg';
-import NavigationLayout from './NavigationLayout';
+import { NavigationLayout } from '@components/index';
 
 const AppLayout = ({ children }: PropsWithChildren) => {
 

@@ -6,6 +6,8 @@ export { default as ProfileWomanIcon } from '@icons/profile_woman.svg';
 
 /** Arrow */
 export { default as BusinessSingleArrowRight } from '@icons/business_single_arrow_right.svg'
+export { default as GreySingleArrowLeft } from '@icons/grey_single_arrow_left.svg'
+export { default as GreySingleArrowRight } from '@icons/grey_single_arrow_right.svg'
 
 /** Navigation Lists Icon */
 export { default as HomeWhiteIcon } from "@icons/home_white.svg";

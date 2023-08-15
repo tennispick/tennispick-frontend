@@ -121,11 +121,18 @@ export const getWeekList = (args?: Date): WeekListProps => {
 export const getTimeZoneList = () => {
 
   let timeList = [];
+
   for (let index = 0; index <= 24; index++) {
     timeList.push(
       `${numberZeroFillFormat(index, 2)}:00`
     );
   };
+
+  // for (let index = 6; index <= 9; index++) {
+  //   timeList.push(
+  //     `${numberZeroFillFormat(index, 2)}:00`
+  //   );
+  // };
 
   return {
     timeList: timeList
@@ -157,3 +164,16 @@ export const getPrevNextMonth = (year: number, month: number) => {
     },
   };
 };
+
+/** Only Get Time String */
+export const isCheckTimeInRange = (startTime: string, endTime: string, targetTime: string) =>{
+
+  if(startTime && endTime && targetTime){
+  
+    const startTimeDateValue = new Date(0, 0, 0, Number(startTime.split(':')[0]), Number(startTime.split(':')[1]));
+    const endTimeDateValue = new Date(0, 0, 0, Number(endTime.split(':')[0]), Number(endTime.split(':')[1]));
+    const targetTimeDateValue = new Date(0, 0, 0, Number(targetTime.split(':')[0]), Number(targetTime.split(':')[1]));
+  
+    return targetTimeDateValue >= startTimeDateValue && targetTimeDateValue <= endTimeDateValue;
+  }
+}

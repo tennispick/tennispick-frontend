@@ -1,8 +1,5 @@
-import BusinessPerformance from "@components/coach/detail/BusinessPerformance";
-import CustomerList from "@components/coach/detail/CustomerList";
-import PersonalData from "@components/coach/detail/PersonalData";
-import Button from "@components/common/Button";
-import PageHeader from "@components/common/PageHeader";
+import { PageHeader, BusinessPerformance, CoachCustomerList, PersonalData, Button } from "@components/index";
+
 import { DeleteWhiteIcon, EditWhiteIcon } from "@icons/index";
 
 const CoachDetail = () => {
@@ -32,7 +29,7 @@ const CoachDetail = () => {
           }}
         >
           <BusinessPerformance />
-          <CustomerList />
+          <CoachCustomerList />
         </div>
       </div>
       <div
