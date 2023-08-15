@@ -3,11 +3,11 @@ import jwt_decode from 'jwt-decode';
 
 const cookies = new Cookies();
 
-const getCookie = () =>{
+const getCookie = () => {
   return cookies.get("userACT");
 }
 
-const setCookie = (accessToken: string) =>{
+const setCookie = (accessToken: string) => {
 
   const expires = new Date();
   expires.setMinutes(expires.getMinutes() + 180);
@@ -22,13 +22,13 @@ const setCookie = (accessToken: string) =>{
   return cookies.set("userACT", accessToken, options)
 }
 
-const removeCookie = (key: string) =>{
+const removeCookie = (key: string) => {
   return cookies.remove(key);
 }
 
-const getAdminInfo = (key: string) =>{
+const getAdminInfo = (key: string) => {
   const accessToken = cookies.get("userACT");
-  const adminInfo: {[key: string]: string} = jwt_decode(accessToken);
+  const adminInfo: { [key: string]: string } = jwt_decode(accessToken);
 
   return key === 'all' ? adminInfo : adminInfo[key]
 }

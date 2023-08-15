@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { v4 as uuidV4 } from "uuid";
 
-import { Filter, PageHeader, Search, TabList, Button, CourtList,  } from "@components/index";
+import { Filter, PageHeader, Search, TabList, Button, CourtList, } from "@components/index";
 import { CustomerWhiteIcon } from "@icons/index";
 
 
-const CourtPage = () =>{
+const CourtPage = () => {
   const tabListArr = [
     {
       id: uuidV4(),
@@ -27,7 +27,7 @@ const CourtPage = () =>{
   const [currentTab, setCurrentTab] = useState<string>(tabListArr[0].id);
   const [tabList,] = useState(tabListArr);
 
-  return(
+  return (
     <>
       <PageHeader title={"코트 목록"} />
       <Filter />
@@ -40,7 +40,7 @@ const CourtPage = () =>{
         buttonElement={
           <Button
             variant={'iconBtn'}
-            label={'회원 등록하기'}
+            label={'코트 생성하기'}
             src={CustomerWhiteIcon}
             imageCss={{
               width: "20px",

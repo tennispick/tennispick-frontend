@@ -49,6 +49,9 @@
       "@mocks/*": [
         "src/mocks/*"
       ],
+      "@queries/*": [
+        "src/queries/*"
+      ],
       "@styles/*": [
         "src/styles/*"
       ],

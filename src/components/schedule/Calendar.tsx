@@ -8,14 +8,14 @@ import { ObjectProps } from "@interfaces/common";
 import { getTimeZoneList, getPrevNextMonth, isCheckTimeInRange } from "@utils/date";
 
 import { EditWhiteIcon, GreySingleArrowLeft, GreySingleArrowRight } from "@icons/index";
-import { getScheduleQuery } from "src/queries/schedule";
+import { getScheduleQuery } from "@queries/index";
 import { numberZeroFillFormat } from "@utils/numberForm";
 
-interface U{
+interface U {
   [key: string]: number;
 };
 
-interface CalendarProps{
+interface CalendarProps {
   courtList: Array<ObjectProps<string>>;
   dateWeekList: {
     weekNumber: number;
@@ -46,7 +46,7 @@ const Calendar = ({ courtList, dateWeekList, calendarDate, setCalendarDate, setS
 
   // 공휴일 체크하고 이벤트 표시
 
-  const onClickPrevMonthHandler = () =>{
+  const onClickPrevMonthHandler = () => {
     const { prevDate } = getPrevNextMonth(year, month);
     setCalendarDate({
       year: prevDate.year,
@@ -55,8 +55,8 @@ const Calendar = ({ courtList, dateWeekList, calendarDate, setCalendarDate, setS
     });
   };
 
-  const onClickNextMonthHandler = () =>{
-    
+  const onClickNextMonthHandler = () => {
+
     const { nextDate } = getPrevNextMonth(year, month);
     setCalendarDate({
       year: nextDate.year,
@@ -124,15 +124,17 @@ const Calendar = ({ courtList, dateWeekList, calendarDate, setCalendarDate, setS
       <WeekHeaderContainer>
         {
           (currentWeekDayList && currentWeekDayList.length > 0) && currentWeekDayList.map((item) => {
-            return(
+            return (
               <WeekDayContainer key={item.date}>
                 <DayWrapper
                   color={item.day === "Sat" ? "var(--basic-blue-color)" : item.day === "Sun" ? "var(--basic-red-color)" : "var(--basic-black-color)"}
                 >
-                  {typeof(item.date) === "number" ? item.date + `(${item.day_KR})` : ""}
+                  {typeof (item.date) === "number" ? item.date + `(${item.day_KR})` : ""}
                 </DayWrapper>
                 {/* 공휴일 및 이벤트 */}
-                <DayEventContainer></DayEventContainer>
+                <DayEventContainer>
+                  이벤트
+                </DayEventContainer>
               </WeekDayContainer>
             )
           })
@@ -155,8 +157,8 @@ const Calendar = ({ courtList, dateWeekList, calendarDate, setCalendarDate, setS
         <WeekContainer>
           {
             (currentWeekDayList && currentWeekDayList.length > 0) && currentWeekDayList.map((element) => {
-              {/* 스케줄 노출 */}
-              return(
+              {/* 스케줄 노출 */ }
+              return (
                 <DateContainer key={uuidV4()}>
                   {
                     (timeList && timeList.length > 0) && timeList.map((item, index) => {
@@ -164,7 +166,7 @@ const Calendar = ({ courtList, dateWeekList, calendarDate, setCalendarDate, setS
                         <DateEventLists key={uuidV4()}>
                           <DateEventList>
                             {
-                              (data?.data && data.data.length > 0) && data.data.map((event: any, ) => {
+                              (data?.data && data.data.length > 0) && data.data.map((event: any,) => {
 
                                 // 시작 및 종료 스케줄 기준 시간값
                                 const prevTime = item;
@@ -182,7 +184,7 @@ const Calendar = ({ courtList, dateWeekList, calendarDate, setCalendarDate, setS
 
                                 // TODO 24시일 때, 가정하자
 
-                                return(
+                                return (
                                   (isTimeInRange && element.date === Number(event.date)) &&
                                   <div
                                     key={uuidV4()}

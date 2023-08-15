@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidV4 } from "uuid";
 import PageHeader from "@components/common/PageHeader";
 import TabList from "@components/common/TabList";
@@ -61,6 +61,12 @@ const SchedulePage = () => {
       value: "court4",
     }
   ];
+
+  // 코트목록
+
+  // 코치목록
+
+  // 레슨권 목록
 
   const [mount, setMount] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);

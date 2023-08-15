@@ -21,7 +21,7 @@ const Login = () => {
 
     const { data } = await axios.post('/auth/login', { ...login });
 
-    if(data.statusCode !== 401){
+    if (data.accessToken !== '' && data.accessToken !== undefined) {
       setCookie(data.accessToken);
       router.push('/');
     }
