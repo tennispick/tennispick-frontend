@@ -34,7 +34,7 @@ const LessonPage = () =>{
 
   return(
     <>
-      <PageHeader title={"레슨권"} />
+      <PageHeader title={"레슨권 목록"} />
       <Filter />
       <Search />
       <TabList

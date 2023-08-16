@@ -14,7 +14,7 @@ const CoachList = () =>{
   return(
     <>
       {
-        (data && data.length > 0 ) &&
+        (data && data.length > 0 ) ?
           <ul
             css={{
               position: "relative",
@@ -33,7 +33,10 @@ const CoachList = () =>{
           {
             data.map((item) => {
               return (
-                <CardList list={data} key={uuidV4()}>
+                <CardList
+                  key={uuidV4()}
+                  minHeight={'390px'}
+                >
                   <div
                     css={{
                       position: "relative",
@@ -131,15 +134,15 @@ const CoachList = () =>{
             })
           }
         </ul>
-      }
-      {(data && data.length) === 0 &&
+        :
         <div
           css={{
             position: "relative",
             height: "20vh",
             borderRadius: "25px",
           }}
-        ><NoResult description={"아직 코치님이 존재하지 않아요."} margin="16px 0 0 0"/>
+        >
+          <NoResult description={"아직 코치님이 존재하지 않아요."} margin="16px 0 0 0"/>
         </div>
       }
     </>
