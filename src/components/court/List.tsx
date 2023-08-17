@@ -5,12 +5,12 @@ import { CardList, NoResult, Button } from '@components/index';
 import { DefaultCourt } from '@images/index';
 
 interface CourtListProps {
-  data: Array<{ [key:string] : string | number }>
+  data: Array<{ [key: string]: string | number }>
 }
 
-const CourtList = ({ data }: CourtListProps) =>{
+const CourtList = ({ data }: CourtListProps) => {
 
-  const [list, setList] = useState<Array<{ [key:string] : string | number }>>(data);
+  const [list, setList] = useState<Array<{ [key: string]: string | number }>>(data);
 
   return (
     <>
@@ -18,7 +18,7 @@ const CourtList = ({ data }: CourtListProps) =>{
         (list && list.length > 0) ?
           <CardList.UnOrderList>
             {list.map((item) => {
-              return(
+              return (
                 <CardList
                   key={item.id}
                   height={'360px'}
@@ -64,7 +64,7 @@ const CourtList = ({ data }: CourtListProps) =>{
                     css={{
                       position: 'relative',
                       height: '40%',
-                      padding: '16px 28px 0 28px'
+                      padding: '16px 24px 0 24px'
                     }}
                   >
                     <CourtDetailInfo>&#45; {item.floor}층</CourtDetailInfo>
@@ -84,10 +84,10 @@ const CourtList = ({ data }: CourtListProps) =>{
                           border: 0,
                           backgroundColor: 'var(--basic-red2-color)',
                           color: 'var(--basic-white-color)',
-                          padding: '8px 20px',
+                          padding: '8px 16px',
                           fontSize: '0.95rem'
                         }}
-                        onClick={() => {}}
+                        onClick={() => { }}
                       />
                       <Button
                         label={'상세보기'}
@@ -96,28 +96,28 @@ const CourtList = ({ data }: CourtListProps) =>{
                           border: 0,
                           backgroundColor: 'var(--business-color)',
                           color: 'var(--basic-white-color)',
-                          padding: '8px 20px',
+                          padding: '8px 16px',
                           fontSize: '0.95rem'
                         }}
-                        onClick={() => {}}
+                        onClick={() => { }}
                       />
                     </div>
                   </div>
                 </CardList>
               )
             })
-          }
-        </CardList.UnOrderList>
-        :
-        <div
-          css={{
-            position: "relative",
-            height: "20vh",
-            borderRadius: "25px",
-          }}
-        >
-          <NoResult description={"생성된 코트가 없어요."} margin="16px 0 0 0"/>
-        </div>
+            }
+          </CardList.UnOrderList>
+          :
+          <div
+            css={{
+              position: "relative",
+              height: "20vh",
+              borderRadius: "25px",
+            }}
+          >
+            <NoResult description={"생성된 코트가 없어요."} margin="16px 0 0 0" />
+          </div>
       }
     </>
   )

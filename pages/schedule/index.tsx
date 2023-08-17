@@ -147,7 +147,7 @@ const SchedulePage = () => {
       }
       {
         showModal &&
-        <Portal id={"#portal"}>
+        <Portal id={"portal"}>
           <Modal
             title={"스케줄 등록"}
             showModal={showModal}

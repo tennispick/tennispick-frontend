@@ -11,7 +11,7 @@ import { EditWhiteIcon, GreySingleArrowLeft, GreySingleArrowRight } from "@icons
 import { getScheduleQuery } from "@queries/index";
 import { numberZeroFillFormat } from "@utils/numberForm";
 
-interface U {
+interface CalendarDateProps {
   [key: string]: number;
 };
 
@@ -21,7 +21,7 @@ interface CalendarProps {
     weekNumber: number;
     dateWeekList: Array<ObjectProps<number | string>>;
   };
-  calendarDate: U;
+  calendarDate: CalendarDateProps;
   setCalendarDate: Dispatch<SetStateAction<{
     year: number;
     month: number;

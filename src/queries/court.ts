@@ -6,7 +6,7 @@ const getCourtFetch = async (): Promise<any> => await axios.get(`/court`);
 const getCourtQuery = () => {
   try {
     const { data } = useQuery({
-      queryKey: ['court', ],
+      queryKey: ['court',],
       queryFn: async () => await getCourtFetch(),
     });
     return {

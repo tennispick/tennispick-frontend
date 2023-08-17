@@ -11,8 +11,8 @@ interface ModalProps {
   setShowModal: Dispatch<SetStateAction<boolean>>;
 };
 
-const Modal = ({ title, children, showModal, setShowModal }: ModalProps) =>{
-  return(
+const Modal = ({ title, children, showModal, setShowModal }: ModalProps) => {
+  return (
     <Container>
       <ModalContainer css={fadeUp}>
         <TitleContainer>
@@ -29,6 +29,7 @@ const Modal = ({ title, children, showModal, setShowModal }: ModalProps) =>{
             onClick={() => setShowModal(false)}
           />
         </TitleContainer>
+        {children}
       </ModalContainer>
     </Container>
   )

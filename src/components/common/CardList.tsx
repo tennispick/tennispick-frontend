@@ -1,14 +1,14 @@
-import { PropsWithChildren, ReactElement, ReactNode } from "react";
+import { ReactNode } from "react";
 
-interface CardListProps{
+interface CardListProps {
   height?: string;
   minHeight?: string;
   children: ReactNode;
 }
 
-const CardList = ({ height, minHeight, children }: CardListProps) =>{
+const CardList = ({ height, minHeight, children }: CardListProps) => {
 
-  return(
+  return (
     <li
       css={{
         position: "relative",
@@ -20,11 +20,11 @@ const CardList = ({ height, minHeight, children }: CardListProps) =>{
         borderRadius: "25px",
         margin: "12px 0 0 0",
 
-        ":nth-of-type(2n)":{
+        ":nth-of-type(2n)": {
           margin: "12px 16px 0 16px"
         },
 
-        ":nth-of-type(6n+1)":{
+        ":nth-of-type(6n+1)": {
           marginLeft: "16px"
         }
       }}
@@ -34,7 +34,7 @@ const CardList = ({ height, minHeight, children }: CardListProps) =>{
   )
 }
 
-CardList.UnOrderList = ({ children } : { children: ReactNode }) =>{
+CardList.UnOrderList = ({ children }: { children: ReactNode }) => {
   return (
     <ul
       css={{
@@ -44,7 +44,7 @@ CardList.UnOrderList = ({ children } : { children: ReactNode }) =>{
         height: "80%",
         overflowY: "scroll",
         padding: "0 0 24px 0",
-        
+
         "::-webkit-scrollbar": {
           scrollBehavior: "smooth",
           display: "none"
