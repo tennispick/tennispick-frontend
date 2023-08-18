@@ -1,7 +1,9 @@
 import { axios } from "@utils/axios";
 import { useQuery } from '@tanstack/react-query';
 
-const getCourtFetch = async (): Promise<any> => await axios.get(`/court`);
+const getCourtFetch = async (): Promise<any> => await axios.get('/court');
+
+const generateCourt = async (data: object): Promise<any> => await axios.post('/court',{ data: data });
 
 const getCourtQuery = () => {
   try {
@@ -18,4 +20,4 @@ const getCourtQuery = () => {
   }
 }
 
-export { getCourtFetch, getCourtQuery }
+export { getCourtFetch, generateCourt, getCourtQuery }

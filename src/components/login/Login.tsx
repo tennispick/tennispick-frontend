@@ -1,4 +1,4 @@
-import { FormEvent } from "react";
+import { FormEvent, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import styled from "@emotion/styled";
 import Input from "@components/common/Input";
@@ -56,7 +56,6 @@ const Login = () => {
               />
             </Input>
             <Input
-              id={"naming"}
               label={"비밀번호"}
               variant={"labelBox"}
               css={{
@@ -88,7 +87,6 @@ const Login = () => {
                 backgroundColor: 'var(--basic-vivid-blue-color)',
                 border: 0
               }}
-              onClick={() => { }}
             />
             <Button
               label={"문의하기"}
@@ -101,7 +99,6 @@ const Login = () => {
                 backgroundColor: 'var(--basic-navy-color)',
                 border: 0
               }}
-              onClick={() => { }}
             />
           </div>
         </form>

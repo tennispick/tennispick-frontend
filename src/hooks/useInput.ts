@@ -6,10 +6,20 @@ const useInput = (initData: any) =>{
 
   const handler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setData({
-      ...(data),
-      [name]: value,
-    })
+    if(data[name] instanceof Object){
+      let prevData = data;
+      prevData[name] = {
+        value: value,
+        isRequired: value === '' ? true : false
+      }
+      setData({ ...prevData });
+    }
+    else{
+      setData({
+        ...(data),
+        [name]: value,
+      })
+    }
   }, [data, setData])
 
   return [data, handler, setData]

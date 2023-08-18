@@ -52,13 +52,33 @@ const Input = ({
   )
 };
 
-Input.TextField = forwardRef(({ ...props }: InputHTMLAttributes<HTMLInputElement>, ref: ForwardedRef<HTMLInputElement>): ReactElement<InputHTMLAttributes<HTMLInputElement>> => {
+interface InputAttributeProps extends InputHTMLAttributes<HTMLInputElement>{
+  requiredStatus?: boolean;
+  requiredText?: string;
+}
+
+Input.TextField = forwardRef(({ ...props }: InputAttributeProps, ref: ForwardedRef<HTMLInputElement>): ReactElement<InputHTMLAttributes<HTMLInputElement>> => {
+
+  const { requiredStatus, requiredText, ...otherProps } = props;
+
   return (
-    <input
-      type={props.type ? props.type : "text"}
-      ref={ref}
-      {...props}
-    />
+    <>
+      <input
+        type={props.type ? props.type : 'text'}
+        ref={ref}
+        {...otherProps}
+      />
+      {
+        requiredStatus &&
+        <div
+          css={{
+            margin: '8px 0 0 4px',
+            color: 'var(--basic-red2-color)',
+            fontWeight: 500
+          }}
+        >{requiredText}</div>
+      }
+    </>
   )
 })
 
