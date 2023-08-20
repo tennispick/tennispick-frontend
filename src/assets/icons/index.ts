@@ -3,6 +3,7 @@ export { default as DeleteWhiteIcon } from '@icons/delete_white.svg';
 export { default as EditWhiteIcon } from '@icons/edit_white.svg';
 export { default as ProfileManIcon } from '@icons/profile_man.svg';
 export { default as ProfileWomanIcon } from '@icons/profile_woman.svg';
+export { default as CloseBtnIcon } from '@icons/close_btn.svg';
 
 /** Arrow */
 export { default as BusinessSingleArrowRight } from '@icons/business_single_arrow_right.svg'

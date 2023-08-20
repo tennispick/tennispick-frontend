@@ -26,7 +26,8 @@ export default function App({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
             <Analytics />
           </AppLayout>
-          <div id="portal" />
+          <div id={'portal'} />
+          <div id={'rightSide'} />
         </Hydrate>
       </QueryClientProvider>
     </RecoilRoot>

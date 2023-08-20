@@ -100,6 +100,7 @@ export const globalStyles = (
         --basic-grey3-color: rgba(206, 206, 206, 100); // #CECECE
         --basic-grey4-color: rgba(248, 248, 248, 100); // #F8F8F8
         --basic-grey5-color: rgba(243, 243, 243, 100); // #F3F3F3
+        --basic-grey6-color: rgba(249, 249, 249, 100); // #F9F9F9
 
         --business-active-color: rgba(101, 165, 185, 100); // #65A5B9
         --deactive-color: rgba(204, 204, 204, 100); // #CCCCCC

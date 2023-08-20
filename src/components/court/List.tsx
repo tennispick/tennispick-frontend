@@ -1,16 +1,18 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import { CardList, NoResult, Button } from '@components/index';
 import { DefaultCourt } from '@images/index';
 
 interface CourtListProps {
-  data: Array<{ [key: string]: string | number }>
+  data: Array<{ [key: string]: string | number }>;
+  setCourtId: Dispatch<SetStateAction<string>>;
+  setShowRightSide: Dispatch<SetStateAction<boolean>>;
 }
 
-const CourtList = ({ data }: CourtListProps) => {
+const CourtList = ({ data, setCourtId, setShowRightSide }: CourtListProps) => {
 
-  const [list, setList] = useState<Array<{ [key: string]: string | number }>>(data);
+  const [list, ] = useState<Array<{ [key: string]: string | number }>>(data);
 
   return (
     <>
@@ -51,7 +53,8 @@ const CourtList = ({ data }: CourtListProps) => {
                       transform: 'translate(-50%, -50%)',
                       minWidth: '140px',
                       padding: '12px 0',
-                      backgroundColor: 'var(--business-sub-color)',
+                      // backgroundColor: 'var(--business-sub-color,
+                      backgroundColor: 'var(--basic-vivid-blue-color)',
                       color: 'var(--basic-white-color)',
                       fontSize: '1.1rem',
                       fontWeight: '600',
@@ -68,7 +71,9 @@ const CourtList = ({ data }: CourtListProps) => {
                     }}
                   >
                     <CourtDetailInfo>&#45; {item.floor}층</CourtDetailInfo>
-                    <CourtDetailInfo>&#45; {item.description}</CourtDetailInfo>
+                    <CourtDetailInfo>
+                      { item.description ? <>&#45; {item.description}</> : <>&#160;</> }
+                    </CourtDetailInfo>
                     <div
                       css={{
                         display: "flex",
@@ -99,7 +104,10 @@ const CourtList = ({ data }: CourtListProps) => {
                           padding: '8px 16px',
                           fontSize: '0.95rem'
                         }}
-                        onClick={() => { }}
+                        onClick={() => {
+                          setCourtId(item.id as string);
+                          setShowRightSide(true);
+                        }}
                       />
                     </div>
                   </div>

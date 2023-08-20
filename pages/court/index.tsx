@@ -1,19 +1,24 @@
 import { useState, FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import styled from "@emotion/styled";
 
-import { PageHeader, Button, CourtList, Input } from "@components/index";
-import Portal from "@components/Portal";
 import Modal from "@components/layer/Modal";
+import { PageHeader, Button, CourtList, Input, DetailCourt, Portal } from "@components/index";
 import { EditWhiteIcon } from "@icons/index";
 import { generateCourt, getCourtQuery } from "@queries/index";
 import useInput from "@hooks/useInput";
+import RightSideContainer from "@components/layer/RightSideContainer";
 
 const CourtPage = () => {
 
   // lessonType={tabList[tabList.findIndex(e => e.id === currentTab)].value}
 
+  const router = useRouter();
   const { data } = getCourtQuery();
+
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [courtId, setCourtId] = useState<string>('');
+  const [showRightSide, setShowRightSide] = useState<boolean>(false);
 
   const [formData, onChangeFormData, setFormData] = useInput({
     name: {
@@ -47,8 +52,12 @@ const CourtPage = () => {
     }
 
     if(isCheck){
-
-      generateCourt(formData);
+      const { data } = await generateCourt(formData);
+      if(data.affectedRows > 0){
+        alert('생성이 완료되었습니다.');
+        setShowModal(false);
+        router.refresh();
+      }
     }
     else return false;
   }
@@ -69,7 +78,7 @@ const CourtPage = () => {
         }}
         onClick={() => setShowModal(true)}
       />
-      {data && <CourtList data={data.data} />}
+      {data && <CourtList data={data.data} setCourtId={setCourtId} setShowRightSide={setShowRightSide} />}
       {
         showModal &&
         <Portal id={'portal'}>
@@ -119,10 +128,23 @@ const CourtPage = () => {
                   padding: '12px 16px',
                   margin: '96px 0 0 0',
                 }}
-                onClick={() => {}}
               />
             </form>
           </Modal>
+        </Portal>
+      }
+      {
+        showRightSide &&
+        <Portal
+          id={'rightSide'}
+        >
+          <RightSideContainer
+            title={'코트 상세정보'}
+            showRightSide={showRightSide}
+            setShowRightSide={setShowRightSide}
+          >
+            <DetailCourt id={courtId} />
+          </RightSideContainer>
         </Portal>
       }
     </>

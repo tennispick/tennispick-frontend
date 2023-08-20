@@ -8,9 +8,17 @@ const useInput = (initData: any) =>{
     const { name, value } = e.target;
     if(data[name] instanceof Object){
       let prevData = data;
-      prevData[name] = {
-        value: value,
-        isRequired: value === '' ? true : false
+
+      if(prevData[name].isRequired !== undefined){
+        prevData[name] = {
+          value: value,
+          isRequired: value === '' ? true : false
+        }
+      }
+      else{
+        prevData[name] = {
+          value: value,
+        }
       }
       setData({ ...prevData });
     }

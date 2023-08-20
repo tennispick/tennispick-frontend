@@ -19,6 +19,38 @@ export const fadeUp = css`
   animation-timing-function: ease;
 `;
 
+const fadeRightKeyframes = keyframes`
+  from {
+    transform: translateX(100%)
+  }
+
+  to {
+    transform: translateX(0)
+  }
+`
+
+export const fadeRight = css`
+  animation-duration: 0.65s;
+  animation-name: ${fadeRightKeyframes};
+  animation-timing-function: ease;
+`
+
+const fadeOutRightKeyframes = keyframes`
+  from {
+    transform: translateX(100%)
+  }
+
+  to {
+    transform: translateX(200%)
+  }
+`
+
+export const fadeOutRight = css`
+  animation-duration: 0.65s;
+  animation-name: ${fadeOutRightKeyframes};
+  animation-timing-function: ease;
+`
+
 const dropDownActiveKeyframes = keyframes`
   from {
     opacity: 0;

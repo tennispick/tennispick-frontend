@@ -3,16 +3,18 @@ import { useQuery } from '@tanstack/react-query';
 
 const getCourtFetch = async (): Promise<any> => await axios.get('/court');
 
+const getCourtDetailFetch = async (id: string): Promise<any> => await axios.get(`/court/${id}`);
+
 const generateCourt = async (data: object): Promise<any> => await axios.post('/court',{ data: data });
 
-const getCourtQuery = () => {
+const getCourtQuery = (): any => {
   try {
     const { data } = useQuery({
       queryKey: ['court',],
       queryFn: async () => await getCourtFetch(),
     });
     return {
-      data: data
+      data: data,
     };
   } catch (error) {
     console.error(error);
@@ -20,4 +22,25 @@ const getCourtQuery = () => {
   }
 }
 
-export { getCourtFetch, generateCourt, getCourtQuery }
+const getCourtDetailQuery = (id: string) =>{
+  try {
+    const { data } = useQuery({
+      queryKey: ['court', id],
+      queryFn: async () => await getCourtDetailFetch(id),
+    });
+    return {
+      data: data,
+    };
+  } catch (error) {
+    console.error(error);
+    return { data: error }
+  }
+}
+
+export {
+  getCourtFetch,
+  getCourtDetailFetch,
+  generateCourt,
+  getCourtQuery,
+  getCourtDetailQuery
+}
