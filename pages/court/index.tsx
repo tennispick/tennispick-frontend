@@ -39,21 +39,21 @@ const CourtPage = () => {
 
     let isCheck = true;
     const formDataKeys = Object.keys(formData);
-    for(let key of formDataKeys){
+    for (let key of formDataKeys) {
 
-      let prevData = {...formData};
+      let prevData = { ...formData };
       const item = prevData[key];
 
-      if(item.value === '' && item.isRequired !== undefined){
+      if (item.value === '' && item.isRequired !== undefined) {
         prevData[key].isRequired = true;
         isCheck = false;
       }
       setFormData(prevData);
     }
 
-    if(isCheck){
+    if (isCheck) {
       const { data } = await generateCourt(formData);
-      if(data.affectedRows > 0){
+      if (data.affectedRows > 0) {
         alert('생성이 완료되었습니다.');
         setShowModal(false);
         router.refresh();
@@ -143,7 +143,7 @@ const CourtPage = () => {
             showRightSide={showRightSide}
             setShowRightSide={setShowRightSide}
           >
-            <DetailCourt id={courtId} />
+            <DetailCourt id={courtId} setShowRightSide={setShowRightSide} />
           </RightSideContainer>
         </Portal>
       }

@@ -1,15 +1,22 @@
-import { FormEvent, useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import styled from "@emotion/styled";
 
 import { Input, Button } from '@components/index';
-import { getCourtDetailQuery } from "@queries/court";
+import { deleteCourtDetailInfo, getCourtDetailQuery, updateCourtDetailInfo } from "@queries/court";
 import useInput from "@hooks/useInput";
 import { EditWhiteIcon, DeleteWhiteIcon } from "@icons/index";
 
-const DetailCourt = ({ id }: { id: string }) =>{
+interface CourtDetailProps {
+  id: string;
+  setShowRightSide: Dispatch<SetStateAction<boolean>>;
+}
+
+const DetailCourt = ({ id, setShowRightSide }: CourtDetailProps) => {
 
   const { data } = getCourtDetailQuery(id);
 
+  const router = useRouter();
   const [formData, onChangeFormData, setFormData] = useInput({
     name: {
       value: '',
@@ -24,53 +31,67 @@ const DetailCourt = ({ id }: { id: string }) =>{
     }
   });
 
-  const onModifyHandler = () =>{
+  const onModifyHandler = async () => {
 
     let isCheck = true;
     const formDataKeys = Object.keys(formData);
-    for(let key of formDataKeys){
-      
-      let prevData = {...formData};
+    for (let key of formDataKeys) {
+
+      let prevData = { ...formData };
       const item = prevData[key];
 
-      if(item.value === '' && item.isRequired !== undefined){
+      if (item.value === '' && item.isRequired !== undefined) {
         prevData[key].isRequired = true;
         isCheck = false;
       }
       setFormData(prevData);
     }
 
-    if(isCheck){
-      alert('통과');
+    if (isCheck) {
+      const { data } = await updateCourtDetailInfo(id, formData);
+
+      if (data.affectedRows > 0) {
+        alert('수정 되었습니다.');
+        setShowRightSide(false);
+        router.refresh();
+      }
+      else alert('다시 시도해주세요.');
     }
     else return false;
   }
 
-  const onDeleteHandler = () =>{
-    console.log('삭제2');
+  const onDeleteHandler = async () => {
+    const { data } = await deleteCourtDetailInfo(id);
+
+    if (data.affectedRows > 0) {
+      alert('삭제 되었습니다.');
+      setShowRightSide(false);
+      router.refresh();
+    }
+    else alert('다시 시도해주세요.');
   }
 
   useEffect(() => {
-    if(data){
+    if (data) {
 
-      let prevData = {...data.data[0]};
-      let spreadFormData = {...formData};
+      let prevData = { ...data.data[0] };
+      let spreadFormData = { ...formData };
       const formDataKeys = Object.keys(formData);
 
-      for(let key of formDataKeys){
+      for (let key of formDataKeys) {
 
         let item = spreadFormData[key];
         item.value = prevData[key] ? prevData[key] : '';
 
-        if(item.isRequired && item.isRequired !== undefined) item.isRequired = true;
+        if (item.isRequired && item.isRequired !== undefined) item.isRequired = true;
       }
     }
   }, [data])
 
-  return(
+  return (
     <>
       {
-        data && 
+        data &&
         <>
           <InputWrapper
             label={'코트 이름'}
@@ -113,7 +134,7 @@ const DetailCourt = ({ id }: { id: string }) =>{
             }}
           >
             <Button
-              label={'레슨권 수정하기'}
+              label={'코트 수정하기'}
               variant={'iconBtn'}
               src={EditWhiteIcon}
               css={{
@@ -128,7 +149,7 @@ const DetailCourt = ({ id }: { id: string }) =>{
               onClick={onModifyHandler}
             />
             <Button
-              label={'레슨권 삭제하기'}
+              label={'코트 삭제하기'}
               variant={'iconBtn'}
               src={DeleteWhiteIcon}
               css={{

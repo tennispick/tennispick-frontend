@@ -1,8 +1,11 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import styled from '@emotion/styled';
 import Image from 'next/image';
+import { useRouter } from "next/navigation";
+
 import { CardList, NoResult, Button } from '@components/index';
 import { DefaultCourt } from '@images/index';
+import { deleteCourtDetailInfo } from '@queries/court';
 
 interface CourtListProps {
   data: Array<{ [key: string]: string | number }>;
@@ -12,7 +15,8 @@ interface CourtListProps {
 
 const CourtList = ({ data, setCourtId, setShowRightSide }: CourtListProps) => {
 
-  const [list, ] = useState<Array<{ [key: string]: string | number }>>(data);
+  const router = useRouter();
+  const [list,] = useState<Array<{ [key: string]: string | number }>>(data);
 
   return (
     <>
@@ -72,7 +76,7 @@ const CourtList = ({ data, setCourtId, setShowRightSide }: CourtListProps) => {
                   >
                     <CourtDetailInfo>&#45; {item.floor}층</CourtDetailInfo>
                     <CourtDetailInfo>
-                      { item.description ? <>&#45; {item.description}</> : <>&#160;</> }
+                      {item.description ? <>&#45; {item.description}</> : <>&#160;</>}
                     </CourtDetailInfo>
                     <div
                       css={{
@@ -92,7 +96,16 @@ const CourtList = ({ data, setCourtId, setShowRightSide }: CourtListProps) => {
                           padding: '8px 16px',
                           fontSize: '0.95rem'
                         }}
-                        onClick={() => { }}
+                        onClick={async () => {
+                          const { data } = await deleteCourtDetailInfo(item.id as string);
+
+                          if (data.affectedRows > 0) {
+                            alert('삭제 되었습니다.');
+                            setShowRightSide(false);
+                            router.refresh();
+                          }
+                          else alert('다시 시도해주세요.');
+                        }}
                       />
                       <Button
                         label={'상세보기'}
