@@ -4,9 +4,23 @@
 export { getScheduleFetch, getScheduleQuery } from '@queries/schedule';
 
 /** customer */
+export {
+  getCustomerFetch,
+  getCustomerDetailFetch,
+  generateCustomer,
+  getCustomerQuery
+} from '@queries/customer';
 
 /** coach */
-export { getCourtFetch, generateCourt, getCourtQuery } from '@queries/court';
+export {
+  getCourtFetch,
+  getCourtDetailFetch,
+  updateCourtDetailInfo,
+  deleteCourtDetailInfo,
+  generateCourt,
+  getCourtQuery,
+  getCourtDetailQuery
+} from '@queries/court';
 
 /** court */
 

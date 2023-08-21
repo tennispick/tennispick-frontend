@@ -11,10 +11,10 @@ interface ModalProps {
   setShowModal: Dispatch<SetStateAction<boolean>>;
 };
 
-const Modal = ({ title, children, showModal, setShowModal }: ModalProps) => {
+const Modal = ({ title, children, showModal, setShowModal, ...props }: ModalProps) => {
   return (
     <Container>
-      <ModalContainer css={fadeUp}>
+      <ModalContainer css={fadeUp} {...props} >
         <TitleContainer>
           <Title>{title}</Title>
           <Image

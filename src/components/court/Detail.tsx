@@ -2,9 +2,9 @@ import { Dispatch, SetStateAction, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import styled from "@emotion/styled";
 
-import { Input, Button } from '@components/index';
-import { deleteCourtDetailInfo, getCourtDetailQuery, updateCourtDetailInfo } from "@queries/court";
 import useInput from "@hooks/useInput";
+import { Input, Button } from '@components/index';
+import { deleteCourtDetailInfo, getCourtDetailQuery, updateCourtDetailInfo } from "@queries/index";
 import { EditWhiteIcon, DeleteWhiteIcon } from "@icons/index";
 
 interface CourtDetailProps {

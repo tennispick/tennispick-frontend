@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 import { CardList, NoResult, Button } from '@components/index';
 import { DefaultCourt } from '@images/index';
-import { deleteCourtDetailInfo } from '@queries/court';
+import { deleteCourtDetailInfo } from '@queries/index';
 
 interface CourtListProps {
   data: Array<{ [key: string]: string | number }>;

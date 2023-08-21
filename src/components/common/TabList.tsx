@@ -31,7 +31,7 @@ const TabList = ({ state, setState, list, borderBottom, buttonElement }: ListPro
         }
       </Lists>
       {
-        buttonElement && <div css={{ position: 'absolute', top: '2%', right: '0'}}>{buttonElement}</div>
+        buttonElement && <div css={{ position: 'absolute', top: '2%', right: '0' }}>{buttonElement}</div>
       }
     </Container>
   )
@@ -40,8 +40,8 @@ const TabList = ({ state, setState, list, borderBottom, buttonElement }: ListPro
 const Container = styled.div<CSS_TYPE>(
   {
     position: 'relative',
-    padding: "8px 0 0 0",
-    margin: '4px 0 0 0'
+    padding: '8px 0 8px 0',
+    margin: '6px 0 0 0'
   },
 );
 const Lists = styled.ul<CSS_TYPE>(

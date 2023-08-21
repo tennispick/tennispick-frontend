@@ -1,33 +1,28 @@
-import { useState } from "react";
-import { v4 as uuidV4 } from "uuid";
+import { useEffect, useState } from "react";
 
-import { Filter, PageHeader, Search, TabList, Button, CustomerList } from "@components/index";
-import { CustomerWhiteIcon } from "@icons/index";
+import Modal from "@components/layer/Modal";
+import { getCustomerQuery } from "@queries/index";
+import { Filter, PageHeader, Search, TabList, Button, CustomerList, Portal, GenerateCustomerModal } from "@components/index";
+import { CustomerWhiteIcon, EditWhiteIcon } from "@icons/index";
+import { customerTabList } from "@mocks/tabList";
 
-const CustomerPage = () =>{
+const CustomerPage = () => {
 
-  const tabListArr = [
-    {
-      id: uuidV4(),
-      name: "전체",
-      value: "all"
-    },
-    {
-      id: uuidV4(),
-      name: "수강중",
-      value: "court6"
-    },
-    {
-      id: uuidV4(),
-      name: "수강만료",
-      value: "court9"
-    },
-  ];
+  const { data } = getCustomerQuery();
 
-  const [currentTab, setCurrentTab] = useState<string>(tabListArr[0].id);
-  const [tabList,] = useState(tabListArr);
+  const [tabList, setTabList] = useState(customerTabList);
+  const [currentTab, setCurrentTab] = useState<string>(tabList[0].id);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
-  return(
+  useEffect(() => {
+    if (data) {
+      let prevTabList = [...tabList];
+      prevTabList[0].name = `전체(${data.data.length})`;
+      setTabList(prevTabList);
+    }
+  }, [data])
+
+  return (
     <>
       <PageHeader title={"회원 목록"} />
       <Filter />
@@ -51,11 +46,26 @@ const CustomerPage = () =>{
               backgroundColor: 'var(--business-active-color)',
               color: 'var(--basic-white-color)',
             }}
-            onClick={() => { }}
+            onClick={() => setShowModal(true)}
           />
         }
       />
-      <CustomerList />
+      {data && <CustomerList data={data.data} />}
+      {
+        showModal &&
+        <Portal id={'portal'}>
+          <Modal
+            title={'회원 등록'}
+            showModal={showModal}
+            setShowModal={setShowModal}
+            css={{
+              top: '47.5%'
+            }}
+          >
+            <GenerateCustomerModal setShowModal={setShowModal} />
+          </Modal>
+        </Portal>
+      }
     </>
   )
 };

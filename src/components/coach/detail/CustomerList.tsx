@@ -1,30 +1,23 @@
-import styled from "@emotion/styled";
 import { useState } from "react";
+import styled from "@emotion/styled";
 import Image from "next/image";
+
 import { ProfileManIcon, ProfileWomanIcon } from "@icons/index";
 import { CustomerList as mocksData } from "src/mocks/data";
+import { NormalList } from "@components/index";
 
-const CustomerList = () =>{
+const CustomerList = () => {
 
   const [data, setData] = useState(mocksData);
 
-  return(
+  return (
     <CustomerContainer>
       <h4>수강생 목록 &#40; {data.length} 명 &#41;</h4>
-      <ul
-        css={{
-          position: 'relative',
-          height: '90%',
-          margin: '12px 0 0 0',
-          overflowY: 'scroll',
-        }}
-      >
+      <NormalList.UnOrderList>
         {
-          (data && data.length > 0) && data.map((item) =>{
-            return(
-              <List
-                key={item.id}
-              >
+          (data && data.length > 0) && data.map((item) => {
+            return (
+              <NormalList key={item.id}>
                 <div
                   css={{
                     position: 'relative',
@@ -58,11 +51,11 @@ const CustomerList = () =>{
                     textAlign: 'center'
                   }}
                 >{item.phone} &#183; {item.email}</div>
-              </List>
+              </NormalList>
             )
           })
         }
-      </ul>
+      </NormalList.UnOrderList>
     </CustomerContainer>
   )
 }
@@ -71,20 +64,6 @@ const CustomerContainer = styled.section({
   position: 'relative',
   height: 'calc(72% - 12px)',
   borderBottom: '1px solid var(--basic-grey-color)',
-})
-const List = styled.li({
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  margin: '8px 0',
-  padding: '8px 12px 8px 0',
-  fontSize: '0.9rem',
-  cursor: 'pointer',
-
-  ":hover": {
-    backgroundColor: 'var(--basic-grey5-color)',
-    borderRadius: '16px'
-  }
 })
 
 export default CustomerList;

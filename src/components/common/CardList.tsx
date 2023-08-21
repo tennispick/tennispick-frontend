@@ -7,7 +7,6 @@ interface CardListProps {
 }
 
 const CardList = ({ height, minHeight, children }: CardListProps) => {
-
   return (
     <li
       css={{
@@ -44,6 +43,7 @@ CardList.UnOrderList = ({ children }: { children: ReactNode }) => {
         height: "80%",
         overflowY: "scroll",
         padding: "0 0 24px 0",
+        margin: '16px 0 0 0',
 
         "::-webkit-scrollbar": {
           scrollBehavior: "smooth",
