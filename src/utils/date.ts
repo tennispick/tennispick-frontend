@@ -177,3 +177,52 @@ export const isCheckTimeInRange = (startTime: string, endTime: string, targetTim
     return targetTimeDateValue >= startTimeDateValue && targetTimeDateValue <= endTimeDateValue;
   }
 }
+
+/** 년도 SelectBox */
+export const getYearList = () =>{
+  let array = [];
+  const now = new Date();
+  const year = now.getFullYear();
+
+  for(let start = 1900; start <= year; start++){
+    array.push(start);
+  }
+
+  return {
+    yearArray: array,
+    year: year
+  };
+}
+
+/** 월별 SelectBox */
+export const getMonthList = () =>{
+  let array = [];
+  const now = new Date();
+  const month = (now.getMonth() + 1) > 9 ? now.getMonth() + 1 : '0' + (now.getMonth() + 1);
+
+  for(let start = 1; start <= 12; start++){
+    let element = start > 9 ? String(start) : '0' + String(start);
+    array.push(element);
+  }
+
+  return {
+    monthArray: array,
+    month: month
+  };
+}
+
+/** 일별 SelectBox */
+export const getDayList = () =>{
+  let array = [];
+  const now = new Date();
+  const date = (now.getDate()) > 9 ? now.getDate() : Number('0' + now.getDate());
+
+  for(let start = 1; start <= 31; start++){
+    array.push(start);
+  }
+
+  return {
+    dateArray: array,
+    date: date
+  };
+}

@@ -1,8 +1,7 @@
-import Divider from "@components/common/Divider";
-import Input from "@components/common/Input";
-import Select from "@components/common/Select";
 import styled from "@emotion/styled";
-import ProfileManIcon from '@icons/profile_man.svg';
+
+import { Divider, Input, Select } from "@components/index";
+import { ProfileManIcon } from '@icons/index';
 
 const PersonalData = ({ ...props }) => {
   return (
@@ -41,7 +40,7 @@ const PersonalData = ({ ...props }) => {
         </Row>
         <Row>
           <InputHead>생년월일</InputHead>
-          <Select width={'calc(25% - 4px)'} >
+          <Select width={'calc(25% - 4px)'}>
             <option>코치</option>
           </Select>
           <Select width={'calc(25% - 4px)'} margin={'0 6px'} >
@@ -92,7 +91,7 @@ const InputHead = styled.div({
   width: '25%',
   padding: '4px 0'
 })
-const InputItem = styled(Input)({
+const InputItem = styled((props: any) => <Input {...props} />)({
   position: 'relative',
   width: '75%',
   height: '100%'

@@ -55,11 +55,13 @@ const Input = ({
 interface InputAttributeProps extends InputHTMLAttributes<HTMLInputElement>{
   requiredStatus?: boolean;
   requiredText?: string;
+  isRegexCheck?: boolean;
+  regexText?: string;
 }
 
 Input.TextField = forwardRef(({ ...props }: InputAttributeProps, ref: ForwardedRef<HTMLInputElement>): ReactElement<InputHTMLAttributes<HTMLInputElement>> => {
 
-  const { requiredStatus, requiredText, ...otherProps } = props;
+  const { requiredStatus, requiredText, isRegexCheck, regexText, ...otherProps } = props;
 
   return (
     <>
@@ -68,16 +70,23 @@ Input.TextField = forwardRef(({ ...props }: InputAttributeProps, ref: ForwardedR
         ref={ref}
         {...otherProps}
       />
-      {
-        requiredStatus &&
+      {requiredStatus &&
         <div
           css={{
             margin: '8px 0 0 4px',
             color: 'var(--basic-red2-color)',
             fontWeight: 500
           }}
-        >{requiredText}</div>
-      }
+        >{requiredText}</div>}
+      {(isRegexCheck) &&
+        <div
+          css={{
+            margin: '8px 0 0 4px',
+            color: 'var(--basic-red2-color)',
+            fontWeight: 500
+          }}
+        >{regexText}
+      </div>}
     </>
   )
 })
