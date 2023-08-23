@@ -3,14 +3,15 @@ import Image from 'next/image';
 
 import { NoResult, NormalList } from '@components/index';
 import { ProfileManIcon, ProfileWomanIcon } from "@icons/index";
+import { useRouter } from 'next/navigation';
 
 interface CustomerListProps {
   data: Array<{ [key: string]: string | number }>;
-  // setCourtId: Dispatch<SetStateAction<string>>;
 }
 
 const CustomerList = ({ data }: CustomerListProps) => {
 
+  const router = useRouter();
   const [list,] = useState<Array<{ [key: string]: string | number }>>(data);
 
   return (
@@ -20,7 +21,10 @@ const CustomerList = ({ data }: CustomerListProps) => {
           <NormalList.UnOrderList height={'78%'} >
             {list.map((item) => {
               return (
-                <NormalList key={item.id}>
+                <NormalList
+                  key={item.id}
+                  onClick={() => router.push(`/customer/${item.id}`)}
+                >
                   <div
                     css={{
                       position: 'relative',

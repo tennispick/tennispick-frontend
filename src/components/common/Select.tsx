@@ -9,7 +9,6 @@ interface Props extends SelectHTMLAttributes<HTMLSelectElement>{
 }
 
 const Select = forwardRef(({ ...props }: Props, ref?: ForwardedRef<HTMLSelectElement>): ReactElement<SelectHTMLAttributes<HTMLSelectElement>> => {
-
   return (
     <select
       css={{

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Modal from "@components/layer/Modal";
 import { getCustomerQuery } from "@queries/index";
 import { Filter, PageHeader, Search, TabList, Button, CustomerList, Portal, GenerateCustomerModal } from "@components/index";
-import { CustomerWhiteIcon, EditWhiteIcon } from "@icons/index";
+import { CustomerWhiteIcon } from "@icons/index";
 import { customerTabList } from "@mocks/tabList";
 
 const CustomerPage = () => {

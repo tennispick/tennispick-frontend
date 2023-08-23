@@ -8,7 +8,8 @@ export {
   getCustomerFetch,
   getCustomerDetailFetch,
   generateCustomer,
-  getCustomerQuery
+  getCustomerQuery,
+  getCustomerDetailQuery
 } from '@queries/customer';
 
 /** coach */

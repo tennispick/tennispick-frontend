@@ -11,6 +11,10 @@ const getCustomerDetailFetch = async (id: string): Promise<any> => await axios.g
 
 const generateCustomer = async (data: object): Promise<any> => await axios.post('/customer', { data: data });
 
+// 수정
+
+// 삭제
+
 const getCustomerQuery = (): any => {
   try {
     const { data } = useQuery({
@@ -26,9 +30,26 @@ const getCustomerQuery = (): any => {
   }
 }
 
+const getCustomerDetailQuery = (id: string): any => {
+  try {
+    const { data, isLoading } = useQuery({
+      queryKey: ['customer', id],
+      queryFn: async () => await getCustomerDetailFetch(id),
+    });
+    return {
+      data: data,
+      isLoading
+    };
+  } catch (error) {
+    console.error(error);
+    return { data: error }
+  }
+} 
+
 export {
   getCustomerFetch,
   getCustomerDetailFetch,
   generateCustomer,
-  getCustomerQuery
+  getCustomerQuery,
+  getCustomerDetailQuery
 }

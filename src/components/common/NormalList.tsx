@@ -1,12 +1,13 @@
-import { ReactNode } from "react";
+import { LiHTMLAttributes, ReactElement, ReactNode } from "react";
 
-interface NormalListProps {
+interface NormalListProps extends LiHTMLAttributes<HTMLLIElement>{
+  props?: LiHTMLAttributes<HTMLLIElement>;
   height?: string;
   minHeight?: string;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
-const NormalList = ({ children }: NormalListProps) => {
+const NormalList = ({ ...props }: NormalListProps): ReactElement<LiHTMLAttributes<HTMLLIElement>> => {
   return (
     <li
       css={{
@@ -23,8 +24,9 @@ const NormalList = ({ children }: NormalListProps) => {
           borderRadius: '16px'
         }
       }}
+      {...props}
     >
-      {children}
+      {props.children}
     </li>
   )
 }

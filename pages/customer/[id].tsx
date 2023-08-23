@@ -1,35 +1,39 @@
-import { PageHeader, BusinessPerformance, CoachCustomerList, PersonalData, Button } from "@components/index";
-import { DeleteWhiteIcon, EditWhiteIcon } from "@icons/index";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
 
-const CoachDetail = () => {
-  return (
+import {
+  PageHeader,
+  Button,
+  CustomerData,
+  CustomerLessonList as LessonList,
+  CustomerMemoList as MemoList,
+} from "@components/index";
+import { DeleteWhiteIcon, EditWhiteIcon } from "@icons/index";
+import { getCustomerDetailQuery } from "@queries/customer";
+
+const CustomerDetail = ({ id }: { id: string }) =>{
+
+  const { data, isLoading } = getCustomerDetailQuery(id);
+
+  if(isLoading) return (<>로딩중입니다.</>)
+
+  const customerInfo = data.data[0];
+
+  console.log(customerInfo);
+
+  return(
     <>
-      <PageHeader title={"다니엘 코치님"} />
+      <PageHeader title={`${customerInfo.name} 님`} />
       <div
         css={{
           position: 'relative',
-          display: 'flex',
+          width: '100%',
           height: 'calc(90% - 24px)',
+          display: 'flex'
         }}
       >
-        <PersonalData
-          css={{
-            position: 'relative',
-            width: '30%',
-            height: '100%',
-            padding: '0 32px 0 0'
-          }}
-        />
-        <div
-          css={{
-            position: 'relative',
-            width: '70%',
-            height: '100%'
-          }}
-        >
-          <BusinessPerformance />
-          <CoachCustomerList />
-        </div>
+        <CustomerData />
+        <LessonList />
+        <MemoList />
       </div>
       <div
         css={{
@@ -68,4 +72,22 @@ const CoachDetail = () => {
   )
 }
 
-export default CoachDetail;
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) =>{
+
+  const { query } = context;
+  const id = query.id as unknown as string;
+
+  try {
+    return {
+      props: {
+        id: id,
+      }
+    }
+  } catch (error) {
+    return {
+      notFound: true,
+    }
+  }
+}
+
+export default CustomerDetail;

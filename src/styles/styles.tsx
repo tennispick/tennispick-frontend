@@ -115,6 +115,7 @@ export const globalStyles = (
         padding: 0;
         margin: 0;
         -ms-overflow-style: none;
+        color: #3A3A3A;
       }
 
       :is(*, html, body) {

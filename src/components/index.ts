@@ -30,6 +30,9 @@ export { default as Calendar } from '@components/schedule/Calendar';
 
 /** customer */
 export { default as CustomerList } from '@components/customer/List';
+export { default as CustomerData } from '@components/customer/detail/CustomerData';
+export { default as CustomerLessonList } from '@components/customer/detail/LessonList';
+export { default as CustomerMemoList } from '@components/customer/detail/MemoList';
 export { default as GenerateCustomerModal } from '@components/customer/GenerateModal';
 
 /** coach */
