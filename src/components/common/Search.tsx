@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Input, Select } from "@styles/styles";
-import SearchIcon from "@icons/search_black_icon.svg";
+import { SearchIcon } from "@icons/index";
 
 interface SearchProps {
 

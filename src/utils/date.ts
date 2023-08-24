@@ -69,7 +69,7 @@ export const getWeekList = (args?: Date): WeekListProps => {
     const checkEndDate = new Date(calendarYear + "." + endWeekDate);
     checkEndDate.setHours(23, 59, 59);
 
-    if(checkStartDate <= date && checkEndDate >= date)
+    if (checkStartDate <= date && checkEndDate >= date)
       currentWeek = uuid;
 
     weekTabList.push({
@@ -81,18 +81,18 @@ export const getWeekList = (args?: Date): WeekListProps => {
     });
 
     // 1주차 Date 빈 값 채워주기
-    if(dateWeekList.length < 7 ){
+    if (dateWeekList.length < 7) {
 
       const emptyLength = 7 - dateWeekList.length;
 
-      for(let emptyDay = 0; emptyDay < emptyLength; emptyDay++){
-        if(monthWeekCount === 1){
+      for (let emptyDay = 0; emptyDay < emptyLength; emptyDay++) {
+        if (monthWeekCount === 1) {
           dateWeekList.unshift({
             date: "date" + emptyDay,
             day: "day" + emptyDay,
             day_KR: "day_KR" + emptyDay,
           })
-        }else{
+        } else {
           dateWeekList.push({
             date: "date" + emptyDay,
             day: "day" + emptyDay,
@@ -166,25 +166,25 @@ export const getPrevNextMonth = (year: number, month: number) => {
 };
 
 /** Only Get Time String */
-export const isCheckTimeInRange = (startTime: string, endTime: string, targetTime: string) =>{
+export const isCheckTimeInRange = (startTime: string, endTime: string, targetTime: string) => {
 
-  if(startTime && endTime && targetTime){
-  
+  if (startTime && endTime && targetTime) {
+
     const startTimeDateValue = new Date(0, 0, 0, Number(startTime.split(':')[0]), Number(startTime.split(':')[1]));
     const endTimeDateValue = new Date(0, 0, 0, Number(endTime.split(':')[0]), Number(endTime.split(':')[1]));
     const targetTimeDateValue = new Date(0, 0, 0, Number(targetTime.split(':')[0]), Number(targetTime.split(':')[1]));
-  
+
     return targetTimeDateValue >= startTimeDateValue && targetTimeDateValue <= endTimeDateValue;
   }
 }
 
 /** 년도 SelectBox */
-export const getYearList = () =>{
+export const getYearList = () => {
   let array = [];
   const now = new Date();
   const year = now.getFullYear();
 
-  for(let start = 1900; start <= year; start++){
+  for (let start = 1900; start <= year; start++) {
     array.push(start);
   }
 
@@ -195,12 +195,12 @@ export const getYearList = () =>{
 }
 
 /** 월별 SelectBox */
-export const getMonthList = () =>{
+export const getMonthList = () => {
   let array = [];
   const now = new Date();
   const month = (now.getMonth() + 1) > 9 ? now.getMonth() + 1 : '0' + (now.getMonth() + 1);
 
-  for(let start = 1; start <= 12; start++){
+  for (let start = 1; start <= 12; start++) {
     let element = start > 9 ? String(start) : '0' + String(start);
     array.push(element);
   }
@@ -212,13 +212,14 @@ export const getMonthList = () =>{
 }
 
 /** 일별 SelectBox */
-export const getDayList = () =>{
+export const getDayList = () => {
   let array = [];
   const now = new Date();
   const date = (now.getDate()) > 9 ? now.getDate() : Number('0' + now.getDate());
 
-  for(let start = 1; start <= 31; start++){
-    array.push(start);
+  for (let start = 1; start <= 31; start++) {
+    let element = start > 9 ? String(start) : '0' + String(start);
+    array.push(element);
   }
 
   return {

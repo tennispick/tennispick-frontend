@@ -10,17 +10,19 @@ import {
 import { DeleteWhiteIcon, EditWhiteIcon } from "@icons/index";
 import { getCustomerDetailQuery } from "@queries/customer";
 
-const CustomerDetail = ({ id }: { id: string }) =>{
+const CustomerDetail = ({ id }: { id: string }) => {
 
-  const { data, isLoading } = getCustomerDetailQuery(id);
+  const { data, isLoading } = getCustomerDetailQuery(id); // 회원 상세정보
+  // 수강목록
+  // 회원메모
 
-  if(isLoading) return (<>로딩중입니다.</>)
+  if (isLoading) return (<>로딩중입니다.</>)
 
   const customerInfo = data.data[0];
 
   console.log(customerInfo);
 
-  return(
+  return (
     <>
       <PageHeader title={`${customerInfo.name} 님`} />
       <div
@@ -31,7 +33,7 @@ const CustomerDetail = ({ id }: { id: string }) =>{
           display: 'flex'
         }}
       >
-        <CustomerData />
+        <CustomerData data={customerInfo} />
         <LessonList />
         <MemoList />
       </div>
@@ -43,7 +45,7 @@ const CustomerDetail = ({ id }: { id: string }) =>{
           justifyContent: 'end',
           margin: '12px 0 0 0'
         }
-      }>
+        }>
         <Button
           label={'정보 삭제하기'}
           variant={'iconBtn'}
@@ -72,7 +74,7 @@ const CustomerDetail = ({ id }: { id: string }) =>{
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) =>{
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
 
   const { query } = context;
   const id = query.id as unknown as string;

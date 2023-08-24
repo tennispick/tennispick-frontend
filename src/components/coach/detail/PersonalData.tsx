@@ -3,7 +3,11 @@ import styled from "@emotion/styled";
 import { Divider, Input, Select } from "@components/index";
 import { ProfileManIcon } from '@icons/index';
 
-const PersonalData = ({ ...props }) => {
+interface DataProps {
+  data: any;
+}
+
+const PersonalData = ({ data, ...props }: DataProps) => {
   return (
     <section {...props}>
       <div

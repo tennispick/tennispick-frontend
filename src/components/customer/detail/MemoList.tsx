@@ -1,13 +1,13 @@
-const CustomerMemoList = () =>{
-  return(
+const CustomerMemoList = () => {
+  return (
     <section
       css={{
         position: 'relative',
-        width: 'calc(40% - 24px)',
+        width: 'calc(42.5% - 24px)',
         height: '100%',
       }}
     >
-      <div css={{ height: '24px', fontWeight: '600', margin: '0 0 12px 0'}}>회원메모</div>
+      <div css={{ height: '24px', fontWeight: '600', margin: '0 0 12px 0' }}>회원메모</div>
       <div
         css={{
           position: 'relative',
@@ -31,7 +31,7 @@ const CustomerMemoList = () =>{
           }}
         >
           <div css={{ fontWeight: '400' }} >총 1,999건</div>
-          <div css={{ fontWeight: '600', color: 'var(--business-color)'}} >메모 등록하기</div>
+          <div css={{ fontWeight: '600', color: 'var(--business-color)' }} >메모 등록하기</div>
         </div>
         <div
           css={{
