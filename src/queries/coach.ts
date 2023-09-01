@@ -1,6 +1,4 @@
-import { axios } from "@utils/axios";
+import { axios } from '@utils/axios';
 import { useQuery } from '@tanstack/react-query';
 
-interface CoachProps {
-
-}
+interface CoachProps {}

@@ -1,27 +1,35 @@
-import { Dispatch, SetStateAction, useEffect } from "react"
+import { Dispatch, SetStateAction, useEffect } from 'react';
 
-export const onClickRefOutSideCloseHandler = (ref: any, setState: Dispatch<SetStateAction<boolean>>, exceptRef?: any) =>{
+export const OnClickRefOutSideCloseHandler = (
+	ref: any,
+	setState: Dispatch<SetStateAction<boolean>>,
+	exceptRef?: any,
+) => {
+	useEffect(() => {
+		const current = ref.current;
+		const exceptCurrent = exceptRef?.current;
 
-  useEffect(() => {
+		const onClickOutSideHandler = (e: MouseEvent): void => {
+			if (exceptRef) {
+				if (
+					current &&
+					!current.contains(e.target as Node) &&
+					exceptCurrent &&
+					!exceptCurrent.contains(e.target as Node)
+				)
+					setState(false);
+			} else {
+				if (current && !current.contains(e.target as Node)) setState(false);
+			}
+		};
 
-    const current = ref.current;
-    const exceptCurrent = exceptRef?.current;
+		document.addEventListener('mousedown', onClickOutSideHandler);
 
-    const onClickOutSideHandler = (e: MouseEvent): void =>{
+		return () =>
+			document.removeEventListener('mousedown', onClickOutSideHandler);
 
-      if(exceptRef){
-        if(current && !current.contains(e.target as Node) && exceptCurrent && !exceptCurrent.contains(e.target as Node))
-          setState(false);
-      }else {
-        if(current && !current.contains(e.target as Node))
-          setState(false);
-      }
-    }
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [ref]);
 
-    document.addEventListener('mousedown', onClickOutSideHandler);
-
-    return () => document.removeEventListener('mousedown', onClickOutSideHandler);
-  }, [ref])
-
-  return ref;
-}
+	return ref;
+};

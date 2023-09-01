@@ -1,4 +1,4 @@
-import { css, keyframes } from "@emotion/react";
+import { css, keyframes } from '@emotion/react';
 
 /* Animation */
 const fadeUpKeyframes = keyframes`
@@ -14,9 +14,9 @@ const fadeUpKeyframes = keyframes`
 `;
 
 export const fadeUp = css`
-  animation-duration: 0.65s;
-  animation-name: ${fadeUpKeyframes};
-  animation-timing-function: ease;
+	animation-duration: 0.65s;
+	animation-name: ${fadeUpKeyframes};
+	animation-timing-function: ease;
 `;
 
 const fadeRightKeyframes = keyframes`
@@ -27,13 +27,13 @@ const fadeRightKeyframes = keyframes`
   to {
     transform: translateX(0)
   }
-`
+`;
 
 export const fadeRight = css`
-  animation-duration: 0.65s;
-  animation-name: ${fadeRightKeyframes};
-  animation-timing-function: ease;
-`
+	animation-duration: 0.65s;
+	animation-name: ${fadeRightKeyframes};
+	animation-timing-function: ease;
+`;
 
 const fadeOutRightKeyframes = keyframes`
   from {
@@ -43,13 +43,13 @@ const fadeOutRightKeyframes = keyframes`
   to {
     transform: translateX(200%)
   }
-`
+`;
 
 export const fadeOutRight = css`
-  animation-duration: 0.65s;
-  animation-name: ${fadeOutRightKeyframes};
-  animation-timing-function: ease;
-`
+	animation-duration: 0.65s;
+	animation-name: ${fadeOutRightKeyframes};
+	animation-timing-function: ease;
+`;
 
 const dropDownActiveKeyframes = keyframes`
   from {
@@ -62,9 +62,9 @@ const dropDownActiveKeyframes = keyframes`
 `;
 
 export const dropDownActive = css`
-  animation-duration: 0.2s;
-  animation-name: ${dropDownActiveKeyframes};
-  animation-timing-function: ease-in-out;
+	animation-duration: 0.2s;
+	animation-name: ${dropDownActiveKeyframes};
+	animation-timing-function: ease-in-out;
 `;
 
 const dropDownDeActiveKeyframes = keyframes`
@@ -78,7 +78,7 @@ const dropDownDeActiveKeyframes = keyframes`
 `;
 
 export const dropDownDeActive = css`
-  animation-duration: 0.2s;
-  animation-name: ${dropDownDeActiveKeyframes};
-  animation-timing-function: ease-in-out;
+	animation-duration: 0.2s;
+	animation-name: ${dropDownDeActiveKeyframes};
+	animation-timing-function: ease-in-out;
 `;
