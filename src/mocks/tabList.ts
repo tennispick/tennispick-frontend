@@ -20,4 +20,22 @@ const customer = [
 	},
 ];
 
-export { customer as customerTabList };
+const comunity = [
+	{
+		id: uuidV4(),
+		name: '전체',
+		value: 'all',
+	},
+	{
+		id: uuidV4(),
+		name: '공지',
+		value: 'notice',
+	},
+	{
+		id: uuidV4(),
+		name: '일반글',
+		value: 'normal',
+	},
+];
+
+export { customer as customerTabList, comunity as comunityTabList };

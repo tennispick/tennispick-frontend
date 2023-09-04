@@ -71,6 +71,7 @@ const ChildrenContainer = styled.div({
 	height: '100%',
 	padding: '24px',
 	color: 'var(--basic-black-color)',
+	overflow: 'hidden',
 });
 const NavControlBtnWrapper = styled.i({
 	position: 'absolute',
