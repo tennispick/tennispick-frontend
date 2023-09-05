@@ -4,10 +4,13 @@ import { Button, Filter, PageHeader, Search, TabList } from '@components/index';
 import { comunityTabList } from '@mocks/tabList';
 import { EditWhiteIcon } from '@icons/index';
 import NoticeList from '@components/community/List';
+import { useRouter } from 'next/navigation';
 
 const CommunityPage = () => {
 	const [currentTab, setCurrentTab] = useState<string>(comunityTabList[0].id);
 	const [tabList] = useState(comunityTabList);
+
+  const router = useRouter();
 
 	return (
 		<>
@@ -33,7 +36,7 @@ const CommunityPage = () => {
 							backgroundColor: 'var(--business-active-color)',
 							color: 'var(--basic-white-color)',
 						}}
-						onClick={() => {}}
+						onClick={() => router.push('/community/notice/create')}
 					/>
 				}
 			/>
