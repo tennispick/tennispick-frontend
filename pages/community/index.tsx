@@ -10,7 +10,7 @@ const CommunityPage = () => {
 	const [currentTab, setCurrentTab] = useState<string>(comunityTabList[0].id);
 	const [tabList] = useState(comunityTabList);
 
-  const router = useRouter();
+	const router = useRouter();
 
 	return (
 		<>
