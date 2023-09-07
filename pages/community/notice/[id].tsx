@@ -27,6 +27,74 @@ const CommunityDetail = ({ id }: { id: string }) => {
 							/>
 						</InputItem>
 					</Row>
+					<Row>
+						<InputHead>게시글 유형</InputHead>
+						<InputItem
+							label={'일반'}
+							id={'normal'}
+							css={{
+								// backgroundColor: '#e4e4e4',
+								backgroundColor: '#a5dc86',
+								color: 'rgba(0, 0, 0, 0.6)',
+								fontSize: '14px',
+								lineHeight: 1,
+								textAlign: 'center',
+								padding: '8px 16px',
+								marginRight: '-1px',
+								border: '1px solid rgba(0, 0, 0, 0.2)',
+								boxShadow: 'inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1)',
+								transition: 'all 0.1s ease-in-out',
+
+								':hover': {
+									cursor: 'pointer',
+								},
+							}}
+						>
+							<Input.TextField
+								type={'radio'}
+								name={'noticeType'}
+								css={{
+									position: 'absolute',
+									clip: 'rect(0, 0, 0, 0)',
+									width: '1px',
+									height: '1px',
+									border: 0,
+									overflow: 'hidden',
+
+									':checked + label': {
+										backgroundColor: '#a5dc86',
+										boxShadow: 'none'
+									}
+								}}
+								defaultChecked
+							/>
+						</InputItem>
+						<InputItem
+							label={'공지'}
+							id={'notice'}
+						>
+							<Input.TextField
+								type={'radio'}
+								name={'noticeType'}
+							/>
+						</InputItem>
+					</Row>
+					<Row>
+						<InputHead>내용</InputHead>
+						<InputItem>
+							<Input.TextField
+								placeholder={'공지사항의 제목을 입력해주세요.'}
+							/>
+						</InputItem>
+					</Row>
+					<Row>
+						<InputHead>첨부파일</InputHead>
+						<InputItem>
+							<Input.TextField
+								type={'file'}
+							/>
+						</InputItem>
+					</Row>
 				</div>
 			</div>
 		</>
