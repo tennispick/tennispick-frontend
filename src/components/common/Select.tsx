@@ -44,7 +44,7 @@ const VARIANT_STYLE: object = {
 	lineHeight: '34px',
 	padding: '2px 0 2px 10px',
 	fontSize: '0.95rem',
-	border: '1px solid var(--basic-grey3-color)',
+	border: '1px solid var(--grey300)',
 	borderRadius: '8px',
 	outline: 0,
 };

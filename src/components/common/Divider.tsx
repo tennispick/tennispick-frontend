@@ -36,7 +36,7 @@ const DividerWrapper = styled.div<CSS_TYPE>(
 			position: 'relative',
 			fontSize: '1rem',
 			fontWeight: '600',
-			backgroundColor: 'var(--basic-white-color)',
+			backgroundColor: 'var(--white100)',
 			color: 'var(--business-color)',
 			padding: '0 20px',
 			top: '-10px',
@@ -57,11 +57,11 @@ const DividerWrapper = styled.div<CSS_TYPE>(
 const DIVIDER_TYPE: ObjectProps<object> = {
 	horizontal: {
 		height: '0',
-		borderTop: '1px solid var(--basic-grey-color)',
+		borderTop: '1px solid var(--grey100)',
 	},
 	vertical: {
 		width: '1px',
-		backgroundColor: 'var(--basic-grey-color)',
+		backgroundColor: 'var(--grey100)',
 		margin: '0',
 	},
 };

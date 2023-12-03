@@ -136,7 +136,7 @@ const DetailCourt = ({ id, setShowRightSide }: CourtDetailProps) => {
 								justifyContent: 'center',
 								border: 0,
 								backgroundColor: 'var(--business-active-color)',
-								color: 'var(--basic-white-color)',
+								color: 'var(--white100)',
 								padding: '12px 16px',
 								margin: '0 0 12px 0',
 							}}
@@ -150,8 +150,8 @@ const DetailCourt = ({ id, setShowRightSide }: CourtDetailProps) => {
 								width: 'calc(40vw - 40px)',
 								justifyContent: 'center',
 								border: 0,
-								backgroundColor: 'var(--basic-red2-color)',
-								color: 'var(--basic-white-color)',
+								backgroundColor: 'var(--red200)',
+								color: 'var(--white100)',
 								padding: '12px 16px',
 							}}
 							onClick={onDeleteHandler}

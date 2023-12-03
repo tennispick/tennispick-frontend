@@ -82,3 +82,28 @@ export const dropDownDeActive = css`
 	animation-name: ${dropDownDeActiveKeyframes};
 	animation-timing-function: ease-in-out;
 `;
+
+const spinnerKeyframes = keyframes`
+  0% {
+    transform: rotate(0deg)
+  }
+  25% {
+    transform: rotate(90deg)
+  }
+  50% {
+    transform: rotate(180deg)
+  }
+  70% {
+    transform: rotate(270deg)
+  }
+  100% {
+    transform: rotate(360deg)
+  }
+`;
+
+export const spinner = css`
+  animation-duration: 1s;
+	animation-name: ${spinnerKeyframes};
+	animation-timing-function: linear;
+  animation-iteration-count: infinite;
+`

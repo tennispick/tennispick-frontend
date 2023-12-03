@@ -57,7 +57,7 @@ const Container = styled.div({
 	position: 'relative',
 	width: '50%',
 	backgroundColor: 'var(--business-color)',
-	color: 'var(--basic-white-color)',
+	color: 'var(--white100)',
 });
 const AdvertiseContainer = styled.div({
 	position: 'relative',

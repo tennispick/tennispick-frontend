@@ -32,7 +32,7 @@ const CourtPage = () => {
 				css={{
 					border: 0,
 					backgroundColor: 'var(--business-sub-color)',
-					color: 'var(--basic-white-color)',
+					color: 'var(--white100)',
 					padding: '12px 16px',
 					margin: '0 12px 0 auto',
 				}}

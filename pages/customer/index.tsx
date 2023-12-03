@@ -54,7 +54,7 @@ const CustomerPage = () => {
 						}}
 						css={{
 							backgroundColor: 'var(--business-active-color)',
-							color: 'var(--basic-white-color)',
+							color: 'var(--white100)',
 						}}
 						onClick={() => setShowModal(true)}
 					/>

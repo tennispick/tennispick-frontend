@@ -22,7 +22,7 @@ const NormalList = ({
 				cursor: 'pointer',
 
 				':hover': {
-					backgroundColor: 'var(--basic-grey5-color)',
+					backgroundColor: 'var(--grey500)',
 					borderRadius: '16px',
 				},
 			}}
@@ -37,6 +37,7 @@ const NormalList = ({
 NormalList.UnOrderList = ({
 	height,
 	children,
+	...rest
 }: {
 	height?: string;
 	children: ReactNode;
@@ -49,6 +50,7 @@ NormalList.UnOrderList = ({
 				margin: '12px 0 0 0',
 				overflowY: 'scroll',
 			}}
+			{...rest}
 		>
 			{children}
 		</ul>

@@ -29,11 +29,12 @@ instance.interceptors.response.use(
 	},
 	async (error) => {
 		console.error(error);
-		if (error.response.status === 401) {
+		if (error?.response?.status === 401) {
 			error.config.headers = {
 				'Content-Type': 'application/json',
 			};
 			alert('유효하지 않은 사용자입니다.');
+			window.location.href = '/login';
 			return error.response;
 		}
 		return Promise.reject(error);

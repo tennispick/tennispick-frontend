@@ -10,7 +10,7 @@ const Container = styled.div({
 	height: '40px',
 	fontSize: '1.2rem',
 	fontWeight: '600',
-	borderBottom: '1px solid var(--basic-grey-color)',
+	borderBottom: '1px solid var(--grey100)',
 	padding: '0 0 12px 0',
 	margin: '0 0 12px 0',
 });

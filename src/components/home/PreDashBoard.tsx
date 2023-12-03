@@ -27,19 +27,19 @@ const PreDashBoard = () => {
 			<EventContainer>
 				<EventComment>확인이 필요한 이벤트가 있어요!</EventComment>
 				<EventLists>
-					<EventList backgroundColor="var(--basic-caribbean-blue-color)">
+					<EventList backgroundColor="var(--blue200)">
 						<div>출결 미처리 회원</div>
 						<span>{addNumberCommas(5)} 명</span>
 					</EventList>
-					<EventList backgroundColor="var(--basic-red-color)">
+					<EventList backgroundColor="var(--red100)">
 						<div>만료 예정 회원</div>
 						<span>{addNumberCommas(1000)} 명</span>
 					</EventList>
-					<EventList backgroundColor="var(--basic-yellow-color)">
+					<EventList backgroundColor="var(--yellow100)">
 						<div>신규 등록 회원</div>
 						<span>{addNumberCommas(3000)} 명</span>
 					</EventList>
-					<EventList backgroundColor="var(--basic-blue-color)">
+					<EventList backgroundColor="var(--blue100)">
 						<div>1:1 문의</div>
 						<span>{addNumberCommas(9999999)} 명</span>
 					</EventList>
@@ -52,7 +52,7 @@ const Container = styled.div({
 	position: 'relative',
 	width: '100%',
 	display: 'flex',
-	border: '1px solid var(--basic-grey-color)',
+	border: '1px solid var(--grey100)',
 	borderRadius: '25px',
 	margin: '0 0 20px 0',
 });
@@ -60,7 +60,7 @@ const ProfileContainer = styled.div({
 	position: 'relative',
 	width: '50%',
 	padding: '24px',
-	borderRight: '1px solid var(--basic-grey-color)',
+	borderRight: '1px solid var(--grey100)',
 	display: 'flex',
 	alignItems: 'center',
 });
@@ -80,8 +80,8 @@ const Name = styled.div({
 });
 const Category = styled.div({
 	width: 'fit-content',
-	color: 'var(--basic-blue-color)',
-	border: '1px solid var(--basic-blue-color)',
+	color: 'var(--blue100)',
+	border: '1px solid var(--blue100)',
 	padding: '4px 16px',
 	margin: '8px 0',
 	borderRadius: '8px',
@@ -100,7 +100,7 @@ const EventComment = styled.div({
 	minHeight: 'calc(15% - 24px)',
 	fontWeight: '700',
 	fontSize: '1.1rem',
-	borderBottom: '1px solid var(--basic-grey-color)',
+	borderBottom: '1px solid var(--grey100)',
 	padding: '0 0 12px 0',
 	margin: '0 0 12px 0',
 });
@@ -130,7 +130,7 @@ const EventList = styled.li<CSS_TYPE>(
 				borderRadius: '50px',
 				backgroundColor: props.backgroundColor
 					? props.backgroundColor
-					: 'var(--basic-black-color)',
+					: 'var(--black100)',
 				margin: '0 8px 0 0',
 			},
 		},

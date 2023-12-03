@@ -13,7 +13,7 @@
       "error",
       {
         "useTabs": true,
-        "endOfLine": "auto"
+        "endOfLine": "auto",
       }
     ],
     "react-hooks/rules-of-hooks": "off",

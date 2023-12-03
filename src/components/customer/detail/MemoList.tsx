@@ -14,7 +14,7 @@ const CustomerMemoList = () => {
 				css={{
 					position: 'relative',
 					height: 'calc(100% - 36px)',
-					backgroundColor: 'var(--basic-grey4-color)',
+					backgroundColor: 'var(--grey400)',
 					borderRadius: '16px',
 					padding: '8px',
 				}}
@@ -26,7 +26,7 @@ const CustomerMemoList = () => {
 						justifyContent: 'space-between',
 						height: '48px',
 						lineHeight: '48px',
-						backgroundColor: 'var(--basic-white-color)',
+						backgroundColor: 'var(--white100)',
 						borderRadius: '16px',
 						boxShadow: '1px 1px 25px 0px rgba(132, 132, 132, 0.10)',
 						padding: '0 16px',
@@ -40,7 +40,7 @@ const CustomerMemoList = () => {
 				<div
 					css={{
 						height: 'calc(100% - 56px)',
-						backgroundColor: 'var(--basic-white-color)',
+						backgroundColor: 'var(--white100)',
 						borderRadius: '16px',
 						boxShadow: '1px 1px 25px 0px rgba(132, 132, 132, 0.10)',
 						padding: '12px 16px',

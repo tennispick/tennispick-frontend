@@ -1,5 +1,6 @@
 import { axios } from '@utils/axios';
 import { useQuery } from '@tanstack/react-query';
+import { UseQueryType } from 'src/types';
 
 interface ScheduleProps {
 	coachId?: number;
@@ -7,14 +8,37 @@ interface ScheduleProps {
 	endWeekDate: string;
 }
 
+// 특정 날짜의 스케줄 일정 조회
+const getScheduleByDate = async ({ day }: { day: Date }): Promise<Response> => await axios.get(`/calendar/schedule?date=${day}`);
+const getScheduleByDateQuery = ({ ...props }) =>{
+	try{
+		const { day } = props;
+
+		const calendarYear = day.getFullYear();
+		const calendarMonth = day.getMonth() + 1;
+		const currentDate = day.getDate();
+
+		const { data, isFetching, isLoading } = useQuery({
+			queryKey: ['schedule', calendarYear, calendarMonth, currentDate],
+			queryFn: async() => await getScheduleByDate({ day })
+		});
+
+		return {
+			data: data,
+			isFetching,
+			isLoading
+		};
+	}catch(error){
+		console.error(error);
+	}
+}
+
+// 전체 스케줄 조회
 const getScheduleFetch = async ({
 	coachId,
 	startWeekDate,
 	endWeekDate,
-}: ScheduleProps): Promise<any> =>
-	await axios.get(
-		`/calendar?coachId=${coachId}&startWeekDate=${startWeekDate}&endWeekDate=${endWeekDate}`,
-	);
+}: ScheduleProps): Promise<Response>=> await axios.get(`/calendar?coachId=${coachId}&startWeekDate=${startWeekDate}&endWeekDate=${endWeekDate}`);
 
 const getScheduleQuery = (props: ScheduleProps) => {
 	try {
@@ -32,4 +56,9 @@ const getScheduleQuery = (props: ScheduleProps) => {
 	}
 };
 
-export { getScheduleFetch, getScheduleQuery };
+export {
+	getScheduleByDate,
+	getScheduleFetch,
+	getScheduleByDateQuery,
+	getScheduleQuery
+};

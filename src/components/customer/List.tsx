@@ -53,7 +53,7 @@ const CustomerList = ({ data }: CustomerListProps) => {
 									css={{
 										position: 'relative',
 										width: '25%',
-										backgroundColor: 'var(--basic-grey4-color)',
+										backgroundColor: 'var(--grey400)',
 										borderRadius: '16px',
 										padding: '12px 0',
 										textAlign: 'center',

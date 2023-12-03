@@ -226,7 +226,7 @@ const GenerateModal = ({
 					justifyContent: 'center',
 					border: 0,
 					backgroundColor: 'var(--business-sub-color)',
-					color: 'var(--basic-white-color)',
+					color: 'var(--white100)',
 					padding: '12px 16px',
 					margin: '36px 0 0 0',
 				}}

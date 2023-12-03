@@ -2,7 +2,8 @@ import { Dispatch, SetStateAction } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import styled from '@emotion/styled';
 
-import { Button, CSS_TYPE, ImageContainer as Image } from '@styles/styles';
+import { CSS_TYPE, ImageContainer as Image } from '@styles/styles';
+import { Button } from '@components/index';
 import { colorList } from '@utils/colorSet';
 import { ObjectProps } from '@interfaces/common';
 import {
@@ -121,24 +122,21 @@ const Calendar = ({
 				</CalendarHeaderContainer>
 				<HeaderBtnContainer>
 					<Button
-						display={'flex'}
-						alignItems={'center'}
-						fontSize={'1rem'}
-						fontWeight={'400'}
-						color={'var(--basic-white-color)'}
-						backgroundColor={'var(--business-active-color)'}
-						margin={'0 0 0 auto'}
+						variant={'iconBtn'}
+						label={'일정 생성하기'}
+						src={EditWhiteIcon}
+						imageCss={{
+							width: '20px',
+							height: '20px',
+							margin: '0 8px 0 0',
+						}}
+						css={{
+							backgroundColor: 'var(--business-active-color)',
+							color: 'var(--white100)',
+							marginLeft: 'auto',
+						}}
 						onClick={() => setShowModal(true)}
-					>
-						<Image
-							src={EditWhiteIcon}
-							alt={'calendar register'}
-							width={16}
-							height={16}
-							margin={'0 4px 0 0'}
-						/>
-						스케줄 등록하기
-					</Button>
+					/>
 				</HeaderBtnContainer>
 			</HeaderContainer>
 			<WeekHeaderContainer>
@@ -150,10 +148,10 @@ const Calendar = ({
 								<DayWrapper
 									color={
 										item.day === 'Sat'
-											? 'var(--basic-blue-color)'
+											? 'var(--blue100)'
 											: item.day === 'Sun'
-											? 'var(--basic-red-color)'
-											: 'var(--basic-black-color)'
+											? 'var(--red100)'
+											: 'var(--black100)'
 									}
 								>
 									{typeof item.date === 'number'
@@ -263,7 +261,7 @@ const HeaderContainer = styled.div({
 	display: 'flex',
 	alignItems: 'center',
 	justifyContent: 'space-between',
-	borderBottom: '1px solid var(--basic-grey-color)',
+	borderBottom: '1px solid var(--grey100)',
 	padding: '0 0 16px 0',
 });
 const CourtLists = styled.ul({
@@ -276,12 +274,12 @@ const CourtList = styled.li<CSS_TYPE>(
 		borderRadius: '8px',
 		padding: '0.3rem 0.9rem',
 		margin: '0 8px 0 0',
-		color: 'var(--basic-white-color)',
+		color: 'var(--white100)',
 	},
 	(props) => ({
 		backgroundColor: props.backgroundColor
 			? props.backgroundColor
-			: 'var(--basic-white-color)',
+			: 'var(--white100)',
 	}),
 );
 const CalendarHeaderContainer = styled.div({
@@ -301,14 +299,14 @@ const WeekHeaderContainer = styled.div({
 	display: 'flex',
 	width: '100%',
 	padding: '0 0 0 6%',
-	borderBottom: '1px solid var(--basic-grey-color)',
+	borderBottom: '1px solid var(--grey100)',
 });
 const WeekDayContainer = styled.div({
 	width: 'calc(100% / 7)',
-	borderLeft: '1px solid var(--basic-grey-color)',
+	borderLeft: '1px solid var(--grey100)',
 
 	':nth-last-of-type(1)': {
-		borderRight: '1px solid var(--basic-grey-color)',
+		borderRight: '1px solid var(--grey100)',
 	},
 });
 const DayWrapper = styled.div<CSS_TYPE>(
@@ -316,7 +314,7 @@ const DayWrapper = styled.div<CSS_TYPE>(
 		height: '36px',
 		lineHeight: '36px',
 		textAlign: 'center',
-		borderBottom: '1px solid var(--basic-grey-color)',
+		borderBottom: '1px solid var(--grey100)',
 		fontWeight: '400',
 	},
 	(props) => ({
@@ -361,7 +359,7 @@ const DateContainer = styled.div({
 	width: 'calc(100% / 7)',
 
 	':nth-last-of-type(1) > ul > li': {
-		borderRight: '1px solid var(--basic-grey-color)',
+		borderRight: '1px solid var(--grey100)',
 	},
 });
 const DateEventLists = styled.ul({});
@@ -370,8 +368,8 @@ const DateEventList = styled.li(
 		position: 'relative',
 		height: '52px',
 		padding: '0 0.6rem',
-		borderBottom: '1px solid var(--basic-grey-color)',
-		borderLeft: '1px solid var(--basic-grey-color)',
+		borderBottom: '1px solid var(--grey100)',
+		borderLeft: '1px solid var(--grey100)',
 	},
 	(props) => ({}),
 );

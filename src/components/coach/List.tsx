@@ -119,8 +119,8 @@ const CoachList = () => {
 											variant={'radiusBtn'}
 											css={{
 												border: 0,
-												backgroundColor: 'var(--basic-red2-color)',
-												color: 'var(--basic-white-color)',
+												backgroundColor: 'var(--red200)',
+												color: 'var(--white100)',
 												padding: '8px 20px',
 												fontSize: '0.95rem',
 											}}
@@ -132,7 +132,7 @@ const CoachList = () => {
 											css={{
 												border: 0,
 												backgroundColor: 'var(--business-color)',
-												color: 'var(--basic-white-color)',
+												color: 'var(--white100)',
 												padding: '8px 20px',
 												fontSize: '0.95rem',
 											}}

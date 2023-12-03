@@ -75,7 +75,7 @@ const Wrapper = styled.div({
 	width: '40vw',
 	height: '100vh',
 	right: 0,
-	backgroundColor: 'var(--basic-grey6-color)',
+	backgroundColor: 'var(--grey600)',
 	borderTopLeftRadius: '16px',
 	borderBottomLeftRadius: '16px',
 	padding: '20px',

@@ -90,7 +90,7 @@ Input.TextField = forwardRef(
 					<div
 						css={{
 							margin: '8px 0 0 4px',
-							color: 'var(--basic-red2-color)',
+							color: 'var(--red200)',
 							fontWeight: 500,
 						}}
 					>
@@ -101,7 +101,7 @@ Input.TextField = forwardRef(
 					<div
 						css={{
 							margin: '8px 0 0 4px',
-							color: 'var(--basic-red2-color)',
+							color: 'var(--red200)',
 							fontWeight: 500,
 						}}
 					>
@@ -119,7 +119,7 @@ const CONTAINER_VARIANT_STYLE: ObjectProps<object> = {
 	default: {},
 	labelBox: {
 		margin: '0 auto 24px auto',
-		border: '1px solid var(--basic-grey-color)',
+		border: '1px solid var(--grey100)',
 		borderRadius: '4px',
 		padding: '10px 16px 6px 16px',
 	},
@@ -139,7 +139,7 @@ const LABEL_VARIANT_STYLE: ObjectProps<object> = {
 		padding: '0 12px',
 		fontWeight: '500',
 		color: 'var(--business-color)',
-		backgroundColor: 'var(--basic-white-color)',
+		backgroundColor: 'var(--white100)',
 		zIndex: '2',
 	},
 	file: {
@@ -157,7 +157,7 @@ const INPUT_TEXTFIELD_VARIANT_STYLE: ObjectProps<object> = {
 		height: '100%',
 		padding: '2px 0 2px 10px',
 		fontSize: '0.95rem',
-		border: '1px solid var(--basic-grey3-color)',
+		border: '1px solid var(--grey300)',
 		borderRadius: '8px',
 		outline: 0,
 		zIndex: '1',

@@ -52,8 +52,8 @@ const CourtList = ({ data, setCourtId, setShowRightSide }: CourtListProps) => {
 										minWidth: '140px',
 										padding: '12px 0',
 										// backgroundColor: 'var(--business-sub-color,
-										backgroundColor: 'var(--basic-vivid-blue-color)',
-										color: 'var(--basic-white-color)',
+										backgroundColor: 'var(--blue300)',
+										color: 'var(--white100)',
 										fontSize: '1.1rem',
 										fontWeight: '600',
 										borderRadius: '12px',
@@ -91,8 +91,8 @@ const CourtList = ({ data, setCourtId, setShowRightSide }: CourtListProps) => {
 											variant={'radiusBtn'}
 											css={{
 												border: 0,
-												backgroundColor: 'var(--basic-red2-color)',
-												color: 'var(--basic-white-color)',
+												backgroundColor: 'var(--red200)',
+												color: 'var(--white100)',
 												padding: '8px 16px',
 												fontSize: '0.95rem',
 											}}
@@ -114,7 +114,7 @@ const CourtList = ({ data, setCourtId, setShowRightSide }: CourtListProps) => {
 											css={{
 												border: 0,
 												backgroundColor: 'var(--business-color)',
-												color: 'var(--basic-white-color)',
+												color: 'var(--white100)',
 												padding: '8px 16px',
 												fontSize: '0.95rem',
 											}}

@@ -48,7 +48,7 @@ const CustomerList = () => {
 									css={{
 										position: 'relative',
 										width: '35%',
-										backgroundColor: 'var(--basic-grey4-color)',
+										backgroundColor: 'var(--grey400)',
 										borderRadius: '16px',
 										padding: '12px 0',
 										textAlign: 'center',
@@ -67,7 +67,7 @@ const CustomerList = () => {
 const CustomerContainer = styled.section({
 	position: 'relative',
 	height: 'calc(72% - 12px)',
-	borderBottom: '1px solid var(--basic-grey-color)',
+	borderBottom: '1px solid var(--grey100)',
 });
 
 export default CustomerList;

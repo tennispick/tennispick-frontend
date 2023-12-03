@@ -3,6 +3,10 @@ import Image from 'next/image';
 import styled from '@emotion/styled';
 import { CSS_TYPE } from '@styles/styles';
 import { NavigationList } from 'src/mocks/navigation';
+import Calendar from '@components/home/Calendar';
+import { useState } from 'react';
+import { Modal, Portal } from '@components/index';
+import ScheduleByCalendar from '@components/layer/calendar/index';
 
 interface NavigationProps {
 	firstPathName: string;
@@ -10,13 +14,22 @@ interface NavigationProps {
 }
 
 const NavigationLayout = ({ firstPathName, isNavSpread }: NavigationProps) => {
+
+	const [day, setDay] = useState<Date>(new Date());
+	const [showModal, setShowModal] = useState<boolean>(false);
+
+	const onClickCalendarDateHandler = (day: Date) =>{
+		setShowModal(true);
+		setDay(day);
+	};
+
 	return (
 		<NavContainer
-			width={isNavSpread ? '10%' : '5%'}
+			width={isNavSpread ? '280px' : '80px'}
 			padding={isNavSpread ? '0 20px 0 0' : '0'}
 		>
-			<nav>
-				<LogoWraaper>로고</LogoWraaper>
+			<div>
+				<div css={{ width: '100%', minHeight: '8vh' }}>로고</div>
 				<NavLists>
 					{NavigationList &&
 						NavigationList.map((item) => {
@@ -27,33 +40,49 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: NavigationProps) => {
 										flexDirection={isNavSpread ? 'row' : 'column'}
 										css={{
 											'::before': {
-												width:
-													firstPathName === item.path
-														? 'calc(100% + 20px)'
-														: '0',
+												width: firstPathName === item.path ? '100%' : '0',
 											},
 										}}
 									>
-										<Image
-											src={item.src}
-											alt={item.alt}
-											width={20}
-											height={20}
-										/>
+										<Image src={item.src} alt={item.alt} width={20} height={20} />
 										<span>{item.label}</span>
 									</NavList>
 								</Link>
 							);
 						})}
 				</NavLists>
-			</nav>
+			</div>
+			<Calendar
+				css={!isNavSpread && { display: 'none' }}
+				onClick={onClickCalendarDateHandler}
+			/>
+			{showModal && <Portal id={'portal'}>
+				<Modal
+					title={'스케줄 등록'}
+					titleContainer={false}
+					css={{
+						width: 'calc(100vw - 3%)',
+						height: 'calc(100vh - 5%)',
+						top: '50%',
+						padding: 0
+					}}
+				>
+					<ScheduleByCalendar
+						day={day}
+						setShowModal={setShowModal}
+					/>
+				</Modal>
+			</Portal>}
 		</NavContainer>
 	);
 };
 
-const NavContainer = styled.div<CSS_TYPE>(
+const NavContainer = styled.nav<CSS_TYPE>(
 	{
 		position: 'relative',
+		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'space-between',
 		height: 'calc(100vh - 48px)',
 		transition: 'all 0.35s ease-in-out',
 		overflowY: 'scroll',
@@ -63,10 +92,9 @@ const NavContainer = styled.div<CSS_TYPE>(
 		padding: props.padding,
 	}),
 );
-const LogoWraaper = styled.div({
-	minHeight: '8vh',
-});
 const NavLists = styled.ul({
+	position: 'relative',
+	width: '100%',
 	margin: '16px 0 0 0',
 });
 const NavList = styled.li<CSS_TYPE>(
@@ -75,7 +103,6 @@ const NavList = styled.li<CSS_TYPE>(
 		position: 'relative',
 		alignItems: 'center',
 		fontSize: '16px',
-		margin: '8px 0 8px 16px',
 		cursor: 'pointer',
 
 		img: {
@@ -89,7 +116,7 @@ const NavList = styled.li<CSS_TYPE>(
 			width: '0%',
 			height: '100%',
 			top: '0',
-			left: '-12px',
+			left: '0',
 			backgroundColor: 'var(--business-sub-color)',
 			borderRadius: '16px',
 			zIndex: '1',
@@ -97,8 +124,8 @@ const NavList = styled.li<CSS_TYPE>(
 	},
 	(props) => ({
 		flexDirection: props.flexDirection,
-		padding: props.isActive ? '14px 12px 14px 0' : '16px 0',
-		margin: props.isActive ? '8px 0 8px 16px' : '2px 0',
+		padding: props.isActive ? '16px' : '16px 0',
+		margin: props.isActive ? '0 0 12px 0' : '2px 0',
 
 		span: {
 			fontSize: props.isActive ? '16px' : '14px',
@@ -107,13 +134,13 @@ const NavList = styled.li<CSS_TYPE>(
 		},
 
 		'::before': {
-			left: props.isActive ? '-16px' : '0',
+			left: props.isActive ? '0' : '0',
 			borderRadius: props.isActive ? '16px' : '0',
 		},
 
 		':hover': {
 			'::before': {
-				width: props.isActive ? 'calc(100% + 20px)' : '100%',
+				width: '100%',
 			},
 		},
 	}),

@@ -110,13 +110,13 @@ const SettlementTableContainer = styled.div({
 	display: 'flex',
 	height: 'calc(85% - 12px)',
 	margin: '12px 0 0 0',
-	backgroundColor: 'var(--basic-grey4-color)',
+	backgroundColor: 'var(--grey400)',
 	borderRadius: '25px',
 });
 const SectionContainer = styled.section<CSS_TYPE>(
 	{
 		position: 'relative',
-		backgroundColor: 'var(--basic-white-color)',
+		backgroundColor: 'var(--white100)',
 		borderRadius: '16px',
 		textAlign: 'center',
 	},

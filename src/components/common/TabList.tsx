@@ -21,7 +21,7 @@ const TabList = ({
 	return (
 		<Container>
 			<Lists
-				borderBottom={borderBottom ? '1px solid var(--basic-grey-color)' : ''}
+				borderBottom={borderBottom ? '1px solid var(--grey100)' : ''}
 			>
 				{list &&
 					list.length > 0 &&
@@ -33,12 +33,12 @@ const TabList = ({
 								onClick={() => setState(item.id)}
 								color={
 									item.id === state
-										? 'var(--basic-black-color)'
+										? 'var(--black100)'
 										: 'var(--deactive-color)'
 								}
 								fontWeight={item.id === state ? '500' : '300'}
 								borderBottom={
-									item.id === state ? '2px solid var(--basic-black-color)' : ''
+									item.id === state ? '2px solid var(--black100)' : ''
 								}
 							>
 								{item.name}

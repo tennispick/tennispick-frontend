@@ -37,7 +37,7 @@ const DashBoardItem = ({
 const Container = styled.div<CSS_TYPE>(
 	{
 		position: 'relative',
-		border: '1px solid var(--basic-grey-color)',
+		border: '1px solid var(--grey100)',
 		borderRadius: '25px',
 		padding: '16px',
 	},

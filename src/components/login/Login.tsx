@@ -7,6 +7,8 @@ import Button from '@components/common/Button';
 import useInput from '@hooks/useInput';
 import { axios } from '@utils/axios';
 import { setCookie } from '@lib/cookie';
+import { useRecoilState } from 'recoil';
+import { userState } from '@lib/recoil/userState';
 
 const Login = () => {
 	const router = useRouter();
@@ -14,6 +16,7 @@ const Login = () => {
 		id: '',
 		password: '',
 	});
+	const [, setUserState] = useRecoilState(userState);
 
 	const onSubmitHandler = async (e: FormEvent) => {
 		e.preventDefault();
@@ -22,6 +25,10 @@ const Login = () => {
 
 		if (data.accessToken !== '' && data.accessToken !== undefined) {
 			setCookie(data.accessToken);
+
+			if(data?.payload)
+				setUserState(data.payload);
+
 			router.push('/');
 		}
 	};
@@ -82,8 +89,8 @@ const Login = () => {
 								width: '60%',
 								margin: '0 0 16px 0',
 								fontWeight: '500',
-								color: 'var(--basic-white-color)',
-								backgroundColor: 'var(--basic-vivid-blue-color)',
+								color: 'var(--white100)',
+								backgroundColor: 'var(--blue300)',
 								border: 0,
 							}}
 						/>
@@ -94,8 +101,8 @@ const Login = () => {
 								disaplay: 'block',
 								width: '60%',
 								fontWeight: '500',
-								color: 'var(--basic-white-color)',
-								backgroundColor: 'var(--basic-navy-color)',
+								color: 'var(--white100)',
+								backgroundColor: 'var(--navy100)',
 								border: 0,
 							}}
 						/>
@@ -104,7 +111,7 @@ const Login = () => {
 				<Divider width={'60%'} content={'또는'} />
 				<span
 					css={{
-						color: 'var(--basic-navy-color)',
+						color: 'var(--navy100)',
 						fontWeight: '600',
 						margin: '0 8px 0 0',
 						cursor: 'pointer',
@@ -115,7 +122,7 @@ const Login = () => {
 				</span>
 				<span
 					css={{
-						color: 'var(--basic-navy-color)',
+						color: 'var(--navy100)',
 						fontWeight: '600',
 						margin: '0 0 0 8px',
 						cursor: 'pointer',

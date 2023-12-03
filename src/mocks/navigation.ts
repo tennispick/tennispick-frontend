@@ -61,18 +61,18 @@ export const NavigationList = [
 		src: CommunityWhiteIcon,
 		alt: 'community icon',
 	},
-	{
-		id: uuid(),
-		path: 'statistics',
-		label: '통계',
-		src: StatisticsWhiteIcon,
-		alt: 'statistics icon',
-	},
-	{
-		id: uuid(),
-		path: 'setting',
-		label: '설정',
-		src: SettingWhiteIcon,
-		alt: 'setting icon',
-	},
+	// {
+	// 	id: uuid(),
+	// 	path: 'statistics',
+	// 	label: '통계',
+	// 	src: StatisticsWhiteIcon,
+	// 	alt: 'statistics icon',
+	// },
+	// {
+	// 	id: uuid(),
+	// 	path: 'setting',
+	// 	label: '설정',
+	// 	src: SettingWhiteIcon,
+	// 	alt: 'setting icon',
+	// },
 ];

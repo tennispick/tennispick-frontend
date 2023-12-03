@@ -11,3 +11,8 @@ export interface WeekListProps {
 		dateWeekList: Array<ObjectProps<number | string>>;
 	}>;
 }
+
+export interface TransferTimeList{
+	startTime: string;
+	endTime: string;
+}

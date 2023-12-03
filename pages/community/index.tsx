@@ -34,7 +34,7 @@ const CommunityPage = () => {
 						}}
 						css={{
 							backgroundColor: 'var(--business-active-color)',
-							color: 'var(--basic-white-color)',
+							color: 'var(--white100)',
 						}}
 						onClick={() => router.push('/community/notice/create')}
 					/>

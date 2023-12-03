@@ -367,3 +367,10 @@ export const CustomerList = [
 		termsAgree: 'Y',
 	},
 ];
+
+export const customerList = [
+	{
+		id: uuidV4(),
+		
+	}
+]

@@ -10,6 +10,7 @@ import Portal from '@components/Portal';
 import Modal from '@components/layer/Modal';
 
 const SchedulePage = () => {
+	
 	// TODO Data Fetching
 	const coachArr = [
 		{
@@ -114,8 +115,6 @@ const SchedulePage = () => {
 			setCurrentWeek(weekInfo.weekTabList[0].id);
 			setWeekTabList(weekInfo.weekTabList);
 		}
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [calendarDate]);
 
 	/* Tab의 N주차 선택에 따른 요일 및 정보 표시 */
@@ -125,8 +124,6 @@ const SchedulePage = () => {
 		);
 
 		setDateWeekList(calendarInfo.dateList[week]);
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentWeek]);
 
 	useEffect(() => {

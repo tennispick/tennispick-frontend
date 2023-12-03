@@ -29,7 +29,7 @@ const Container = styled.div<CSS_TYPE>(
 		position: 'relative',
 		width: '100%',
 		height: '100%',
-		backgroundColor: 'var(--basic-grey4-color)',
+		backgroundColor: 'var(--grey400)',
 		borderRadius: 'inherit',
 	},
 	(props) => ({

@@ -13,6 +13,7 @@ export { default as Select } from '@components/common/Select';
 export { default as TabList } from '@components/common/TabList';
 export { default as NormalList } from '@components/common/NormalList';
 export { default as Portal } from '@components/Portal';
+export { default as Modal } from '@components/layer/Modal';
 
 /** layout */
 export { default as AppLayout } from '@components/layout/AppLayout';
@@ -48,7 +49,3 @@ export { default as GenerateCourtModal } from '@components/court/GenerateModal';
 
 /** lesson */
 export { default as LessonList } from '@components/lesson/List';
-
-/** community */
-
-/** statistics */

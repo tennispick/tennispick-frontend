@@ -46,7 +46,7 @@ const LayoutContainer = styled.div<CSS_TYPE>(
 		height: '100vh',
 		backgroundColor: 'var(--business-color)',
 		position: 'relative',
-		color: 'var(--basic-white-color)',
+		color: 'var(--white100)',
 		display: 'flex',
 	},
 	(props) => ({
@@ -57,7 +57,7 @@ const MainContainer = styled.main<CSS_TYPE>(
 	{
 		position: 'relative',
 		height: 'calc(100vh - 48px)',
-		backgroundColor: 'var(--basic-white-color)',
+		backgroundColor: 'var(--white100)',
 		borderRadius: '12px',
 		transition: 'all 0.35s ease-in-out',
 	},
@@ -70,7 +70,7 @@ const ChildrenContainer = styled.div({
 	width: '100%',
 	height: '100%',
 	padding: '24px',
-	color: 'var(--basic-black-color)',
+	color: 'var(--black100)',
 	overflow: 'hidden',
 });
 const NavControlBtnWrapper = styled.i({
@@ -78,7 +78,7 @@ const NavControlBtnWrapper = styled.i({
 	display: 'inline-block',
 	width: '36px',
 	height: '36px',
-	backgroundColor: 'var(--basic-white-color)',
+	backgroundColor: 'var(--white100)',
 	left: '-36px',
 	top: '20px',
 	borderTopLeftRadius: '12px',

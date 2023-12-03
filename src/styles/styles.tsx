@@ -89,27 +89,47 @@ export const globalStyles = (
 			:root {
 				--business-color: rgba(41, 77, 97, 100); // #294D61
 				--business-sub-color: rgba(101, 165, 185, 100);
-				--basic-white-color: rgba(254, 254, 254, 100); // #FEFEFE
 
-				--basic-red-color: rgba(250, 8, 95, 100);
-				--basic-red2-color: rgba(250, 86, 95, 100); // #FA565F
+				--white100: rgba(254, 254, 254, 100); // #FEFEFE
 
-				--basic-black-color: rgba(58, 58, 58, 100); // #3A3A3A
+				--red100: rgba(250, 8, 95, 100);
+				--red200: rgba(250, 86, 95, 100); // #FA565F
+				--red300: rgba(255, 204, 207, 100); // #FFCCCF
 
-				--basic-yellow-color: rgba(250, 210, 100, 100);
+				--pink100: rgba(173, 90, 155, 100); // #AD5A9B
+				--pink900: rgba(239, 217, 234, 100); // #EFD9EA
 
-				--basic-blue-color: rgba(66, 100, 251, 100); // #4264FB
-				--basic-caribbean-blue-color: rgba(20, 180, 199, 100); // #14B4C7
-				--basic-vivid-blue-color: rgba(55, 159, 255, 100); // #379FFF
+				--black100: rgba(58, 58, 58, 100); // #3A3A3A
 
-				--basic-navy-color: rgba(29, 55, 99, 100); // #1D3763
+				--yellow100: rgba(250, 210, 100, 100);
+				--yellow200: rgba(255, 241, 221, 100); // #FFF1DD
+				--yellow300: rgba(241, 172, 68, 100); // #F1AC44
+				
+				--blue100: rgba(66, 100, 251, 100); // #4264FB
+				--blue200: rgba(20, 180, 199, 100); // #14B4C7
+				--blue300: rgba(55, 159, 255, 100); // #379FFF
+				--blue400: rgba(32, 77, 195, 100); // #204DC3
+				--blue900: rgba(208, 217, 255, 100); // #D0D9FF
 
-				--basic-grey-color: rgba(222, 222, 222, 100); // #DEDEDE
-				--basic-grey2-color: rgba(234, 234, 234, 100); // #EAEAEA
-				--basic-grey3-color: rgba(206, 206, 206, 100); // #CECECE
-				--basic-grey4-color: rgba(248, 248, 248, 100); // #F8F8F8
-				--basic-grey5-color: rgba(243, 243, 243, 100); // #F3F3F3
-				--basic-grey6-color: rgba(249, 249, 249, 100); // #F9F9F9
+				--green100: rgba(3, 199, 90, 100); // #03C75A
+				--green150: rgba(38, 173, 141, 100); // #26AD8D
+				--green200: rgba(105, 149, 84, 100); // #699554
+				--green900: rgba(177, 221, 210, 100); // #B1DDD2
+
+				--purple100: rgba(118, 42, 194, 100); // #762AC2
+
+				--navy100: rgba(29, 55, 99, 100); // #1D3763
+
+				--gold100: rgba(187, 159, 58, 100); // #BB9F3A
+
+				--grey100: rgba(222, 222, 222, 100); // #DEDEDE
+				--grey110: rgba(226, 226, 226, 100); // #E2E2E2
+				--grey200: rgba(234, 234, 234, 100); // #EAEAEA
+				--grey300: rgba(206, 206, 206, 100); // #CECECE
+				--grey400: rgba(248, 248, 248, 100); // #F8F8F8
+				--grey500: rgba(243, 243, 243, 100); // #F3F3F3
+				--grey600: rgba(249, 249, 249, 100); // #F9F9F9
+				--grey1000: rgba(146, 146, 146, 100); // #929292
 
 				--business-active-color: rgba(101, 165, 185, 100); // #65A5B9
 				--deactive-color: rgba(204, 204, 204, 100); // #CCCCCC
@@ -223,14 +243,14 @@ export const Select = styled.select<CSS_TYPE>({}, (props) => ({
 	padding: props.padding ? props.padding : '',
 	margin: props.margin ? props.margin : '',
 	fontSize: props.fontSize ? props.fontSize : '0.9rem',
-	border: props.border ? props.border : '1px solid var(--basic-grey3-color)',
+	border: props.border ? props.border : '1px solid var(--grey300)',
 	borderColor: props.borderColor ? props.borderColor : '',
 	borderRadius: props.borderRadius ? props.borderRadius : '8px',
 }));
 
 export const Input = styled.input<CSS_TYPE>(
 	{
-		border: '1px solid var(--basic-grey3-color)',
+		border: '1px solid var(--grey300)',
 		margin: 0,
 
 		':focus': {

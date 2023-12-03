@@ -1,13 +1,13 @@
 import { v4 as uuidV4 } from 'uuid';
 import { numberZeroFillFormat } from './numberForm';
-import { WeekListProps } from 'src/interfaces/calendar';
+import { TransferTimeList, WeekListProps } from 'src/interfaces/calendar';
 
 /**
  * getDay(): 주어진 날짜의 첫 번째 날짜의 요일 정보를 반환
  * getDate(): 주어진 날짜의 일을 반환(ex, 28일)
  */
 const STRING_WEAK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-const STRING_WEAK_KR = ['일', '월', '화', '수', '목', '금', '토'];
+export const STRING_WEAK_KR = ['일', '월', '화', '수', '목', '금', '토'];
 
 /**
  * 입력 날짜에 해당하는 주차 및 리스트 반환
@@ -137,16 +137,40 @@ export const getTimeZoneList = () => {
 		timeList.push(`${numberZeroFillFormat(index, 2)}:00`);
 	}
 
-	// for (let index = 6; index <= 9; index++) {
-	//   timeList.push(
-	//     `${numberZeroFillFormat(index, 2)}:00`
-	//   );
-	// };
-
 	return {
 		timeList: timeList,
 	};
 };
+
+export const transferTimeZoneToSettingLessonTime = (array: string[], lessonTime: number): TransferTimeList[] =>{
+
+	const list = [];
+	const result: TransferTimeList[] = [];
+
+	for(let index = 0; index < array.length-1; index++){
+
+		const startTime = array[index];
+		const endTime = array[index+1];
+
+		const startMinutes = Number(startTime.split(":")[0]) * 60;
+		const endMinutes = Number(endTime.split(":")[0]) * 60;
+
+		for(let idx = startMinutes; idx < endMinutes; idx += lessonTime){
+			const currentHour = Math.floor(idx / 60).toString().padStart(2, "0");
+			const currentMinute = (idx % 60).toString().padStart(2, "0");
+
+			list.push(`${currentHour}:${currentMinute}`);
+		}
+	}
+
+	for(let index = 0; index < list.length; index++){
+		result.push({
+			startTime: list[index],
+			endTime: list[index+1] ? list[index+1] : "24:00",
+		});
+	}
+	return result;
+}
 
 export const getPrevNextMonth = (year: number, month: number) => {
 	const dateMonth = month - 1;
@@ -208,6 +232,14 @@ export const isCheckTimeInRange = (
 		);
 	}
 };
+
+export const getDiffTimeMinutes = (startTime: string, endTime: string) =>{
+
+	const startMinutes = Number(startTime.split(":")[0]) * 60 + Number(startTime.split(":")[1]);
+	const endMinutes = Number(endTime.split(":")[0]) * 60 + Number(endTime.split(":")[1]);
+
+	return endMinutes - startMinutes;
+}
 
 /** 년도 SelectBox */
 export const getYearList = () => {

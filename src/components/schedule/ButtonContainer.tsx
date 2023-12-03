@@ -16,7 +16,7 @@ const ButtonContainer = ({
 			<Button
 				fontSize={'0.95rem'}
 				fontWeight={'400'}
-				color={'var(--basic-white-color)'}
+				color={'var(--white100)'}
 				backgroundColor={'var(--business-active-color)'}
 			>
 				주차별 보기

@@ -7,13 +7,15 @@ import CancelBtnIcon from '@icons/cancel_black_btn.svg';
 interface ModalProps {
 	title: string;
 	children: React.ReactNode;
-	showModal: boolean;
-	setShowModal: Dispatch<SetStateAction<boolean>>;
+	titleContainer?: boolean;
+	showModal?: boolean;
+	setShowModal?: Dispatch<SetStateAction<boolean>>;
 }
 
 const Modal = ({
 	title,
 	children,
+	titleContainer = true,
 	showModal,
 	setShowModal,
 	...props
@@ -21,20 +23,21 @@ const Modal = ({
 	return (
 		<Container>
 			<ModalContainer css={fadeUp} {...props}>
-				<TitleContainer>
-					<Title>{title}</Title>
-					<Image
-						src={CancelBtnIcon}
-						alt={'close button'}
-						width={28}
-						height={28}
-						position={'absolute'}
-						top={0}
-						right={0}
-						cursor={'pointer'}
-						onClick={() => setShowModal(false)}
-					/>
-				</TitleContainer>
+				{titleContainer &&
+					<TitleContainer>
+						<Title>{title}</Title>
+						<Image
+							src={CancelBtnIcon}
+							alt={'close button'}
+							width={28}
+							height={28}
+							position={'absolute'}
+							top={0}
+							right={0}
+							cursor={'pointer'}
+							onClick={() => setShowModal && setShowModal(false)}
+						/>
+					</TitleContainer>}
 				{children}
 			</ModalContainer>
 		</Container>
@@ -57,14 +60,14 @@ const ModalContainer = styled.div({
 	left: '50%',
 	transform: 'translate(-50%,-50%)',
 	padding: '24px',
-	backgroundColor: 'var(--basic-white-color)',
+	backgroundColor: 'var(--white100)',
 	borderRadius: '16px',
 	boxShadow: '2px 4px 12px 2px rgb(255 255 255 / 15%)',
 });
 const TitleContainer = styled.div({
 	position: 'relative',
 	textAlign: 'center',
-	color: 'var(--basic-black-color)',
+	color: 'var(--black100)',
 	padding: '4px 0',
 	margin: '0 0 24px 0',
 });

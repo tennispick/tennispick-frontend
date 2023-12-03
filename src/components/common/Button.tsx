@@ -77,19 +77,19 @@ const Button = ({
 
 const BUTTON_VARIANT_STYLE: ObjectProps<object> = {
 	default: {
-		border: '1px solid var(--basic-grey-color)',
+		border: '1px solid var(--grey100)',
 		borderRadius: '12px',
 		padding: '12px 16px',
 	},
 	iconBtn: {
 		display: 'flex',
 		alignItems: 'center',
-		border: '1px solid var(--basic-grey-color)',
+		border: '1px solid var(--grey100)',
 		borderRadius: '12px',
 		padding: '10px 20px',
 	},
 	radiusBtn: {
-		border: '1px solid var(--basic-grey-color)',
+		border: '1px solid var(--grey100)',
 		borderRadius: '50px',
 		padding: '12px 20px',
 	},
