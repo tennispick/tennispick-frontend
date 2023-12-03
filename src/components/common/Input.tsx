@@ -51,8 +51,8 @@ const Input = ({
 				id,
 				...child.props,
 				css: {
-					...child.props.css,
 					...INPUT_TEXTFIELD_VARIANT_STYLE[variant],
+					...child.props.css,
 				},
 			})}
 		</div>
@@ -85,6 +85,7 @@ Input.TextField = forwardRef(
 					type={props.type ? props.type : 'text'}
 					ref={ref}
 					{...otherProps}
+					// css={otherProps.css}
 				/>
 				{requiredStatus && (
 					<div
