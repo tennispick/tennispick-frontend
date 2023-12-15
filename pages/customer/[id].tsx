@@ -19,8 +19,6 @@ const CustomerDetail = ({ id }: { id: string }) => {
 
 	const customerInfo = data.data[0];
 
-	console.log(customerInfo);
-
 	return (
 		<>
 			<PageHeader title={`${customerInfo.name} 님`} />

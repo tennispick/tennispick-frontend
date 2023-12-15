@@ -291,3 +291,24 @@ export const getDayList = () => {
 		date: date,
 	};
 };
+
+export const getTimeList = ({ step = 20, afterTime = "00:00", isInclude = false }: {
+	step?: number | string;
+	afterTime?: string;
+	isInclude?: boolean;
+}) => {
+
+	if(typeof step === 'string') { step = step === 'default' ? 20 : Number(step); }
+
+	const array = [];
+	const [afterTimeHour, afterTimeMinute] = afterTime.split(":").map(Number);
+
+  for (let hour = afterTimeHour; hour < 24; hour++) {
+    for (let minute = isInclude ? afterTimeMinute : (hour === afterTimeHour) ? afterTimeMinute + step : 0; minute < 60; minute += step) {
+      const time = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+      array.push(time);
+    }
+  }
+
+	return array;
+};

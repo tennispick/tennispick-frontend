@@ -27,8 +27,6 @@ const ModalSchedule = ({ ...props }: Props) =>{
   const now = new Date();
   const { data, customerInfo, setCustomerInfo } = props;
 
-  console.log(customerInfo);
-
   const [user, ] = useRecoilState(userState);
   const { lesson_setting_time, business_hours, business_end_hours } = user;
 
@@ -75,9 +73,6 @@ const ModalSchedule = ({ ...props }: Props) =>{
       }
     }
   });
-
-  console.log(customerLessonList);
-  console.log(lessonTimeList);
 
   return(
     <Container>

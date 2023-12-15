@@ -10,7 +10,7 @@ const Calendar = ({ ...props }) => {
 	return(
 		<CalendarContainer
 			locale={'ko-kr'}
-			calendarType={'US'}
+			calendarType={'gregory'}
 			formatDay ={(locale, date) => dayjs(date).format('DD')}
 			onClickDay={(e) => onClick(e)}
 			{...rest}
@@ -52,6 +52,7 @@ const CalendarContainer = styled(ReactCalendar)({
 
 	// 일
 	'.react-calendar__month-view__days__day': {
+		
 		':nth-of-type(7n + 1)':{
 			color: 'var(red100)'
 		},

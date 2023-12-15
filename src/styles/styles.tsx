@@ -81,7 +81,7 @@ export const globalStyles = (
 					'Noto Sans KR',
 					'Malgun Gothic',
 					sans-serif;
-				font-weight: 300;
+				font-weight: 400;
 				padding: 0;
 				margin: 0;
 			}
@@ -144,6 +144,7 @@ export const globalStyles = (
 				padding: 0;
 				margin: 0;
 				-ms-overflow-style: none;
+				font-size: 16px;
 				color: #3a3a3a;
 			}
 
@@ -183,6 +184,32 @@ export const globalStyles = (
 				display: none;
 				opacity: 0;
 			}
+
+			// Date-picker
+			.react-datepicker-popper{
+				z-index: 9;
+			}
+
+			.react-datepicker__input-container .react-datepicker__calendar-icon{
+				height: 100%;
+    		padding: 0 0 0 10px;
+			}
+
+			// React Time Range
+			#react-time-range {
+				padding: 0 !important;
+				margin: 0 5px;
+			}
+
+			#react-time-range .component{
+				
+			}
+
+			#react-time-range select{
+				padding: 10px 26px 10px 8px !important;
+				background-color: var(--white100) !important;
+				border-radius: 8px !important;
+			}
 		`}
 	/>
 );
@@ -210,14 +237,6 @@ export const Button = styled.button<CSS_TYPE>(
 		WebkitTransform: 'translateZ(0)',
 		WebkitFontSmoothing: 'subpixel-antialiased',
 		cursor: 'pointer',
-
-		// ":hover": {
-		//   transform: "translate3d(0, 0, 0) translateZ(0) scale(1.1)",
-		// },
-
-		// ":active": {
-		//   transform: "translate3d(0, 0, 0) translateZ(0) scale(0.95)",
-		// }
 	},
 	(props) => ({
 		display: props.display,

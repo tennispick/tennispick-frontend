@@ -22,7 +22,7 @@ interface DataProps {
 }
 
 const CustomerData = ({ data, ...props }: DataProps) => {
-	console.log(data);
+	
 	const [year, month, date] = data.birth.split('-');
 	const { yearArray } = getYearList();
 	const { monthArray } = getMonthList();

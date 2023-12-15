@@ -1,4 +1,4 @@
-import { Dispatch, FormEvent, SetStateAction, useEffect } from 'react';
+import { Dispatch, FormEvent, SetStateAction } from 'react';
 import styled from '@emotion/styled';
 import { useRouter } from 'next/navigation';
 import { v4 as uuidV4 } from 'uuid';
@@ -83,7 +83,6 @@ const GenerateModal = ({
 			const { data } = await generateCustomer(formData);
 			if (data.affectedRows > 0) {
 				alert('생성이 완료되었습니다.');
-				console.log(setShowModal);
 				setShowModal(false);
 				router.refresh();
 			}

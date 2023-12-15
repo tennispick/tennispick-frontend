@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { v4 as uuidV4 } from 'uuid';
 import PageHeader from '@components/common/PageHeader';
 import TabList from '@components/common/TabList';
 import ButtonContainer from '@components/schedule/ButtonContainer';
@@ -8,65 +7,18 @@ import { WeekListProps } from 'src/interfaces/calendar';
 import Calendar from '@components/schedule/Calendar';
 import Portal from '@components/Portal';
 import Modal from '@components/layer/Modal';
+import { coachArr, courtArr } from '@data/schedule';
+import CreateScheduleModalChildren from '@components/schedule/component/CreateScheduleModalChildren';
 
 const SchedulePage = () => {
 	
-	// TODO Data Fetching
-	const coachArr = [
-		{
-			id: uuidV4(),
-			name: '전체',
-			value: 'all',
-			status: 'active',
-		},
-		{
-			id: uuidV4(),
-			name: 'Jane',
-			value: 'jane',
-			status: 'active',
-		},
-		{
-			id: uuidV4(),
-			name: 'Marin',
-			value: 'marin',
-			status: 'active',
-		},
-		{
-			id: uuidV4(),
-			name: 'Taeil',
-			value: 'taeil',
-			status: 'active',
-		},
-	];
+	// TODO 코트목록
 
-	const courtArr = [
-		{
-			id: uuidV4(),
-			name: '코트1',
-			value: 'court1',
-		},
-		{
-			id: uuidV4(),
-			name: '코트2',
-			value: 'court2',
-		},
-		{
-			id: uuidV4(),
-			name: '코트3',
-			value: 'court4',
-		},
-		{
-			id: uuidV4(),
-			name: '코트4',
-			value: 'court4',
-		},
-	];
+	// TODO 코치목록
 
-	// 코트목록
+	// TODO 레슨권 목록
 
-	// 코치목록
-
-	// 레슨권 목록
+	// const { calendarYear, calendarMonth, currentDate, currentWeek, dateList, weekTabList } = getWeekList();
 
 	const [mount, setMount] = useState<boolean>(false);
 	const [showModal, setShowModal] = useState<boolean>(false);
@@ -104,6 +56,7 @@ const SchedulePage = () => {
 	useEffect(() => {
 		// Page Init Mount Check
 		if (mount) {
+
 			// 탭 리스트 변화
 			const date = new Date();
 			date.setFullYear(calendarDate.year);
@@ -165,8 +118,14 @@ const SchedulePage = () => {
 						title={'스케줄 등록'}
 						showModal={showModal}
 						setShowModal={setShowModal}
+						css={{
+							top: '45%',
+							maxWidth: '1440px',
+							minHeight: '670px',
+							width: '1440px'
+						}}
 					>
-						<>스케줄 등록</>
+						<CreateScheduleModalChildren />
 					</Modal>
 				</Portal>
 			)}

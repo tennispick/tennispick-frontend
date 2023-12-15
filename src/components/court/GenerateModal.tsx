@@ -47,7 +47,6 @@ const GenerateModal = ({
 			const { data } = await generateCourt(formData);
 			if (data.affectedRows > 0) {
 				alert('생성이 완료되었습니다.');
-				console.log(setShowModal);
 				setShowModal(false);
 				router.refresh();
 			}

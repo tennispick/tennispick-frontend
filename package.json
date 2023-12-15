@@ -29,8 +29,10 @@
     "react": "18.2.0",
     "react-calendar": "^4.6.1",
     "react-cookie": "^4.1.1",
+    "react-datepicker": "^4.24.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.2",
+    "react-time-range": "^1.0.4",
     "recoil": "^0.7.7",
     "recoil-persist": "^5.1.0",
     "typescript": "5.0.4",
@@ -38,6 +40,7 @@
     "yup": "^1.2.0"
   },
   "devDependencies": {
+    "@types/react-datepicker": "^4.19.3",
     "@types/uuid": "^9.0.1",
     "eslint": "^8.48.0",
     "prettier": "^3.0.3"

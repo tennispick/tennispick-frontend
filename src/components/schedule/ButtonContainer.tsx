@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import styled from '@emotion/styled';
 import { Button } from '@styles/styles';
 
@@ -38,4 +38,4 @@ const Container = styled.div({
 	margin: '8px 0 8px auto',
 });
 
-export default React.memo(ButtonContainer);
+export default ButtonContainer;

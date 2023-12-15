@@ -1,4 +1,4 @@
-import { } from 'react';
+import { memo, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import Button from '@components/common/Button';
 import ProfileManIcon from '@icons/profile_man.svg';
@@ -6,8 +6,9 @@ import ProfileWomanIcon from '@icons/profile_woman.svg';
 import Image from 'next/image';
 import { CustomerType } from 'src/types/customer';
 import { LessonHistoryType } from 'src/types/lesson';
+import { getCustomerDetailQuery } from '@queries/customer';
 
-type CustomerLessonType = CustomerType & Pick<LessonHistoryType, 'start_time' | 'end_time' >;
+type CustomerLessonType = CustomerType & Pick<LessonHistoryType, 'customer_id' | 'start_time' | 'end_time' >;
 
 interface Props {
   customerInfo: CustomerLessonType | null;
@@ -16,7 +17,12 @@ interface Props {
 const ModalCustomer = ({ ...props }: Props) =>{
 
   const { customerInfo } = props;
+  const [customerDetail, setCustomerDetail] = useState<CustomerType>();
 
+  if(customerInfo){
+    const data = getCustomerDetailQuery(customerInfo.customer_id);
+  }
+  
   return(
     <Container>
       <CustomerInfoContainer>
