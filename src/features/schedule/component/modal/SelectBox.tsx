@@ -1,15 +1,25 @@
+import { Select } from "@components/index";
+
 type Props = {
   type: string;
+  selectList: Array<{
+    value: string;
+    label: string;
+  }> | undefined;
 }
 
-const ScheduleModalSelectBox = ({ }: Props) => {
+const ScheduleModalSelectBox = ({ selectList }: Props) => {
+
+  console.log(selectList);
+
   return(
-    <div>
-      <select>
-        <option>1</option>
-        <option>2</option>
-      </select>
-    </div>
+    <Select
+      name={'coach'}
+      width={'calc(70% - 4px)'}
+      defaultValue={'default'}
+    >
+      {selectList?.map(({ value, label }) => <option key={value} value={value}>{label}</option>)}
+    </Select>
   )
 }
 

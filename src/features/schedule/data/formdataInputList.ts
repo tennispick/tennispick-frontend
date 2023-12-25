@@ -27,16 +27,28 @@ const commonFormInputList = [
     fieldType: 'select',
     title: '회원 선택',
     icon: CustomerBlackIcon,
-    alt: 'customer icon'
+    alt: 'customer icon',
+    list: [
+      {
+        value: '',
+        label: '회원 선택'
+      }
+    ]
   },
   {
     type: 'lesson',
     fieldType: 'select',
     title: '수강권 선택',
     icon: LessonCouponBlackIcon,
-    alt: 'lesson icon'
+    alt: 'lesson icon',
+    list: [
+      {
+        value: '',
+        label: '수강권 선택'
+      },
+    ]
   },
-]
+];
 
 export {
   commonFormInputList

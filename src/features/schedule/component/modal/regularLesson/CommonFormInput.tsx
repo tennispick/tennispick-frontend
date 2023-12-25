@@ -3,8 +3,23 @@ import { commonFormInputList } from "@features/schedule/data/formdataInputList";
 import Image from "next/image";
 import ScheduleModalRadioInput from "../RadioInput";
 import ScheduleModalSelectBox from "../SelectBox";
+import { getCustomerQuery } from "@queries/customer";
+import { useMemo } from "react";
 
 const ScheduleModalRegularLessonCommonFormInputList = () => {
+
+  const { data: customerList } = getCustomerQuery();
+
+  const transCustomerList = useMemo(() => {
+    if(customerList){
+      return customerList.data.map(({ id, name }: { id: string, name: string }) => ({
+        value: id,
+        label: name
+      }))
+    }
+    return [];
+  }, [customerList]) 
+
   return(
     <div
       css={{
@@ -13,6 +28,11 @@ const ScheduleModalRegularLessonCommonFormInputList = () => {
       }}
     >
       {commonFormInputList.map(({ type, fieldType, list, title, icon, alt }) => {
+
+        if (type === 'customer' && customerList) {
+          list.push(...transCustomerList);
+        }
+
         return(
           <div css={{margin: '0 0 24px 0'}} key={type}>
             <HeadContainer>
@@ -26,8 +46,16 @@ const ScheduleModalRegularLessonCommonFormInputList = () => {
             </HeadContainer>
             <div css={{ margin: '12px 0 0 0' }}>
               {{
-                radio: <ScheduleModalRadioInput type={type} radioList={list}/>,
-                select: <ScheduleModalSelectBox type={type} />
+                radio:
+                  <ScheduleModalRadioInput
+                    type={type}
+                    radioList={list}
+                  />,
+                select:
+                  <ScheduleModalSelectBox
+                    type={type}
+                    selectList={list}
+                  />
               }[fieldType]}
             </div>
           </div>
