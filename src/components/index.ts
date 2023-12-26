@@ -25,9 +25,7 @@ export { default as CoachLesson } from '@components/home/CoachLesson';
 export { default as PreDashBoard } from '@components/home/PreDashBoard';
 export { default as Sales } from '@components/home/Sales';
 
-/** schedule */
-export { default as ButtonContainer } from '@components/schedule/ButtonContainer';
-export { default as Calendar } from '@components/schedule/Calendar';
+export { default as Calendar } from '@features/schedule/component/ScheduleCalendar';
 
 /** customer */
 export { default as CustomerList } from '@components/customer/List';

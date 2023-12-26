@@ -17,12 +17,12 @@ const generateCustomer = async (data: object): Promise<any> =>
 
 const getCustomerQuery = (): any => {
 	try {
-		const { data } = useQuery({
+		const { data, isFetched } = useQuery({
 			queryKey: ['customer'],
 			queryFn: async () => await getCustomerFetch(),
 		});
 		return {
-			data: data,
+			data,
 		};
 	} catch (error) {
 		console.error(error);
