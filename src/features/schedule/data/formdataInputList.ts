@@ -76,12 +76,12 @@ const allOnceFormInputList = [
     alt: 'calendar schedule type icon',
     list: [
       {
-        value: 'all',
-        label: '일괄등록'
+        value: 'date',
+        label: '날짜로 선택'
       },
       {
-        value: 'individual',
-        label: '개별등록'
+        value: 'day',
+        label: '요일로 선택'
       }
     ]
   },
@@ -93,12 +93,20 @@ const allOnceFormInputList = [
     alt: 'calendar schedule type icon',
     list: [
       {
-        value: 'all',
-        label: '일괄등록'
+        value: '',
+        label: '수강권 시간'
       },
       {
-        value: 'individual',
-        label: '개별등록'
+        value: '20',
+        label: '20분'
+      },
+      {
+        value: '30',
+        label: '30분'
+      },
+      {
+        value: '40',
+        label: '40분'
       }
     ]
   },
@@ -110,12 +118,20 @@ const allOnceFormInputList = [
     alt: 'calendar schedule type icon',
     list: [
       {
-        value: 'all',
-        label: '일괄등록'
+        value: '1',
+        label: '1회'
       },
       {
-        value: 'individual',
-        label: '개별등록'
+        value: '2',
+        label: '2회'
+      },
+      {
+        value: '3',
+        label: '3회'
+      },
+      {
+        value: '4',
+        label: '4회'
       }
     ]
   },
@@ -127,13 +143,9 @@ const allOnceFormInputList = [
     alt: 'calendar schedule type icon',
     list: [
       {
-        value: 'all',
-        label: '일괄등록'
+        value: '',
+        label: '코치 선택'
       },
-      {
-        value: 'individual',
-        label: '개별등록'
-      }
     ]
   },
   {
@@ -144,12 +156,8 @@ const allOnceFormInputList = [
     alt: 'calendar schedule type icon',
     list: [
       {
-        value: 'all',
-        label: '일괄등록'
-      },
-      {
-        value: 'individual',
-        label: '개별등록'
+        value: '',
+        label: '코트 선택'
       }
     ]
   },

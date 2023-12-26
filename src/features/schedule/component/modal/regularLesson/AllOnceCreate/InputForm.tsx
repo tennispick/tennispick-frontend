@@ -10,7 +10,7 @@ const ScheduleModalRegularLessonAllOnceCreateInputForm = () =>{
     <div
       css={{
         position: 'relative',
-        width: '15%'
+        width: '45%'
       }}
     >
       {allOnceFormInputList.map(({ type, fieldType, list, title, icon, alt }) => {

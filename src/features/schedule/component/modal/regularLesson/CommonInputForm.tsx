@@ -5,6 +5,7 @@ import ScheduleModalRadioInput from "../RadioInput";
 import ScheduleModalSelectBox from "../SelectBox";
 import { getCustomerQuery } from "@queries/customer";
 import { ChangeEventHandler } from "react";
+import { getLessonQuery } from "@queries/lesson";
 
 type Props = {
   commonFormData: {[key:string]: string};
@@ -17,6 +18,7 @@ const ScheduleModalRegularLessonCommonInputFormList = ({ commonFormData, onChang
   const { data: customerList } = getCustomerQuery();
 
   // 수강권
+  const { data: lessonList } = getLessonQuery();
 
   const handleDuplicateDataCheck = ({
     prevList,
@@ -46,6 +48,7 @@ const ScheduleModalRegularLessonCommonInputFormList = ({ commonFormData, onChang
       {commonFormInputList.map(({ type, fieldType, list, title, icon, alt }) => {
 
         if (type === 'customer' && customerList) handleDuplicateDataCheck({ prevList: list, list: customerList.data });
+        if (type === 'lesson' && lessonList) handleDuplicateDataCheck({ prevList: list, list: lessonList.data });
 
         return(
           <div css={{margin: '0 0 24px 0'}} key={type}>
