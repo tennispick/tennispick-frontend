@@ -1,5 +1,6 @@
 import { Input } from "@components/index";
 import styled from "@emotion/styled";
+import { ChangeEventHandler } from "react";
 
 type Props = {
   type: string;
@@ -7,9 +8,10 @@ type Props = {
     label: string;
     value: string;
   }> | undefined;
+  onChangeCommonFormData?: ChangeEventHandler<HTMLInputElement>;
 }
 
-const ScheduleModalRadioInput = ({ type, radioList }: Props) => {
+const ScheduleModalRadioInput = ({ type, radioList, onChangeCommonFormData }: Props) => {
   return(
     <div css={{ display: 'flex', alignItems: 'center' }}>
       {radioList?.map(({ label, value }, index) => {
@@ -28,6 +30,7 @@ const ScheduleModalRadioInput = ({ type, radioList }: Props) => {
               css={{ width: 'auto', margin: '0 6px 0 2px'  }}
               value={value}
               defaultChecked={index === 0}
+              onChange={onChangeCommonFormData}
             />
           </InputContainer>
         )

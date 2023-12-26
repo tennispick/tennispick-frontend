@@ -1,25 +1,11 @@
 import styled from "@emotion/styled";
-import { commonFormInputList } from "@features/schedule/data/formdataInputList";
+import { allOnceFormInputList } from "@features/schedule/data/formdataInputList";
 import Image from "next/image";
-import ScheduleModalRadioInput from "../RadioInput";
-import ScheduleModalSelectBox from "../SelectBox";
-import { getCustomerQuery } from "@queries/customer";
-import { useMemo } from "react";
+import ScheduleModalRadioInput from "../../RadioInput";
+import ScheduleModalSelectBox from "../../SelectBox";
+import { ChangeEventHandler } from "react";
 
-const ScheduleModalRegularLessonCommonFormInputList = () => {
-
-  const { data: customerList } = getCustomerQuery();
-
-  const transCustomerList = useMemo(() => {
-    if(customerList){
-      return customerList.data.map(({ id, name }: { id: string, name: string }) => ({
-        value: id,
-        label: name
-      }))
-    }
-    return [];
-  }, [customerList]) 
-
+const ScheduleModalRegularLessonAllOnceCreateInputForm = () =>{
   return(
     <div
       css={{
@@ -27,12 +13,7 @@ const ScheduleModalRegularLessonCommonFormInputList = () => {
         width: '15%'
       }}
     >
-      {commonFormInputList.map(({ type, fieldType, list, title, icon, alt }) => {
-
-        if (type === 'customer' && customerList) {
-          list.push(...transCustomerList);
-        }
-
+      {allOnceFormInputList.map(({ type, fieldType, list, title, icon, alt }) => {
         return(
           <div css={{margin: '0 0 24px 0'}} key={type}>
             <HeadContainer>
@@ -60,7 +41,7 @@ const ScheduleModalRegularLessonCommonFormInputList = () => {
             </div>
           </div>
         )
-      })}
+        })}
     </div>
   )
 };
@@ -75,4 +56,4 @@ const HeadContainer = styled.div({
   }
 });
 
-export default ScheduleModalRegularLessonCommonFormInputList;
+export default ScheduleModalRegularLessonAllOnceCreateInputForm;

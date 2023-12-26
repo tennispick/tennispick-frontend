@@ -10,8 +10,6 @@ type Props = {
 
 const ScheduleModalSelectBox = ({ selectList }: Props) => {
 
-  console.log(selectList);
-
   return(
     <Select
       name={'coach'}
