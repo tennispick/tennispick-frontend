@@ -6,7 +6,7 @@ import { ScheduleListType } from '@components/schedule/type';
 
 type Props = {
   lessonTime?: string;
-  setScheduleList: Dispatch<SetStateAction<ScheduleListType[]>>;
+  setScheduleList?: Dispatch<SetStateAction<ScheduleListType[]>>;
 }
 
 const TimeRange = ({ ...props }: Props) =>{
@@ -16,8 +16,6 @@ const TimeRange = ({ ...props }: Props) =>{
   // endTime이 변경될 때, time set 함수
 
   const { lessonTime, setScheduleList, ...rest } = props;
-
-  console.log(lessonTime);
 
   const startTimeList = useMemo(() => {
     
@@ -36,11 +34,8 @@ const TimeRange = ({ ...props }: Props) =>{
 
   const handleTimeRangeChange = (e: ChangeEvent<HTMLSelectElement>) =>{
 
-
     const { name, value } = e.target;
     if(name === 'startTime') setStartTime(value);
-
-
   }
 
   return (

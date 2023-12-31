@@ -67,7 +67,7 @@ const ScheduleModalRegularLessonCommonInputFormList = ({ commonFormData, onChang
                   <ScheduleModalRadioInput
                     type={type}
                     radioList={list}
-                    onChangeCommonFormData={onChangeCommonFormData}
+                    onChangeFormData={onChangeCommonFormData}
                   />,
                 select:
                   <ScheduleModalSelectBox

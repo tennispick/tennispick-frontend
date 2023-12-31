@@ -93,7 +93,7 @@ const allOnceFormInputList = [
     alt: 'calendar schedule type icon',
     list: [
       {
-        value: '',
+        value: '0',
         label: '수강권 시간'
       },
       {
@@ -111,7 +111,7 @@ const allOnceFormInputList = [
     ]
   },
   {
-    type: 'lessonCountOfWeek',
+    type: 'weeklyLessonCount',
     fieldType: 'radio',
     title: '주 강습횟수 선택',
     icon: CalendarBlackIcon,
@@ -136,7 +136,7 @@ const allOnceFormInputList = [
     ]
   },
   {
-    type: 'scheduleType',
+    type: 'coach',
     fieldType: 'select',
     title: '코치 선택',
     icon: CalendarBlackIcon,
@@ -149,7 +149,7 @@ const allOnceFormInputList = [
     ]
   },
   {
-    type: 'scheduleType',
+    type: 'court',
     fieldType: 'select',
     title: '코트 선택',
     icon: CalendarBlackIcon,

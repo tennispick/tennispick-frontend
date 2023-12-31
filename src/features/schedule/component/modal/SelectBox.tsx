@@ -1,20 +1,23 @@
 import { Select } from "@components/index";
+import { UseInputType } from "src/types";
 
 type Props = {
   type: string;
   selectList: Array<{
-    value: string;
+    value: string | number;
     label: string;
   }> | undefined;
+  onChangeFormData?: UseInputType<HTMLSelectElement>;
 }
 
-const ScheduleModalSelectBox = ({ selectList }: Props) => {
+const ScheduleModalSelectBox = ({ selectList, onChangeFormData }: Props) => {
 
   return(
     <Select
       name={'coach'}
       width={'calc(160px - 4px)'}
       defaultValue={'default'}
+      onChange={onChangeFormData}
     >
       {selectList?.map(({ value, label }) => <option key={value} value={value}>{label}</option>)}
     </Select>
