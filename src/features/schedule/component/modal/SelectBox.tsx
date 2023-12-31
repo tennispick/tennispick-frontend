@@ -10,12 +10,10 @@ type Props = {
 
 const ScheduleModalSelectBox = ({ selectList }: Props) => {
 
-  console.log(selectList);
-
   return(
     <Select
       name={'coach'}
-      width={'calc(70% - 4px)'}
+      width={'calc(160px - 4px)'}
       defaultValue={'default'}
     >
       {selectList?.map(({ value, label }) => <option key={value} value={value}>{label}</option>)}

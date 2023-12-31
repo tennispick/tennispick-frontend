@@ -12,7 +12,7 @@ import { CustomerLessonType } from 'src/types/customer';
 type LessonCustomerItemType = TransferTimeList & { isAttendance?: boolean };
 type LessonTimeType = LessonCustomerItemType[];
 
-interface Props{
+type Props = {
   data: {
     data: Array<CustomerLessonType>
   };

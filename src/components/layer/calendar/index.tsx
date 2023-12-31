@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useState } from 'react';
 import styled from '@emotion/styled';
 import ModalCustomer from './Customer';
 import ModalCalendar from './Calendar';

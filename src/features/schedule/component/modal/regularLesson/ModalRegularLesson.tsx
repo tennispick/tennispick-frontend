@@ -1,20 +1,47 @@
-import CommonFormInput from "./CommonFormInput";
+import useInput from "@hooks/useInput";
+import AllOnceCreateInputForm from "./AllOnceCreate/InputForm";
+import CommonInputForm from "./CommonInputForm";
+import IndividualCreateInputForm from "./IndividualCreate/InputForm";
+import { useEffect } from "react";
 
 const ModalRegularLesson = () => {
 
-  // 일괄등록
-  // 개별등록
+  // 공통 값
+  const [commonFormData, onChangeCommonFormData] = useInput({
+    scheduleType: 'all',
+  });
 
-  // 개인레슨 or 그룹레슨
+  /*
+    각 객체의 key 값으로 값을 셋팅
+    * 강습날짜 유형 선택
+    * 강습시간 선택
+    * 주 강습횟수 선택
+    * 코치 선택
+    * 코트 선택
+    * 스케줄 일정은 배열로
+  */
+  const [allCrateFormData, onChangeAllCrateFormData] = useInput({
+
+  });
+
+  // 개별 값
+  /*
+    하나의 배열 안에서, 객체의 값이 계속 추가되는 형태.
+  */
+  const [individualCreateFormData, onChangeIndividualCreateFormData] = useInput({
+
+  });
 
   return(
-    <div
-      css={{
-        display: 'flex',
-        width: '100%'
-      }}
-    >
-      <CommonFormInput />
+    <div css={{ display: 'flex', width: '100%' }}>
+      <CommonInputForm commonFormData={commonFormData} onChangeCommonFormData={onChangeCommonFormData}/>
+      {commonFormData.scheduleType === 'all' ?
+        <AllOnceCreateInputForm
+
+        /> :
+        <IndividualCreateInputForm
+
+        />}
     </div>
   )
 }

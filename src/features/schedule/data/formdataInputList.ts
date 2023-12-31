@@ -23,6 +23,23 @@ const commonFormInputList = [
     ]
   },
   {
+    type: 'lessonType',
+    fieldType: 'radio',
+    title: '레슨유형 선택',
+    icon: CalendarBlackIcon,
+    alt: 'calendar schedule type icon',
+    list: [
+      {
+        value: 'private',
+        label: '개인레슨'
+      },
+      {
+        value: 'group',
+        label: '그룹레슨'
+      }
+    ]
+  },
+  {
     type: 'customer',
     fieldType: 'select',
     title: '회원 선택',
@@ -50,6 +67,103 @@ const commonFormInputList = [
   },
 ];
 
+const allOnceFormInputList = [
+  {
+    type: 'lessonDateType',
+    fieldType: 'radio',
+    title: '강습날짜 유형 선택',
+    icon: CalendarBlackIcon,
+    alt: 'calendar schedule type icon',
+    list: [
+      {
+        value: 'date',
+        label: '날짜로 선택'
+      },
+      {
+        value: 'day',
+        label: '요일로 선택'
+      }
+    ]
+  },
+  {
+    type: 'lessonTime',
+    fieldType: 'radio',
+    title: '강습시간 선택',
+    icon: CalendarBlackIcon,
+    alt: 'calendar schedule type icon',
+    list: [
+      {
+        value: '',
+        label: '수강권 시간'
+      },
+      {
+        value: '20',
+        label: '20분'
+      },
+      {
+        value: '30',
+        label: '30분'
+      },
+      {
+        value: '40',
+        label: '40분'
+      }
+    ]
+  },
+  {
+    type: 'lessonCountOfWeek',
+    fieldType: 'radio',
+    title: '주 강습횟수 선택',
+    icon: CalendarBlackIcon,
+    alt: 'calendar schedule type icon',
+    list: [
+      {
+        value: '1',
+        label: '1회'
+      },
+      {
+        value: '2',
+        label: '2회'
+      },
+      {
+        value: '3',
+        label: '3회'
+      },
+      {
+        value: '4',
+        label: '4회'
+      }
+    ]
+  },
+  {
+    type: 'scheduleType',
+    fieldType: 'select',
+    title: '코치 선택',
+    icon: CalendarBlackIcon,
+    alt: 'calendar schedule type icon',
+    list: [
+      {
+        value: '',
+        label: '코치 선택'
+      },
+    ]
+  },
+  {
+    type: 'scheduleType',
+    fieldType: 'select',
+    title: '코트 선택',
+    icon: CalendarBlackIcon,
+    alt: 'calendar schedule type icon',
+    list: [
+      {
+        value: '',
+        label: '코트 선택'
+      }
+    ]
+  },
+]
+
 export {
-  commonFormInputList
+  commonFormInputList,
+  allOnceFormInputList
 }
