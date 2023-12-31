@@ -68,6 +68,7 @@ export const globalStyles = (
 			*,
 			*:after,
 			*:before {
+				position: relative;
 				box-sizing: border-box;
 				font-family:
 					Pretendard,

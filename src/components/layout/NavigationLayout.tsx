@@ -7,13 +7,14 @@ import Calendar from '@components/home/Calendar';
 import { useState } from 'react';
 import { Modal, Portal } from '@components/index';
 import ScheduleByCalendar from '@components/layer/calendar/index';
+import ScheduleByDate from '@features/layer/scheduleByDate/screen/ScheduleByDate';
 
-interface NavigationProps {
+type Props = {
 	firstPathName: string;
 	isNavSpread: boolean;
 }
 
-const NavigationLayout = ({ firstPathName, isNavSpread }: NavigationProps) => {
+const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
 
 	const [day, setDay] = useState<Date>(new Date());
 	const [showModal, setShowModal] = useState<boolean>(false);
@@ -67,7 +68,11 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: NavigationProps) => {
 						padding: 0
 					}}
 				>
-					<ScheduleByCalendar
+					{/* <ScheduleByCalendar
+						day={day}
+						setShowModal={setShowModal}
+					/> */}
+					<ScheduleByDate
 						day={day}
 						setShowModal={setShowModal}
 					/>

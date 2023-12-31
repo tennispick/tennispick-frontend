@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { CSS_TYPE } from '@styles/styles';
 import { Dispatch, ReactElement, SetStateAction } from 'react';
 
-interface ListProps {
+type Props = {
 	state: string;
 	setState: Dispatch<SetStateAction<string>>;
 	list?: any;
@@ -17,7 +17,7 @@ const TabList = ({
 	list,
 	borderBottom,
 	buttonElement,
-}: ListProps): ReactElement => {
+}: Props) => {
 	return (
 		<Container>
 			<Lists
@@ -73,7 +73,6 @@ const List = styled.li<CSS_TYPE>(
 	{
 		margin: '0 36px 0 0',
 		padding: '8px 0 12px 0',
-		// transition: "all 0.2s ease-in-out",
 		cursor: 'pointer',
 	},
 	(props) => ({
@@ -83,4 +82,4 @@ const List = styled.li<CSS_TYPE>(
 	}),
 );
 
-export default React.memo(TabList);
+export default TabList;

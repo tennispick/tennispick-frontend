@@ -1,0 +1,7 @@
+const URL_SCHEDULE_LESSON_BY_PERIOD = `/calendar`;
+const URL_SCHEDULE_LESSON_BY_DATE = `/calendar/schedule`;
+
+export {
+  URL_SCHEDULE_LESSON_BY_PERIOD,
+  URL_SCHEDULE_LESSON_BY_DATE
+}

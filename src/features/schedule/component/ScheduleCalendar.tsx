@@ -20,11 +20,11 @@ import {
 import { getScheduleQuery } from '@queries/index';
 import { numberZeroFillFormat } from '@utils/numberForm';
 
-interface CalendarDateProps {
+type CalendarDateProps = {
 	[key: string]: number;
 }
 
-interface CalendarProps {
+type Props = {
 	courtList: Array<ObjectProps<string>>;
 	dateWeekList: {
 		weekNumber: number;
@@ -39,15 +39,17 @@ interface CalendarProps {
 		}>
 	>;
 	setShowModal: Dispatch<SetStateAction<boolean>>;
+	setModalType: Dispatch<SetStateAction<string>>;
 }
 
-const Calendar = ({
+const ScheduleCalendar = ({
 	courtList,
 	dateWeekList,
 	calendarDate,
 	setCalendarDate,
 	setShowModal,
-}: CalendarProps) => {
+	setModalType
+}: Props) => {
 	const { year, month } = calendarDate;
 	const currentWeekDayList = dateWeekList.dateWeekList;
 
@@ -61,10 +63,6 @@ const Calendar = ({
 	const { data }: any = getScheduleQuery({ startWeekDate, endWeekDate });
 
 	const { timeList } = getTimeZoneList();
-
-	// 코트의 갯수 및 종류
-
-	// 공휴일 체크하고 이벤트 표시
 
 	const onClickPrevMonthHandler = () => {
 		const { prevDate } = getPrevNextMonth(year, month);
@@ -120,10 +118,10 @@ const Calendar = ({
 						onClick={onClickNextMonthHandler}
 					/>
 				</CalendarHeaderContainer>
-				<HeaderBtnContainer>
+				<CreateLessonButtonWrapper>
 					<Button
 						variant={'iconBtn'}
-						label={'일정 생성하기'}
+						label={'정규 스케줄 등록'}
 						src={EditWhiteIcon}
 						imageCss={{
 							width: '20px',
@@ -133,11 +131,32 @@ const Calendar = ({
 						css={{
 							backgroundColor: 'var(--business-active-color)',
 							color: 'var(--white100)',
-							marginLeft: 'auto',
 						}}
-						onClick={() => setShowModal(true)}
+						onClick={() => {
+							setShowModal(true);
+							setModalType('regular');
+						}}
 					/>
-				</HeaderBtnContainer>
+					<Button
+						variant={'iconBtn'}
+						label={'보강 스케줄 등록'}
+						src={EditWhiteIcon}
+						imageCss={{
+							width: '20px',
+							height: '20px',
+							margin: '0 8px 0 0',
+						}}
+						css={{
+							backgroundColor: 'var(--business-active-color)',
+							color: 'var(--white100)',
+							margin: '0 0 0 8px'
+						}}
+						onClick={() => {
+							setShowModal(true);
+							setModalType('additional');
+						}}
+					/>
+				</CreateLessonButtonWrapper>
 			</HeaderContainer>
 			<WeekHeaderContainer>
 				{currentWeekDayList &&
@@ -187,7 +206,7 @@ const Calendar = ({
 										timeList.length > 0 &&
 										timeList.map((item, index) => {
 											return (
-												<DateEventLists key={uuidV4()}>
+												<ul key={uuidV4()}>
 													<DateEventList>
 														{data?.data &&
 															data.data.length > 0 &&
@@ -239,7 +258,7 @@ const Calendar = ({
 																);
 															})}
 													</DateEventList>
-												</DateEventLists>
+												</ul>
 											);
 										})}
 								</DateContainer>
@@ -290,9 +309,11 @@ const CalendarHeaderContainer = styled.div({
 	justifyContent: 'space-around',
 	fontSize: '1.1rem',
 });
-const HeaderBtnContainer = styled.div({
+const CreateLessonButtonWrapper = styled.div({
 	width: 'calc(100% / 3)',
 	textAlign: 'right',
+	display: 'flex',
+	justifyContent: 'flex-end',
 });
 const WeekHeaderContainer = styled.div({
 	position: 'relative',
@@ -362,7 +383,6 @@ const DateContainer = styled.div({
 		borderRight: '1px solid var(--grey100)',
 	},
 });
-const DateEventLists = styled.ul({});
 const DateEventList = styled.li(
 	{
 		position: 'relative',
@@ -370,8 +390,7 @@ const DateEventList = styled.li(
 		padding: '0 0.6rem',
 		borderBottom: '1px solid var(--grey100)',
 		borderLeft: '1px solid var(--grey100)',
-	},
-	(props) => ({}),
+	}
 );
 
-export default Calendar;
+export default ScheduleCalendar;
