@@ -1,24 +1,32 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Select from '@components/common/Select';
-import { dayList } from '@utils/day';
-import { ScheduleDataType, ScheduleListType } from '@components/schedule/type';
 import TimeRange from '@components/common/TimeRange';
+import { FormAllOnceCreateType } from "@features/schedule/type/schedule.type";
+import { UseInputType } from "src/types";
+import { dayList } from '@utils/day';
+import { useState } from "react";
+import Select from '@components/common/Select';
 
 type Props = {
-  data: ScheduleDataType;
-  setScheduleList: Dispatch<SetStateAction<ScheduleListType[]>>;
-}
+  formData: FormAllOnceCreateType;
+  onChangeFormData: UseInputType<HTMLInputElement | HTMLSelectElement>;
+};
 
-const ScheduleAllCalendarSelectContainer = ({ data, setScheduleList }: Props) =>{
+const ScheduleModalRegularLessonAllOnceCreateScheduleFormField = ({ formData, onChangeFormData }: Props) =>{
 
-  const { scheduleType, lesson, lessonTime, lessonDateType, lessonCountOfWeek } = data;
   const [startDate, setStartDate] = useState<Date | null>(new Date());
+  const { lessonTime, lessonDateType, weeklyLessonCount } = formData;
+
+  console.log(lessonTime);
+  console.log(lessonDateType);
+  console.log(weeklyLessonCount)
 
   return(
-    <>
-      {Array.from({ length: lessonCountOfWeek }, (_, index) => {
+    <div css={{
+      position: 'relative',
+      width: '55%'
+    }}>
+      {Array.from({ length: Number(weeklyLessonCount) }, (_, index) => {
         return(
           <div
             key={index}
@@ -59,7 +67,6 @@ const ScheduleAllCalendarSelectContainer = ({ data, setScheduleList }: Props) =>
             }
             <TimeRange
               lessonTime={lessonTime}
-              setScheduleList={setScheduleList}
               css={{
                 margin: '0 0 0 12px'
               }}
@@ -67,8 +74,8 @@ const ScheduleAllCalendarSelectContainer = ({ data, setScheduleList }: Props) =>
           </div>
         )
       })}
-    </>
+    </div>
   )
-}
+};
 
-export default ScheduleAllCalendarSelectContainer;
+export default ScheduleModalRegularLessonAllOnceCreateScheduleFormField;
