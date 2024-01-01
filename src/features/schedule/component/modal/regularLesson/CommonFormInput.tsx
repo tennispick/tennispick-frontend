@@ -4,9 +4,14 @@ import Image from "next/image";
 import ScheduleModalRadioInput from "../RadioInput";
 import ScheduleModalSelectBox from "../SelectBox";
 import { getCustomerQuery } from "@queries/customer";
-import { useMemo } from "react";
+import { ChangeEventHandler, useMemo } from "react";
 
-const ScheduleModalRegularLessonCommonFormInputList = () => {
+type Props = {
+  commonFormData: {[key:string]: string};
+  onChangeCommonFormData: ChangeEventHandler<HTMLInputElement>;
+}
+
+const ScheduleModalRegularLessonCommonFormInputList = ({ commonFormData, onChangeCommonFormData }: Props) => {
 
   const { data: customerList } = getCustomerQuery();
 
@@ -50,6 +55,7 @@ const ScheduleModalRegularLessonCommonFormInputList = () => {
                   <ScheduleModalRadioInput
                     type={type}
                     radioList={list}
+                    onChangeFormData={onChangeCommonFormData}
                   />,
                 select:
                   <ScheduleModalSelectBox
