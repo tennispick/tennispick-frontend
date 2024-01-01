@@ -1,7 +1,7 @@
-type ScheduleLessonByDateApiPaylaod = {
+type ScheduleLessonByDateApiPayload = {
   day: Date;
 }
 
 export type {
-  ScheduleLessonByDateApiPaylaod
+  ScheduleLessonByDateApiPayload
 }

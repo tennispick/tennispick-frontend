@@ -6,6 +6,7 @@ import ScheduleModalSelectBox from "../SelectBox";
 import { getCustomerQuery } from "@queries/customer";
 import { ChangeEventHandler } from "react";
 import { getLessonQuery } from "@queries/lesson";
+import ScheduleModalSearchInput from "../SearchInput";
 
 type Props = {
   commonFormData: {[key:string]: string};
@@ -39,12 +40,7 @@ const ScheduleModalRegularLessonCommonInputFormList = ({ commonFormData, onChang
   }
 
   return(
-    <div
-      css={{
-        position: 'relative',
-        width: '15%'
-      }}
-    >
+    <div css={{ position: 'relative', width: '20%' }}>
       {commonFormInputList.map(({ type, fieldType, list, title, icon, alt }) => {
 
         if (type === 'customer' && customerList) handleDuplicateDataCheck({ prevList: list, list: customerList.data });
@@ -73,6 +69,10 @@ const ScheduleModalRegularLessonCommonInputFormList = ({ commonFormData, onChang
                   <ScheduleModalSelectBox
                     type={type}
                     selectList={list}
+                  />,
+                search: 
+                  <ScheduleModalSearchInput
+
                   />
               }[fieldType]}
             </div>
