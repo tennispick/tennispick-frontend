@@ -17,10 +17,6 @@ const ScheduleModalRegularLessonAllOnceCreateScheduleFormField = ({ formData, on
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const { lessonTime, lessonDateType, weeklyLessonCount } = formData;
 
-  console.log(lessonTime);
-  console.log(lessonDateType);
-  console.log(weeklyLessonCount)
-
   return(
     <div css={{
       position: 'relative',

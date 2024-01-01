@@ -298,11 +298,7 @@ export const getTimeList = ({ step = 20, afterTime = "00:00", isInclude = false 
 	isInclude?: boolean;
 }) => {
 
-	console.log(step);
-
 	if(typeof step === 'string') { step = step === '0' ? 20 : Number(step); }
-
-	console.log(step);
 
 	const array = [];
 	const [afterTimeHour, afterTimeMinute] = afterTime.split(":").map(Number);
