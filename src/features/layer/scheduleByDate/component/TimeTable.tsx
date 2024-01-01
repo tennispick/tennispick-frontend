@@ -75,7 +75,7 @@ const ScheduleByDateTimeTable = ({ day }: Props) =>{
           )
         })}
       </Li.UnOrderList>
-      {data?.length === 0 && <div css={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>오늘의 스케줄이 없어요.</div>}
+      {(!data || data?.length === 0) && <div css={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>오늘의 스케줄이 없어요.</div>}
     </div>
   )
 }

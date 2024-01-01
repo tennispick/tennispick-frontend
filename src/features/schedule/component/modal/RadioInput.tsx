@@ -9,7 +9,7 @@ type Props = {
     label: string;
     value: string | number;
   }> | undefined;
-  onChangeFormData?: UseInputType<HTMLInputElement>;
+  onChangeFormData: UseInputType<HTMLInputElement>;
 }
 
 const ScheduleModalRadioInput = ({ type, radioList, onChangeFormData }: Props) => {

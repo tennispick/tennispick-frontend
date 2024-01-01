@@ -61,8 +61,6 @@ const CreateScheduleModalChildren = () =>{
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     
-    console.log(formData);
-    console.log(scheduleList);
   }
 
   return(
