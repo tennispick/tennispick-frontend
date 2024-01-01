@@ -1,0 +1,5 @@
+const URL_SEARCH_CUSTOMER_LIST_BY_KEYWORD = `/customer/search`;
+
+export {
+  URL_SEARCH_CUSTOMER_LIST_BY_KEYWORD,
+}

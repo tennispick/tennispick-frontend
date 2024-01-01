@@ -41,7 +41,7 @@ const commonFormInputList = [
   },
   {
     type: 'customer',
-    fieldType: 'select',
+    fieldType: 'search',
     title: '회원 선택',
     icon: CustomerBlackIcon,
     alt: 'customer icon',

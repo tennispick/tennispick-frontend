@@ -15,12 +15,7 @@ type Props = {
 const ScheduleModalRegularLessonAllOnceCreateInputForm = ({ formData, onChangeAllCrateFormData }: Props) =>{
   return(
     <>
-      <div
-        css={{
-          position: 'relative',
-          width: '30%'
-        }}
-      >
+      <div css={{ position: 'relative', width: '25%' }}>
         {allOnceFormInputList.map(({ type, fieldType, list, title, icon, alt }) => {
           return(
             <div css={{margin: '0 0 24px 0'}} key={type}>
@@ -34,8 +29,7 @@ const ScheduleModalRegularLessonAllOnceCreateInputForm = ({ formData, onChangeAl
                 {title}
               </HeadContainer>
               <div css={{ margin: '12px 0 0 0' }}>
-                {{
-                  radio:
+                {{radio:
                     <ScheduleModalRadioInput
                       type={type}
                       radioList={list}
@@ -51,7 +45,7 @@ const ScheduleModalRegularLessonAllOnceCreateInputForm = ({ formData, onChangeAl
               </div>
             </div>
           )
-          })}
+        })}
       </div>
       <ScheduleModalRegularLessonAllOnceCreateScheduleFormField
         formData={formData}
