@@ -108,7 +108,7 @@ return (
           css={{
             top: '45%',
             maxWidth: '1440px',
-            minHeight: '670px',
+            minHeight: '520px',
             width: '1440px'
           }}
         >

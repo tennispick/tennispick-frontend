@@ -15,14 +15,14 @@ type Props = {
 const ScheduleModalRegularLessonAllOnceCreateScheduleFormField = ({ formData, onChangeFormData }: Props) =>{
 
   const [startDate, setStartDate] = useState<Date | null>(new Date());
-  const { lessonTime, lessonDateType, weeklyLessonCount } = formData;
+  const { lessonTime, lessonDateType, weeklyLessonCount, schedule } = formData;
 
   return(
     <div css={{
       position: 'relative',
       width: '55%'
     }}>
-      {Array.from({ length: Number(weeklyLessonCount) }, (_, index) => {
+      {schedule?.map((item, index) => {
         return(
           <div
             key={index}
