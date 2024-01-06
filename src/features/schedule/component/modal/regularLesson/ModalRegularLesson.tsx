@@ -27,7 +27,7 @@ const ModalRegularLesson = ({ }: Props) => {
   // 일괄등록
   const [allCreateFormData, onChangeAllCreateFormData, setAllCreateFormData] = useInput({
     lessonDateType: 'date', // 강습날짜 유형
-    lessonTime: '0', // 강습시간 선택
+    lessonTime: '20', // 강습시간 선택
     weeklyLessonCount: '1', // 주 강습횟수 선택
     coach: '', // 강습코치 선택
     court: '', // 코트(장소) 선택
@@ -35,7 +35,7 @@ const ModalRegularLesson = ({ }: Props) => {
       date: new Date(), // 스케줄 등록유형 (요일, 날짜)
       day: 'monday', // 요일
       startTime: '00:00', // 강습시간
-      endTime: '00:60'
+      endTime: '00:20'
     }]
   });
 
@@ -82,6 +82,7 @@ const ModalRegularLesson = ({ }: Props) => {
     mutate(body);
   };
 
+  // 강습시간 선택의 변화
   useEffect(() => {
     setAllCreateFormData((prev: FormAllOnceCreateType) => ({
       ...prev,
@@ -92,6 +93,32 @@ const ModalRegularLesson = ({ }: Props) => {
         endTime: `00:${allCreateFormData.lessonTime}`
       }))
     }));
+  }, [allCreateFormData.lessonTime])
+
+
+  // 주 강습횟수 선택의 변화
+  useEffect(() => {
+    setAllCreateFormData((prev: FormAllOnceCreateType) => {
+      const newSchedule = Array.from({ length: Number(allCreateFormData.weeklyLessonCount) }, (_, i) => {
+        const prevDate = prev.schedule[i]?.date || new Date(); // 이전 배열의 날짜 가져오기
+        const newDate = new Date(prevDate);
+        newDate.setDate(prevDate.getDate() + 7 * i); // 7을 곱해서 7일씩 증가
+        return {
+          date: newDate,
+          day: 'monday',
+          startTime: '00:00',
+          endTime: `00:${allCreateFormData.lessonTime}`
+        };
+      });
+    
+      return {
+        ...prev,
+        schedule: [
+          ...prev.schedule.slice(0, Math.min(prev.schedule.length, Number(allCreateFormData.weeklyLessonCount))),
+          ...newSchedule.slice(prev.schedule.length)
+        ]
+      };
+    });
   }, [allCreateFormData.weeklyLessonCount])
 
   return(
