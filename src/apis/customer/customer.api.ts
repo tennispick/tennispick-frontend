@@ -3,10 +3,11 @@ import { axios } from "@utils/axios";
 import { SearchCustomerListByKeywordApiPayload } from "./customer.type";
 
 const getSearchCustomerListByKeyword = async (params: SearchCustomerListByKeywordApiPayload) => {
-  const { keyword } = params;
+  const { keyword, customer } = params;
   const { data } = await axios.get(`${URL_SEARCH_CUSTOMER_LIST_BY_KEYWORD}`,{
     params: {
-      keyword: keyword
+      keyword: keyword,
+      customer: JSON.stringify(customer)
     }
   });
   return data;

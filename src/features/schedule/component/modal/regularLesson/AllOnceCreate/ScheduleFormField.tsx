@@ -2,27 +2,25 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import TimeRange from '@components/common/TimeRange';
 import { FormAllOnceCreateType } from "@features/schedule/type/schedule.type";
-import { UseInputType } from "src/types";
 import { dayList } from '@utils/day';
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import Select from '@components/common/Select';
 
 type Props = {
   formData: FormAllOnceCreateType;
-  onChangeFormData: UseInputType<HTMLInputElement | HTMLSelectElement>;
+  setFormData: Dispatch<SetStateAction<FormAllOnceCreateType>>;
 };
 
-const ScheduleModalRegularLessonAllOnceCreateScheduleFormField = ({ formData, onChangeFormData }: Props) =>{
+const ScheduleModalRegularLessonAllOnceCreateScheduleFormField = ({ formData, setFormData }: Props) =>{
 
-  const [startDate, setStartDate] = useState<Date | null>(new Date());
-  const { lessonTime, lessonDateType, weeklyLessonCount } = formData;
+  const { lessonTime, lessonDateType, weeklyLessonCount, schedule } = formData;
 
   return(
     <div css={{
       position: 'relative',
       width: '55%'
     }}>
-      {Array.from({ length: Number(weeklyLessonCount) }, (_, index) => {
+      {schedule?.map((item, index) => {
         return(
           <div
             key={index}
@@ -51,18 +49,51 @@ const ScheduleModalRegularLessonAllOnceCreateScheduleFormField = ({ formData, on
                   fontSize: '0.875rem'
                 }}
                 dateFormat="yyyy.MM.dd"
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
+                selected={item.date}
+                onChange={(date) => {
+                  setFormData((prev) => {
+                    const { schedule } = prev;
+                    const newSchedule = [...schedule];
+
+                    newSchedule[index] = {
+                      ...newSchedule[index],
+                      date: date as Date
+                    }
+                    return {
+                      ...prev,
+                      schedule: newSchedule
+                    }
+                  });
+                }}
               />
               :
               <Select
                 name={'day'}
                 width={'calc(20% - 4px)'}
+                onChange={(e) => {
+                  const { name, value } = e.target;
+                  setFormData((prev) => {
+                    const { schedule } = prev;
+                    const newSchedule = [...schedule];
+
+                    newSchedule[index] = {
+                      ...newSchedule[index],
+                      [name]: value
+                    }
+                    return {
+                      ...prev,
+                      schedule: newSchedule
+                    }
+                  });
+                }}
               >{dayList.map(({ key, name, krName }) => <option key={key} value={name}>{krName}</option>)}
               </Select>
             }
             <TimeRange
+              index={index}
               lessonTime={lessonTime}
+              weeklyLessonCount={weeklyLessonCount}
+              setFormData={setFormData}
               css={{
                 margin: '0 0 0 12px'
               }}

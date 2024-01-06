@@ -7,9 +7,23 @@ type UseQueryType<T> = {
   isLoading: boolean;
 }
 
+type MutationType = {
+  affectedRows: number;
+  changedRows: number;
+  fieldCount: number;
+  info: number;
+  insertId: number;
+  serverStatus: number;
+  warningStatus: number;
+}
+
 type UseInputType<T> = ChangeEventHandler<T>;
+
+type ObjectType<T> = {[key: string]: T};
 
 export type {
   UseQueryType,
-  UseInputType
+  MutationType,
+  UseInputType,
+  ObjectType
 }

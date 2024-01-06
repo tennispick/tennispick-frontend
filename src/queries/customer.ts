@@ -1,8 +1,6 @@
 import { axios } from '@utils/axios';
 import { useQuery } from '@tanstack/react-query';
 
-interface CustomerProps {}
-
 const getCustomerFetch = async (): Promise<any> => await axios.get('/customer');
 
 const getCustomerDetailFetch = async (id: string): Promise<any> =>
@@ -10,10 +8,6 @@ const getCustomerDetailFetch = async (id: string): Promise<any> =>
 
 const generateCustomer = async (data: object): Promise<any> =>
 	await axios.post('/customer', { data: data });
-
-// 수정
-
-// 삭제
 
 const getCustomerQuery = (): any => {
 	try {

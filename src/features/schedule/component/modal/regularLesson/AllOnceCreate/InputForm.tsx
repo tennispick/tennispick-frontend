@@ -6,17 +6,31 @@ import ScheduleModalSelectBox from "../../SelectBox";
 import ScheduleModalRegularLessonAllOnceCreateScheduleFormField from "./ScheduleFormField";
 import { FormAllOnceCreateType } from "@features/schedule/type/schedule.type";
 import { UseInputType } from "src/types";
+import { useGetCourtList } from "@features/court/query/courtQuery";
+import { handleDuplicateDataCheck } from "@utils/dataCheck";
+import { useGetCoachList } from "@features/coach/query/coachQuery";
+import { SetStateAction, Dispatch } from "react";
 
 type Props = {
+  lesson: string;
   formData: FormAllOnceCreateType;
-  onChangeAllCrateFormData: UseInputType<HTMLInputElement | HTMLSelectElement>;
+  onChangeAllCreateFormData: UseInputType<HTMLInputElement | HTMLSelectElement>;
+  setAllCreateFormData: Dispatch<SetStateAction<FormAllOnceCreateType>>;
 };
 
-const ScheduleModalRegularLessonAllOnceCreateInputForm = ({ formData, onChangeAllCrateFormData }: Props) =>{
+const ScheduleModalRegularLessonAllOnceCreateInputForm = ({ lesson, formData, onChangeAllCreateFormData, setAllCreateFormData}: Props) =>{
+
+  const { data: courtList } = useGetCourtList();
+  const { data: coachList } = useGetCoachList();
+
   return(
     <>
       <div css={{ position: 'relative', width: '25%' }}>
         {allOnceFormInputList.map(({ type, fieldType, list, title, icon, alt }) => {
+
+          if(type === 'coach' && coachList) handleDuplicateDataCheck({ prevList: list, list: coachList });
+          if(type === 'court' && courtList) handleDuplicateDataCheck({ prevList: list, list: courtList });
+
           return(
             <div css={{margin: '0 0 24px 0'}} key={type}>
               <HeadContainer>
@@ -33,13 +47,14 @@ const ScheduleModalRegularLessonAllOnceCreateInputForm = ({ formData, onChangeAl
                     <ScheduleModalRadioInput
                       type={type}
                       radioList={list}
-                      onChangeFormData={onChangeAllCrateFormData}
+                      lesson={lesson}
+                      onChangeFormData={onChangeAllCreateFormData}
                     />,
                   select:
                     <ScheduleModalSelectBox
                       type={type}
                       selectList={list}
-                      onChangeFormData={onChangeAllCrateFormData}
+                      onChangeFormData={onChangeAllCreateFormData}
                     />
                 }[fieldType]}
               </div>
@@ -49,7 +64,7 @@ const ScheduleModalRegularLessonAllOnceCreateInputForm = ({ formData, onChangeAl
       </div>
       <ScheduleModalRegularLessonAllOnceCreateScheduleFormField
         formData={formData}
-        onChangeFormData={onChangeAllCrateFormData}
+        setFormData={setAllCreateFormData}
       />
     </>
   )

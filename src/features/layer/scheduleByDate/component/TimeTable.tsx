@@ -68,7 +68,7 @@ const ScheduleByDateTimeTable = ({ day }: Props) =>{
             >
               {handleAttendanceCheck(isAttendance, isPassNowTime)}
               <div css={{ width: '30%' }}>{startTime} ~ {endTime}</div>
-              <div css={{ width: '20%' }}>{lessonType === 'individual' ? '개인레슨' : '그룹레슨'}</div>
+              <div css={{ width: '20%' }}>{lessonType === 'private' ? '개인레슨' : '그룹레슨'}</div>
               <div css={{ width: '20%' }}>{coachName}</div>
               <div css={{ width: '15%' }}>{customerName}</div>
             </Li>
