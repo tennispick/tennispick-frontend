@@ -2,18 +2,25 @@ type ScheduleLessonByDateQueryPayload = {
   day: Date;
 }
 
+type ScheduleMutationDataPayload = {
+
+};
+
 type FormCommonInputType = {
   scheduleType: string;
   lessonType: string;
-  customer: Array<string>;
-  lessonCoupon: string;
+  customer: Array<{
+    id: string;
+    name: string;
+  }>;
+  lesson: string;
 };
 
 type ScheduleType = {
-  date: string;
+  date: Date;
   day: string;
-  startTime: Date;
-  endTime: Date;
+  startTime: string;
+  endTime: string;
 }
 
 type FormAllOnceCreateType = {
@@ -39,6 +46,7 @@ type FormIndividualCreateType = {
 
 export type{
   ScheduleLessonByDateQueryPayload,
+  ScheduleMutationDataPayload,
   FormCommonInputType,
   ScheduleType,
   FormAllOnceCreateType,

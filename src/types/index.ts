@@ -9,7 +9,10 @@ type UseQueryType<T> = {
 
 type UseInputType<T> = ChangeEventHandler<T>;
 
+type ObjectType<T> = {[key: string]: T};
+
 export type {
   UseQueryType,
-  UseInputType
+  UseInputType,
+  ObjectType
 }

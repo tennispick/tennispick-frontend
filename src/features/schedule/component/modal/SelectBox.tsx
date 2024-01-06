@@ -7,15 +7,15 @@ type Props = {
     value: string | number;
     label: string;
   }> | undefined;
-  onChangeFormData?: UseInputType<HTMLSelectElement>;
+  onChangeFormData: UseInputType<HTMLSelectElement>;
 }
 
-const ScheduleModalSelectBox = ({ selectList, onChangeFormData }: Props) => {
+const ScheduleModalSelectBox = ({ type, selectList, onChangeFormData }: Props) => {
 
   return(
     <Select
-      name={'coach'}
-      width={'calc(160px - 4px)'}
+      name={type}
+      width={'80%'}
       defaultValue={'default'}
       onChange={onChangeFormData}
     >

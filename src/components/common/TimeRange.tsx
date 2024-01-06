@@ -2,41 +2,67 @@ import { Dispatch, SetStateAction, useMemo, memo, useEffect, useState, ChangeEve
 import styled from '@emotion/styled';
 import { getTimeList } from '@utils/date';
 import { Select } from '@components/index';
-import { ScheduleListType } from '@components/schedule/type';
+import { FormAllOnceCreateType } from '@features/schedule/type/schedule.type';
 
 type Props = {
-  lessonTime?: string;
-  setScheduleList?: Dispatch<SetStateAction<ScheduleListType[]>>;
+  index: number;
+  lessonTime: string;
+  weeklyLessonCount: string;
+  setFormData: Dispatch<SetStateAction<FormAllOnceCreateType>>;
 }
 
 const TimeRange = ({ ...props }: Props) =>{
 
-  // startTime이 변경될 때, time set 함수 
-
-  // endTime이 변경될 때, time set 함수
-
-  const { lessonTime, setScheduleList, ...rest } = props;
+  const { index, weeklyLessonCount, lessonTime, setFormData, ...rest } = props;
+  const [startTime, setStartTime] = useState<string>('00:00');
+  const [endTime, setEndTime] = useState<string>('00:00');
 
   const startTimeList = useMemo(() => {
-    
     return getTimeList({ step: lessonTime, isInclude: true });
-
-  }, [lessonTime])
-
-  const [startTime, setStartTime] = useState(startTimeList[0]);
+  }, [lessonTime, startTime])
 
   const endTimeList = useMemo(() => {
-
-
-    return getTimeList({ step: lessonTime, afterTime: startTime });
-
-  }, [lessonTime, startTime])
+    return getTimeList({ step: lessonTime, afterTime: startTime })
+  }, [startTimeList])
 
   const handleTimeRangeChange = (e: ChangeEvent<HTMLSelectElement>) =>{
 
     const { name, value } = e.target;
+    setFormData((prev) => {
+      const { schedule } = prev;
+      const newSchedule = [...schedule];
+
+      newSchedule[index] = {
+        ...newSchedule[index],
+        [name]: value
+      }
+      return {
+        ...prev,
+        schedule: newSchedule
+      }
+    });
+
     if(name === 'startTime') setStartTime(value);
+    else setEndTime(value);
   }
+
+  useEffect(() => {
+    setFormData((prev) => {
+      const { schedule } = prev;
+      const newSchedule = [...schedule];
+      
+      newSchedule[index] = {
+        ...newSchedule[index],
+        startTime: startTimeList[0],
+        endTime: endTimeList[0]
+      }
+
+      return {
+        ...prev,
+        schedule: newSchedule
+      }
+    });
+  }, [startTimeList, endTimeList])
 
   return (
     <RangeContainer {...rest}>
@@ -45,6 +71,7 @@ const TimeRange = ({ ...props }: Props) =>{
         width={'calc(80% - 4px)'}
         margin={'0 4px 0 0'}
         onChange={handleTimeRangeChange}
+        value={startTime}
       >
         {startTimeList.map((time, index) => {
           return <option key={time + index}>{time}</option>
@@ -56,6 +83,7 @@ const TimeRange = ({ ...props }: Props) =>{
         width={'calc(80% - 4px)'}
         margin={'0 0 0 4px'}
         onChange={(e) => handleTimeRangeChange(e)}
+        value={endTime}
       >
         {endTimeList.map((time, index) => {
           return <option key={time + index}>{time}</option>

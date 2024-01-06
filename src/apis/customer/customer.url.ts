@@ -1,5 +1,7 @@
+const URL_FETCH_CUSTOMER_LIST = '/customer';
 const URL_SEARCH_CUSTOMER_LIST_BY_KEYWORD = `/customer/search`;
 
 export {
+  URL_FETCH_CUSTOMER_LIST,
   URL_SEARCH_CUSTOMER_LIST_BY_KEYWORD,
 }

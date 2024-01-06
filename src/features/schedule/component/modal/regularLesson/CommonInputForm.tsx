@@ -4,40 +4,23 @@ import Image from "next/image";
 import ScheduleModalRadioInput from "../RadioInput";
 import ScheduleModalSelectBox from "../SelectBox";
 import { getCustomerQuery } from "@queries/customer";
-import { ChangeEventHandler } from "react";
 import { getLessonQuery } from "@queries/lesson";
 import ScheduleModalSearchInput from "../SearchInput";
+import { UseInputType } from "src/types";
+import { Dispatch, SetStateAction } from "react";
+import { FormCommonInputType } from "@features/schedule/type/schedule.type";
+import { handleDuplicateDataCheck } from "@utils/dataCheck";
 
 type Props = {
-  commonFormData: {[key:string]: string};
-  onChangeCommonFormData: ChangeEventHandler<HTMLInputElement>;
+  commonFormData: FormCommonInputType;
+  onChangeCommonFormData: UseInputType<HTMLInputElement | HTMLSelectElement>;
+  setCommonFormData: Dispatch<SetStateAction<FormCommonInputType>>;
 }
 
-const ScheduleModalRegularLessonCommonInputFormList = ({ commonFormData, onChangeCommonFormData }: Props) => {
+const ScheduleModalRegularLessonCommonInputFormList = ({ commonFormData, onChangeCommonFormData, setCommonFormData }: Props) => {
 
-  // 회원
   const { data: customerList } = getCustomerQuery();
-
-  // 수강권
   const { data: lessonList } = getLessonQuery();
-
-  const handleDuplicateDataCheck = ({
-    prevList,
-    list
-  }: { [key:string]: Array<{[key:string]: string}> }) => {
-
-    const prevListIds = new Set(prevList.map(item => item.value));
-
-    list.forEach(({ id, name }) => {
-      if (!prevListIds.has(id)) {
-        prevList.push({
-          value: id,
-          label: name
-        });
-        prevListIds.add(id);
-      }
-    });
-  }
 
   return(
     <div css={{ position: 'relative', width: '20%' }}>
@@ -69,10 +52,12 @@ const ScheduleModalRegularLessonCommonInputFormList = ({ commonFormData, onChang
                   <ScheduleModalSelectBox
                     type={type}
                     selectList={list}
+                    onChangeFormData={onChangeCommonFormData}
                   />,
                 search: 
                   <ScheduleModalSearchInput
-
+                    formData={commonFormData}
+                    setFormData={setCommonFormData}
                   />
               }[fieldType]}
             </div>
