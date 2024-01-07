@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { allOnceFormInputList } from "@features/schedule/data/formdataInputList";
+import { formInputList } from "@features/schedule/data/formdataInputList";
 import Image from "next/image";
 import ScheduleModalRadioInput from "../../RadioInput";
 import ScheduleModalSelectBox from "../../SelectBox";
@@ -12,13 +12,14 @@ import { useGetCoachList } from "@features/coach/query/coachQuery";
 import { SetStateAction, Dispatch } from "react";
 
 type Props = {
+  scheduleType: string;
   lesson: string;
   formData: FormAllOnceCreateType;
   onChangeAllCreateFormData: UseInputType<HTMLInputElement | HTMLSelectElement>;
   setAllCreateFormData: Dispatch<SetStateAction<FormAllOnceCreateType>>;
 };
 
-const ScheduleModalRegularLessonAllOnceCreateInputForm = ({ lesson, formData, onChangeAllCreateFormData, setAllCreateFormData}: Props) =>{
+const ScheduleModalRegularLessonAllOnceCreateInputForm = ({ scheduleType, lesson, formData, onChangeAllCreateFormData, setAllCreateFormData}: Props) =>{
 
   const { data: courtList } = useGetCourtList();
   const { data: coachList } = useGetCoachList();
@@ -26,7 +27,7 @@ const ScheduleModalRegularLessonAllOnceCreateInputForm = ({ lesson, formData, on
   return(
     <>
       <div css={{ position: 'relative', width: '25%' }}>
-        {allOnceFormInputList.map(({ type, fieldType, list, title, icon, alt }) => {
+        {formInputList.map(({ type, fieldType, list, title, icon, alt }) => {
 
           if(type === 'coach' && coachList) handleDuplicateDataCheck({ prevList: list, list: coachList });
           if(type === 'court' && courtList) handleDuplicateDataCheck({ prevList: list, list: courtList });
@@ -63,6 +64,7 @@ const ScheduleModalRegularLessonAllOnceCreateInputForm = ({ lesson, formData, on
         })}
       </div>
       <ScheduleModalRegularLessonAllOnceCreateScheduleFormField
+        scheduleType={scheduleType}
         formData={formData}
         setFormData={setAllCreateFormData}
       />

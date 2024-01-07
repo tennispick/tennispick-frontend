@@ -3,15 +3,16 @@ import "react-datepicker/dist/react-datepicker.css";
 import TimeRange from '@components/common/TimeRange';
 import { FormAllOnceCreateType } from "@features/schedule/type/schedule.type";
 import { dayList } from '@utils/day';
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import Select from '@components/common/Select';
 
 type Props = {
+  scheduleType: string;
   formData: FormAllOnceCreateType;
   setFormData: Dispatch<SetStateAction<FormAllOnceCreateType>>;
 };
 
-const ScheduleModalRegularLessonAllOnceCreateScheduleFormField = ({ formData, setFormData }: Props) =>{
+const ScheduleModalRegularLessonAllOnceCreateScheduleFormField = ({ scheduleType, formData, setFormData }: Props) =>{
 
   const { lessonTime, lessonDateType, weeklyLessonCount, schedule } = formData;
 
@@ -91,6 +92,7 @@ const ScheduleModalRegularLessonAllOnceCreateScheduleFormField = ({ formData, se
             }
             <TimeRange
               index={index}
+              scheduleType={scheduleType}
               lessonTime={lessonTime}
               weeklyLessonCount={weeklyLessonCount}
               setFormData={setFormData}

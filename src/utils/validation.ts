@@ -48,9 +48,49 @@ const handleInputValidationCheck = (target: ObjectType<unknown | unknown[]>, val
 	return result;
 };
 
+const handleInputArrayValidationCheck = (target: ObjectType<unknown>, validation: ObjectType<string>) => {
+	let result = true;
+	const { schedule, ...rest } = target;
+	
+	// 공통적으로 체크해야하는 부분
+	common: for (const key of Object.keys(rest)) {
+		const type = typeof rest[key];
+
+		if (type === 'string') {
+			result = handleArrayStringValidationCheck(rest[key], key, validation);
+			if(!result) break common;
+		} else if (type === 'object') {
+			result = handleArrayValidationCheck(rest[key] as unknown[], key, validation);
+			if(!result) break common;
+		}
+	}
+
+	if(!result) return result;
+
+	result: for(let index = 0; index < (schedule as Array<ObjectType<string>>).length; index++){
+		
+		const item = (schedule as Array<ObjectType<string>>)[index];
+
+		for (const key of Object.keys(item)) {
+			const type = typeof item[key];
+
+			if (type === 'string') {
+				result = handleArrayStringValidationCheck(item[key], key, validation);
+				if(!result) break result;
+			} else if (type === 'object') {
+				result = handleArrayValidationCheck(item[key] as unknown as unknown[], key, validation);
+				if(!result) break result;
+			}
+		}
+	}
+
+	return result;
+};
+
 export {
 	emailRegex,
 	passwordRegex,
 	phoneNumberRegex,
-	handleInputValidationCheck
+	handleInputValidationCheck,
+	handleInputArrayValidationCheck
 };

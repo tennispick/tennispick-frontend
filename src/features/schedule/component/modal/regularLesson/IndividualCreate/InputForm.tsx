@@ -7,12 +7,14 @@ import FormHeader from "./ScheduleFormHeader";
 import { Dispatch, SetStateAction } from "react";
 
 type Props = {
+  scheduleType: string;
+  lesson: string;
   formData: FormIndividualCreateType[];
-  onChangeIndividualCreateFormData: UseInputType<FormIndividualCreateType>;
+  onChangeIndividualCreateFormData: UseInputType<HTMLInputElement | HTMLSelectElement>;
   setIndividualCreateFormData: Dispatch<SetStateAction<FormIndividualCreateType[]>>;
 };
 
-const ScheduleModalRegularLessonIndividualCreateInputForm = ({ formData, onChangeIndividualCreateFormData, setIndividualCreateFormData }: Props) =>{
+const ScheduleModalRegularLessonIndividualCreateInputForm = ({ scheduleType, lesson, formData, onChangeIndividualCreateFormData, setIndividualCreateFormData }: Props) =>{
   return(
     <div css={{ width: '100%'}} >
       <div css={{
@@ -32,6 +34,8 @@ const ScheduleModalRegularLessonIndividualCreateInputForm = ({ formData, onChang
       </div>
       <FormHeader />
       <FormField
+        scheduleType={scheduleType}
+        lesson={lesson}
         formData={formData}
         onChangeFormData={onChangeIndividualCreateFormData}
         setFormData={setIndividualCreateFormData}

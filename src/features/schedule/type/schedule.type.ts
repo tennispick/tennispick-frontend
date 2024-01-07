@@ -1,3 +1,5 @@
+import { ChangeEvent } from "react";
+
 type ScheduleLessonByDateQueryPayload = {
   day: Date;
 }
@@ -38,11 +40,13 @@ type FormIndividualCreateType = {
   weeklyLessonCount: string;
   coach: string;
   court: string;
-  date: string;
+  date: Date;
   day: string;
-  startTime: string | Date;
-  endTime: string | Date;
+  startTime: string;
+  endTime: string;
 };
+
+type FormIndividualHandlerType = { index: number, handleFormFieldChange: (index: number, e: ChangeEvent<HTMLSelectElement>) => void };
 
 export type{
   ScheduleLessonByDateQueryPayload,
@@ -50,5 +54,6 @@ export type{
   FormCommonInputType,
   ScheduleType,
   FormAllOnceCreateType,
-  FormIndividualCreateType
+  FormIndividualCreateType,
+  FormIndividualHandlerType
 }
