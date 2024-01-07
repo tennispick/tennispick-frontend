@@ -178,7 +178,7 @@ const ScheduleCalendar = ({
 										: ''}
 								</DayWrapper>
 								{/* 공휴일 및 이벤트 */}
-								<DayEventContainer>이벤트</DayEventContainer>
+								<DayEventContainer></DayEventContainer>
 							</WeekDayContainer>
 						);
 					})}
@@ -197,9 +197,7 @@ const ScheduleCalendar = ({
 					{currentWeekDayList &&
 						currentWeekDayList.length > 0 &&
 						currentWeekDayList.map((element) => {
-							{
-								/* 스케줄 노출 */
-							}
+							{/* 스케줄 노출 */}
 							return (
 								<DateContainer key={uuidV4()}>
 									{timeList &&
@@ -211,7 +209,7 @@ const ScheduleCalendar = ({
 														{data?.data &&
 															data.data.length > 0 &&
 															data.data.map((event: any) => {
-																// 시작 및 종료 스케줄 기준 시간값
+
 																const prevTime = item;
 																const nextTime = timeList[index + 1];
 
@@ -252,8 +250,8 @@ const ScheduleCalendar = ({
 																				cursor: 'pointer',
 																				zIndex: 99,
 																			}}
-																			onClick={() => alert('야호')}
-																		/>
+																			onClick={() => alert('등록 이벤트')}
+																		></div>
 																	)
 																);
 															})}

@@ -67,7 +67,7 @@ const commonFormInputList = [
   },
 ];
 
-const allOnceFormInputList = [
+const formInputList = [
   {
     type: 'lessonDateType',
     fieldType: 'radio',
@@ -165,5 +165,5 @@ const allOnceFormInputList = [
 
 export {
   commonFormInputList,
-  allOnceFormInputList
+  formInputList
 }

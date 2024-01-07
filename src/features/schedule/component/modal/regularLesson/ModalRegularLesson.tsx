@@ -6,7 +6,7 @@ import { FormEvent, useEffect } from "react";
 import { Button } from "@components/index";
 import { EditWhiteIcon } from '@icons/index';
 import { FormAllOnceCreateType } from "@features/schedule/type/schedule.type";
-import { handleInputValidationCheck } from "@utils/validation";
+import { handleInputValidationCheck, handleInputArrayValidationCheck } from "@utils/validation";
 import { commonFormDataValidationSet, allCreateFormDataValidationSet, individualCreateFormValidationSet } from "@features/schedule/util/inputFormValidationSet";
 import { useScheduleMutation } from "@features/schedule/mutation/scheduleMutation";
 
@@ -49,9 +49,8 @@ const ModalRegularLesson = ({ }: Props) => {
     date: new Date(), // 스케줄 등록유형 (요일, 날짜)
     day: 'monday', // 요일
     startTime: '00:00', // 강습시간
-    endTime: '00:00'
+    endTime: '00:20'
   }]);
-
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -59,7 +58,7 @@ const ModalRegularLesson = ({ }: Props) => {
     const { scheduleType } = commonFormData;
 
     const allCreateBody = { ...commonFormData, ...allCreateFormData };
-    const individualBody = { ...commonFormData, ...individualCreateFormData };
+    const individualBody = { ...commonFormData, schedule: [...individualCreateFormData] };
 
     if(scheduleType === 'all') {
 
@@ -70,7 +69,7 @@ const ModalRegularLesson = ({ }: Props) => {
       if(!allCheck) return;
     }
     else {
-      const individualCheck = handleInputValidationCheck(individualBody,{
+      const individualCheck = handleInputArrayValidationCheck(individualBody,{
         ...commonFormDataValidationSet,
         ...individualCreateFormValidationSet
       });
@@ -134,12 +133,15 @@ const ModalRegularLesson = ({ }: Props) => {
         />
         {commonFormData.scheduleType === 'all' ?
           <AllOnceCreateInputForm
+            scheduleType={commonFormData.scheduleType}
             lesson={commonFormData.lesson}
             formData={allCreateFormData}
             onChangeAllCreateFormData={onChangeAllCreateFormData}
             setAllCreateFormData={setAllCreateFormData}
           /> :
           <IndividualCreateInputForm
+            scheduleType={commonFormData.scheduleType}
+            lesson={commonFormData.lesson}
             formData={individualCreateFormData}
             onChangeIndividualCreateFormData={onChangeIndividualCreateFormData}
             setIndividualCreateFormData={setIndividualCreateFormData}
