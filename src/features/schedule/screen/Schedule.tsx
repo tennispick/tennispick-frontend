@@ -9,6 +9,7 @@ import Modal from '@components/layer/Modal';
 import { coachArr, courtArr } from '@data/schedule';
 import ScheduleCreateModal from '@features/schedule/component/modal/CreateModal';
 import CreateScheduleModalChildren from '@components/schedule/component/CreateScheduleModalChildren';
+import DaySchedule from '../component/DaySchedule';
 
 const Schedule = () => {
 
@@ -78,7 +79,7 @@ const Schedule = () => {
   return (
     <>
       <PageHeader title={'스케줄 관리'} />
-      <TabList
+      {/* <TabList
         state={currentCoach}
         setState={setCurrentCoach}
         list={coachList}
@@ -88,16 +89,17 @@ const Schedule = () => {
         setState={setCurrentWeek}
         list={weekList}
         borderBottom={true}
-      />
+      /> */}
       {mount && (
-        <ScheduleCalendar
-          courtList={courtList}
-          dateWeekList={dateWeekList}
-          calendarDate={calendarDate}
-          setCalendarDate={setCalendarDate}
-          setShowModal={setShowModal}
-          setModalType={setModalType}
-        />
+        // <ScheduleCalendar
+        //   courtList={courtList}
+        //   dateWeekList={dateWeekList}
+        //   calendarDate={calendarDate}
+        //   setCalendarDate={setCalendarDate}
+        //   setShowModal={setShowModal}
+        //   setModalType={setModalType}
+        // />
+        <DaySchedule />
       )}
       {showModal && (
         <Portal id={'portal'}>
