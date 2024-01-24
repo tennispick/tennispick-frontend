@@ -1,10 +1,8 @@
-import PageHeader from '@components/common/PageHeader';
+import SettingScreen from '@features/setting/screen/Setting';
 
 const SettingPage = () => {
 	return (
-		<>
-			<PageHeader title={'환경설정'} />
-		</>
+		<SettingScreen />
 	);
 };
 

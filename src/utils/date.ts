@@ -9,6 +9,21 @@ import { STRING_WEEK_LIST, STRING_WEEK_LIST_KR } from "@features/schedule/consta
  * getDate(): 주어진 날짜의 일을 반환(ex, 28일)
  */
 
+export const addDays = (date: Date, days: number) =>{
+	let result = new Date(date);
+	result.setDate(result.getDate() + days);
+	return result;
+}
+
+export const getWeek = (date: Date) =>{
+
+	const newDate = new Date(date);
+	const currentDate = newDate.getDate();
+	const firstDay = new Date(newDate.setDate(1)).getDay();
+
+	return Math.ceil((currentDate + firstDay) / 7);
+};
+
 /**
  * 입력 날짜에 해당하는 주차 및 리스트 반환
  * @param { args } Date 객체
@@ -320,22 +335,23 @@ const getDayListByMonth = (params: any): any => {
 
 	const today = new Date();
 
-	const isCurrentMonth = today.getFullYear() === paramYear && (today.getMonth()) === paramMonth
+	const isCurrentMonth = today.getFullYear() === paramYear && (today.getMonth()) === paramMonth;
 
 	// 오늘날짜보다 과거 날짜면, 그 입력된 과거날짜를 그대로 사용하고, 그렇지 않을 때는 현재 날짜와 비교 후 연산
-	const lastDateInMonth = (paramDate < today) ? (paramDate.getDate() - (isWeekDay ? (paramDate.getDay() - 1) : paramDate.getDay())) : isCurrentMonth ? (paramDate.getDate() - (isWeekDay ? (paramDate.getDay() - 1) : paramDate.getDay())) : 1;
-	const dateInMonth = new Date(paramYear + (paramMonth === 11 ? 1 : 0), (paramMonth === 11 ? 0 : paramMonth) + 1, 0).getDate();
+	const dateInMonth = (paramDate < today) ? (paramDate.getDate() - (isWeekDay ? (paramDate.getDay() - 1) : paramDate.getDay()))
+		: isCurrentMonth ? (paramDate.getDate() - (isWeekDay ? (paramDate.getDay() - 1) : paramDate.getDay())) : paramDate.getDate();
+	const lastDateInMonth = new Date(paramYear + (paramMonth === 11 ? 1 : 0), (paramMonth === 11 ? 0 : paramMonth) + 1, 0).getDate();
 
 	const list = { ...dayList };
 
 	let isCalcWeekCount = 0;
 	let isCheckOneWeek = 1;
 
-	for(let date = lastDateInMonth; date <= dateInMonth; date++){
+	for(let date = dateInMonth; date <= lastDateInMonth; date++){
 
-		if(isCheckOneWeek === (isWeekDay ? 5 : 2)) {
+		if(isCheckOneWeek === (isWeekDay ? 5 : 3)) {
 			isCheckOneWeek = 1;
-			isCalcWeekCount ++;
+			isCalcWeekCount++;
 		}
 
 		if((weekCount - isCalcWeekCount) < 1){
@@ -405,6 +421,8 @@ export const getDayOfWeek = ({ date, weekCount, isWeekDay }: ScheduleListsType) 
 			)
 		}
 	};
+
+	console.log(weekCount);
 
 	const { year, month, dayList } = getDayListByMonth({ datePayload, weekCount, date, isWeekDay });
 

@@ -68,11 +68,11 @@ export const NavigationList = [
 	// 	src: StatisticsWhiteIcon,
 	// 	alt: 'statistics icon',
 	// },
-	// {
-	// 	id: uuid(),
-	// 	path: 'setting',
-	// 	label: '설정',
-	// 	src: SettingWhiteIcon,
-	// 	alt: 'setting icon',
-	// },
+	{
+		id: uuid(),
+		path: 'setting',
+		label: '설정',
+		src: SettingWhiteIcon,
+		alt: 'setting icon',
+	},
 ];

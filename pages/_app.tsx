@@ -25,7 +25,7 @@ export default function App({ Component, pageProps }: AppProps) {
 			<QueryClientProvider client={queryClient}>
 				<Hydrate state={pageProps?.dehydrateState}>
 					{globalStyles}
-					<Analytics />
+					{/* <Analytics /> */}
 					<AppLayout>
 						<Component {...pageProps} />
 					</AppLayout>
