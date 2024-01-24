@@ -1,13 +1,28 @@
 import { v4 as uuidV4 } from 'uuid';
 import { numberZeroFillFormat } from './numberForm';
 import { TransferTimeList, WeekListProps } from 'src/interfaces/calendar';
+import { ScheduleListsType } from '@features/layer/scheduleByDate/type/schedule';
+import { STRING_WEEK_LIST, STRING_WEEK_LIST_KR } from "@features/schedule/constants/schedule";
 
 /**
  * getDay(): 주어진 날짜의 첫 번째 날짜의 요일 정보를 반환
  * getDate(): 주어진 날짜의 일을 반환(ex, 28일)
  */
-const STRING_WEAK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-export const STRING_WEAK_KR = ['일', '월', '화', '수', '목', '금', '토'];
+
+export const addDays = (date: Date, days: number) =>{
+	let result = new Date(date);
+	result.setDate(result.getDate() + days);
+	return result;
+}
+
+export const getWeek = (date: Date) =>{
+
+	const newDate = new Date(date);
+	const currentDate = newDate.getDate();
+	const firstDay = new Date(newDate.setDate(1)).getDay();
+
+	return Math.ceil((currentDate + firstDay) / 7);
+};
 
 /**
  * 입력 날짜에 해당하는 주차 및 리스트 반환
@@ -62,8 +77,8 @@ export const getWeekList = (args?: Date): WeekListProps => {
 			) {
 				dateWeekList.push({
 					date: calendarDay,
-					day: STRING_WEAK[weekCount],
-					day_KR: STRING_WEAK_KR[weekCount],
+					day: STRING_WEEK_LIST_KR[weekCount],
+					day_KR: STRING_WEEK_LIST_KR[weekCount],
 				});
 				calendarDay++;
 			}
@@ -311,4 +326,150 @@ export const getTimeList = ({ step = 20, afterTime = "00:00", isInclude = false 
   }
 
 	return array;
+};
+
+const getDayListByMonth = (params: any): any => {
+
+	const { datePayload, weekCount, date: paramDate, isWeekDay } = params;
+	const { year: paramYear, month: paramMonth, dayList } = datePayload;
+
+	const today = new Date();
+
+	const isCurrentMonth = today.getFullYear() === paramYear && (today.getMonth()) === paramMonth;
+
+	// 오늘날짜보다 과거 날짜면, 그 입력된 과거날짜를 그대로 사용하고, 그렇지 않을 때는 현재 날짜와 비교 후 연산
+	const dateInMonth = (paramDate < today) ? (paramDate.getDate() - (isWeekDay ? (paramDate.getDay() - 1) : paramDate.getDay()))
+		: isCurrentMonth ? (paramDate.getDate() - (isWeekDay ? (paramDate.getDay() - 1) : paramDate.getDay())) : paramDate.getDate();
+	const lastDateInMonth = new Date(paramYear + (paramMonth === 11 ? 1 : 0), (paramMonth === 11 ? 0 : paramMonth) + 1, 0).getDate();
+
+	const list = { ...dayList };
+
+	let isCalcWeekCount = 0;
+	let isCheckOneWeek = 1;
+
+	for(let date = dateInMonth; date <= lastDateInMonth; date++){
+
+		if(isCheckOneWeek === (isWeekDay ? 5 : 3)) {
+			isCheckOneWeek = 1;
+			isCalcWeekCount++;
+		}
+
+		if((weekCount - isCalcWeekCount) < 1){
+			return {
+				year: paramYear,
+				month: paramMonth,
+				dayList: list
+			};
+		}
+
+		const dayNumber = new Date(paramYear, paramMonth, date).getDay();
+		const day = STRING_WEEK_LIST[dayNumber];
+
+		if(isWeekDay){
+			if(day === "sunday" || day === "saturday") continue;
+		}
+		else{
+			if(day !== "sunday" && day !== "saturday") continue;
+		}
+
+		if(!list[day][paramYear]){
+			list[day][paramYear] = {};
+		}
+
+		if (!list[day][paramYear][paramMonth + 1]) {
+			list[day][paramYear][paramMonth + 1] = [];
+		}
+
+		list[day][paramYear][paramMonth + 1].push(date);
+
+		isCheckOneWeek++;
+	};
+
+	const nextYear = paramYear + (paramMonth === 11 ? 1 : 0);
+	const nextMonth = paramMonth === 11 ? 0 : paramMonth + 1;
+
+	return getDayListByMonth({
+		datePayload: {
+			year: nextYear,
+			month: nextMonth,
+			dayList: list
+		},
+		weekCount: weekCount - isCalcWeekCount,
+		date: new Date(nextYear, nextMonth, 1),
+		isWeekDay
+	})
+};
+
+export const getDayOfWeek = ({ date, weekCount, isWeekDay }: ScheduleListsType) => {
+
+	const datePayload = {
+		year: date.getFullYear(),
+		month: date.getMonth(),
+		dayList: {
+			...(isWeekDay ?
+				{
+					monday: {},
+					tuesday: {},
+					wednesday: {},
+					thursday: {},
+					friday: {},
+				}:
+				{
+					saturday: {},
+					sunday: {}
+				}
+			)
+		}
+	};
+
+	console.log(weekCount);
+
+	const { year, month, dayList } = getDayListByMonth({ datePayload, weekCount, date, isWeekDay });
+
+	Object.keys(dayList).forEach((key) => {
+		let dayListLength = 0;
+		const target = dayList[key];
+	
+		for (let listYear of Object.keys(target)) {
+			for (let month of Object.keys(target[listYear])) {
+				dayListLength += target[listYear][month].length;
+			}
+		}
+	
+		if (dayListLength < 7) {
+			for (let listYear of Object.keys(target)) {
+	
+				for (let month of Object.keys(target[listYear])) {
+	
+					const yearList = Object.keys(target);
+					const lastYear = yearList[yearList.length - 1];
+					const monthList = Object.keys(target[lastYear]);
+					const lastMonth = monthList[monthList.length - 1];
+	
+					const monthLastDate = target[lastYear][lastMonth][target[lastYear][lastMonth].length - 1];
+					const dateInMonth = new Date(Number(lastYear), Number(lastMonth), 0).getDate();
+	
+					if ((monthLastDate + 7) > dateInMonth) {
+						const nextYear = Number(lastMonth) === 11 ? Number(lastYear) + 1 : Number(lastYear);
+						const nextMonth = Number(lastMonth) === 11 ? 0 : Number(lastMonth) + 1;
+	
+						if (!target[nextYear][nextMonth]) target[lastYear][nextMonth] = [];
+	
+						target[nextYear][nextMonth].push(new Date(Number(nextYear), nextMonth, monthLastDate + 7).getDate());
+						return;
+					} else {
+
+						target[lastYear][lastMonth].push(new Date(Number(lastYear), Number(lastMonth), monthLastDate + 7).getDate());
+						return;
+					}
+				}
+			}
+		}
+	});
+
+	return {
+		year: date.getFullYear(),
+		month: date.getMonth() + 1,
+		dayList
+	};
 };

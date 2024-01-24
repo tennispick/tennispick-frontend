@@ -63,7 +63,14 @@ export type CSS_TYPE = {
 export const globalStyles = (
 	<Global
 		styles={css`
-			@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+		
+			@font-face {
+				font-family: 'Pretendard-Regular';
+				font-style: normal;
+				font-display: swap;
+				font-weight: 400;
+				src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+			}
 
 			*,
 			*:after,
@@ -71,7 +78,7 @@ export const globalStyles = (
 				position: relative;
 				box-sizing: border-box;
 				font-family:
-					Pretendard,
+					'Pretendard-Regular',
 					-apple-system,
 					BlinkMacSystemFont,
 					system-ui,

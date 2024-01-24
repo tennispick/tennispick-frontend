@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import styled from '@emotion/styled';
-import { STRING_WEAK_KR, getWeekList } from '@utils/date';
+import { getWeekList } from '@utils/date';
+import { STRING_WEEK_LIST_KR } from "@features/schedule/constants/schedule";
 import { CSS_TYPE } from '@styles/styles';
 
 interface Props{
@@ -24,7 +25,7 @@ const ModalCalendar = ({ ...props }: Props) =>{
       </LessonTypeContainer>
       <div css={{ position: 'relative'}}>
         <CalendarWeekHeaderContainer>
-          {STRING_WEAK_KR.map((item) => {
+          {STRING_WEEK_LIST_KR.map((item) => {
             return(
               <div key={item} css={{ width: 'calc(100% / 7)', fontWeight: 500 }}>{item}</div>
             )
