@@ -6,7 +6,6 @@ import { NavigationList } from 'src/mocks/navigation';
 import Calendar from '@components/home/Calendar';
 import { useState } from 'react';
 import { Modal, Portal } from '@components/index';
-import ScheduleByCalendar from '@components/layer/calendar/index';
 import ScheduleByDate from '@features/layer/scheduleByDate/screen/ScheduleByDate';
 
 type Props = {
@@ -45,7 +44,7 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
 											},
 										}}
 									>
-										<Image src={item.src} alt={item.alt} width={20} height={20} />
+										<Image src={item.src} alt={item.alt} width={20} height={20} priority />
 										<span>{item.label}</span>
 									</NavList>
 								</Link>
@@ -68,10 +67,6 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
 						padding: 0
 					}}
 				>
-					{/* <ScheduleByCalendar
-						day={day}
-						setShowModal={setShowModal}
-					/> */}
 					<ScheduleByDate
 						day={day}
 						setShowModal={setShowModal}

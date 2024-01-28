@@ -1,21 +1,13 @@
-import { useState, useMemo, useEffect } from "react";
-import { CSS_TYPE, ImageContainer as Image } from '@styles/styles';
+import { useState } from "react";
+import { ImageContainer as Image } from '@styles/styles';
 import {
-	EditWhiteIcon,
 	GreySingleArrowLeft,
 	GreySingleArrowRight,
 } from '@icons/index';
 import {
-	getTimeZoneList,
-	getPrevNextMonth,
-	isCheckTimeInRange,
-  getWeekList,
-  getWeek,
   addDays,
 } from '@utils/date';
 import WeekdaySchedule from "./WeekdaySchedule";
-import WeekendSchedule from "./WeekendSchedule";
-import { STRING_WEEK_LIST } from "../constants/schedule";
 
 type Props = {
   date: Date;
@@ -24,7 +16,6 @@ type Props = {
 const DaySchedule = ({ date }: Props) => {
 
   const [ calendarDate, setCalendarDate ] = useState(date);
-  const week = getWeek(new Date(calendarDate));
 
   const [coach] = useState([
     {
@@ -53,24 +44,6 @@ const DaySchedule = ({ date }: Props) => {
       color: 'var(--yellow100)',
     }
   ])
-
-  // const handlePrevWeekClick = () => {
-	// 	const { prevDate } = getPrevNextMonth(year, month);
-	// 	setCalendarDate({
-	// 		year: prevDate.year,
-	// 		month: prevDate.month,
-  //     week: 1,
-	// 	});
-	// };
-
-	// const handleNextWeekClick = () => {
-	// 	const { nextDate } = getPrevNextMonth(year, month);
-	// 	setCalendarDate({
-	// 		year: nextDate.year,
-	// 		month: nextDate.month,
-  //     week: 1,
-	// 	});
-	// };
 
   const handleWeekClick = (days: number) =>  {
 
@@ -115,10 +88,14 @@ const DaySchedule = ({ date }: Props) => {
           today={calendarDate}
           coach={coach}
         />
-        <WeekendSchedule
+        {/* <WeekdaySchedule
           today={calendarDate}
           coach={coach}
         />
+        <WeekendSchedule
+          today={calendarDate}
+          coach={coach}
+        /> */}
       </div>
     </div>
   )
