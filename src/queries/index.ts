@@ -5,22 +5,22 @@ export { getScheduleFetch, getScheduleQuery } from '@queries/schedule';
 
 /** customer */
 export {
-	getCustomerFetch,
-	getCustomerDetailFetch,
-	generateCustomer,
-	getCustomerQuery,
-	getCustomerDetailQuery,
+  getCustomerFetch,
+  getCustomerDetailFetch,
+  generateCustomer,
+  getCustomerQuery,
+  getCustomerDetailQuery,
 } from '@queries/customer';
 
 /** coach */
 export {
-	getCourtFetch,
-	getCourtDetailFetch,
-	updateCourtDetailInfo,
-	deleteCourtDetailInfo,
-	generateCourt,
-	getCourtQuery,
-	getCourtDetailQuery,
+  getCourtFetch,
+  getCourtDetailFetch,
+  updateCourtDetailInfo,
+  deleteCourtDetailInfo,
+  generateCourt,
+  getCourtQuery,
+  getCourtDetailQuery,
 } from '@queries/court';
 
 /** court */

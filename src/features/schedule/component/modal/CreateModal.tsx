@@ -1,5 +1,5 @@
-import ModalAdditionalLesson from "./additionalLesson/ModalAdditionalLesson";
-import ModalRegularLesson from "./regularLesson/ModalRegularLesson";
+import ModalAdditionalLesson from './additionalLesson/ModalAdditionalLesson';
+import ModalRegularLesson from './regularLesson/ModalRegularLesson';
 
 type Props = {
   modalType: string;
@@ -8,14 +8,14 @@ type Props = {
 const ScheduleCreateModal = ({ modalType }: Props) => {
   return (
     <>
-      {{
-        regular:
-          <ModalRegularLesson />,
-        additional:
-          <ModalAdditionalLesson />
-      }[modalType]}
+      {
+        {
+          regular: <ModalRegularLesson />,
+          additional: <ModalAdditionalLesson />,
+        }[modalType]
+      }
     </>
-  )
+  );
 };
 
 export default ScheduleCreateModal;

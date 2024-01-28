@@ -1,7 +1,5 @@
 import CalendarBlackIcon from '@icons/calendar_black.svg';
-import CoachBlackIcon from '@icons/coach_black.svg';
 import CustomerBlackIcon from '@icons/customer_black.svg';
-import CourtBlackIcon from '@icons/court_black.svg';
 import LessonCouponBlackIcon from '@icons/lesson_coupon_black.svg';
 
 const commonFormInputList = [
@@ -14,13 +12,13 @@ const commonFormInputList = [
     list: [
       {
         value: 'all',
-        label: '일괄등록'
+        label: '일괄등록',
       },
       {
         value: 'individual',
-        label: '개별등록'
-      }
-    ]
+        label: '개별등록',
+      },
+    ],
   },
   {
     type: 'lessonType',
@@ -31,13 +29,13 @@ const commonFormInputList = [
     list: [
       {
         value: 'private',
-        label: '개인레슨'
+        label: '개인레슨',
       },
       {
         value: 'group',
-        label: '그룹레슨'
-      }
-    ]
+        label: '그룹레슨',
+      },
+    ],
   },
   {
     type: 'customer',
@@ -48,9 +46,9 @@ const commonFormInputList = [
     list: [
       {
         value: '',
-        label: '회원 선택'
-      }
-    ]
+        label: '회원 선택',
+      },
+    ],
   },
   {
     type: 'lesson',
@@ -61,9 +59,9 @@ const commonFormInputList = [
     list: [
       {
         value: '',
-        label: '수강권 선택'
+        label: '수강권 선택',
       },
-    ]
+    ],
   },
 ];
 
@@ -77,13 +75,13 @@ const formInputList = [
     list: [
       {
         value: 'date',
-        label: '날짜로 선택'
+        label: '날짜로 선택',
       },
       {
         value: 'day',
-        label: '요일로 선택'
-      }
-    ]
+        label: '요일로 선택',
+      },
+    ],
   },
   {
     type: 'lessonTime',
@@ -94,21 +92,21 @@ const formInputList = [
     list: [
       {
         value: '0',
-        label: '수강권 시간'
+        label: '수강권 시간',
       },
       {
         value: '20',
-        label: '20분'
+        label: '20분',
       },
       {
         value: '30',
-        label: '30분'
+        label: '30분',
       },
       {
         value: '40',
-        label: '40분'
-      }
-    ]
+        label: '40분',
+      },
+    ],
   },
   {
     type: 'weeklyLessonCount',
@@ -119,21 +117,21 @@ const formInputList = [
     list: [
       {
         value: '1',
-        label: '1회'
+        label: '1회',
       },
       {
         value: '2',
-        label: '2회'
+        label: '2회',
       },
       {
         value: '3',
-        label: '3회'
+        label: '3회',
       },
       {
         value: '4',
-        label: '4회'
-      }
-    ]
+        label: '4회',
+      },
+    ],
   },
   {
     type: 'coach',
@@ -144,9 +142,9 @@ const formInputList = [
     list: [
       {
         value: '',
-        label: '코치 선택'
+        label: '코치 선택',
       },
-    ]
+    ],
   },
   {
     type: 'court',
@@ -157,13 +155,10 @@ const formInputList = [
     list: [
       {
         value: '',
-        label: '코트 선택'
-      }
-    ]
+        label: '코트 선택',
+      },
+    ],
   },
-]
+];
 
-export {
-  commonFormInputList,
-  formInputList
-}
+export { commonFormInputList, formInputList };

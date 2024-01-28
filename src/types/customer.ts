@@ -16,5 +16,13 @@ export type CustomerType = {
   login_at: string;
 };
 
-
-export type CustomerLessonType = CustomerType & Pick<LessonHistoryType, 'customer_id' | 'is_forced_lesson_change' | 'start_time' | 'end_time' | 'coach_attendance' | 'customer_attendance'>;
+export type CustomerLessonType = CustomerType &
+  Pick<
+    LessonHistoryType,
+    | 'customer_id'
+    | 'is_forced_lesson_change'
+    | 'start_time'
+    | 'end_time'
+    | 'coach_attendance'
+    | 'customer_attendance'
+  >;

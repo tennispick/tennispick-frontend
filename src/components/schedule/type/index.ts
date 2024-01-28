@@ -1,4 +1,13 @@
-export type InputComponentType = 'scheduleType' | 'customer' | 'lesson' | 'lessonType' | 'lessonDateType' | 'lessonTime' | 'lessonCount' | 'coach' | 'court';
+export type InputComponentType =
+  | 'scheduleType'
+  | 'customer'
+  | 'lesson'
+  | 'lessonType'
+  | 'lessonDateType'
+  | 'lessonTime'
+  | 'lessonCount'
+  | 'coach'
+  | 'court';
 
 export type ScheduleListType = {
   id: number;
@@ -6,7 +15,7 @@ export type ScheduleListType = {
   day: string;
   startTime: string;
   endTime: string;
-}
+};
 
 export type ScheduleDataType = {
   scheduleType: string; // 스케줄 등록유형
@@ -18,4 +27,4 @@ export type ScheduleDataType = {
   lessonCountOfWeek: number; // 주 강습횟수
   coach: string; // 코치
   court: string; // 코트
-}
+};

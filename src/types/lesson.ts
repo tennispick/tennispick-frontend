@@ -27,4 +27,4 @@ export type LessonHistoryType = {
   is_forced_lesson_change: number;
   coach_attendance?: string;
   customer_attendance?: string;
-}
+};

@@ -1,15 +1,15 @@
-import styled from "@emotion/styled";
-import { formInputList } from "@features/schedule/data/formdataInputList";
-import Image from "next/image";
-import ScheduleModalRadioInput from "../../RadioInput";
-import ScheduleModalSelectBox from "../../SelectBox";
-import ScheduleModalRegularLessonAllOnceCreateScheduleFormField from "./ScheduleFormField";
-import { FormAllOnceCreateType } from "@features/schedule/type/schedule.type";
-import { UseInputType } from "src/types";
-import { useGetCourtList } from "@features/court/query/courtQuery";
-import { handleDuplicateDataCheck } from "@utils/dataCheck";
-import { useGetCoachList } from "@features/coach/query/coachQuery";
-import { SetStateAction, Dispatch } from "react";
+import styled from '@emotion/styled';
+import { formInputList } from '@features/schedule/data/formdataInputList';
+import Image from 'next/image';
+import ScheduleModalRadioInput from '../../RadioInput';
+import ScheduleModalSelectBox from '../../SelectBox';
+import ScheduleModalRegularLessonAllOnceCreateScheduleFormField from './ScheduleFormField';
+import { FormAllOnceCreateType } from '@features/schedule/type/schedule.type';
+import { UseInputType } from 'src/types';
+import { useGetCourtList } from '@features/court/query/courtQuery';
+import { handleDuplicateDataCheck } from '@utils/dataCheck';
+import { useGetCoachList } from '@features/coach/query/coachQuery';
+import { SetStateAction, Dispatch } from 'react';
 
 type Props = {
   scheduleType: string;
@@ -19,48 +19,54 @@ type Props = {
   setAllCreateFormData: Dispatch<SetStateAction<FormAllOnceCreateType>>;
 };
 
-const ScheduleModalRegularLessonAllOnceCreateInputForm = ({ scheduleType, lesson, formData, onChangeAllCreateFormData, setAllCreateFormData}: Props) =>{
-
+const ScheduleModalRegularLessonAllOnceCreateInputForm = ({
+  scheduleType,
+  lesson,
+  formData,
+  onChangeAllCreateFormData,
+  setAllCreateFormData,
+}: Props) => {
   const { data: courtList } = useGetCourtList();
   const { data: coachList } = useGetCoachList();
 
-  return(
+  return (
     <>
       <div css={{ position: 'relative', width: '25%' }}>
         {formInputList.map(({ type, fieldType, list, title, icon, alt }) => {
+          if (type === 'coach' && coachList)
+            handleDuplicateDataCheck({ prevList: list, list: coachList });
+          if (type === 'court' && courtList)
+            handleDuplicateDataCheck({ prevList: list, list: courtList });
 
-          if(type === 'coach' && coachList) handleDuplicateDataCheck({ prevList: list, list: coachList });
-          if(type === 'court' && courtList) handleDuplicateDataCheck({ prevList: list, list: courtList });
-
-          return(
-            <div css={{margin: '0 0 24px 0'}} key={type}>
+          return (
+            <div css={{ margin: '0 0 24px 0' }} key={type}>
               <HeadContainer>
-                <Image
-                  src={icon}
-                  alt={alt}
-                  width={20}
-                  height={20}
-                />
+                <Image src={icon} alt={alt} width={20} height={20} />
                 {title}
               </HeadContainer>
               <div css={{ margin: '12px 0 0 0' }}>
-                {{radio:
-                    <ScheduleModalRadioInput
-                      type={type}
-                      radioList={list}
-                      lesson={lesson}
-                      onChangeFormData={onChangeAllCreateFormData}
-                    />,
-                  select:
-                    <ScheduleModalSelectBox
-                      type={type}
-                      selectList={list}
-                      onChangeFormData={onChangeAllCreateFormData}
-                    />
-                }[fieldType]}
+                {
+                  {
+                    radio: (
+                      <ScheduleModalRadioInput
+                        type={type}
+                        radioList={list}
+                        lesson={lesson}
+                        onChangeFormData={onChangeAllCreateFormData}
+                      />
+                    ),
+                    select: (
+                      <ScheduleModalSelectBox
+                        type={type}
+                        selectList={list}
+                        onChangeFormData={onChangeAllCreateFormData}
+                      />
+                    ),
+                  }[fieldType]
+                }
               </div>
             </div>
-          )
+          );
         })}
       </div>
       <ScheduleModalRegularLessonAllOnceCreateScheduleFormField
@@ -69,7 +75,7 @@ const ScheduleModalRegularLessonAllOnceCreateInputForm = ({ scheduleType, lesson
         setFormData={setAllCreateFormData}
       />
     </>
-  )
+  );
 };
 
 const HeadContainer = styled.div({
@@ -77,9 +83,9 @@ const HeadContainer = styled.div({
   display: 'flex',
   alignItems: 'center',
 
-  'img': {
-    margin: '0 6px 0 0'
-  }
+  img: {
+    margin: '0 6px 0 0',
+  },
 });
 
 export default ScheduleModalRegularLessonAllOnceCreateInputForm;

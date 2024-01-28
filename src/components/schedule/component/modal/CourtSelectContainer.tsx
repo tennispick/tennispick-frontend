@@ -2,26 +2,27 @@ import { Select } from '@components/index';
 import { ChangeEventHandler, useMemo } from 'react';
 
 type CourtListType = {
-  data: [{
-    id: number;
-    name: string;
-  }]
-}
+  data: [
+    {
+      id: number;
+      name: string;
+    },
+  ];
+};
 
 // TODO any
 type Props = {
   onChangeFormData: ChangeEventHandler<HTMLSelectElement>;
   courtList: {
-    data: CourtListType
+    data: CourtListType;
   };
-}
+};
 
-const CourtSelectContainer = ({ onChangeFormData, courtList }: Props) =>{
-
+const CourtSelectContainer = ({ onChangeFormData, courtList }: Props) => {
   const { data } = useMemo(() => courtList, [courtList]);
   const list = data?.data;
 
-  return(
+  return (
     <Select
       name={'sex'}
       width={'calc(50% - 4px)'}
@@ -29,9 +30,15 @@ const CourtSelectContainer = ({ onChangeFormData, courtList }: Props) =>{
       onChange={onChangeFormData}
     >
       <option value={'default'}>코트 선택</option>
-      {list && list.length > 0 && list.map(({ id, name }) => <option key={id} value={id}>{name}</option> )}
+      {list &&
+        list.length > 0 &&
+        list.map(({ id, name }) => (
+          <option key={id} value={id}>
+            {name}
+          </option>
+        ))}
     </Select>
-  )
-}
+  );
+};
 
 export default CourtSelectContainer;

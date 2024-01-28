@@ -4,31 +4,28 @@ import { ChangeEventHandler } from 'react';
 
 type Props = {
   onChangeFormData: ChangeEventHandler<HTMLInputElement>;
-}
+};
 
-const LessonDateTypeInputRadioContainer = ({ onChangeFormData }: Props) =>{
-  return(
+const LessonDateTypeInputRadioContainer = ({ onChangeFormData }: Props) => {
+  return (
     <div css={{ display: 'flex', alignItems: 'center' }}>
       <InputContainer
         id={'date'}
         label={'날짜로 선택'}
         css={{
-          margin: '0 12px 0 0'
+          margin: '0 12px 0 0',
         }}
       >
         <Input.TextField
           type={'radio'}
           name={'lessonDateType'}
-          css={{ width: 'auto', margin: '0 6px 0 2px'  }}
+          css={{ width: 'auto', margin: '0 6px 0 2px' }}
           value={'date'}
           onChange={onChangeFormData}
           defaultChecked
         />
       </InputContainer>
-      <InputContainer
-        id={'day'}
-        label={'요일로 선택'}
-      >
+      <InputContainer id={'day'} label={'요일로 선택'}>
         <Input.TextField
           type={'radio'}
           name={'lessonDateType'}
@@ -38,14 +35,14 @@ const LessonDateTypeInputRadioContainer = ({ onChangeFormData }: Props) =>{
         />
       </InputContainer>
     </div>
-  )
-}
+  );
+};
 
 const InputContainer = styled(Input)({
   display: 'flex',
   flexDirection: 'row-reverse',
   justifyContent: 'flex-end',
-  alignItems: 'center'
+  alignItems: 'center',
 });
 
 export default LessonDateTypeInputRadioContainer;

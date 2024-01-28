@@ -1,5 +1,3 @@
 const FORCE_LESSON_CHANGE = 0;
 
-export {
-  FORCE_LESSON_CHANGE,
-}
+export { FORCE_LESSON_CHANGE };

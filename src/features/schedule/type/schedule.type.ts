@@ -1,11 +1,7 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent } from 'react';
 
 type ScheduleLessonByDateQueryPayload = {
   day: Date;
-}
-
-type ScheduleMutationDataPayload = {
-
 };
 
 type FormCommonInputType = {
@@ -23,7 +19,7 @@ type ScheduleType = {
   day: string;
   startTime: string;
   endTime: string;
-}
+};
 
 type FormAllOnceCreateType = {
   lessonDateType: string;
@@ -31,8 +27,8 @@ type FormAllOnceCreateType = {
   weeklyLessonCount: string;
   coach: string;
   court: string;
-  schedule: Array<ScheduleType>
-}
+  schedule: Array<ScheduleType>;
+};
 
 type FormIndividualCreateType = {
   lessonDateType: string;
@@ -46,14 +42,19 @@ type FormIndividualCreateType = {
   endTime: string;
 };
 
-type FormIndividualHandlerType = { index: number, handleFormFieldChange: (index: number, e: ChangeEvent<HTMLSelectElement>) => void };
+type FormIndividualHandlerType = {
+  index: number;
+  handleFormFieldChange: (
+    index: number,
+    e: ChangeEvent<HTMLSelectElement>,
+  ) => void;
+};
 
-export type{
+export type {
   ScheduleLessonByDateQueryPayload,
-  ScheduleMutationDataPayload,
   FormCommonInputType,
   ScheduleType,
   FormAllOnceCreateType,
   FormIndividualCreateType,
-  FormIndividualHandlerType
-}
+  FormIndividualHandlerType,
+};

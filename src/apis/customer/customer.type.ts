@@ -1,9 +1,7 @@
-import { FormCommonInputType } from "@features/schedule/type/schedule.type";
+import { FormCommonInputType } from '@features/schedule/type/schedule.type';
 
 type SearchCustomerListByKeywordApiPayload = {
   keyword: string;
-} & Pick<FormCommonInputType, "customer">;
+} & Pick<FormCommonInputType, 'customer'>;
 
-export type {
-  SearchCustomerListByKeywordApiPayload
-}
+export type { SearchCustomerListByKeywordApiPayload };

@@ -6,8 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "check": "yarn build && yarn lint"
+    "prettier": "prettier --write .",
+    "lint": "next lint --fix",
+    "check": "yarn prettier && yarn build && yarn lint"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",

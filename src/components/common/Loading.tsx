@@ -1,4 +1,4 @@
-import { spinner } from "@styles/animation";
+import { spinner } from '@styles/animation';
 
 const Loading = () => {
   return (
@@ -9,7 +9,7 @@ const Loading = () => {
         height: '100vh',
         top: '0',
         left: '0',
-        zIndex: '9999'
+        zIndex: '9999',
       }}
     >
       <div
@@ -17,7 +17,7 @@ const Loading = () => {
           position: 'absolute',
           top: '47.5%',
           left: '47.5%',
-          transform: 'translate(-50%, -50%)'
+          transform: 'translate(-50%, -50%)',
         }}
       >
         <svg

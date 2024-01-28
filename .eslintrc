@@ -5,24 +5,25 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@next/next/recommended",
+    "plugin:@typescript-eslint/recommended",
     "next/core-web-vitals"
   ],
-  "plugins": ["@typescript-eslint", "prettier", "react"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "react"],
   "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "useTabs": true,
-        "endOfLine": "auto",
-      }
-    ],
+    "react/react-in-jsx-scope": "off",
     "react-hooks/rules-of-hooks": "off",
     "no-unused-vars": "off",
     "no-useless-escape": "off",
     "no-empty-pattern": "off",
-    "arrow-body-style": "off",
-    "prefer-arrow-callback": "off",
+    "@typescript-eslint/no-explicit-any": 0, // any 허용
+    "react-hooks/exhaustive-deps": "warn",
     "react/no-unescaped-entities": "off",
     "@next/next/no-page-custom-font": "off"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
   }
 }

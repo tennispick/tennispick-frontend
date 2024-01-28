@@ -1,11 +1,11 @@
-import { } from '@tanstack/react-query';
+import {} from '@tanstack/react-query';
 import { ChangeEventHandler } from 'react';
 
 type UseQueryType<T> = {
-  data: T,
+  data: T;
   isFetching: boolean;
   isLoading: boolean;
-}
+};
 
 type MutationType = {
   affectedRows: number;
@@ -15,15 +15,10 @@ type MutationType = {
   insertId: number;
   serverStatus: number;
   warningStatus: number;
-}
+};
 
 type UseInputType<T> = ChangeEventHandler<T>;
 
-type ObjectType<T> = {[key: string]: T};
+type ObjectType<T> = { [key: string]: T };
 
-export type {
-  UseQueryType,
-  MutationType,
-  UseInputType,
-  ObjectType
-}
+export type { UseQueryType, MutationType, UseInputType, ObjectType };

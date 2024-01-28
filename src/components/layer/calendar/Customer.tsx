@@ -1,29 +1,27 @@
-import { memo, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import Button from '@components/common/Button';
 import ProfileManIcon from '@icons/profile_man.svg';
-import ProfileWomanIcon from '@icons/profile_woman.svg';
 import Image from 'next/image';
 import { CustomerType } from 'src/types/customer';
 import { LessonHistoryType } from 'src/types/lesson';
 import { getCustomerDetailQuery } from '@queries/customer';
 
-type CustomerLessonType = CustomerType & Pick<LessonHistoryType, 'customer_id' | 'start_time' | 'end_time' >;
+type CustomerLessonType = CustomerType &
+  Pick<LessonHistoryType, 'customer_id' | 'start_time' | 'end_time'>;
 
 interface Props {
   customerInfo: CustomerLessonType | null;
 }
 
-const ModalCustomer = ({ ...props }: Props) =>{
-
+const ModalCustomer = ({ ...props }: Props) => {
   const { customerInfo } = props;
-  const [customerDetail, setCustomerDetail] = useState<CustomerType>();
 
-  if(customerInfo){
+  if (customerInfo) {
     const data = getCustomerDetailQuery(customerInfo.customer_id);
+    console.log(data);
   }
-  
-  return(
+
+  return (
     <Container>
       <CustomerInfoContainer>
         <div css={{ position: 'relative' }}>
@@ -39,7 +37,7 @@ const ModalCustomer = ({ ...props }: Props) =>{
           />
         </div>
         <div css={{ position: 'relative', display: 'flex', padding: '0 32px' }}>
-          <div css={{ margin: '0 64px 0 0'}}>
+          <div css={{ margin: '0 64px 0 0' }}>
             <InfoRow>
               <dt>이름</dt>
               <dd>{customerInfo ? customerInfo.name : '-'}</dd>
@@ -77,7 +75,14 @@ const ModalCustomer = ({ ...props }: Props) =>{
           </div>
         </div>
       </CustomerInfoContainer>
-      <div css={{ position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly' }}>
+      <div
+        css={{
+          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-evenly',
+        }}
+      >
         <Button
           label={'출석체크'}
           css={{
@@ -87,7 +92,7 @@ const ModalCustomer = ({ ...props }: Props) =>{
             backgroundColor: 'var(--business-active-color)',
             color: 'var(--white100)',
             fontWeight: 500,
-            border: 0
+            border: 0,
           }}
         />
         <Button
@@ -99,7 +104,7 @@ const ModalCustomer = ({ ...props }: Props) =>{
             backgroundColor: 'var(--red200)',
             color: 'var(--white100)',
             fontWeight: 500,
-            border: 0
+            border: 0,
           }}
         />
         <Button
@@ -111,13 +116,13 @@ const ModalCustomer = ({ ...props }: Props) =>{
             backgroundColor: 'var(--navy100)',
             color: 'var(--white100)',
             fontWeight: 500,
-            border: 0
+            border: 0,
           }}
         />
       </div>
     </Container>
-  )
-}
+  );
+};
 
 const Container = styled.section({
   position: 'relative',
@@ -125,26 +130,26 @@ const Container = styled.section({
   borderBottom: '1px solid var(--grey100)',
   display: 'flex',
   justifyContent: 'space-between',
-  padding: '0 24px'
+  padding: '0 24px',
 });
 const CustomerInfoContainer = styled.div({
   position: 'relative',
   display: 'flex',
   width: 'calc(100% - 100px)',
   height: '100%',
-  alignItems: 'center'
+  alignItems: 'center',
 });
 const InfoRow = styled.dl({
   position: 'relative',
   display: 'flex',
   lineHeight: '1.8rem',
 
-  'dt': {
+  dt: {
     minWidth: '100px',
-    fontWeight: '700'
+    fontWeight: '700',
   },
 
-  'dd': {
+  dd: {
     minWidth: '140px',
   },
 });

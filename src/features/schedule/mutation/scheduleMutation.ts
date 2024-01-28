@@ -1,32 +1,33 @@
-import { useMutation } from "@tanstack/react-query";
-import { ScheduleMutationDataPayload } from "../type/schedule.type";
-import { createScheduleLesson } from "@apis/schedule/schedule.api";
-import { MutationType } from "src/types";
+import { useMutation } from '@tanstack/react-query';
+import { createScheduleLesson } from '@apis/schedule/schedule.api';
+import { MutationType } from 'src/types';
 
 const useScheduleMutation = () => {
+  const { mutate, isLoading } = useMutation(
+    (data: any) => createScheduleLesson(data),
+    {
+      onSuccess: (res) => {
+        const responseLength = res.filter(
+          ({ affectedRows }: MutationType) => affectedRows > 0,
+        ).length;
+        if (res.length === responseLength)
+          alert('스케줄이 정상적으로 등록되었어요.');
+        else
+          alert('스케줄 생성이 일부만 등록되었어요.\n관리자에게 문의해주세요.');
 
-  const { mutate, isLoading } = useMutation((data: ScheduleMutationDataPayload) => createScheduleLesson(data), {
-    onSuccess: (res) => {
-      const responseLength = res.filter(({ affectedRows }: MutationType) => affectedRows > 0).length;
-      if(res.length === responseLength)
-        alert('스케줄이 정상적으로 등록되었어요.');
-      else
-        alert('스케줄 생성이 일부만 등록되었어요.\n관리자에게 문의해주세요.');
-
-      window.location.reload();
+        window.location.reload();
+      },
+      onError: (error) => {
+        alert('스케줄 생성에 실패했어요.\n관리자에게 문의해주세요.');
+        console.error(error);
+      },
     },
-    onError: (error) => {
-      alert('스케줄 생성에 실패했어요.\n관리자에게 문의해주세요.');
-      console.error(error);
-    }
-  });
+  );
 
-  return{
+  return {
     mutate,
-    isLoading
-  }
+    isLoading,
+  };
 };
 
-export {
-  useScheduleMutation
-}
+export { useScheduleMutation };

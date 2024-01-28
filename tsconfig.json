@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -20,53 +16,22 @@
     "jsxImportSource": "@emotion/react",
     "incremental": true,
     "baseUrl": "./",
-    "types": [
-      "react",
-      "@emotion/react/types/css-prop"
-    ],
+    "types": ["react", "@emotion/react/types/css-prop"],
     "paths": {
-      "@icons/*": [
-        "src/assets/icons/*"
-      ],
-      "@images/*": [
-        "src/assets/images/*"
-      ],
-      "@apis/*": [
-        "src/apis/*"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@features/*": [
-        "src/features/*"
-      ],
-      "@data/*": [
-        "src/data/*"
-      ],
-      "@hooks/*": [
-        "src/hooks/*"
-      ],
-      "@containers/*": [
-        "src/containers/*"
-      ],
-      "@interfaces/*": [
-        "src/interfaces/*"
-      ],
-      "@lib/*": [
-        "src/lib/*"
-      ],
-      "@mocks/*": [
-        "src/mocks/*"
-      ],
-      "@queries/*": [
-        "src/queries/*"
-      ],
-      "@styles/*": [
-        "src/styles/*"
-      ],
-      "@utils/*": [
-        "src/utils/*"
-      ]
+      "@icons/*": ["src/assets/icons/*"],
+      "@images/*": ["src/assets/images/*"],
+      "@apis/*": ["src/apis/*"],
+      "@components/*": ["src/components/*"],
+      "@features/*": ["src/features/*"],
+      "@data/*": ["src/data/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@containers/*": ["src/containers/*"],
+      "@interfaces/*": ["src/interfaces/*"],
+      "@lib/*": ["src/lib/*"],
+      "@mocks/*": ["src/mocks/*"],
+      "@queries/*": ["src/queries/*"],
+      "@styles/*": ["src/styles/*"],
+      "@utils/*": ["src/utils/*"]
     }
   },
   "include": [
@@ -75,7 +40,5 @@
     "**/*.tsx",
     "src/features/schedule/component/modal/regularLesson/CommonFormInput.tsx"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

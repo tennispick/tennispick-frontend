@@ -14,9 +14,9 @@ const fadeUpKeyframes = keyframes`
 `;
 
 export const fadeUp = css`
-	animation-duration: 0.65s;
-	animation-name: ${fadeUpKeyframes};
-	animation-timing-function: ease;
+  animation-duration: 0.65s;
+  animation-name: ${fadeUpKeyframes};
+  animation-timing-function: ease;
 `;
 
 const fadeRightKeyframes = keyframes`
@@ -30,9 +30,9 @@ const fadeRightKeyframes = keyframes`
 `;
 
 export const fadeRight = css`
-	animation-duration: 0.65s;
-	animation-name: ${fadeRightKeyframes};
-	animation-timing-function: ease;
+  animation-duration: 0.65s;
+  animation-name: ${fadeRightKeyframes};
+  animation-timing-function: ease;
 `;
 
 const fadeOutRightKeyframes = keyframes`
@@ -46,9 +46,9 @@ const fadeOutRightKeyframes = keyframes`
 `;
 
 export const fadeOutRight = css`
-	animation-duration: 0.65s;
-	animation-name: ${fadeOutRightKeyframes};
-	animation-timing-function: ease;
+  animation-duration: 0.65s;
+  animation-name: ${fadeOutRightKeyframes};
+  animation-timing-function: ease;
 `;
 
 const dropDownActiveKeyframes = keyframes`
@@ -62,9 +62,9 @@ const dropDownActiveKeyframes = keyframes`
 `;
 
 export const dropDownActive = css`
-	animation-duration: 0.2s;
-	animation-name: ${dropDownActiveKeyframes};
-	animation-timing-function: ease-in-out;
+  animation-duration: 0.2s;
+  animation-name: ${dropDownActiveKeyframes};
+  animation-timing-function: ease-in-out;
 `;
 
 const dropDownDeActiveKeyframes = keyframes`
@@ -78,9 +78,9 @@ const dropDownDeActiveKeyframes = keyframes`
 `;
 
 export const dropDownDeActive = css`
-	animation-duration: 0.2s;
-	animation-name: ${dropDownDeActiveKeyframes};
-	animation-timing-function: ease-in-out;
+  animation-duration: 0.2s;
+  animation-name: ${dropDownDeActiveKeyframes};
+  animation-timing-function: ease-in-out;
 `;
 
 const spinnerKeyframes = keyframes`
@@ -103,7 +103,7 @@ const spinnerKeyframes = keyframes`
 
 export const spinner = css`
   animation-duration: 1s;
-	animation-name: ${spinnerKeyframes};
-	animation-timing-function: linear;
+  animation-name: ${spinnerKeyframes};
+  animation-timing-function: linear;
   animation-iteration-count: infinite;
-`
+`;

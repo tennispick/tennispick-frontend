@@ -1,30 +1,36 @@
-import { Input, NormalList as LI } from "@components/index";
-import styled from "@emotion/styled";
-import { ChangeEvent, useEffect, useState, Dispatch, SetStateAction, use, useRef } from "react";
-import { getSearchCustomerListByKeyword } from "@apis/customer/customer.api";
-import { FormCommonInputType } from "@features/schedule/type/schedule.type";
+import { Input, NormalList as LI } from '@components/index';
+import styled from '@emotion/styled';
+import {
+  ChangeEvent,
+  useEffect,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from 'react';
+import { getSearchCustomerListByKeyword } from '@apis/customer/customer.api';
+import { FormCommonInputType } from '@features/schedule/type/schedule.type';
 
-type Props ={
+type Props = {
   formData: FormCommonInputType;
   setFormData: Dispatch<SetStateAction<FormCommonInputType>>;
-}
+};
 
 const ScheduleModalSearchInput = ({ formData, setFormData }: Props) => {
-
-  const { lessonType ,customer } = formData;
+  const { lessonType, customer } = formData;
   const [keyword, setKeyword] = useState<string>('');
-  const [autoSearchKeyword, setAutoSearchKeyword] = useState<Array<{
-    id: string,
-    name: string;
-  }>>([]);
+  const [autoSearchKeyword, setAutoSearchKeyword] = useState<
+    Array<{
+      id: string;
+      name: string;
+    }>
+  >([]);
 
   const handleSearchKeywordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
   };
 
-  const handleCustomerSelect = (id: string, name: string) =>{
-
-    if(lessonType === 'private' && customer.length > 0){
+  const handleCustomerSelect = (id: string, name: string) => {
+    if (lessonType === 'private' && customer.length > 0) {
       alert('개인레슨은 한명의 회원만 선택할 수 있습니다.');
       setKeyword('');
       return false;
@@ -32,10 +38,7 @@ const ScheduleModalSearchInput = ({ formData, setFormData }: Props) => {
 
     setFormData((prev: FormCommonInputType) => ({
       ...prev,
-      customer: [
-        ...prev.customer,
-        { id, name }
-      ]
+      customer: [...prev.customer, { id, name }],
     }));
     setKeyword('');
   };
@@ -50,18 +53,16 @@ const ScheduleModalSearchInput = ({ formData, setFormData }: Props) => {
   }, [keyword]);
 
   useEffect(() => {
-    if(lessonType === 'private' && customer.length > 0){
+    if (lessonType === 'private' && customer.length > 0) {
       alert('개인레슨은 1명만 선택가능해요.');
       setFormData((prev: FormCommonInputType) => ({
         ...prev,
-        customer: [
-          prev.customer[0]
-        ]
+        customer: [prev.customer[0]],
       }));
     }
-  }, [lessonType])
+  }, [lessonType]);
 
-  return(
+  return (
     <div css={{ position: 'relative', width: '100%' }}>
       <Input>
         <Input.TextField
@@ -72,43 +73,45 @@ const ScheduleModalSearchInput = ({ formData, setFormData }: Props) => {
           value={keyword}
         />
       </Input>
-      {(keyword && autoSearchKeyword.length > 0) && (
+      {keyword && autoSearchKeyword.length > 0 && (
         <AutoCompleteSearch>
           <LI.UnOrderList css={{ margin: '0' }}>
             {autoSearchKeyword.map(({ id, name }) => {
-              return(
+              return (
                 <LI
                   key={id}
                   css={{
                     padding: '8px 12px',
                     ':hover': {
-                      borderRadius: '8px'
-                    }
+                      borderRadius: '8px',
+                    },
                   }}
                   onClick={() => handleCustomerSelect(id, name)}
-                >{name}</LI>
-              )
+                >
+                  {name}
+                </LI>
+              );
             })}
           </LI.UnOrderList>
         </AutoCompleteSearch>
       )}
-      {customer.length > 0 &&
-        <ul css={{
-          position: 'relative',
-          display: 'flex',
-          flexWrap: 'wrap',
-          width: '80%',
-          margin: '12px 0 0 0',
-        }}>
+      {customer.length > 0 && (
+        <ul
+          css={{
+            position: 'relative',
+            display: 'flex',
+            flexWrap: 'wrap',
+            width: '80%',
+            margin: '12px 0 0 0',
+          }}
+        >
           {customer.map(({ id, name }) => {
-            return(
-              <Customer key={id}>{name}</Customer>
-            )
+            return <Customer key={id}>{name}</Customer>;
           })}
         </ul>
-      }
+      )}
     </div>
-  )
+  );
 };
 
 const AutoCompleteSearch = styled.div({
@@ -121,7 +124,7 @@ const AutoCompleteSearch = styled.div({
   boxShadow: '0px 8px 12px 0px rgba(0, 0, 0, 0.25)',
   border: '1px solid var(--grey100)',
   borderRadius: '8px',
-  zIndex: 1  
+  zIndex: 1,
 });
 
 const Customer = styled.li({
@@ -132,6 +135,6 @@ const Customer = styled.li({
   backgroundColor: 'var(--green100)',
   color: 'var(--white100)',
   borderRadius: '8px',
-})
+});
 
 export default ScheduleModalSearchInput;

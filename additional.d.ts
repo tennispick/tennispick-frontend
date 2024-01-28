@@ -1,1 +1,1 @@
-declare module 'react-time-range'
+declare module 'react-time-range';

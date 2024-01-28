@@ -1,21 +1,15 @@
-import { useState } from "react";
+import { useState } from 'react';
 import { ImageContainer as Image } from '@styles/styles';
-import {
-	GreySingleArrowLeft,
-	GreySingleArrowRight,
-} from '@icons/index';
-import {
-  addDays,
-} from '@utils/date';
-import WeekdaySchedule from "./WeekdaySchedule";
+import { GreySingleArrowLeft, GreySingleArrowRight } from '@icons/index';
+import { addDays } from '@utils/date';
+import WeekdaySchedule from './WeekdaySchedule';
 
 type Props = {
   date: Date;
-}
+};
 
 const DaySchedule = ({ date }: Props) => {
-
-  const [ calendarDate, setCalendarDate ] = useState(date);
+  const [calendarDate, setCalendarDate] = useState(date);
 
   const [coach] = useState([
     {
@@ -42,20 +36,25 @@ const DaySchedule = ({ date }: Props) => {
       id: 'coach5',
       name: 'Haward',
       color: 'var(--yellow100)',
-    }
-  ])
+    },
+  ]);
 
-  const handleWeekClick = (days: number) =>  {
-
+  const handleWeekClick = (days: number) => {
     const currentDayOfWeek = calendarDate.getDay();
     const mondayDate = new Date(calendarDate);
-    mondayDate.setDate(calendarDate.getDate() - currentDayOfWeek + (currentDayOfWeek === 0 ? -6 : 1));
+    mondayDate.setDate(
+      calendarDate.getDate() -
+        currentDayOfWeek +
+        (currentDayOfWeek === 0 ? -6 : 1),
+    );
 
-    setCalendarDate(addDays(mondayDate, days)
-  )};
+    setCalendarDate(addDays(mondayDate, days));
+  };
 
-  return(
-    <div css={{ position: 'relative', width: '100%', height: 'calc(100% - 64px)' }}>
+  return (
+    <div
+      css={{ position: 'relative', width: '100%', height: 'calc(100% - 64px)' }}
+    >
       <div css={{ padding: '0 0 12px 0' }}>
         {/* <ul css={{ display: 'flex' }}>
           {coach.map((el) => (
@@ -65,7 +64,13 @@ const DaySchedule = ({ date }: Props) => {
           ))}
         </ul> */}
       </div>
-      <div css={{ display: 'flex', justifyContent: 'space-between', margin: '0 0 16px 0' }}>
+      <div
+        css={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          margin: '0 0 16px 0',
+        }}
+      >
         <Image
           src={GreySingleArrowLeft}
           alt="prev button"
@@ -83,11 +88,15 @@ const DaySchedule = ({ date }: Props) => {
           onClick={() => handleWeekClick(7)}
         />
       </div>
-      <div css={{ position: 'relative', display: 'flex', width: '100%', height: 'calc(100% - 48px)' }}>
-        <WeekdaySchedule
-          today={calendarDate}
-          coach={coach}
-        />
+      <div
+        css={{
+          position: 'relative',
+          display: 'flex',
+          width: '100%',
+          height: 'calc(100% - 48px)',
+        }}
+      >
+        <WeekdaySchedule today={calendarDate} coach={coach} />
         {/* <WeekdaySchedule
           today={calendarDate}
           coach={coach}
@@ -98,7 +107,7 @@ const DaySchedule = ({ date }: Props) => {
         /> */}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default DaySchedule;

@@ -1,11 +1,8 @@
 type TransferTimeList = {
-	startTime: string;
-	endTime: string;
-}
+  startTime: string;
+  endTime: string;
+};
 type LessonCustomerItemType = TransferTimeList & { isAttendance?: boolean };
 type LessonTimeType = LessonCustomerItemType[];
 
-export type {
-  LessonCustomerItemType,
-  LessonTimeType
-}
+export type { LessonCustomerItemType, LessonTimeType };
