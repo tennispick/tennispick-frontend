@@ -3,11 +3,11 @@ import {  STRING_WEEK_LIST_KR } from "@features/schedule/constants/schedule";
 type Props = {
   weekKrIndex: number;
   weekListCount: number;
-  dayYearList: {[key: string]: {[key: string]: Array<number>}};
+  monthList: {[key: string]: Array<number>};
   coach: any;
 }
 
-const ScheduleTableHeader = ({ weekKrIndex, weekListCount, dayYearList, coach } : Props) =>{
+const ScheduleTableHeader = ({ weekKrIndex, weekListCount, monthList, coach } : Props) =>{
 
   return(
     <div css={{ display: 'flex', width: '100%' }}>
@@ -16,18 +16,11 @@ const ScheduleTableHeader = ({ weekKrIndex, weekListCount, dayYearList, coach } 
         <div css={{ borderRight: '1px solid var(--black100)', borderBottom: '1px solid var(--black100)', }}>{STRING_WEEK_LIST_KR[weekKrIndex]}</div>
       </div>
       <div css={{ display: 'flex', width: '92%' }}>
-        {Object.keys(dayYearList).map((year) => {
-
-          const dayMonthList = dayYearList[year];
-          return(
-            <ScheduleTableHeader.MonthContainer
-              key={year}
-              weekListCount={weekListCount}
-              coach={coach}
-              monthList={dayMonthList}
-            />
-          )
-        })}
+        <ScheduleTableHeader.MonthContainer
+          weekListCount={weekListCount}
+          coach={coach}
+          monthList={monthList}
+        />
       </div>
     </div>
   )
@@ -76,17 +69,14 @@ ScheduleTableHeader.MonthContainer = ({ weekListCount, coach, monthList }: Month
             {monthList[month].map((day) => {
               return(
                 <div key={day} css={{ width: `calc(100%/${month.length})`}} >
-                  <ScheduleTableHeader.CoachContainer
-                    coach={coach}
-                  />
+                  <ScheduleTableHeader.CoachContainer coach={coach} />
                   <div
                     css={{
                       textAlign: 'center',
                       borderBottom: '1px solid var(--black100)',
                       borderRight: '1px solid var(--black100)'
                     }}
-                  >
-                    {month}/{day}
+                  >{month}/{day}
                   </div>
                 </div>
               )
