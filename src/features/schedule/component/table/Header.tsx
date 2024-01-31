@@ -3,7 +3,7 @@ import { STRING_WEEK_LIST_KR } from '@features/schedule/constants/schedule';
 type Props = {
   weekKrIndex: number;
   weekListCount: number;
-  monthList: { [key: string]: Array<number> };
+  monthList: any;
   coach: any;
 };
 
@@ -13,6 +13,7 @@ const ScheduleTableHeader = ({
   monthList,
   coach,
 }: Props) => {
+
   return (
     <div css={{ display: 'flex', width: '100%' }}>
       <div css={{ width: '8%' }}>
@@ -71,24 +72,25 @@ const CoachContainer = ({ coach }: any) => {
 type MonthProps = {
   weekListCount: number;
   coach: any;
-  monthList: { [key: string]: Array<number> };
+  monthList: Map<string, Array<number>>;
 };
 
 const MonthContainer = ({ weekListCount, coach, monthList }: MonthProps) => {
+
   return (
     <>
-      {Object.keys(monthList).map((month) => {
+      {Array.from(monthList).map(([month, monthDateList]) => {
         return (
           <div
             key={month}
             css={{
               display: 'flex',
-              width: `calc((100%/${weekListCount})*${monthList[month].length})`,
+              width: `calc((100%/${weekListCount})*${monthDateList.length})`,
             }}
           >
-            {monthList[month].map((day) => {
+            {monthDateList.map((date: number) => {
               return (
-                <div key={day} css={{ width: `calc(100%/${month.length})` }}>
+                <div key={date} css={{ width: `calc(100%/${monthDateList.length})` }}>
                   <ScheduleTableHeader.CoachContainer coach={coach} />
                   <div
                     css={{
@@ -97,7 +99,7 @@ const MonthContainer = ({ weekListCount, coach, monthList }: MonthProps) => {
                       borderRight: '1px solid var(--black100)',
                     }}
                   >
-                    {month}/{day}
+                    {month}/{date}
                   </div>
                 </div>
               );

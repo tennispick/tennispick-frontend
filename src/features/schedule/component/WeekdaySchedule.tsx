@@ -1,14 +1,15 @@
+import { CoachType } from '@features/coach/type/coach.type';
 import ScheduleDate from './ScheduleDate';
 import { GET_WEEK_LIST_COUNT } from '@features/constant/schedule';
 import { getDayOfWeekList } from '@utils/date';
 
 type Props = {
-  coach: any;
-  today: Date;
+  coach: Array<CoachType>;
+  date: Date;
 };
 
-const WeekdaySchedule = ({ coach, today }: Props) => {
-  const dayList = getDayOfWeekList(today, GET_WEEK_LIST_COUNT, true);
+const WeekdaySchedule = ({ coach, date }: Props) => {
+  const dayList = getDayOfWeekList(date, GET_WEEK_LIST_COUNT, true);
 
   return (
     <div css={{ position: 'relative', width: '50%', height: '100%' }}>

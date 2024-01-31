@@ -1,5 +1,4 @@
 import ScheduleTableHeader from './table/Header';
-import { CalendarDayList } from '../type/calendar.type';
 import { STRING_WEEK_LIST } from '../constants/schedule';
 import dynamic from 'next/dynamic';
 const ScheduleTableBody = dynamic(() => import('./table/Body'), {
@@ -8,11 +7,12 @@ const ScheduleTableBody = dynamic(() => import('./table/Body'), {
 
 type Props = {
   weekListCount: number;
-  lists: CalendarDayList<number>;
+  lists: Map<string, Map<string, Array<number>>>;
   coach: any;
 };
 
 const ScheduleDate = ({ weekListCount, lists, coach }: Props) => {
+
   return (
     <section
       css={{
@@ -21,15 +21,11 @@ const ScheduleDate = ({ weekListCount, lists, coach }: Props) => {
         padding: '0 16px 0 0',
       }}
     >
-      {Object.keys(lists).map((weekDayEn) => {
-        const monthList = lists[weekDayEn];
-        const weekKrIndex = STRING_WEEK_LIST.findIndex(
-          (week) => week === weekDayEn,
-        );
-
+      {Array.from(lists).map(([key, monthMapList]) => {
+        const weekKrIndex = STRING_WEEK_LIST.findIndex((week) => week === key,);
         return (
           <div
-            key={weekDayEn}
+            key={key}
             css={{
               textAlign: 'center',
               width: '100%',
@@ -41,18 +37,17 @@ const ScheduleDate = ({ weekListCount, lists, coach }: Props) => {
             <ScheduleTableHeader
               weekListCount={weekListCount}
               weekKrIndex={weekKrIndex}
-              monthList={monthList}
+              monthList={monthMapList}
               coach={coach}
             />
             <ScheduleTableBody
               weekListCount={weekListCount}
-              monthList={monthList}
+              monthList={monthMapList}
               coach={coach}
             />
           </div>
         );
       })}
-      ;
     </section>
   );
 };
