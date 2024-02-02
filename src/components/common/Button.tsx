@@ -22,8 +22,8 @@ const Button = ({
   alt = '',
   placeholder = 'empty',
   imageCss = {
-    width: '16px',
-    height: '16px',
+    width: 16,
+    height: 16,
     margin: '0 8px 0 0',
   },
   onClick,

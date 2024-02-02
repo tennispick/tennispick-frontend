@@ -8,12 +8,10 @@ type Props = {
 const ScheduleCreateModal = ({ modalType }: Props) => {
   return (
     <>
-      {
-        {
-          regular: <ModalRegularLesson />,
-          additional: <ModalAdditionalLesson />,
-        }[modalType]
-      }
+      {{
+        regular: <ModalRegularLesson />,
+        additional: <ModalAdditionalLesson />,
+      }[modalType]}
     </>
   );
 };

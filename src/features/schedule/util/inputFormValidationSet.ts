@@ -1,4 +1,4 @@
-const commonFormDataValidationSet = {
+const commonDataValidationSet = {
   scheduleType: '스케줄 등록유형이 선택되지 않았어요.', // 스케줄 등록유형
   lessonType: '레슨유형이 선택되지 않았어요.', // 레슨유형
   customer: '회원님을 1명이상 선택해주세요.', // 회원
@@ -27,11 +27,11 @@ const individualCreateFormValidationSet = {
 };
 
 const regularLessonFormDataValidationSet = {
-  ...commonFormDataValidationSet,
+  ...commonDataValidationSet,
 };
 
 export {
-  commonFormDataValidationSet,
+  commonDataValidationSet,
   allCreateFormDataValidationSet,
   individualCreateFormValidationSet,
   regularLessonFormDataValidationSet,

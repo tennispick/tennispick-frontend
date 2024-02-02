@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { commonFormInputList } from '@features/schedule/data/formdataInputList';
+import { commonInputList } from '@features/schedule/data/formdataInputList';
 import Image from 'next/image';
 import ScheduleModalRadioInput from '../RadioInput';
 import ScheduleModalSelectBox from '../SelectBox';
@@ -12,22 +12,25 @@ import { FormCommonInputType } from '@features/schedule/type/schedule.type';
 import { handleDuplicateDataCheck } from '@utils/dataCheck';
 
 type Props = {
-  commonFormData: FormCommonInputType;
-  onChangeCommonFormData: UseInputType<HTMLInputElement | HTMLSelectElement>;
-  setCommonFormData: Dispatch<SetStateAction<FormCommonInputType>>;
+  commonData: FormCommonInputType;
+  onChangeCommonData: UseInputType<HTMLInputElement | HTMLSelectElement>;
+  setCommonData: Dispatch<SetStateAction<FormCommonInputType>>;
 };
 
 const ScheduleModalRegularLessonCommonInputFormList = ({
-  commonFormData,
-  onChangeCommonFormData,
-  setCommonFormData,
+  commonData,
+  onChangeCommonData,
+  setCommonData,
 }: Props) => {
+
+  const { customer } = commonData;
+
   const { data: customerList } = getCustomerQuery();
-  const { data: lessonList } = getLessonQuery();
+  const { data: lessonList } = getLessonQuery({ id: customer[0]?.id });
 
   return (
     <div css={{ position: 'relative', width: '20%' }}>
-      {commonFormInputList.map(
+      {commonInputList.map(
         ({ type, fieldType, list, title, icon, alt }) => {
           if (type === 'customer' && customerList)
             handleDuplicateDataCheck({
@@ -44,31 +47,29 @@ const ScheduleModalRegularLessonCommonInputFormList = ({
                 {title}
               </HeadContainer>
               <div css={{ margin: '12px 0 0 0' }}>
-                {
-                  {
-                    radio: (
-                      <ScheduleModalRadioInput
-                        lesson={''}
-                        type={type}
-                        radioList={list}
-                        onChangeFormData={onChangeCommonFormData}
-                      />
-                    ),
-                    select: (
-                      <ScheduleModalSelectBox
-                        type={type}
-                        selectList={list}
-                        onChangeFormData={onChangeCommonFormData}
-                      />
-                    ),
-                    search: (
-                      <ScheduleModalSearchInput
-                        formData={commonFormData}
-                        setFormData={setCommonFormData}
-                      />
-                    ),
-                  }[fieldType]
-                }
+                {{
+                  radio: (
+                    <ScheduleModalRadioInput
+                      lesson={''}
+                      type={type}
+                      radioList={list}
+                      onChangeFormData={onChangeCommonData}
+                    />
+                  ),
+                  select: (
+                    <ScheduleModalSelectBox
+                      type={type}
+                      selectList={list}
+                      onChangeFormData={onChangeCommonData}
+                    />
+                  ),
+                  search: (
+                    <ScheduleModalSearchInput
+                      formData={commonData}
+                      setFormData={setCommonData}
+                    />
+                  ),
+                }[fieldType]}
               </div>
             </div>
           );
