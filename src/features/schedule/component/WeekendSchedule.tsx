@@ -1,4 +1,4 @@
-import { CoachType } from "@features/coach/type/coach.type";
+import { CoachType } from '@features/coach/type/coach.type';
 import ScheduleDate from './ScheduleDate';
 import { GET_WEEK_LIST_COUNT } from '@features/constant/schedule';
 import { getDayOfWeekList } from '@utils/date';
@@ -9,7 +9,6 @@ type Props = {
 };
 
 const WeekendSchedule = ({ date, coach }: Props) => {
-
   const dayList = getDayOfWeekList(date, GET_WEEK_LIST_COUNT, false);
 
   return (

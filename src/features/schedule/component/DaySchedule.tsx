@@ -7,7 +7,6 @@ type Props = {
 };
 
 const DaySchedule = ({ date }: Props) => {
-
   const [coach] = useState([
     {
       id: 1,
@@ -37,7 +36,9 @@ const DaySchedule = ({ date }: Props) => {
   ]);
 
   return (
-    <div css={{ position: 'relative', width: '100%', height: 'calc(100% - 64px)' }}>
+    <div
+      css={{ position: 'relative', width: '100%', height: 'calc(100% - 64px)' }}
+    >
       <div css={{ padding: '0 0 12px 0' }}>
         {/* <ul css={{ display: 'flex' }}>
           {coach.map((el) => (

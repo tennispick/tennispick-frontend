@@ -12,7 +12,6 @@ type Props = {
 };
 
 const ScheduleDate = ({ weekListCount, lists, coach }: Props) => {
-
   return (
     <section
       css={{
@@ -22,7 +21,7 @@ const ScheduleDate = ({ weekListCount, lists, coach }: Props) => {
       }}
     >
       {Array.from(lists).map(([key, monthMapList]) => {
-        const weekKrIndex = STRING_WEEK_LIST.findIndex((week) => week === key,);
+        const weekKrIndex = STRING_WEEK_LIST.findIndex((week) => week === key);
         return (
           <div
             key={key}

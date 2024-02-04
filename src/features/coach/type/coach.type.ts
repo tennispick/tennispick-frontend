@@ -4,6 +4,4 @@ type CoachType = {
   color?: string;
 };
 
-export type {
-  CoachType
-}
+export type { CoachType };

@@ -13,7 +13,6 @@ const ScheduleTableHeader = ({
   monthList,
   coach,
 }: Props) => {
-
   return (
     <div css={{ display: 'flex', width: '100%' }}>
       <div css={{ width: '8%' }}>
@@ -76,7 +75,6 @@ type MonthProps = {
 };
 
 const MonthContainer = ({ weekListCount, coach, monthList }: MonthProps) => {
-
   return (
     <>
       {Array.from(monthList).map(([month, monthDateList]) => {
@@ -90,7 +88,10 @@ const MonthContainer = ({ weekListCount, coach, monthList }: MonthProps) => {
           >
             {monthDateList.map((date: number) => {
               return (
-                <div key={date} css={{ width: `calc(100%/${monthDateList.length})` }}>
+                <div
+                  key={date}
+                  css={{ width: `calc(100%/${monthDateList.length})` }}
+                >
                   <ScheduleTableHeader.CoachContainer coach={coach} />
                   <div
                     css={{

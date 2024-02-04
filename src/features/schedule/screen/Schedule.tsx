@@ -31,11 +31,23 @@ const Schedule = () => {
     <>
       <PageHeader title={'스케줄 관리'} />
       <div>코치 영역</div>
-      <div css={{ display: 'flex', justifyContent: 'end', margin: '0 0 16px 0' }}>
-        <Button label='이전' onClick={() => handleWeekClick(-7)} css={{ minWidth: '100px', padding: '10px 16px', margin: '0 8px 0 0' }} />
-        <Button label='다음' onClick={() => handleWeekClick(7) } css={{ minWidth: '100px', padding: '10px 16px' }} />
+      <div
+        css={{ display: 'flex', justifyContent: 'end', margin: '0 0 16px 0' }}
+      >
+        <Button
+          label="이전"
+          onClick={() => handleWeekClick(-7)}
+          css={{ minWidth: '100px', padding: '10px 16px', margin: '0 8px 0 0' }}
+        />
+        <Button
+          label="다음"
+          onClick={() => handleWeekClick(7)}
+          css={{ minWidth: '100px', padding: '10px 16px' }}
+        />
       </div>
-      <div css={{ display: 'flex', justifyContent: 'end', margin: '0 0 16px 0' }}>
+      <div
+        css={{ display: 'flex', justifyContent: 'end', margin: '0 0 16px 0' }}
+      >
         <Button
           variant={'iconBtn'}
           label={'일정 등록하기'}
@@ -43,7 +55,7 @@ const Schedule = () => {
           css={{
             backgroundColor: 'var(--business-active-color)',
             color: 'var(--white100)',
-            margin: '0 8px 0 0'
+            margin: '0 8px 0 0',
           }}
           onClick={() => {
             setShowModal(true);
@@ -64,12 +76,13 @@ const Schedule = () => {
           }}
         />
       </div>
-      {/* Suspense */}
       <DaySchedule date={calendarDate} />
       {showModal && (
         <Portal id={'portal'}>
           <Modal
-            title={ modalType === 'regular' ? '정규 스케줄 등록' : '보강 스케줄 등록' }
+            title={
+              modalType === 'regular' ? '정규 스케줄 등록' : '보강 스케줄 등록'
+            }
             showModal={showModal}
             setShowModal={setShowModal}
             css={{

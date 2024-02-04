@@ -6,9 +6,14 @@ import { useState } from 'react';
 const Sales = () => {
   const [data] = useState([]);
 
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth() + 1;
+  const date = today.getDate();
+
   return (
     <DashBoardItem
-      title={'2023.07.31. 까지의 매출현황이에요!'}
+      title={`${year}.${month}.${date} 까지의 매출현황이에요!`}
       width={'calc(60% - 12px)'}
       height={'0'}
       minHeight={'65vh'}

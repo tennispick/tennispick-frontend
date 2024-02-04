@@ -30,7 +30,6 @@ const getBusinessHours = () => {
 };
 
 const ScheduleTableBody = ({ weekListCount, monthList, coach }: Props) => {
-
   const [user] = useRecoilState(userState);
 
   const { lesson_setting_time: lessonSettingTime } = user;

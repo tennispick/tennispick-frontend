@@ -30,7 +30,6 @@ const ScheduleModalSearchInput = ({ formData, setFormData }: Props) => {
   };
 
   const handleCustomerSelect = (id: string, name: string) => {
-
     // 개인레슨일 때, 이미 선택된 사람이 있으면 선택된 사람으로 변경
     if (lessonType === 'private' && customer.length > 0) {
       setFormData((prev: FormCommonInputType) => ({

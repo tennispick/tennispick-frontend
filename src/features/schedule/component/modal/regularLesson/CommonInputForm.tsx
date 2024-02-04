@@ -22,7 +22,6 @@ const ScheduleModalRegularLessonCommonInputFormList = ({
   onChangeCommonData,
   setCommonData,
 }: Props) => {
-
   const { customer } = commonData;
 
   const { data: customerList } = getCustomerQuery();
@@ -30,24 +29,24 @@ const ScheduleModalRegularLessonCommonInputFormList = ({
 
   return (
     <div css={{ position: 'relative', width: '20%' }}>
-      {commonInputList.map(
-        ({ type, fieldType, list, title, icon, alt }) => {
-          if (type === 'customer' && customerList)
-            handleDuplicateDataCheck({
-              prevList: list,
-              list: customerList.data,
-            });
-          if (type === 'lesson' && lessonList)
-            handleDuplicateDataCheck({ prevList: list, list: lessonList.data });
+      {commonInputList.map(({ type, fieldType, list, title, icon, alt }) => {
+        if (type === 'customer' && customerList)
+          handleDuplicateDataCheck({
+            prevList: list,
+            list: customerList.data,
+          });
+        if (type === 'lesson' && lessonList)
+          handleDuplicateDataCheck({ prevList: list, list: lessonList.data });
 
-          return (
-            <div css={{ margin: '0 0 24px 0' }} key={type}>
-              <HeadContainer>
-                <Image src={icon} alt={alt} width={20} height={20} />
-                {title}
-              </HeadContainer>
-              <div css={{ margin: '12px 0 0 0' }}>
-                {{
+        return (
+          <div css={{ margin: '0 0 24px 0' }} key={type}>
+            <HeadContainer>
+              <Image src={icon} alt={alt} width={20} height={20} />
+              {title}
+            </HeadContainer>
+            <div css={{ margin: '12px 0 0 0' }}>
+              {
+                {
                   radio: (
                     <ScheduleModalRadioInput
                       lesson={''}
@@ -69,12 +68,12 @@ const ScheduleModalRegularLessonCommonInputFormList = ({
                       setFormData={setCommonData}
                     />
                   ),
-                }[fieldType]}
-              </div>
+                }[fieldType]
+              }
             </div>
-          );
-        },
-      )}
+          </div>
+        );
+      })}
     </div>
   );
 };

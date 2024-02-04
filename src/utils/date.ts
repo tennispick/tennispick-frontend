@@ -521,9 +521,8 @@ const getCalendarWeekdayList = (date: Date, weekCount: number) => {
     return acc;
   }, []);
 
-  weekList.map(
-    (day: string) =>
-      result.set(day, getWeekDayDateListByDay(date, day, weekCount)),
+  weekList.map((day: string) =>
+    result.set(day, getWeekDayDateListByDay(date, day, weekCount)),
   );
   return result;
 };
@@ -535,9 +534,8 @@ const getCalendarWeekendList = (date: Date, weekCount: number) => {
 
     return acc;
   }, []);
-  weekList.map(
-    (day: string) =>
-      result.set(day, getWeekDayDateListByDay(date, day, weekCount)),
+  weekList.map((day: string) =>
+    result.set(day, getWeekDayDateListByDay(date, day, weekCount)),
   );
   return result;
 };

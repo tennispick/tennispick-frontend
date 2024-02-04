@@ -2,10 +2,10 @@ import useInput from '@hooks/useInput';
 import AllOnceCreateInputForm from './AllOnceCreate/InputForm';
 import CommonInputForm from './CommonInputForm';
 import IndividualCreateInputForm from './IndividualCreate/InputForm';
-import { FormEvent, useEffect } from 'react';
+import { FormEvent } from 'react';
 import { Button } from '@components/index';
 import { EditWhiteIcon } from '@icons/index';
-import { FormAllOnceCreateType } from '@features/schedule/type/schedule.type';
+// import { FormAllOnceCreateType } from '@features/schedule/type/schedule.type';
 import {
   handleInputValidationCheck,
   handleInputArrayValidationCheck,

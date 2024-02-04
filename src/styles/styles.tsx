@@ -117,6 +117,7 @@ export const globalStyles = (
         --blue200: rgba(20, 180, 199, 100); // #14B4C7
         --blue300: rgba(55, 159, 255, 100); // #379FFF
         --blue400: rgba(32, 77, 195, 100); // #204DC3
+        --blue500: rgba(0, 119, 240, 100); // #0077F0
         --blue900: rgba(208, 217, 255, 100); // #D0D9FF
 
         --green100: rgba(3, 199, 90, 100); // #03C75A
@@ -137,13 +138,11 @@ export const globalStyles = (
         --grey400: rgba(248, 248, 248, 100); // #F8F8F8
         --grey500: rgba(243, 243, 243, 100); // #F3F3F3
         --grey600: rgba(249, 249, 249, 100); // #F9F9F9
+        --grey800: rgba(174, 174, 174, 100); // #AEAEAE
         --grey1000: rgba(146, 146, 146, 100); // #929292
 
         --business-active-color: rgba(101, 165, 185, 100); // #65A5B9
         --deactive-color: rgba(204, 204, 204, 100); // #CCCCCC
-        --primary-gradient-color: rgba();
-        --positive-gradient-color: rgba();
-        --negative-gradient-color: rgba();
       }
 
       :is(html, body) {
