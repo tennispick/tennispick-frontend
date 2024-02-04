@@ -1,7 +1,7 @@
-import Schedule from '@features/schedule/screen/Schedule';
+import ScheduleScreen from '@features/schedule/screen/Schedule';
 
 const SchedulePage = () => {
-  return <Schedule />;
+  return <ScheduleScreen />;
 };
 
 export default SchedulePage;

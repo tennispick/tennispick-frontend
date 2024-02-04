@@ -1,5 +1,11 @@
+import TabLists from "../component/TabLists";
+
 const SettingScreen = () => {
-  return <>환경설정 페이지</>;
+  return (
+    <div>
+      <TabLists />
+    </div>
+  );
 };
 
 export default SettingScreen;

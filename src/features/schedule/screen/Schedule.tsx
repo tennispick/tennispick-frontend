@@ -64,6 +64,7 @@ const Schedule = () => {
           }}
         />
       </div>
+      {/* Suspense */}
       <DaySchedule date={calendarDate} />
       {showModal && (
         <Portal id={'portal'}>
