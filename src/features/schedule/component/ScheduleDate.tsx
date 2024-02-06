@@ -1,7 +1,9 @@
 import ScheduleTableHeader from './table/Header';
 import { STRING_WEEK_LIST } from '../constants/schedule';
 import dynamic from 'next/dynamic';
+import Loading from '@components/common/Loading';
 const ScheduleTableBody = dynamic(() => import('./table/Body'), {
+  loading: () => <Loading />,
   ssr: false,
 });
 

@@ -3,9 +3,7 @@ import { useEffect, useState } from 'react';
 import Modal from '@components/layer/Modal';
 import { getCustomerQuery } from '@queries/index';
 import {
-  Filter,
   PageHeader,
-  Search,
   TabList,
   Button,
   CustomerList,
@@ -35,8 +33,8 @@ const CustomerPage = () => {
   return (
     <>
       <PageHeader title={'회원 목록'} />
-      <Filter />
-      <Search />
+      {/* <Filter /> */}
+      {/* <Search /> */}
       <TabList
         state={currentTab}
         setState={setCurrentTab}

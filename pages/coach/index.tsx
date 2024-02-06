@@ -1,14 +1,7 @@
 import { useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 
-import {
-  Filter,
-  PageHeader,
-  Search,
-  TabList,
-  Button,
-  CoachList,
-} from '@components/index';
+import { PageHeader, TabList, Button, CoachList } from '@components/index';
 import { CustomerWhiteIcon } from '@icons/index';
 
 const CoachPage = () => {
@@ -36,8 +29,8 @@ const CoachPage = () => {
   return (
     <>
       <PageHeader title={'코치 목록'} />
-      <Filter />
-      <Search />
+      {/* <Filter /> */}
+      {/* <Search /> */}
       <TabList
         state={currentTab}
         setState={setCurrentTab}
