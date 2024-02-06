@@ -2,7 +2,7 @@ import CalendarBlackIcon from '@icons/calendar_black.svg';
 import CustomerBlackIcon from '@icons/customer_black.svg';
 import LessonCouponBlackIcon from '@icons/lesson_coupon_black.svg';
 
-const commonFormInputList = [
+const commonInputList = [
   {
     type: 'scheduleType',
     fieldType: 'radio',
@@ -161,4 +161,4 @@ const formInputList = [
   },
 ];
 
-export { commonFormInputList, formInputList };
+export { commonInputList, formInputList };

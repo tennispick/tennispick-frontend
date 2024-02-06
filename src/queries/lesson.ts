@@ -1,13 +1,17 @@
 import { axios } from '@utils/axios';
 import { useQuery } from '@tanstack/react-query';
 
-const getLessonFetch = async (): Promise<any> => await axios.get('/lesson');
+type LessonPayload = {
+  id?: string;
+};
 
-const getLessonQuery = (): any => {
+const getLessonFetch = async ({ id }: LessonPayload): Promise<any> =>
+  await axios.get(`/lesson?id=${id}`);
+const getLessonQuery = ({ id }: LessonPayload): any => {
   try {
     const { data } = useQuery({
-      queryKey: ['lesson'],
-      queryFn: async () => await getLessonFetch(),
+      queryKey: ['lesson', id],
+      queryFn: async () => await getLessonFetch({ id }),
     });
     return {
       data: data,

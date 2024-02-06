@@ -15,6 +15,7 @@ interface Props {
 
 const ModalCustomer = ({ ...props }: Props) => {
   const { customerInfo } = props;
+  console.log(customerInfo);
 
   if (customerInfo) {
     const data = getCustomerDetailQuery(customerInfo.customer_id);
@@ -130,7 +131,7 @@ const Container = styled.section({
   borderBottom: '1px solid var(--grey100)',
   display: 'flex',
   justifyContent: 'space-between',
-  padding: '0 24px',
+  padding: '8px 24px',
 });
 const CustomerInfoContainer = styled.div({
   position: 'relative',

@@ -10,7 +10,7 @@ const Intro = () => {
   return (
     <Container>
       <AdvertiseContainer>
-        <AdvertiseWrapper>광고 및 소개영역</AdvertiseWrapper>
+        <AdvertiseWrapper></AdvertiseWrapper>
       </AdvertiseContainer>
       <SiteMapContainer>
         <Image

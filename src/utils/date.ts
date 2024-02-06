@@ -5,7 +5,6 @@ import {
   STRING_WEEK_LIST,
   STRING_WEEK_LIST_KR,
 } from '@features/schedule/constants/schedule';
-import { CalendarDayList } from '@features/schedule/type/calendar.type';
 
 /**
  * getDay(): 주어진 날짜의 첫 번째 날짜의 요일 정보를 반환
@@ -516,29 +515,27 @@ export const getDayOfWeekList = (
 };
 
 const getCalendarWeekdayList = (date: Date, weekCount: number) => {
-  const result: CalendarDayList<number> = {};
+  const result = new Map();
   const weekList = STRING_WEEK_LIST.reduce((acc: Array<string>, day) => {
     if (day !== 'saturday' && day !== 'sunday') acc.push(day);
     return acc;
   }, []);
 
-  weekList.map(
-    (day: string) =>
-      (result[day] = getWeekDayDateListByDay(date, day, weekCount)),
+  weekList.map((day: string) =>
+    result.set(day, getWeekDayDateListByDay(date, day, weekCount)),
   );
   return result;
 };
 
 const getCalendarWeekendList = (date: Date, weekCount: number) => {
-  const result: CalendarDayList<number> = {};
+  const result = new Map();
   const weekList = STRING_WEEK_LIST.reduce((acc: Array<string>, day) => {
     if (day === 'saturday' || day === 'sunday') acc.push(day);
 
     return acc;
   }, []);
-  weekList.map(
-    (day: string) =>
-      (result[day] = getWeekDayDateListByDay(date, day, weekCount)),
+  weekList.map((day: string) =>
+    result.set(day, getWeekDayDateListByDay(date, day, weekCount)),
   );
   return result;
 };
@@ -549,7 +546,7 @@ const getWeekDayDateListByDay = (
   inputDay: string,
   weekCount: number,
 ) => {
-  const result: { [key: string]: Array<number> } = {};
+  const result = new Map();
   const calendarDate = new Date(
     inputDate.getFullYear(),
     inputDate.getMonth(),
@@ -567,10 +564,9 @@ const getWeekDayDateListByDay = (
     const month = resultDate.getMonth() + 1;
     const date = resultDate.getDate();
 
-    // if (!result[year]) result[year] = {};
-    if (!result[month]) result[month] = [];
+    if (!result.get(month)) result.set(month, []);
 
-    result[month].push(date);
+    result.get(month).push(date);
 
     calendarDate.setDate(calendarDate.getDate() + 7);
   }

@@ -12,14 +12,14 @@ type LessonTimeType = LessonCustomerItemType[];
 
 type Props = {
   weekListCount: number;
-  monthList: { [key: string]: Array<number> };
+  monthList: Map<string, number[]>;
   coach: any;
 };
 
 type MonthProps = {
   weekListCount: number;
   coach: any;
-  monthList: { [key: string]: Array<number> };
+  monthList: Map<string, number[]>;
 };
 
 const getBusinessHours = () => {
@@ -99,18 +99,18 @@ const CoachContainer = ({ coach }: any) => {
 const MonthContainer = ({ weekListCount, coach, monthList }: MonthProps) => {
   return (
     <>
-      {Object.keys(monthList).map((month) => {
+      {Array.from(monthList).map(([month, dayList]) => {
         return (
           <div
             key={month}
             css={{
               display: 'flex',
-              width: `calc((100%/${weekListCount})*${monthList[month].length})`,
+              width: `calc((100%/${weekListCount})*${dayList.length})`,
             }}
           >
-            {monthList[month].map((day) => {
+            {dayList.map((day) => {
               return (
-                <div key={day} css={{ width: `calc(100%/${month.length})` }}>
+                <div key={day} css={{ width: `calc(100%/${dayList.length})` }}>
                   <ScheduleTableBody.CoachContainer coach={coach} />
                 </div>
               );

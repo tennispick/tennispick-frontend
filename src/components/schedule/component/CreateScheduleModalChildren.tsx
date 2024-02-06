@@ -20,7 +20,7 @@ const CreateScheduleModalChildren = () => {
   const customerList = getCustomerQuery();
 
   // 수강권 목록
-  const lessonList = getLessonQuery();
+  const lessonList = getLessonQuery({ id: customerList.data[0]?.id });
 
   // TODO 일괄등록과 개별등록에 대한 FormData를 다시 설계해야 함
 

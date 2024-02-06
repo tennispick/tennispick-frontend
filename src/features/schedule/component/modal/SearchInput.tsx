@@ -30,8 +30,12 @@ const ScheduleModalSearchInput = ({ formData, setFormData }: Props) => {
   };
 
   const handleCustomerSelect = (id: string, name: string) => {
+    // 개인레슨일 때, 이미 선택된 사람이 있으면 선택된 사람으로 변경
     if (lessonType === 'private' && customer.length > 0) {
-      alert('개인레슨은 한명의 회원만 선택할 수 있습니다.');
+      setFormData((prev: FormCommonInputType) => ({
+        ...prev,
+        customer: [{ id, name }],
+      }));
       setKeyword('');
       return false;
     }

@@ -31,7 +31,8 @@
       "@mocks/*": ["src/mocks/*"],
       "@queries/*": ["src/queries/*"],
       "@styles/*": ["src/styles/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@/types/*": ["src/types/*"]
     }
   },
   "include": [

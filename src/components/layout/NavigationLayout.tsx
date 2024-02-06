@@ -1,12 +1,13 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import styled from '@emotion/styled';
 import { CSS_TYPE } from '@styles/styles';
+import Image from 'next/image';
 import { NavigationList } from 'src/mocks/navigation';
 import Calendar from '@components/home/Calendar';
 import { useState } from 'react';
 import { Modal, Portal } from '@components/index';
 import ScheduleByDate from '@features/layer/scheduleByDate/screen/ScheduleByDate';
+import Logo from '@icons/logo.svg';
 
 type Props = {
   firstPathName: string;
@@ -28,8 +29,21 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
       padding={isNavSpread ? '0 20px 0 0' : '0'}
     >
       <div>
-        <div css={{ width: '100%', minHeight: '8vh' }}>로고</div>
-        <NavLists>
+        {isNavSpread && (
+          <div css={{ width: '100%', minHeight: '48px', padding: '8px 0 0 0' }}>
+            <Image
+              src={Logo}
+              alt="logo"
+              placeholder="empty"
+              priority={true}
+              css={{
+                width: '100%',
+                margin: '0 auto 0 auto',
+              }}
+            />
+          </div>
+        )}
+        <NavLists margin={isNavSpread ? '16px 0 0 0' : '90px 0 0 0'}>
           {NavigationList &&
             NavigationList.map((item) => {
               return (
@@ -96,11 +110,15 @@ const NavContainer = styled.nav<CSS_TYPE>(
     padding: props.padding,
   }),
 );
-const NavLists = styled.ul({
-  position: 'relative',
-  width: '100%',
-  margin: '16px 0 0 0',
-});
+const NavLists = styled.ul<CSS_TYPE>(
+  {
+    position: 'relative',
+    width: '100%',
+  },
+  (props) => ({
+    margin: props.margin,
+  }),
+);
 const NavList = styled.li<CSS_TYPE>(
   {
     display: 'flex',

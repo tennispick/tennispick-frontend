@@ -1,10 +1,15 @@
+import { CoachType } from '@features/coach/type/coach.type';
+import ScheduleDate from './ScheduleDate';
+import { GET_WEEK_LIST_COUNT } from '@features/constant/schedule';
+import { getDayOfWeekList } from '@utils/date';
+
 type Props = {
-  coach: any;
-  today: Date;
+  date: Date;
+  coach: Array<CoachType>;
 };
 
-const WeekendSchedule = ({}: Props) => {
-  // const dayWeekList = getDayOfWeek({ date: today, weekCount: GET_WEEK_LIST_COUNT, isWeekDay: false });
+const WeekendSchedule = ({ date, coach }: Props) => {
+  const dayList = getDayOfWeekList(date, GET_WEEK_LIST_COUNT, false);
 
   return (
     <div css={{ position: 'relative', width: '50%' }}>
@@ -19,6 +24,11 @@ const WeekendSchedule = ({}: Props) => {
       >
         주말
       </div>
+      <ScheduleDate
+        weekListCount={GET_WEEK_LIST_COUNT}
+        lists={dayList}
+        coach={coach}
+      />
     </div>
   );
 };

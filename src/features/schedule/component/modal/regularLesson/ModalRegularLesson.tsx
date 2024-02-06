@@ -2,16 +2,16 @@ import useInput from '@hooks/useInput';
 import AllOnceCreateInputForm from './AllOnceCreate/InputForm';
 import CommonInputForm from './CommonInputForm';
 import IndividualCreateInputForm from './IndividualCreate/InputForm';
-import { FormEvent, useEffect } from 'react';
+import { FormEvent } from 'react';
 import { Button } from '@components/index';
 import { EditWhiteIcon } from '@icons/index';
-import { FormAllOnceCreateType } from '@features/schedule/type/schedule.type';
+// import { FormAllOnceCreateType } from '@features/schedule/type/schedule.type';
 import {
   handleInputValidationCheck,
   handleInputArrayValidationCheck,
 } from '@utils/validation';
 import {
-  commonFormDataValidationSet,
+  commonDataValidationSet,
   allCreateFormDataValidationSet,
   individualCreateFormValidationSet,
 } from '@features/schedule/util/inputFormValidationSet';
@@ -19,7 +19,7 @@ import { useScheduleMutation } from '@features/schedule/mutation/scheduleMutatio
 
 const ModalRegularLesson = () => {
   const { mutate } = useScheduleMutation();
-  const [commonFormData, onChangeCommonFormData, setCommonFormData] = useInput({
+  const [commonData, onChangeCommonData, setCommonData] = useInput({
     scheduleType: 'all', // 스케줄 등록유형
     lessonType: 'private', // 레슨유형
     customer: [], // 회원
@@ -66,23 +66,23 @@ const ModalRegularLesson = () => {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { scheduleType } = commonFormData;
+    const { scheduleType } = commonData;
 
-    const allCreateBody = { ...commonFormData, ...allCreateFormData };
+    const allCreateBody = { ...commonData, ...allCreateFormData };
     const individualBody = {
-      ...commonFormData,
+      ...commonData,
       schedule: [...individualCreateFormData],
     };
 
     if (scheduleType === 'all') {
       const allCheck = handleInputValidationCheck(allCreateBody, {
-        ...commonFormDataValidationSet,
+        ...commonDataValidationSet,
         ...allCreateFormDataValidationSet,
       });
       if (!allCheck) return;
     } else {
       const individualCheck = handleInputArrayValidationCheck(individualBody, {
-        ...commonFormDataValidationSet,
+        ...commonDataValidationSet,
         ...individualCreateFormValidationSet,
       });
       if (!individualCheck) return;
@@ -107,38 +107,38 @@ const ModalRegularLesson = () => {
   // }, [allCreateFormData.lessonTime])
 
   // 주 강습횟수 선택의 변화
-  useEffect(() => {
-    setAllCreateFormData((prev: FormAllOnceCreateType) => {
-      const newSchedule = Array.from(
-        { length: Number(allCreateFormData.weeklyLessonCount) },
-        (_, i) => {
-          const prevDate = prev.schedule[i]?.date || new Date(); // 이전 배열의 날짜 가져오기
-          const newDate = new Date(prevDate);
-          newDate.setDate(prevDate.getDate() + 7 * i); // 7을 곱해서 7일씩 증가
-          return {
-            date: newDate,
-            day: 'monday',
-            startTime: '00:00',
-            endTime: `00:${allCreateFormData.lessonTime}`,
-          };
-        },
-      );
+  // useEffect(() => {
+  //   setAllCreateFormData((prev: FormAllOnceCreateType) => {
+  //     const newSchedule = Array.from(
+  //       { length: Number(allCreateFormData.weeklyLessonCount) },
+  //       (_, i) => {
+  //         const prevDate = prev.schedule[i]?.date || new Date(); // 이전 배열의 날짜 가져오기
+  //         const newDate = new Date(prevDate);
+  //         newDate.setDate(prevDate.getDate() + 7 * i); // 7을 곱해서 7일씩 증가
+  //         return {
+  //           date: newDate,
+  //           day: 'monday',
+  //           startTime: '00:00',
+  //           endTime: `00:${allCreateFormData.lessonTime}`,
+  //         };
+  //       },
+  //     );
 
-      return {
-        ...prev,
-        schedule: [
-          ...prev.schedule.slice(
-            0,
-            Math.min(
-              prev.schedule.length,
-              Number(allCreateFormData.weeklyLessonCount),
-            ),
-          ),
-          ...newSchedule.slice(prev.schedule.length),
-        ],
-      };
-    });
-  }, [allCreateFormData.weeklyLessonCount]);
+  //     return {
+  //       ...prev,
+  //       schedule: [
+  //         ...prev.schedule.slice(
+  //           0,
+  //           Math.min(
+  //             prev.schedule.length,
+  //             Number(allCreateFormData.weeklyLessonCount),
+  //           ),
+  //         ),
+  //         ...newSchedule.slice(prev.schedule.length),
+  //       ],
+  //     };
+  //   });
+  // }, [allCreateFormData.weeklyLessonCount]);
 
   return (
     <form
@@ -147,22 +147,22 @@ const ModalRegularLesson = () => {
     >
       <div css={{ display: 'flex', width: '100%' }}>
         <CommonInputForm
-          commonFormData={commonFormData}
-          onChangeCommonFormData={onChangeCommonFormData}
-          setCommonFormData={setCommonFormData}
+          commonData={commonData}
+          onChangeCommonData={onChangeCommonData}
+          setCommonData={setCommonData}
         />
-        {commonFormData.scheduleType === 'all' ? (
+        {commonData.scheduleType === 'all' ? (
           <AllOnceCreateInputForm
-            scheduleType={commonFormData.scheduleType}
-            lesson={commonFormData.lesson}
+            scheduleType={commonData.scheduleType}
+            lesson={commonData.lesson}
             formData={allCreateFormData}
             onChangeAllCreateFormData={onChangeAllCreateFormData}
             setAllCreateFormData={setAllCreateFormData}
           />
         ) : (
           <IndividualCreateInputForm
-            scheduleType={commonFormData.scheduleType}
-            lesson={commonFormData.lesson}
+            scheduleType={commonData.scheduleType}
+            lesson={commonData.lesson}
             formData={individualCreateFormData}
             onChangeIndividualCreateFormData={onChangeIndividualCreateFormData}
             setIndividualCreateFormData={setIndividualCreateFormData}

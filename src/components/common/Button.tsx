@@ -11,6 +11,7 @@ type ButtonProps = {
   alt?: string;
   placeholder?: 'empty' | 'blur' | undefined;
   imageCss?: any;
+  onClick?: () => void;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button = ({
@@ -21,10 +22,11 @@ const Button = ({
   alt = '',
   placeholder = 'empty',
   imageCss = {
-    width: '16px',
-    height: '16px',
+    width: 16,
+    height: 16,
     margin: '0 8px 0 0',
   },
+  onClick,
   ...props
 }: ButtonProps) => {
   return (
@@ -43,6 +45,7 @@ const Button = ({
             ...BUTTON_VARIANT_STYLE[variant],
           }}
           {...props}
+          onClick={onClick}
         >
           <Image
             src={src}
@@ -66,6 +69,7 @@ const Button = ({
             cursor: 'pointer',
             ...BUTTON_VARIANT_STYLE[variant],
           }}
+          onClick={onClick}
           {...props}
         >
           {label}
