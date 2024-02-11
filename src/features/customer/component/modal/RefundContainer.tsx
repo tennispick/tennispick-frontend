@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-import styled from '@emotion/styled';
 import InputRow from './InputRow';
 import {
   coachOptions,
   couponOptions,
-  discountOptions,
-  lessonCountOptions,
   paymentOptions,
   refundOptions,
   registerOptions,
@@ -106,34 +102,4 @@ const CustomerModalRefundContainer = () => {
   );
 };
 
-const PaymentDescription = styled.div({
-  position: 'absolute',
-  height: '40px',
-  bottom: 0,
-  span: {
-    color: 'var(--red200)',
-    margin: '0 24px 0 0',
-    fontWeight: 600,
-
-    '::before': {
-      content: '"*"',
-      position: 'relative',
-      top: '2px',
-      margin: '0 4px 0 0',
-    },
-  },
-});
-
 export default CustomerModalRefundContainer;
-=======
-
-const CustomerModalRefundContainer = () => {
-  return(
-    <>
-      환불화면
-    </>
-  )
-};
-
-export default CustomerModalRefundContainer;
->>>>>>> dev
