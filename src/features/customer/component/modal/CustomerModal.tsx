@@ -6,6 +6,8 @@ import { Dispatch, SetStateAction } from 'react';
 import CancelBtnIcon from '@icons/cancel_black_btn.svg';
 import ReceiptContainer from './ReceiptContainer';
 import CustomerInfoContainer from './CustomerInfoContainer';
+import PaymentContainer from './PaymentContainer';
+import RefundContainer from './RefundContainer';
 
 type Props = {
   id: string;
@@ -43,14 +45,16 @@ const CustomerModal = ({ id, type, showModal, setShowModal }: Props) => {
             onClick={() => setShowModal(false)}
           />
         </Header>
-        <div css={{ display: 'flex', height: 'calc(100% - 65px)' }}>
+        <form css={{ display: 'flex', height: 'calc(100% - 65px)' }}>
           <div css={{ position: 'relative', width: '70%', height: '100%', borderRight: '1px solid var(--grey100)' }}>
             <CustomerInfoContainer />
-            <div>아래 내용</div>
-            <div>안내문구</div>
+            {{
+              payment: <PaymentContainer />,
+              refund: <RefundContainer />,
+            }[type]}
           </div>
-          <ReceiptContainer />
-        </div>
+          <ReceiptContainer type={type} />
+        </form>
       </Modal>
     </Portal>
   );
