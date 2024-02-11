@@ -14,10 +14,9 @@ type Props = {
   type: string;
   showModal: boolean;
   setShowModal: Dispatch<SetStateAction<boolean>>;
-}
+};
 
 const CustomerModal = ({ id, type, showModal, setShowModal }: Props) => {
-
   const isPayment = type === 'payment';
 
   return (
@@ -35,7 +34,9 @@ const CustomerModal = ({ id, type, showModal, setShowModal }: Props) => {
         setShowModal={setShowModal}
       >
         <Header>
-          <span css={{ fontWeight: 600, fontSize: '1.1rem' }}>{isPayment ? '결제하기' : '환불하기'}</span>
+          <span css={{ fontWeight: 600, fontSize: '1.1rem' }}>
+            {isPayment ? '결제하기' : '환불하기'}
+          </span>
           <Image
             src={CancelBtnIcon}
             alt={'close button'}
@@ -46,12 +47,21 @@ const CustomerModal = ({ id, type, showModal, setShowModal }: Props) => {
           />
         </Header>
         <form css={{ display: 'flex', height: 'calc(100% - 65px)' }}>
-          <div css={{ position: 'relative', width: '70%', height: '100%', borderRight: '1px solid var(--grey100)' }}>
+          <div
+            css={{
+              position: 'relative',
+              width: '70%',
+              height: '100%',
+              borderRight: '1px solid var(--grey100)',
+            }}
+          >
             <CustomerInfoContainer />
-            {{
-              payment: <PaymentContainer />,
-              refund: <RefundContainer />,
-            }[type]}
+            {
+              {
+                payment: <PaymentContainer />,
+                refund: <RefundContainer />,
+              }[type]
+            }
           </div>
           <ReceiptContainer type={type} />
         </form>
