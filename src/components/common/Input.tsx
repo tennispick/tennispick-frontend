@@ -8,13 +8,13 @@ import {
 } from 'react';
 import { ObjectProps } from '@interfaces/common';
 
-interface InputProps {
+type InputProps = {
   id?: string;
   variant?: 'default' | 'labelBox' | 'file';
   label?: string;
   src?: string;
   children: ReactElement | never[];
-}
+};
 
 const Input = ({
   id,
