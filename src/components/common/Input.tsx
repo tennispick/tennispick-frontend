@@ -14,7 +14,7 @@ type InputProps = {
   label?: string;
   src?: string;
   children: ReactElement | never[];
-}
+};
 
 const Input = ({
   id,

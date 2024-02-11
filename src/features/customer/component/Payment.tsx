@@ -10,7 +10,6 @@ type Props = {
 };
 
 const CustomerPayment = ({ id }: Props) => {
-
   const [currentItem, setCurrentItem] = useState(paymentList[0].id);
   const [checkedItems, setCheckedItems] = useState<Array<string>>([]);
 
@@ -24,13 +23,20 @@ const CustomerPayment = ({ id }: Props) => {
       <SectionChildrenLayout
         titleChildren={
           {
-            payment: <CustomerPayment.Payment id={id} checkedItems={checkedItems}/>,
-            refund: <CustomerPayment.Refund  />,
+            payment: (
+              <CustomerPayment.Payment id={id} checkedItems={checkedItems} />
+            ),
+            refund: <CustomerPayment.Refund />,
           }[currentItem]
         }
         contentChildren={
           {
-            payment: <CustomerPayment.PaymentChildren checkedItems={checkedItems} setCheckedItems={setCheckedItems} />,
+            payment: (
+              <CustomerPayment.PaymentChildren
+                checkedItems={checkedItems}
+                setCheckedItems={setCheckedItems}
+              />
+            ),
             refund: <CustomerPayment.RefundChildren />,
           }[currentItem]
         }
@@ -39,8 +45,13 @@ const CustomerPayment = ({ id }: Props) => {
   );
 };
 
-const Payment = ({ id, checkedItems }: { id: string; checkedItems: Array<string> }) => {
-
+const Payment = ({
+  id,
+  checkedItems,
+}: {
+  id: string;
+  checkedItems: Array<string>;
+}) => {
   const isDisabledRefundButton = checkedItems.length === 0;
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalType, setModalType] = useState<string>('');
@@ -89,21 +100,35 @@ const Payment = ({ id, checkedItems }: { id: string; checkedItems: Array<string>
             css={{
               padding: 0,
               border: 0,
-              color: 'var(--red200)',
+              color: isDisabledRefundButton
+                ? 'var(--grey300)'
+                : 'var(--red200)',
               lineHeight: '24px',
-              fontWeight: 600,
-              cursor: 'pointer',
+              fontWeight: isDisabledRefundButton ? 500 : 600,
+              cursor: isDisabledRefundButton ? 'not-allowed' : 'pointer',
             }}
-            onClick={onClickRefundHandler}
-            disabled={isDisabledRefundButton}
+            onClick={() => !isDisabledRefundButton && onClickRefundHandler}
           />
         </div>
       </div>
-      {showModal && <CustomerModal id={id} type={modalType} showModal={showModal} setShowModal={setShowModal} />}
+      {showModal && (
+        <CustomerModal
+          id={id}
+          type={modalType}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
+      )}
     </>
   );
 };
-const PaymentChildren = ({ checkedItems, setCheckedItems }: { checkedItems: Array<string>, setCheckedItems: Dispatch<SetStateAction<Array<string>>> }) => {
+const PaymentChildren = ({
+  checkedItems,
+  setCheckedItems,
+}: {
+  checkedItems: Array<string>;
+  setCheckedItems: Dispatch<SetStateAction<Array<string>>>;
+}) => {
   return (
     <div
       css={{

@@ -29,10 +29,10 @@ const Button = ({
   onClick,
   ...props
 }: ButtonProps) => {
-
   const { disabled } = props;
   const disabledStyle = {
-    color: 'var(--grey100) !important',
+    backgroundColor: 'var(--grey500) !important',
+    color: 'var(--grey800) !important',
     fontWeight: '400 !important',
     cursor: 'not-allowed !important',
   };
