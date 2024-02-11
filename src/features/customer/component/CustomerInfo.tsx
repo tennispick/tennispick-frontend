@@ -23,7 +23,7 @@ const CustomerInfo = ({ id, customer }: Props) => {
   const onClickEditCustomerHandler = () => {};
 
   return (
-    <div css={{ position: 'relative', display: 'flex', height: '35%' }}>
+    <div css={{ position: 'relative', display: 'flex', height: '35%', borderBottom: '1px solid var(--grey100)', margin: '0 0 16px 0' }}>
       <div
         css={{
           position: 'relative',

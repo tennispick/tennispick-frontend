@@ -15,11 +15,11 @@ interface Props {
 
 const ModalCustomer = ({ ...props }: Props) => {
   const { customerInfo } = props;
-  console.log(customerInfo);
+  // console.log(customerInfo);
 
   if (customerInfo) {
     const data = getCustomerDetailQuery(customerInfo.customer_id);
-    console.log(data);
+    // console.log(data);
   }
 
   return (

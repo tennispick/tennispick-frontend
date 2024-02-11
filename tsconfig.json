@@ -39,7 +39,6 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/features/schedule/component/modal/regularLesson/CommonFormInput.tsx"
   ],
   "exclude": ["node_modules"]
 }

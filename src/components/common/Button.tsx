@@ -29,6 +29,14 @@ const Button = ({
   onClick,
   ...props
 }: ButtonProps) => {
+
+  const { disabled } = props;
+  const disabledStyle = {
+    color: 'var(--grey100) !important',
+    fontWeight: '400 !important',
+    cursor: 'not-allowed !important',
+  };
+
   return (
     <>
       {variant === 'iconBtn' || variant === 'iconRadiusBtn' ? (
@@ -43,9 +51,11 @@ const Button = ({
             padding: 0,
             cursor: 'pointer',
             ...BUTTON_VARIANT_STYLE[variant],
+            ...(disabled && disabledStyle),
           }}
-          {...props}
+          disabled={disabled}
           onClick={onClick}
+          {...props}
         >
           <Image
             src={src}
@@ -68,7 +78,9 @@ const Button = ({
             padding: 0,
             cursor: 'pointer',
             ...BUTTON_VARIANT_STYLE[variant],
+            ...(disabled && disabledStyle),
           }}
+          disabled={disabled}
           onClick={onClick}
           {...props}
         >

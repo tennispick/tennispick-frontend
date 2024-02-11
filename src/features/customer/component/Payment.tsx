@@ -1,15 +1,18 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import SNBList from './SNBList';
 import { paymentList } from '../data/snbList';
 import SectionChildrenLayout from './SectionChildrenLayout';
+import { Button } from '@components/index';
+import CustomerModal from './modal/CustomerModal';
 
 type Props = {
   id: string;
 };
 
 const CustomerPayment = ({ id }: Props) => {
-  console.log(id);
+
   const [currentItem, setCurrentItem] = useState(paymentList[0].id);
+  const [checkedItems, setCheckedItems] = useState<Array<string>>([]);
 
   return (
     <section css={{ position: 'relative', width: '49%' }}>
@@ -21,13 +24,13 @@ const CustomerPayment = ({ id }: Props) => {
       <SectionChildrenLayout
         titleChildren={
           {
-            payment: <CustomerPayment.Payment />,
-            refund: <CustomerPayment.Refund />,
+            payment: <CustomerPayment.Payment id={id} checkedItems={checkedItems}/>,
+            refund: <CustomerPayment.Refund  />,
           }[currentItem]
         }
         contentChildren={
           {
-            payment: <CustomerPayment.PaymentChildren />,
+            payment: <CustomerPayment.PaymentChildren checkedItems={checkedItems} setCheckedItems={setCheckedItems} />,
             refund: <CustomerPayment.RefundChildren />,
           }[currentItem]
         }
@@ -36,60 +39,71 @@ const CustomerPayment = ({ id }: Props) => {
   );
 };
 
-const Payment = () => {
+const Payment = ({ id, checkedItems }: { id: string; checkedItems: Array<string> }) => {
+
+  const isDisabledRefundButton = checkedItems.length === 0;
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [modalType, setModalType] = useState<string>('');
+
   // TODO 결제하기, 환불하기 CSS 적용 및 Click Event
 
-  const onClickPaymentHandler = () => {
-    alert('결제하기');
+  const onShowModal = (type: string) => {
+    setShowModal(true);
+    setModalType(type);
   };
 
-  const onClickRefundHandler = () => {
-    alert('환불하기');
-  };
+  const onClickPaymentHandler = () => onShowModal('payment');
+  const onClickRefundHandler = () => onShowModal('refund');
 
   return (
-    <div
-      css={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}
-    >
-      <div css={{ display: 'flex', alignItems: 'center' }}>
-        <div css={{ margin: '0 12px 0 0' }}>
-          총 <span>7</span>건
+    <>
+      <div
+        css={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
+        <div css={{ display: 'flex', alignItems: 'center' }}>
+          <div css={{ margin: '0 12px 0 0' }}>
+            총 <span>7</span>건
+          </div>
+          <div>
+            총 결제금액 : <span>510,000</span>원
+          </div>
         </div>
-        <div>
-          총 결제금액 : <span>510,000</span>원
+        <div css={{ display: 'flex', alignItems: 'center' }}>
+          <div
+            css={{
+              color: 'var(--business-color)',
+              fontWeight: 600,
+              cursor: 'pointer',
+              margin: '0 12px 0 0',
+            }}
+            onClick={onClickPaymentHandler}
+          >
+            결제하기
+          </div>
+          <Button
+            label={'환불하기'}
+            css={{
+              padding: 0,
+              border: 0,
+              color: 'var(--red200)',
+              lineHeight: '24px',
+              fontWeight: 600,
+              cursor: 'pointer',
+            }}
+            onClick={onClickRefundHandler}
+            disabled={isDisabledRefundButton}
+          />
         </div>
       </div>
-      <div css={{ display: 'flex', alignItems: 'center' }}>
-        <div
-          css={{
-            color: 'var(--business-color)',
-            fontWeight: 600,
-            cursor: 'pointer',
-            margin: '0 12px 0 0',
-          }}
-          onClick={onClickPaymentHandler}
-        >
-          결제하기
-        </div>
-        <div
-          css={{
-            color: 'var(--red200)',
-            fontWeight: 600,
-            cursor: 'pointer',
-          }}
-          onClick={onClickRefundHandler}
-        >
-          환불하기
-        </div>
-      </div>
-    </div>
+      {showModal && <CustomerModal id={id} type={modalType} showModal={showModal} setShowModal={setShowModal} />}
+    </>
   );
 };
-const PaymentChildren = () => {
+const PaymentChildren = ({ checkedItems, setCheckedItems }: { checkedItems: Array<string>, setCheckedItems: Dispatch<SetStateAction<Array<string>>> }) => {
   return (
     <div
       css={{
