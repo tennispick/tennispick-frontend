@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import styled from '@emotion/styled';
 import InputRow from './InputRow';
 import {
@@ -124,3 +125,15 @@ const PaymentDescription = styled.div({
 });
 
 export default CustomerModalRefundContainer;
+=======
+
+const CustomerModalRefundContainer = () => {
+  return(
+    <>
+      환불화면
+    </>
+  )
+};
+
+export default CustomerModalRefundContainer;
+>>>>>>> dev
