@@ -1,10 +1,11 @@
 type Props = {
   id: number;
   label: string;
-  onClick: (id: number) => void;
+  checked: boolean;
+  onClick: (e: React.MouseEvent<HTMLInputElement>) => void;
 };
 
-const ToggleInput = ({ id, label, onClick, ...rest }: Props) => {
+const ToggleInput = ({ id, label, checked, onClick, ...rest }: Props) => {
   return (
     <div
       css={{
@@ -19,6 +20,7 @@ const ToggleInput = ({ id, label, onClick, ...rest }: Props) => {
         {label}
       </label>
       <input
+        id={id.toString()}
         type="checkbox"
         css={{
           position: 'relative',
@@ -58,7 +60,8 @@ const ToggleInput = ({ id, label, onClick, ...rest }: Props) => {
             backgroundColor: 'var(--grey100)',
           },
         }}
-        onClick={() => onClick(id)}
+        onClick={(e) => onClick(e)}
+        defaultChecked={checked}
       />
     </div>
   );

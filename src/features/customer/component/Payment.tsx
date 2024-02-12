@@ -100,13 +100,14 @@ const Payment = ({
             css={{
               padding: 0,
               border: 0,
-              color: 'var(--red200)',
+              color: isDisabledRefundButton
+                ? 'var(--grey300)'
+                : 'var(--red200)',
               lineHeight: '24px',
-              fontWeight: 600,
-              cursor: 'pointer',
+              fontWeight: isDisabledRefundButton ? 500 : 600,
+              cursor: isDisabledRefundButton ? 'not-allowed' : 'pointer',
             }}
-            onClick={onClickRefundHandler}
-            disabled={isDisabledRefundButton}
+            onClick={() => !isDisabledRefundButton && onClickRefundHandler}
           />
         </div>
       </div>

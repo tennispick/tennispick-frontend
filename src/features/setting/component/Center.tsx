@@ -1,28 +1,36 @@
 import ToggleInput from '@components/common/ToggleInput';
-import { centerToggleList } from '../data/tabLists';
+import { useSettingListQuery } from '../query/settingQuery';
+import Loading from '@components/common/Loading';
+import { SettingListData } from '@apis/setting/setting.type';
 
-const SettingCenter = () => {
-  const toggleList = centerToggleList;
+type Props = {
+  onClickHandler: (e: React.MouseEvent<HTMLInputElement>) => void;
+};
 
-  const onClickToggleHandler = (id: number) => {
-    console.log(id);
-  };
+const SettingCenter = ({ onClickHandler }: Props) => {
+  const { data, isLoading } = useSettingListQuery({ type: 'center' });
+
+  if (isLoading) return <Loading />;
+  if (!data) return <>준비중이에요.</>;
 
   return (
     <div css={{ margin: '24px 0 0 0' }}>
-      {toggleList.map(({ id, label }) => {
-        return (
-          <ToggleInput
-            key={id}
-            id={id}
-            label={label}
-            css={{
-              margin: '0 0 16px 0',
-            }}
-            onClick={onClickToggleHandler}
-          />
-        );
-      })}
+      {data.data &&
+        data.data.map((configuration: SettingListData) => {
+          const { id, name_kr: name, is_active: isActive } = configuration;
+          return (
+            <ToggleInput
+              key={id}
+              id={id}
+              label={name}
+              checked={isActive === 'Y'}
+              css={{
+                margin: '0 0 16px 0',
+              }}
+              onClick={onClickHandler}
+            />
+          );
+        })}
     </div>
   );
 };
