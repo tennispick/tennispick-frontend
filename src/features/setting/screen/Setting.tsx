@@ -4,9 +4,18 @@ import TabLists from '../component/TabLists';
 import SettingCenter from '../component/Center';
 import SettingCoach from '../component/Coach';
 import SettingPayment from '../component/Payment';
+import { useSettingMutation } from '../mutation/settingMutation';
 
 const SettingScreen = () => {
   const [currentItem, setCurrentItem] = useState<number>(tabLists[0].id);
+
+  const { mutate } = useSettingMutation();
+
+  const onClickToggleHandler = (e: React.MouseEvent<HTMLInputElement>) => {
+    const { id, checked } = e.currentTarget;
+    const isActive = checked ? 'Y' : 'N';
+    mutate({ id, isActive });
+  };
 
   return (
     <div>
@@ -17,9 +26,9 @@ const SettingScreen = () => {
       />
       {
         {
-          1: <SettingCenter />,
-          2: <SettingCoach />,
-          3: <SettingPayment />,
+          1: <SettingCenter onClickHandler={onClickToggleHandler} />,
+          2: <SettingCoach onClickHandler={onClickToggleHandler} />,
+          3: <SettingPayment onClickHandler={onClickToggleHandler} />,
         }[currentItem]
       }
     </div>
