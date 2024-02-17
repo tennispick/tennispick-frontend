@@ -2,18 +2,19 @@ import ScheduleTableHeader from './table/Header';
 import { STRING_WEEK_LIST } from '../constants/schedule';
 import dynamic from 'next/dynamic';
 import Loading from '@components/common/Loading';
+import { CoachListData } from '@apis/coach/coach.type';
 const ScheduleTableBody = dynamic(() => import('./table/Body'), {
   loading: () => <Loading />,
   ssr: false,
 });
 
 type Props = {
-  weekListCount: number;
-  lists: Map<string, Map<string, Array<number>>>;
-  coach: any;
+  timeTableMapList: Map<string, Map<number, Array<number>>>;
+  coach: CoachListData[];
+  data: any;
 };
 
-const ScheduleDate = ({ weekListCount, lists, coach }: Props) => {
+const ScheduleTimeTable = ({ timeTableMapList, coach, data }: Props) => {
   return (
     <section
       css={{
@@ -22,7 +23,7 @@ const ScheduleDate = ({ weekListCount, lists, coach }: Props) => {
         padding: '0 16px 0 0',
       }}
     >
-      {Array.from(lists).map(([key, monthMapList]) => {
+      {Array.from(timeTableMapList).map(([key, monthMapList]) => {
         const weekKrIndex = STRING_WEEK_LIST.findIndex((week) => week === key);
         return (
           <div
@@ -36,15 +37,14 @@ const ScheduleDate = ({ weekListCount, lists, coach }: Props) => {
             }}
           >
             <ScheduleTableHeader
-              weekListCount={weekListCount}
               weekKrIndex={weekKrIndex}
               monthList={monthMapList}
               coach={coach}
             />
             <ScheduleTableBody
-              weekListCount={weekListCount}
               monthList={monthMapList}
               coach={coach}
+              data={data}
             />
           </div>
         );
@@ -53,4 +53,4 @@ const ScheduleDate = ({ weekListCount, lists, coach }: Props) => {
   );
 };
 
-export default ScheduleDate;
+export default ScheduleTimeTable;

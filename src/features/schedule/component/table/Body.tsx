@@ -6,20 +6,17 @@ import {
 import { useRecoilState } from 'recoil';
 import { userState } from '@lib/recoil/userState';
 import { TransferTimeList } from '@interfaces/calendar';
+import { GET_WEEK_LIST_COUNT } from '@features/constant/schedule';
+import { CoachListData } from '@apis/coach/coach.type';
+import { SchduleLessonByStartDateEndDatePeriodData } from '@apis/schedule/schedule.type';
+import { checkOnTime } from '@features/schedule/util/time';
 
-type LessonCustomerItemType = TransferTimeList & { isAttendance?: boolean };
-type LessonTimeType = LessonCustomerItemType[];
+type LessonTimeType = Array<TransferTimeList & { isAttendance?: boolean }>;
 
 type Props = {
-  weekListCount: number;
-  monthList: Map<string, number[]>;
-  coach: any;
-};
-
-type MonthProps = {
-  weekListCount: number;
-  coach: any;
-  monthList: Map<string, number[]>;
+  monthList: Map<number, number[]>;
+  coach: CoachListData[];
+  data: SchduleLessonByStartDateEndDatePeriodData[];
 };
 
 const getBusinessHours = () => {
@@ -29,7 +26,7 @@ const getBusinessHours = () => {
   return [openHours, closedHours];
 };
 
-const ScheduleTableBody = ({ weekListCount, monthList, coach }: Props) => {
+const ScheduleTableBody = ({ monthList, coach, data }: Props) => {
   const [user] = useRecoilState(userState);
 
   const { lesson_setting_time: lessonSettingTime } = user;
@@ -43,10 +40,16 @@ const ScheduleTableBody = ({ weekListCount, monthList, coach }: Props) => {
 
   return (
     <div css={{ fontSize: '0.85rem' }}>
-      {lessonTimeList.map((item) => {
+      {lessonTimeList.map(({ startTime, endTime }) => {
+        let reservationCustomer = null;
+        if (data)
+          reservationCustomer = data.find(
+            (item) => item.startTime === startTime,
+          );
+
         return (
           <div
-            key={item.startTime}
+            key={startTime}
             css={{ display: 'flex', minHeight: '20px', lineHeight: '19px' }}
           >
             <div
@@ -54,15 +57,19 @@ const ScheduleTableBody = ({ weekListCount, monthList, coach }: Props) => {
                 width: '8%',
                 borderRight: '1px solid var(--black100)',
                 borderBottom: '1px solid var(--grey1000)',
+                fontWeight: checkOnTime(startTime) ? 600 : 400,
+                backgroundColor: checkOnTime(startTime)
+                  ? 'var(--grey100)'
+                  : 'var(--white100)',
               }}
             >
-              {item.startTime}
+              {startTime}
             </div>
             <div css={{ display: 'flex', width: '92%' }}>
               <ScheduleTableBody.MonthContainer
-                weekListCount={weekListCount}
                 coach={coach}
                 monthList={monthList}
+                reservationCustomer={reservationCustomer}
               />
             </div>
           </div>
@@ -72,31 +79,62 @@ const ScheduleTableBody = ({ weekListCount, monthList, coach }: Props) => {
   );
 };
 
-const CoachContainer = ({ coach }: any) => {
+const CoachContainer = ({
+  coach,
+  reservationCustomer,
+}: Pick<Props, 'coach'> & {
+  reservationCustomer:
+    | SchduleLessonByStartDateEndDatePeriodData
+    | undefined
+    | null;
+}) => {
   return (
     <div css={{ display: 'flex' }}>
-      {coach.map((el: any) => (
-        <div
-          key={el.id}
-          css={{
-            width: `calc(100%/${coach.length})`,
-            minHeight: '20px',
-            textAlign: 'center',
-            borderRight: '1px solid var(--grey1000)',
-            borderBottom: '1px solid var(--grey1000)',
+      {coach.map((el: any) => {
+        return (
+          <div
+            key={el.id}
+            css={{
+              width: `calc(100%/${coach.length})`,
+              minHeight: '20px',
+              textAlign: 'center',
+              borderRight: '1px solid var(--grey1000)',
+              borderBottom: `${
+                reservationCustomer && el.name === reservationCustomer.coachName
+                  ? ''
+                  : '1px solid var(--grey1000)'
+              }`,
+              backgroundColor: `${
+                reservationCustomer && el.name === reservationCustomer.coachName
+                  ? `var(--${el.coachColor})`
+                  : 'var(--white100)'
+              }`,
 
-            '&:last-child': {
-              borderRight: '1px solid var(--black100)',
-            },
-          }}
-        ></div>
-        // {el.name.charAt(0)}
-      ))}
+              '&:last-child': {
+                borderRight: '1px solid var(--black100)',
+              },
+            }}
+          ></div>
+        );
+      })}
     </div>
   );
 };
 
-const MonthContainer = ({ weekListCount, coach, monthList }: MonthProps) => {
+const MonthContainer = ({
+  coach,
+  monthList,
+  reservationCustomer,
+}: Pick<Props, 'coach' | 'monthList'> & {
+  reservationCustomer:
+    | SchduleLessonByStartDateEndDatePeriodData
+    | undefined
+    | null;
+}) => {
+  const isTargetMonth =
+    reservationCustomer && Number(reservationCustomer.month);
+  const isTargetDate = reservationCustomer && Number(reservationCustomer.date);
+
   return (
     <>
       {Array.from(monthList).map(([month, dayList]) => {
@@ -105,13 +143,20 @@ const MonthContainer = ({ weekListCount, coach, monthList }: MonthProps) => {
             key={month}
             css={{
               display: 'flex',
-              width: `calc((100%/${weekListCount})*${dayList.length})`,
+              width: `calc((100%/${GET_WEEK_LIST_COUNT})*${dayList.length})`,
             }}
           >
             {dayList.map((day) => {
               return (
                 <div key={day} css={{ width: `calc(100%/${dayList.length})` }}>
-                  <ScheduleTableBody.CoachContainer coach={coach} />
+                  <ScheduleTableBody.CoachContainer
+                    coach={coach}
+                    reservationCustomer={
+                      month === isTargetMonth && day === isTargetDate
+                        ? reservationCustomer
+                        : null
+                    }
+                  />
                 </div>
               );
             })}

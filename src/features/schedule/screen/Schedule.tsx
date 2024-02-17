@@ -3,10 +3,9 @@ import PageHeader from '@components/common/PageHeader';
 import Portal from '@components/Portal';
 import Modal from '@components/layer/Modal';
 import ScheduleCreateModal from '@features/schedule/component/modal/CreateModal';
-import { CalendarWhiteIcon } from '@icons/index';
 import DaySchedule from '../component/DaySchedule';
-import { addDays } from '@utils/date';
-import { Button } from '@components/index';
+import ButtonContainer from '../component/ButtonContainer';
+import { useGetCoachListQuery } from '@features/coach/query/coachQuery';
 
 const Schedule = () => {
   const today = new Date();
@@ -15,68 +14,42 @@ const Schedule = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalType, setModalType] = useState<string>('');
 
-  const handleWeekClick = (days: number) => {
-    const currentDayOfWeek = calendarDate.getDay();
-    const mondayDate = new Date(calendarDate);
-    mondayDate.setDate(
-      calendarDate.getDate() -
-        currentDayOfWeek +
-        (currentDayOfWeek === 0 ? -6 : 1),
-    );
-
-    setCalendarDate(addDays(mondayDate, days));
-  };
+  const { data: coachList } = useGetCoachListQuery();
 
   return (
     <>
       <PageHeader title={'스케줄 관리'} />
-      <div>코치 영역</div>
-      <div
-        css={{ display: 'flex', justifyContent: 'end', margin: '0 0 16px 0' }}
-      >
-        <Button
-          label="이전"
-          onClick={() => handleWeekClick(-7)}
-          css={{ minWidth: '100px', padding: '10px 16px', margin: '0 8px 0 0' }}
-        />
-        <Button
-          label="다음"
-          onClick={() => handleWeekClick(7)}
-          css={{ minWidth: '100px', padding: '10px 16px' }}
-        />
+      <div css={{ padding: '0 0 12px 0' }}>
+        <ul css={{ display: 'flex' }}>
+          {coachList &&
+            coachList?.data.map((el) => {
+              return (
+                <li
+                  key={el.id}
+                  css={{
+                    backgroundColor: `var(--${el.coachColor})`,
+                    color: 'var(--white100)',
+                    padding: '8px 16px',
+                    borderRadius: '8px',
+                    margin: '0 8px 0 0',
+                  }}
+                >
+                  <span>{el.name}</span>
+                </li>
+              );
+            })}
+        </ul>
       </div>
-      <div
-        css={{ display: 'flex', justifyContent: 'end', margin: '0 0 16px 0' }}
-      >
-        <Button
-          variant={'iconBtn'}
-          label={'일정 등록하기'}
-          src={CalendarWhiteIcon}
-          css={{
-            backgroundColor: 'var(--business-active-color)',
-            color: 'var(--white100)',
-            margin: '0 8px 0 0',
-          }}
-          onClick={() => {
-            setShowModal(true);
-            setModalType('regular');
-          }}
-        />
-        <Button
-          variant={'iconBtn'}
-          label={'보강 등록하기'}
-          src={CalendarWhiteIcon}
-          css={{
-            backgroundColor: 'var(--business-active-color)',
-            color: 'var(--white100)',
-          }}
-          onClick={() => {
-            setShowModal(true);
-            setModalType('additional');
-          }}
-        />
-      </div>
-      <DaySchedule date={calendarDate} />
+      <ButtonContainer
+        calendarDate={calendarDate}
+        setCalendarDate={setCalendarDate}
+        setModalType={setModalType}
+        setShowModal={setShowModal}
+      />
+      <DaySchedule
+        date={calendarDate}
+        coachList={coachList ? coachList.data : []}
+      />
       {showModal && (
         <Portal id={'portal'}>
           <Modal
