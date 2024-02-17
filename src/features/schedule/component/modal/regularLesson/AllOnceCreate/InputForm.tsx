@@ -8,7 +8,7 @@ import { FormAllOnceCreateType } from '@features/schedule/type/schedule.type';
 import { UseInputType } from 'src/types';
 import { useGetCourtList } from '@features/court/query/courtQuery';
 import { handleDuplicateDataCheck } from '@utils/dataCheck';
-import { useGetCoachList } from '@features/coach/query/coachQuery';
+import { useGetCoachListQuery } from '@features/coach/query/coachQuery';
 import { SetStateAction, Dispatch } from 'react';
 
 type Props = {
@@ -27,16 +27,16 @@ const ScheduleModalRegularLessonAllOnceCreateInputForm = ({
   setAllCreateFormData,
 }: Props) => {
   const { data: courtList } = useGetCourtList();
-  const { data: coachList } = useGetCoachList();
+  const { data: coachList } = useGetCoachListQuery();
 
   return (
     <>
       <div css={{ position: 'relative', width: '25%' }}>
         {formInputList.map(({ type, fieldType, list, title, icon, alt }) => {
-          if (type === 'coach' && coachList)
-            handleDuplicateDataCheck({ prevList: list, list: coachList });
-          if (type === 'court' && courtList)
-            handleDuplicateDataCheck({ prevList: list, list: courtList });
+          // if (type === 'coach' && coachList)
+          //   handleDuplicateDataCheck({ prevList: list, list: coachList });
+          // if (type === 'court' && courtList)
+          //   handleDuplicateDataCheck({ prevList: list, list: courtList });
 
           return (
             <div css={{ margin: '0 0 24px 0' }} key={type}>

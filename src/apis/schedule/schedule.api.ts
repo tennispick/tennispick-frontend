@@ -1,9 +1,29 @@
 import {
   URL_CREATE_SCHEDULE_LESSON,
+  URL_SCHEDULE_LESSON_BY_PERIOD,
   URL_SCHEDULE_LESSON_BY_DATE,
 } from './schedule.url';
 import { axios } from '@utils/axios';
-import { ScheduleLessonByDateApiPayload } from './schedule.type';
+import {
+  ScheduleLessonByDateApiPayload,
+  ScheduleLessonByStartDateEndDatePeriodPayload,
+  SchduleLessonByStartDateEndDatePeriodData,
+} from './schedule.type';
+
+const getScheduleLessonByStartDateEndDatePeriod = async (
+  params: ScheduleLessonByStartDateEndDatePeriodPayload,
+): Promise<SchduleLessonByStartDateEndDatePeriodData> => {
+  try {
+    const { startDate, endDate } = params;
+    const { data } = await axios.get(
+      `${URL_SCHEDULE_LESSON_BY_PERIOD}?startDate=${startDate}&endDate=${endDate}`,
+    );
+    return data;
+  } catch (error: any) {
+    console.log(error);
+    return error;
+  }
+};
 
 const getScheduleLessonByDate = async (
   params: ScheduleLessonByDateApiPayload,
@@ -22,4 +42,8 @@ const createScheduleLesson = async (params: any) => {
   return data;
 };
 
-export { getScheduleLessonByDate, createScheduleLesson };
+export {
+  getScheduleLessonByDate,
+  getScheduleLessonByStartDateEndDatePeriod,
+  createScheduleLesson,
+};

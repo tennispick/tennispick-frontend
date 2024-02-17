@@ -4,6 +4,11 @@ type ScheduleLessonByDateQueryPayload = {
   day: Date;
 };
 
+type ScheduleLessonByStartDateEndDatePeriodQueryPayload = {
+  startDate: Date;
+  endDate: Date;
+};
+
 type FormCommonInputType = {
   scheduleType: string;
   lessonType: string;
@@ -52,6 +57,7 @@ type FormIndividualHandlerType = {
 
 export type {
   ScheduleLessonByDateQueryPayload,
+  ScheduleLessonByStartDateEndDatePeriodQueryPayload,
   FormCommonInputType,
   ScheduleType,
   FormAllOnceCreateType,
