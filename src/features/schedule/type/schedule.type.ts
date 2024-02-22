@@ -9,7 +9,7 @@ type ScheduleLessonByStartDateEndDatePeriodQueryPayload = {
   endDate: Date;
 };
 
-type FormCommonInputType = {
+type CommonFormInputType = {
   scheduleType: string;
   lessonType: string;
   customer: Array<{
@@ -58,7 +58,7 @@ type FormIndividualHandlerType = {
 export type {
   ScheduleLessonByDateQueryPayload,
   ScheduleLessonByStartDateEndDatePeriodQueryPayload,
-  FormCommonInputType,
+  CommonFormInputType,
   ScheduleType,
   FormAllOnceCreateType,
   FormIndividualCreateType,
