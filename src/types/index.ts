@@ -1,4 +1,8 @@
-import { ChangeEventHandler, Dispatch, SetStateAction as StateAction } from 'react';
+import {
+  ChangeEventHandler,
+  Dispatch,
+  SetStateAction as StateAction,
+} from 'react';
 
 type UseQueryType<T> = {
   data: T;
@@ -22,4 +26,10 @@ type UseInputType<T> = ChangeEventHandler<T>;
 
 type ObjectType<T> = { [key: string]: T };
 
-export type { UseQueryType, MutationType, SetStateAction, UseInputType, ObjectType };
+export type {
+  UseQueryType,
+  MutationType,
+  SetStateAction,
+  UseInputType,
+  ObjectType,
+};

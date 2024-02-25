@@ -19,4 +19,8 @@ type CustomerDetailQueryPayLoad = {
   id: string;
 };
 
-export type { CustomerLessonListQueryPayload, CustomerLessonListQueryData, CustomerDetailQueryPayLoad };
+export type {
+  CustomerLessonListQueryPayload,
+  CustomerLessonListQueryData,
+  CustomerDetailQueryPayLoad,
+};

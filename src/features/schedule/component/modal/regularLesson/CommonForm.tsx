@@ -23,9 +23,8 @@ const ScheduleModalRegularLessonCommonForm = ({
   commonData,
   onChangeCommonData,
   setCommonData,
-  lessonList
+  lessonList,
 }: Props) => {
-
   const { customer, lessonType } = commonData;
 
   const [formList, setFormList] = useState<TDataCommonList[]>(commonList);
@@ -37,47 +36,52 @@ const ScheduleModalRegularLessonCommonForm = ({
     setCommonData((prev) => {
       return {
         ...prev,
-        lesson: lessonList && lessonList.length > 0 ? lessonList[0].lessonId.toString() : ''
-      }
-    })
-  }, [lessonList])
+        lesson:
+          lessonList && lessonList.length > 0
+            ? lessonList[0].lessonId.toString()
+            : '',
+      };
+    });
+  }, [lessonList]);
 
   return (
     <div css={{ position: 'relative', width: '20%' }}>
       {formList.map(({ type, fieldType, list, title, icon, alt }) => {
-        return(
+        return (
           <div css={{ margin: '0 0 24px 0' }} key={type}>
             <HeadContainer>
               <Image src={icon} alt={alt} width={20} height={20} />
               {title}
             </HeadContainer>
             <div css={{ margin: '12px 0 0 0' }}>
-              {{
-                radio: (
-                  <ScheduleModalRadioInput
-                    type={type}
-                    radioList={list}
-                    onChangeFormData={onChangeCommonData}
-                  />
-                ),
-                select: (
-                  <ScheduleModalSelectBox
-                    type={type}
-                    list={list}
-                    onChangeFormData={onChangeCommonData}
-                  />
-                ),
-                search: (
-                  <ScheduleModalSearchInput
-                    customer={customer}
-                    lessonType={lessonType}
-                    setFormData={setCommonData}
-                  />
-                ),
-              }[fieldType]}
+              {
+                {
+                  radio: (
+                    <ScheduleModalRadioInput
+                      type={type}
+                      radioList={list}
+                      onChangeFormData={onChangeCommonData}
+                    />
+                  ),
+                  select: (
+                    <ScheduleModalSelectBox
+                      type={type}
+                      list={list}
+                      onChangeFormData={onChangeCommonData}
+                    />
+                  ),
+                  search: (
+                    <ScheduleModalSearchInput
+                      customer={customer}
+                      lessonType={lessonType}
+                      setFormData={setCommonData}
+                    />
+                  ),
+                }[fieldType]
+              }
             </div>
           </div>
-        )
+        );
       })}
     </div>
   );
@@ -92,6 +96,5 @@ const HeadContainer = styled.div({
     margin: '0 6px 0 0',
   },
 });
-
 
 export default ScheduleModalRegularLessonCommonForm;

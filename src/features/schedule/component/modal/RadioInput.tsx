@@ -23,7 +23,6 @@ const ScheduleModalRadioInput = ({
   return (
     <div css={{ display: 'flex', alignItems: 'center' }}>
       {radioList?.map(({ label, value }, index) => {
-
         const isCheckLesson = type === 'lessonTime' && disabled;
 
         return (

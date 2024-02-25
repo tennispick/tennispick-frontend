@@ -1,10 +1,6 @@
 import { Input, NormalList as LI } from '@components/index';
 import styled from '@emotion/styled';
-import {
-  ChangeEvent,
-  useEffect,
-  useState,
-} from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { getSearchCustomerListByKeyword } from '@apis/customer/customer.api';
 import { CommonFormInputType } from '@features/schedule/type/schedule.type';
 import { SetStateAction } from '@/types/index';
@@ -16,8 +12,11 @@ type Props = {
   setFormData: SetStateAction<CommonFormInputType>;
 } & CommonInputType;
 
-const ScheduleModalSearchInput = ({ customer, lessonType, setFormData }: Props) => {
-
+const ScheduleModalSearchInput = ({
+  customer,
+  lessonType,
+  setFormData,
+}: Props) => {
   const [keyword, setKeyword] = useState<string>('');
   const [autoSearchKeyword, setAutoSearchKeyword] = useState<
     Array<{
@@ -32,9 +31,11 @@ const ScheduleModalSearchInput = ({ customer, lessonType, setFormData }: Props) 
 
   useEffect(() => {
     const searchDealy = setTimeout(async () => {
-      await getSearchCustomerListByKeyword({ keyword, customer }).then((res) => {
-        setAutoSearchKeyword([...res]);
-      });
+      await getSearchCustomerListByKeyword({ keyword, customer }).then(
+        (res) => {
+          setAutoSearchKeyword([...res]);
+        },
+      );
     }, 200);
     return () => clearTimeout(searchDealy);
   }, [keyword]);
@@ -60,7 +61,7 @@ const ScheduleModalSearchInput = ({ customer, lessonType, setFormData }: Props) 
           value={keyword}
         />
       </Input>
-      {keyword && autoSearchKeyword.length > 0 &&
+      {keyword && autoSearchKeyword.length > 0 && (
         <ScheduleModalSearchInput.AutoCompleteSearchContainer
           lessonType={lessonType}
           customer={customer}
@@ -68,19 +69,31 @@ const ScheduleModalSearchInput = ({ customer, lessonType, setFormData }: Props) 
           setKeyword={setKeyword}
           autoSearchKeyword={autoSearchKeyword}
         />
-      }
-      {customer.length > 0 && <ScheduleModalSearchInput.SelectedCustomerContainer customer={customer} setFormData={setFormData} />}
+      )}
+      {customer.length > 0 && (
+        <ScheduleModalSearchInput.SelectedCustomerContainer
+          customer={customer}
+          setFormData={setFormData}
+        />
+      )}
     </div>
   );
 };
 
-const AutoCompleteSearchContainer = ({ lessonType, customer, setFormData, setKeyword, autoSearchKeyword }: Props & { setKeyword: SetStateAction<string>; autoSearchKeyword: Array<{
-  id: string;
-  name: string;
-}> }) => {
-
+const AutoCompleteSearchContainer = ({
+  lessonType,
+  customer,
+  setFormData,
+  setKeyword,
+  autoSearchKeyword,
+}: Props & {
+  setKeyword: SetStateAction<string>;
+  autoSearchKeyword: Array<{
+    id: string;
+    name: string;
+  }>;
+}) => {
   const handleCustomerSelect = (id: string, name: string) => {
-
     // 개인레슨일 때, 이미 선택된 사람이 있으면 선택된 사람으로 변경
     if (lessonType === 'private' && customer.length > 0) {
       setFormData((prev) => ({
@@ -98,7 +111,7 @@ const AutoCompleteSearchContainer = ({ lessonType, customer, setFormData, setKey
     setKeyword('');
   };
 
-  return(
+  return (
     <AutoCompleteSearch>
       <LI.UnOrderList css={{ margin: '0' }}>
         {autoSearchKeyword.map(({ id, name }) => {
@@ -112,25 +125,28 @@ const AutoCompleteSearchContainer = ({ lessonType, customer, setFormData, setKey
                 },
               }}
               onClick={() => handleCustomerSelect(id, name)}
-            >{name}
+            >
+              {name}
             </LI>
           );
         })}
       </LI.UnOrderList>
     </AutoCompleteSearch>
-  )
+  );
 };
 
-const SelectedCustomerContainer = ({ customer, setFormData }: Pick<Props, 'customer' | 'setFormData'>) =>{
-
-  const onCancelCustomer = (id: string) =>{
+const SelectedCustomerContainer = ({
+  customer,
+  setFormData,
+}: Pick<Props, 'customer' | 'setFormData'>) => {
+  const onCancelCustomer = (id: string) => {
     setFormData((prev) => ({
       ...prev,
-      customer: prev.customer.filter((el) => el.id !== id)
-    }))
-  }
+      customer: prev.customer.filter((el) => el.id !== id),
+    }));
+  };
 
-  return(
+  return (
     <ul
       css={{
         display: 'flex',
@@ -158,7 +174,7 @@ const SelectedCustomerContainer = ({ customer, setFormData }: Pick<Props, 'custo
         );
       })}
     </ul>
-  )
+  );
 };
 
 const AutoCompleteSearch = styled.div({
@@ -190,7 +206,8 @@ const Customer = styled.li({
   borderRadius: '8px',
 });
 
-ScheduleModalSearchInput.AutoCompleteSearchContainer = AutoCompleteSearchContainer;
+ScheduleModalSearchInput.AutoCompleteSearchContainer =
+  AutoCompleteSearchContainer;
 ScheduleModalSearchInput.SelectedCustomerContainer = SelectedCustomerContainer;
 
 export default ScheduleModalSearchInput;

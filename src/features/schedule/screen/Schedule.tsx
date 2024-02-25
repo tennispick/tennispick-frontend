@@ -46,10 +46,7 @@ const Schedule = () => {
         setModalType={setModalType}
         setShowModal={setShowModal}
       />
-      <DaySchedule
-        date={calendarDate}
-        coachList={coachList ? coachList : []}
-      />
+      <DaySchedule date={calendarDate} coachList={coachList ? coachList : []} />
       {showModal && (
         <Portal id={'portal'}>
           <Modal

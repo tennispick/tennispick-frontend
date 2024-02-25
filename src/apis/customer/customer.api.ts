@@ -12,7 +12,8 @@ import {
 } from './customer.type';
 import { Response } from '@/types/response';
 
-const getCustomerLessonList = async (params: CustomerLessonListApiPayload) => await axios.get(`${URL_FETCH_CUSTOMER_LESSON_LIST}/${params.id}`);
+const getCustomerLessonList = async (params: CustomerLessonListApiPayload) =>
+  await axios.get(`${URL_FETCH_CUSTOMER_LESSON_LIST}/${params.id}`);
 
 const getCustomerDetail = async (
   params: CustomerDetailApiPayLoad,
@@ -33,5 +34,8 @@ const getSearchCustomerListByKeyword = async (
   return data;
 };
 
-
-export { getCustomerLessonList, getCustomerDetail, getSearchCustomerListByKeyword };
+export {
+  getCustomerLessonList,
+  getCustomerDetail,
+  getSearchCustomerListByKeyword,
+};

@@ -65,5 +65,4 @@ const commonList = [
   },
 ];
 
-
-export { commonList }
+export { commonList };

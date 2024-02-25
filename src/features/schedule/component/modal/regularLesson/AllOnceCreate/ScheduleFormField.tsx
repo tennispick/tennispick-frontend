@@ -52,7 +52,7 @@ const ScheduleModalRegularLessonAllOnceCreateScheduleFormField = ({
                     viewBox="0 0 16 18"
                     fill="none"
                     css={{
-                      zIndex: 99
+                      zIndex: 99,
                     }}
                   >
                     <path

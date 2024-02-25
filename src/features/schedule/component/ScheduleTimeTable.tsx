@@ -15,6 +15,8 @@ type Props = {
 };
 
 const ScheduleTimeTable = ({ timeTableMapList, coach, data }: Props) => {
+  if (!data) return <Loading />;
+
   return (
     <section
       css={{

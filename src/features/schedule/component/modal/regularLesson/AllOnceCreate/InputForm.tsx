@@ -29,26 +29,26 @@ const ScheduleModalRegularLessonAllOnceCreateInputForm = ({
   onChangeAllCreateFormData,
   setAllCreateFormData,
   coachList,
-  courtList
+  courtList,
 }: Props) => {
-
   const disabled = lesson === '' ? true : false;
 
   const [formList, setFormList] = useState<TDataCommonList[]>(formInputList);
 
   useEffect(() => {
-    
     transFormSelectList(setFormList, 'coach', coachList);
     transFormSelectList(setFormList, 'court', courtList);
 
     setAllCreateFormData((prev) => {
       return {
         ...prev,
-        court: coachList && coachList.length > 0 ? coachList[0].id.toString() : '',
-        coach: courtList && courtList.length > 0 ? courtList[0].id.toString() : ''
-      }
-    })
-  }, [coachList, courtList])
+        court:
+          coachList && coachList.length > 0 ? coachList[0].id.toString() : '',
+        coach:
+          courtList && courtList.length > 0 ? courtList[0].id.toString() : '',
+      };
+    });
+  }, [coachList, courtList]);
 
   return (
     <>
@@ -61,23 +61,25 @@ const ScheduleModalRegularLessonAllOnceCreateInputForm = ({
                 {title}
               </HeadContainer>
               <div css={{ margin: '12px 0 0 0' }}>
-                {{
-                  radio: (
-                    <ScheduleModalRadioInput
-                      type={type}
-                      radioList={list}
-                      onChangeFormData={onChangeAllCreateFormData}
-                      disabled={disabled}
-                    />
-                  ),
-                  select: (
-                    <ScheduleModalSelectBox
-                      type={type}
-                      list={list}
-                      onChangeFormData={onChangeAllCreateFormData}
-                    />
-                  ),
-                }[fieldType]}
+                {
+                  {
+                    radio: (
+                      <ScheduleModalRadioInput
+                        type={type}
+                        radioList={list}
+                        onChangeFormData={onChangeAllCreateFormData}
+                        disabled={disabled}
+                      />
+                    ),
+                    select: (
+                      <ScheduleModalSelectBox
+                        type={type}
+                        list={list}
+                        onChangeFormData={onChangeAllCreateFormData}
+                      />
+                    ),
+                  }[fieldType]
+                }
               </div>
             </div>
           );

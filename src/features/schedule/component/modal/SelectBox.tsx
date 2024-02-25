@@ -8,11 +8,7 @@ type Props = {
   onChangeFormData: UseInputType<HTMLSelectElement>;
 };
 
-const ScheduleModalSelectBox = ({
-  type,
-  list,
-  onChangeFormData
-}: Props) => {
+const ScheduleModalSelectBox = ({ type, list, onChangeFormData }: Props) => {
   return (
     <Select
       name={type}
