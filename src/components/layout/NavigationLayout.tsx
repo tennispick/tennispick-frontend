@@ -19,7 +19,7 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
   const [day, setDay] = useState<Date>(new Date());
   const [showModal, setShowModal] = useState<boolean>(false);
   const isMobile = useMobile();
-  
+
   const onClickCalendarDateHandler = (day: Date) => {
     setShowModal(true);
     setDay(day);
@@ -33,8 +33,8 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
     left: 0,
     backgroundColor: 'var(--white100)',
     flexDirection: 'row',
-    zIndex: 9999
-  }
+    zIndex: 9999,
+  };
 
   return (
     <NavContainer
@@ -85,12 +85,12 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
             })}
         </NavLists>
       </div>
-      {!isMobile &&
+      {!isMobile && (
         <Calendar
           css={!isNavSpread && { display: 'none' }}
           onClick={onClickCalendarDateHandler}
-        />  
-      }
+        />
+      )}
       {showModal && (
         <Portal id={'portal'}>
           <Modal

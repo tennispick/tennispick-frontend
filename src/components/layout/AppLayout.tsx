@@ -16,26 +16,32 @@ const AppLayout = ({ children }: PropsWithChildren) => {
   const mobileLayoutStyle = {
     height: 'calc(100vh - 76px)',
     top: '76px',
-    overflowY: 'scroll'
-  }
+    overflowY: 'scroll',
+  };
 
   const mobileMainStyle = {
     width: '100%',
-    height: '100%'
-  }
+    height: '100%',
+  };
 
   return (
     <>
       {firstPathName === 'login' ? (
         <>{children}</>
       ) : (
-        <LayoutContainer padding={isNavSpread ? '20px' : '20px 20px 20px 0'} css={ isMobile && { ...mobileLayoutStyle }}>
+        <LayoutContainer
+          padding={isNavSpread ? '20px' : '20px 20px 20px 0'}
+          css={isMobile && { ...mobileLayoutStyle }}
+        >
           <NavigationLayout
             isNavSpread={isNavSpread}
             firstPathName={firstPathName}
           />
-          <MainContainer width={isNavSpread ? '90%' : '95%'} css={ isMobile && { ...mobileMainStyle }}>
-            {!isMobile &&
+          <MainContainer
+            width={isNavSpread ? '90%' : '95%'}
+            css={isMobile && { ...mobileMainStyle }}
+          >
+            {!isMobile && (
               <NavControlBtnWrapper>
                 <NavControlBtn
                   src={doubleArrowLeft}
@@ -46,7 +52,7 @@ const AppLayout = ({ children }: PropsWithChildren) => {
                   rotate={isNavSpread ? 'rotate(0deg)' : 'rotate(180deg)'}
                 />
               </NavControlBtnWrapper>
-            }
+            )}
             <ChildrenContainer>{children}</ChildrenContainer>
           </MainContainer>
         </LayoutContainer>

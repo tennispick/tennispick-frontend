@@ -41,11 +41,9 @@ const ScheduleTableBody = ({ monthList, coach, data }: Props) => {
   return (
     <div css={{ fontSize: '0.85rem' }}>
       {lessonTimeList.map(({ startTime, endTime }) => {
-        let reservationCustomer = null;
-        if (data)
-          reservationCustomer = data.find(
-            (item) => item.startTime === startTime,
-          );
+        const filterstartTimeList = data.filter(
+          (item: any) => item.startTime === startTime,
+        );
 
         return (
           <div
@@ -69,7 +67,7 @@ const ScheduleTableBody = ({ monthList, coach, data }: Props) => {
               <ScheduleTableBody.MonthContainer
                 coach={coach}
                 monthList={monthList}
-                reservationCustomer={reservationCustomer}
+                data={filterstartTimeList}
               />
             </div>
           </div>
@@ -83,10 +81,10 @@ const CoachContainer = ({
   coach,
   reservationCustomer,
 }: Pick<Props, 'coach'> & {
-  reservationCustomer:
-    | SchduleLessonByStartDateEndDatePeriodData
-    | undefined
-    | null;
+  reservationCustomer: any;
+  // | SchduleLessonByStartDateEndDatePeriodData
+  // | undefined
+  // | null;
 }) => {
   return (
     <div css={{ display: 'flex' }}>
@@ -100,12 +98,14 @@ const CoachContainer = ({
               textAlign: 'center',
               borderRight: '1px solid var(--grey1000)',
               borderBottom: `${
-                reservationCustomer && el.name === reservationCustomer.coachName
+                reservationCustomer.length > 0 &&
+                el.name === reservationCustomer[0].coachName
                   ? ''
                   : '1px solid var(--grey1000)'
               }`,
               backgroundColor: `${
-                reservationCustomer && el.name === reservationCustomer.coachName
+                reservationCustomer.length > 0 &&
+                el.name === reservationCustomer[0].coachName
                   ? `var(--${el.coachColor})`
                   : 'var(--white100)'
               }`,
@@ -124,20 +124,24 @@ const CoachContainer = ({
 const MonthContainer = ({
   coach,
   monthList,
-  reservationCustomer,
+  data,
 }: Pick<Props, 'coach' | 'monthList'> & {
-  reservationCustomer:
-    | SchduleLessonByStartDateEndDatePeriodData
-    | undefined
-    | null;
+  data: any;
+  // data:
+  //   | SchduleLessonByStartDateEndDatePeriodData
+  //   | undefined
+  //   | null;
 }) => {
-  const isTargetMonth =
-    reservationCustomer && Number(reservationCustomer.month);
-  const isTargetDate = reservationCustomer && Number(reservationCustomer.date);
+  const customerFilter: any = [];
 
   return (
     <>
       {Array.from(monthList).map(([month, dayList]) => {
+        data.map(
+          (item: any) =>
+            Number(item.month) === month && customerFilter.push(item),
+        );
+
         return (
           <div
             key={month}
@@ -147,14 +151,16 @@ const MonthContainer = ({
             }}
           >
             {dayList.map((day) => {
+              const reservationCustomer = customerFilter.filter(
+                (item: any) => Number(item.date) === day,
+              );
+
               return (
                 <div key={day} css={{ width: `calc(100%/${dayList.length})` }}>
                   <ScheduleTableBody.CoachContainer
                     coach={coach}
                     reservationCustomer={
-                      month === isTargetMonth && day === isTargetDate
-                        ? reservationCustomer
-                        : null
+                      reservationCustomer ? reservationCustomer : null
                     }
                   />
                 </div>

@@ -1,8 +1,10 @@
+import { FormEvent, useEffect } from 'react';
 import useInput from '@hooks/useInput';
+import CommonForm from './CommonForm';
+
 import AllOnceCreateInputForm from './AllOnceCreate/InputForm';
-import CommonInputForm from './CommonInputForm';
 import IndividualCreateInputForm from './IndividualCreate/InputForm';
-import { FormEvent } from 'react';
+
 import { Button } from '@components/index';
 import { EditWhiteIcon } from '@icons/index';
 // import { FormAllOnceCreateType } from '@features/schedule/type/schedule.type';
@@ -16,9 +18,16 @@ import {
   individualCreateFormValidationSet,
 } from '@features/schedule/util/inputFormValidationSet';
 import { useScheduleMutation } from '@features/schedule/mutation/scheduleMutation';
+import { useCustomerLessonListQuery } from '@features/customer/query/CustomerQuery';
+import { useGetCourtListQuery } from '@features/court/query/courtQuery';
+import { useGetCoachListQuery } from '@features/coach/query/coachQuery';
 
 const ModalRegularLesson = () => {
   const { mutate } = useScheduleMutation();
+
+  const { data: courtList } = useGetCourtListQuery();
+  const { data: coachList } = useGetCoachListQuery();
+
   const [commonData, onChangeCommonData, setCommonData] = useInput({
     scheduleType: 'all', // 스케줄 등록유형
     lessonType: 'private', // 레슨유형
@@ -26,8 +35,12 @@ const ModalRegularLesson = () => {
     lesson: '', // 수강권
   });
 
+  useEffect(() => {
+    console.log(commonData.lesson);
+  }, [commonData.lesson]);
+
   // 일괄등록
-  const [allCreateFormData, onChangeAllCreateFormData, setAllCreateFormData] =
+  const [allOnceFormData, onChangeAllOnceFormData, setAllOnceFormData] =
     useInput({
       lessonDateType: 'date', // 강습날짜 유형
       lessonTime: '20', // 강습시간 선택
@@ -46,16 +59,16 @@ const ModalRegularLesson = () => {
 
   // 개별등록
   const [
-    individualCreateFormData,
-    onChangeIndividualCreateFormData,
-    setIndividualCreateFormData,
+    individualFormData,
+    onChangeIndividualFormData,
+    setIndividualFormData,
   ] = useInput([
     {
       lessonDateType: 'date', // 강습날짜 유형
       lessonTime: '0', // 강습시간
       weeklyLessonCount: '1', // 주 강습횟수
-      coach: '', // 강습코치
-      court: '', // 코트(장소)
+      coach: '',
+      court: '',
       date: new Date(), // 스케줄 등록유형 (요일, 날짜)
       day: 'monday', // 요일
       startTime: '00:00', // 강습시간
@@ -63,15 +76,19 @@ const ModalRegularLesson = () => {
     },
   ]);
 
+  const { data: lessonList } = useCustomerLessonListQuery({
+    id: commonData.customer[0]?.id,
+  });
+
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const { scheduleType } = commonData;
 
-    const allCreateBody = { ...commonData, ...allCreateFormData };
+    const allCreateBody = { ...commonData, ...allOnceFormData };
     const individualBody = {
       ...commonData,
-      schedule: [...individualCreateFormData],
+      schedule: [...individualFormData],
     };
 
     if (scheduleType === 'all') {
@@ -93,81 +110,43 @@ const ModalRegularLesson = () => {
     mutate(body);
   };
 
-  // 강습시간 선택의 변화
-  // useEffect(() => {
-  //   setAllCreateFormData((prev: FormAllOnceCreateType) => ({
-  //     ...prev,
-  //     schedule: Array.from({ length: Number(allCreateFormData.weeklyLessonCount) }, (_, i) => ({
-  //       date: new Date(),
-  //       day: 'monday',
-  //       startTime: '00:00',
-  //       endTime: `00:${allCreateFormData.lessonTime}`
-  //     }))
-  //   }));
-  // }, [allCreateFormData.lessonTime])
-
-  // 주 강습횟수 선택의 변화
-  // useEffect(() => {
-  //   setAllCreateFormData((prev: FormAllOnceCreateType) => {
-  //     const newSchedule = Array.from(
-  //       { length: Number(allCreateFormData.weeklyLessonCount) },
-  //       (_, i) => {
-  //         const prevDate = prev.schedule[i]?.date || new Date(); // 이전 배열의 날짜 가져오기
-  //         const newDate = new Date(prevDate);
-  //         newDate.setDate(prevDate.getDate() + 7 * i); // 7을 곱해서 7일씩 증가
-  //         return {
-  //           date: newDate,
-  //           day: 'monday',
-  //           startTime: '00:00',
-  //           endTime: `00:${allCreateFormData.lessonTime}`,
-  //         };
-  //       },
-  //     );
-
-  //     return {
-  //       ...prev,
-  //       schedule: [
-  //         ...prev.schedule.slice(
-  //           0,
-  //           Math.min(
-  //             prev.schedule.length,
-  //             Number(allCreateFormData.weeklyLessonCount),
-  //           ),
-  //         ),
-  //         ...newSchedule.slice(prev.schedule.length),
-  //       ],
-  //     };
-  //   });
-  // }, [allCreateFormData.weeklyLessonCount]);
-
   return (
     <form
+      id=""
       css={{ display: 'flex', width: '100%', flexDirection: 'column' }}
       onSubmit={onSubmit}
     >
       <div css={{ display: 'flex', width: '100%' }}>
-        <CommonInputForm
+        <CommonForm
           commonData={commonData}
           onChangeCommonData={onChangeCommonData}
           setCommonData={setCommonData}
+          lessonList={lessonList}
         />
-        {commonData.scheduleType === 'all' ? (
-          <AllOnceCreateInputForm
-            scheduleType={commonData.scheduleType}
-            lesson={commonData.lesson}
-            formData={allCreateFormData}
-            onChangeAllCreateFormData={onChangeAllCreateFormData}
-            setAllCreateFormData={setAllCreateFormData}
-          />
-        ) : (
-          <IndividualCreateInputForm
-            scheduleType={commonData.scheduleType}
-            lesson={commonData.lesson}
-            formData={individualCreateFormData}
-            onChangeIndividualCreateFormData={onChangeIndividualCreateFormData}
-            setIndividualCreateFormData={setIndividualCreateFormData}
-          />
-        )}
+        {
+          {
+            all: (
+              <AllOnceCreateInputForm
+                scheduleType={commonData.scheduleType}
+                lesson={commonData.lesson}
+                formData={allOnceFormData}
+                onChangeAllCreateFormData={onChangeAllOnceFormData}
+                setAllCreateFormData={setAllOnceFormData}
+                coachList={coachList}
+                courtList={courtList}
+              />
+            ),
+            individual: (
+              <IndividualCreateInputForm
+                scheduleType={commonData.scheduleType}
+                lesson={commonData.lesson}
+                formData={individualFormData}
+                onChangeIndividualCreateFormData={onChangeIndividualFormData}
+                setIndividualCreateFormData={setIndividualFormData}
+              />
+            ),
+          }[commonData.scheduleType as string]
+        }
       </div>
       <Button
         type={'submit'}

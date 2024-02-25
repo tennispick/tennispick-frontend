@@ -5,6 +5,7 @@ import SettingCenter from '../component/Center';
 import SettingCoach from '../component/Coach';
 import SettingPayment from '../component/Payment';
 import { useSettingMutation } from '../mutation/settingMutation';
+import SettingLesson from '../component/Lesson';
 
 const SettingScreen = () => {
   const [currentItem, setCurrentItem] = useState<number>(tabLists[0].id);
@@ -28,7 +29,8 @@ const SettingScreen = () => {
         {
           1: <SettingCenter onClickHandler={onClickToggleHandler} />,
           2: <SettingCoach onClickHandler={onClickToggleHandler} />,
-          3: <SettingPayment onClickHandler={onClickToggleHandler} />,
+          3: <SettingLesson onClickHandler={onClickToggleHandler} />,
+          4: <SettingPayment onClickHandler={onClickToggleHandler} />,
         }[currentItem]
       }
     </div>

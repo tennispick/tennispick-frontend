@@ -16,7 +16,6 @@ type Props = {
 };
 
 const DaySchedule = ({ isMobile, date, coachList }: Props) => {
-
   const thisWeekSunday = getDayOfWeek(date, 'sunday');
   const nextWeekSunday = new Date(thisWeekSunday);
   nextWeekSunday.setDate(thisWeekSunday.getDate() + GET_WEEK_LIST_COUNT * 6);
@@ -33,7 +32,7 @@ const DaySchedule = ({ isMobile, date, coachList }: Props) => {
         css={{
           display: 'flex',
           width: '100%',
-          height: 'calc(100% - 48px)',
+          height: 'calc(100% - 176px)',
           flexDirection: isMobile ? 'column' : 'row',
         }}
       >
@@ -69,7 +68,7 @@ const SchduleTimeTableContainer = styled.div<CSS_TYPE>(
   },
   (props) => ({
     width: props.width ? props.width : '50%',
-  })
+  }),
 );
 
 const SchduleTimeTableTitle = styled.div({

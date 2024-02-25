@@ -2,11 +2,12 @@ import { getCourtList } from '@apis/court/court.api';
 import { URL_FETCH_COURT_LIST } from '@apis/court/court.url';
 import { useQuery } from '@tanstack/react-query';
 
-const useGetCourtList = () => {
+const useGetCourtListQuery = () => {
   try {
     const { data } = useQuery({
       queryKey: [URL_FETCH_COURT_LIST],
       queryFn: async () => await getCourtList(),
+      select: (data) => data.data,
     });
     return {
       data,
@@ -17,4 +18,4 @@ const useGetCourtList = () => {
   }
 };
 
-export { useGetCourtList };
+export { useGetCourtListQuery };

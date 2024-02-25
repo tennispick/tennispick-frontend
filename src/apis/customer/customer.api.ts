@@ -1,14 +1,19 @@
 import {
   URL_FETCH_CUSTOMER_DETAIL,
+  URL_FETCH_CUSTOMER_LESSON_LIST,
   URL_SEARCH_CUSTOMER_LIST_BY_KEYWORD,
 } from './customer.url';
 import { axios } from '@utils/axios';
 import {
+  CustomerLessonListApiPayload,
   CustomerDetailApiPayLoad,
   CustomerDetailData,
   SearchCustomerListByKeywordApiPayload,
 } from './customer.type';
 import { Response } from '@/types/response';
+
+const getCustomerLessonList = async (params: CustomerLessonListApiPayload) =>
+  await axios.get(`${URL_FETCH_CUSTOMER_LESSON_LIST}/${params.id}`);
 
 const getCustomerDetail = async (
   params: CustomerDetailApiPayLoad,
@@ -29,4 +34,8 @@ const getSearchCustomerListByKeyword = async (
   return data;
 };
 
-export { getCustomerDetail, getSearchCustomerListByKeyword };
+export {
+  getCustomerLessonList,
+  getCustomerDetail,
+  getSearchCustomerListByKeyword,
+};
