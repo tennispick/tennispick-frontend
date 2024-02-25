@@ -30,7 +30,7 @@ const DaySchedule = ({ date, coachList }: Props) => {
         css={{
           display: 'flex',
           width: '100%',
-          height: 'calc(100% - 48px)',
+          height: 'calc(100% - 176px)',
         }}
       >
         <SchduleTimeTableContainer>

@@ -4,7 +4,7 @@ import { URL_FETCH_COACH_LIST } from '@apis/coach/coach.url';
 import { useQuery } from '@tanstack/react-query';
 
 const useGetCoachListQuery = (): {
-  data: { data: CoachListData[] } | undefined;
+  data: CoachListData[] | undefined;
   isLoading?: boolean;
   error: unknown;
 } => {
@@ -18,10 +18,11 @@ const useGetCoachListQuery = (): {
         throw error;
       }
     },
+    select: (data) => data.data,
   });
 
   return {
-    data,
+    data: data,
     isLoading,
     error,
   };

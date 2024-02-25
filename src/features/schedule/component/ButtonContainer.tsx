@@ -1,13 +1,13 @@
 import { Button } from '@components/index';
 import { CalendarWhiteIcon } from '@icons/index';
-import { Dispatch, SetStateAction } from 'react';
 import { addDays } from '@utils/date';
+import { SetStateAction } from '@/types/index';
 
 type Props = {
   calendarDate: Date;
-  setCalendarDate: Dispatch<SetStateAction<Date>>;
-  setModalType: Dispatch<SetStateAction<string>>;
-  setShowModal: Dispatch<SetStateAction<boolean>>;
+  setCalendarDate: SetStateAction<Date>;
+  setModalType: SetStateAction<string>;
+  setShowModal: SetStateAction<boolean>;
 };
 
 const ButtonContainer = ({

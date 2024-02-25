@@ -11,7 +11,7 @@ import AddIcon from '@icons/add_circle.svg';
 import RemoveIcon from '@icons/remove.svg';
 import DatePicker from 'react-datepicker';
 import { ChangeEvent, Dispatch, SetStateAction } from 'react';
-import { useGetCourtList } from '@features/court/query/courtQuery';
+import { useGetCourtListQuery } from '@features/court/query/courtQuery';
 import { useGetCoachListQuery } from '@features/coach/query/coachQuery';
 import { dayList } from '@utils/day';
 
@@ -29,7 +29,7 @@ const ScheduleModalRegularLessonIndividualCreateScheduleFormField = ({
   formData,
   setFormData,
 }: Props) => {
-  const { data: courtList } = useGetCourtList();
+  const { data: courtList } = useGetCourtListQuery();
   const { data: coachList } = useGetCoachListQuery();
 
   const handleFormFieldChange = (

@@ -1,5 +1,8 @@
-import {} from '@tanstack/react-query';
-import { ChangeEventHandler } from 'react';
+import {
+  ChangeEventHandler,
+  Dispatch,
+  SetStateAction as StateAction,
+} from 'react';
 
 type UseQueryType<T> = {
   data: T;
@@ -17,8 +20,16 @@ type MutationType = {
   warningStatus: number;
 };
 
+type SetStateAction<T> = Dispatch<StateAction<T>>;
+
 type UseInputType<T> = ChangeEventHandler<T>;
 
 type ObjectType<T> = { [key: string]: T };
 
-export type { UseQueryType, MutationType, UseInputType, ObjectType };
+export type {
+  UseQueryType,
+  MutationType,
+  SetStateAction,
+  UseInputType,
+  ObjectType,
+};

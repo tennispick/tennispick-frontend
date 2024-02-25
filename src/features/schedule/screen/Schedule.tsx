@@ -22,7 +22,7 @@ const Schedule = () => {
       <div css={{ padding: '0 0 12px 0' }}>
         <ul css={{ display: 'flex' }}>
           {coachList &&
-            coachList?.data.map((el) => {
+            coachList?.map((el) => {
               return (
                 <li
                   key={el.id}
@@ -46,10 +46,7 @@ const Schedule = () => {
         setModalType={setModalType}
         setShowModal={setShowModal}
       />
-      <DaySchedule
-        date={calendarDate}
-        coachList={coachList ? coachList.data : []}
-      />
+      <DaySchedule date={calendarDate} coachList={coachList ? coachList : []} />
       {showModal && (
         <Portal id={'portal'}>
           <Modal
