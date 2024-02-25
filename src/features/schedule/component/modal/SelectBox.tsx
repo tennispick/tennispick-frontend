@@ -1,22 +1,14 @@
 import { Select } from '@components/index';
+import { CommonListType } from '@features/schedule/type/data.type';
 import { UseInputType } from 'src/types';
 
 type Props = {
   type: string;
-  selectList:
-    | Array<{
-        value: string | number;
-        label: string;
-      }>
-    | undefined;
+  list: CommonListType;
   onChangeFormData: UseInputType<HTMLSelectElement>;
 };
 
-const ScheduleModalSelectBox = ({
-  type,
-  selectList,
-  onChangeFormData,
-}: Props) => {
+const ScheduleModalSelectBox = ({ type, list, onChangeFormData }: Props) => {
   return (
     <Select
       name={type}
@@ -24,7 +16,7 @@ const ScheduleModalSelectBox = ({
       defaultValue={'default'}
       onChange={onChangeFormData}
     >
-      {selectList?.map(({ value, label }) => (
+      {list?.map(({ value, label }) => (
         <option key={value} value={value}>
           {label}
         </option>

@@ -11,6 +11,11 @@ const tabLists = [
   },
   {
     id: 3,
+    name: '레슨 설정',
+    type: 'lesson',
+  },
+  {
+    id: 4,
     name: '정산 설정',
     type: 'payment',
   },

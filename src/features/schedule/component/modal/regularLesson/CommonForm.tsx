@@ -1,43 +1,52 @@
 import styled from '@emotion/styled';
-import { commonInputList } from '@features/schedule/data/formdataInputList';
+import { commonList } from '@features/schedule/data/commonList';
+
 import Image from 'next/image';
 import ScheduleModalRadioInput from '../RadioInput';
 import ScheduleModalSelectBox from '../SelectBox';
-import { getCustomerQuery } from '@queries/customer';
-import { getLessonQuery } from '@queries/lesson';
 import ScheduleModalSearchInput from '../SearchInput';
-import { UseInputType } from 'src/types';
-import { Dispatch, SetStateAction } from 'react';
-import { FormCommonInputType } from '@features/schedule/type/schedule.type';
-import { handleDuplicateDataCheck } from '@utils/dataCheck';
+import { SetStateAction, UseInputType } from 'src/types';
+import { CommonFormInputType } from '@features/schedule/type/schedule.type';
+import { CustomerLessonListQueryData } from '@features/customer/type/customer.type';
+import { transFormSelectList } from '@features/schedule/util/regularLesson';
+import { useEffect, useState } from 'react';
+import { TDataCommonList } from '@features/schedule/type/data.type';
 
 type Props = {
-  commonData: FormCommonInputType;
+  commonData: CommonFormInputType;
   onChangeCommonData: UseInputType<HTMLInputElement | HTMLSelectElement>;
-  setCommonData: Dispatch<SetStateAction<FormCommonInputType>>;
+  setCommonData: SetStateAction<CommonFormInputType>;
+  lessonList: CustomerLessonListQueryData[] | undefined;
 };
 
-const ScheduleModalRegularLessonCommonInputFormList = ({
+const ScheduleModalRegularLessonCommonForm = ({
   commonData,
   onChangeCommonData,
   setCommonData,
+  lessonList,
 }: Props) => {
-  const { customer } = commonData;
+  const { customer, lessonType } = commonData;
 
-  const { data: customerList } = getCustomerQuery();
-  const { data: lessonList } = getLessonQuery({ id: customer[0]?.id });
+  const [formList, setFormList] = useState<TDataCommonList[]>(commonList);
+
+  console.log(lessonList);
+
+  useEffect(() => {
+    transFormSelectList(setFormList, 'lesson', lessonList);
+    setCommonData((prev) => {
+      return {
+        ...prev,
+        lesson:
+          lessonList && lessonList.length > 0
+            ? lessonList[0].lessonId.toString()
+            : '',
+      };
+    });
+  }, [lessonList]);
 
   return (
     <div css={{ position: 'relative', width: '20%' }}>
-      {commonInputList.map(({ type, fieldType, list, title, icon, alt }) => {
-        if (type === 'customer' && customerList)
-          handleDuplicateDataCheck({
-            prevList: list,
-            list: customerList.data,
-          });
-        if (type === 'lesson' && lessonList)
-          handleDuplicateDataCheck({ prevList: list, list: lessonList.data });
-
+      {formList.map(({ type, fieldType, list, title, icon, alt }) => {
         return (
           <div css={{ margin: '0 0 24px 0' }} key={type}>
             <HeadContainer>
@@ -49,7 +58,6 @@ const ScheduleModalRegularLessonCommonInputFormList = ({
                 {
                   radio: (
                     <ScheduleModalRadioInput
-                      lesson={''}
                       type={type}
                       radioList={list}
                       onChangeFormData={onChangeCommonData}
@@ -58,13 +66,14 @@ const ScheduleModalRegularLessonCommonInputFormList = ({
                   select: (
                     <ScheduleModalSelectBox
                       type={type}
-                      selectList={list}
+                      list={list}
                       onChangeFormData={onChangeCommonData}
                     />
                   ),
                   search: (
                     <ScheduleModalSearchInput
-                      formData={commonData}
+                      customer={customer}
+                      lessonType={lessonType}
                       setFormData={setCommonData}
                     />
                   ),
@@ -88,4 +97,4 @@ const HeadContainer = styled.div({
   },
 });
 
-export default ScheduleModalRegularLessonCommonInputFormList;
+export default ScheduleModalRegularLessonCommonForm;

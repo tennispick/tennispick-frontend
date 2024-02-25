@@ -1,18 +1,14 @@
+import { GET_WEEK_LIST_COUNT } from '@features/constant/schedule';
 import { STRING_WEEK_LIST_KR } from '@features/schedule/constants/schedule';
+import { CoachListData } from '@apis/coach/coach.type';
 
 type Props = {
   weekKrIndex: number;
-  weekListCount: number;
   monthList: any;
-  coach: any;
+  coach: CoachListData[];
 };
 
-const ScheduleTableHeader = ({
-  weekKrIndex,
-  weekListCount,
-  monthList,
-  coach,
-}: Props) => {
+const ScheduleTableHeader = ({ weekKrIndex, monthList, coach }: Props) => {
   return (
     <div css={{ display: 'flex', width: '100%' }}>
       <div css={{ width: '8%' }}>
@@ -35,7 +31,7 @@ const ScheduleTableHeader = ({
       </div>
       <div css={{ display: 'flex', width: '92%' }}>
         <ScheduleTableHeader.MonthContainer
-          weekListCount={weekListCount}
+          weekListCount={GET_WEEK_LIST_COUNT}
           coach={coach}
           monthList={monthList}
         />

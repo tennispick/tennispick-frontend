@@ -6,10 +6,11 @@ import ScheduleModalSelectBox from '../../SelectBox';
 import ScheduleModalRegularLessonAllOnceCreateScheduleFormField from './ScheduleFormField';
 import { FormAllOnceCreateType } from '@features/schedule/type/schedule.type';
 import { UseInputType } from 'src/types';
-import { useGetCourtList } from '@features/court/query/courtQuery';
-import { handleDuplicateDataCheck } from '@utils/dataCheck';
-import { useGetCoachList } from '@features/coach/query/coachQuery';
-import { SetStateAction, Dispatch } from 'react';
+import { SetStateAction, Dispatch, useState, useEffect } from 'react';
+import { CoachListData } from '@apis/coach/coach.type';
+import { CourtListData } from '@apis/court/court.type';
+import { transFormSelectList } from '@features/schedule/util/regularLesson';
+import { TDataCommonList } from '@features/schedule/type/data.type';
 
 type Props = {
   scheduleType: string;
@@ -17,6 +18,8 @@ type Props = {
   formData: FormAllOnceCreateType;
   onChangeAllCreateFormData: UseInputType<HTMLInputElement | HTMLSelectElement>;
   setAllCreateFormData: Dispatch<SetStateAction<FormAllOnceCreateType>>;
+  coachList: CoachListData[] | undefined;
+  courtList: CourtListData[] | undefined;
 };
 
 const ScheduleModalRegularLessonAllOnceCreateInputForm = ({
@@ -25,19 +28,32 @@ const ScheduleModalRegularLessonAllOnceCreateInputForm = ({
   formData,
   onChangeAllCreateFormData,
   setAllCreateFormData,
+  coachList,
+  courtList,
 }: Props) => {
-  const { data: courtList } = useGetCourtList();
-  const { data: coachList } = useGetCoachList();
+  const disabled = lesson === '' ? true : false;
+
+  const [formList, setFormList] = useState<TDataCommonList[]>(formInputList);
+
+  useEffect(() => {
+    transFormSelectList(setFormList, 'coach', coachList);
+    transFormSelectList(setFormList, 'court', courtList);
+
+    setAllCreateFormData((prev) => {
+      return {
+        ...prev,
+        court:
+          coachList && coachList.length > 0 ? coachList[0].id.toString() : '',
+        coach:
+          courtList && courtList.length > 0 ? courtList[0].id.toString() : '',
+      };
+    });
+  }, [coachList, courtList]);
 
   return (
     <>
       <div css={{ position: 'relative', width: '25%' }}>
-        {formInputList.map(({ type, fieldType, list, title, icon, alt }) => {
-          if (type === 'coach' && coachList)
-            handleDuplicateDataCheck({ prevList: list, list: coachList });
-          if (type === 'court' && courtList)
-            handleDuplicateDataCheck({ prevList: list, list: courtList });
-
+        {formList.map(({ type, fieldType, list, title, icon, alt }) => {
           return (
             <div css={{ margin: '0 0 24px 0' }} key={type}>
               <HeadContainer>
@@ -51,14 +67,14 @@ const ScheduleModalRegularLessonAllOnceCreateInputForm = ({
                       <ScheduleModalRadioInput
                         type={type}
                         radioList={list}
-                        lesson={lesson}
                         onChangeFormData={onChangeAllCreateFormData}
+                        disabled={disabled}
                       />
                     ),
                     select: (
                       <ScheduleModalSelectBox
                         type={type}
-                        selectList={list}
+                        list={list}
                         onChangeFormData={onChangeAllCreateFormData}
                       />
                     ),
