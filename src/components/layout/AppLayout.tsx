@@ -5,33 +5,48 @@ import Image from 'next/image';
 import { CSS_TYPE } from '@styles/styles';
 import doubleArrowLeft from '@icons/keyboard_double_arrow_left.svg';
 import { NavigationLayout } from '@components/index';
+import useMobile from '@hooks/useMobile';
 
 const AppLayout = ({ children }: PropsWithChildren) => {
   const [isNavSpread, setIsNavSpread] = useState<boolean>(true);
   const pathName = usePathname();
   const firstPathName = pathName?.split('/')[1];
+  const isMobile = useMobile();
+
+  const mobileLayoutStyle = {
+    height: 'calc(100vh - 76px)',
+    top: '76px',
+    overflowY: 'scroll'
+  }
+
+  const mobileMainStyle = {
+    width: '100%',
+    height: '100%'
+  }
 
   return (
     <>
       {firstPathName === 'login' ? (
         <>{children}</>
       ) : (
-        <LayoutContainer padding={isNavSpread ? '20px' : '20px 20px 20px 0'}>
+        <LayoutContainer padding={isNavSpread ? '20px' : '20px 20px 20px 0'} css={ isMobile && { ...mobileLayoutStyle }}>
           <NavigationLayout
             isNavSpread={isNavSpread}
             firstPathName={firstPathName}
           />
-          <MainContainer width={isNavSpread ? '90%' : '95%'}>
-            <NavControlBtnWrapper>
-              <NavControlBtn
-                src={doubleArrowLeft}
-                alt="double arrow left"
-                width={28}
-                height={28}
-                onClick={() => setIsNavSpread(!isNavSpread)}
-                rotate={isNavSpread ? 'rotate(0deg)' : 'rotate(180deg)'}
-              />
-            </NavControlBtnWrapper>
+          <MainContainer width={isNavSpread ? '90%' : '95%'} css={ isMobile && { ...mobileMainStyle }}>
+            {!isMobile &&
+              <NavControlBtnWrapper>
+                <NavControlBtn
+                  src={doubleArrowLeft}
+                  alt="double arrow left"
+                  width={28}
+                  height={28}
+                  onClick={() => setIsNavSpread(!isNavSpread)}
+                  rotate={isNavSpread ? 'rotate(0deg)' : 'rotate(180deg)'}
+                />
+              </NavControlBtnWrapper>
+            }
             <ChildrenContainer>{children}</ChildrenContainer>
           </MainContainer>
         </LayoutContainer>
@@ -40,7 +55,7 @@ const AppLayout = ({ children }: PropsWithChildren) => {
   );
 };
 
-const LayoutContainer = styled.div<CSS_TYPE>(
+const LayoutContainer = styled((props: any) => <div {...props} />)(
   {
     width: '100vw',
     height: '100vh',
@@ -53,7 +68,8 @@ const LayoutContainer = styled.div<CSS_TYPE>(
     padding: props.padding,
   }),
 );
-const MainContainer = styled.main<CSS_TYPE>(
+
+const MainContainer = styled((props: any) => <main {...props} />)(
   {
     position: 'relative',
     height: 'calc(100vh - 48px)',
