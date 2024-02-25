@@ -54,6 +54,7 @@ const RAW_RUNTIME_STATE =
           ["react-datepicker", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.24.0"],\
           ["react-dom", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:18.2.0"],\
           ["react-hook-form", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:7.45.4"],\
+          ["react-responsive", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:9.0.2"],\
           ["react-time-range", "npm:1.0.4"],\
           ["recoil", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:0.7.7"],\
           ["recoil-persist", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:5.1.0"],\
@@ -2781,6 +2782,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["css-mediaquery", [\
+      ["npm:0.1.2", {\
+        "packageLocation": "../../../../Users/Admin/AppData/Local/Yarn/Berry/cache/css-mediaquery-npm-0.1.2-39b61fbcad-10c0.zip/node_modules/css-mediaquery/",\
+        "packageDependencies": [\
+          ["css-mediaquery", "npm:0.1.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["css-selector-tokenizer", [\
       ["npm:0.7.3", {\
         "packageLocation": "../../../../Users/Admin/AppData/Local/Yarn/Berry/cache/css-selector-tokenizer-npm-0.7.3-015149a7d1-10c0.zip/node_modules/css-selector-tokenizer/",\
@@ -4766,6 +4776,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["hyphenate-style-name", [\
+      ["npm:1.0.4", {\
+        "packageLocation": "../../../../Users/Admin/AppData/Local/Yarn/Berry/cache/hyphenate-style-name-npm-1.0.4-a79c7da506-10c0.zip/node_modules/hyphenate-style-name/",\
+        "packageDependencies": [\
+          ["hyphenate-style-name", "npm:1.0.4"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["iconv-lite", [\
       ["npm:0.6.3", {\
         "packageLocation": "../../../../Users/Admin/AppData/Local/Yarn/Berry/cache/iconv-lite-npm-0.6.3-24b8aae27e-10c0.zip/node_modules/iconv-lite/",\
@@ -5758,6 +5777,16 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["map-visit", "npm:1.0.0"],\
           ["object-visit", "npm:1.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["matchmediaquery", [\
+      ["npm:0.3.1", {\
+        "packageLocation": "../../../../Users/Admin/AppData/Local/Yarn/Berry/cache/matchmediaquery-npm-0.3.1-17c8857eb5-10c0.zip/node_modules/matchmediaquery/",\
+        "packageDependencies": [\
+          ["matchmediaquery", "npm:0.3.1"],\
+          ["css-mediaquery", "npm:0.1.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -7393,6 +7422,32 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["react-responsive", [\
+      ["npm:9.0.2", {\
+        "packageLocation": "../../../../Users/Admin/AppData/Local/Yarn/Berry/cache/react-responsive-npm-9.0.2-bca9a3ccf7-10c0.zip/node_modules/react-responsive/",\
+        "packageDependencies": [\
+          ["react-responsive", "npm:9.0.2"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:9.0.2", {\
+        "packageLocation": "./.yarn/__virtual__/react-responsive-virtual-864ff898e9/5/Users/Admin/AppData/Local/Yarn/Berry/cache/react-responsive-npm-9.0.2-bca9a3ccf7-10c0.zip/node_modules/react-responsive/",\
+        "packageDependencies": [\
+          ["react-responsive", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:9.0.2"],\
+          ["@types/react", "npm:18.2.6"],\
+          ["hyphenate-style-name", "npm:1.0.4"],\
+          ["matchmediaquery", "npm:0.3.1"],\
+          ["prop-types", "npm:15.8.1"],\
+          ["react", "npm:18.2.0"],\
+          ["shallow-equal", "npm:1.2.1"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["react-time-range", [\
       ["npm:1.0.4", {\
         "packageLocation": "../../../../Users/Admin/AppData/Local/Yarn/Berry/cache/react-time-range-npm-1.0.4-ebe6758a0e-10c0.zip/node_modules/react-time-range/",\
@@ -7872,6 +7927,15 @@ const RAW_RUNTIME_STATE =
           ["sha.js", "npm:2.4.11"],\
           ["inherits", "npm:2.0.4"],\
           ["safe-buffer", "npm:5.2.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["shallow-equal", [\
+      ["npm:1.2.1", {\
+        "packageLocation": "../../../../Users/Admin/AppData/Local/Yarn/Berry/cache/shallow-equal-npm-1.2.1-518a76643b-10c0.zip/node_modules/shallow-equal/",\
+        "packageDependencies": [\
+          ["shallow-equal", "npm:1.2.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -8477,6 +8541,7 @@ const RAW_RUNTIME_STATE =
           ["react-datepicker", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.24.0"],\
           ["react-dom", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:18.2.0"],\
           ["react-hook-form", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:7.45.4"],\
+          ["react-responsive", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:9.0.2"],\
           ["react-time-range", "npm:1.0.4"],\
           ["recoil", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:0.7.7"],\
           ["recoil-persist", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:5.1.0"],\
