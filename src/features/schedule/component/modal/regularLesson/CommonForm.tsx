@@ -25,11 +25,9 @@ const ScheduleModalRegularLessonCommonForm = ({
   setCommonData,
   lessonList,
 }: Props) => {
-  const { customer, lessonType } = commonData;
+  const { customer, lesson, lessonType } = commonData;
 
   const [formList, setFormList] = useState<TDataCommonList[]>(commonList);
-
-  console.log(lessonList);
 
   useEffect(() => {
     transFormSelectList(setFormList, 'lesson', lessonList);
@@ -73,6 +71,7 @@ const ScheduleModalRegularLessonCommonForm = ({
                   search: (
                     <ScheduleModalSearchInput
                       customer={customer}
+                      lesson={lesson}
                       lessonType={lessonType}
                       setFormData={setCommonData}
                     />

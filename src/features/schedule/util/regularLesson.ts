@@ -1,4 +1,5 @@
 import { SetStateAction } from '@/types/index';
+import { commonList } from '@features/schedule/data/commonList';
 import {
   CommonListKeyType,
   AllFormListKeyType,
@@ -11,24 +12,30 @@ const transFormSelectList = <T>(
   type: CommonListKeyType | AllFormListKeyType | IndividualFormListKeyType,
   newData: T[] | undefined,
 ) => {
-  if (!newData || newData.length === 0) return;
 
-  setOriginData((prev) => {
-    return prev.map((item) => {
+  const targetTypeDefaultList = commonList.find((el) => el.type === type)?.list;
+
+  if (!newData || newData.length === 0) {
+    setOriginData(prev => 
+      prev.map(item => 
+        item.type === type ? { ...item, list: targetTypeDefaultList } : item
+      )
+    );
+    return;
+  }
+
+  setOriginData(prev => 
+    prev.map(item => {
       if (item.type === type) {
-        return {
-          ...item,
-          list: newData.map((item: any) => {
-            return {
-              value: type === 'lesson' ? item.lessonId : item.id,
-              label: type === 'lesson' ? item.lessonName : item.name,
-            };
-          }),
-        };
+        const updatedList = newData.map((item: any) => ({
+          value: type === 'lesson' ? (item as any).lessonId : item.id,
+          label: type === 'lesson' ? (item as any).lessonName : item.name,
+        }));
+        return { ...item, list: updatedList };
       }
       return item;
-    });
-  });
+    })
+  );
 };
 
 export { transFormSelectList };

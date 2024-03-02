@@ -1,5 +1,6 @@
 type CustomerLessonListQueryPayload = {
   id: string;
+  lessonType: string;
 };
 
 type CustomerLessonListQueryData = {

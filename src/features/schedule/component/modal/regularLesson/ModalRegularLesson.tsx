@@ -35,10 +35,6 @@ const ModalRegularLesson = () => {
     lesson: '', // 수강권
   });
 
-  useEffect(() => {
-    console.log(commonData.lesson);
-  }, [commonData.lesson]);
-
   // 일괄등록
   const [allOnceFormData, onChangeAllOnceFormData, setAllOnceFormData] =
     useInput({
@@ -78,6 +74,7 @@ const ModalRegularLesson = () => {
 
   const { data: lessonList } = useCustomerLessonListQuery({
     id: commonData.customer[0]?.id,
+    lessonType: commonData.lessonType,
   });
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -112,7 +109,6 @@ const ModalRegularLesson = () => {
 
   return (
     <form
-      id=""
       css={{ display: 'flex', width: '100%', flexDirection: 'column' }}
       onSubmit={onSubmit}
     >
@@ -123,30 +119,28 @@ const ModalRegularLesson = () => {
           setCommonData={setCommonData}
           lessonList={lessonList}
         />
-        {
-          {
-            all: (
-              <AllOnceCreateInputForm
-                scheduleType={commonData.scheduleType}
-                lesson={commonData.lesson}
-                formData={allOnceFormData}
-                onChangeAllCreateFormData={onChangeAllOnceFormData}
-                setAllCreateFormData={setAllOnceFormData}
-                coachList={coachList}
-                courtList={courtList}
-              />
-            ),
-            individual: (
-              <IndividualCreateInputForm
-                scheduleType={commonData.scheduleType}
-                lesson={commonData.lesson}
-                formData={individualFormData}
-                onChangeIndividualCreateFormData={onChangeIndividualFormData}
-                setIndividualCreateFormData={setIndividualFormData}
-              />
-            ),
-          }[commonData.scheduleType as string]
-        }
+        {{
+          all: (
+            <AllOnceCreateInputForm
+              scheduleType={commonData.scheduleType}
+              lesson={commonData.lesson}
+              formData={allOnceFormData}
+              onChangeAllCreateFormData={onChangeAllOnceFormData}
+              setAllCreateFormData={setAllOnceFormData}
+              coachList={coachList}
+              courtList={courtList}
+            />
+          ),
+          individual: (
+            <IndividualCreateInputForm
+              scheduleType={commonData.scheduleType}
+              lesson={commonData.lesson}
+              formData={individualFormData}
+              onChangeIndividualCreateFormData={onChangeIndividualFormData}
+              setIndividualCreateFormData={setIndividualFormData}
+            />
+          ),
+        }[commonData.scheduleType as string]}
       </div>
       <Button
         type={'submit'}

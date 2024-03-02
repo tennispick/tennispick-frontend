@@ -2,6 +2,7 @@ import { CommonFormInputType } from '@features/schedule/type/schedule.type';
 
 type CustomerLessonListApiPayload = {
   id: string;
+  lessonType: string;
 };
 
 type CustomerDetailApiPayLoad = {
@@ -26,7 +27,7 @@ type CustomerDetailData = {
 
 type SearchCustomerListByKeywordApiPayload = {
   keyword: string;
-} & Pick<CommonFormInputType, 'customer'>;
+} & Pick<CommonFormInputType, 'customer' | 'lesson' | 'lessonType'>;
 
 export type {
   CustomerLessonListApiPayload,
