@@ -81,9 +81,6 @@ const ModalRegularLesson = () => {
 
     e.preventDefault();
     
-    console.log(e);
-    console.log(e.nativeEvent);
-
     const { scheduleType } = commonData;
 
     const allCreateBody = { ...commonData, ...allOnceFormData };

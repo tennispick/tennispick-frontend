@@ -7,15 +7,21 @@ const useScheduleMutation = () => {
     (data: any) => createScheduleLesson(data),
     {
       onSuccess: (res) => {
+
+        console.log(res);
+
         const responseLength = res.filter(
           ({ affectedRows }: MutationType) => affectedRows > 0,
         ).length;
-        if (res.length === responseLength)
-          alert('스케줄이 정상적으로 등록되었어요.');
-        else
-          alert('스케줄 생성이 일부만 등록되었어요.\n관리자에게 문의해주세요.');
 
-        window.location.reload();
+        console.log(responseLength);
+
+        // if (res.length === responseLength)
+        //   alert('스케줄이 정상적으로 등록되었어요.');
+        // else
+        //   alert('스케줄 생성이 일부만 등록되었어요.\n관리자에게 문의해주세요.');
+
+        // window.location.reload();
       },
       onError: (error) => {
         alert('스케줄 생성에 실패했어요.\n관리자에게 문의해주세요.');
