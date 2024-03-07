@@ -78,7 +78,11 @@ const ModalRegularLesson = () => {
   });
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+
     e.preventDefault();
+    
+    console.log(e);
+    console.log(e.nativeEvent);
 
     const { scheduleType } = commonData;
 
@@ -106,6 +110,12 @@ const ModalRegularLesson = () => {
 
     mutate(body);
   };
+
+  useEffect(() => {
+    document.addEventListener('keydown', (e) => { if(e.key === 'Enter') e.preventDefault() });
+
+    return document.removeEventListener('keydown', (e) => { if(e.key === 'Enter') e.preventDefault() });
+  }, [])
 
   return (
     <form
