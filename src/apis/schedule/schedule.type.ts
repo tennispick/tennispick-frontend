@@ -1,3 +1,5 @@
+import { ScheduleType } from "@features/schedule/type/schedule.type";
+
 type ScheduleLessonByDateApiPayload = {
   day: Date;
 };
@@ -6,6 +8,11 @@ type ScheduleLessonByStartDateEndDatePeriodPayload = {
   startDate: Date;
   endDate: Date;
 };
+
+type DuplicateCheckScheduleLessonPayload = {
+  coachId: string;
+  courtId: string;
+} & ScheduleType;
 
 type SchduleLessonByStartDateEndDatePeriodData = {
   id: number;
@@ -27,5 +34,6 @@ type SchduleLessonByStartDateEndDatePeriodData = {
 export type {
   ScheduleLessonByDateApiPayload,
   ScheduleLessonByStartDateEndDatePeriodPayload,
+  DuplicateCheckScheduleLessonPayload,
   SchduleLessonByStartDateEndDatePeriodData,
 };

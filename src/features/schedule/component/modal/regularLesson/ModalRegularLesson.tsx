@@ -21,6 +21,7 @@ import { useScheduleMutation } from '@features/schedule/mutation/scheduleMutatio
 import { useCustomerLessonListQuery } from '@features/customer/query/CustomerQuery';
 import { useGetCourtListQuery } from '@features/court/query/courtQuery';
 import { useGetCoachListQuery } from '@features/coach/query/coachQuery';
+import { useDuplicateCheckScheduleLessonQuery } from '@features/schedule/query/scheduleQuery';
 
 const ModalRegularLesson = () => {
   const { mutate } = useScheduleMutation();
@@ -72,6 +73,12 @@ const ModalRegularLesson = () => {
     },
   ]);
 
+  useDuplicateCheckScheduleLessonQuery({
+    coach: allOnceFormData.coach,
+    court: allOnceFormData.court,
+    schedule: commonData.scheduleType === 'all' ? allOnceFormData.schedule : individualFormData,
+  });
+
   const { data: lessonList } = useCustomerLessonListQuery({
     id: commonData.customer[0]?.id,
     lessonType: commonData.lessonType,
@@ -113,6 +120,15 @@ const ModalRegularLesson = () => {
 
     return document.removeEventListener('keydown', (e) => { if(e.key === 'Enter') e.preventDefault() });
   }, [])
+
+  // // 일괄등록
+  // useEffect(() => {
+
+  //   for(const schedule of allOnceFormData.schedule) {
+  //     console.log(schedule)
+      
+  //   }
+  // }, [allOnceFormData.schedule])
 
   return (
     <form

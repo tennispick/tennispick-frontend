@@ -35,6 +35,8 @@ type FormAllOnceCreateType = {
   schedule: Array<ScheduleType>;
 };
 
+type DuplicateCheckScheduleLessonQueryPayload = Pick<FormAllOnceCreateType, 'coach' | 'court' | 'schedule'> ;
+
 type FormIndividualCreateType = {
   lessonDateType: string;
   lessonTime: string;
@@ -61,6 +63,7 @@ export type {
   CommonFormInputType,
   ScheduleType,
   FormAllOnceCreateType,
+  DuplicateCheckScheduleLessonQueryPayload,
   FormIndividualCreateType,
   FormIndividualHandlerType,
 };

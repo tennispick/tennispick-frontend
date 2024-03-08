@@ -2,12 +2,15 @@ import { useQuery } from '@tanstack/react-query';
 import {
   getScheduleLessonByStartDateEndDatePeriod,
   getScheduleLessonByDate,
+  isDuplicateCheckScheduleLesson,
 } from 'src/apis/schedule/schedule.api';
 import {
   ScheduleLessonByStartDateEndDatePeriodQueryPayload,
   ScheduleLessonByDateQueryPayload,
+  DuplicateCheckScheduleLessonQueryPayload,
 } from '../type/schedule.type';
 import {
+  URL_IS_DUPLICATE_CHECK_SCHEDULE_LESSON,
   URL_SCHEDULE_LESSON_BY_DATE,
   URL_SCHEDULE_LESSON_BY_PERIOD,
 } from 'src/apis/schedule/schedule.url';
@@ -49,4 +52,20 @@ const useScheduleByDateQuery = (params: ScheduleLessonByDateQueryPayload) => {
   };
 };
 
-export { useScheduleByPeriodQuery, useScheduleByDateQuery };
+// 선택한 날짜에 해당 코트에 예약가능 여부 확인
+const useDuplicateCheckScheduleLessonQuery = (params: DuplicateCheckScheduleLessonQueryPayload) => {
+  const { coach, court, schedule } = params;
+  console.log(params);
+  // const { data, isFetching, isLoading, refetch } = useQuery({
+  //   queryKey: [URL_IS_DUPLICATE_CHECK_SCHEDULE_LESSON, coach, court, date, startTime, endTime],
+  //   queryFn: async () => await isDuplicateCheckScheduleLesson({ coachId: coach, courtId: court, day, date, startTime, endTime }),
+  // });
+  // return {
+  //   data,
+  //   isFetching,
+  //   isLoading,
+  //   refetch
+  // }
+};
+
+export { useScheduleByPeriodQuery, useScheduleByDateQuery, useDuplicateCheckScheduleLessonQuery };
