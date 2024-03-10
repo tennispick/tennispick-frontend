@@ -12,7 +12,8 @@ type ScheduleLessonByStartDateEndDatePeriodPayload = {
 type DuplicateCheckScheduleLessonPayload = {
   coachId: string;
   courtId: string;
-} & ScheduleType;
+  schedule: Array<ScheduleType>;
+};
 
 type SchduleLessonByStartDateEndDatePeriodData = {
   id: number;

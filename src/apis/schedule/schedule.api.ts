@@ -45,14 +45,14 @@ const createScheduleLesson = async (params: any) => {
 };
 
 const isDuplicateCheckScheduleLesson = async (params: DuplicateCheckScheduleLessonPayload) => {
-  const { coachId, courtId, date, day, startTime, endTime } = params;
+  const { coachId, courtId, schedule } = params;
+
+  if(!coachId || !courtId || !schedule) return {};
+
   const { data } = await axios.post(`${URL_IS_DUPLICATE_CHECK_SCHEDULE_LESSON}`, {
     coachId,
     courtId,
-    date,
-    day,
-    startTime,
-    endTime
+    schedule
   });
   return data;
 };
