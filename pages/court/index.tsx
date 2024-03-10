@@ -14,7 +14,6 @@ import { EditWhiteIcon } from '@icons/index';
 import RightSideContainer from '@components/layer/RightSideContainer';
 
 const CourtPage = () => {
-  // lessonType={tabList[tabList.findIndex(e => e.id === currentTab)].value}
 
   const { data } = getCourtQuery();
 
