@@ -56,7 +56,7 @@ const useScheduleByDateQuery = (params: ScheduleLessonByDateQueryPayload) => {
 const useDuplicateCheckScheduleLessonQuery = (params: DuplicateCheckScheduleLessonQueryPayload) => {
   const { coach, court, schedule } = params;
   const { data, isFetching, isLoading, refetch } = useQuery({
-    queryKey: [URL_IS_DUPLICATE_CHECK_SCHEDULE_LESSON, coach, court],
+    queryKey: [URL_IS_DUPLICATE_CHECK_SCHEDULE_LESSON, coach, court, schedule],
     queryFn: async () => await isDuplicateCheckScheduleLesson({ coachId: coach, courtId: court, schedule }),
   });
   return {

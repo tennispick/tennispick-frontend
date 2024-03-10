@@ -73,7 +73,7 @@ const ModalRegularLesson = () => {
     },
   ]);
 
-  useDuplicateCheckScheduleLessonQuery({
+  const { data: isDuplicateList } = useDuplicateCheckScheduleLessonQuery({
     coach: allOnceFormData.coach,
     court: allOnceFormData.court,
     schedule: commonData.scheduleType === 'all' ? allOnceFormData.schedule : individualFormData,
@@ -121,15 +121,6 @@ const ModalRegularLesson = () => {
     return document.removeEventListener('keydown', (e) => { if(e.key === 'Enter') e.preventDefault() });
   }, [])
 
-  // // 일괄등록
-  // useEffect(() => {
-
-  //   for(const schedule of allOnceFormData.schedule) {
-  //     console.log(schedule)
-      
-  //   }
-  // }, [allOnceFormData.schedule])
-
   return (
     <form
       css={{ display: 'flex', width: '100%', flexDirection: 'column' }}
@@ -152,6 +143,7 @@ const ModalRegularLesson = () => {
               setAllCreateFormData={setAllOnceFormData}
               coachList={coachList}
               courtList={courtList}
+              isDuplicateList={isDuplicateList}
             />
           ),
           individual: (
@@ -179,6 +171,7 @@ const ModalRegularLesson = () => {
           padding: '12px 16px',
           margin: '24px 0 0 0',
         }}
+        disabled={(isDuplicateList && isDuplicateList.length > 0) ? true : false}
       />
     </form>
   );
