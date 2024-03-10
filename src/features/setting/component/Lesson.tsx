@@ -7,8 +7,8 @@ type Props = {
   onClickHandler: (e: React.MouseEvent<HTMLInputElement>) => void;
 };
 
-const SettingCenter = ({ onClickHandler }: Props) => {
-  const { data, isLoading } = useSettingListQuery({ type: 'center' });
+const SettingLesson = ({ onClickHandler }: Props) => {
+  const { data, isLoading } = useSettingListQuery({ type: 'lesson' });
 
   if (isLoading) return <Loading />;
   if (!data) return <>준비중이에요.</>;
@@ -35,4 +35,4 @@ const SettingCenter = ({ onClickHandler }: Props) => {
   );
 };
 
-export default SettingCenter;
+export default SettingLesson;

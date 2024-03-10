@@ -1,5 +1,6 @@
 import { axios } from '@utils/axios';
 import { useQuery } from '@tanstack/react-query';
+import { URL_FETCH_LESSON_LIST } from '@apis/lesson/lessson.api';
 
 type LessonPayload = {
   id?: string;
@@ -10,8 +11,9 @@ const getLessonFetch = async ({ id }: LessonPayload): Promise<any> =>
 const getLessonQuery = ({ id }: LessonPayload): any => {
   try {
     const { data } = useQuery({
-      queryKey: ['lesson', id],
+      queryKey: [URL_FETCH_LESSON_LIST, id],
       queryFn: async () => await getLessonFetch({ id }),
+      select: (data) => data.data,
     });
     return {
       data: data,

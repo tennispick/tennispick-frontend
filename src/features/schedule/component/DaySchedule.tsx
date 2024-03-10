@@ -1,66 +1,75 @@
-import { useState } from 'react';
-import WeekdaySchedule from './WeekdaySchedule';
-import WeekendSchedule from './WeekendSchedule';
+import { getDayOfWeek } from '@utils/date';
+import { useScheduleByPeriodQuery } from '../query/scheduleQuery';
+import { GET_WEEK_LIST_COUNT } from '@features/constant/schedule';
+import Loading from '@components/common/Loading';
+import ScheduleTimeTable from './ScheduleTimeTable';
+
+import { getDayOfWeekList } from '@utils/date';
+import styled from '@emotion/styled';
+import { CoachListData } from '@apis/coach/coach.type';
 
 type Props = {
   date: Date;
+  coachList: CoachListData[];
 };
 
-const DaySchedule = ({ date }: Props) => {
-  const [coach] = useState([
-    {
-      id: 1,
-      name: 'Jason',
-      color: 'var(--green100)',
-    },
-    {
-      id: 2,
-      name: 'Martin',
-      color: 'var(--purple100)',
-    },
-    {
-      id: 3,
-      name: 'Alice',
-      color: 'var(--blue100)',
-    },
-    {
-      id: 4,
-      name: 'Mark',
-      color: 'var(--red100)',
-    },
-    {
-      id: 5,
-      name: 'Haward',
-      color: 'var(--yellow100)',
-    },
-  ]);
+const DaySchedule = ({ date, coachList }: Props) => {
+  const thisWeekSunday = getDayOfWeek(date, 'sunday');
+  const nextWeekSunday = new Date(thisWeekSunday);
+  nextWeekSunday.setDate(thisWeekSunday.getDate() + GET_WEEK_LIST_COUNT * 6);
+
+  const { data, isLoading } = useScheduleByPeriodQuery({
+    startDate: thisWeekSunday,
+    endDate: nextWeekSunday,
+  });
 
   return (
-    <div
-      css={{ position: 'relative', width: '100%', height: 'calc(100% - 64px)' }}
-    >
-      <div css={{ padding: '0 0 12px 0' }}>
-        {/* <ul css={{ display: 'flex' }}>
-          {coach.map((el) => (
-            <li key={el.id} css={{ backgroundColor: el.color, color: 'var(--white100)', padding: '8px 16px', borderRadius: '8px', margin: '0 8px 0 0' }}>
-              <span>{el.name}</span>
-            </li>
-          ))}
-        </ul> */}
-      </div>
+    <>
+      {isLoading && <Loading />}
       <div
         css={{
-          position: 'relative',
           display: 'flex',
           width: '100%',
-          height: 'calc(100% - 48px)',
+          height: 'calc(100% - 176px)',
         }}
       >
-        <WeekdaySchedule date={date} coach={coach} />
-        <WeekendSchedule date={date} coach={coach} />
+        <SchduleTimeTableContainer>
+          <SchduleTimeTableTitle>평일</SchduleTimeTableTitle>
+          <ScheduleTimeTable
+            coach={coachList}
+            data={data}
+            timeTableMapList={getDayOfWeekList(date, GET_WEEK_LIST_COUNT, true)}
+          />
+        </SchduleTimeTableContainer>
+        <SchduleTimeTableContainer>
+          <SchduleTimeTableTitle>주말</SchduleTimeTableTitle>
+          <ScheduleTimeTable
+            coach={coachList}
+            data={data}
+            timeTableMapList={getDayOfWeekList(
+              date,
+              GET_WEEK_LIST_COUNT,
+              false,
+            )}
+          />
+        </SchduleTimeTableContainer>
       </div>
-    </div>
+    </>
   );
 };
+
+const SchduleTimeTableContainer = styled.div({
+  position: 'relative',
+  width: '50%',
+  height: '100%',
+});
+
+const SchduleTimeTableTitle = styled.div({
+  position: 'relative',
+  height: '24px',
+  fontSize: '1.25rem',
+  fontWeight: 600,
+  margin: '0 0 16px 0',
+});
 
 export default DaySchedule;

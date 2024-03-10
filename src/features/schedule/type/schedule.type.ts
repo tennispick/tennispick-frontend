@@ -4,7 +4,12 @@ type ScheduleLessonByDateQueryPayload = {
   day: Date;
 };
 
-type FormCommonInputType = {
+type ScheduleLessonByStartDateEndDatePeriodQueryPayload = {
+  startDate: Date;
+  endDate: Date;
+};
+
+type CommonFormInputType = {
   scheduleType: string;
   lessonType: string;
   customer: Array<{
@@ -30,6 +35,8 @@ type FormAllOnceCreateType = {
   schedule: Array<ScheduleType>;
 };
 
+type DuplicateCheckScheduleLessonQueryPayload = Pick<FormAllOnceCreateType, 'coach' | 'court' | 'schedule'> ;
+
 type FormIndividualCreateType = {
   lessonDateType: string;
   lessonTime: string;
@@ -52,9 +59,11 @@ type FormIndividualHandlerType = {
 
 export type {
   ScheduleLessonByDateQueryPayload,
-  FormCommonInputType,
+  ScheduleLessonByStartDateEndDatePeriodQueryPayload,
+  CommonFormInputType,
   ScheduleType,
   FormAllOnceCreateType,
+  DuplicateCheckScheduleLessonQueryPayload,
   FormIndividualCreateType,
   FormIndividualHandlerType,
 };

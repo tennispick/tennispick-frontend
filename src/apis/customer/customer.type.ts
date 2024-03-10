@@ -1,4 +1,9 @@
-import { FormCommonInputType } from '@features/schedule/type/schedule.type';
+import { CommonFormInputType } from '@features/schedule/type/schedule.type';
+
+type CustomerLessonListApiPayload = {
+  id: string;
+  lessonType: string;
+};
 
 type CustomerDetailApiPayLoad = {
   id: string;
@@ -22,9 +27,10 @@ type CustomerDetailData = {
 
 type SearchCustomerListByKeywordApiPayload = {
   keyword: string;
-} & Pick<FormCommonInputType, 'customer'>;
+} & Pick<CommonFormInputType, 'customer' | 'lesson' | 'lessonType'>;
 
 export type {
+  CustomerLessonListApiPayload,
   CustomerDetailApiPayLoad,
   CustomerDetailData,
   SearchCustomerListByKeywordApiPayload,

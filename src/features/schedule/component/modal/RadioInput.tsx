@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import { UseInputType } from 'src/types';
 
 type Props = {
-  lesson: string;
   type: string;
   radioList:
     | Array<{
@@ -12,18 +11,19 @@ type Props = {
       }>
     | undefined;
   onChangeFormData: UseInputType<HTMLInputElement>;
+  disabled?: boolean;
 };
 
 const ScheduleModalRadioInput = ({
-  lesson,
   type,
   radioList,
   onChangeFormData,
+  disabled = false,
 }: Props) => {
   return (
     <div css={{ display: 'flex', alignItems: 'center' }}>
       {radioList?.map(({ label, value }, index) => {
-        const isCheckLesson = type === 'lessonTime' && lesson === '';
+        const isCheckLesson = type === 'lessonTime' && disabled;
 
         return (
           <InputContainer
@@ -41,7 +41,7 @@ const ScheduleModalRadioInput = ({
               value={value}
               defaultChecked={!isCheckLesson ? index === 0 : index === 1}
               onChange={onChangeFormData}
-              disabled={index === 0 && isCheckLesson}
+              disabled={disabled}
             />
           </InputContainer>
         );

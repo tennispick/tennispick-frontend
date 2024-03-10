@@ -2,14 +2,22 @@ const tabLists = [
   {
     id: 1,
     name: '센터 설정',
+    type: 'center',
   },
   {
     id: 2,
     name: '코치 설정',
+    type: 'coach',
   },
   {
     id: 3,
+    name: '레슨 설정',
+    type: 'lesson',
+  },
+  {
+    id: 4,
     name: '정산 설정',
+    type: 'payment',
   },
 ];
 
