@@ -52,30 +52,32 @@ const ScheduleModalRegularLessonCommonForm = ({
               {title}
             </HeadContainer>
             <div css={{ margin: '12px 0 0 0' }}>
-              {{
-                radio: (
-                  <ScheduleModalRadioInput
-                    type={type}
-                    radioList={list}
-                    onChangeFormData={onChangeCommonData}
-                  />
-                ),
-                select: (
-                  <ScheduleModalSelectBox
-                    type={type}
-                    list={list}
-                    onChangeFormData={onChangeCommonData}
-                  />
-                ),
-                search: (
-                  <ScheduleModalSearchInput
-                    customer={customer}
-                    lesson={lesson}
-                    lessonType={lessonType}
-                    setFormData={setCommonData}
-                  />
-                ),
-              }[fieldType]}
+              {
+                {
+                  radio: (
+                    <ScheduleModalRadioInput
+                      type={type}
+                      radioList={list}
+                      onChangeFormData={onChangeCommonData}
+                    />
+                  ),
+                  select: (
+                    <ScheduleModalSelectBox
+                      type={type}
+                      list={list}
+                      onChangeFormData={onChangeCommonData}
+                    />
+                  ),
+                  search: (
+                    <ScheduleModalSearchInput
+                      customer={customer}
+                      lesson={lesson}
+                      lessonType={lessonType}
+                      setFormData={setCommonData}
+                    />
+                  ),
+                }[fieldType]
+              }
             </div>
           </div>
         );

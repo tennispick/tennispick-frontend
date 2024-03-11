@@ -23,22 +23,31 @@ const ScheduleModalRegularLessonAllOnceCreateScheduleFormField = ({
   const { lessonTime, lessonDateType, weeklyLessonCount, schedule } = formData;
 
   const scheduleList = schedule.map((item) => {
-
     const targetDate = new Date(item.date);
     const targetYear = targetDate.getFullYear();
     const targetMonth = targetDate.getMonth() + 1;
     const targetDay = targetDate.getDate();
-    const targetFullFormat = `${targetYear}-${numberZeroFillFormat(targetMonth, 2)}-${numberZeroFillFormat(targetDay, 2)}`;
+    const targetFullFormat = `${targetYear}-${numberZeroFillFormat(
+      targetMonth,
+      2,
+    )}-${numberZeroFillFormat(targetDay, 2)}`;
 
-    const isDuplicate = (isDuplicateList && isDuplicateList.length > 0) && isDuplicateList.map((el: any) => {
-      const { result } = el;
-      return item.startTime === result.startTime && item.endTime === result.endTime && targetFullFormat === result.date;
-    });
+    const isDuplicate =
+      isDuplicateList &&
+      isDuplicateList.length > 0 &&
+      isDuplicateList.map((el: any) => {
+        const { result } = el;
+        return (
+          item.startTime === result.startTime &&
+          item.endTime === result.endTime &&
+          targetFullFormat === result.date
+        );
+      });
 
     return {
       ...item,
       isDuplicate: isDuplicate ? true : false,
-    }
+    };
   });
 
   return (
@@ -62,7 +71,9 @@ const ScheduleModalRegularLessonAllOnceCreateScheduleFormField = ({
                 },
               }}
             >
-              <div css={{ width: '20px', margin: '0 8px 0 0' }}>{index + 1}.</div>
+              <div css={{ width: '20px', margin: '0 8px 0 0' }}>
+                {index + 1}.
+              </div>
               {lessonDateType === 'date' ? (
                 <DatePicker
                   showIcon
@@ -147,10 +158,12 @@ const ScheduleModalRegularLessonAllOnceCreateScheduleFormField = ({
                 }}
               />
             </div>
-            <div css={{
-              padding: '0 0 0 28px',
-              color: 'var(--red200)',
-            }}>
+            <div
+              css={{
+                padding: '0 0 0 28px',
+                color: 'var(--red200)',
+              }}
+            >
               {item.isDuplicate && <>예약이 불가능한 날짜에요.</>}
             </div>
           </div>

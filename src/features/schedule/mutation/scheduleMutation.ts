@@ -7,7 +7,6 @@ const useScheduleMutation = () => {
     (data: any) => createScheduleLesson(data),
     {
       onSuccess: (res) => {
-
         const responseLength = res.filter(
           ({ code }: ResponseType) => code === 201,
         ).length;
