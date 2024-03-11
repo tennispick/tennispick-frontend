@@ -31,7 +31,7 @@ const ScheduleModalRegularLessonAllOnceCreateInputForm = ({
   setAllCreateFormData,
   coachList,
   courtList,
-  isDuplicateList
+  isDuplicateList,
 }: Props) => {
   const disabled = lesson === '' ? true : false;
 
