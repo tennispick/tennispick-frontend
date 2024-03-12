@@ -16,11 +16,12 @@ import { Response } from '@/types/response';
 
 const useCustomerLessonListQuery = (params: CustomerLessonListQueryPayload) => {
   try {
-    const { id } = params;
+    const { id, lessonType } = params;
     const { data, isLoading } = useQuery<Response<CustomerLessonListQueryData>>(
       {
-        queryKey: [URL_FETCH_CUSTOMER_LESSON_LIST, id],
-        queryFn: async () => await getCustomerLessonList({ id: id }),
+        queryKey: [URL_FETCH_CUSTOMER_LESSON_LIST, id, lessonType],
+        queryFn: async () =>
+          await getCustomerLessonList({ id: id, lessonType: lessonType }),
       },
     );
 

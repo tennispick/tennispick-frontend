@@ -10,6 +10,11 @@ type UseQueryType<T> = {
   isLoading: boolean;
 };
 
+type ResponseType = {
+  code: number;
+  message: string;
+};
+
 type MutationType = {
   affectedRows: number;
   changedRows: number;
@@ -28,6 +33,7 @@ type ObjectType<T> = { [key: string]: T };
 
 export type {
   UseQueryType,
+  ResponseType,
   MutationType,
   SetStateAction,
   UseInputType,

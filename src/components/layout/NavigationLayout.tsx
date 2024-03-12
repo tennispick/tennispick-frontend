@@ -7,7 +7,7 @@ import Calendar from '@components/home/Calendar';
 import { useState } from 'react';
 import { Modal, Portal } from '@components/index';
 import ScheduleByDate from '@features/layer/scheduleByDate/screen/ScheduleByDate';
-import Logo from '@icons/logo.svg';
+import Logo from '@icons/white_bg_logo.svg';
 
 type Props = {
   firstPathName: string;

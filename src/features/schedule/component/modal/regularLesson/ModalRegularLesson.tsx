@@ -21,6 +21,7 @@ import { useScheduleMutation } from '@features/schedule/mutation/scheduleMutatio
 import { useCustomerLessonListQuery } from '@features/customer/query/CustomerQuery';
 import { useGetCourtListQuery } from '@features/court/query/courtQuery';
 import { useGetCoachListQuery } from '@features/coach/query/coachQuery';
+import { useDuplicateCheckScheduleLessonQuery } from '@features/schedule/query/scheduleQuery';
 
 const ModalRegularLesson = () => {
   const { mutate } = useScheduleMutation();
@@ -76,8 +77,18 @@ const ModalRegularLesson = () => {
     },
   ]);
 
+  const { data: isDuplicateList } = useDuplicateCheckScheduleLessonQuery({
+    coach: allOnceFormData.coach,
+    court: allOnceFormData.court,
+    schedule:
+      commonData.scheduleType === 'all'
+        ? allOnceFormData.schedule
+        : individualFormData,
+  });
+
   const { data: lessonList } = useCustomerLessonListQuery({
     id: commonData.customer[0]?.id,
+    lessonType: commonData.lessonType,
   });
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -110,6 +121,16 @@ const ModalRegularLesson = () => {
     mutate(body);
   };
 
+  useEffect(() => {
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') e.preventDefault();
+    });
+
+    return document.removeEventListener('keydown', (e) => {
+      if (e.key === 'Enter') e.preventDefault();
+    });
+  }, []);
+
   return (
     <form
       id=""
@@ -134,6 +155,7 @@ const ModalRegularLesson = () => {
                 setAllCreateFormData={setAllOnceFormData}
                 coachList={coachList}
                 courtList={courtList}
+                isDuplicateList={isDuplicateList}
               />
             ),
             individual: (
@@ -162,6 +184,7 @@ const ModalRegularLesson = () => {
           padding: '12px 16px',
           margin: '24px 0 0 0',
         }}
+        disabled={isDuplicateList && isDuplicateList.length > 0 ? true : false}
       />
     </form>
   );

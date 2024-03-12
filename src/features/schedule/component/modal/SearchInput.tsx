@@ -7,13 +7,17 @@ import { SetStateAction } from '@/types/index';
 import Image from 'next/image';
 import CancelWhiteBtn from '@icons/cancel_white_btn.svg';
 
-type CommonInputType = Pick<CommonFormInputType, 'customer' | 'lessonType'>;
+type CommonInputType = Pick<
+  CommonFormInputType,
+  'customer' | 'lesson' | 'lessonType'
+>;
 type Props = {
   setFormData: SetStateAction<CommonFormInputType>;
 } & CommonInputType;
 
 const ScheduleModalSearchInput = ({
   customer,
+  lesson,
   lessonType,
   setFormData,
 }: Props) => {
@@ -31,12 +35,15 @@ const ScheduleModalSearchInput = ({
 
   useEffect(() => {
     const searchDealy = setTimeout(async () => {
-      await getSearchCustomerListByKeyword({ keyword, customer }).then(
-        (res) => {
-          setAutoSearchKeyword([...res]);
-        },
-      );
-    }, 200);
+      await getSearchCustomerListByKeyword({
+        lesson,
+        lessonType,
+        keyword,
+        customer,
+      }).then((res) => {
+        setAutoSearchKeyword([...res]);
+      });
+    }, 50);
     return () => clearTimeout(searchDealy);
   }, [keyword]);
 
@@ -63,6 +70,7 @@ const ScheduleModalSearchInput = ({
       </Input>
       {keyword && autoSearchKeyword.length > 0 && (
         <ScheduleModalSearchInput.AutoCompleteSearchContainer
+          lesson={lesson}
           lessonType={lessonType}
           customer={customer}
           setFormData={setFormData}

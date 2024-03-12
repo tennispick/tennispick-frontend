@@ -20,6 +20,7 @@ type Props = {
   setAllCreateFormData: Dispatch<SetStateAction<FormAllOnceCreateType>>;
   coachList: CoachListData[] | undefined;
   courtList: CourtListData[] | undefined;
+  isDuplicateList: any;
 };
 
 const ScheduleModalRegularLessonAllOnceCreateInputForm = ({
@@ -30,6 +31,7 @@ const ScheduleModalRegularLessonAllOnceCreateInputForm = ({
   setAllCreateFormData,
   coachList,
   courtList,
+  isDuplicateList,
 }: Props) => {
   const disabled = lesson === '' ? true : false;
 
@@ -89,6 +91,7 @@ const ScheduleModalRegularLessonAllOnceCreateInputForm = ({
         scheduleType={scheduleType}
         formData={formData}
         setFormData={setAllCreateFormData}
+        isDuplicateList={isDuplicateList}
       />
     </>
   );

@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { createScheduleLesson } from '@apis/schedule/schedule.api';
-import { MutationType } from 'src/types';
+import { ResponseType } from 'src/types';
 
 const useScheduleMutation = () => {
   const { mutate, isLoading } = useMutation(
@@ -8,8 +8,9 @@ const useScheduleMutation = () => {
     {
       onSuccess: (res) => {
         const responseLength = res.filter(
-          ({ affectedRows }: MutationType) => affectedRows > 0,
+          ({ code }: ResponseType) => code === 201,
         ).length;
+
         if (res.length === responseLength)
           alert('스케줄이 정상적으로 등록되었어요.');
         else
