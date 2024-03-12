@@ -6,10 +6,12 @@ import ScheduleCreateModal from '@features/schedule/component/modal/CreateModal'
 import DaySchedule from '../component/DaySchedule';
 import ButtonContainer from '../component/ButtonContainer';
 import { useGetCoachListQuery } from '@features/coach/query/coachQuery';
+import useMobile from '@hooks/useMobile';
 
 const Schedule = () => {
   const today = new Date();
 
+  const isMobile = useMobile();
   const [calendarDate, setCalendarDate] = useState(today);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalType, setModalType] = useState<string>('');
@@ -46,7 +48,11 @@ const Schedule = () => {
         setModalType={setModalType}
         setShowModal={setShowModal}
       />
-      <DaySchedule date={calendarDate} coachList={coachList ? coachList : []} />
+      <DaySchedule
+        isMobile={isMobile}
+        date={calendarDate}
+        coachList={coachList ? coachList : []}
+      />
       {showModal && (
         <Portal id={'portal'}>
           <Modal

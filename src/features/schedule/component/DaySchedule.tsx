@@ -7,13 +7,15 @@ import ScheduleTimeTable from './ScheduleTimeTable';
 import { getDayOfWeekList } from '@utils/date';
 import styled from '@emotion/styled';
 import { CoachListData } from '@apis/coach/coach.type';
+import { CSS_TYPE } from '@styles/styles';
 
 type Props = {
+  isMobile: boolean;
   date: Date;
   coachList: CoachListData[];
 };
 
-const DaySchedule = ({ date, coachList }: Props) => {
+const DaySchedule = ({ isMobile, date, coachList }: Props) => {
   const thisWeekSunday = getDayOfWeek(date, 'sunday');
   const nextWeekSunday = new Date(thisWeekSunday);
   nextWeekSunday.setDate(thisWeekSunday.getDate() + GET_WEEK_LIST_COUNT * 6);
@@ -31,9 +33,10 @@ const DaySchedule = ({ date, coachList }: Props) => {
           display: 'flex',
           width: '100%',
           height: 'calc(100% - 176px)',
+          flexDirection: isMobile ? 'column' : 'row',
         }}
       >
-        <SchduleTimeTableContainer>
+        <SchduleTimeTableContainer width={'100%'}>
           <SchduleTimeTableTitle>평일</SchduleTimeTableTitle>
           <ScheduleTimeTable
             coach={coachList}
@@ -41,7 +44,7 @@ const DaySchedule = ({ date, coachList }: Props) => {
             timeTableMapList={getDayOfWeekList(date, GET_WEEK_LIST_COUNT, true)}
           />
         </SchduleTimeTableContainer>
-        <SchduleTimeTableContainer>
+        <SchduleTimeTableContainer width={'100%'}>
           <SchduleTimeTableTitle>주말</SchduleTimeTableTitle>
           <ScheduleTimeTable
             coach={coachList}
@@ -58,11 +61,15 @@ const DaySchedule = ({ date, coachList }: Props) => {
   );
 };
 
-const SchduleTimeTableContainer = styled.div({
-  position: 'relative',
-  width: '50%',
-  height: '100%',
-});
+const SchduleTimeTableContainer = styled.div<CSS_TYPE>(
+  {
+    position: 'relative',
+    height: '100%',
+  },
+  (props) => ({
+    width: props.width ? props.width : '50%',
+  }),
+);
 
 const SchduleTimeTableTitle = styled.div({
   position: 'relative',
