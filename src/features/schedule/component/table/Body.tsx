@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import {
   getTimezoneListByTime,
   transferTimeZoneToSettingLessonTime,
@@ -10,6 +10,13 @@ import { GET_WEEK_LIST_COUNT } from '@features/constant/schedule';
 import { CoachListData } from '@apis/coach/coach.type';
 import { SchduleLessonByStartDateEndDatePeriodData } from '@apis/schedule/schedule.type';
 import { checkOnTime } from '@features/schedule/util/time';
+
+import {
+  DetailCourt,
+  Portal,
+} from '@components/index';
+import RightSideContainer from '@components/layer/RightSideContainer';
+import ScheduleDrawer from '../Drawer';
 
 type LessonTimeType = Array<TransferTimeList & { isAttendance?: boolean }>;
 
@@ -86,38 +93,50 @@ const CoachContainer = ({
   // | undefined
   // | null;
 }) => {
-  return (
-    <div css={{ display: 'flex' }}>
-      {coach.map((el: any) => {
-        return (
-          <div
-            key={el.id}
-            css={{
-              width: `calc(100%/${coach.length})`,
-              minHeight: '20px',
-              textAlign: 'center',
-              borderRight: '1px solid var(--grey1000)',
-              borderBottom: `${
-                reservationCustomer.length > 0 &&
-                el.name === reservationCustomer[0].coachName
-                  ? ''
-                  : '1px solid var(--grey1000)'
-              }`,
-              backgroundColor: `${
-                reservationCustomer.length > 0 &&
-                el.name === reservationCustomer[0].coachName
-                  ? `var(--${el.coachColor})`
-                  : 'var(--white100)'
-              }`,
 
-              '&:last-child': {
-                borderRight: '1px solid var(--black100)',
-              },
-            }}
-          ></div>
-        );
-      })}
-    </div>
+  const [showRightSide, setShowRightSide] = useState<boolean>(false);
+
+  return (
+    <>
+      <div css={{ display: 'flex' }}>
+        {coach.map((el: any) => {
+
+          const isReservation = reservationCustomer.length > 0 && el.name === reservationCustomer[0].coachName
+
+          return (
+            <div
+              key={el.id}
+              css={{
+                width: `calc(100%/${coach.length})`,
+                minHeight: '20px',
+                textAlign: 'center',
+                borderRight: '1px solid var(--grey1000)',
+                borderBottom: `${isReservation? '': '1px solid var(--grey1000)'}`,
+                backgroundColor: `${isReservation? `var(--${el.coachColor})`: 'var(--white100)'}`,
+
+                '&:last-child': {
+                  borderRight: '1px solid var(--black100)',
+                },
+
+                cursor: isReservation ? 'pointer' : 'default',
+              }}
+              onClick={() => isReservation && setShowRightSide(true)}
+            >{/*TODO 시간이 다를 때 숫자 표현해줘야 함*/}</div>
+          );
+        })}
+      </div>
+      {showRightSide && (
+        <Portal id={'rightSide'}>
+          <RightSideContainer
+            title={'스케줄 상세정보'}
+            showRightSide={showRightSide}
+            setShowRightSide={setShowRightSide}
+          >
+            <ScheduleDrawer customer={reservationCustomer} />
+          </RightSideContainer>
+        </Portal>
+      )}
+    </>
   );
 };
 
@@ -139,7 +158,7 @@ const MonthContainer = ({
       {Array.from(monthList).map(([month, dayList]) => {
         data.map(
           (item: any) =>
-            Number(item.month) === month && customerFilter.push(item),
+            (Number(item.month) === month) && customerFilter.push(item),
         );
 
         return (
@@ -152,7 +171,7 @@ const MonthContainer = ({
           >
             {dayList.map((day) => {
               const reservationCustomer = customerFilter.filter(
-                (item: any) => Number(item.date) === day,
+                (item: any) => (Number(item.date) === day && Number(item.month) === month),
               );
 
               return (
