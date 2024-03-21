@@ -4,7 +4,7 @@ import { CSS_TYPE } from '@styles/styles';
 import Image from 'next/image';
 import { NavigationList } from 'src/mocks/navigation';
 import Calendar from '@components/home/Calendar';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Modal, Portal } from '@components/index';
 import ScheduleByDate from '@features/layer/scheduleByDate/screen/ScheduleByDate';
 import Logo from '@icons/white_bg_logo.svg';

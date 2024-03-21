@@ -8,7 +8,7 @@ type Props = {
 const ScheduleDrawer = ({ customer }: Props) => {
   console.log(customer);
 
-  return(
+  return (
     <>
       <div></div>
       <div
@@ -46,7 +46,7 @@ const ScheduleDrawer = ({ customer }: Props) => {
         />
       </div>
     </>
-  )
+  );
 };
 
 export default ScheduleDrawer;

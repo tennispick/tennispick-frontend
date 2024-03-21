@@ -14,7 +14,6 @@ import { EditWhiteIcon } from '@icons/index';
 import RightSideContainer from '@components/layer/RightSideContainer';
 
 const CourtPage = () => {
-
   const { data } = getCourtQuery();
 
   const [showModal, setShowModal] = useState<boolean>(false);
