@@ -2,6 +2,4 @@ type LessonListApiPayload = {
   type: string;
 };
 
-export type {
-  LessonListApiPayload
-}
+export type { LessonListApiPayload };

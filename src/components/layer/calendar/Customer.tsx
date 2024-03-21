@@ -17,7 +17,7 @@ const ModalCustomer = ({ ...props }: Props) => {
   const { customerInfo } = props;
 
   if (customerInfo) {
-    const data = getCustomerDetailQuery(customerInfo.customer_id);
+    getCustomerDetailQuery(customerInfo.customer_id);
   }
 
   return (

@@ -1,7 +1,7 @@
-import LessonScreen from "@features/lesson/screen/Lesson";
+import LessonScreen from '@features/lesson/screen/Lesson';
 
 const LessonPage = () => {
-  return <LessonScreen />
+  return <LessonScreen />;
 };
 
 export default LessonPage;

@@ -17,7 +17,4 @@ type LessonListQueryData = {
   updatedAt: string;
 };
 
-export type {
-  LessonListQueryPayload,
-  LessonListQueryData
-}
+export type { LessonListQueryPayload, LessonListQueryData };

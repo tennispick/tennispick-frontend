@@ -30,15 +30,9 @@ const TabList = ({
                 key={item.id}
                 value={item.id}
                 onClick={() => setState(item.id)}
-                color={
-                  isActive
-                    ? 'var(--black100)'
-                    : 'var(--deactive-color)'
-                }
+                color={isActive ? 'var(--black100)' : 'var(--deactive-color)'}
                 fontWeight={isActive ? '500' : '300'}
-                borderBottom={
-                  isActive ? '2px solid var(--black100)' : ''
-                }
+                borderBottom={isActive ? '2px solid var(--black100)' : ''}
               >
                 {item.name}
               </List>

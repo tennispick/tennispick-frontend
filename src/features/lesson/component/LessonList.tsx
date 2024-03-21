@@ -5,10 +5,9 @@ import { useRouter } from 'next/navigation';
 
 type Props = {
   list: LessonListQueryData[];
-}
+};
 
 const LessonList = ({ list }: Props) => {
-
   const router = useRouter();
 
   console.log(list);
@@ -17,37 +16,71 @@ const LessonList = ({ list }: Props) => {
     <>
       {list && list.length > 0 ? (
         <Li.UnOrderList height={'78%'}>
-          {list.map(({ id, name, lessonCount, price, isWeekday, type, time, timesAWeek }, index) => {
-            return (
-              <Li
-                key={id}
-                onClick={() => router.push(`/lesson/${id}`)}
-                css={{
-                  minHeight: '48px',
-                  padding: '0 12px'
-                }}
-              >
-                <div
+          {list.map(
+            (
+              {
+                id,
+                name,
+                lessonCount,
+                price,
+                isWeekday,
+                type,
+                time,
+                timesAWeek,
+              },
+            ) => {
+              return (
+                <Li
+                  key={id}
+                  onClick={() => router.push(`/lesson/${id}`)}
                   css={{
-                    width: 'calc(4% - 8px)',
-                    height: '24px',
-                    lineHeight: '24px',
-                    textAlign: 'center',
-                    margin: '0 auto',
-                    backgroundColor: isWeekday === 'weekend' ? 'var(--business-active-color)':'var(--green200)',
-                    color: 'var(--white100)',
-                    borderRadius: '4px'
+                    minHeight: '48px',
+                    padding: '0 12px',
                   }}
-                >{isWeekday === 'weekend' ? '주말':'평일'}</div>
-                <div css={{ width: '65%', padding: '0 0 0 16px' }}>{name}</div>
-                <div css={{ width: '9%', textAlign: 'center' }}>총 레슨횟수: {lessonCount}회</div>
-                <div css={{ width: 'calc(10% - 32px)', textAlign: 'right', margin: '0 32px 0 0' }}>{price}원</div>
-                <div css={{ width: '4%', textAlign: 'center' }}>{type === 'private' ? '개인':'그룹'}</div>
-                <div css={{ width: '4%', textAlign: 'center' }}>{time}분</div>
-                <div css={{ width: '4%', textAlign: 'center' }}>주 {timesAWeek}회</div>
-              </Li>
-            );
-          })}
+                >
+                  <div
+                    css={{
+                      width: 'calc(4% - 8px)',
+                      height: '24px',
+                      lineHeight: '24px',
+                      textAlign: 'center',
+                      margin: '0 auto',
+                      backgroundColor:
+                        isWeekday === 'weekend'
+                          ? 'var(--business-active-color)'
+                          : 'var(--green200)',
+                      color: 'var(--white100)',
+                      borderRadius: '4px',
+                    }}
+                  >
+                    {isWeekday === 'weekend' ? '주말' : '평일'}
+                  </div>
+                  <div css={{ width: '65%', padding: '0 0 0 16px' }}>
+                    {name}
+                  </div>
+                  <div css={{ width: '9%', textAlign: 'center' }}>
+                    총 레슨횟수: {lessonCount}회
+                  </div>
+                  <div
+                    css={{
+                      width: 'calc(10% - 32px)',
+                      textAlign: 'right',
+                      margin: '0 32px 0 0',
+                    }}
+                  >
+                    {price}원
+                  </div>
+                  <div css={{ width: '4%', textAlign: 'center' }}>
+                    {type === 'private' ? '개인' : '그룹'}
+                  </div>
+                  <div css={{ width: '4%', textAlign: 'center' }}>{time}분</div>
+                  <div css={{ width: '4%', textAlign: 'center' }}>
+                    주 {timesAWeek}회
+                  </div>
+                </Li>
+              );
+            },
+          )}
         </Li.UnOrderList>
       ) : (
         <div

@@ -1,13 +1,6 @@
 import { useState } from 'react';
-import { v4 as uuidV4 } from 'uuid';
 
-import {
-  Filter,
-  PageHeader,
-  Search,
-  TabList,
-  Button,
-} from '@components/index';
+import { Filter, PageHeader, Search, TabList, Button } from '@components/index';
 import { EditWhiteIcon } from '@icons/index';
 import { useLessonListQuery } from '../query/LessonQuery';
 import LessonList from '../component/LessonList';
@@ -38,7 +31,7 @@ const LessonScreen = () => {
 
   const { data } = useLessonListQuery({ type: currentTab });
 
-  if(!data) return <Loading />;
+  if (!data) return <Loading />;
 
   return (
     <>
