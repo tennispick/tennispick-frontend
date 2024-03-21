@@ -44,6 +44,3 @@ export { default as PersonalData } from '@components/coach/detail/PersonalData';
 export { default as CourtList } from '@components/court/List';
 export { default as DetailCourt } from '@components/court/Detail';
 export { default as GenerateCourtModal } from '@components/court/GenerateModal';
-
-/** lesson */
-export { default as LessonList } from '@components/lesson/List';

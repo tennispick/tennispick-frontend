@@ -1,3 +1,9 @@
-const URL_FETCH_LESSON_LIST = `/lesson`;
+import { axios } from '@utils/axios';
+import { LessonListApiPayload } from './lesson.type';
+import { URL_FETCH_LESSON_LIST } from './lesson.url';
 
-export { URL_FETCH_LESSON_LIST };
+const getLessonList = async (params: LessonListApiPayload) => await axios.get(`${URL_FETCH_LESSON_LIST}/${params.type}`);
+
+export {
+  getLessonList
+}
