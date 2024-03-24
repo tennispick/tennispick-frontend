@@ -10,8 +10,6 @@ type Props = {
 const LessonList = ({ list }: Props) => {
   const router = useRouter();
 
-  console.log(list);
-
   return (
     <>
       {list && list.length > 0 ? (
