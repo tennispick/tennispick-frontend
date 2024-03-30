@@ -1,4 +1,4 @@
-import CoachScreen from "@features/coach/screen/Coach";
+import CoachScreen from '@features/coach/screen/Coach';
 
 const CoachPage = () => {
   return <CoachScreen />;

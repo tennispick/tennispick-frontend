@@ -13,20 +13,18 @@ const LessonList = ({ list }: Props) => {
   return (
     <>
       {list && list.length > 0 ? (
-        <Li.UnOrderList height={'78%'}>
+        <Li.UnOrderList height={'88%'}>
           {list.map(
-            (
-              {
-                id,
-                name,
-                lessonCount,
-                price,
-                isWeekday,
-                type,
-                time,
-                timesAWeek,
-              },
-            ) => {
+            ({
+              id,
+              name,
+              lessonCount,
+              price,
+              isWeekday,
+              type,
+              time,
+              timesAWeek,
+            }) => {
               return (
                 <Li
                   key={id}
@@ -38,7 +36,7 @@ const LessonList = ({ list }: Props) => {
                 >
                   <div
                     css={{
-                      width: 'calc(4% - 8px)',
+                      width: '56px',
                       height: '24px',
                       lineHeight: '24px',
                       textAlign: 'center',

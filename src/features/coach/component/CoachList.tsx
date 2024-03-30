@@ -1,4 +1,3 @@
-
 import { CoachListData } from '@apis/coach/coach.type';
 import { NoResult, NormalList as Li } from '@components/index';
 import { useRouter } from 'next/navigation';
@@ -10,14 +9,13 @@ type Props = {
 };
 
 const CoachList = ({ list }: Props) => {
-
   const router = useRouter();
 
   return (
     <>
       {list && list.length > 0 ? (
         <Li.UnOrderList height={'78%'}>
-          {list.map(({ id, name, position, sex, birth, email, phone, age,  }) => {
+          {list.map(({ id, name, position, sex, birth, email, phone, age }) => {
             return (
               <Li
                 key={id}
@@ -48,7 +46,7 @@ const CoachList = ({ list }: Props) => {
                     textAlign: 'center',
                     margin: '0 16px 0 12px',
                     backgroundColor:
-                    position === 'coach'
+                      position === 'coach'
                         ? 'var(--business-active-color)'
                         : 'var(--green200)',
                     color: 'var(--white100)',
@@ -64,8 +62,7 @@ const CoachList = ({ list }: Props) => {
                   }}
                 >
                   <div css={{ fontWeight: '600' }}>
-                    {name} &#40;{age},{' '}
-                    {sex === 'man' ? '남' : '여'}&#41;
+                    {name} &#40;{age}, {sex === 'man' ? '남' : '여'}&#41;
                   </div>
                 </div>
                 <div

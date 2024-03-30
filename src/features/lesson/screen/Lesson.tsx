@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Filter, PageHeader, Search, TabList, Button } from '@components/index';
+import { PageHeader, TabList, Button } from '@components/index';
 import { EditWhiteIcon } from '@icons/index';
 import { useLessonListQuery } from '../query/LessonQuery';
 import LessonList from '../component/LessonList';
@@ -36,8 +36,6 @@ const LessonScreen = () => {
   return (
     <>
       <PageHeader title={'레슨권 목록'} />
-      <Filter />
-      <Search />
       <TabList
         state={currentTab}
         setState={setCurrentTab}

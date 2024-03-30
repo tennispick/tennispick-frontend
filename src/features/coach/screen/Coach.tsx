@@ -8,7 +8,6 @@ import { useGetCoachListQuery } from '../query/coachQuery';
 import Loading from '@components/common/Loading';
 
 const CoachScreen = () => {
-
   const { data } = useGetCoachListQuery();
 
   const [tabList, setTabList] = useState(coachTabList);
@@ -20,7 +19,7 @@ const CoachScreen = () => {
       prevTabList[0].name = `전체(${data.length})`;
       setTabList(prevTabList);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   if (!data) return <Loading />;
