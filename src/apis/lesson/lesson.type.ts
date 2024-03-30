@@ -17,8 +17,13 @@ type LessonCreateApiPayload = {
   description: string;
 };
 
+type LessonUpdateApiPayload = LessonCreateApiPayload & {
+  status: string;
+};
+
 export type {
   LessonListApiPayload,
   LessonDetailApiPayload,
   LessonCreateApiPayload,
+  LessonUpdateApiPayload,
 };

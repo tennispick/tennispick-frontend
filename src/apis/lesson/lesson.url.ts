@@ -1,7 +1,7 @@
 const URL_FETCH_LESSON_LIST = `/lesson`;
 const URL_FETCH_LESSON_DETAIL = '/lesson/detail';
 const URL_CREATE_LESSON = '/lesson/create';
-const URL_MODIFY_LESSON = '/lesson/modify';
+const URL_MODIFY_LESSON = '/lesson/update';
 const URL_DELETE_LESSON = '/lesson/delete';
 
 export {

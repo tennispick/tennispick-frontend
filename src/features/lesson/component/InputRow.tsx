@@ -8,6 +8,9 @@ type Props = {
   defaultValue: string | number;
   maxLength?: number;
   selectChildren?: React.ReactNode;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  requiredStatus?: boolean;
+  requiredText?: string;
 } & Pick<HTMLInputElement, 'name' | 'placeholder'>;
 
 const InputRow = ({
@@ -19,14 +22,17 @@ const InputRow = ({
   defaultValue,
   maxLength,
   selectChildren,
+  onChange,
+  requiredStatus,
+  requiredText,
 }: Props) => {
   return (
     <div
       css={{
         position: 'relative',
         display: 'flex',
-        alignItems: 'center',
-        height: '40px',
+        alignItems: 'baseline',
+        minHeight: '40px',
         margin: '0 0 20px 0',
       }}
     >
@@ -54,14 +60,21 @@ const InputRow = ({
             placeholder={placeholder}
             defaultValue={`${defaultValue}`}
             maxLength={maxLength}
+            requiredStatus={requiredStatus}
+            requiredText={requiredText}
+            onChange={onChange}
+            css={{
+              height: '40px',
+            }}
           />
         </Input>
       )}
       {type === 'toggle' && (
         <ToggleInput
           id={name}
+          name={name}
           checked={defaultValue === 'active' ? true : false}
-          onClickHandler={() => {}}
+          onChange={onChange}
         />
       )}
       {type === 'select' && selectChildren}
@@ -71,16 +84,19 @@ const InputRow = ({
 
 const ToggleInput = ({
   id,
+  name,
   checked,
-  onClickHandler,
+  onChange,
 }: {
   id: string;
+  name: string;
   checked: boolean;
-  onClickHandler: () => void;
+  onChange: any;
 }) => {
   return (
     <input
       id={`${id}`}
+      name={name}
       type="checkbox"
       css={{
         position: 'relative',
@@ -120,7 +136,11 @@ const ToggleInput = ({
           backgroundColor: 'var(--grey100)',
         },
       }}
-      onClick={onClickHandler}
+      onClick={(e) => {
+        const { name, checked } = e.currentTarget;
+        const isActive = checked ? 'Y' : 'N';
+        onChange({ target: { name, value: isActive } });
+      }}
       defaultChecked={checked}
     />
   );
