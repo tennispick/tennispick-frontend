@@ -79,7 +79,7 @@ const LessonDetailInputField = ({ data }: Props) => {
         name="description"
         rowHeadLabel={'레슨권 설명'}
         placeholder={'레슨권에 대한 설명을 입력해주세요.'}
-        defaultValue={description}
+        defaultValue={description ? description : ''}
         maxLength={50}
       />
     </div>

@@ -1,10 +1,12 @@
 import { useState } from 'react';
 
-import { PageHeader, TabList, Button } from '@components/index';
+import { PageHeader, TabList, Button, Portal } from '@components/index';
 import { EditWhiteIcon } from '@icons/index';
 import { useLessonListQuery } from '../query/LessonQuery';
 import LessonList from '../component/LessonList';
 import Loading from '@components/common/Loading';
+import Modal from '@components/layer/Modal';
+import LessonModal from '../component/modal/LessonModal';
 
 const LessonScreen = () => {
   const tabListArr = [
@@ -28,6 +30,7 @@ const LessonScreen = () => {
 
   const [currentTab, setCurrentTab] = useState<string>(tabListArr[0].id);
   const [tabList] = useState(tabListArr);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const { data } = useLessonListQuery({ type: currentTab });
 
@@ -55,11 +58,25 @@ const LessonScreen = () => {
               backgroundColor: 'var(--business-active-color)',
               color: 'var(--white100)',
             }}
-            onClick={() => {}}
+            onClick={() => setShowModal(true)}
           />
         }
       />
       <LessonList list={data} />
+      {showModal && (
+        <Portal id={'portal'}>
+          <Modal
+            title={'레슨권 생성'}
+            showModal={showModal}
+            setShowModal={setShowModal}
+            css={{
+              top: '47.5%',
+            }}
+          >
+            <LessonModal setShowModal={setShowModal} />
+          </Modal>
+        </Portal>
+      )}
     </>
   );
 };

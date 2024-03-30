@@ -6,4 +6,19 @@ type LessonDetailApiPayload = {
   id: string;
 };
 
-export type { LessonListApiPayload, LessonDetailApiPayload };
+type LessonCreateApiPayload = {
+  name: string;
+  lessonCount: string;
+  price: string;
+  isWeekday: string;
+  type: string;
+  time: string;
+  timesAweek: string;
+  description: string;
+};
+
+export type {
+  LessonListApiPayload,
+  LessonDetailApiPayload,
+  LessonCreateApiPayload,
+};

@@ -193,7 +193,7 @@ const GenerateModal = ({
         <Select
           name={'sex'}
           width={'calc(30% - 4px)'}
-          defaultValue={formData.date.sex}
+          defaultValue={formData.sex.value}
           onChange={onChangeFormData}
         >
           <option value={'man'}>남자</option>
