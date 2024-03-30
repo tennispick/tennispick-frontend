@@ -3,12 +3,14 @@ import {
   LessonListApiPayload,
   LessonDetailApiPayload,
   LessonCreateApiPayload,
+  LessonUpdateApiPayload,
 } from './lesson.type';
 import {
   URL_FETCH_LESSON_LIST,
   URL_FETCH_LESSON_DETAIL,
   URL_DELETE_LESSON,
   URL_CREATE_LESSON,
+  URL_MODIFY_LESSON,
 } from './lesson.url';
 import { Response } from '@/types/response';
 import { LessonDetailData } from '@features/lesson/type/lesson.type';
@@ -31,6 +33,9 @@ const getLessonDetail = async (
 const createLesson = async (params: LessonCreateApiPayload) =>
   await axios.post(`${URL_CREATE_LESSON}`, params);
 
+const updateLesson = async (params: LessonUpdateApiPayload) =>
+  await axios.put(`${URL_MODIFY_LESSON}`, params);
+
 const deleteLesson = async (id: string) => {
   try {
     const { status, data } = await axios.delete(`${URL_DELETE_LESSON}/${id}`);
@@ -43,4 +48,10 @@ const deleteLesson = async (id: string) => {
   }
 };
 
-export { getLessonList, getLessonDetail, createLesson, deleteLesson };
+export {
+  getLessonList,
+  getLessonDetail,
+  createLesson,
+  updateLesson,
+  deleteLesson,
+};
