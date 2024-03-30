@@ -1,4 +1,4 @@
-import { ScheduleType } from "@features/schedule/type/schedule.type";
+import { ScheduleType } from '@features/schedule/type/schedule.type';
 
 type ScheduleLessonByDateApiPayload = {
   day: Date;

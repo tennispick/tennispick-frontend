@@ -11,10 +11,7 @@ import { CoachListData } from '@apis/coach/coach.type';
 import { SchduleLessonByStartDateEndDatePeriodData } from '@apis/schedule/schedule.type';
 import { checkOnTime } from '@features/schedule/util/time';
 
-import {
-  DetailCourt,
-  Portal,
-} from '@components/index';
+import { DetailCourt, Portal } from '@components/index';
 import RightSideContainer from '@components/layer/RightSideContainer';
 import ScheduleDrawer from '../Drawer';
 
@@ -93,15 +90,15 @@ const CoachContainer = ({
   // | undefined
   // | null;
 }) => {
-
   const [showRightSide, setShowRightSide] = useState<boolean>(false);
 
   return (
     <>
       <div css={{ display: 'flex' }}>
         {coach.map((el: any) => {
-
-          const isReservation = reservationCustomer.length > 0 && el.name === reservationCustomer[0].coachName
+          const isReservation =
+            reservationCustomer.length > 0 &&
+            el.name === reservationCustomer[0].coachName;
 
           return (
             <div
@@ -111,8 +108,12 @@ const CoachContainer = ({
                 minHeight: '20px',
                 textAlign: 'center',
                 borderRight: '1px solid var(--grey1000)',
-                borderBottom: `${isReservation? '': '1px solid var(--grey1000)'}`,
-                backgroundColor: `${isReservation? `var(--${el.coachColor})`: 'var(--white100)'}`,
+                borderBottom: `${
+                  isReservation ? '' : '1px solid var(--grey1000)'
+                }`,
+                backgroundColor: `${
+                  isReservation ? `var(--${el.coachColor})` : 'var(--white100)'
+                }`,
 
                 '&:last-child': {
                   borderRight: '1px solid var(--black100)',
@@ -121,7 +122,9 @@ const CoachContainer = ({
                 cursor: isReservation ? 'pointer' : 'default',
               }}
               onClick={() => isReservation && setShowRightSide(true)}
-            >{/*TODO 시간이 다를 때 숫자 표현해줘야 함*/}</div>
+            >
+              {/*TODO 시간이 다를 때 숫자 표현해줘야 함*/}
+            </div>
           );
         })}
       </div>
@@ -171,7 +174,8 @@ const MonthContainer = ({
           >
             {dayList.map((day) => {
               const reservationCustomer = customerFilter.filter(
-                (item: any) => (Number(item.date) === day && Number(item.month) === month),
+                (item: any) =>
+                  Number(item.date) === day && Number(item.month) === month,
               );
 
               return (

@@ -20,7 +20,8 @@ const useCustomerLessonListQuery = (params: CustomerLessonListQueryPayload) => {
     const { data, isLoading } = useQuery<Response<CustomerLessonListQueryData>>(
       {
         queryKey: [URL_FETCH_CUSTOMER_LESSON_LIST, id, lessonType],
-        queryFn: async () => await getCustomerLessonList({ id: id, lessonType: lessonType }),
+        queryFn: async () =>
+          await getCustomerLessonList({ id: id, lessonType: lessonType }),
       },
     );
 

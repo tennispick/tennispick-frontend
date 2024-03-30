@@ -16,14 +16,14 @@ const NormalList = ({
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
-        margin: '8px 0',
         padding: '8px 12px 8px 0',
         fontSize: '0.9rem',
         cursor: 'pointer',
+        borderBottom: '1px solid var(--grey500)',
 
         ':hover': {
           backgroundColor: 'var(--grey500)',
-          borderRadius: '16px',
+          borderRadius: '8px',
         },
       }}
       {...props}
@@ -47,7 +47,6 @@ NormalList.UnOrderList = ({
       css={{
         position: 'relative',
         height: height ? height : '90%',
-        margin: '12px 0 0 0',
         overflowY: 'scroll',
       }}
       {...rest}

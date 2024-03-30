@@ -1,6 +1,6 @@
 import { axios } from '@utils/axios';
 import { useQuery } from '@tanstack/react-query';
-import { URL_FETCH_LESSON_LIST } from '@apis/lesson/lessson.api';
+import { URL_FETCH_LESSON_LIST } from '@apis/lesson/lesson.url';
 
 type LessonPayload = {
   id?: string;

@@ -36,6 +36,10 @@ const ModalRegularLesson = () => {
     lesson: '', // 수강권
   });
 
+  useEffect(() => {
+    console.log(commonData.lesson);
+  }, [commonData.lesson]);
+
   // 일괄등록
   const [allOnceFormData, onChangeAllOnceFormData, setAllOnceFormData] =
     useInput({
@@ -76,7 +80,10 @@ const ModalRegularLesson = () => {
   const { data: isDuplicateList } = useDuplicateCheckScheduleLessonQuery({
     coach: allOnceFormData.coach,
     court: allOnceFormData.court,
-    schedule: commonData.scheduleType === 'all' ? allOnceFormData.schedule : individualFormData,
+    schedule:
+      commonData.scheduleType === 'all'
+        ? allOnceFormData.schedule
+        : individualFormData,
   });
 
   const { data: lessonList } = useCustomerLessonListQuery({
@@ -85,9 +92,8 @@ const ModalRegularLesson = () => {
   });
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-
     e.preventDefault();
-    
+
     const { scheduleType } = commonData;
 
     const allCreateBody = { ...commonData, ...allOnceFormData };
@@ -116,13 +122,18 @@ const ModalRegularLesson = () => {
   };
 
   useEffect(() => {
-    document.addEventListener('keydown', (e) => { if(e.key === 'Enter') e.preventDefault() });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') e.preventDefault();
+    });
 
-    return document.removeEventListener('keydown', (e) => { if(e.key === 'Enter') e.preventDefault() });
-  }, [])
+    return document.removeEventListener('keydown', (e) => {
+      if (e.key === 'Enter') e.preventDefault();
+    });
+  }, []);
 
   return (
     <form
+      id=""
       css={{ display: 'flex', width: '100%', flexDirection: 'column' }}
       onSubmit={onSubmit}
     >
@@ -133,29 +144,31 @@ const ModalRegularLesson = () => {
           setCommonData={setCommonData}
           lessonList={lessonList}
         />
-        {{
-          all: (
-            <AllOnceCreateInputForm
-              scheduleType={commonData.scheduleType}
-              lesson={commonData.lesson}
-              formData={allOnceFormData}
-              onChangeAllCreateFormData={onChangeAllOnceFormData}
-              setAllCreateFormData={setAllOnceFormData}
-              coachList={coachList}
-              courtList={courtList}
-              isDuplicateList={isDuplicateList}
-            />
-          ),
-          individual: (
-            <IndividualCreateInputForm
-              scheduleType={commonData.scheduleType}
-              lesson={commonData.lesson}
-              formData={individualFormData}
-              onChangeIndividualCreateFormData={onChangeIndividualFormData}
-              setIndividualCreateFormData={setIndividualFormData}
-            />
-          ),
-        }[commonData.scheduleType as string]}
+        {
+          {
+            all: (
+              <AllOnceCreateInputForm
+                scheduleType={commonData.scheduleType}
+                lesson={commonData.lesson}
+                formData={allOnceFormData}
+                onChangeAllCreateFormData={onChangeAllOnceFormData}
+                setAllCreateFormData={setAllOnceFormData}
+                coachList={coachList}
+                courtList={courtList}
+                isDuplicateList={isDuplicateList}
+              />
+            ),
+            individual: (
+              <IndividualCreateInputForm
+                scheduleType={commonData.scheduleType}
+                lesson={commonData.lesson}
+                formData={individualFormData}
+                onChangeIndividualCreateFormData={onChangeIndividualFormData}
+                setIndividualCreateFormData={setIndividualFormData}
+              />
+            ),
+          }[commonData.scheduleType as string]
+        }
       </div>
       <Button
         type={'submit'}
@@ -171,7 +184,7 @@ const ModalRegularLesson = () => {
           padding: '12px 16px',
           margin: '24px 0 0 0',
         }}
-        disabled={(isDuplicateList && isDuplicateList.length > 0) ? true : false}
+        disabled={isDuplicateList && isDuplicateList.length > 0 ? true : false}
       />
     </form>
   );

@@ -1,5 +1,5 @@
 type Props = {
-  id: number;
+  id: number | string;
   label: string;
   checked: boolean;
   onClick: (e: React.MouseEvent<HTMLInputElement>) => void;
@@ -20,7 +20,7 @@ const ToggleInput = ({ id, label, checked, onClick, ...rest }: Props) => {
         {label}
       </label>
       <input
-        id={id.toString()}
+        id={`${id}`}
         type="checkbox"
         css={{
           position: 'relative',

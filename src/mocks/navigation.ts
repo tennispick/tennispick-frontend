@@ -5,7 +5,7 @@ import {
   CustomerWhiteIcon,
   CoachWhiteIcon,
   CourtWhiteIcon,
-  // LessonCouponWhiteIcon,
+  LessonCouponWhiteIcon,
   // CommunityWhiteIcon,
   SettingWhiteIcon,
 } from '@icons/index';
@@ -46,13 +46,13 @@ export const NavigationList = [
     src: CourtWhiteIcon,
     alt: 'court icon',
   },
-  // {
-  //   id: uuid(),
-  //   path: 'lesson',
-  //   label: '레슨권 관리',
-  //   src: LessonCouponWhiteIcon,
-  //   alt: 'lesson icon',
-  // },
+  {
+    id: uuid(),
+    path: 'lesson',
+    label: '레슨권 관리',
+    src: LessonCouponWhiteIcon,
+    alt: 'lesson icon',
+  },
   // {
   //   id: uuid(),
   //   path: 'community',

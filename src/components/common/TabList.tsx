@@ -24,20 +24,15 @@ const TabList = ({
         {list &&
           list.length > 0 &&
           list.map((item: any) => {
+            const isActive = item.id === state;
             return (
               <List
                 key={item.id}
-                value={item.value}
+                value={item.id}
                 onClick={() => setState(item.id)}
-                color={
-                  item.id === state
-                    ? 'var(--black100)'
-                    : 'var(--deactive-color)'
-                }
-                fontWeight={item.id === state ? '500' : '300'}
-                borderBottom={
-                  item.id === state ? '2px solid var(--black100)' : ''
-                }
+                color={isActive ? 'var(--black100)' : 'var(--deactive-color)'}
+                fontWeight={isActive ? '500' : '300'}
+                borderBottom={isActive ? '2px solid var(--black100)' : ''}
               >
                 {item.name}
               </List>
@@ -55,7 +50,7 @@ const TabList = ({
 
 const Container = styled.div<CSS_TYPE>({
   position: 'relative',
-  padding: '8px 0 8px 0',
+  padding: '8px 0 0 0',
   margin: '6px 0 0 0',
 });
 const Lists = styled.ul<CSS_TYPE>(

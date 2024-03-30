@@ -13,7 +13,9 @@ import {
 import { Response } from '@/types/response';
 
 const getCustomerLessonList = async (params: CustomerLessonListApiPayload) =>
-  await axios.get(`${URL_FETCH_CUSTOMER_LESSON_LIST}/${params.id}?lessonType=${params.lessonType}`);
+  await axios.get(
+    `${URL_FETCH_CUSTOMER_LESSON_LIST}/${params.id}?lessonType=${params.lessonType}`,
+  );
 
 const getCustomerDetail = async (
   params: CustomerDetailApiPayLoad,

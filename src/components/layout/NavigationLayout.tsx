@@ -7,7 +7,8 @@ import Calendar from '@components/home/Calendar';
 import { useState } from 'react';
 import { Modal, Portal } from '@components/index';
 import ScheduleByDate from '@features/layer/scheduleByDate/screen/ScheduleByDate';
-import Logo from '@icons/logo.svg';
+import Logo from '@icons/white_bg_logo.svg';
+import useMobile from '@hooks/useMobile';
 
 type Props = {
   firstPathName: string;
@@ -17,16 +18,29 @@ type Props = {
 const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
   const [day, setDay] = useState<Date>(new Date());
   const [showModal, setShowModal] = useState<boolean>(false);
+  const isMobile = useMobile();
 
   const onClickCalendarDateHandler = (day: Date) => {
     setShowModal(true);
     setDay(day);
   };
 
+  const mobileNavigationStyle = {
+    position: 'fixed',
+    width: '100vw',
+    height: '76px',
+    top: 0,
+    left: 0,
+    backgroundColor: 'var(--white100)',
+    flexDirection: 'row',
+    zIndex: 9999,
+  };
+
   return (
     <NavContainer
       width={isNavSpread ? '280px' : '80px'}
       padding={isNavSpread ? '0 20px 0 0' : '0'}
+      css={isMobile && { ...mobileNavigationStyle }}
     >
       <div>
         {isNavSpread && (
@@ -71,10 +85,12 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
             })}
         </NavLists>
       </div>
-      <Calendar
-        css={!isNavSpread && { display: 'none' }}
-        onClick={onClickCalendarDateHandler}
-      />
+      {!isMobile && (
+        <Calendar
+          css={!isNavSpread && { display: 'none' }}
+          onClick={onClickCalendarDateHandler}
+        />
+      )}
       {showModal && (
         <Portal id={'portal'}>
           <Modal
@@ -95,7 +111,7 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
   );
 };
 
-const NavContainer = styled.nav<CSS_TYPE>(
+const NavContainer = styled((props: any) => <nav {...props} />)(
   {
     position: 'relative',
     display: 'flex',
@@ -110,6 +126,22 @@ const NavContainer = styled.nav<CSS_TYPE>(
     padding: props.padding,
   }),
 );
+
+// const NavContainer = styled.nav<CSS_TYPE>(
+//   {
+//     position: 'relative',
+//     display: 'flex',
+//     flexDirection: 'column',
+//     justifyContent: 'space-between',
+//     height: 'calc(100vh - 48px)',
+//     transition: 'all 0.35s ease-in-out',
+//     overflowY: 'scroll',
+//   },
+//   (props) => ({
+//     width: props.width,
+//     padding: props.padding,
+//   }),
+// );
 const NavLists = styled.ul<CSS_TYPE>(
   {
     position: 'relative',

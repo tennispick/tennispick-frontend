@@ -53,18 +53,29 @@ const useScheduleByDateQuery = (params: ScheduleLessonByDateQueryPayload) => {
 };
 
 // 선택한 날짜에 해당 코트에 예약가능 여부 확인
-const useDuplicateCheckScheduleLessonQuery = (params: DuplicateCheckScheduleLessonQueryPayload) => {
+const useDuplicateCheckScheduleLessonQuery = (
+  params: DuplicateCheckScheduleLessonQueryPayload,
+) => {
   const { coach, court, schedule } = params;
   const { data, isFetching, isLoading, refetch } = useQuery({
     queryKey: [URL_IS_DUPLICATE_CHECK_SCHEDULE_LESSON, coach, court, schedule],
-    queryFn: async () => await isDuplicateCheckScheduleLesson({ coachId: coach, courtId: court, schedule }),
+    queryFn: async () =>
+      await isDuplicateCheckScheduleLesson({
+        coachId: coach,
+        courtId: court,
+        schedule,
+      }),
   });
   return {
     data,
     isFetching,
     isLoading,
-    refetch
-  }
+    refetch,
+  };
 };
 
-export { useScheduleByPeriodQuery, useScheduleByDateQuery, useDuplicateCheckScheduleLessonQuery };
+export {
+  useScheduleByPeriodQuery,
+  useScheduleByDateQuery,
+  useDuplicateCheckScheduleLessonQuery,
+};

@@ -16,7 +16,7 @@ type Props = {
   setShowModal: Dispatch<SetStateAction<boolean>>;
 };
 
-const CustomerModal = ({ id, type, showModal, setShowModal }: Props) => {
+const CustomerModal = ({ type, showModal, setShowModal }: Props) => {
   const isPayment = type === 'payment';
 
   return (

@@ -35,7 +35,6 @@ export { default as CustomerMemoList } from '@components/customer/detail/MemoLis
 export { default as GenerateCustomerModal } from '@components/customer/GenerateModal';
 
 /** coach */
-export { default as CoachList } from '@components/coach/List';
 export { default as BusinessPerformance } from '@components/coach/detail/BusinessPerformance';
 export { default as CoachCustomerList } from '@components/coach/detail/CustomerList';
 export { default as PersonalData } from '@components/coach/detail/PersonalData';
@@ -44,6 +43,3 @@ export { default as PersonalData } from '@components/coach/detail/PersonalData';
 export { default as CourtList } from '@components/court/List';
 export { default as DetailCourt } from '@components/court/Detail';
 export { default as GenerateCourtModal } from '@components/court/GenerateModal';
-
-/** lesson */
-export { default as LessonList } from '@components/lesson/List';
