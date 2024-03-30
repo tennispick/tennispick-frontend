@@ -17,4 +17,29 @@ type LessonListQueryData = {
   updatedAt: string;
 };
 
-export type { LessonListQueryPayload, LessonListQueryData };
+type LessonDetailQueryPayload = {
+  id: string;
+};
+
+type LessonDetailData = {
+  id: number;
+  centerId: number;
+  name: string;
+  lessonCount: number;
+  price: string;
+  isWeekday: string;
+  type: string;
+  time: number;
+  timesAweek: number;
+  description: string;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type {
+  LessonListQueryPayload,
+  LessonListQueryData,
+  LessonDetailQueryPayload,
+  LessonDetailData,
+};

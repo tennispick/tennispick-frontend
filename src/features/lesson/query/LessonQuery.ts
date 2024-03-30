@@ -1,6 +1,11 @@
-import { URL_FETCH_LESSON_LIST } from '@apis/lesson/lesson.url';
-import { getLessonList } from '@apis/lesson/lesson.api';
 import {
+  URL_FETCH_LESSON_LIST,
+  URL_FETCH_LESSON_DETAIL,
+} from '@apis/lesson/lesson.url';
+import { getLessonList, getLessonDetail } from '@apis/lesson/lesson.api';
+import {
+  LessonDetailData,
+  LessonDetailQueryPayload,
   LessonListQueryData,
   LessonListQueryPayload,
 } from '../type/lesson.type';
@@ -25,4 +30,17 @@ const useLessonListQuery = (params: LessonListQueryPayload) => {
   }
 };
 
-export { useLessonListQuery };
+const useLessonDetailQuery = (params: LessonDetailQueryPayload) => {
+  const { id } = params;
+  const { data, isLoading } = useQuery<Response<LessonDetailData>>({
+    queryKey: [URL_FETCH_LESSON_DETAIL, id],
+    queryFn: async () => await getLessonDetail({ id: id }),
+  });
+
+  return {
+    data,
+    isLoading,
+  };
+};
+
+export { useLessonListQuery, useLessonDetailQuery };

@@ -2,4 +2,8 @@ type LessonListApiPayload = {
   type: string;
 };
 
-export type { LessonListApiPayload };
+type LessonDetailApiPayload = {
+  id: string;
+};
+
+export type { LessonListApiPayload, LessonDetailApiPayload };
