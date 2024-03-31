@@ -36,10 +36,6 @@ const ModalRegularLesson = () => {
     lesson: '', // 수강권
   });
 
-  useEffect(() => {
-    console.log(commonData.lesson);
-  }, [commonData.lesson]);
-
   // 일괄등록
   const [allOnceFormData, onChangeAllOnceFormData, setAllOnceFormData] =
     useInput({
@@ -133,7 +129,6 @@ const ModalRegularLesson = () => {
 
   return (
     <form
-      id=""
       css={{ display: 'flex', width: '100%', flexDirection: 'column' }}
       onSubmit={onSubmit}
     >

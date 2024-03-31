@@ -2,6 +2,8 @@ import {
   URL_CREATE_SCHEDULE_LESSON,
   URL_SCHEDULE_LESSON_BY_PERIOD,
   URL_SCHEDULE_LESSON_BY_DATE,
+  URL_UPDATE_SCHEDULE_LESSON,
+  URL_DELETE_SCHEDULE_LESSON,
   URL_IS_DUPLICATE_CHECK_SCHEDULE_LESSON,
 } from './schedule.url';
 import { axios } from '@utils/axios';
@@ -44,6 +46,20 @@ const createScheduleLesson = async (params: any) => {
   return data;
 };
 
+const updateScheduleLesson = async (params: any) => {
+  const { data } = await axios.put(`${URL_UPDATE_SCHEDULE_LESSON}`, {
+    ...params,
+  });
+  return data;
+};
+
+const deleteScheduleLesson = async (params: any) => {
+  const { data } = await axios.put(`${URL_DELETE_SCHEDULE_LESSON}`, {
+    id: params,
+  });
+  return data;
+};
+
 const isDuplicateCheckScheduleLesson = async (
   params: DuplicateCheckScheduleLessonPayload,
 ) => {
@@ -66,5 +82,7 @@ export {
   getScheduleLessonByDate,
   getScheduleLessonByStartDateEndDatePeriod,
   createScheduleLesson,
+  updateScheduleLesson,
+  deleteScheduleLesson,
   isDuplicateCheckScheduleLesson,
 };

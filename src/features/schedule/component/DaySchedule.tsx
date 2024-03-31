@@ -18,7 +18,7 @@ type Props = {
 const DaySchedule = ({ isMobile, date, coachList }: Props) => {
   const thisWeekSunday = getDayOfWeek(date, 'sunday');
   const nextWeekSunday = new Date(thisWeekSunday);
-  nextWeekSunday.setDate(thisWeekSunday.getDate() + GET_WEEK_LIST_COUNT * 6);
+  nextWeekSunday.setDate(thisWeekSunday.getDate() + GET_WEEK_LIST_COUNT * 7);
 
   const { data, isLoading } = useScheduleByPeriodQuery({
     startDate: thisWeekSunday,

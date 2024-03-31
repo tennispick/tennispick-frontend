@@ -8,8 +8,6 @@ type Props = {
 };
 
 const CustomerLesson = ({ id }: Props) => {
-  console.log(id);
-
   const [currentItem, setCurrentItem] = useState(lessonList[0].id);
 
   return (

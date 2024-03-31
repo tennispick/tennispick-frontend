@@ -7,6 +7,7 @@ import DaySchedule from '../component/DaySchedule';
 import ButtonContainer from '../component/ButtonContainer';
 import { useGetCoachListQuery } from '@features/coach/query/coachQuery';
 import useMobile from '@hooks/useMobile';
+import { useGetCourtListQuery } from '@features/court/query/courtQuery';
 
 const Schedule = () => {
   const today = new Date();
@@ -18,18 +19,20 @@ const Schedule = () => {
 
   const { data: coachList } = useGetCoachListQuery();
 
+  const { data: courtList } = useGetCourtListQuery();
+
   return (
     <>
       <PageHeader title={'스케줄 관리'} />
       <div css={{ padding: '0 0 12px 0' }}>
         <ul css={{ display: 'flex' }}>
-          {coachList &&
-            coachList?.map((el) => {
+          {courtList &&
+            courtList?.map((el) => {
               return (
                 <li
                   key={el.id}
                   css={{
-                    backgroundColor: `var(--${el.coachColor})`,
+                    backgroundColor: `var(--black100)`,
                     color: 'var(--white100)',
                     padding: '8px 16px',
                     borderRadius: '8px',
