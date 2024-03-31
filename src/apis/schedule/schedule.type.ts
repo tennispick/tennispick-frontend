@@ -18,12 +18,18 @@ type DuplicateCheckScheduleLessonPayload = {
 type SchduleLessonByStartDateEndDatePeriodData = {
   id: number;
   coachName: string;
+  coachId: number;
   customerName: string;
+  customerId: number;
+  courtId: number;
+  lessonId: number;
   lessonType: string;
   year: string;
   month: string;
   date: string;
   isForcedLessonChange: number;
+  isRegularLesson: string;
+  timeDiff: number;
   coachAttendance?: string;
   customerAttendance?: string;
   originStartTime: string;

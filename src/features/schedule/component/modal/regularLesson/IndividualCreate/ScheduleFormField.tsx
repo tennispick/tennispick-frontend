@@ -14,6 +14,7 @@ import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import { useGetCourtListQuery } from '@features/court/query/courtQuery';
 import { useGetCoachListQuery } from '@features/coach/query/coachQuery';
 import { dayList } from '@utils/day';
+import { CourtListData } from '@apis/court/court.type';
 
 type Props = {
   scheduleType: string;
@@ -235,7 +236,7 @@ const Court = ({
   handleFormFieldChange,
   courtList,
 }: FormIndividualHandlerType & {
-  courtList: Array<{ [key: string]: string }>;
+  courtList: CourtListData[] | undefined;
 }) => {
   return (
     <Select
@@ -247,10 +248,10 @@ const Court = ({
       onChange={(e) => handleFormFieldChange(index, e)}
     >
       <option value={''}>코트 선택</option>
-      {courtList.map((item: { [key: string]: string }, index: number) => {
+      {courtList?.map(({ id, name }, index: number) => {
         return (
-          <option key={index} value={item.id}>
-            {item.name}
+          <option key={index} value={id}>
+            {name}
           </option>
         );
       })}

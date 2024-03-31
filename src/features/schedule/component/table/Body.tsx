@@ -131,7 +131,11 @@ const CoachContainer = ({
       {showRightSide && (
         <Portal id={'rightSide'}>
           <RightSideContainer
-            title={'스케줄 상세정보'}
+            title={
+              reservationCustomer.length > 1
+                ? '그룹 스케줄 상세정보'
+                : '개인 스케줄 상세정보'
+            }
             showRightSide={showRightSide}
             setShowRightSide={setShowRightSide}
           >
