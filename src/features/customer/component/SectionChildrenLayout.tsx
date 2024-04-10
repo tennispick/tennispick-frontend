@@ -1,17 +1,17 @@
 import styled from '@emotion/styled';
 
 type Props = {
-  titleChildren: React.ReactNode;
-  contentChildren: React.ReactNode;
+  headerChildren: React.ReactNode;
+  bodyChildren: React.ReactNode;
 };
 
-const SectionChildrenLayout = ({ titleChildren, contentChildren }: Props) => {
+const SectionChildrenLayout = ({ headerChildren, bodyChildren }: Props) => {
   return (
     <SectionContainer>
       <SectionTitleContainer>
-        <span>{titleChildren}</span>
+        <span>{headerChildren}</span>
       </SectionTitleContainer>
-      <SectionContentContainer>{contentChildren}</SectionContentContainer>
+      <SectionContentContainer>{bodyChildren}</SectionContentContainer>
     </SectionContainer>
   );
 };

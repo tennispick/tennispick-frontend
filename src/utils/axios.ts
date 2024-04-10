@@ -33,8 +33,10 @@ instance.interceptors.response.use(
       error.config.headers = {
         'Content-Type': 'application/json',
       };
-      alert('유효하지 않은 사용자입니다.');
-      window.location.href = '/login';
+      if (typeof window !== 'undefined') {
+        window.alert('유효하지 않은 사용자입니다.');
+        window.location.href = '/login';
+      }
       return error.response;
     }
     return Promise.reject(error);

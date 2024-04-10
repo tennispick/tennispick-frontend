@@ -29,9 +29,12 @@ type SearchCustomerListByKeywordApiPayload = {
   keyword: string;
 } & Pick<CommonFormInputType, 'customer' | 'lesson' | 'lessonType'>;
 
+type CustomerPaymentCreateApiPayload = FormData;
+
 export type {
   CustomerLessonListApiPayload,
   CustomerDetailApiPayLoad,
   CustomerDetailData,
   SearchCustomerListByKeywordApiPayload,
+  CustomerPaymentCreateApiPayload,
 };

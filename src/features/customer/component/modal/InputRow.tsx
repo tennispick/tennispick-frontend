@@ -1,24 +1,34 @@
 import { Input, Select } from '@components/index';
+import { ChangeEventHandler } from 'react';
 import { InputHTMLAttributes, SelectHTMLAttributes } from 'react';
 
-type InputType = Pick<
+type InputType = 'text' | 'select' | 'radio';
+
+type InputProps = Pick<
   InputHTMLAttributes<HTMLInputElement>,
-  'placeholder' | 'name'
+  'placeholder' | 'name' | 'onChange' | 'value'
 >;
-type SelectType = Pick<SelectHTMLAttributes<HTMLSelectElement>, 'name'> & {
+type SelectProps = Pick<SelectHTMLAttributes<HTMLSelectElement>, 'name'> & {
   options: Array<{ [key: string]: string | number }> | undefined;
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
-type RadioType = Pick<InputHTMLAttributes<HTMLInputElement>, 'name'> & {
+type RadioProps = Pick<InputHTMLAttributes<HTMLInputElement>, 'name'> & {
   radioGroup: Array<{ [key: string]: string }> | undefined;
 };
+
+type OnChangeProps<T extends InputType> = T extends 'text' | 'radio'
+  ? (e: React.ChangeEvent<HTMLInputElement>) => void
+  : (e: React.ChangeEvent<HTMLSelectElement>) => void;
 
 type Props = {
   name: string;
   label: string;
-  type: 'text' | 'select' | 'radio';
-  placeholder?: InputType['placeholder'];
-  options?: SelectType['options'];
-  radioGroup?: RadioType['radioGroup'];
+  type: InputType;
+  placeholder?: InputProps['placeholder'];
+  options?: SelectProps['options'];
+  radioGroup?: RadioProps['radioGroup'];
+  value?: string;
+  onChange?: OnChangeProps<InputType>;
 };
 
 const InputRow = ({
@@ -28,6 +38,8 @@ const InputRow = ({
   placeholder,
   options,
   radioGroup,
+  value,
+  onChange,
 }: Props) => {
   return (
     <div
@@ -43,8 +55,21 @@ const InputRow = ({
       </div>
       {
         {
-          text: <InputRow.Text name={name} placeholder={placeholder} />,
-          select: <InputRow.Select name={name} options={options} />,
+          text: (
+            <InputRow.Text
+              name={name}
+              placeholder={placeholder}
+              onChange={onChange as ChangeEventHandler<HTMLInputElement>}
+              value={value}
+            />
+          ),
+          select: (
+            <InputRow.Select
+              name={name}
+              options={options}
+              onChange={onChange as ChangeEventHandler<HTMLSelectElement>}
+            />
+          ),
           radio: <InputRow.Radio name={name} radioGroup={radioGroup} />,
         }[type]
       }
@@ -52,21 +77,23 @@ const InputRow = ({
   );
 };
 
-const Text = ({ name, placeholder }: InputType) => {
+const Text = ({ name, placeholder, onChange, value }: InputProps) => {
   return (
-    <Input css={{ width: '45%', height: '40px' }}>
+    <Input css={{ width: '60%', height: '40px' }}>
       <Input.TextField
         name={name}
         placeholder={placeholder}
         css={{ padding: '8px 12px' }}
+        onChange={onChange}
+        value={value}
       />
     </Input>
   );
 };
 
-const SelectProperty = ({ options }: SelectType) => {
+const SelectProperty = ({ name, options, onChange }: SelectProps) => {
   return (
-    <Select css={{ width: '45%' }}>
+    <Select name={name} css={{ width: '60%' }} onChange={onChange}>
       {options &&
         options.map(({ label, value }, index) => {
           return (
@@ -79,7 +106,7 @@ const SelectProperty = ({ options }: SelectType) => {
   );
 };
 
-const Radio = ({ radioGroup }: RadioType) => {
+const Radio = ({ radioGroup }: RadioProps) => {
   return (
     <div css={{ display: 'flex', alignItems: 'center' }}>
       {radioGroup &&
