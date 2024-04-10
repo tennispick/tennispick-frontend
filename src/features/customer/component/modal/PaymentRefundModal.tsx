@@ -8,7 +8,7 @@ import CustomerInfoContainer from './CustomerInfoContainer';
 import PaymentContainer from './PaymentContainer';
 import RefundContainer from './RefundContainer';
 import { useLessonListQuery } from '@features/lesson/query/LessonQuery';
-import { createCustomerPayment } from '@apis/customer/customer.api';
+import { createCustomerPayment } from '@apis/payment/payment.api';
 import { useRouter } from 'next/navigation';
 
 type Props = {

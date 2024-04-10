@@ -5,6 +5,11 @@ export type PaymentRefundItemList = {
   name: string;
 };
 
+export type PaymentRefundListQueryPayload = {
+  customerId: string;
+  type: PaymentRefundType;
+};
+
 export type PaymentRefundData = {
   id: number;
   centerId: number;

@@ -1,5 +1,4 @@
 import {
-  URL_CREATE_PAYMENT,
   URL_FETCH_CUSTOMER_DETAIL,
   URL_FETCH_CUSTOMER_LESSON_LIST,
   URL_SEARCH_CUSTOMER_LIST_BY_KEYWORD,
@@ -10,22 +9,23 @@ import {
   CustomerDetailApiPayLoad,
   CustomerDetailData,
   SearchCustomerListByKeywordApiPayload,
-  CustomerPaymentCreateApiPayload,
 } from './customer.type';
 import { Response } from '@/types/response';
 
-const getCustomerLessonList = async (params: CustomerLessonListApiPayload) =>
+export const getCustomerLessonList = async (
+  params: CustomerLessonListApiPayload,
+) =>
   await axios.get(
     `${URL_FETCH_CUSTOMER_LESSON_LIST}/${params.id}?lessonType=${params.lessonType}`,
   );
 
-const getCustomerDetail = async (
+export const getCustomerDetail = async (
   params: CustomerDetailApiPayLoad,
 ): Promise<Response<CustomerDetailData>> =>
   await axios.get(`${URL_FETCH_CUSTOMER_DETAIL}/${params.id}`);
 
 // 키워드로 회원목록 조회
-const getSearchCustomerListByKeyword = async (
+export const getSearchCustomerListByKeyword = async (
   params: SearchCustomerListByKeywordApiPayload,
 ) => {
   const { lesson, lessonType, keyword, customer } = params;
@@ -38,14 +38,4 @@ const getSearchCustomerListByKeyword = async (
     },
   });
   return data;
-};
-
-const createCustomerPayment = async (params: CustomerPaymentCreateApiPayload) =>
-  await axios.post(`${URL_CREATE_PAYMENT}`, params);
-
-export {
-  getCustomerLessonList,
-  getCustomerDetail,
-  getSearchCustomerListByKeyword,
-  createCustomerPayment,
 };
