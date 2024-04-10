@@ -6,28 +6,24 @@ import { getLessonList, getLessonDetail } from '@apis/lesson/lesson.api';
 import {
   LessonDetailData,
   LessonDetailQueryPayload,
-  LessonListQueryData,
   LessonListQueryPayload,
 } from '../type/lesson.type';
 import { useQuery } from '@tanstack/react-query';
 import { Response } from '@/types/response';
 
 const useLessonListQuery = (params: LessonListQueryPayload) => {
-  try {
-    const { type } = params;
-    const { data, isLoading } = useQuery<Response<LessonListQueryData>>({
-      queryKey: [URL_FETCH_LESSON_LIST, type],
-      queryFn: async () => await getLessonList({ type: type }),
-    });
+  const { type } = params;
+  const { data, isLoading } = useQuery({
+    queryKey: [URL_FETCH_LESSON_LIST, { type }],
+    queryFn: async () => await getLessonList({ type: type }),
+    select: (data) => data.data,
+    suspense: true,
+  });
 
-    return {
-      data: data?.data,
-      isLoading,
-    };
-  } catch (error) {
-    console.error(error);
-    return { data: error };
-  }
+  return {
+    data: data,
+    isLoading,
+  };
 };
 
 const useLessonDetailQuery = (params: LessonDetailQueryPayload) => {

@@ -1,4 +1,6 @@
-const paymentList = [
+import { PaymentRefundItemList } from '../type/payment.type';
+
+const paymentList: PaymentRefundItemList[] = [
   {
     id: 'payment',
     name: '결제내역',

@@ -17,7 +17,7 @@ const CustomerLesson = ({ id }: Props) => {
         setCurrentItem={setCurrentItem}
         tabLists={lessonList}
       />
-      <SectionChildrenLayout
+      {/* <SectionChildrenLayout
         titleChildren={
           {
             lesson: <CustomerLesson.Lesson />,
@@ -32,7 +32,7 @@ const CustomerLesson = ({ id }: Props) => {
             memo: <CustomerLesson.MemoChildren />,
           }[currentItem]
         }
-      />
+      /> */}
     </section>
   );
 };

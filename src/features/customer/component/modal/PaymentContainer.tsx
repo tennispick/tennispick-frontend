@@ -1,100 +1,112 @@
 import styled from '@emotion/styled';
 import InputRow from './InputRow';
 import {
-  coachOptions,
-  couponOptions,
-  discountOptions,
-  lessonCountOptions,
-  paymentOptions,
-  registerOptions,
-} from '@data/selectOptions';
+  discountTypeList,
+  paymentTypeList,
+} from '@features/customer/data/paymentRefund';
+import CustomerModalReceiptContainer from './ReceiptContainer';
+import useInput from '@hooks/useInput';
+import { ChangeEvent } from 'react';
+import { LessonType } from '@/types/lesson';
 
-const CustomerModalPaymentContainer = () => {
+type Props = {
+  lessonList: LessonType[];
+  totalPrice: (price: number, disCountPrice: number) => number;
+};
+
+const CustomerModalPaymentContainer = ({ lessonList, totalPrice }: Props) => {
+  const [formData, onChangeFormData, setFormData] = useInput({
+    name: lessonList[0]?.id || '',
+    paymentType: paymentTypeList[0]?.value || '',
+    discountType: discountTypeList[0]?.value || '',
+    discountPrice: 0,
+  });
+
+  const onChangeOnlyNumberInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const numberRegex = /[^0-9]/g;
+    const { value } = e.target;
+    if (numberRegex.test(value)) return;
+    const onlyNumber = value.replace(numberRegex, '');
+
+    const targetLesson = lessonList.find(({ id }) => id === formData.name);
+
+    if (Number(onlyNumber) > Number(targetLesson?.price?.replace(',', ''))) {
+      alert('할인금액은 상품금액보다 클 수 없어요.');
+      return;
+    }
+
+    setFormData({
+      ...formData,
+      [e.target.name]: onlyNumber,
+    });
+  };
+
   return (
-    <div css={{ padding: '16px 28px', height: 'calc(100% - 129px)' }}>
-      <div css={{ display: 'flex', height: 'calc(100% - 24px)' }}>
-        <div css={{ width: '50%' }}>
-          <InputRow
-            name="name"
-            label={'상품명'}
-            type="select"
-            options={couponOptions}
-          />
-          <InputRow
-            name="type"
-            label={'유형'}
-            type="select"
-            options={registerOptions}
-          />
-          <InputRow
-            name="productPeriod"
-            label={'상품기간'}
-            type="text"
-            placeholder={'상품기간을 입력해주세요.'}
-          />
-          <InputRow
-            name="unCollectMoney"
-            label={'미수금 금액'}
-            type="text"
-            placeholder={'미수금을 입력해주세요.'}
-          />
-          <InputRow
-            name="discountType"
-            label={'할인유형'}
-            type="select"
-            options={discountOptions}
-          />
-          <InputRow
-            name="discountPrice"
-            label={'할인금액'}
-            type="text"
-            placeholder={'할인 금액을 입력해주세요.'}
-          />
-          <InputRow
-            name="paymentType"
-            label={'결제유형'}
-            type="select"
-            options={paymentOptions}
-          />
-          <InputRow
-            name="virtualPaymentDate"
-            label={'결제 예정일'}
-            type="text"
-            placeholder={'결제 예정일'}
-          />
-          <InputRow
-            name="realPaymentDate"
-            label={'실제 결제일'}
-            type="text"
-            placeholder={'실제 결제일'}
-          />
+    <div css={{ width: '100%', display: 'flex' }}>
+      <div
+        css={{
+          width: '70%',
+          padding: '16px 28px',
+          height: '100%',
+          borderRight: '1px solid var(--grey100)',
+        }}
+      >
+        <div css={{ display: 'flex', height: 'calc(100% - 24px)' }}>
+          <div css={{ width: '50%' }}>
+            <InputRow
+              name="name"
+              label="상품명"
+              type="select"
+              options={lessonList?.map(({ id, name }: LessonType) => ({
+                value: id,
+                label: name,
+              }))}
+              onChange={onChangeFormData}
+            />
+            <InputRow
+              name="paymentType"
+              label="결제유형"
+              type="select"
+              options={paymentTypeList?.map(({ value, label }) => ({
+                value,
+                label,
+              }))}
+              onChange={onChangeFormData}
+            />
+            <InputRow
+              name="discountType"
+              label="할인유형"
+              type="select"
+              options={discountTypeList?.map(({ value, label }) => ({
+                value,
+                label,
+              }))}
+              onChange={onChangeFormData}
+            />
+            <InputRow
+              name="discountPrice"
+              label="할인금액"
+              type="text"
+              placeholder="할인 금액을 입력해주세요."
+              onChange={onChangeOnlyNumberInputHandler}
+              value={formData.discountPrice}
+            />
+          </div>
         </div>
-        <div css={{ width: '50%' }}>
-          <InputRow
-            name="coach"
-            label={'코치'}
-            type="select"
-            options={coachOptions}
-          />
-          <InputRow
-            name="lessonCount"
-            label={'강습횟수'}
-            type="select"
-            options={lessonCountOptions}
-          />
-          <InputRow
-            name="lessonPeriod"
-            label={'강습기간'}
-            type="text"
-            placeholder={'상품을 선택해주세요.'}
-          />
-        </div>
+        <PaymentDescription>
+          <span>미수금 금액: 미수금 금액에 대한 설명</span>
+          <span>결제 예정일: 결제 예정일에 대한 설명</span>
+          <span>실제 결제일: 실제 결제일에 대한 설명</span>
+        </PaymentDescription>
       </div>
-      <PaymentDescription>
-        <span>미수금 금액: 미수금 금액에 대한 설명</span>
-        <span>결제 예정일: 결제 예정일에 대한 설명</span>
-        <span>실제 결제일: 실제 결제일에 대한 설명</span>
-      </PaymentDescription>
+      <CustomerModalReceiptContainer
+        type={'payment'}
+        lesson={lessonList.find(({ id }) => id === Number(formData.name))}
+        paymentType={formData.paymentType}
+        discountType={formData.discountType}
+        discountPrice={formData.discountPrice}
+        totalPrice={totalPrice}
+      />
     </div>
   );
 };
@@ -109,7 +121,7 @@ const PaymentDescription = styled.div({
     fontWeight: 600,
 
     '::before': {
-      content: '"*"',
+      content: "'*'",
       position: 'relative',
       top: '2px',
       margin: '0 4px 0 0',

@@ -1,3 +1,5 @@
+'use client';
+
 import { PageHeader } from '@components/index';
 import { Button } from '@components/index';
 import { LessonDetailData } from '../type/lesson.type';

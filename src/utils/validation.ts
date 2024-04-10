@@ -120,6 +120,7 @@ export {
   emailRegex,
   passwordRegex,
   phoneNumberRegex,
+  handleArrayStringValidationCheck,
   handleInputValidationCheck,
   handleInputArrayValidationCheck,
 };

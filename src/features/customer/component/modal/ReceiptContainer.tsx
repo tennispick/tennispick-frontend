@@ -1,16 +1,42 @@
+import { LessonType } from '@/types/lesson';
 import { Button } from '@components/index';
 import styled from '@emotion/styled';
+import {
+  discountTypeList,
+  paymentTypeList,
+} from '@features/customer/data/paymentRefund';
+import { addNumberCommas } from '@utils/numberForm';
 
 type Props = {
   type: string;
+  lesson: LessonType | undefined;
+  paymentType: string;
+  discountType: string;
+  discountPrice: number;
+  totalPrice: (price: number, disCountPrice: number) => number;
 };
 
-const CustomerModalReceiptContainer = ({ type }: Props) => {
+const CustomerModalReceiptContainer = ({
+  type,
+  lesson,
+  paymentType,
+  discountType,
+  discountPrice,
+  totalPrice,
+}: Props) => {
   return (
     <div css={{ position: 'relative', width: '30%', height: '100%' }}>
       {
         {
-          payment: <CustomerModalReceiptContainer.PaymentReceipt />,
+          payment: (
+            <CustomerModalReceiptContainer.PaymentReceipt
+              lesson={lesson}
+              paymentType={paymentType}
+              discountType={discountType}
+              discountPrice={discountPrice}
+              totalPrice={totalPrice}
+            />
+          ),
           refund: <CustomerModalReceiptContainer.RefundReceipt />,
         }[type]
       }
@@ -18,52 +44,61 @@ const CustomerModalReceiptContainer = ({ type }: Props) => {
   );
 };
 
-const PaymentReceipt = () => {
+const PaymentReceipt = ({
+  lesson,
+  paymentType,
+  discountType,
+  discountPrice,
+  totalPrice,
+}: Pick<
+  Props,
+  'lesson' | 'paymentType' | 'discountType' | 'discountPrice' | 'totalPrice'
+>) => {
+  const numberFormatPrice = Number(lesson?.price?.replaceAll(',', ''));
+  const numberFormatDiscountPrice = Number(discountPrice);
+
   return (
     <>
-      <div
-        css={{
-          height: '130px',
-          borderBottom: '1px solid var(--grey100)',
-          padding: '0 28px',
-        }}
-      >
-        <span
-          css={{
-            position: 'absolute',
-            bottom: '16px',
-            color: 'var(--business-color)',
-            fontSize: '1.3rem',
-            fontWeight: 600,
-          }}
-        >
-          결제 상세내역
-        </span>
-      </div>
-      <div css={{ height: 'calc(55% - 129px)', padding: '36px 32px 0 28px' }}>
+      <div css={{ height: '45%', padding: '36px 32px 0 28px' }}>
         <ReceiptRow>
           <div>상품명</div>
-          <div>주말 그룹 레슨</div>
-        </ReceiptRow>
-        <ReceiptRow>
-          <div>강습기간</div>
-          <div>2023.10.10 ~ 2013.11.16</div>
+          <div>{lesson?.name}</div>
         </ReceiptRow>
         <ReceiptRow>
           <div>결제유형</div>
-          <div>카드결제</div>
+          <div>
+            {paymentTypeList.find(({ value }) => value === paymentType)
+              ?.label || ''}
+          </div>
         </ReceiptRow>
         <ReceiptRow>
           <div>상품금액</div>
-          <div>160,000 원</div>
+          <div>{lesson?.price} 원</div>
+        </ReceiptRow>
+        <ReceiptRow>
+          <div>할인유형</div>
+          <div>
+            {discountTypeList.find(({ value }) => value === discountType)
+              ?.label || ''}
+          </div>
         </ReceiptRow>
         <ReceiptRow>
           <div>할인금액</div>
-          <div>15,000 원</div>
+          <div>
+            {addNumberCommas(discountPrice) === ''
+              ? 0
+              : addNumberCommas(discountPrice)}{' '}
+            원
+          </div>
         </ReceiptRow>
         <ReceiptRow>
           <div>결제 예정금액</div>
-          <div>145,000 원</div>
+          <div>
+            {addNumberCommas(
+              totalPrice(numberFormatPrice, numberFormatDiscountPrice),
+            )}{' '}
+            원
+          </div>
         </ReceiptRow>
       </div>
       <div
@@ -84,10 +119,16 @@ const PaymentReceipt = () => {
           >
             결제 예정금액
           </div>
-          <div css={{ fontWeight: 600, fontSize: '1.2rem' }}>145,000 원</div>
+          <div css={{ fontWeight: 600, fontSize: '1.2rem' }}>
+            {addNumberCommas(
+              totalPrice(numberFormatPrice, numberFormatDiscountPrice),
+            )}{' '}
+            원
+          </div>
         </ReceiptRow>
       </div>
       <Button
+        type="submit"
         label="결제하기"
         css={{
           position: 'absolute',

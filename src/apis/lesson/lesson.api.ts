@@ -14,9 +14,19 @@ import {
 } from './lesson.url';
 import { Response } from '@/types/response';
 import { LessonDetailData } from '@features/lesson/type/lesson.type';
+import { LessonListQueryData } from '@features/lesson/type/lesson.type';
 
-const getLessonList = async (params: LessonListApiPayload) =>
-  await axios.get(`${URL_FETCH_LESSON_LIST}/${params.type}`);
+const getLessonList = async (
+  params: LessonListApiPayload,
+): Promise<Response<LessonListQueryData>> => {
+  try {
+    const result = await axios.get(`${URL_FETCH_LESSON_LIST}/${params.type}`);
+    return result;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
 
 const getLessonDetail = async (
   params: LessonDetailApiPayload,

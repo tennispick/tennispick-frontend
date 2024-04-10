@@ -1,5 +1,5 @@
 export type LessonType = {
-  id: string;
+  id: number;
   center_id: string;
   name: string;
   price: string;

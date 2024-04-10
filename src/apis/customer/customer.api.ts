@@ -1,4 +1,5 @@
 import {
+  URL_CREATE_PAYMENT,
   URL_FETCH_CUSTOMER_DETAIL,
   URL_FETCH_CUSTOMER_LESSON_LIST,
   URL_SEARCH_CUSTOMER_LIST_BY_KEYWORD,
@@ -9,6 +10,7 @@ import {
   CustomerDetailApiPayLoad,
   CustomerDetailData,
   SearchCustomerListByKeywordApiPayload,
+  CustomerPaymentCreateApiPayload,
 } from './customer.type';
 import { Response } from '@/types/response';
 
@@ -38,8 +40,12 @@ const getSearchCustomerListByKeyword = async (
   return data;
 };
 
+const createCustomerPayment = async (params: CustomerPaymentCreateApiPayload) =>
+  await axios.post(`${URL_CREATE_PAYMENT}`, params);
+
 export {
   getCustomerLessonList,
   getCustomerDetail,
   getSearchCustomerListByKeyword,
+  createCustomerPayment,
 };

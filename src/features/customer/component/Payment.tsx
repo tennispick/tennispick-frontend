@@ -1,181 +1,77 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, Suspense, useState } from 'react';
 import SNBList from './SNBList';
 import { paymentList } from '../data/snbList';
 import SectionChildrenLayout from './SectionChildrenLayout';
-import { Button } from '@components/index';
-import CustomerModal from './modal/CustomerModal';
+import CustomerDetailPaymentHeader from './detail/paymentRefund/payment/header';
+import CustomerDetailRefundHeader from './detail/paymentRefund/refund/header';
+import CustomerDetailRefundBody from './detail/paymentRefund/refund/body';
+import CustomerDetailPaymentBody from './detail/paymentRefund/payment/body';
+import CustomerDetailPaymentRefundContainer from './detail/paymentRefund/Container';
+import { PaymentRefundData, PaymentRefundType } from '../type/payment.type';
+import { SetStateAction } from '@/types/index';
+import PaymentRefundModal from './modal/PaymentRefundModal';
+import Loading from '@components/common/Loading';
 
 type Props = {
   id: string;
 };
 
 const CustomerPayment = ({ id }: Props) => {
-  const [currentItem, setCurrentItem] = useState(paymentList[0].id);
-  const [checkedItems, setCheckedItems] = useState<Array<string>>([]);
+  const [currentItem, setCurrentItem] = useState<PaymentRefundType>(
+    paymentList[0].id,
+  );
+  const [checkedItems, setCheckedItems] = useState<PaymentRefundData[] | []>(
+    [],
+  );
+  const [showModal, setShowModal] = useState<boolean>(false);
+
+  const onClickOpenModalHandler = () => setShowModal(true);
 
   return (
     <section css={{ position: 'relative', width: '49%' }}>
       <SNBList
-        currentItem={currentItem}
-        setCurrentItem={setCurrentItem}
+        currentItem={currentItem as string}
+        setCurrentItem={setCurrentItem as SetStateAction<string>}
         tabLists={paymentList}
       />
-      <SectionChildrenLayout
-        titleChildren={
+      <CustomerDetailPaymentRefundContainer
+        type={currentItem}
+        checkedItems={checkedItems}
+        onClickOpenModalHandler={onClickOpenModalHandler}
+      />
+      {showModal && (
+        <Suspense fallback={<Loading />}>
+          <PaymentRefundModal
+            id={id}
+            type={'payment'}
+            showModal={showModal}
+            setShowModal={setShowModal}
+          />
+        </Suspense>
+      )}
+      {/* <SectionChildrenLayout
+        headerChildren={
           {
             payment: (
-              <CustomerPayment.Payment id={id} checkedItems={checkedItems} />
+              <CustomerDetailPaymentHeader id={id} checkedItems={checkedItems} />
             ),
-            refund: <CustomerPayment.Refund />,
+            refund: <CustomerDetailRefundHeader />,
           }[currentItem]
         }
-        contentChildren={
+        bodyChildren={
           {
             payment: (
-              <CustomerPayment.PaymentChildren
+              <CustomerDetailPaymentBody
                 checkedItems={checkedItems}
                 setCheckedItems={setCheckedItems}
               />
             ),
-            refund: <CustomerPayment.RefundChildren />,
+            refund: <CustomerDetailRefundBody />,
           }[currentItem]
         }
-      />
+      /> */}
     </section>
   );
 };
-
-const Payment = ({
-  id,
-  checkedItems,
-}: {
-  id: string;
-  checkedItems: Array<string>;
-}) => {
-  const isDisabledRefundButton = checkedItems.length === 0;
-  const [showModal, setShowModal] = useState<boolean>(false);
-  const [modalType, setModalType] = useState<string>('');
-
-  // TODO 결제하기, 환불하기 CSS 적용 및 Click Event
-
-  const onShowModal = (type: string) => {
-    setShowModal(true);
-    setModalType(type);
-  };
-
-  const onClickPaymentHandler = () => onShowModal('refund');
-  const onClickRefundHandler = () => onShowModal('payment');
-
-  return (
-    <>
-      <div
-        css={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
-        <div css={{ display: 'flex', alignItems: 'center' }}>
-          <div css={{ margin: '0 12px 0 0' }}>
-            총 <span>7</span>건
-          </div>
-          <div>
-            총 결제금액 : <span>510,000</span>원
-          </div>
-        </div>
-        <div css={{ display: 'flex', alignItems: 'center' }}>
-          <div
-            css={{
-              color: 'var(--business-color)',
-              fontWeight: 600,
-              cursor: 'pointer',
-              margin: '0 12px 0 0',
-            }}
-            onClick={onClickPaymentHandler}
-          >
-            결제하기
-          </div>
-          <Button
-            label={'환불하기'}
-            css={{
-              padding: 0,
-              border: 0,
-              color: isDisabledRefundButton
-                ? 'var(--grey300)'
-                : 'var(--red200)',
-              lineHeight: '24px',
-              fontWeight: isDisabledRefundButton ? 500 : 600,
-              cursor: isDisabledRefundButton ? 'not-allowed' : 'pointer',
-            }}
-            onClick={() => !isDisabledRefundButton && onClickRefundHandler}
-          />
-        </div>
-      </div>
-      {showModal && (
-        <CustomerModal
-          id={id}
-          type={modalType}
-          showModal={showModal}
-          setShowModal={setShowModal}
-        />
-      )}
-    </>
-  );
-};
-const PaymentChildren = ({
-  checkedItems,
-  setCheckedItems,
-}: {
-  checkedItems: Array<string>;
-  setCheckedItems: Dispatch<SetStateAction<Array<string>>>;
-}) => {
-  return (
-    <div
-      css={{
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-      }}
-    >
-      결제 내역이 없어요.
-    </div>
-  );
-};
-
-const Refund = () => {
-  return (
-    <div css={{ display: 'flex', alignItems: 'center' }}>
-      <div css={{ display: 'flex', alignItems: 'center' }}>
-        <div css={{ margin: '0 12px 0 0' }}>
-          총 <span>7</span>건
-        </div>
-        <div>
-          총 결제금액 : <span>300,000</span>원
-        </div>
-      </div>
-    </div>
-  );
-};
-const RefundChildren = () => {
-  return (
-    <div
-      css={{
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-      }}
-    >
-      환불 내역이 없어요.
-    </div>
-  );
-};
-
-CustomerPayment.Payment = Payment;
-CustomerPayment.PaymentChildren = PaymentChildren;
-
-CustomerPayment.Refund = Refund;
-CustomerPayment.RefundChildren = RefundChildren;
 
 export default CustomerPayment;
