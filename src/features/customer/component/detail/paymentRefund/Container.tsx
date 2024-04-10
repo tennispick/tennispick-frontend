@@ -1,40 +1,36 @@
-import styled from '@emotion/styled';
 import PaymentRefundHeaderContainer from './HeaderContainer';
 import {
   PaymentRefundData,
   PaymentRefundType,
 } from '@features/customer/type/payment.type';
 import PaymentRefundBodyContainer from './BodyContainer';
+import { usePaymentListQuery } from '@features/customer/query/PaymentQuery';
 
 type Props = {
+  customerId: string;
   type: PaymentRefundType;
   checkedItems: PaymentRefundData[];
   onClickOpenModalHandler: () => void;
 };
 
 const CustomerDetailPaymentRefundContainer = ({
+  customerId,
   type,
   checkedItems,
   onClickOpenModalHandler,
 }: Props) => {
+  const { data } = usePaymentListQuery({ type, customerId });
+
   return (
-    <Container>
+    <>
       <PaymentRefundHeaderContainer
         type={type}
         checkedItems={checkedItems}
         onClickOpenModalHandler={onClickOpenModalHandler}
       />
-      <PaymentRefundBodyContainer />
-    </Container>
+      <PaymentRefundBodyContainer type={type} data={data} />
+    </>
   );
 };
-
-const Container = styled.section({
-  position: 'relative',
-  height: '50vh',
-  backgroundColor: 'var(--grey400)',
-  borderRadius: '16px',
-  padding: '12px',
-});
 
 export default CustomerDetailPaymentRefundContainer;

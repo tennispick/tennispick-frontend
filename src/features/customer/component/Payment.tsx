@@ -1,11 +1,9 @@
-import { Dispatch, Suspense, useState } from 'react';
+import { Suspense, useState } from 'react';
 import SNBList from './SNBList';
 import { paymentList } from '../data/snbList';
+
 import SectionChildrenLayout from './SectionChildrenLayout';
-import CustomerDetailPaymentHeader from './detail/paymentRefund/payment/header';
-import CustomerDetailRefundHeader from './detail/paymentRefund/refund/header';
-import CustomerDetailRefundBody from './detail/paymentRefund/refund/body';
-import CustomerDetailPaymentBody from './detail/paymentRefund/payment/body';
+
 import CustomerDetailPaymentRefundContainer from './detail/paymentRefund/Container';
 import { PaymentRefundData, PaymentRefundType } from '../type/payment.type';
 import { SetStateAction } from '@/types/index';
@@ -34,11 +32,24 @@ const CustomerPayment = ({ id }: Props) => {
         setCurrentItem={setCurrentItem as SetStateAction<string>}
         tabLists={paymentList}
       />
-      <CustomerDetailPaymentRefundContainer
-        type={currentItem}
-        checkedItems={checkedItems}
-        onClickOpenModalHandler={onClickOpenModalHandler}
-      />
+      <div
+        css={{
+          position: 'relative',
+          height: '50vh',
+          backgroundColor: 'var(--grey400)',
+          borderRadius: '16px',
+          padding: '12px',
+        }}
+      >
+        <Suspense fallback={<Loading />}>
+          <CustomerDetailPaymentRefundContainer
+            customerId={id}
+            type={currentItem}
+            checkedItems={checkedItems}
+            onClickOpenModalHandler={onClickOpenModalHandler}
+          />
+        </Suspense>
+      </div>
       {showModal && (
         <Suspense fallback={<Loading />}>
           <PaymentRefundModal

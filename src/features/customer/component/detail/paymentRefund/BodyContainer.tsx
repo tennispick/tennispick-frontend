@@ -1,4 +1,13 @@
-const CustomerDetailPaymentRefundBodyContainer = () => {
+import { CustomerPaymentRefundData } from '@apis/payment/payment.type';
+import PaymentList from './payment/List';
+import RefundList from './refund/List';
+
+type Props = {
+  type: string;
+  data: CustomerPaymentRefundData[];
+};
+
+const CustomerDetailPaymentRefundBodyContainer = ({ type, data }: Props) => {
   return (
     <div
       css={{
@@ -8,9 +17,18 @@ const CustomerDetailPaymentRefundBodyContainer = () => {
         padding: '12px',
       }}
     >
-      PaymentRefundBodyContainer
+      {
+        {
+          payment: <PaymentList data={data} />,
+          refund: <RefundList data={data} />,
+        }[type]
+      }
     </div>
   );
 };
+
+{
+  /* <NoResult description={`${type === 'payment' ? '결제' : '환불'}내역이 없어요.`} /> */
+}
 
 export default CustomerDetailPaymentRefundBodyContainer;

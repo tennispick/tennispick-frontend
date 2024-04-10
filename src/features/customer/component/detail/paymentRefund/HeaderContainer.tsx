@@ -3,8 +3,6 @@ import {
   PaymentRefundData,
   PaymentRefundType,
 } from '@features/customer/type/payment.type';
-import { Button } from '@components/index';
-import { SetStateAction } from '@/types/index';
 
 type Props = {
   type: PaymentRefundType;
@@ -41,6 +39,7 @@ const CustomerDetailPaymentRefundHeaderContainer = ({
           css={{
             color: 'var(--business-color)',
             fontWeight: 600,
+            margin: '0 8px 0 0',
             cursor: 'pointer',
           }}
           onClick={onClickOpenModalHandler}
