@@ -6,7 +6,6 @@ import {
   transferPaymentType,
 } from '@features/customer/util/payment';
 import { addNumberCommas } from '@utils/numberForm';
-import { MouseEvent } from 'react';
 
 type Props = {
   data: CustomerPaymentRefundData[];
