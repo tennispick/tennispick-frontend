@@ -32,4 +32,6 @@ const discountTypeList = [
   },
 ];
 
-export { paymentTypeList, discountTypeList };
+const refundTypeList = [...paymentTypeList];
+
+export { paymentTypeList, discountTypeList, refundTypeList };

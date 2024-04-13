@@ -25,3 +25,14 @@ export const transferDiscountType = (discountType: string) => {
       return '';
   }
 };
+
+export const transferRefundRange = (refundRange: string) => {
+  switch (refundRange) {
+    case 'full':
+      return '전액환불';
+    case 'part':
+      return '일부환불';
+    default:
+      return '';
+  }
+};

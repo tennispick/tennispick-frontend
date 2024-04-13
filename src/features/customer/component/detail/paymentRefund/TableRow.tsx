@@ -1,15 +1,25 @@
-const CustomerDetailPaymentRefundTableRow = ({
-  children,
-}: React.PropsWithChildren) => {
+type Props = {
+  onClick: () => void;
+} & React.PropsWithChildren;
+
+const CustomerDetailPaymentRefundTableRow = ({ children, onClick }: Props) => {
   return (
     <div
       css={{
-        height: '28px',
         display: 'flex',
         alignItems: 'center',
         textAlign: 'center',
-        margin: '0 0 12px 0',
+        padding: '6px 8px',
+        gap: '2px',
+        borderRadius: '4px',
+        borderTop: '1px solid var(--grey500)',
+        cursor: 'pointer',
+
+        ':hover': {
+          backgroundColor: 'var(--grey500)',
+        },
       }}
+      onClick={onClick}
     >
       {children}
     </div>

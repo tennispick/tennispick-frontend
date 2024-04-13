@@ -31,6 +31,7 @@ const CustomerDatail = ({ id }: Props) => {
       >
         <div
           css={{
+            height: '100%',
             position: 'relative',
             display: 'flex',
             justifyContent: 'space-between',

@@ -6,15 +6,25 @@ import {
 } from '@features/customer/data/paymentRefund';
 import CustomerModalReceiptContainer from './ReceiptContainer';
 import useInput from '@hooks/useInput';
-import { ChangeEvent } from 'react';
-import { LessonType } from '@/types/lesson';
+import { ChangeEvent, useEffect } from 'react';
+import { FormEvent } from 'react';
+import { createCustomerPayment } from '@apis/payment/payment.api';
+import { useRouter } from 'next/navigation';
+import { LessonListQueryData } from '@features/lesson/type/lesson.type';
 
 type Props = {
-  lessonList: LessonType[];
+  customerId: string;
+  lessonList: LessonListQueryData[];
   totalPrice: (price: number, disCountPrice: number) => number;
 };
 
-const CustomerModalPaymentContainer = ({ lessonList, totalPrice }: Props) => {
+const CustomerModalPaymentContainer = ({
+  customerId,
+  lessonList,
+  totalPrice,
+}: Props) => {
+  const router = useRouter();
+
   const [formData, onChangeFormData, setFormData] = useInput({
     name: lessonList[0]?.id || '',
     paymentType: paymentTypeList[0]?.value || '',
@@ -41,8 +51,45 @@ const CustomerModalPaymentContainer = ({ lessonList, totalPrice }: Props) => {
     });
   };
 
+  const onSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const currentFormData = new FormData(e.currentTarget);
+
+    const { discountPrice } = Object.fromEntries(currentFormData.entries());
+    const lessonId = Number(currentFormData.get('name'));
+    const selectedLesson = lessonList.find(
+      ({ id }: { id: number }) => id === lessonId,
+    );
+
+    const price = selectedLesson
+      ? selectedLesson.price.replaceAll(',', '')
+      : '';
+
+    if (!discountPrice) currentFormData.append('discountPrice', '0');
+
+    currentFormData.append('type', 'payment');
+    currentFormData.append('customerId', customerId);
+    currentFormData.append(
+      'totalPrice',
+      totalPrice(Number(price), Number(discountPrice ?? '0')).toString(),
+    );
+
+    const { data } = await createCustomerPayment(currentFormData);
+    if (data.affectedRows > 0)
+      alert('결제가 성공적으로 진행되었어요.\n스케줄 등록을 진행해주세요.');
+    else alert('결제에 실패했어요.\n관리자에게 문의해주세요.');
+
+    router.refresh();
+  };
+
+  useEffect(() => {
+    if (formData.discountType === 'none')
+      setFormData({ ...formData, discountPrice: 0 });
+  }, [formData.discountType]);
+
   return (
-    <div css={{ width: '100%', display: 'flex' }}>
+    <form css={{ width: '100%', display: 'flex' }} onSubmit={onSubmitHandler}>
       <div
         css={{
           width: '70%',
@@ -57,7 +104,7 @@ const CustomerModalPaymentContainer = ({ lessonList, totalPrice }: Props) => {
               name="name"
               label="상품명"
               type="select"
-              options={lessonList?.map(({ id, name }: LessonType) => ({
+              options={lessonList?.map(({ id, name }) => ({
                 value: id,
                 label: name,
               }))}
@@ -90,6 +137,7 @@ const CustomerModalPaymentContainer = ({ lessonList, totalPrice }: Props) => {
               placeholder="할인 금액을 입력해주세요."
               onChange={onChangeOnlyNumberInputHandler}
               value={formData.discountPrice}
+              disabled={formData.discountType === 'none'}
             />
           </div>
         </div>
@@ -107,7 +155,7 @@ const CustomerModalPaymentContainer = ({ lessonList, totalPrice }: Props) => {
         discountPrice={formData.discountPrice}
         totalPrice={totalPrice}
       />
-    </div>
+    </form>
   );
 };
 

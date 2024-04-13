@@ -68,7 +68,7 @@ const CustomerModalCustomerInfoContainer = ({ isPayment }: Props) => {
           css={{
             position: 'absolute',
             bottom: '16px',
-            color: 'var(--business-color)',
+            color: isPayment ? 'var(--business-color)' : 'var(--red200)',
             fontSize: '1.3rem',
             fontWeight: 600,
           }}

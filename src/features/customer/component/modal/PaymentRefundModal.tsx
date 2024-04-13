@@ -1,21 +1,21 @@
 import Portal from '@components/Portal';
 import { Modal } from '@components/index';
+import { SetStateAction } from '@/types/index';
 import styled from '@emotion/styled';
 import { ImageContainer as Image } from '@styles/styles';
-import { Dispatch, FormEvent, SetStateAction } from 'react';
 import CancelBtnIcon from '@icons/cancel_black_btn.svg';
 import CustomerInfoContainer from './CustomerInfoContainer';
 import PaymentContainer from './PaymentContainer';
 import RefundContainer from './RefundContainer';
+import { CustomerPaymentRefundData } from '@apis/payment/payment.type';
 import { useLessonListQuery } from '@features/lesson/query/LessonQuery';
-import { createCustomerPayment } from '@apis/payment/payment.api';
-import { useRouter } from 'next/navigation';
 
 type Props = {
   id: string;
   type: string;
   showModal: boolean;
-  setShowModal: Dispatch<SetStateAction<boolean>>;
+  setShowModal: SetStateAction<boolean>;
+  checkedItem: CustomerPaymentRefundData | undefined;
 };
 
 const CustomerPaymentRefundModal = ({
@@ -23,39 +23,14 @@ const CustomerPaymentRefundModal = ({
   type,
   showModal,
   setShowModal,
+  checkedItem,
 }: Props) => {
   const isPayment = type === 'payment';
 
-  const router = useRouter();
   const { data: lessonList } = useLessonListQuery({ type: 'all' });
 
   const totalPrice = (price: number, discountPrice: number) =>
     price - discountPrice;
-
-  const onSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.currentTarget);
-
-    const { discountPrice } = Object.fromEntries(formData.entries());
-    const price = lessonList
-      .find(({ id }: { id: number }) => id === Number(formData.get('name')))
-      .price.replaceAll(',', '');
-
-    formData.append('type', type);
-    formData.append('customerId', id);
-    formData.append(
-      'price',
-      totalPrice(Number(price), Number(discountPrice)).toString(),
-    );
-
-    const { data } = await createCustomerPayment(formData);
-    if (data.affectedRows > 0)
-      alert('결제가 성공적으로 진행되었어요.\n스케줄 등록을 진행해주세요.');
-    else alert('결제에 실패했어요.\n관리자에게 문의해주세요.');
-
-    router.refresh();
-  };
 
   return (
     <Portal id={'portal'}>
@@ -71,24 +46,31 @@ const CustomerPaymentRefundModal = ({
         showModal={showModal}
         setShowModal={setShowModal}
       >
-        <CustomerPaymentRefundModalHeader isPayment={isPayment} />
+        <CustomerPaymentRefundModalHeader
+          isPayment={isPayment}
+          setShowModal={setShowModal}
+        />
         <CustomerInfoContainer isPayment={isPayment} />
-        <form
-          css={{ display: 'flex', height: 'calc(100% - 194px)' }}
-          onSubmit={onSubmitHandler}
-        >
+        <div css={{ display: 'flex', height: 'calc(100% - 194px)' }}>
           {
             {
               payment: (
                 <PaymentContainer
+                  customerId={id}
                   lessonList={lessonList}
                   totalPrice={totalPrice}
                 />
               ),
-              refund: <RefundContainer />,
+              refund: (
+                <RefundContainer
+                  customerId={id}
+                  checkedItem={checkedItem!}
+                  lessonList={lessonList}
+                />
+              ),
             }[type]
           }
-        </form>
+        </div>
       </Modal>
     </Portal>
   );
@@ -96,8 +78,10 @@ const CustomerPaymentRefundModal = ({
 
 const CustomerPaymentRefundModalHeader = ({
   isPayment,
+  setShowModal,
 }: {
   isPayment: boolean;
+  setShowModal: SetStateAction<boolean>;
 }) => {
   return (
     <Header>
@@ -110,7 +94,7 @@ const CustomerPaymentRefundModalHeader = ({
         width={28}
         height={28}
         cursor={'pointer'}
-        // onClick={() => setShowModal(false)}
+        onClick={() => setShowModal(false)}
       />
     </Header>
   );

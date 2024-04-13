@@ -1,19 +1,28 @@
-import { LessonType } from '@/types/lesson';
 import { Button } from '@components/index';
 import styled from '@emotion/styled';
 import {
   discountTypeList,
   paymentTypeList,
 } from '@features/customer/data/paymentRefund';
+import { PaymentRefundType } from '@features/customer/type/payment.type';
+import {
+  transferPaymentType,
+  transferRefundRange,
+} from '@features/customer/util/payment';
+import { LessonListQueryData } from '@features/lesson/type/lesson.type';
 import { addNumberCommas } from '@utils/numberForm';
 
 type Props = {
-  type: string;
-  lesson: LessonType | undefined;
+  type: PaymentRefundType;
+  lesson: LessonListQueryData | undefined;
   paymentType: string;
   discountType: string;
   discountPrice: number;
-  totalPrice: (price: number, disCountPrice: number) => number;
+  totalPrice?: (price: number, disCountPrice: number) => number;
+  price?: number;
+  refundType?: string;
+  refundRange?: string;
+  refundPrice?: number;
 };
 
 const CustomerModalReceiptContainer = ({
@@ -22,7 +31,11 @@ const CustomerModalReceiptContainer = ({
   paymentType,
   discountType,
   discountPrice,
+  refundType,
+  refundRange,
+  refundPrice,
   totalPrice,
+  price,
 }: Props) => {
   return (
     <div css={{ position: 'relative', width: '30%', height: '100%' }}>
@@ -37,7 +50,16 @@ const CustomerModalReceiptContainer = ({
               totalPrice={totalPrice}
             />
           ),
-          refund: <CustomerModalReceiptContainer.RefundReceipt />,
+          refund: (
+            <CustomerModalReceiptContainer.RefundReceipt
+              lesson={lesson}
+              paymentType={paymentType}
+              refundType={refundType}
+              refundRange={refundRange}
+              refundPrice={refundPrice}
+              price={price}
+            />
+          ),
         }[type]
       }
     </div>
@@ -95,7 +117,7 @@ const PaymentReceipt = ({
           <div>결제 예정금액</div>
           <div>
             {addNumberCommas(
-              totalPrice(numberFormatPrice, numberFormatDiscountPrice),
+              totalPrice!(numberFormatPrice, numberFormatDiscountPrice),
             )}{' '}
             원
           </div>
@@ -121,7 +143,7 @@ const PaymentReceipt = ({
           </div>
           <div css={{ fontWeight: 600, fontSize: '1.2rem' }}>
             {addNumberCommas(
-              totalPrice(numberFormatPrice, numberFormatDiscountPrice),
+              totalPrice!(numberFormatPrice, numberFormatDiscountPrice),
             )}{' '}
             원
           </div>
@@ -144,56 +166,54 @@ const PaymentReceipt = ({
   );
 };
 
-const RefundReceipt = () => {
+const RefundReceipt = ({
+  lesson,
+  paymentType,
+  refundType,
+  refundRange,
+  refundPrice,
+  price,
+}: Pick<
+  Props,
+  | 'lesson'
+  | 'paymentType'
+  | 'refundType'
+  | 'refundRange'
+  | 'refundPrice'
+  | 'price'
+>) => {
   return (
     <>
-      <div
-        css={{
-          height: '130px',
-          borderBottom: '1px solid var(--grey100)',
-          padding: '0 28px',
-        }}
-      >
-        <span
-          css={{
-            position: 'absolute',
-            bottom: '16px',
-            color: 'var(--red200)',
-            fontSize: '1.3rem',
-            fontWeight: 600,
-          }}
-        >
-          환불 상세내역
-        </span>
-      </div>
-      <div css={{ height: 'calc(55% - 129px)', padding: '36px 32px 0 28px' }}>
+      <div css={{ height: '50%', padding: '36px 32px 0 28px' }}>
         <ReceiptRow>
           <div>상품명</div>
-          <div>주말 그룹 레슨</div>
+          <div>{lesson?.name}</div>
         </ReceiptRow>
         <ReceiptRow>
           <div>상품금액</div>
-          <div>140,000 원</div>
+          <div>
+            {addNumberCommas(Number(lesson!.price.replaceAll(',', '')))} 원
+          </div>
         </ReceiptRow>
         <ReceiptRow>
           <div>결제유형</div>
-          <div>카드결제</div>
+          <div>{transferPaymentType(paymentType!)}</div>
         </ReceiptRow>
         <ReceiptRow>
           <div>결제금액</div>
-          <div>140,000 원</div>
+          <div>{addNumberCommas(Number(price))}원</div>
         </ReceiptRow>
-        <ReceiptRow>
+        <ReceiptRow css={{ color: 'var(--red200)' }}>
           <div>환불유형</div>
-          <div>카드결제</div>
+          <div>{transferPaymentType(refundType!)}</div>
         </ReceiptRow>
-        <ReceiptRow>
+        <ReceiptRow css={{ color: 'var(--red200)' }}>
           <div>환불범위</div>
-          <div>전액환불</div>
+          <div>{transferRefundRange(refundRange!)}</div>
         </ReceiptRow>
-        <ReceiptRow>
-          <div>환불 예정금액</div>
-          <div>140,000 원</div>
+        <ReceiptRow css={{ color: 'var(--red200)' }}>
+          <div>환불금액</div>
+          <div>{addNumberCommas(refundPrice!)} 원</div>
         </ReceiptRow>
       </div>
       <div
@@ -212,12 +232,15 @@ const RefundReceipt = () => {
               color: 'var(--red200)',
             }}
           >
-            환불금액
+            예정 환불금액
           </div>
-          <div css={{ fontWeight: 600, fontSize: '1.2rem' }}>145,000 원</div>
+          <div css={{ fontWeight: 600, fontSize: '1.2rem' }}>
+            {addNumberCommas(refundPrice!)} 원
+          </div>
         </ReceiptRow>
       </div>
       <Button
+        type="submit"
         label="환불하기"
         css={{
           position: 'absolute',
@@ -228,7 +251,7 @@ const RefundReceipt = () => {
           color: 'var(--white100)',
           border: 0,
         }}
-        disabled={true}
+        disabled={refundPrice! <= 0}
       />
     </>
   );

@@ -1,23 +1,25 @@
 import PaymentRefundHeaderContainer from './HeaderContainer';
-import {
-  PaymentRefundData,
-  PaymentRefundType,
-} from '@features/customer/type/payment.type';
+import { CustomerPaymentRefundData } from '@apis/payment/payment.type';
+import { PaymentRefundType } from '@features/customer/type/payment.type';
 import PaymentRefundBodyContainer from './BodyContainer';
 import { usePaymentListQuery } from '@features/customer/query/PaymentQuery';
+import { MouseEvent } from 'react';
 
 type Props = {
   customerId: string;
   type: PaymentRefundType;
-  checkedItems: PaymentRefundData[];
   onClickOpenModalHandler: () => void;
+  onClickOpenRefundModalHandler: (
+    e: MouseEvent<HTMLButtonElement>,
+    target: CustomerPaymentRefundData,
+  ) => void;
 };
 
 const CustomerDetailPaymentRefundContainer = ({
   customerId,
   type,
-  checkedItems,
   onClickOpenModalHandler,
+  onClickOpenRefundModalHandler,
 }: Props) => {
   const { data } = usePaymentListQuery({ type, customerId });
 
@@ -25,10 +27,15 @@ const CustomerDetailPaymentRefundContainer = ({
     <>
       <PaymentRefundHeaderContainer
         type={type}
-        checkedItems={checkedItems}
+        data={data}
         onClickOpenModalHandler={onClickOpenModalHandler}
       />
-      <PaymentRefundBodyContainer type={type} data={data} />
+      <PaymentRefundBodyContainer
+        type={type}
+        customerId={customerId}
+        data={data}
+        onClickOpenRefundModalHandler={onClickOpenRefundModalHandler}
+      />
     </>
   );
 };

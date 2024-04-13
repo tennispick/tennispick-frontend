@@ -6,95 +6,132 @@ import {
   transferPaymentType,
 } from '@features/customer/util/payment';
 import { addNumberCommas } from '@utils/numberForm';
+import { MouseEvent } from 'react';
 
 type Props = {
   data: CustomerPaymentRefundData[];
+  customerId: string;
+  onClickOpenRefundModalHandler: (
+    e: MouseEvent<HTMLButtonElement>,
+    target: CustomerPaymentRefundData,
+  ) => void;
 };
 
-const CustomerDetailPaymentRefundPaymentList = ({ data }: Props) => {
+const CustomerDetailPaymentRefundPaymentList = ({
+  data,
+  customerId,
+  onClickOpenRefundModalHandler,
+}: Props) => {
   if (data.length === 0) return <NoResult description={'결제내역이 없어요.'} />;
 
-  const onClickRefundHandler = (id: number) => {
-    console.log(id);
-  };
+  console.log(data);
 
   return (
     <>
       <div
         css={{
-          hegiht: '36px',
+          height: '28px',
           display: 'flex',
           alignItems: 'center',
           textAlign: 'center',
-          margin: '0 0 12px 0',
+          fontSize: '0.9rem',
+          padding: '6px 8px',
+          gap: '2px',
         }}
       >
         <div css={{ width: '20%' }}>레슨권</div>
-        <div css={{ width: '10%' }}>평일/주말</div>
-        <div css={{ width: '10%' }}>레슨유형</div>
-        <div css={{ width: '10%' }}>결제유형</div>
-        <div css={{ width: '10%' }}>할인유형</div>
-        <div css={{ width: '15%' }}>할인금액</div>
-        <div css={{ width: '15%' }}>결제금액</div>
+        <div css={{ width: '13%' }}>결제일</div>
+        <div css={{ width: '11%' }}>결제유형</div>
+        <div css={{ width: '11%' }}>할인유형</div>
+        <div css={{ width: '11%' }}>할인금액</div>
+        <div css={{ width: '11%' }}>결제금액</div>
+        <div css={{ width: '10%' }}>환불금액</div>
         <div css={{ width: '10%' }}></div>
       </div>
-      <div css={{ height: 'calc(100% - 36px)', overflowY: 'auto' }}>
-        {data.map(
-          ({
+      <div
+        css={{
+          height: 'calc(100% - 28px)',
+          padding: '8px 0',
+          overflowY: 'auto',
+          fontSize: '0.9rem',
+        }}
+      >
+        {data.map((item) => {
+          const {
             id,
             lessonName,
-            isWeekday,
-            lessonType,
+            createdAt,
             type,
             discountType,
             discountPrice,
+            refundPrice,
+            remainPrice,
+            remainLessonCount,
             totalPrice,
-          }) => {
-            return (
-              <CustomerDetailPaymentRefundTableRow key={id}>
-                <div
-                  css={{
-                    width: '20%',
-                    textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                    textAlign: 'left',
-                  }}
-                >
-                  {lessonName}
-                </div>
-                <div css={{ width: '10%' }}>
-                  {isWeekday === 'weekday' ? '평일' : '주말'}
-                </div>
-                <div css={{ width: '10%' }}>
-                  {lessonType === 'private' ? '개인' : '그룹'}
-                </div>
-                <div css={{ width: '10%' }}>{transferPaymentType(type)}</div>
-                <div css={{ width: '10%' }}>
-                  {transferDiscountType(discountType)}
-                </div>
-                <div css={{ width: '15%' }}>
-                  {discountPrice === 0 ? '-' : addNumberCommas(discountPrice)}
-                </div>
-                <div css={{ width: '15%' }}>{addNumberCommas(totalPrice)}</div>
-                <div
-                  css={{
-                    width: '10%',
-                    backgroundColor: 'var(--red200)',
-                    color: 'var(--white100)',
-                    fontWeight: '500',
-                    padding: '8px 0',
-                    borderRadius: '6px',
-                    cursor: 'pointer',
-                  }}
-                  onClick={() => onClickRefundHandler(id)}
-                >
-                  환불하기
-                </div>
-              </CustomerDetailPaymentRefundTableRow>
-            );
-          },
-        )}
+          } = item;
+
+          const isAvailableRefund =
+            remainLessonCount > 0 &&
+            (remainPrice ?? remainPrice ? true : false);
+
+          // 상세보기
+          const onClickPaymentRowHandler = () => {
+            console.log(id);
+          };
+
+          return (
+            <CustomerDetailPaymentRefundTableRow
+              key={id}
+              onClick={onClickPaymentRowHandler}
+            >
+              <div
+                css={{
+                  width: '20%',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textAlign: 'left',
+                }}
+              >
+                {lessonName}
+              </div>
+              <div css={{ width: '13%' }}>{createdAt}</div>
+              <div css={{ width: '11%' }}>{transferPaymentType(type)}</div>
+              <div css={{ width: '11%' }}>
+                {transferDiscountType(discountType)}
+              </div>
+              <div css={{ width: '11%' }}>
+                {discountPrice === 0 ? '-' : addNumberCommas(discountPrice)}
+              </div>
+              <div css={{ width: '11%' }}>{addNumberCommas(totalPrice)}</div>
+              <div css={{ width: '10%' }}>
+                {refundPrice ? addNumberCommas(refundPrice) : '-'}
+              </div>
+              <button
+                css={{
+                  width: '10%',
+                  backgroundColor: 'var(--red200)',
+                  color: 'var(--white100)',
+                  fontWeight: '500',
+                  padding: '8px 0',
+                  borderRadius: '6px',
+                  border: 0,
+                  cursor: 'pointer',
+
+                  ':disabled': {
+                    borderColor: 'var(--grey100)',
+                    backgroundColor: 'var(--grey100)',
+                    cursor: 'not-allowed',
+                  },
+                }}
+                onClick={(e) => onClickOpenRefundModalHandler(e, item)}
+                disabled={isAvailableRefund}
+              >
+                환불하기
+              </button>
+            </CustomerDetailPaymentRefundTableRow>
+          );
+        })}
       </div>
     </>
   );
