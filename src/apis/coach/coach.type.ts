@@ -1,4 +1,4 @@
-type CoachListData = {
+export type CoachListData = {
   id: number;
   name: string;
   phone: string;
@@ -12,4 +12,6 @@ type CoachListData = {
   updatedAt: string;
 };
 
-export type { CoachListData };
+export type CoachDeleteApiPayload = {
+  coachId: string;
+};
