@@ -1,8 +1,9 @@
 import { axios } from '@utils/axios';
-import { URL_FETCH_COACH_LIST } from './coach.url';
-import { CoachListData } from './coach.type';
+import { URL_FETCH_COACH_LIST, URL_DELETE_COACH } from './coach.url';
+import { CoachDeleteApiPayload, CoachListData } from './coach.type';
 
-const getCoachList = async (): Promise<{ data: CoachListData[] }> =>
+export const getCoachList = async (): Promise<{ data: CoachListData[] }> =>
   await axios.get(`${URL_FETCH_COACH_LIST}`);
 
-export { getCoachList };
+export const deleteCoach = async (params: CoachDeleteApiPayload) =>
+  await axios.delete(`${URL_DELETE_COACH}/${params.coachId}`);
