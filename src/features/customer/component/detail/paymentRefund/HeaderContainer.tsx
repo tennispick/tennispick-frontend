@@ -3,19 +3,21 @@ import {
   PaymentRefundData,
   PaymentRefundType,
 } from '@features/customer/type/payment.type';
+import { addNumberCommas } from '@utils/numberForm';
 
 type Props = {
   type: PaymentRefundType;
-  checkedItems: PaymentRefundData[];
+  data: PaymentRefundData[];
   onClickOpenModalHandler: () => void;
 };
 
 const CustomerDetailPaymentRefundHeaderContainer = ({
   type,
-  checkedItems,
+  data,
   onClickOpenModalHandler,
 }: Props) => {
-  const isDisabledRefundButton = checkedItems.length === 0;
+  const totalLength = data.length;
+  const totalPrice = data.reduce((acc, cur) => acc + cur.totalPrice, 0);
 
   return (
     <HeaderContainer>
@@ -27,11 +29,16 @@ const CustomerDetailPaymentRefundHeaderContainer = ({
         }}
       >
         <div css={{ display: 'flex', alignItems: 'center' }}>
-          <div css={{ margin: '0 12px 0 0' }}>
-            총 <span>7</span>건
+          <div css={{ margin: '0 16px 0 0' }}>
+            총{' '}
+            <span css={{ fontWeight: 600 }}>
+              {addNumberCommas(totalLength)}
+            </span>
+            건
           </div>
           <div>
-            총 {type === 'payment' ? '결제' : '환불'}금액 : <span>510,000</span>
+            총 {type === 'payment' ? '결제' : '환불'}금액 :{' '}
+            <span css={{ fontWeight: 600 }}>{addNumberCommas(totalPrice)}</span>
             원
           </div>
         </div>

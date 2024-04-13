@@ -22,6 +22,6 @@ export type PaymentRefundData = {
   discountPrice: number;
   totalPrice: number;
   createdAt: string;
-  udpatedAt: string;
+  updatedAt: string;
   deletedAt: string;
 };

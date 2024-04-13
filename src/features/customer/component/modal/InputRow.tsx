@@ -6,13 +6,19 @@ type InputType = 'text' | 'select' | 'radio';
 
 type InputProps = Pick<
   InputHTMLAttributes<HTMLInputElement>,
-  'placeholder' | 'name' | 'onChange' | 'value'
+  'placeholder' | 'name' | 'onChange' | 'value' | 'disabled'
 >;
-type SelectProps = Pick<SelectHTMLAttributes<HTMLSelectElement>, 'name'> & {
+type SelectProps = Pick<
+  SelectHTMLAttributes<HTMLSelectElement>,
+  'name' | 'disabled' | 'value'
+> & {
   options: Array<{ [key: string]: string | number }> | undefined;
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
-type RadioProps = Pick<InputHTMLAttributes<HTMLInputElement>, 'name'> & {
+type RadioProps = Pick<
+  InputHTMLAttributes<HTMLInputElement>,
+  'name' | 'onChange'
+> & {
   radioGroup: Array<{ [key: string]: string }> | undefined;
 };
 
@@ -29,6 +35,7 @@ type Props = {
   radioGroup?: RadioProps['radioGroup'];
   value?: string;
   onChange?: OnChangeProps<InputType>;
+  disabled?: boolean;
 };
 
 const InputRow = ({
@@ -40,6 +47,7 @@ const InputRow = ({
   radioGroup,
   value,
   onChange,
+  disabled,
 }: Props) => {
   return (
     <div
@@ -61,6 +69,7 @@ const InputRow = ({
               placeholder={placeholder}
               onChange={onChange as ChangeEventHandler<HTMLInputElement>}
               value={value}
+              disabled={disabled}
             />
           ),
           select: (
@@ -68,16 +77,24 @@ const InputRow = ({
               name={name}
               options={options}
               onChange={onChange as ChangeEventHandler<HTMLSelectElement>}
+              value={value}
+              disabled={disabled}
             />
           ),
-          radio: <InputRow.Radio name={name} radioGroup={radioGroup} />,
+          radio: (
+            <InputRow.Radio
+              name={name}
+              radioGroup={radioGroup}
+              onChange={onChange as ChangeEventHandler<HTMLInputElement>}
+            />
+          ),
         }[type]
       }
     </div>
   );
 };
 
-const Text = ({ name, placeholder, onChange, value }: InputProps) => {
+const Text = ({ name, placeholder, onChange, value, disabled }: InputProps) => {
   return (
     <Input css={{ width: '60%', height: '40px' }}>
       <Input.TextField
@@ -86,18 +103,31 @@ const Text = ({ name, placeholder, onChange, value }: InputProps) => {
         css={{ padding: '8px 12px' }}
         onChange={onChange}
         value={value}
+        disabled={disabled}
       />
     </Input>
   );
 };
 
-const SelectProperty = ({ name, options, onChange }: SelectProps) => {
+const SelectProperty = ({
+  name,
+  options,
+  onChange,
+  value,
+  disabled,
+}: SelectProps) => {
   return (
-    <Select name={name} css={{ width: '60%' }} onChange={onChange}>
+    <Select
+      name={name}
+      css={{ width: '60%' }}
+      onChange={onChange}
+      disabled={disabled}
+      value={value}
+    >
       {options &&
-        options.map(({ label, value }, index) => {
+        options.map(({ label, value: optionValue }, index) => {
           return (
-            <option key={`${label}-${index}`} value={value}>
+            <option key={`${label}-${index}`} value={optionValue}>
               {label}
             </option>
           );
@@ -106,7 +136,7 @@ const SelectProperty = ({ name, options, onChange }: SelectProps) => {
   );
 };
 
-const Radio = ({ radioGroup }: RadioProps) => {
+const Radio = ({ radioGroup, onChange }: RadioProps) => {
   return (
     <div css={{ display: 'flex', alignItems: 'center' }}>
       {radioGroup &&
@@ -129,6 +159,7 @@ const Radio = ({ radioGroup }: RadioProps) => {
                 name={name}
                 value={value}
                 css={{ width: 'auto', margin: '0 4px 0 0' }}
+                onChange={onChange}
                 defaultChecked={index === 0}
               />
             </Input>

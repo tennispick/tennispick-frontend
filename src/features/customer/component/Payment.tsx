@@ -1,11 +1,10 @@
-import { Suspense, useState } from 'react';
+import { MouseEvent, Suspense, useState } from 'react';
 import SNBList from './SNBList';
 import { paymentList } from '../data/snbList';
 
-import SectionChildrenLayout from './SectionChildrenLayout';
-
 import CustomerDetailPaymentRefundContainer from './detail/paymentRefund/Container';
-import { PaymentRefundData, PaymentRefundType } from '../type/payment.type';
+import { PaymentRefundType } from '../type/payment.type';
+import { CustomerPaymentRefundData } from '@apis/payment/payment.type';
 import { SetStateAction } from '@/types/index';
 import PaymentRefundModal from './modal/PaymentRefundModal';
 import Loading from '@components/common/Loading';
@@ -18,12 +17,27 @@ const CustomerPayment = ({ id }: Props) => {
   const [currentItem, setCurrentItem] = useState<PaymentRefundType>(
     paymentList[0].id,
   );
-  const [checkedItems, setCheckedItems] = useState<PaymentRefundData[] | []>(
-    [],
-  );
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [checkedItem, setCheckedItem] = useState<
+    CustomerPaymentRefundData | undefined
+  >(undefined);
 
-  const onClickOpenModalHandler = () => setShowModal(true);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [modalType, setModalType] = useState<PaymentRefundType>('payment');
+
+  const onClickOpenModalHandler = () => {
+    setShowModal(true);
+    setModalType('payment');
+  };
+  const onClickOpenRefundModalHandler = (
+    e: MouseEvent<HTMLButtonElement>,
+    target: CustomerPaymentRefundData,
+  ) => {
+    e.stopPropagation();
+
+    setShowModal(true);
+    setModalType('refund');
+    setCheckedItem(target);
+  };
 
   return (
     <section css={{ position: 'relative', width: '49%' }}>
@@ -45,8 +59,8 @@ const CustomerPayment = ({ id }: Props) => {
           <CustomerDetailPaymentRefundContainer
             customerId={id}
             type={currentItem}
-            checkedItems={checkedItems}
             onClickOpenModalHandler={onClickOpenModalHandler}
+            onClickOpenRefundModalHandler={onClickOpenRefundModalHandler}
           />
         </Suspense>
       </div>
@@ -54,33 +68,13 @@ const CustomerPayment = ({ id }: Props) => {
         <Suspense fallback={<Loading />}>
           <PaymentRefundModal
             id={id}
-            type={'payment'}
+            type={modalType}
             showModal={showModal}
             setShowModal={setShowModal}
+            checkedItem={checkedItem}
           />
         </Suspense>
       )}
-      {/* <SectionChildrenLayout
-        headerChildren={
-          {
-            payment: (
-              <CustomerDetailPaymentHeader id={id} checkedItems={checkedItems} />
-            ),
-            refund: <CustomerDetailRefundHeader />,
-          }[currentItem]
-        }
-        bodyChildren={
-          {
-            payment: (
-              <CustomerDetailPaymentBody
-                checkedItems={checkedItems}
-                setCheckedItems={setCheckedItems}
-              />
-            ),
-            refund: <CustomerDetailRefundBody />,
-          }[currentItem]
-        }
-      /> */}
     </section>
   );
 };
