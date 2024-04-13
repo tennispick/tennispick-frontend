@@ -1,12 +1,17 @@
 type Props = {
-  onClick: () => void;
+  onClick?: () => void;
 } & React.PropsWithChildren;
 
-const CustomerDetailPaymentRefundTableRow = ({ children, onClick }: Props) => {
+const CustomerDetailPaymentRefundTableRow = ({
+  children,
+  onClick,
+  ...rest
+}: Props) => {
   return (
     <div
       css={{
         display: 'flex',
+        height: '44px',
         alignItems: 'center',
         textAlign: 'center',
         padding: '6px 8px',
@@ -20,6 +25,7 @@ const CustomerDetailPaymentRefundTableRow = ({ children, onClick }: Props) => {
         },
       }}
       onClick={onClick}
+      {...rest}
     >
       {children}
     </div>
