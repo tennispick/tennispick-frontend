@@ -1,4 +1,5 @@
 import {
+  URL_DELETE_CUSTOMER,
   URL_FETCH_CUSTOMER_DETAIL,
   URL_FETCH_CUSTOMER_LESSON_LIST,
   URL_SEARCH_CUSTOMER_LIST_BY_KEYWORD,
@@ -9,6 +10,7 @@ import {
   CustomerDetailApiPayLoad,
   CustomerDetailData,
   SearchCustomerListByKeywordApiPayload,
+  CustomerDeleteApiPayload,
 } from './customer.type';
 import { Response } from '@/types/response';
 
@@ -24,7 +26,6 @@ export const getCustomerDetail = async (
 ): Promise<Response<CustomerDetailData>> =>
   await axios.get(`${URL_FETCH_CUSTOMER_DETAIL}/${params.id}`);
 
-// 키워드로 회원목록 조회
 export const getSearchCustomerListByKeyword = async (
   params: SearchCustomerListByKeywordApiPayload,
 ) => {
@@ -39,3 +40,6 @@ export const getSearchCustomerListByKeyword = async (
   });
   return data;
 };
+
+export const deleteCustomer = async (params: CustomerDeleteApiPayload) =>
+  await axios.delete(`${URL_DELETE_CUSTOMER}/${params.customerId}`);

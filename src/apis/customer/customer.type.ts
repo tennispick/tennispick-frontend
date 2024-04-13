@@ -28,3 +28,7 @@ export type CustomerDetailData = {
 export type SearchCustomerListByKeywordApiPayload = {
   keyword: string;
 } & Pick<CommonFormInputType, 'customer' | 'lesson' | 'lessonType'>;
+
+export type CustomerDeleteApiPayload = {
+  customerId: string;
+};

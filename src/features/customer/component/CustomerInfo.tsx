@@ -4,20 +4,34 @@ import { getYearList, getMonthList, getDayList } from '@utils/date';
 import { ProfileManIcon, DeleteWhiteIcon, EditWhiteIcon } from '@icons/index';
 import CustomerInputRow from '@components/customer/detail/InputRow';
 import CustomerSelectRow from '@components/customer/detail/SelectRow';
+import { deleteCustomer } from '@apis/customer/customer.api';
+import { useQueryClient } from '@tanstack/react-query';
 
 type Props = {
-  id: string;
+  customerId: string;
   customer: CustomerDetailData;
 };
 
-const CustomerInfo = ({ id, customer }: Props) => {
+const CustomerInfo = ({ customerId, customer }: Props) => {
+  const queryClient = useQueryClient();
+
   const [year, month, date] = customer.birth.split('-');
   const { yearArray } = getYearList();
   const { monthArray } = getMonthList();
   const { dateArray } = getDayList();
 
-  const onClickDeleteCustomerHandler = () => {
-    console.log(id);
+  const onClickDeleteCustomerHandler = async () => {
+    const { data } = await deleteCustomer({ customerId });
+    if (data.affectedRows > 0) {
+      alert('회원이 삭제되었어요.');
+      queryClient.invalidateQueries({
+        queryKey: ['customer'],
+        exact: true,
+      });
+    } else alert('회원 삭제에 실패했어요.\n관리자에게 문의해주세요.');
+
+    // TODO useMutation으로 변경
+    window.location.href = '/customer';
   };
 
   const onClickEditCustomerHandler = () => {};
