@@ -20,6 +20,7 @@ export type PaymentRefundData = {
   type: string;
   discountType: string;
   discountPrice: number;
+  refundPrice: number;
   totalPrice: number;
   createdAt: string;
   updatedAt: string;

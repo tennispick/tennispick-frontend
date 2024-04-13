@@ -18,6 +18,7 @@ const CustomerDetailPaymentRefundHeaderContainer = ({
 }: Props) => {
   const totalLength = data.length;
   const totalPrice = data.reduce((acc, cur) => acc + cur.totalPrice, 0);
+  const totalRefundPrice = data.reduce((acc, cur) => acc + cur.refundPrice, 0);
 
   return (
     <HeaderContainer>
@@ -38,21 +39,27 @@ const CustomerDetailPaymentRefundHeaderContainer = ({
           </div>
           <div>
             총 {type === 'payment' ? '결제' : '환불'}금액 :{' '}
-            <span css={{ fontWeight: 600 }}>{addNumberCommas(totalPrice)}</span>
+            <span css={{ fontWeight: 600 }}>
+              {addNumberCommas(
+                type === 'payment' ? totalPrice : totalRefundPrice,
+              )}
+            </span>
             원
           </div>
         </div>
-        <div
-          css={{
-            color: 'var(--business-color)',
-            fontWeight: 600,
-            margin: '0 8px 0 0',
-            cursor: 'pointer',
-          }}
-          onClick={onClickOpenModalHandler}
-        >
-          결제하기
-        </div>
+        {type === 'payment' && (
+          <div
+            css={{
+              color: 'var(--business-color)',
+              fontWeight: 600,
+              margin: '0 8px 0 0',
+              cursor: 'pointer',
+            }}
+            onClick={onClickOpenModalHandler}
+          >
+            결제하기
+          </div>
+        )}
       </div>
     </HeaderContainer>
   );

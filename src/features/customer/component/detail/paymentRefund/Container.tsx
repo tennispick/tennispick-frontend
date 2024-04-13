@@ -32,7 +32,6 @@ const CustomerDetailPaymentRefundContainer = ({
       />
       <PaymentRefundBodyContainer
         type={type}
-        customerId={customerId}
         data={data}
         onClickOpenRefundModalHandler={onClickOpenRefundModalHandler}
       />

@@ -5,7 +5,6 @@ import { MouseEvent } from 'react';
 
 type Props = {
   type: string;
-  customerId: string;
   data: CustomerPaymentRefundData[];
   onClickOpenRefundModalHandler: (
     e: MouseEvent<HTMLButtonElement>,
@@ -15,7 +14,6 @@ type Props = {
 
 const CustomerDetailPaymentRefundBodyContainer = ({
   type,
-  customerId,
   data,
   onClickOpenRefundModalHandler,
 }: Props) => {
@@ -33,7 +31,6 @@ const CustomerDetailPaymentRefundBodyContainer = ({
           payment: (
             <PaymentList
               data={data}
-              customerId={customerId}
               onClickOpenRefundModalHandler={onClickOpenRefundModalHandler}
             />
           ),

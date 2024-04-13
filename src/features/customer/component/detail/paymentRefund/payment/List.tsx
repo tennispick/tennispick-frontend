@@ -10,7 +10,6 @@ import { MouseEvent } from 'react';
 
 type Props = {
   data: CustomerPaymentRefundData[];
-  customerId: string;
   onClickOpenRefundModalHandler: (
     e: MouseEvent<HTMLButtonElement>,
     target: CustomerPaymentRefundData,
@@ -19,12 +18,9 @@ type Props = {
 
 const CustomerDetailPaymentRefundPaymentList = ({
   data,
-  customerId,
   onClickOpenRefundModalHandler,
 }: Props) => {
   if (data.length === 0) return <NoResult description={'결제내역이 없어요.'} />;
-
-  console.log(data);
 
   return (
     <>
