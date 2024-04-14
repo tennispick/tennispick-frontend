@@ -12,12 +12,12 @@ import { useQuery } from '@tanstack/react-query';
 import { Response } from '@/types/response';
 
 const useLessonListQuery = (params: LessonListQueryPayload) => {
-  const { type } = params;
+  const { type, isSuspense = false } = params;
   const { data, isLoading } = useQuery({
     queryKey: [URL_FETCH_LESSON_LIST, { type }],
     queryFn: async () => await getLessonList({ type: type }),
     select: (data) => data.data,
-    suspense: true,
+    suspense: isSuspense,
   });
 
   return {

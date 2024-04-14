@@ -52,7 +52,7 @@ const HeaderContainer = styled.div({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  padding: '8px 0 0 4px',
+  padding: '8px 0 0 0px',
   margin: '0 0 16px 0',
 });
 const TitleWrapper = styled.div({

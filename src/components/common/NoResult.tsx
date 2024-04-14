@@ -2,14 +2,14 @@ import styled from '@emotion/styled';
 import infoIcon from '@icons/info.svg';
 import { CSS_TYPE, ImageContainer } from '@styles/styles';
 
-interface NoResultProps {
+type Props = {
   description: string;
   margin?: string;
 }
 
-const NoResult = ({ description, margin = '0' }: NoResultProps) => {
+const NoResult = ({ description, margin = '0', ...rest }: Props) => {
   return (
-    <Container margin={margin}>
+    <Container margin={margin} {...rest}>
       <ScriptContainer>
         <ImageContainer
           src={infoIcon}

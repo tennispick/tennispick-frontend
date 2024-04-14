@@ -12,6 +12,17 @@ export type CoachListData = {
   updatedAt: string;
 };
 
+export type CoachLessonListData = {
+  id: number;
+  name: string;
+  birth: string;
+  phone: string;
+  color: string;
+  customerLessonCount: number;
+  sex: string;
+  position: string;
+}
+
 export type CoachDeleteApiPayload = {
   coachId: string;
 };

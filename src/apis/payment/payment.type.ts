@@ -1,3 +1,4 @@
+import { PaymentType } from '@/types/payment';
 import { PaymentRefundType } from '@features/customer/type/payment.type';
 
 export type CustomerPaymentRefundListApiPayload = {
@@ -20,6 +21,22 @@ export type CustomerPaymentRefundData = {
   remainLessonCount: number;
   createdAt: string;
 };
+
+export type LessonTotalPaymentData = {
+  type: string;
+  paymentPrice: string;
+  refundPrice: string;
+}
+
+export type CoachTotalSalesData = {
+  id: number;
+  name: string;
+  sex: string;
+  position: string;
+  totalCardPrice: string;
+  totalCashPrice: string;
+  totalAccountTransferPrice: string;
+}
 
 export type CustomerPaymentCreateApiPayload = FormData;
 

@@ -2,6 +2,8 @@ import {
   URL_CREATE_PAYMENT,
   URL_CREATE_REFUND,
   URL_FETCH_PAYMENT_REFUND_LIST,
+  URL_FETCH_TOTAL_COACH_SALES,
+  URL_FETCH_TOTAL_SALES,
 } from './payment.url';
 import { axios } from '@utils/axios';
 import {
@@ -9,6 +11,7 @@ import {
   CustomerPaymentRefundListApiPayload,
   CustomerPaymentRefundData,
   CustomerRefundCreateApiPayload,
+  LessonTotalPaymentData,
 } from './payment.type';
 import { Response } from '@/types/response';
 
@@ -28,6 +31,26 @@ export const getPaymentRefundList = async (
     throw error;
   }
 };
+
+export const getTotalSales = async (): Promise<Response<LessonTotalPaymentData>> => {
+  try {
+    const result = await axios.get(`${URL_FETCH_TOTAL_SALES}`);
+    return result;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+export const getCoachTotalSales = async (): Promise<Response<LessonTotalPaymentData>> => {
+  try {
+    const result = await axios.get(`${URL_FETCH_TOTAL_COACH_SALES}`);
+    return result;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
 
 export const createCustomerPayment = async (
   params: CustomerPaymentCreateApiPayload,

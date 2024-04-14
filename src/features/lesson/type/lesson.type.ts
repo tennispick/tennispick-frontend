@@ -1,5 +1,6 @@
 type LessonListQueryPayload = {
   type: string;
+  isSuspense?: boolean;
 };
 
 type LessonListQueryData = {
