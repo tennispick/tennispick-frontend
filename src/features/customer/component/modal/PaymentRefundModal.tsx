@@ -27,7 +27,10 @@ const CustomerPaymentRefundModal = ({
 }: Props) => {
   const isPayment = type === 'payment';
 
-  const { data: lessonList } = useLessonListQuery({ type: 'all', isSuspense: true });
+  const { data: lessonList } = useLessonListQuery({
+    type: 'all',
+    isSuspense: true,
+  });
 
   const totalPrice = (price: number, discountPrice: number) =>
     price - discountPrice;

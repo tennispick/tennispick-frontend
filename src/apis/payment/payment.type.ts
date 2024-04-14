@@ -26,7 +26,7 @@ export type LessonTotalPaymentData = {
   type: string;
   paymentPrice: string;
   refundPrice: string;
-}
+};
 
 export type CoachTotalSalesData = {
   id: number;
@@ -36,7 +36,7 @@ export type CoachTotalSalesData = {
   totalCardPrice: string;
   totalCashPrice: string;
   totalAccountTransferPrice: string;
-}
+};
 
 export type CustomerPaymentCreateApiPayload = FormData;
 

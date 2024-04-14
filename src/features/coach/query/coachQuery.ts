@@ -1,6 +1,9 @@
 import { getCoachLessonList, getCoachList } from '@apis/coach/coach.api';
 import { CoachListData } from '@apis/coach/coach.type';
-import { URL_FETCH_COACH_LESSON_LIST, URL_FETCH_COACH_LIST } from '@apis/coach/coach.url';
+import {
+  URL_FETCH_COACH_LESSON_LIST,
+  URL_FETCH_COACH_LIST,
+} from '@apis/coach/coach.url';
 import { useQuery } from '@tanstack/react-query';
 
 export const useGetCoachListQuery = (): {
@@ -33,7 +36,7 @@ export const useGetCoachLessonListQuery = () => {
     queryKey: [URL_FETCH_COACH_LESSON_LIST],
     queryFn: async () => await getCoachLessonList(),
     select: (data) => data.data,
-  })
+  });
 
-  return { data, isLoading }
+  return { data, isLoading };
 };

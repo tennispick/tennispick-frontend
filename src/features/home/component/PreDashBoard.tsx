@@ -43,7 +43,10 @@ const PreDashBoard = () => {
             <span>{addNumberCommas(9999999)} 명</span>
           </EventList>
         </EventLists> */}
-        <NoResult css={{ height: '80%', padding: '24px' }} description="준비중이에요." />
+        <NoResult
+          css={{ height: '80%', padding: '24px' }}
+          description="준비중이에요."
+        />
       </EventContainer>
     </Container>
   );

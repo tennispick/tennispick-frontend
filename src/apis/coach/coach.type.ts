@@ -21,7 +21,7 @@ export type CoachLessonListData = {
   customerLessonCount: number;
   sex: string;
   position: string;
-}
+};
 
 export type CoachDeleteApiPayload = {
   coachId: string;

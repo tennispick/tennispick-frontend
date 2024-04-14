@@ -32,7 +32,9 @@ export const getPaymentRefundList = async (
   }
 };
 
-export const getTotalSales = async (): Promise<Response<LessonTotalPaymentData>> => {
+export const getTotalSales = async (): Promise<
+  Response<LessonTotalPaymentData>
+> => {
   try {
     const result = await axios.get(`${URL_FETCH_TOTAL_SALES}`);
     return result;
@@ -40,9 +42,11 @@ export const getTotalSales = async (): Promise<Response<LessonTotalPaymentData>>
     console.error(error);
     throw error;
   }
-}
+};
 
-export const getCoachTotalSales = async (): Promise<Response<LessonTotalPaymentData>> => {
+export const getCoachTotalSales = async (): Promise<
+  Response<LessonTotalPaymentData>
+> => {
   try {
     const result = await axios.get(`${URL_FETCH_TOTAL_COACH_SALES}`);
     return result;
@@ -50,7 +54,7 @@ export const getCoachTotalSales = async (): Promise<Response<LessonTotalPaymentD
     console.error(error);
     throw error;
   }
-}
+};
 
 export const createCustomerPayment = async (
   params: CustomerPaymentCreateApiPayload,

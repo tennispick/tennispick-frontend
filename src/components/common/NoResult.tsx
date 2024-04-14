@@ -5,7 +5,7 @@ import { CSS_TYPE, ImageContainer } from '@styles/styles';
 type Props = {
   description: string;
   margin?: string;
-}
+};
 
 const NoResult = ({ description, margin = '0', ...rest }: Props) => {
   return (
