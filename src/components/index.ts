@@ -21,9 +21,9 @@ export { default as MobileScreen } from '@components/layout/MobileScreen';
 export { default as NavigationLayout } from '@components/layout/NavigationLayout';
 
 /** home */
-export { default as CoachLesson } from '@components/home/CoachLesson';
-export { default as PreDashBoard } from '@components/home/PreDashBoard';
-export { default as Sales } from '@components/home/Sales';
+export { default as CoachLesson } from '@features/home/component/CoachLesson';
+export { default as PreDashBoard } from '@features/home/component/PreDashBoard';
+export { default as Sales } from '@features/home/component/SalesStatus';
 
 export { default as Calendar } from '@features/schedule/component/ScheduleCalendar';
 

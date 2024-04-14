@@ -1,7 +1,7 @@
+import { NoResult } from '@components/index';
 import styled from '@emotion/styled';
 import ProfileManIcon from '@icons/profile_man.svg';
 import { CSS_TYPE, ImageContainer as Image } from '@styles/styles';
-import { addNumberCommas } from '@utils/numberForm';
 
 const PreDashBoard = () => {
   return (
@@ -25,7 +25,7 @@ const PreDashBoard = () => {
       </ProfileContainer>
       <EventContainer>
         <EventComment>확인이 필요한 이벤트가 있어요!</EventComment>
-        <EventLists>
+        {/* <EventLists>
           <EventList backgroundColor="var(--blue200)">
             <div>출결 미처리 회원</div>
             <span>{addNumberCommas(5)} 명</span>
@@ -42,7 +42,11 @@ const PreDashBoard = () => {
             <div>1:1 문의</div>
             <span>{addNumberCommas(9999999)} 명</span>
           </EventList>
-        </EventLists>
+        </EventLists> */}
+        <NoResult
+          css={{ height: '80%', padding: '24px' }}
+          description="준비중이에요."
+        />
       </EventContainer>
     </Container>
   );

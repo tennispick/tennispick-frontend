@@ -16,7 +16,7 @@ instance.interceptors.request.use(
     return config;
   },
   (error) => {
-    console.error(error);
+    // console.error(error);
     return Promise.reject(error);
   },
 );
@@ -28,7 +28,6 @@ instance.interceptors.response.use(
     return response;
   },
   async (error) => {
-    console.error(error);
     if (error?.response?.status === 401) {
       error.config.headers = {
         'Content-Type': 'application/json',
@@ -39,6 +38,7 @@ instance.interceptors.response.use(
       }
       return error.response;
     }
+    // console.error(error);
     return Promise.reject(error);
   },
 );
