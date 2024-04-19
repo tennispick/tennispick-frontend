@@ -228,38 +228,39 @@ export const globalStyles = (
         border-bottom-color: var(--white100) !important;
       }
 
-      .react-datepicker__header  {
+      .react-datepicker__header {
         background-color: var(--white100) !important;
         border-bottom: 1px solid var(--grey300) !important;
         padding: 12px 0 !important;
       }
 
-      .react-datepicker__navigation--previous, .react-datepicker__navigation--next {
+      .react-datepicker__navigation--previous,
+      .react-datepicker__navigation--next {
         top: 6px;
       }
 
-      .react-datepicker__day:nth-of-type(1){ 
+      .react-datepicker__day:nth-of-type(1) {
         color: var(--red100);
       }
 
-      .react-datepicker__day:nth-of-type(7){
+      .react-datepicker__day:nth-of-type(7) {
         color: var(--blue100);
       }
 
-      .react-datepicker__day-name:nth-of-type(1){
+      .react-datepicker__day-name:nth-of-type(1) {
         color: var(--red100);
       }
 
-      .react-datepicker__day-name:nth-of-type(7){
+      .react-datepicker__day-name:nth-of-type(7) {
         color: var(--blue100);
       }
 
-      .react-datepicker__day--selected{
+      .react-datepicker__day--selected {
         color: var(--white100) !important;
         background-color: var(--blue100) !important;
       }
 
-      .react-datepicker__day--disabled{
+      .react-datepicker__day--disabled {
         color: var(--grey300) !important;
       }
     `}

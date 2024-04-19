@@ -86,7 +86,7 @@ const ModalRegularLesson = () => {
     id: commonData.customer[0]?.id,
     lessonType: commonData.lessonType,
   });
-  
+
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

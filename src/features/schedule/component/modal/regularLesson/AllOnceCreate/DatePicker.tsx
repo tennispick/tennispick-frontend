@@ -8,10 +8,13 @@ type Props = {
   index: number;
   date: Date;
   setFormData: SetStateAction<FormAllOnceCreateType>;
-}
+};
 
-const ScheduleModalRegularLessonDatePicker = ({ index, date, setFormData }: Props) => {
-
+const ScheduleModalRegularLessonDatePicker = ({
+  index,
+  date,
+  setFormData,
+}: Props) => {
   const onChangeDateHandler = (date: Date) => {
     setFormData((prev) => {
       const { schedule } = prev;
@@ -26,7 +29,7 @@ const ScheduleModalRegularLessonDatePicker = ({ index, date, setFormData }: Prop
         schedule: newSchedule,
       };
     });
-  }
+  };
 
   return (
     <DatePicker
@@ -61,7 +64,7 @@ const ScheduleModalRegularLessonDatePicker = ({ index, date, setFormData }: Prop
       minDate={new Date()}
       onChange={onChangeDateHandler}
     />
-  )
-}
+  );
+};
 
 export default ScheduleModalRegularLessonDatePicker;
