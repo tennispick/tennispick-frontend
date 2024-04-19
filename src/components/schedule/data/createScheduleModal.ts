@@ -44,12 +44,12 @@ const createScheduleModalEachInputList = [
     icon: '',
     alt: 'lesson type icon',
   },
-  {
-    type: 'lessonCount',
-    title: '주 강습횟수 선택 ',
-    icon: '',
-    alt: 'lesson type icon',
-  },
+  // {
+  //   type: 'lessonCount',
+  //   title: '주 강습횟수 선택 ',
+  //   icon: '',
+  //   alt: 'lesson type icon',
+  // },
   {
     type: 'coach',
     title: '코치 선택',

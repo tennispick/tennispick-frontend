@@ -86,7 +86,7 @@ const ModalRegularLesson = () => {
     id: commonData.customer[0]?.id,
     lessonType: commonData.lessonType,
   });
-
+  
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -114,8 +114,14 @@ const ModalRegularLesson = () => {
 
     const body = scheduleType === 'all' ? allCreateBody : individualBody;
 
+    console.log(body);
+
     mutate(body);
   };
+
+  useEffect(() => {
+    console.log(allOnceFormData);
+  }, [allOnceFormData])
 
   useEffect(() => {
     document.addEventListener('keydown', (e) => {

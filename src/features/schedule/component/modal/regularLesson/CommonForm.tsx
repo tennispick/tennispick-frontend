@@ -40,7 +40,7 @@ const ScheduleModalRegularLessonCommonForm = ({
             : '',
       };
     });
-  }, [lessonList]);
+  }, [lessonList, setCommonData]);
 
   return (
     <div css={{ position: 'relative', width: '20%' }}>

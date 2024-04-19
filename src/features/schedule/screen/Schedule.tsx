@@ -67,7 +67,7 @@ const Schedule = () => {
             css={{
               top: '45%',
               maxWidth: '1440px',
-              minHeight: '520px',
+              minHeight: '500px',
               width: '1440px',
             }}
           >

@@ -43,31 +43,31 @@ const formInputList = [
       },
     ],
   },
-  {
-    type: 'weeklyLessonCount',
-    fieldType: 'radio',
-    title: '주 강습횟수 선택',
-    icon: CalendarBlackIcon,
-    alt: 'calendar schedule type icon',
-    list: [
-      {
-        value: '1',
-        label: '1회',
-      },
-      {
-        value: '2',
-        label: '2회',
-      },
-      {
-        value: '3',
-        label: '3회',
-      },
-      {
-        value: '4',
-        label: '4회',
-      },
-    ],
-  },
+  // {
+  //   type: 'weeklyLessonCount',
+  //   fieldType: 'radio',
+  //   title: '주 강습횟수 선택',
+  //   icon: CalendarBlackIcon,
+  //   alt: 'calendar schedule type icon',
+  //   list: [
+  //     {
+  //       value: '1',
+  //       label: '1회',
+  //     },
+  //     {
+  //       value: '2',
+  //       label: '2회',
+  //     },
+  //     {
+  //       value: '3',
+  //       label: '3회',
+  //     },
+  //     {
+  //       value: '4',
+  //       label: '4회',
+  //     },
+  //   ],
+  // },
   {
     type: 'coach',
     fieldType: 'select',
