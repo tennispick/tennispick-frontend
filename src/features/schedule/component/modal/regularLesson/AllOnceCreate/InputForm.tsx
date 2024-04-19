@@ -44,9 +44,9 @@ const ScheduleModalRegularLessonAllOnceCreateInputForm = ({
     setAllCreateFormData((prev) => {
       return {
         ...prev,
-        court:
-          coachList && coachList.length > 0 ? coachList[0].id.toString() : '',
         coach:
+          coachList && coachList.length > 0 ? coachList[0].id.toString() : '',
+        court:
           courtList && courtList.length > 0 ? courtList[0].id.toString() : '',
       };
     });
