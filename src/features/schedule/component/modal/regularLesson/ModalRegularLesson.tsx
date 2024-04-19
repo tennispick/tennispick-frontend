@@ -114,14 +114,8 @@ const ModalRegularLesson = () => {
 
     const body = scheduleType === 'all' ? allCreateBody : individualBody;
 
-    console.log(body);
-
     mutate(body);
   };
-
-  useEffect(() => {
-    console.log(allOnceFormData);
-  }, [allOnceFormData])
 
   useEffect(() => {
     document.addEventListener('keydown', (e) => {

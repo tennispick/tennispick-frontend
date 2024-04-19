@@ -40,6 +40,7 @@ const RAW_RUNTIME_STATE =
           ["@typescript-eslint/parser", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:6.19.1"],\
           ["@vercel/analytics", "npm:1.0.2"],\
           ["axios", "npm:1.5.0"],\
+          ["date-fns", "npm:3.6.0"],\
           ["dayjs", "npm:1.11.10"],\
           ["eslint", "npm:8.48.0"],\
           ["eslint-config-next", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:13.4.19"],\
@@ -2844,6 +2845,13 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["date-fns", "npm:2.30.0"],\
           ["@babel/runtime", "npm:7.23.2"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:3.6.0", {\
+        "packageLocation": "../../../../Users/Admin/AppData/Local/Yarn/Berry/cache/date-fns-npm-3.6.0-e59d980978-10c0.zip/node_modules/date-fns/",\
+        "packageDependencies": [\
+          ["date-fns", "npm:3.6.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -8527,6 +8535,7 @@ const RAW_RUNTIME_STATE =
           ["@typescript-eslint/parser", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:6.19.1"],\
           ["@vercel/analytics", "npm:1.0.2"],\
           ["axios", "npm:1.5.0"],\
+          ["date-fns", "npm:3.6.0"],\
           ["dayjs", "npm:1.11.10"],\
           ["eslint", "npm:8.48.0"],\
           ["eslint-config-next", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:13.4.19"],\
