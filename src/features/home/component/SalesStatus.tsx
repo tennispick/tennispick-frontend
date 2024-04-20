@@ -1,11 +1,10 @@
 import DashBoardItem from '@components/common/DashBoardItem';
-import styled from '@emotion/styled';
-import NoResult from '@components/common/NoResult';
 import { LessonTotalPaymentData } from '@apis/payment/payment.type';
 import { useGetTotalSalesQuery } from '../query/salesQuery';
 import { transferPaymentType } from '@features/customer/util/payment';
-import { addNumberCommas } from '@utils/numberForm';
+import { addNumberCommas, numberZeroFillFormat } from '@utils/numberForm';
 import HomeCoachSales from './CoachSales';
+import HomeSalesLegend from './SalesLegend';
 
 const HomeSalesStatus = () => {
   const { data } = useGetTotalSalesQuery();
@@ -33,9 +32,11 @@ const HomeSalesStatus = () => {
 
   return (
     <DashBoardItem
-      title={`${year}.${month}.${date} 까지의 매출현황이에요!`}
+      title={`${year}.${numberZeroFillFormat(month, 2)}.${numberZeroFillFormat(
+        date,
+        2,
+      )} 까지의 매출현황이에요!`}
       width={'calc(65% - 12px)'}
-      height={'0'}
       minHeight={'65vh'}
     >
       <div css={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -66,6 +67,7 @@ const HomeSalesStatus = () => {
           )})`}</span>
         </div>
       </div>
+      {data && <HomeSalesLegend data={data} />}
       <HomeCoachSales />
       {/* {data?.length === 0 && <NoResult description={'매출'} />} */}
     </DashBoardItem>
