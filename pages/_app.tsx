@@ -29,6 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
           </AppLayout>
           <div id={'portal'} />
+          <div id="confirmModal" />
           <div id={'rightSide'} />
         </Hydrate>
       </QueryClientProvider>

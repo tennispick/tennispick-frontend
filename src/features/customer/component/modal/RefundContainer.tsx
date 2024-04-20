@@ -13,9 +13,11 @@ import CustomerModalReceiptContainer from './ReceiptContainer';
 import { LessonListQueryData } from '@features/lesson/type/lesson.type';
 import useInput from '@hooks/useInput';
 import { refundTypeList } from '@features/customer/data/paymentRefund';
-import { FormEvent, useEffect } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { createCustomerRefund } from '@apis/payment/payment.api';
 import { useRouter } from 'next/navigation';
+import ConfirmModal from '@components/layer/ConfirmModal';
+import { Input } from '@components/index';
 
 type Props = {
   customerId: string;
@@ -30,13 +32,16 @@ const CustomerModalRefundContainer = ({
 }: Props) => {
   const router = useRouter();
 
+  const [showModal, setShowModal] = useState<boolean>(false);
   const [formData, onChangeFormData, setFormData] = useInput({
     refundMethod: 'match',
     refundType: 'card',
     refundRange: 'part',
     refundPrice: 0,
+    refundReason: '',
   });
 
+  // TODO name로 그냥 넣을 수 있을 것 같은데
   const onSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -59,6 +64,7 @@ const CustomerModalRefundContainer = ({
         checkedItem.totalPrice - Number(currentFormData.get('refundPrice')),
       ),
     );
+    currentFormData.append('refundReason', formData.refundReason);
 
     const { data } = await createCustomerRefund(currentFormData);
 
@@ -89,7 +95,11 @@ const CustomerModalRefundContainer = ({
   }, [formData.refundRange]);
 
   return (
-    <form css={{ width: '100%', display: 'flex' }} onSubmit={onSubmitHandler}>
+    <form
+      id="refundForm"
+      css={{ width: '100%', display: 'flex' }}
+      onSubmit={onSubmitHandler}
+    >
       <div
         css={{
           width: '70%',
@@ -190,7 +200,28 @@ const CustomerModalRefundContainer = ({
         refundRange={formData.refundRange}
         refundPrice={formData.refundPrice}
         price={checkedItem.totalPrice}
+        onClickRefundHandler={() => setShowModal(true)}
       />
+      {showModal && (
+        <ConfirmModal
+          formId="refundForm"
+          title="환불사유 입력"
+          subTitle="결제 내역에 대한 환불 사유를 입력해주세요."
+          onCancelHandler={() => setShowModal(false)}
+          onClickDisabled={formData.refundReason === ''}
+        >
+          <Input>
+            <Input.TextField
+              name="refundReason"
+              placeholder="환불 사유를 입력해주세요."
+              css={{
+                padding: '16px',
+              }}
+              onChange={onChangeFormData}
+            />
+          </Input>
+        </ConfirmModal>
+      )}
     </form>
   );
 };

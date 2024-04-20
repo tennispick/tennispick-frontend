@@ -23,6 +23,7 @@ type Props = {
   refundType?: string;
   refundRange?: string;
   refundPrice?: number;
+  onClickRefundHandler?: () => void;
 };
 
 const CustomerModalReceiptContainer = ({
@@ -36,6 +37,7 @@ const CustomerModalReceiptContainer = ({
   refundPrice,
   totalPrice,
   price,
+  onClickRefundHandler,
 }: Props) => {
   return (
     <div css={{ position: 'relative', width: '30%', height: '100%' }}>
@@ -58,6 +60,7 @@ const CustomerModalReceiptContainer = ({
               refundRange={refundRange}
               refundPrice={refundPrice}
               price={price}
+              onClickRefundHandler={onClickRefundHandler}
             />
           ),
         }[type]
@@ -173,6 +176,7 @@ const RefundReceipt = ({
   refundRange,
   refundPrice,
   price,
+  onClickRefundHandler,
 }: Pick<
   Props,
   | 'lesson'
@@ -181,6 +185,7 @@ const RefundReceipt = ({
   | 'refundRange'
   | 'refundPrice'
   | 'price'
+  | 'onClickRefundHandler'
 >) => {
   return (
     <>
@@ -240,7 +245,6 @@ const RefundReceipt = ({
         </ReceiptRow>
       </div>
       <Button
-        type="submit"
         label="환불하기"
         css={{
           position: 'absolute',
@@ -252,6 +256,7 @@ const RefundReceipt = ({
           border: 0,
         }}
         disabled={refundPrice! <= 0}
+        onClick={onClickRefundHandler}
       />
     </>
   );
