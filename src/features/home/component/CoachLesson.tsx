@@ -11,7 +11,6 @@ const HomeCoachLesson = () => {
     <DashBoardItem
       title={`${data?.length ?? 0} 명의 코치님들이 센터에서 근무중이에요`}
       width={'calc(35% - 12px)'}
-      height={'0'}
       minHeight={'65vh'}
       margin={'0 24px 0 0'}
     >
