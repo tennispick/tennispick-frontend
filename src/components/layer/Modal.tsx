@@ -4,7 +4,7 @@ import { fadeUp } from '@styles/animation';
 import { ImageContainer as Image } from '@styles/styles';
 import CancelBtnIcon from '@icons/cancel_black_btn.svg';
 
-type ModalProps = {
+type Props = {
   title: string;
   children: React.ReactNode;
   titleContainer?: boolean;
@@ -18,7 +18,7 @@ const Modal = ({
   titleContainer = true,
   setShowModal,
   ...props
-}: ModalProps) => {
+}: Props) => {
   return (
     <Container>
       <ModalContainer css={fadeUp} {...props}>

@@ -65,13 +65,11 @@ const CustomerDetailPaymentRefundPaymentList = ({
             totalPrice,
           } = item;
 
-          const isAvailableRefund =
-            remainLessonCount > 0 && refundPrice ? false : true;
+          const isCompleteRefund = !refundPrice ? true : false;
+          const isDisabledRefund = remainLessonCount === 0;
 
           // 상세보기
-          const onClickPaymentRowHandler = () => {
-            console.log(id);
-          };
+          const onClickPaymentRowHandler = () => {};
 
           return (
             <CustomerDetailPaymentRefundTableRow
@@ -101,7 +99,7 @@ const CustomerDetailPaymentRefundPaymentList = ({
               <div css={{ width: '10%' }}>
                 {refundPrice ? addNumberCommas(refundPrice) : '-'}
               </div>
-              {isAvailableRefund ? (
+              {isCompleteRefund ? (
                 <button
                   css={{
                     width: '10%',
@@ -120,6 +118,7 @@ const CustomerDetailPaymentRefundPaymentList = ({
                     },
                   }}
                   onClick={(e) => onClickOpenRefundModalHandler(e, item)}
+                  disabled={isDisabledRefund}
                 >
                   환불하기
                 </button>
