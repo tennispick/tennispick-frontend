@@ -6,17 +6,16 @@ import { usePathname } from 'next/navigation';
 type Props = {
   title: string;
   link?: string;
-}
+};
 
 const PageHeader = ({ title, link = '' }: Props) => {
-
   const pathName = usePathname();
   const detailPathName = pathName?.split('/')[2];
 
   return (
     <Container>
       {title}
-      {detailPathName &&
+      {detailPathName && (
         <Link
           href={link}
           css={{
@@ -27,9 +26,12 @@ const PageHeader = ({ title, link = '' }: Props) => {
             lineHeight: '32px',
             padding: '0 12px',
             borderRadius: '4px',
-            fontSize: '1rem'
+            fontSize: '1rem',
           }}
-        >목록으로 가기</Link>}
+        >
+          목록으로 가기
+        </Link>
+      )}
     </Container>
   );
 };
@@ -42,7 +44,7 @@ const Container = styled.div({
   margin: '0 0 12px 0',
   display: 'flex',
   alginItems: 'center',
-  justifyContent: 'space-between'
+  justifyContent: 'space-between',
 });
 
 export default React.memo(PageHeader);

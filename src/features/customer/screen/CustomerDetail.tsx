@@ -20,10 +20,7 @@ const CustomerDatail = ({ id }: Props) => {
 
   return (
     <div css={{ position: 'relative', height: '100%' }}>
-      <PageHeader
-        title={`${customer.name} 님`} 
-        link='/customer'
-      />
+      <PageHeader title={`${customer.name} 님`} link="/customer" />
       <CustomerInfo customerId={id} customer={customer} />
       <div
         css={{

@@ -7,10 +7,7 @@ const CommunityDetail = () => {
 
   return (
     <>
-      <PageHeader
-        title={'공지사항'}
-        link='/community'
-      />
+      <PageHeader title={'공지사항'} link="/community" />
       <div
         css={{
           position: 'relative',

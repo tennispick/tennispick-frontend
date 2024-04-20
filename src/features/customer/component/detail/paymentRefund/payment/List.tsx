@@ -61,14 +61,12 @@ const CustomerDetailPaymentRefundPaymentList = ({
             discountType,
             discountPrice,
             refundPrice,
-            remainPrice,
             remainLessonCount,
             totalPrice,
           } = item;
 
           const isAvailableRefund =
-            remainLessonCount > 0 &&
-            (remainPrice ?? remainPrice ? true : false);
+            remainLessonCount > 0 && refundPrice ? false : true;
 
           // 상세보기
           const onClickPaymentRowHandler = () => {
@@ -103,28 +101,35 @@ const CustomerDetailPaymentRefundPaymentList = ({
               <div css={{ width: '10%' }}>
                 {refundPrice ? addNumberCommas(refundPrice) : '-'}
               </div>
-              <button
-                css={{
-                  width: '10%',
-                  backgroundColor: 'var(--red200)',
-                  color: 'var(--white100)',
-                  fontWeight: '500',
-                  padding: '8px 0',
-                  borderRadius: '6px',
-                  border: 0,
-                  cursor: 'pointer',
+              {isAvailableRefund ? (
+                <button
+                  css={{
+                    width: '10%',
+                    backgroundColor: 'var(--red200)',
+                    color: 'var(--white100)',
+                    fontWeight: '500',
+                    padding: '8px 0',
+                    borderRadius: '6px',
+                    border: 0,
+                    cursor: 'pointer',
 
-                  ':disabled': {
-                    borderColor: 'var(--grey100)',
-                    backgroundColor: 'var(--grey100)',
-                    cursor: 'not-allowed',
-                  },
-                }}
-                onClick={(e) => onClickOpenRefundModalHandler(e, item)}
-                disabled={isAvailableRefund}
-              >
-                환불하기
-              </button>
+                    ':disabled': {
+                      borderColor: 'var(--grey100)',
+                      backgroundColor: 'var(--grey100)',
+                      cursor: 'not-allowed',
+                    },
+                  }}
+                  onClick={(e) => onClickOpenRefundModalHandler(e, item)}
+                >
+                  환불하기
+                </button>
+              ) : (
+                <div
+                  css={{ width: '10%', textAlign: 'center', fontWeight: 600 }}
+                >
+                  환불완료
+                </div>
+              )}
             </CustomerDetailPaymentRefundTableRow>
           );
         })}
