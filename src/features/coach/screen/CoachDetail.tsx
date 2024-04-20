@@ -32,7 +32,10 @@ const CoachDetailScreen = ({ coachId }: Props) => {
 
   return (
     <>
-      <PageHeader title={'다니엘 코치님'} />
+      <PageHeader
+        title={'다니엘 코치님'}
+        link='/coach'
+      />
       <div
         css={{
           position: 'relative',
