@@ -86,7 +86,10 @@ const LessonDetail = ({ data }: Props) => {
       css={{ position: 'relative', height: '100%' }}
       onSubmit={onClickEditLessonHandler}
     >
-      <PageHeader title={`레슨권: ${data.name}`} />
+      <PageHeader
+        title={`레슨권: ${data.name}`}
+        link='/lesson'
+      />
       <div css={{ display: 'flex', height: '88%' }}>
         <LessonDetailInputField
           formData={formData}
