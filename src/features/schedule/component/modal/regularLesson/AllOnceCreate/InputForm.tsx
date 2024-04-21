@@ -71,6 +71,7 @@ const ScheduleModalRegularLessonAllOnceCreateInputForm = ({
                         radioList={list}
                         onChangeFormData={onChangeAllCreateFormData}
                         disabled={disabled}
+                        value={formData[type as keyof FormAllOnceCreateType] as string}
                       />
                     ),
                     select: (
@@ -78,6 +79,7 @@ const ScheduleModalRegularLessonAllOnceCreateInputForm = ({
                         type={type}
                         list={list}
                         onChangeFormData={onChangeAllCreateFormData}
+                        value={formData[type as keyof FormAllOnceCreateType] as string}
                       />
                     ),
                   }[fieldType]

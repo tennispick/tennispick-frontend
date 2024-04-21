@@ -7,7 +7,6 @@ import IndividualCreateInputForm from './IndividualCreate/InputForm';
 
 import { Button } from '@components/index';
 import { EditWhiteIcon } from '@icons/index';
-// import { FormAllOnceCreateType } from '@features/schedule/type/schedule.type';
 import {
   handleInputValidationCheck,
   handleInputArrayValidationCheck,
@@ -138,6 +137,10 @@ const ModalRegularLesson = () => {
           onChangeCommonData={onChangeCommonData}
           setCommonData={setCommonData}
           lessonList={lessonList}
+          allOnceFormData={allOnceFormData}
+          setAllOnceFormData={setAllOnceFormData}
+          coachList={coachList}
+          courtList={courtList}
         />
         {
           {

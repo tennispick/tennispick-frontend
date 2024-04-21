@@ -1,5 +1,6 @@
 import { Input } from '@components/index';
 import styled from '@emotion/styled';
+import { useState } from 'react';
 import { UseInputType } from 'src/types';
 
 type Props = {
@@ -12,6 +13,7 @@ type Props = {
     | undefined;
   onChangeFormData: UseInputType<HTMLInputElement>;
   disabled?: boolean;
+  value?: string;
 };
 
 const ScheduleModalRadioInput = ({
@@ -20,11 +22,11 @@ const ScheduleModalRadioInput = ({
   onChangeFormData,
   disabled = false,
 }: Props) => {
+
   return (
     <div css={{ display: 'flex', alignItems: 'center' }}>
       {radioList?.map(({ label, value }, index) => {
         const isCheckLesson = type === 'lessonTime' && disabled;
-
         return (
           <InputContainer
             id={value as string}

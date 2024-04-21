@@ -129,7 +129,7 @@ const CoachContainer = ({
         })}
       </div>
       {showRightSide && (
-        <Portal id={'rightSide'}>
+        <Portal id={'drawer'}>
           <RightSideContainer
             title={
               reservationCustomer.length > 1

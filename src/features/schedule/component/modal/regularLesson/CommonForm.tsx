@@ -4,19 +4,25 @@ import { commonList } from '@features/schedule/data/commonList';
 import Image from 'next/image';
 import ScheduleModalRadioInput from '../RadioInput';
 import ScheduleModalSelectBox from '../SelectBox';
-import ScheduleModalSearchInput from '../SearchInput';
 import { SetStateAction, UseInputType } from 'src/types';
-import { CommonFormInputType } from '@features/schedule/type/schedule.type';
+import { CommonFormInputType, FormAllOnceCreateType } from '@features/schedule/type/schedule.type';
 import { CustomerLessonListQueryData } from '@features/customer/type/customer.type';
 import { transFormSelectList } from '@features/schedule/util/regularLesson';
 import { useEffect, useState } from 'react';
+import { CoachListData } from '@apis/coach/coach.type';
+import { CourtListData } from '@apis/court/court.type';
 import { TDataCommonList } from '@features/schedule/type/data.type';
+import ScheduleModalSearchInput from '../searchInput/SearchInput';
 
 type Props = {
   commonData: CommonFormInputType;
   onChangeCommonData: UseInputType<HTMLInputElement | HTMLSelectElement>;
   setCommonData: SetStateAction<CommonFormInputType>;
   lessonList: CustomerLessonListQueryData[] | undefined;
+  allOnceFormData: FormAllOnceCreateType;
+  setAllOnceFormData: SetStateAction<FormAllOnceCreateType>;
+  coachList: CoachListData[] | undefined;
+  courtList: CourtListData[] | undefined;
 };
 
 const ScheduleModalRegularLessonCommonForm = ({
@@ -24,6 +30,10 @@ const ScheduleModalRegularLessonCommonForm = ({
   onChangeCommonData,
   setCommonData,
   lessonList,
+  allOnceFormData,
+  setAllOnceFormData,
+  coachList,
+  courtList
 }: Props) => {
   const { customer, lesson, lessonType } = commonData;
 
@@ -59,6 +69,7 @@ const ScheduleModalRegularLessonCommonForm = ({
                       type={type}
                       radioList={list}
                       onChangeFormData={onChangeCommonData}
+                      value={allOnceFormData[type as keyof FormAllOnceCreateType] as string}
                     />
                   ),
                   select: (
@@ -74,6 +85,10 @@ const ScheduleModalRegularLessonCommonForm = ({
                       lesson={lesson}
                       lessonType={lessonType}
                       setFormData={setCommonData}
+                      setAllOnceFormData={setAllOnceFormData}
+                      lessonList={lessonList}
+                      coachList={coachList}
+                      courtList={courtList}
                     />
                   ),
                 }[fieldType]

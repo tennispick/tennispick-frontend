@@ -1,5 +1,7 @@
 import { ChangeEvent } from 'react';
 
+export type DayType = 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday';
+
 type ScheduleLessonByDateQueryPayload = {
   day: Date;
 };

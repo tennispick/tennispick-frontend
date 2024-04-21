@@ -1,6 +1,6 @@
 import { Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
-import Image from 'next/image';
+import Image, { ImageProps } from 'next/image';
 import ArrowDropDownIcon from '@icons/arrow_drop_down_black.svg';
 
 export type CSS_TYPE = {
@@ -54,6 +54,7 @@ export type CSS_TYPE = {
   flex?: string;
   flexDirection?: any;
   content?: string | number;
+  disabled?: boolean;
 
   /* Etc */
   isActive?: boolean;
@@ -280,6 +281,9 @@ export const ImageContainer = styled(Image)<CSS_TYPE>({}, (props) => ({
   left: props.left,
   right: props.right,
   cursor: props.cursor,
+  disabled: {
+    cursor: 'not-allowed'
+  }
 }));
 
 export const Button = styled.button<CSS_TYPE>(
