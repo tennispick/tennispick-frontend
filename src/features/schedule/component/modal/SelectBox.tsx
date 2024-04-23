@@ -10,8 +10,13 @@ type Props = {
   value?: string;
 };
 
-const ScheduleModalSelectBox = ({ type, list, onChangeFormData, value }: Props) => {
-  const [dataValue,] = useState<string>(value || '');
+const ScheduleModalSelectBox = ({
+  type,
+  list,
+  onChangeFormData,
+  value,
+}: Props) => {
+  const [dataValue] = useState<string>(value || '');
   return (
     <Select
       name={type}

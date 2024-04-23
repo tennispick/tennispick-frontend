@@ -1,4 +1,4 @@
-import { Button } from "@components/index";
+import { Button } from '@components/index';
 
 type Props = {
   checkHistoryId: string;
@@ -6,11 +6,15 @@ type Props = {
   onClickSaveHandler: () => void;
 };
 
-const ScheduleModalRecentHistoryModalButtonContainer = ({ checkHistoryId, onClickCloseModalHandler, onClickSaveHandler }: Props) => {
-  return(
-    <div css={{ width: 'fit-content', margin: '12px 0 0 auto'}}>
+const ScheduleModalRecentHistoryModalButtonContainer = ({
+  checkHistoryId,
+  onClickCloseModalHandler,
+  onClickSaveHandler,
+}: Props) => {
+  return (
+    <div css={{ width: 'fit-content', margin: '12px 0 0 auto' }}>
       <Button
-        type='button'
+        type="button"
         label="취소"
         css={{
           width: '160px',
@@ -22,7 +26,7 @@ const ScheduleModalRecentHistoryModalButtonContainer = ({ checkHistoryId, onClic
         onClick={onClickCloseModalHandler}
       />
       <Button
-        type='button'
+        type="button"
         label="불러오기"
         css={{
           width: '160px',
@@ -37,7 +41,7 @@ const ScheduleModalRecentHistoryModalButtonContainer = ({ checkHistoryId, onClic
         disabled={checkHistoryId === ''}
       />
     </div>
-  )
+  );
 };
 
 export default ScheduleModalRecentHistoryModalButtonContainer;

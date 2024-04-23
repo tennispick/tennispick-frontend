@@ -1,6 +1,6 @@
-import { CustomerLessonHistoryData } from "@apis/customer/customer.type";
-import { transferLessonDateType } from "@features/schedule/util/transfer";
-import { MouseEvent } from "react";
+import { CustomerLessonHistoryData } from '@apis/customer/customer.type';
+import { transferLessonDateType } from '@features/schedule/util/transfer';
+import { MouseEvent } from 'react';
 
 type Props = {
   checkHistoryId: string;
@@ -8,10 +8,15 @@ type Props = {
   data: CustomerLessonHistoryData['lessonHistory'][];
 };
 
-const ScheduleModalRecentHistoryModalTableBody = ({ checkHistoryId, onClickRadioHandler, data }: Props) => {
-
-  return(
-    <table css={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed' }}>
+const ScheduleModalRecentHistoryModalTableBody = ({
+  checkHistoryId,
+  onClickRadioHandler,
+  data,
+}: Props) => {
+  return (
+    <table
+      css={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed' }}
+    >
       <colgroup>
         <col css={{ width: '36px' }} />
         <col css={{ width: '72px' }} />
@@ -30,7 +35,7 @@ const ScheduleModalRecentHistoryModalTableBody = ({ checkHistoryId, onClickRadio
             color: 'var(--white100)',
             padding: '10px 8px ',
             fontSize: '1rem',
-          }
+          },
         }}
       >
         <tr>
@@ -47,50 +52,64 @@ const ScheduleModalRecentHistoryModalTableBody = ({ checkHistoryId, onClickRadio
       <tbody
         css={{
           minHeight: '210px',
-          
-          'tr': {
+
+          tr: {
             borderBottom: '1px solid var(--grey200)',
           },
 
           'tr > td:first-of-type': {
-            textAlign: 'center'
+            textAlign: 'center',
           },
 
           'tr > td': {
             textAlign: 'left',
             padding: '12px 8px',
             textOverflow: 'ellipsis',
-            overflow:'hidden',
+            overflow: 'hidden',
             whiteSpace: 'nowrap',
             fontSize: '0.925rem',
           },
         }}
       >
-        {data.map(({ id, customerName, lessonName, coachName, courtName, lessonDateType, date, startTime, endTime }) => {
-          return(
-            <tr key={id}>
-              <td>
-                <input
-                  type='radio'
-                  name='history'
-                  onClick={onClickRadioHandler}
-                  value={id}
-                  defaultChecked={Number(checkHistoryId) === id}
-                />
-              </td>
-              <td>{customerName}</td>
-              <td>{lessonName}</td>
-              <td>{coachName}</td>
-              <td>{courtName}</td>
-              <td>{transferLessonDateType(lessonDateType)}</td>
-              <td>{date}</td>
-              <td>{startTime} ~ {endTime}</td>
-            </tr>
-          )
-        })}
+        {data.map(
+          ({
+            id,
+            customerName,
+            lessonName,
+            coachName,
+            courtName,
+            lessonDateType,
+            date,
+            startTime,
+            endTime,
+          }) => {
+            return (
+              <tr key={id}>
+                <td>
+                  <input
+                    type="radio"
+                    name="history"
+                    onClick={onClickRadioHandler}
+                    value={id}
+                    defaultChecked={Number(checkHistoryId) === id}
+                  />
+                </td>
+                <td>{customerName}</td>
+                <td>{lessonName}</td>
+                <td>{coachName}</td>
+                <td>{courtName}</td>
+                <td>{transferLessonDateType(lessonDateType)}</td>
+                <td>{date}</td>
+                <td>
+                  {startTime} ~ {endTime}
+                </td>
+              </tr>
+            );
+          },
+        )}
       </tbody>
     </table>
-  )
+  );
 };
 
 export default ScheduleModalRecentHistoryModalTableBody;

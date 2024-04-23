@@ -1,5 +1,5 @@
-import { LessonDateType, LessonType } from "@features/lesson/type/lesson.type";
-import { DayType } from "@features/schedule/type/schedule.type";
+import { LessonDateType, LessonType } from '@features/lesson/type/lesson.type';
+import { DayType } from '@features/schedule/type/schedule.type';
 
 export type CustomerLessonListQueryPayload = {
   id: string;
@@ -9,7 +9,7 @@ export type CustomerLessonListQueryPayload = {
 export type CustomerLessonHistoryQueryPayload = {
   customerId: string;
   page: number;
-}
+};
 
 export type CustomerLessonListQueryData = {
   id: number;
@@ -42,7 +42,7 @@ export type CustomerLessonHistoryQueryData = {
     endTime: string;
   };
   totalPage: string;
-}
+};
 
 export type CustomerDetailQueryPayLoad = {
   id: string;

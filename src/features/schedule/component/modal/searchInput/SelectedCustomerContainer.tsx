@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import Image from 'next/image';
 import CancelWhiteBtn from '@icons/cancel_white_btn.svg';
 
-type CommonInputType = Pick<CommonFormInputType,'customer' >;
+type CommonInputType = Pick<CommonFormInputType, 'customer'>;
 
 type Props = {
   setFormData: SetStateAction<CommonFormInputType>;
@@ -50,7 +50,7 @@ const ScheduleModalSearchInputSelectedCustomerContainer = ({
       })}
     </ul>
   );
-}
+};
 
 const Customer = styled.li({
   display: 'flex',

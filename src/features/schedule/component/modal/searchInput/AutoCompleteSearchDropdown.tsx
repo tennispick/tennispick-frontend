@@ -9,7 +9,7 @@ type CommonInputType = Pick<
   'customer' | 'lesson' | 'lessonType'
 >;
 
-type Props ={
+type Props = {
   setFormData: SetStateAction<CommonFormInputType>;
   setKeyword: SetStateAction<string>;
   setCustomerId: SetStateAction<string>;
@@ -29,21 +29,25 @@ const ScheduleModalSearchInputAutoCompleteSearchDropdown = ({
   autoSearchKeyword,
   setShowModal,
 }: Props) => {
-
   const onClickCustomerHandler = async (id: string, name: string) => {
-
     setFormData((prev: CommonFormInputType) => {
-      const customerItem = lessonType === 'private' && customer.length > 0 ? [{ id, name }] : [...prev.customer, { id, name }];
+      const customerItem =
+        lessonType === 'private' && customer.length > 0
+          ? [{ id, name }]
+          : [...prev.customer, { id, name }];
       return {
         ...prev,
         customer: customerItem,
       };
-    })
+    });
 
     setCustomerId(id);
     setKeyword('');
 
-    const response = await getCustomerLessonHistory({ customerId: id, page: 1 });
+    const response = await getCustomerLessonHistory({
+      customerId: id,
+      page: 1,
+    });
     const { data } = response;
 
     if (data.lessonHistory.length > 0) setShowModal(true);

@@ -28,10 +28,10 @@ export default function App({ Component, pageProps }: AppProps) {
           <AppLayout>
             <Component {...pageProps} />
           </AppLayout>
-          <div id='portal' />
+          <div id="portal" />
           <div id="layerPortal" />
           <div id="confirmModal" />
-          <div id='drawer' />
+          <div id="drawer" />
         </Hydrate>
       </QueryClientProvider>
     </RecoilRoot>

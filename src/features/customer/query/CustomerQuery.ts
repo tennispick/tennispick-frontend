@@ -39,17 +39,18 @@ const useCustomerLessonListQuery = (params: CustomerLessonListQueryPayload) => {
   }
 };
 
-const useCustomerLessonHistoryQuery = (params: CustomerLessonHistoryQueryPayload) => {
+const useCustomerLessonHistoryQuery = (
+  params: CustomerLessonHistoryQueryPayload,
+) => {
   try {
     const { customerId, page } = params;
-    const { data, isLoading } = useQuery<Response<CustomerLessonHistoryQueryData>>(
-      {
-        queryKey: [URL_FETCH_CUSTOMER_LESSON_HISTORY, { customerId, page}],
-        queryFn: async () =>
-          await getCustomerLessonHistory({ customerId, page }),
-        enabled: !!customerId,
-      },
-    );
+    const { data, isLoading } = useQuery<
+      Response<CustomerLessonHistoryQueryData>
+    >({
+      queryKey: [URL_FETCH_CUSTOMER_LESSON_HISTORY, { customerId, page }],
+      queryFn: async () => await getCustomerLessonHistory({ customerId, page }),
+      enabled: !!customerId,
+    });
 
     return {
       data: data?.data,
@@ -79,4 +80,8 @@ const useCustomerDetailQuery = (params: CustomerDetailQueryPayLoad) => {
   }
 };
 
-export { useCustomerLessonListQuery, useCustomerLessonHistoryQuery, useCustomerDetailQuery };
+export {
+  useCustomerLessonListQuery,
+  useCustomerLessonHistoryQuery,
+  useCustomerDetailQuery,
+};

@@ -1,5 +1,8 @@
 import { LessonDateType, LessonType } from '@features/lesson/type/lesson.type';
-import { CommonFormInputType, DayType } from '@features/schedule/type/schedule.type';
+import {
+  CommonFormInputType,
+  DayType,
+} from '@features/schedule/type/schedule.type';
 
 export type CustomerLessonListApiPayload = {
   id: string;
@@ -33,7 +36,7 @@ export type CustomerLessonHistoryData = {
     endTime: string;
   };
   totalPage: string;
-}
+};
 
 export type CustomerDetailData = {
   id: number;

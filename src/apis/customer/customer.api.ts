@@ -24,7 +24,12 @@ export const getCustomerLessonList = async (
     `${URL_FETCH_CUSTOMER_LESSON_LIST}/${params.id}?lessonType=${params.lessonType}`,
   );
 
-export const getCustomerLessonHistory = async (params: CustomerLessonHistoryPayload): Promise<Response<CustomerLessonHistoryData>> => await axios.get(`${URL_FETCH_CUSTOMER_LESSON_HISTORY}/${params.customerId}?page=${params.page}`);
+export const getCustomerLessonHistory = async (
+  params: CustomerLessonHistoryPayload,
+): Promise<Response<CustomerLessonHistoryData>> =>
+  await axios.get(
+    `${URL_FETCH_CUSTOMER_LESSON_HISTORY}/${params.customerId}?page=${params.page}`,
+  );
 
 export const getCustomerDetail = async (
   params: CustomerDetailApiPayLoad,

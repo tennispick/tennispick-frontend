@@ -10,7 +10,7 @@ type CommonListType = {
   icon: string;
   alt: string;
   list: { value: string; label: string }[];
-}
+};
 
 const commonList: CommonListType[] = [
   {

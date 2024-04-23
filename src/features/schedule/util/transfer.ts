@@ -1,12 +1,12 @@
-import { LessonDateType } from "@features/lesson/type/lesson.type";
+import { LessonDateType } from '@features/lesson/type/lesson.type';
 
 export const transferLessonDateType = (lessonDateType: LessonDateType) => {
   switch (lessonDateType) {
-    case 'date' :
+    case 'date':
       return '날짜';
-    case 'day' :
+    case 'day':
       return '요일';
     default:
       return '';
   }
-}
+};

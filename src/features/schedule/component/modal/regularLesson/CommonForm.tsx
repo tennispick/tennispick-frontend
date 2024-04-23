@@ -5,7 +5,10 @@ import Image from 'next/image';
 import ScheduleModalRadioInput from '../RadioInput';
 import ScheduleModalSelectBox from '../SelectBox';
 import { SetStateAction, UseInputType } from 'src/types';
-import { CommonFormInputType, FormAllOnceCreateType } from '@features/schedule/type/schedule.type';
+import {
+  CommonFormInputType,
+  FormAllOnceCreateType,
+} from '@features/schedule/type/schedule.type';
 import { CustomerLessonListQueryData } from '@features/customer/type/customer.type';
 import { transFormSelectList } from '@features/schedule/util/regularLesson';
 import { useEffect, useState } from 'react';
@@ -33,7 +36,7 @@ const ScheduleModalRegularLessonCommonForm = ({
   allOnceFormData,
   setAllOnceFormData,
   coachList,
-  courtList
+  courtList,
 }: Props) => {
   const { customer, lesson, lessonType } = commonData;
 
@@ -69,7 +72,11 @@ const ScheduleModalRegularLessonCommonForm = ({
                       type={type}
                       radioList={list}
                       onChangeFormData={onChangeCommonData}
-                      value={allOnceFormData[type as keyof FormAllOnceCreateType] as string}
+                      value={
+                        allOnceFormData[
+                          type as keyof FormAllOnceCreateType
+                        ] as string
+                      }
                     />
                   ),
                   select: (

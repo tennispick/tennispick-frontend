@@ -22,7 +22,6 @@ const ScheduleModalRadioInput = ({
   onChangeFormData,
   disabled = false,
 }: Props) => {
-
   return (
     <div css={{ display: 'flex', alignItems: 'center' }}>
       {radioList?.map(({ label, value }, index) => {
