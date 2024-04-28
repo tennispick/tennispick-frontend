@@ -71,6 +71,11 @@ const ScheduleModalRecentHistoryModalTableBody = ({
           },
         }}
       >
+        {data.length === 0 && (
+          <tr>
+            <td colSpan={8}>최근 수강이력이 없어요.</td>
+          </tr>
+        )}
         {data.map(
           ({
             id,
@@ -79,10 +84,12 @@ const ScheduleModalRecentHistoryModalTableBody = ({
             coachName,
             courtName,
             lessonDateType,
+            isAble,
             date,
             startTime,
             endTime,
           }) => {
+            console.log(isAble);
             return (
               <tr key={id}>
                 <td>
@@ -92,6 +99,7 @@ const ScheduleModalRecentHistoryModalTableBody = ({
                     onClick={onClickRadioHandler}
                     value={id}
                     defaultChecked={Number(checkHistoryId) === id}
+                    disabled={isAble === 'N' ? true : false}
                   />
                 </td>
                 <td>{customerName}</td>

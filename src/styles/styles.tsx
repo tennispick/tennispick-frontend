@@ -1,6 +1,6 @@
 import { Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
-import Image, { ImageProps } from 'next/image';
+import Image from 'next/image';
 import ArrowDropDownIcon from '@icons/arrow_drop_down_black.svg';
 
 export type CSS_TYPE = {

@@ -4,6 +4,7 @@ type Props = {
   name: string;
   selected?: string;
   onChangeHandler?: (e: ChangeEvent<HTMLSelectElement>) => void;
+  disabled?: boolean;
   data: {
     value: string;
     label: string;
@@ -15,6 +16,7 @@ const ScheduleModalSelect = ({
   data,
   selected = '',
   onChangeHandler,
+  disabled,
   ...props
 }: Props) => {
   return (
@@ -34,10 +36,11 @@ const ScheduleModalSelect = ({
       value={selected}
       onChange={onChangeHandler}
       {...props}
+      disabled={disabled}
     >
-      {data.map(({ label, value }) => {
+      {data.map(({ label, value }, index) => {
         return (
-          <option key={`${name}-${value}`} value={value}>
+          <option key={`${name}-${value}-${index}`} value={value}>
             {label}
           </option>
         );

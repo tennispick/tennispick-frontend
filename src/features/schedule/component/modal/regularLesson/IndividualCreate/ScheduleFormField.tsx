@@ -30,8 +30,8 @@ const ScheduleModalRegularLessonIndividualCreateScheduleFormField = ({
   formData,
   setFormData,
 }: Props) => {
-  const { data: courtList } = useGetCourtListQuery();
-  const { data: coachList } = useGetCoachListQuery();
+  const { data: courtList } = useGetCourtListQuery({});
+  const { data: coachList } = useGetCoachListQuery({});
 
   const handleFormFieldChange = (
     index: number,

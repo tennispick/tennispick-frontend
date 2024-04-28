@@ -7,6 +7,7 @@ type Props = Pick<HTMLInputElement, 'type' | 'name' | 'value'> & {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
   placeholder?: string;
+  checked?: boolean;
 } & PropsWithChildren;
 
 const ScheduleModalInput = ({
@@ -18,6 +19,7 @@ const ScheduleModalInput = ({
   defaultChecked,
   placeholder,
   children,
+  checked,
   ...props
 }: Props) => {
   return (
@@ -36,6 +38,7 @@ const ScheduleModalInput = ({
         value={value}
         defaultChecked={defaultChecked}
         placeholder={placeholder}
+        checked={checked}
         {...props}
       />
       {children}

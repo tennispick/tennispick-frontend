@@ -5,6 +5,7 @@ import {
   STRING_WEEK_LIST,
   STRING_WEEK_LIST_KR,
 } from '@features/schedule/constants/schedule';
+import { DayType } from '@features/schedule/type/schedule.type';
 
 /**
  * getDay(): 주어진 날짜의 첫 번째 날짜의 요일 정보를 반환
@@ -202,6 +203,54 @@ export const transferTimeZoneToSettingLessonTime = (
     });
   }
   return result;
+};
+
+export const getEndTimeByStartTime = (
+  startTime: string,
+  lessonTime: string,
+) => {
+  const startHour = Number(startTime.split(':')[0]) * 60;
+  const startMinutes = Number(startTime.split(':')[1]);
+  const endTimeDateFormat = new Date(
+    0,
+    0,
+    0,
+    0,
+    startHour + startMinutes + Number(lessonTime),
+  );
+  const endTime = `${endTimeDateFormat
+    .getHours()
+    .toString()
+    .padStart(2, '0')}:${endTimeDateFormat
+    .getMinutes()
+    .toString()
+    .padStart(2, '0')}`;
+
+  return endTime === '00:00' ? '24:00' : endTime;
+};
+
+export const getDayOfThisWeek = (day: DayType) => {
+  const dayIndex = STRING_WEEK_LIST.findIndex((el) => el === day);
+  const today = new Date();
+  const todayIndex = today.getDay();
+
+  let diff = dayIndex - todayIndex;
+
+  if (diff < 0) diff += 7;
+
+  today.setDate(today.getDate() + diff);
+  return today;
+};
+
+export const getTimeGap = (startTime: string, endTime: string) => {
+  const startTimeTransferMinutes =
+    Number(startTime.split(':')[0]) * 60 + Number(startTime.split(':')[1]);
+  const endTimeTransferMinutes =
+    Number(endTime.split(':')[0]) * 60 + Number(endTime.split(':')[1]);
+
+  const timeGap = endTimeTransferMinutes - startTimeTransferMinutes;
+
+  return timeGap.toString();
 };
 
 export const getPrevNextMonth = (year: number, month: number) => {

@@ -15,6 +15,17 @@ type DuplicateCheckScheduleLessonPayload = {
   schedule: Array<ScheduleType>;
 };
 
+export type DuplicateCheckScheduleLessonData = {
+  centerId: string;
+  coachId: string;
+  courtId: string;
+  date: string;
+  startDate: string;
+  endDate: string;
+  startTime: string;
+  endTime: string;
+};
+
 type SchduleLessonByStartDateEndDatePeriodData = {
   id: number;
   coachName: string;

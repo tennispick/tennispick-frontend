@@ -3,15 +3,19 @@ import Image from 'next/image';
 import ScheduleModalSelect from '../../Select';
 import { CustomerLessonListQueryData } from '@features/customer/type/customer.type';
 import { ChangeEvent, useEffect, useState } from 'react';
+import { SetStateAction } from '@/types/index';
+import { CommonDataProps } from '@features/schedule/type/regularLesson';
 
 type Props = {
   lessonId: string;
   lessonList: CustomerLessonListQueryData[];
+  setCommonData: SetStateAction<CommonDataProps>;
 };
 
 const ScheduleModalRegularLessonCommonScheduleLessonSelect = ({
   lessonId: id,
   lessonList,
+  setCommonData,
 }: Props) => {
   const [lessonId, setLessonId] = useState(id);
 
@@ -24,11 +28,24 @@ const ScheduleModalRegularLessonCommonScheduleLessonSelect = ({
   const onChangeLessonHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
     setLessonId(value);
+    setCommonData((prev) => ({
+      ...prev,
+      lesson: value,
+    }));
   };
 
   useEffect(() => {
-    if (lessonList) setLessonId(id === '' ? lessonList[0]?.id.toString() : id);
-  }, [id, lessonList]);
+    if (lessonList && lessonList.length > 0) {
+      setCommonData((prev) => ({
+        ...prev,
+        lesson: lessonList[0].lessonId.toString(),
+      }));
+    }
+  }, [lessonList, setCommonData]);
+
+  useEffect(() => {
+    setLessonId(id);
+  }, [id]);
 
   return (
     <div css={{ margin: '0 0 20px 0' }}>

@@ -28,7 +28,7 @@ export const getCustomerLessonHistory = async (
   params: CustomerLessonHistoryPayload,
 ): Promise<Response<CustomerLessonHistoryData>> =>
   await axios.get(
-    `${URL_FETCH_CUSTOMER_LESSON_HISTORY}/${params.customerId}?page=${params.page}`,
+    `${URL_FETCH_CUSTOMER_LESSON_HISTORY}/${params.customerId}?lessonType=${params.lessonType}&page=${params.page}`,
   );
 
 export const getCustomerDetail = async (

@@ -29,67 +29,10 @@ import { LessonDateType, LessonType } from '@features/lesson/type/lesson.type';
 import ScheduleModalRegularLessonAllOnceSchedule from './allOnceSchedule/AllOnceSchedule';
 import { ScheduleInputType } from '@features/schedule/type/schedule.type';
 import { CustomerLessonListQueryData } from '@features/customer/type/customer.type';
+import { getTimeGap } from '@utils/date';
 
 const ModalRegularLesson = () => {
   const { mutate } = useScheduleMutation();
-
-  // const [commonData, onChangeCommonData, setCommonData] = useInput({
-  //   scheduleType: 'all', // 스케줄 등록유형
-  //   lessonType: 'private', // 레슨유형
-  //   customer: [], // 회원
-  //   lesson: '', // 수강권
-  // });
-
-  // // 일괄등록
-  // const [allOnceFormData, onChangeAllOnceFormData, setAllOnceFormData] =
-  //   useInput({
-  //     lessonDateType: 'date', // 강습날짜 유형
-  //     lessonTime: '20', // 강습시간 선택
-  //     weeklyLessonCount: '1', // 주 강습횟수 선택
-  //     coach: '', // 강습코치 선택
-  //     court: '', // 코트(장소) 선택
-  //     schedule: [
-  //       {
-  //         date: new Date(), // 스케줄 등록유형 (요일, 날짜)
-  //         day: 'monday', // 요일
-  //         startTime: '00:00', // 강습시간
-  //         endTime: '00:20',
-  //       },
-  //     ],
-  //   });
-
-  // // 개별등록
-  // const [
-  //   individualFormData,
-  //   onChangeIndividualFormData,
-  //   setIndividualFormData,
-  // ] = useInput([
-  //   {
-  //     lessonDateType: 'date', // 강습날짜 유형
-  //     lessonTime: '0', // 강습시간
-  //     weeklyLessonCount: '1', // 주 강습횟수
-  //     coach: '',
-  //     court: '',
-  //     date: new Date(), // 스케줄 등록유형 (요일, 날짜)
-  //     day: 'monday', // 요일
-  //     startTime: '00:00', // 강습시간
-  //     endTime: '00:20',
-  //   },
-  // ]);
-
-  // const { data: isDuplicateList } = useDuplicateCheckScheduleLessonQuery({
-  //   coach: allOnceFormData.coach,
-  //   court: allOnceFormData.court,
-  //   schedule:
-  //     commonData.scheduleType === 'all'
-  //       ? allOnceFormData.schedule
-  //       : individualFormData,
-  // });
-
-  // const { data: lessonList } = useCustomerLessonListQuery({
-  //   id: commonData.customer[0]?.id,
-  //   lessonType: commonData.lessonType,
-  // });
 
   // const onSubmit = (e: FormEvent<HTMLFormElement>) => {
   //   e.preventDefault();
@@ -121,18 +64,6 @@ const ModalRegularLesson = () => {
   //   mutate(body);
   // };
 
-  useEffect(() => {
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') e.preventDefault();
-    });
-
-    return document.removeEventListener('keydown', (e) => {
-      if (e.key === 'Enter') e.preventDefault();
-    });
-  }, []);
-
-  // ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
   const [customerId, setCustomerId] = useState<string>('');
 
   const [{ scheduleType, lessonType, customer, lesson }, setCommonData] =
@@ -151,8 +82,17 @@ const ModalRegularLesson = () => {
       court: '',
     });
 
-  const { data: courtList } = useGetCourtListQuery();
-  const { data: coachList } = useGetCoachListQuery();
+  const [allOnceSchedule, setAllOnceSchedule] = useState([
+    {
+      date: new Date(),
+      day: '',
+      startTime: '00:00',
+      endTime: `00:${lessonTime}`,
+    },
+  ]);
+
+  const { data: courtList } = useGetCourtListQuery({ enabled: lesson !== '' });
+  const { data: coachList } = useGetCoachListQuery({ enabled: lesson !== '' });
 
   const { data: lessonList } = useCustomerLessonListQuery({
     id: customer[0]?.id,
@@ -165,7 +105,6 @@ const ModalRegularLesson = () => {
   const onClickRecentHistoryModalCloseHandler = () => setCustomerId('');
 
   const onClickSaveCustomerLessonHistoryHandler = (target: any) => {
-    console.log(target[0]);
     const {
       lessonType,
       lessonDateType,
@@ -178,46 +117,96 @@ const ModalRegularLesson = () => {
       endTime,
     } = target[0];
 
+    // 수강권
     const isOnLoadLessonItem = lessonList?.find(
       (item: CustomerLessonListQueryData) => item.lessonId === lessonId,
     );
-    const isOnLoadCoachItem = coachList?.find(({ id }) => id === coachId);
-    const isOnLoadCourtItem = courtList?.find(({ id }) => id === courtId);
 
     setCommonData((prev) => ({
       ...prev,
+      lessonType: lessonType,
       lesson: isOnLoadLessonItem
         ? isOnLoadLessonItem.id.toString()
         : lessonList![0].id.toString(),
     }));
 
-    // TODO
-    // 강습날짜 유형
-    // 강습시간 선택
+    const coachItemCheckLoad = coachList?.find(({ id }) => id === coachId);
+    const courtItemCheckLoad = courtList?.find(({ id }) => id === courtId);
+
     setAllOnceData((prev) => ({
       ...prev,
-      coach: isOnLoadCoachItem
-        ? isOnLoadCoachItem.id.toString()
+      lessonDateType: lessonDateType,
+      lessonTime: getTimeGap(startTime, endTime),
+      coach: coachItemCheckLoad
+        ? coachItemCheckLoad.id.toString()
         : coachList![0].id.toString(),
-      court: isOnLoadCourtItem
-        ? isOnLoadCourtItem.id.toString()
+      court: courtItemCheckLoad
+        ? courtItemCheckLoad.id.toString()
         : courtList![0].id.toString(),
     }));
+
+    setAllOnceSchedule([
+      {
+        date: new Date(date),
+        day: day ?? 'monday',
+        startTime: startTime,
+        endTime: endTime,
+      },
+    ]);
 
     setCustomerId('');
   };
 
-  const onSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+  // TODO 개별등록
+  const { data: isDuplicateList } = useDuplicateCheckScheduleLessonQuery({
+    coach: coach,
+    court: court,
+    schedule: scheduleType === 'all' ? allOnceSchedule : [],
+  });
+
+  const onSubmitAllCreateHandler: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
+    const body = {
+      scheduleType,
+      lessonType,
+      customer,
+      lesson,
+      lessonDateType,
+      lessonTime,
+      coach,
+      court,
+      schedule: allOnceSchedule,
+    };
+
+    mutate(body);
   };
+
+  const onSubmitIndividualCreateHandler: FormEventHandler<HTMLFormElement> = (
+    e,
+  ) => {
+    e.preventDefault();
+  };
+
+  useEffect(() => {
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') e.preventDefault();
+    });
+
+    return document.removeEventListener('keydown', (e) => {
+      if (e.key === 'Enter') e.preventDefault();
+    });
+  }, []);
 
   return (
     <>
       <form
         css={{ display: 'flex', width: '100%', flexDirection: 'column' }}
-        onSubmit={onSubmit}
+        onSubmit={
+          scheduleType === 'all'
+            ? onSubmitAllCreateHandler
+            : onSubmitIndividualCreateHandler
+        }
       >
         <div css={{ display: 'flex', width: '100%', minHeight: '320px' }}>
           <CommonSchedule
@@ -229,44 +218,13 @@ const ModalRegularLesson = () => {
           <ScheduleModalRegularLessonAllOnceSchedule
             allOnceData={{ lessonDateType, lessonTime, coach, court }}
             setAllOnceData={setAllOnceData}
+            lesson={lesson}
             courtList={courtList!}
             coachList={coachList!}
+            allOnceSchedule={allOnceSchedule}
+            setAllOnceSchedule={setAllOnceSchedule}
+            isDuplicateList={isDuplicateList}
           />
-          {/* <CommonForm
-            commonData={commonData}
-            onChangeCommonData={onChangeCommonData}
-            setCommonData={setCommonData}
-            lessonList={lessonList}
-            allOnceFormData={allOnceFormData}
-            setAllOnceFormData={setAllOnceFormData}
-            coachList={coachList}
-            courtList={courtList}
-          />
-          {
-            {
-              all: (
-                <AllOnceCreateInputForm
-                  scheduleType={commonData.scheduleType}
-                  lesson={commonData.lesson}
-                  formData={allOnceFormData}
-                  onChangeAllCreateFormData={onChangeAllOnceFormData}
-                  setAllCreateFormData={setAllOnceFormData}
-                  coachList={coachList}
-                  courtList={courtList}
-                  isDuplicateList={isDuplicateList}
-                />
-              ),
-              individual: (
-                <IndividualCreateInputForm
-                  scheduleType={commonData.scheduleType}
-                  lesson={commonData.lesson}
-                  formData={individualFormData}
-                  onChangeIndividualCreateFormData={onChangeIndividualFormData}
-                  setIndividualCreateFormData={setIndividualFormData}
-                />
-              ),
-            }[commonData.scheduleType as string]
-          } */}
         </div>
         <Button
           type="submit"
@@ -283,12 +241,15 @@ const ModalRegularLesson = () => {
             margin: '24px 0 0 auto',
             borderRadius: '12px',
           }}
-          // disabled={isDuplicateList && isDuplicateList.length > 0 ? true : false}
+          disabled={
+            isDuplicateList && isDuplicateList.length > 0 ? true : false
+          }
         />
       </form>
       {customerId !== '' && (
         <ScheduleModalRecentHistoryModal
           customerId={customerId}
+          lessonType={lessonType}
           onClickCloseModalHandler={onClickRecentHistoryModalCloseHandler}
           onClickSaveCustomerLessonHistoryHandler={
             onClickSaveCustomerLessonHistoryHandler

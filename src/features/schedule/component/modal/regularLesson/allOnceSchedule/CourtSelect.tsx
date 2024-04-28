@@ -3,15 +3,21 @@ import ScheduleModalSelect from '../../Select';
 import CourtBlackIcon from '@icons/court_black.svg';
 import { CourtListData } from '@apis/court/court.type';
 import { ChangeEvent, useEffect, useState } from 'react';
+import { SetStateAction } from '@/types/index';
+import { AllOnceFormDataProps } from '@features/schedule/type/regularLesson';
 
 type Props = {
   court: string;
   data: CourtListData[];
+  setFormData: SetStateAction<AllOnceFormDataProps>;
+  disabled: boolean;
 };
 
 const ScheduleModalRegularLessonAllOnceScheduleCourtSelect = ({
   court,
   data,
+  setFormData,
+  disabled,
 }: Props) => {
   const [courtId, setCourtId] = useState(court);
 
@@ -21,11 +27,24 @@ const ScheduleModalRegularLessonAllOnceScheduleCourtSelect = ({
   const onChangeCourtHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
     setCourtId(value);
+    setFormData((prev) => ({
+      ...prev,
+      court: value,
+    }));
   };
 
   useEffect(() => {
-    setCourtId(court === '' ? data![0].id.toString() : court);
-  }, [court, data]);
+    if (data && data.length > 0) {
+      setFormData((prev) => ({
+        ...prev,
+        court: data[0].id.toString(),
+      }));
+    }
+  }, [data, setFormData]);
+
+  useEffect(() => {
+    setCourtId(court);
+  }, [court]);
 
   return (
     <div css={{ margin: '0 0 20px 0' }}>
@@ -49,6 +68,7 @@ const ScheduleModalRegularLessonAllOnceScheduleCourtSelect = ({
           }
           selected={courtId}
           onChangeHandler={onChangeCourtHandler}
+          disabled={disabled}
         />
       </div>
     </div>

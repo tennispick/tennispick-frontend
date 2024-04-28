@@ -6,11 +6,15 @@ import { AllOnceFormDataProps } from '@features/schedule/type/regularLesson';
 import { LessonDateType } from '@features/lesson/type/lesson.type';
 
 type Props = {
+  lessonDateType: LessonDateType;
   setFormData: SetStateAction<AllOnceFormDataProps>;
+  disabled: boolean;
 };
 
 const ScheduleModalRegularLessonAllOnceScheduleLessonDateTypeInput = ({
+  lessonDateType,
   setFormData,
+  disabled,
 }: Props) => {
   const onChangeScheduleLessonDateTypeHandler = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -48,7 +52,8 @@ const ScheduleModalRegularLessonAllOnceScheduleLessonDateTypeInput = ({
           label="날짜로 선택"
           value="date"
           onChange={onChangeScheduleLessonDateTypeHandler}
-          defaultChecked
+          checked={lessonDateType === 'date'}
+          disabled={disabled}
         />
         <ScheduleModalInput
           id="day"
@@ -57,6 +62,7 @@ const ScheduleModalRegularLessonAllOnceScheduleLessonDateTypeInput = ({
           label="요일로 선택"
           value="day"
           onChange={onChangeScheduleLessonDateTypeHandler}
+          disabled={disabled}
         />
       </div>
     </div>

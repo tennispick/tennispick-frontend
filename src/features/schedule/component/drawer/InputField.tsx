@@ -25,8 +25,8 @@ const ScheduleDrawerInputField = ({
   lessonTime,
 }: Props) => {
   // TODO 이용가능한 코치 및 코트만 보여줘야 함
-  const { data: coachList } = useGetCoachListQuery();
-  const { data: courtList } = useGetCourtListQuery();
+  const { data: coachList } = useGetCoachListQuery({});
+  const { data: courtList } = useGetCourtListQuery({});
   const { data: lessonList } = useLessonListQuery({ type: 'all' });
 
   return (

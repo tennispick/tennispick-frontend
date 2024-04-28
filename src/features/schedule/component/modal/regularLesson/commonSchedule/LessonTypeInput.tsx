@@ -6,10 +6,12 @@ import { SetStateAction } from '@/types/index';
 import { LessonType } from '@features/lesson/type/lesson.type';
 
 type Props = {
+  lessonType: LessonType;
   setCommonData: SetStateAction<CommonDataProps>;
 };
 
 const ScheduleModalRegularLessonCommonScheduleLessonTypeInput = ({
+  lessonType,
   setCommonData,
 }: Props) => {
   const onChangeLessonTypeHandler = (
@@ -48,15 +50,16 @@ const ScheduleModalRegularLessonCommonScheduleLessonTypeInput = ({
           label="개인레슨"
           value="private"
           onChange={onChangeLessonTypeHandler}
-          defaultChecked
+          checked={lessonType === 'private'}
         />
         <ScheduleModalInput
           id="group"
           type="radio"
           name="lessonType"
           label="그룹레슨"
-          onChange={onChangeLessonTypeHandler}
           value="group"
+          onChange={onChangeLessonTypeHandler}
+          checked={lessonType === 'group'}
         />
       </div>
     </div>

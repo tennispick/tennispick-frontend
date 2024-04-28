@@ -8,6 +8,7 @@ export type CustomerLessonListQueryPayload = {
 
 export type CustomerLessonHistoryQueryPayload = {
   customerId: string;
+  lessonType: LessonType;
   page: number;
 };
 
@@ -36,6 +37,7 @@ export type CustomerLessonHistoryQueryData = {
     courtName: string;
     lessonType: LessonType;
     lessonDateType: LessonDateType;
+    isAble: string;
     date: string;
     day: DayType;
     startTime: string;

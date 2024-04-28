@@ -8,9 +8,11 @@ import Pagination from '@components/Pagination';
 import { MouseEvent } from 'react';
 import { useCustomerLessonHistoryQuery } from '@features/customer/query/CustomerQuery';
 import { CustomerLessonHistoryData } from '@apis/customer/customer.type';
+import { LessonType } from '@features/lesson/type/lesson.type';
 
 type Props = {
   customerId: string;
+  lessonType: LessonType;
   onClickCloseModalHandler: () => void;
   onClickSaveCustomerLessonHistoryHandler: (
     target: CustomerLessonHistoryData['lessonHistory'][],
@@ -19,6 +21,7 @@ type Props = {
 
 const ScheduleModalRecentHistoryModal = ({
   customerId,
+  lessonType,
   onClickCloseModalHandler,
   onClickSaveCustomerLessonHistoryHandler,
 }: Props) => {
@@ -27,9 +30,9 @@ const ScheduleModalRecentHistoryModal = ({
 
   const { data } = useCustomerLessonHistoryQuery({
     customerId: customerId,
+    lessonType: lessonType,
     page: currentPage,
   });
-
   const onClickHistoryRadioItemHandler = (e: MouseEvent<HTMLInputElement>) => {
     const { checked, value } = e.target as HTMLInputElement;
     if (checked) setCheckHistoryId(value);

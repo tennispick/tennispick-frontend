@@ -46,6 +46,7 @@ const ScheduleModalSearchInputAutoCompleteSearchDropdown = ({
 
     const response = await getCustomerLessonHistory({
       customerId: id,
+      lessonType,
       page: 1,
     });
     const { data } = response;

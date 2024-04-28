@@ -27,23 +27,25 @@ const ScheduleModalRegularLessonCommonSchedule = ({
   setCustomerId,
   lessonList,
 }: Props) => {
-  const { scheduleType, lessonType, customer, lesson } = commonData;
+  const { lessonType, customer, lesson } = commonData;
 
   return (
-    <>
-      <div css={{ position: 'relative', width: '20%' }}>
-        <ScheduleTypeInput setCommonData={setCommonData} />
-        <LessonTypeInput setCommonData={setCommonData} />
-        <CustomerInput
-          lesson={lesson}
-          lessonType={lessonType}
-          customer={customer}
-          setCommonData={setCommonData}
-          setCustomerId={setCustomerId}
-        />
-        <LessonSelect lessonId={lesson} lessonList={lessonList} />
-      </div>
-    </>
+    <div css={{ position: 'relative', width: '20%' }}>
+      <ScheduleTypeInput setCommonData={setCommonData} />
+      <LessonTypeInput lessonType={lessonType} setCommonData={setCommonData} />
+      <CustomerInput
+        lesson={lesson}
+        lessonType={lessonType}
+        customer={customer}
+        setCommonData={setCommonData}
+        setCustomerId={setCustomerId}
+      />
+      <LessonSelect
+        lessonId={lesson}
+        lessonList={lessonList}
+        setCommonData={setCommonData}
+      />
+    </div>
   );
 };
 

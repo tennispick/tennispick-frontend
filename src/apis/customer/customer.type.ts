@@ -11,6 +11,7 @@ export type CustomerLessonListApiPayload = {
 
 export type CustomerLessonHistoryPayload = {
   customerId: string;
+  lessonType: LessonType;
   page: number;
 };
 
@@ -30,6 +31,7 @@ export type CustomerLessonHistoryData = {
     courtName: string;
     lessonType: LessonType;
     lessonDateType: LessonDateType;
+    isAble: string;
     date: string;
     day: DayType;
     startTime: string;

@@ -43,12 +43,16 @@ const useCustomerLessonHistoryQuery = (
   params: CustomerLessonHistoryQueryPayload,
 ) => {
   try {
-    const { customerId, page } = params;
+    const { customerId, lessonType, page } = params;
     const { data, isLoading } = useQuery<
       Response<CustomerLessonHistoryQueryData>
     >({
-      queryKey: [URL_FETCH_CUSTOMER_LESSON_HISTORY, { customerId, page }],
-      queryFn: async () => await getCustomerLessonHistory({ customerId, page }),
+      queryKey: [
+        URL_FETCH_CUSTOMER_LESSON_HISTORY,
+        { customerId, lessonType, page },
+      ],
+      queryFn: async () =>
+        await getCustomerLessonHistory({ customerId, lessonType, page }),
       enabled: !!customerId,
     });
 

@@ -11,7 +11,7 @@ import { CoachListData } from '@apis/coach/coach.type';
 import { SchduleLessonByStartDateEndDatePeriodData } from '@apis/schedule/schedule.type';
 import { checkOnTime } from '@features/schedule/util/time';
 
-import { DetailCourt, Portal } from '@components/index';
+import { Portal } from '@components/index';
 import RightSideContainer from '@components/layer/RightSideContainer';
 import ScheduleDrawer from '../Drawer';
 
@@ -44,7 +44,7 @@ const ScheduleTableBody = ({ monthList, coach, data }: Props) => {
 
   return (
     <div css={{ fontSize: '0.85rem' }}>
-      {lessonTimeList.map(({ startTime, endTime }) => {
+      {lessonTimeList.map(({ startTime }) => {
         const filterstartTimeList = data.filter(
           (item: any) => item.startTime === startTime,
         );
