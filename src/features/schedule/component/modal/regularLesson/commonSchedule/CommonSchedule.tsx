@@ -30,7 +30,7 @@ const ScheduleModalRegularLessonCommonSchedule = ({
   const { lessonType, customer, lesson } = commonData;
 
   return (
-    <div css={{ position: 'relative', width: '20%' }}>
+    <div css={{ position: 'relative', width: '260px' }}>
       <ScheduleTypeInput setCommonData={setCommonData} />
       <LessonTypeInput lessonType={lessonType} setCommonData={setCommonData} />
       <CustomerInput
