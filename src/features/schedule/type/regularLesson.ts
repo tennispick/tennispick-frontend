@@ -1,5 +1,5 @@
 import { LessonDateType, LessonType } from '@features/lesson/type/lesson.type';
-import { ScheduleInputType } from '@features/schedule/type/schedule.type';
+import { DayType, ScheduleInputType } from '@features/schedule/type/schedule.type';
 
 export type CommonDataProps = {
   scheduleType: ScheduleInputType;
@@ -13,4 +13,15 @@ export type AllOnceFormDataProps = {
   lessonTime: string;
   coach: string;
   court: string;
+};
+
+export type IndividualFormDataProps = {
+  lessonDateType: LessonDateType;
+  lessonTime: string;
+  coach: string;
+  court: string;
+  date: Date;
+  day: DayType;
+  startTime: string;
+  endTime: string;
 };

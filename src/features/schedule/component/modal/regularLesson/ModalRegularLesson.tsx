@@ -13,7 +13,7 @@ import ScheduleModalRecentHistoryModal from '../recentHistoryModal/RecentHistory
 import CommonSchedule from './commonSchedule/CommonSchedule';
 import { LessonDateType, LessonType } from '@features/lesson/type/lesson.type';
 import ScheduleModalRegularLessonAllOnceSchedule from './allOnceSchedule/AllOnceSchedule';
-import { ScheduleInputType } from '@features/schedule/type/schedule.type';
+import { DayType, ScheduleInputType } from '@features/schedule/type/schedule.type';
 import { CustomerLessonListQueryData } from '@features/customer/type/customer.type';
 import { getTimeGap } from '@utils/date';
 import ScheduleModalRegularLessonIndividualSchedule from './individualSchedule/IndividualSchedule';
@@ -53,6 +53,9 @@ const ModalRegularLesson = () => {
 
   const [customerId, setCustomerId] = useState<string>('');
 
+  // TODO lessonTime은 store에서 꺼내와서 셋팅(일괄 및 개별)
+
+  // 일괄등록
   const [{ scheduleType, lessonType, customer, lesson }, setCommonData] =
     useState({
       scheduleType: 'all' as ScheduleInputType,
@@ -86,8 +89,19 @@ const ModalRegularLesson = () => {
     lessonType: lessonType,
   });
 
-  // 개별등록
-  const [] = useState();
+  // 개별등록 
+  const [individualData, setIndividualData] = useState([
+    {
+      lessonDateType: 'date' as LessonDateType,
+      lessonTime: '20',
+      coach: '',
+      court: '',
+      date: new Date(),
+      day: 'monday' as DayType,
+      startTime: '00:00',
+      endTime: '00:20',
+    }
+  ]);
 
   const onClickRecentHistoryModalCloseHandler = () => setCustomerId('');
 
@@ -219,6 +233,11 @@ const ModalRegularLesson = () => {
             ),
             individual: (
               <ScheduleModalRegularLessonIndividualSchedule
+                lesson={lesson}
+                individualData={individualData}
+                setIndividualData={setIndividualData}
+                courtList={courtList!}
+                coachList={coachList!}
               />
             )
           }[scheduleType]}

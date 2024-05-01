@@ -16,19 +16,16 @@ const ScheduleModalRegularLessonIndividualScheduleTableHeader = () => {
         },
       }}
     >
-      <div css={{ width: '12%', padding: '0 0 0 8px', margin: '0 6px 0 0' }}>
+      <div css={{ width: '15%', padding: '0 0 0 8px', margin: '0 6px 0 0' }}>
         강습날짜 유형
       </div>
-      <div css={{ width: '12%', padding: '0 0 0 8px', margin: '0 6px 0 0' }}>
+      <div css={{ width: '15%', padding: '0 0 0 8px', margin: '0 6px 0 0' }}>
         강습시간
       </div>
-      <div css={{ width: '12%', padding: '0 0 0 8px', margin: '0 6px 0 0' }}>
-        주 강습횟수
-      </div>
-      <div css={{ width: '12%', padding: '0 0 0 8px', margin: '0 6px 0 0' }}>
+      <div css={{ width: '15%', padding: '0 0 0 8px', margin: '0 6px 0 0' }}>
         강습코치
       </div>
-      <div css={{ width: '12%', padding: '0 0 0 8px', margin: '0 6px 0 0' }}>
+      <div css={{ width: '15%', padding: '0 0 0 8px', margin: '0 6px 0 0' }}>
         코트
       </div>
       <div css={{ width: '40%', padding: '0 0 0 8px', margin: '0 6px 0 0' }}>
