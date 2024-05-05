@@ -89,7 +89,6 @@ const ScheduleModalRecentHistoryModalTableBody = ({
             startTime,
             endTime,
           }) => {
-            console.log(isAble);
             return (
               <tr key={id}>
                 <td>

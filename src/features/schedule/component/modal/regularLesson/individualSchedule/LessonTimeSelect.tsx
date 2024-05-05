@@ -23,12 +23,13 @@ const data = [
 ];
 
 type Props = {
+  index: number;
   lessonTime: string;
   setFormData: SetStateAction<IndividualFormDataProps[]>;
   disabled: boolean;
 }
 
-const ScheduleModalRegularLessonIndividualScheduleLessonTimeSelect = ({ lessonTime: lessonTimeValue, setFormData, disabled }: Props) => {
+const ScheduleModalRegularLessonIndividualScheduleLessonTimeSelect = ({ index, lessonTime: lessonTimeValue, setFormData, disabled }: Props) => {
 
   const [lessonTime, setLessonTime] = useState(lessonTimeValue);
 
@@ -36,6 +37,15 @@ const ScheduleModalRegularLessonIndividualScheduleLessonTimeSelect = ({ lessonTi
     e.stopPropagation();
     const { value } = e.target;
     setLessonTime(value);
+
+    setFormData((prev) => {
+      const newFormData = [...prev];
+      newFormData[index] = {
+        ...newFormData[index],
+        lessonTime: value,
+      };
+      return newFormData;
+    })
   };
 
   return(

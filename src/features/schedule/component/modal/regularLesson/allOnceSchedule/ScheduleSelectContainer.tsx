@@ -117,7 +117,7 @@ const ScheduleModalRegularLessonAllOnceScheduleSelectContainer = ({
                 </div>
                 <StartTimeSelect
                   index={index}
-                  schedule={item}
+                  startTime={item.startTime}
                   onSelectTimeListHandler={onSelectTimeListHandler}
                   disabled={disabled}
                 />

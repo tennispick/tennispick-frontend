@@ -1,11 +1,10 @@
-import { ScheduleType } from '@features/schedule/type/schedule.type';
 import ScheduleModalSelect from './Select';
 import { getTimeList } from '@utils/date';
 import { ChangeEvent } from 'react';
 
 type Props = {
   index: number;
-  schedule: ScheduleType;
+  startTime: string;
   onSelectTimeListHandler: ({
     index,
     name,
@@ -20,7 +19,7 @@ type Props = {
 
 const ScheduleModalStartTimeSelect = ({
   index,
-  schedule,
+  startTime,
   onSelectTimeListHandler,
   disabled,
 }: Props) => {
@@ -42,7 +41,7 @@ const ScheduleModalStartTimeSelect = ({
         width: '120px',
         margin: '0 0 0 12px',
       }}
-      selected={schedule.startTime}
+      selected={startTime}
       onChangeHandler={onChangeHandler}
       disabled={disabled}
     />

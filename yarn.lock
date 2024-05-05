@@ -509,6 +509,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-devtools@npm:5.32.1":
+  version: 5.32.1
+  resolution: "@tanstack/query-devtools@npm:5.32.1"
+  checksum: ad13f04641cae4c6ac70094d4979a5b1cbf3dc7a4795fce6847eb645ba06bd9e0e7057af3204c5ee9170c011290504d0edf26a8cdb920a65c4b1bb97bcbe037a
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query-devtools@npm:^5.34.1":
+  version: 5.34.1
+  resolution: "@tanstack/react-query-devtools@npm:5.34.1"
+  dependencies:
+    "@tanstack/query-devtools": "npm:5.32.1"
+  peerDependencies:
+    "@tanstack/react-query": ^5.34.1
+    react: ^18.0.0
+  checksum: 92a9869c5f9e6296d6b03c385c1b3a5c2141e2534238bd2ddf0a14c9d734ae973d1503c4beadd084ecd5a190e8c451d55ec2f5fa544046159a5c68fa368aa8ab
+  languageName: node
+  linkType: hard
+
 "@tanstack/react-query@npm:^4.32.6":
   version: 4.33.0
   resolution: "@tanstack/react-query@npm:4.33.0"
@@ -7144,6 +7163,7 @@ __metadata:
     "@hookform/resolvers": "npm:^3.1.1"
     "@next/eslint-plugin-next": "npm:^14.1.0"
     "@tanstack/react-query": "npm:^4.32.6"
+    "@tanstack/react-query-devtools": "npm:^5.34.1"
     "@types/node": "npm:20.2.3"
     "@types/react": "npm:18.2.6"
     "@types/react-datepicker": "npm:^4.19.3"

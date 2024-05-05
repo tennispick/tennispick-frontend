@@ -40,9 +40,10 @@ const getScheduleLessonByDate = async (
 };
 
 const createScheduleLesson = async (params: any) => {
-  const { data } = await axios.post(`${URL_CREATE_SCHEDULE_LESSON}`, {
+  const param = params.length ? params : {
     ...params,
-  });
+  };
+  const { data } = await axios.post(`${URL_CREATE_SCHEDULE_LESSON}`, param);
   return data;
 };
 

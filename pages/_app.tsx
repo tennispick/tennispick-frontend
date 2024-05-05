@@ -6,6 +6,7 @@ import {
   QueryClientProvider,
   Hydrate,
 } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { AppLayout } from '@components/index';
 import { globalStyles } from '@styles/styles';
 import { config } from '@lib/react-query/config';
@@ -23,6 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={true} />
         <Hydrate state={pageProps?.dehydrateState}>
           {globalStyles}
           <AppLayout>

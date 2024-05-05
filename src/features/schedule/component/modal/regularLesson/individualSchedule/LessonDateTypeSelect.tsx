@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from "react";
 import ScheduleModalSelect from "../../Select";
 import { SetStateAction } from "@/types/index";
 import { IndividualFormDataProps } from "@features/schedule/type/regularLesson";
+import { LessonDateType } from "@features/lesson/type/lesson.type";
 
 const data = [
   {
@@ -15,19 +16,29 @@ const data = [
 ];
 
 type Props = {
-  lessonDateType: string;
+  index: number;
+  lessonDateType: LessonDateType;
   setFormData: SetStateAction<IndividualFormDataProps[]>;
   disabled: boolean;
 }
 
-const ScheduleModalRegularLessonIndividualScheduleLessonDateTypeSelect = ({ lessonDateType: lessonDateTypeValue, setFormData, disabled }: Props) => {
+const ScheduleModalRegularLessonIndividualScheduleLessonDateTypeSelect = ({ index, lessonDateType: lessonDateTypeValue, setFormData, disabled }: Props) => {
 
-  const [lessonDateType, setLessonDateType] = useState(lessonDateTypeValue);
+  const [lessonDateType, setLessonDateType] = useState<LessonDateType>(lessonDateTypeValue);
 
   const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     e.stopPropagation();
     const { value } = e.target;
-    setLessonDateType(value);
+    setLessonDateType(value as LessonDateType);
+
+    setFormData((prev) => {
+      const newFormData = [...prev];
+      newFormData[index] = {
+        ...newFormData[index],
+        lessonDateType: value as LessonDateType,
+      };
+      return newFormData;
+    })
   };
 
   return(

@@ -31,6 +31,7 @@ const RAW_RUNTIME_STATE =
           ["@hookform/resolvers", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:3.3.1"],\
           ["@next/eslint-plugin-next", "npm:14.1.0"],\
           ["@tanstack/react-query", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.33.0"],\
+          ["@tanstack/react-query-devtools", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:5.34.1"],\
           ["@types/node", "npm:20.2.3"],\
           ["@types/react", "npm:18.2.6"],\
           ["@types/react-datepicker", "npm:4.19.3"],\
@@ -711,6 +712,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@tanstack/query-devtools", [\
+      ["npm:5.32.1", {\
+        "packageLocation": "../../../../Users/Admin/AppData/Local/Yarn/Berry/cache/@tanstack-query-devtools-npm-5.32.1-8ee0e20ede-10c0.zip/node_modules/@tanstack/query-devtools/",\
+        "packageDependencies": [\
+          ["@tanstack/query-devtools", "npm:5.32.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@tanstack/react-query", [\
       ["npm:4.33.0", {\
         "packageLocation": "../../../../Users/Admin/AppData/Local/Yarn/Berry/cache/@tanstack-react-query-npm-4.33.0-e64030efd4-10c0.zip/node_modules/@tanstack/react-query/",\
@@ -738,6 +748,33 @@ const RAW_RUNTIME_STATE =
           "@types/react",\
           "react-dom",\
           "react-native",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@tanstack/react-query-devtools", [\
+      ["npm:5.34.1", {\
+        "packageLocation": "../../../../Users/Admin/AppData/Local/Yarn/Berry/cache/@tanstack-react-query-devtools-npm-5.34.1-dd2c2255a2-10c0.zip/node_modules/@tanstack/react-query-devtools/",\
+        "packageDependencies": [\
+          ["@tanstack/react-query-devtools", "npm:5.34.1"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:5.34.1", {\
+        "packageLocation": "./.yarn/__virtual__/@tanstack-react-query-devtools-virtual-db6ef9aa20/5/Users/Admin/AppData/Local/Yarn/Berry/cache/@tanstack-react-query-devtools-npm-5.34.1-dd2c2255a2-10c0.zip/node_modules/@tanstack/react-query-devtools/",\
+        "packageDependencies": [\
+          ["@tanstack/react-query-devtools", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:5.34.1"],\
+          ["@tanstack/query-devtools", "npm:5.32.1"],\
+          ["@tanstack/react-query", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.33.0"],\
+          ["@types/react", "npm:18.2.6"],\
+          ["@types/tanstack__react-query", null],\
+          ["react", "npm:18.2.0"]\
+        ],\
+        "packagePeers": [\
+          "@tanstack/react-query",\
+          "@types/react",\
+          "@types/tanstack__react-query",\
           "react"\
         ],\
         "linkType": "HARD"\
@@ -8526,6 +8563,7 @@ const RAW_RUNTIME_STATE =
           ["@hookform/resolvers", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:3.3.1"],\
           ["@next/eslint-plugin-next", "npm:14.1.0"],\
           ["@tanstack/react-query", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.33.0"],\
+          ["@tanstack/react-query-devtools", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:5.34.1"],\
           ["@types/node", "npm:20.2.3"],\
           ["@types/react", "npm:18.2.6"],\
           ["@types/react-datepicker", "npm:4.19.3"],\

@@ -17,39 +17,14 @@ import { DayType, ScheduleInputType } from '@features/schedule/type/schedule.typ
 import { CustomerLessonListQueryData } from '@features/customer/type/customer.type';
 import { getTimeGap } from '@utils/date';
 import ScheduleModalRegularLessonIndividualSchedule from './individualSchedule/IndividualSchedule';
+import { handleInputArrayValidationCheck } from '@utils/validation';
+
+import {
+  individualCreateFormValidationSet,
+} from '@features/schedule/util/inputFormValidationSet';
 
 const ModalRegularLesson = () => {
   const { mutate } = useScheduleMutation();
-
-  // const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-
-  //   const { scheduleType } = commonData;
-
-  //   const allCreateBody = { ...commonData, ...allOnceFormData };
-  //   const individualBody = {
-  //     ...commonData,
-  //     schedule: [...individualFormData],
-  //   };
-
-  //   if (scheduleType === 'all') {
-  //     const allCheck = handleInputValidationCheck(allCreateBody, {
-  //       ...commonDataValidationSet,
-  //       ...allCreateFormDataValidationSet,
-  //     });
-  //     if (!allCheck) return;
-  //   } else {
-  //     const individualCheck = handleInputArrayValidationCheck(individualBody, {
-  //       ...commonDataValidationSet,
-  //       ...individualCreateFormValidationSet,
-  //     });
-  //     if (!individualCheck) return;
-  //   }
-
-  //   const body = scheduleType === 'all' ? allCreateBody : individualBody;
-
-  //   mutate(body);
-  // };
 
   const [customerId, setCustomerId] = useState<string>('');
 
@@ -158,11 +133,10 @@ const ModalRegularLesson = () => {
     setCustomerId('');
   };
 
-  // TODO 개별등록
   const { data: isDuplicateList } = useDuplicateCheckScheduleLessonQuery({
     coach: coach,
     court: court,
-    schedule: scheduleType === 'all' ? allOnceSchedule : [],
+    schedule: allOnceSchedule,
   });
 
   const onSubmitAllCreateHandler: FormEventHandler<HTMLFormElement> = (e) => {
@@ -187,9 +161,25 @@ const ModalRegularLesson = () => {
     e,
   ) => {
     e.preventDefault();
+
+    const individualBody = {
+      scheduleType,
+      lessonType,
+      customer,
+      lesson,
+      schedule: [...individualData],
+    };
+    
+    const individualCheck = handleInputArrayValidationCheck(individualBody, {
+      ...individualCreateFormValidationSet,
+    });
+
+    if (!individualCheck) return;
+
+    mutate(individualBody);
   };
 
-  const submitButtoncheckDisabled = (lesson === '' || (isDuplicateList && isDuplicateList.length > 0)) ? true : false
+  const submitButtonCheckDisabled = (lesson === '' || (isDuplicateList && isDuplicateList.length > 0)) ? true : false
 
   useEffect(() => {
     document.addEventListener('keydown', (e) => {
@@ -236,6 +226,7 @@ const ModalRegularLesson = () => {
                 lesson={lesson}
                 individualData={individualData}
                 setIndividualData={setIndividualData}
+                lessonList={lessonList}
                 courtList={courtList!}
                 coachList={coachList!}
               />
@@ -257,10 +248,10 @@ const ModalRegularLesson = () => {
             margin: '24px 0 0 auto',
             borderRadius: '12px',
           }}
-          disabled={submitButtoncheckDisabled}
+          disabled={scheduleType === 'all' ? submitButtonCheckDisabled : (lesson === '' ? true : false)}
         />
       </form>
-      {customerId !== '' && (
+      {(customerId !== '' && scheduleType === 'all') && (
         <ScheduleModalRecentHistoryModal
           customerId={customerId}
           lessonType={lessonType}
