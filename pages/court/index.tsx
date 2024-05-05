@@ -55,7 +55,7 @@ const CourtPage = () => {
         </Portal>
       )}
       {showRightSide && (
-        <Portal id={'rightSide'}>
+        <Portal id={'drawer'}>
           <RightSideContainer
             title={'코트 상세정보'}
             showRightSide={showRightSide}

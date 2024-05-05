@@ -1,4 +1,15 @@
+import { LessonType } from '@features/lesson/type/lesson.type';
 import { ChangeEvent } from 'react';
+
+export type ScheduleInputType = 'all' | 'individual';
+export type DayType =
+  | 'monday'
+  | 'tuesday'
+  | 'wednesday'
+  | 'thursday'
+  | 'friday'
+  | 'saturday'
+  | 'sunday';
 
 type ScheduleLessonByDateQueryPayload = {
   day: Date;
@@ -11,11 +22,8 @@ type ScheduleLessonByStartDateEndDatePeriodQueryPayload = {
 
 type CommonFormInputType = {
   scheduleType: string;
-  lessonType: string;
-  customer: Array<{
-    id: string;
-    name: string;
-  }>;
+  lessonType: LessonType;
+  customer: { [key: string]: string }[];
   lesson: string;
 };
 

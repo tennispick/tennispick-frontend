@@ -1,3 +1,7 @@
+export type LessonDateType = 'date' | 'day';
+
+export type LessonType = 'private' | 'group';
+
 type LessonListQueryPayload = {
   type: string;
   isSuspense?: boolean;

@@ -17,9 +17,9 @@ const Schedule = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalType, setModalType] = useState<string>('');
 
-  const { data: coachList } = useGetCoachListQuery();
+  const { data: coachList } = useGetCoachListQuery({});
 
-  const { data: courtList } = useGetCourtListQuery();
+  const { data: courtList } = useGetCourtListQuery({});
 
   return (
     <>

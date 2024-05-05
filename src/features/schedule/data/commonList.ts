@@ -1,8 +1,18 @@
 import CalendarBlackIcon from '@icons/calendar_black.svg';
 import CustomerBlackIcon from '@icons/customer_black.svg';
 import LessonCouponBlackIcon from '@icons/lesson_coupon_black.svg';
+import { ScheduleFormInputListType } from '../type/data.type';
 
-const commonList = [
+type CommonListType = {
+  type: ScheduleFormInputListType;
+  fieldType: string;
+  title: string;
+  icon: string;
+  alt: string;
+  list: { value: string; label: string }[];
+};
+
+const commonList: CommonListType[] = [
   {
     type: 'scheduleType',
     fieldType: 'radio',

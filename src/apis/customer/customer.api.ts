@@ -1,14 +1,17 @@
 import {
   URL_DELETE_CUSTOMER,
   URL_FETCH_CUSTOMER_DETAIL,
+  URL_FETCH_CUSTOMER_LESSON_HISTORY,
   URL_FETCH_CUSTOMER_LESSON_LIST,
   URL_SEARCH_CUSTOMER_LIST_BY_KEYWORD,
 } from './customer.url';
 import { axios } from '@utils/axios';
 import {
   CustomerLessonListApiPayload,
+  CustomerLessonHistoryPayload,
   CustomerDetailApiPayLoad,
   CustomerDetailData,
+  CustomerLessonHistoryData,
   SearchCustomerListByKeywordApiPayload,
   CustomerDeleteApiPayload,
 } from './customer.type';
@@ -19,6 +22,13 @@ export const getCustomerLessonList = async (
 ) =>
   await axios.get(
     `${URL_FETCH_CUSTOMER_LESSON_LIST}/${params.id}?lessonType=${params.lessonType}`,
+  );
+
+export const getCustomerLessonHistory = async (
+  params: CustomerLessonHistoryPayload,
+): Promise<Response<CustomerLessonHistoryData>> =>
+  await axios.get(
+    `${URL_FETCH_CUSTOMER_LESSON_HISTORY}/${params.customerId}?lessonType=${params.lessonType}&page=${params.page}`,
   );
 
 export const getCustomerDetail = async (

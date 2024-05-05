@@ -54,6 +54,7 @@ export type CSS_TYPE = {
   flex?: string;
   flexDirection?: any;
   content?: string | number;
+  disabled?: boolean;
 
   /* Etc */
   isActive?: boolean;
@@ -120,10 +121,13 @@ export const globalStyles = (
         --blue500: rgba(0, 119, 240, 100); // #0077F0
         --blue900: rgba(208, 217, 255, 100); // #D0D9FF
 
+        --green050: rgba(0, 154, 136, 1); // #009A88
         --green100: rgba(3, 199, 90, 100); // #03C75A
         --green150: rgba(38, 173, 141, 100); // #26AD8D
         --green200: rgba(105, 149, 84, 100); // #699554
         --green900: rgba(177, 221, 210, 100); // #B1DDD2
+        --green960: rgba(206, 245, 227, 1); // #DCFAEC
+        --green980: rgba(220, 250, 236, 1); // #CEF5E3
 
         --purple100: rgba(118, 42, 194, 100); // #762AC2
 
@@ -280,6 +284,9 @@ export const ImageContainer = styled(Image)<CSS_TYPE>({}, (props) => ({
   left: props.left,
   right: props.right,
   cursor: props.cursor,
+  disabled: {
+    cursor: 'not-allowed',
+  },
 }));
 
 export const Button = styled.button<CSS_TYPE>(

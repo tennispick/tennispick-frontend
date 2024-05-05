@@ -1,9 +1,18 @@
-type CustomerLessonListQueryPayload = {
+import { LessonDateType, LessonType } from '@features/lesson/type/lesson.type';
+import { DayType } from '@features/schedule/type/schedule.type';
+
+export type CustomerLessonListQueryPayload = {
   id: string;
   lessonType: string;
 };
 
-type CustomerLessonListQueryData = {
+export type CustomerLessonHistoryQueryPayload = {
+  customerId: string;
+  lessonType: LessonType;
+  page: number;
+};
+
+export type CustomerLessonListQueryData = {
   id: number;
   centerId: number;
   customerId: number;
@@ -16,12 +25,27 @@ type CustomerLessonListQueryData = {
   updatedAt: string;
 };
 
-type CustomerDetailQueryPayLoad = {
-  id: string;
+export type CustomerLessonHistoryQueryData = {
+  lessonHistory: {
+    id: number;
+    customerName: string;
+    lessonId: number;
+    lessonName: string;
+    coachId: number;
+    coachName: string;
+    courtId: number;
+    courtName: string;
+    lessonType: LessonType;
+    lessonDateType: LessonDateType;
+    isAble: string;
+    date: string;
+    day: DayType;
+    startTime: string;
+    endTime: string;
+  };
+  totalPage: string;
 };
 
-export type {
-  CustomerLessonListQueryPayload,
-  CustomerLessonListQueryData,
-  CustomerDetailQueryPayLoad,
+export type CustomerDetailQueryPayLoad = {
+  id: string;
 };

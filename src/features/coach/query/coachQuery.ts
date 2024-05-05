@@ -6,7 +6,11 @@ import {
 } from '@apis/coach/coach.url';
 import { useQuery } from '@tanstack/react-query';
 
-export const useGetCoachListQuery = (): {
+export const useGetCoachListQuery = ({
+  enabled = true,
+}: {
+  enabled?: boolean;
+}): {
   data: CoachListData[] | undefined;
   isLoading?: boolean;
   error: unknown;
@@ -22,6 +26,7 @@ export const useGetCoachListQuery = (): {
       }
     },
     select: (data) => data.data,
+    enabled: enabled,
   });
 
   return {

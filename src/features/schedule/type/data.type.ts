@@ -11,8 +11,19 @@ type CommonListKeyType = keyof typeof commonDataValidationSet;
 type AllFormListKeyType = keyof typeof allCreateFormDataValidationSet;
 type IndividualFormListKeyType = keyof typeof individualCreateFormValidationSet;
 
+export type ScheduleFormInputListType =
+  | 'coach'
+  | 'court'
+  | 'scheduleType'
+  | 'lessonType'
+  | 'customer'
+  | 'lesson'
+  | 'lessonDateType'
+  | 'lessonTime'
+  | 'weeklyLessonCount';
+
 type TDataCommonList = {
-  type: string;
+  type: ScheduleFormInputListType;
   fieldType: string;
   title: string;
   icon: string;

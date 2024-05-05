@@ -12,6 +12,7 @@ type Props = {
     | undefined;
   onChangeFormData: UseInputType<HTMLInputElement>;
   disabled?: boolean;
+  value?: string;
 };
 
 const ScheduleModalRadioInput = ({
@@ -24,7 +25,6 @@ const ScheduleModalRadioInput = ({
     <div css={{ display: 'flex', alignItems: 'center' }}>
       {radioList?.map(({ label, value }, index) => {
         const isCheckLesson = type === 'lessonTime' && disabled;
-
         return (
           <InputContainer
             id={value as string}

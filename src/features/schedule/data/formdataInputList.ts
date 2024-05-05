@@ -1,6 +1,17 @@
 import CalendarBlackIcon from '@icons/calendar_black.svg';
 
-const formInputList = [
+import { ScheduleFormInputListType } from '../type/data.type';
+
+type FormInputListType = {
+  type: ScheduleFormInputListType;
+  fieldType: string;
+  title: string;
+  icon: string;
+  alt: string;
+  list: { value: string; label: string }[];
+};
+
+const formInputList: FormInputListType[] = [
   {
     type: 'lessonDateType',
     fieldType: 'radio',

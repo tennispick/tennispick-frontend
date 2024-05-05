@@ -6,7 +6,7 @@ type Props = {
 };
 
 const HomeCoachCard = ({ item }: Props) => {
-  const { id, name, birth, color, phone, customerLessonCount, position } = item;
+  const { id, name, color, customerLessonCount, position } = item;
 
   const onClickCoachHandler = () => (window.location.href = `/coach/${id}`);
 

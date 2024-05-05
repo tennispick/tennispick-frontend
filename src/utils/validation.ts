@@ -67,26 +67,7 @@ const handleInputArrayValidationCheck = (
   validation: ObjectType<string>,
 ) => {
   let result = true;
-  const { schedule, ...rest } = target;
-
-  // 공통적으로 체크해야하는 부분
-  common: for (const key of Object.keys(rest)) {
-    const type = typeof rest[key];
-
-    if (type === 'string') {
-      result = handleArrayStringValidationCheck(rest[key], key, validation);
-      if (!result) break common;
-    } else if (type === 'object') {
-      result = handleArrayValidationCheck(
-        rest[key] as unknown[],
-        key,
-        validation,
-      );
-      if (!result) break common;
-    }
-  }
-
-  if (!result) return result;
+  const { schedule } = target;
 
   result: for (
     let index = 0;
@@ -111,6 +92,8 @@ const handleInputArrayValidationCheck = (
       }
     }
   }
+
+  if (!result) return false;
 
   return result;
 };
