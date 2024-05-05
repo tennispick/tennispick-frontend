@@ -1,4 +1,3 @@
-import { PaymentType } from '@/types/payment';
 import { PaymentRefundType } from '@features/customer/type/payment.type';
 
 export type CustomerPaymentRefundListApiPayload = {

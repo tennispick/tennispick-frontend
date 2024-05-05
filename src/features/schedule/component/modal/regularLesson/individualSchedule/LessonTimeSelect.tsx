@@ -1,7 +1,7 @@
-import { ChangeEvent, useState } from "react";
-import ScheduleModalSelect from "../../Select";
-import { SetStateAction } from "@/types/index";
-import { IndividualFormDataProps } from "@features/schedule/type/regularLesson";
+import { ChangeEvent, useState } from 'react';
+import ScheduleModalSelect from '../../Select';
+import { SetStateAction } from '@/types/index';
+import { IndividualFormDataProps } from '@features/schedule/type/regularLesson';
 
 const data = [
   {
@@ -27,10 +27,14 @@ type Props = {
   lessonTime: string;
   setFormData: SetStateAction<IndividualFormDataProps[]>;
   disabled: boolean;
-}
+};
 
-const ScheduleModalRegularLessonIndividualScheduleLessonTimeSelect = ({ index, lessonTime: lessonTimeValue, setFormData, disabled }: Props) => {
-
+const ScheduleModalRegularLessonIndividualScheduleLessonTimeSelect = ({
+  index,
+  lessonTime: lessonTimeValue,
+  setFormData,
+  disabled,
+}: Props) => {
   const [lessonTime, setLessonTime] = useState(lessonTimeValue);
 
   const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -45,22 +49,22 @@ const ScheduleModalRegularLessonIndividualScheduleLessonTimeSelect = ({ index, l
         lessonTime: value,
       };
       return newFormData;
-    })
+    });
   };
 
-  return(
+  return (
     <ScheduleModalSelect
-      name='lessonTime'
+      name="lessonTime"
       data={data}
       css={{
         width: 'calc(15% - 8px)',
-        margin: '0 0 0 8px'
+        margin: '0 0 0 8px',
       }}
       selected={lessonTime}
       onChangeHandler={onChangeHandler}
       disabled={disabled}
     />
-  )
+  );
 };
 
 export default ScheduleModalRegularLessonIndividualScheduleLessonTimeSelect;

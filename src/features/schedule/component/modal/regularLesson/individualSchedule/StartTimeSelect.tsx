@@ -1,20 +1,23 @@
 import { getTimeList } from '@utils/date';
-import ScheduleModalSelect from "../../Select";
+import ScheduleModalSelect from '../../Select';
 
 type Props = {
   startTime: string;
   onChangeHandler: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   disabled: boolean;
-}
+};
 
-const ScheduleModalRegularLessonIndividualScheduleStartTimeSelect = ({ startTime, onChangeHandler ,disabled }: Props) =>{
-
+const ScheduleModalRegularLessonIndividualScheduleStartTimeSelect = ({
+  startTime,
+  onChangeHandler,
+  disabled,
+}: Props) => {
   const data = getTimeList({ isInclude: true }).map((item) => ({
     value: `${item}`,
     label: item,
   }));
 
-  return(
+  return (
     <ScheduleModalSelect
       name="startTime"
       data={data}
@@ -26,7 +29,7 @@ const ScheduleModalRegularLessonIndividualScheduleStartTimeSelect = ({ startTime
       onChangeHandler={onChangeHandler}
       disabled={disabled}
     />
-  )
+  );
 };
 
 export default ScheduleModalRegularLessonIndividualScheduleStartTimeSelect;

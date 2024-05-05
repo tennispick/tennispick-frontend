@@ -1,6 +1,5 @@
 import { Input } from '@components/index';
 import styled from '@emotion/styled';
-import { useState } from 'react';
 import { UseInputType } from 'src/types';
 
 type Props = {

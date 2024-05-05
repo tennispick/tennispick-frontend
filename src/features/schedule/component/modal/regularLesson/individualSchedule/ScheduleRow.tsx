@@ -1,19 +1,19 @@
-import { IndividualFormDataProps } from "@features/schedule/type/regularLesson";
-import CoachSelect from "./CoachSelect";
-import CourtSelect from "./CourtSelect";
-import LessonDateTypeSelect from "./LessonDateTypeSelect";
-import LessonTimeSelect from "./LessonTimeSelect";
-import ScheduleContainer from "./ScheduleContainer";
-import { SetStateAction } from "@/types/index";
+import { IndividualFormDataProps } from '@features/schedule/type/regularLesson';
+import CoachSelect from './CoachSelect';
+import CourtSelect from './CourtSelect';
+import LessonDateTypeSelect from './LessonDateTypeSelect';
+import LessonTimeSelect from './LessonTimeSelect';
+import ScheduleContainer from './ScheduleContainer';
+import { SetStateAction } from '@/types/index';
 import { CourtListData } from '@apis/court/court.type';
 import { CoachListData } from '@apis/coach/coach.type';
 import Image from 'next/image';
 import AddIcon from '@icons/add_circle.svg';
 import RemoveIcon from '@icons/remove.svg';
-import { LessonDateType } from "@features/lesson/type/lesson.type";
-import { DayType } from "@features/schedule/type/schedule.type";
-import { useDuplicateCheckScheduleLessonQuery } from "@features/schedule/query/scheduleQuery";
-import { numberZeroFillFormat } from "@utils/numberForm";
+import { LessonDateType } from '@features/lesson/type/lesson.type';
+import { DayType } from '@features/schedule/type/schedule.type';
+import { useDuplicateCheckScheduleLessonQuery } from '@features/schedule/query/scheduleQuery';
+import { numberZeroFillFormat } from '@utils/numberForm';
 
 type Props = {
   index: number;
@@ -24,10 +24,20 @@ type Props = {
   courtList: CourtListData[];
   remainLessonCount: number | undefined;
   disabled: boolean;
-}
+};
 
-const ScheduleModalRegularLessonIndividualScheduleRow = ({ index, individualData, setIndividualData, dataLength, coachList, courtList, remainLessonCount, disabled }: Props) => {
-  const { lessonDateType, lessonTime, coach, court, ...schedule } = individualData;
+const ScheduleModalRegularLessonIndividualScheduleRow = ({
+  index,
+  individualData,
+  setIndividualData,
+  dataLength,
+  coachList,
+  courtList,
+  remainLessonCount,
+  disabled,
+}: Props) => {
+  const { lessonDateType, lessonTime, coach, court, ...schedule } =
+    individualData;
 
   const targetDate = new Date(schedule.date);
   const targetYear = targetDate.getFullYear();
@@ -46,8 +56,7 @@ const ScheduleModalRegularLessonIndividualScheduleRow = ({ index, individualData
   });
 
   const isDuplicate = () => {
-
-    if(!isDuplicateList || isDuplicateList.length === 0) return false;
+    if (!isDuplicateList || isDuplicateList.length === 0) return false;
 
     const result = isDuplicateList.map((el: any) => {
       const { result } = el;
@@ -59,7 +68,7 @@ const ScheduleModalRegularLessonIndividualScheduleRow = ({ index, individualData
     });
 
     return result.includes(true);
-  }
+  };
 
   const onClickAppendScheduleRowHandler = () => {
     if (disabled) {
@@ -154,7 +163,7 @@ const ScheduleModalRegularLessonIndividualScheduleRow = ({ index, individualData
         >
           <Image
             src={AddIcon}
-            alt='add iocn'
+            alt="add iocn"
             width={24}
             height={24}
             css={{
@@ -165,7 +174,7 @@ const ScheduleModalRegularLessonIndividualScheduleRow = ({ index, individualData
           {index > 0 && (
             <Image
               src={RemoveIcon}
-              alt='remove iocn'
+              alt="remove iocn"
               width={24}
               height={24}
               css={{
@@ -177,9 +186,13 @@ const ScheduleModalRegularLessonIndividualScheduleRow = ({ index, individualData
           )}
         </div>
       </div>
-      {isDuplicate() && <div css={{ color: 'var(--red200)', padding: '16px 0 16px 12px' }}>예약이 불가능한 날짜에요.</div>}
+      {isDuplicate() && (
+        <div css={{ color: 'var(--red200)', padding: '16px 0 16px 12px' }}>
+          예약이 불가능한 날짜에요.
+        </div>
+      )}
     </>
-  )
+  );
 };
 
 export default ScheduleModalRegularLessonIndividualScheduleRow;

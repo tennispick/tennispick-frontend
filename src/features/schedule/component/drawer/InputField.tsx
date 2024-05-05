@@ -1,4 +1,3 @@
-// import { ScheduleLessonByStartDateEndDatePeriodPayload } from "@apis/schedule/schedule.type";
 import styled from '@emotion/styled';
 import DatePicker from 'react-datepicker';
 import { Input, Select } from '@components/index';

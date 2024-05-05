@@ -1,10 +1,10 @@
-import { IndividualFormDataProps } from "@features/schedule/type/regularLesson";
-import ScheduleRow from "./ScheduleRow";
-import ScheduleTableHeader from "./TableHeader";
-import { SetStateAction } from "@/types/index";
+import { IndividualFormDataProps } from '@features/schedule/type/regularLesson';
+import ScheduleRow from './ScheduleRow';
+import ScheduleTableHeader from './TableHeader';
+import { SetStateAction } from '@/types/index';
 import { CourtListData } from '@apis/court/court.type';
 import { CoachListData } from '@apis/coach/coach.type';
-import { CustomerLessonListQueryData } from "@features/customer/type/customer.type";
+import { CustomerLessonListQueryData } from '@features/customer/type/customer.type';
 
 type Props = {
   lesson: string;
@@ -13,18 +13,25 @@ type Props = {
   lessonList: CustomerLessonListQueryData[];
   coachList: CoachListData[];
   courtList: CourtListData[];
-}
+};
 
-const ScheduleModalRegularLessonIndividualSchedule = ({ lesson, individualData, setIndividualData, lessonList, coachList, courtList }: Props) => {
-
+const ScheduleModalRegularLessonIndividualSchedule = ({
+  lesson,
+  individualData,
+  setIndividualData,
+  lessonList,
+  coachList,
+  courtList,
+}: Props) => {
   const isDisabled = lesson === '' ? true : false;
-  const targetLesson = lessonList?.find(({ lessonId }) => String(lessonId) === lesson);
+  const targetLesson = lessonList?.find(
+    ({ lessonId }) => String(lessonId) === lesson,
+  );
 
   return (
-    <div css={{ width: 'calc(100% - 260px)'}}>
+    <div css={{ width: 'calc(100% - 260px)' }}>
       <ScheduleTableHeader />
-      {individualData.map(( data, index ) => {
-
+      {individualData.map((data, index) => {
         return (
           <ScheduleRow
             key={index}
@@ -37,10 +44,10 @@ const ScheduleModalRegularLessonIndividualSchedule = ({ lesson, individualData, 
             courtList={courtList}
             disabled={isDisabled}
           />
-        )
+        );
       })}
     </div>
-  )
+  );
 };
 
 export default ScheduleModalRegularLessonIndividualSchedule;

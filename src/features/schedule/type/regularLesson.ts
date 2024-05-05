@@ -1,5 +1,8 @@
 import { LessonDateType, LessonType } from '@features/lesson/type/lesson.type';
-import { DayType, ScheduleInputType } from '@features/schedule/type/schedule.type';
+import {
+  DayType,
+  ScheduleInputType,
+} from '@features/schedule/type/schedule.type';
 
 export type CommonDataProps = {
   scheduleType: ScheduleInputType;

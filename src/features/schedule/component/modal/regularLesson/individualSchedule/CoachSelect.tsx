@@ -1,8 +1,8 @@
-import { ChangeEvent, useEffect, useState } from "react";
-import ScheduleModalSelect from "../../Select";
-import { CoachListData } from "@apis/coach/coach.type";
-import { SetStateAction } from "@/types/index";
-import { IndividualFormDataProps } from "@features/schedule/type/regularLesson";
+import { ChangeEvent, useEffect, useState } from 'react';
+import ScheduleModalSelect from '../../Select';
+import { CoachListData } from '@apis/coach/coach.type';
+import { SetStateAction } from '@/types/index';
+import { IndividualFormDataProps } from '@features/schedule/type/regularLesson';
 
 type Props = {
   index: number;
@@ -10,10 +10,15 @@ type Props = {
   data: CoachListData[];
   setFormData: SetStateAction<IndividualFormDataProps[]>;
   disabled: boolean;
-}
+};
 
-const ScheduleModalRegularLessonIndividualScheduleCoachSelect = ({ index, coach, data, setFormData, disabled }: Props) => {
-
+const ScheduleModalRegularLessonIndividualScheduleCoachSelect = ({
+  index,
+  coach,
+  data,
+  setFormData,
+  disabled,
+}: Props) => {
   const [coachId, setCoachId] = useState(coach);
 
   const transferCoachListFormat = (data: CoachListData[]) =>
@@ -31,12 +36,12 @@ const ScheduleModalRegularLessonIndividualScheduleCoachSelect = ({ index, coach,
         coach: value,
       };
       return newFormData;
-    })
+    });
   };
 
   useEffect(() => {
     setCoachId(coach);
-  }, [coach])
+  }, [coach]);
 
   useEffect(() => {
     if (data && data.length > 0) {
@@ -49,11 +54,11 @@ const ScheduleModalRegularLessonIndividualScheduleCoachSelect = ({ index, coach,
         return newFormData;
       });
     }
-  }, [data, setFormData])
+  }, [data, setFormData]);
 
-  return(
+  return (
     <ScheduleModalSelect
-      name='coach'
+      name="coach"
       data={
         data!.length > 0
           ? transferCoachListFormat(data!)
@@ -61,13 +66,13 @@ const ScheduleModalRegularLessonIndividualScheduleCoachSelect = ({ index, coach,
       }
       css={{
         width: 'calc(15% - 8px)',
-        margin: '0 0 0 8px'
+        margin: '0 0 0 8px',
       }}
       selected={coachId}
       onChangeHandler={onChangeHandler}
       disabled={disabled}
     />
-  )
+  );
 };
 
 export default ScheduleModalRegularLessonIndividualScheduleCoachSelect;

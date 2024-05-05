@@ -1,12 +1,12 @@
-import { LessonDateType } from "@features/lesson/type/lesson.type";
-import { DayType } from "@features/schedule/type/schedule.type";
-import ScheduleByDate from "./ScheduleByDate";
-import ScheduleByDay from "./ScheduleByDay";
-import { SetStateAction } from "@/types/index";
-import { IndividualFormDataProps } from "@features/schedule/type/regularLesson";
-import { getDayOfThisWeek } from "@utils/date";
-import StartTimeSelect from "./StartTimeSelect";
-import EndTimeSelect from "./EndTimeSelect";
+import { LessonDateType } from '@features/lesson/type/lesson.type';
+import { DayType } from '@features/schedule/type/schedule.type';
+import ScheduleByDate from './ScheduleByDate';
+import ScheduleByDay from './ScheduleByDay';
+import { SetStateAction } from '@/types/index';
+import { IndividualFormDataProps } from '@features/schedule/type/regularLesson';
+import { getDayOfThisWeek } from '@utils/date';
+import StartTimeSelect from './StartTimeSelect';
+import EndTimeSelect from './EndTimeSelect';
 
 type Props = {
   index: number;
@@ -22,7 +22,14 @@ type Props = {
   disabled: boolean;
 };
 
-const ScheduleModalRegularLessonIndividualScheduleContainer = ({ index, lessonDateType, lessonTime, schedule, setFormData, disabled }: Props) => {
+const ScheduleModalRegularLessonIndividualScheduleContainer = ({
+  index,
+  lessonDateType,
+  lessonTime,
+  schedule,
+  setFormData,
+  disabled,
+}: Props) => {
   const { date, day, startTime } = schedule;
 
   const onChangeDateHandler = (date: Date) => {
@@ -33,8 +40,8 @@ const ScheduleModalRegularLessonIndividualScheduleContainer = ({ index, lessonDa
         date: date as Date,
       };
       return newFormData;
-    })
-  }
+    });
+  };
 
   const onChangeDayHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
@@ -46,8 +53,8 @@ const ScheduleModalRegularLessonIndividualScheduleContainer = ({ index, lessonDa
         day: value as DayType,
       };
       return newFormData;
-    })
-  }
+    });
+  };
 
   const onChangeTimeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -58,26 +65,29 @@ const ScheduleModalRegularLessonIndividualScheduleContainer = ({ index, lessonDa
         [name]: value,
       };
       return newFormData;
-    })
+    });
   };
 
   return (
     <>
-      {{
-        date:
-          <ScheduleByDate
-            date={date}
-            onChangeHandler={onChangeDateHandler}
-            disabled={disabled}
-          />
-          ,
-        day:
-          <ScheduleByDay
-            day={day}
-            onChangeHandler={onChangeDayHandler}
-            disabled={disabled}
-          />,
-      }[lessonDateType]}
+      {
+        {
+          date: (
+            <ScheduleByDate
+              date={date}
+              onChangeHandler={onChangeDateHandler}
+              disabled={disabled}
+            />
+          ),
+          day: (
+            <ScheduleByDay
+              day={day}
+              onChangeHandler={onChangeDayHandler}
+              disabled={disabled}
+            />
+          ),
+        }[lessonDateType]
+      }
       <StartTimeSelect
         startTime={startTime}
         onChangeHandler={onChangeTimeHandler}
@@ -91,7 +101,7 @@ const ScheduleModalRegularLessonIndividualScheduleContainer = ({ index, lessonDa
         disabled={disabled}
       />
     </>
-  )
+  );
 };
 
 export default ScheduleModalRegularLessonIndividualScheduleContainer;

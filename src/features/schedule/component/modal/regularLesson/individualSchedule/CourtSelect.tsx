@@ -1,8 +1,8 @@
-import { ChangeEvent, useState, useEffect } from "react";
-import ScheduleModalSelect from "../../Select";
-import { CourtListData } from "@apis/court/court.type";
-import { SetStateAction } from "@/types/index";
-import { IndividualFormDataProps } from "@features/schedule/type/regularLesson";
+import { ChangeEvent, useState, useEffect } from 'react';
+import ScheduleModalSelect from '../../Select';
+import { CourtListData } from '@apis/court/court.type';
+import { SetStateAction } from '@/types/index';
+import { IndividualFormDataProps } from '@features/schedule/type/regularLesson';
 
 type Props = {
   index: number;
@@ -10,10 +10,15 @@ type Props = {
   data: CourtListData[];
   setFormData: SetStateAction<IndividualFormDataProps[]>;
   disabled: boolean;
-}
+};
 
-const ScheduleModalRegularLessonIndividualScheduleCourtSelect = ({ index, court, data, setFormData, disabled }: Props) => {
-
+const ScheduleModalRegularLessonIndividualScheduleCourtSelect = ({
+  index,
+  court,
+  data,
+  setFormData,
+  disabled,
+}: Props) => {
   const [courtId, setCourtId] = useState(court);
 
   const transferCourtListFormat = (data: CourtListData[]) =>
@@ -31,12 +36,12 @@ const ScheduleModalRegularLessonIndividualScheduleCourtSelect = ({ index, court,
         court: value,
       };
       return newFormData;
-    })
+    });
   };
 
   useEffect(() => {
     setCourtId(court);
-  }, [court])
+  }, [court]);
 
   useEffect(() => {
     if (data && data.length > 0) {
@@ -49,11 +54,11 @@ const ScheduleModalRegularLessonIndividualScheduleCourtSelect = ({ index, court,
         return newFormData;
       });
     }
-  }, [data, setFormData])
+  }, [data, setFormData]);
 
-  return(
+  return (
     <ScheduleModalSelect
-      name='court'
+      name="court"
       data={
         data!.length > 0
           ? transferCourtListFormat(data!)
@@ -61,13 +66,13 @@ const ScheduleModalRegularLessonIndividualScheduleCourtSelect = ({ index, court,
       }
       css={{
         width: 'calc(15% - 8px)',
-        margin: '0 0 0 8px'
+        margin: '0 0 0 8px',
       }}
       selected={courtId}
       onChangeHandler={onChangeHandler}
       disabled={disabled}
     />
-  )
+  );
 };
 
 export default ScheduleModalRegularLessonIndividualScheduleCourtSelect;

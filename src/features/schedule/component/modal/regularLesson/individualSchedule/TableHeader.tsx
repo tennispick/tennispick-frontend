@@ -1,5 +1,5 @@
 const ScheduleModalRegularLessonIndividualScheduleTableHeader = () => {
-  return(
+  return (
     <div
       css={{
         position: 'relative',
@@ -32,7 +32,7 @@ const ScheduleModalRegularLessonIndividualScheduleTableHeader = () => {
         스케줄 등록
       </div>
     </div>
-  )
+  );
 };
 
 export default ScheduleModalRegularLessonIndividualScheduleTableHeader;

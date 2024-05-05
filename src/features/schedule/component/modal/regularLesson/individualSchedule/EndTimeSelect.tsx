@@ -1,8 +1,8 @@
-import { getEndTimeByStartTime } from "@utils/date";
-import ScheduleModalSelect from "../../Select";
-import { useEffect } from "react";
-import { SetStateAction } from "@/types/index";
-import { IndividualFormDataProps } from "@features/schedule/type/regularLesson";
+import { getEndTimeByStartTime } from '@utils/date';
+import ScheduleModalSelect from '../../Select';
+import { useEffect } from 'react';
+import { SetStateAction } from '@/types/index';
+import { IndividualFormDataProps } from '@features/schedule/type/regularLesson';
 
 type Props = {
   index: number;
@@ -10,10 +10,15 @@ type Props = {
   lessonTime: string;
   setFormData: SetStateAction<IndividualFormDataProps[]>;
   disabled: boolean;
-}
+};
 
-const ScheduleModalRegularLessonIndividualScheduleEndTimeSelect = ({ index, startTime, lessonTime, setFormData, disabled }: Props) =>{
-
+const ScheduleModalRegularLessonIndividualScheduleEndTimeSelect = ({
+  index,
+  startTime,
+  lessonTime,
+  setFormData,
+  disabled,
+}: Props) => {
   const endTime = getEndTimeByStartTime(
     startTime,
     lessonTime ? lessonTime : '20',
@@ -28,10 +33,10 @@ const ScheduleModalRegularLessonIndividualScheduleEndTimeSelect = ({ index, star
         endTime: endTime,
       };
       return newFormData;
-    })
-  }, [setFormData, startTime])
+    });
+  }, [setFormData, startTime]);
 
-  return(
+  return (
     <ScheduleModalSelect
       name="endTime"
       data={data}
@@ -43,7 +48,7 @@ const ScheduleModalRegularLessonIndividualScheduleEndTimeSelect = ({ index, star
       onChangeHandler={() => {}}
       disabled={disabled}
     />
-  )
+  );
 };
 
 export default ScheduleModalRegularLessonIndividualScheduleEndTimeSelect;

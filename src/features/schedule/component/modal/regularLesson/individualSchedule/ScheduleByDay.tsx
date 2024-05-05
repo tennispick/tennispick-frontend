@@ -14,7 +14,6 @@ const ScheduleModalRegularLessonIndividualScheduleByDay = ({
   onChangeHandler,
   disabled,
 }: Props) => {
-
   const data = dayList.map(({ name, krName }) => ({
     value: name,
     label: krName,
@@ -26,7 +25,7 @@ const ScheduleModalRegularLessonIndividualScheduleByDay = ({
       data={data}
       css={{
         width: 'calc(15% - 16px)',
-        margin: '0 0 0 8px'
+        margin: '0 0 0 8px',
       }}
       selected={day}
       onChangeHandler={onChangeHandler}

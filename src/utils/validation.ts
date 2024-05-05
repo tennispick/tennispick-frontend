@@ -82,8 +82,7 @@ const handleInputArrayValidationCheck = (
       if (type === 'string') {
         result = handleArrayStringValidationCheck(item[key], key, validation);
         if (!result) break result;
-      }
-      else if (type === 'object') {
+      } else if (type === 'object') {
         result = handleArrayValidationCheck(
           item[key] as unknown as unknown[],
           key,
@@ -94,7 +93,7 @@ const handleInputArrayValidationCheck = (
     }
   }
 
-  if(!result) return false;
+  if (!result) return false;
 
   return result;
 };

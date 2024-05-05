@@ -13,15 +13,16 @@ import ScheduleModalRecentHistoryModal from '../recentHistoryModal/RecentHistory
 import CommonSchedule from './commonSchedule/CommonSchedule';
 import { LessonDateType, LessonType } from '@features/lesson/type/lesson.type';
 import ScheduleModalRegularLessonAllOnceSchedule from './allOnceSchedule/AllOnceSchedule';
-import { DayType, ScheduleInputType } from '@features/schedule/type/schedule.type';
+import {
+  DayType,
+  ScheduleInputType,
+} from '@features/schedule/type/schedule.type';
 import { CustomerLessonListQueryData } from '@features/customer/type/customer.type';
 import { getTimeGap } from '@utils/date';
 import ScheduleModalRegularLessonIndividualSchedule from './individualSchedule/IndividualSchedule';
 import { handleInputArrayValidationCheck } from '@utils/validation';
 
-import {
-  individualCreateFormValidationSet,
-} from '@features/schedule/util/inputFormValidationSet';
+import { individualCreateFormValidationSet } from '@features/schedule/util/inputFormValidationSet';
 
 const ModalRegularLesson = () => {
   const { mutate } = useScheduleMutation();
@@ -64,7 +65,7 @@ const ModalRegularLesson = () => {
     lessonType: lessonType,
   });
 
-  // 개별등록 
+  // 개별등록
   const [individualData, setIndividualData] = useState([
     {
       lessonDateType: 'date' as LessonDateType,
@@ -75,7 +76,7 @@ const ModalRegularLesson = () => {
       day: 'monday' as DayType,
       startTime: '00:00',
       endTime: '00:20',
-    }
+    },
   ]);
 
   const onClickRecentHistoryModalCloseHandler = () => setCustomerId('');
@@ -169,7 +170,7 @@ const ModalRegularLesson = () => {
       lesson,
       schedule: [...individualData],
     };
-    
+
     const individualCheck = handleInputArrayValidationCheck(individualBody, {
       ...individualCreateFormValidationSet,
     });
@@ -179,7 +180,10 @@ const ModalRegularLesson = () => {
     mutate(individualBody);
   };
 
-  const submitButtonCheckDisabled = (lesson === '' || (isDuplicateList && isDuplicateList.length > 0)) ? true : false
+  const submitButtonCheckDisabled =
+    lesson === '' || (isDuplicateList && isDuplicateList.length > 0)
+      ? true
+      : false;
 
   useEffect(() => {
     document.addEventListener('keydown', (e) => {
@@ -208,30 +212,32 @@ const ModalRegularLesson = () => {
             setCustomerId={setCustomerId}
             lessonList={lessonList}
           />
-          {{
-            all: (
-              <ScheduleModalRegularLessonAllOnceSchedule
-                allOnceData={{ lessonDateType, lessonTime, coach, court }}
-                setAllOnceData={setAllOnceData}
-                lesson={lesson}
-                courtList={courtList!}
-                coachList={coachList!}
-                allOnceSchedule={allOnceSchedule}
-                setAllOnceSchedule={setAllOnceSchedule}
-                isDuplicateList={isDuplicateList}
-              />
-            ),
-            individual: (
-              <ScheduleModalRegularLessonIndividualSchedule
-                lesson={lesson}
-                individualData={individualData}
-                setIndividualData={setIndividualData}
-                lessonList={lessonList}
-                courtList={courtList!}
-                coachList={coachList!}
-              />
-            )
-          }[scheduleType]}
+          {
+            {
+              all: (
+                <ScheduleModalRegularLessonAllOnceSchedule
+                  allOnceData={{ lessonDateType, lessonTime, coach, court }}
+                  setAllOnceData={setAllOnceData}
+                  lesson={lesson}
+                  courtList={courtList!}
+                  coachList={coachList!}
+                  allOnceSchedule={allOnceSchedule}
+                  setAllOnceSchedule={setAllOnceSchedule}
+                  isDuplicateList={isDuplicateList}
+                />
+              ),
+              individual: (
+                <ScheduleModalRegularLessonIndividualSchedule
+                  lesson={lesson}
+                  individualData={individualData}
+                  setIndividualData={setIndividualData}
+                  lessonList={lessonList}
+                  courtList={courtList!}
+                  coachList={coachList!}
+                />
+              ),
+            }[scheduleType]
+          }
         </div>
         <Button
           type="submit"
@@ -248,10 +254,16 @@ const ModalRegularLesson = () => {
             margin: '24px 0 0 auto',
             borderRadius: '12px',
           }}
-          disabled={scheduleType === 'all' ? submitButtonCheckDisabled : (lesson === '' ? true : false)}
+          disabled={
+            scheduleType === 'all'
+              ? submitButtonCheckDisabled
+              : lesson === ''
+              ? true
+              : false
+          }
         />
       </form>
-      {(customerId !== '' && scheduleType === 'all') && (
+      {customerId !== '' && scheduleType === 'all' && (
         <ScheduleModalRecentHistoryModal
           customerId={customerId}
           lessonType={lessonType}

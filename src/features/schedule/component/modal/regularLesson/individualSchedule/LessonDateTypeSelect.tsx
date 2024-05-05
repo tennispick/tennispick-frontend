@@ -1,8 +1,8 @@
-import { ChangeEvent, useState } from "react";
-import ScheduleModalSelect from "../../Select";
-import { SetStateAction } from "@/types/index";
-import { IndividualFormDataProps } from "@features/schedule/type/regularLesson";
-import { LessonDateType } from "@features/lesson/type/lesson.type";
+import { ChangeEvent, useState } from 'react';
+import ScheduleModalSelect from '../../Select';
+import { SetStateAction } from '@/types/index';
+import { IndividualFormDataProps } from '@features/schedule/type/regularLesson';
+import { LessonDateType } from '@features/lesson/type/lesson.type';
 
 const data = [
   {
@@ -20,11 +20,16 @@ type Props = {
   lessonDateType: LessonDateType;
   setFormData: SetStateAction<IndividualFormDataProps[]>;
   disabled: boolean;
-}
+};
 
-const ScheduleModalRegularLessonIndividualScheduleLessonDateTypeSelect = ({ index, lessonDateType: lessonDateTypeValue, setFormData, disabled }: Props) => {
-
-  const [lessonDateType, setLessonDateType] = useState<LessonDateType>(lessonDateTypeValue);
+const ScheduleModalRegularLessonIndividualScheduleLessonDateTypeSelect = ({
+  index,
+  lessonDateType: lessonDateTypeValue,
+  setFormData,
+  disabled,
+}: Props) => {
+  const [lessonDateType, setLessonDateType] =
+    useState<LessonDateType>(lessonDateTypeValue);
 
   const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     e.stopPropagation();
@@ -38,22 +43,22 @@ const ScheduleModalRegularLessonIndividualScheduleLessonDateTypeSelect = ({ inde
         lessonDateType: value as LessonDateType,
       };
       return newFormData;
-    })
+    });
   };
 
-  return(
+  return (
     <ScheduleModalSelect
-      name='lessonDateType'
+      name="lessonDateType"
       data={data}
       css={{
         width: 'calc(15% - 8px)',
-        margin: '0 0 0 8px'
+        margin: '0 0 0 8px',
       }}
       selected={lessonDateType}
       onChangeHandler={onChangeHandler}
       disabled={disabled}
     />
-  )
+  );
 };
 
 export default ScheduleModalRegularLessonIndividualScheduleLessonDateTypeSelect;
