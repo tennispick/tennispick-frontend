@@ -28,6 +28,7 @@ const CustomerPayment = ({ id }: Props) => {
     setShowModal(true);
     setModalType('payment');
   };
+
   const onClickOpenRefundModalHandler = (
     e: MouseEvent<HTMLButtonElement>,
     target: CustomerPaymentRefundData,
