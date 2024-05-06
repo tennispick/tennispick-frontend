@@ -1,6 +1,7 @@
 import {
   URL_CREATE_PAYMENT,
   URL_CREATE_REFUND,
+  URL_DELETE_REFUND,
   URL_FETCH_PAYMENT_REFUND_LIST,
   URL_FETCH_TOTAL_COACH_SALES,
   URL_FETCH_TOTAL_SALES,
@@ -63,3 +64,10 @@ export const createCustomerPayment = async (
 export const createCustomerRefund = async (
   params: CustomerRefundCreateApiPayload,
 ) => await axios.post(`${URL_CREATE_REFUND}`, params);
+
+export const cancelCustomerRefund = async (id: number) =>
+  await axios.delete(`${URL_DELETE_REFUND}`, {
+    params: {
+      id,
+    },
+  });

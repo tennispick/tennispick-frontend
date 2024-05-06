@@ -6,6 +6,7 @@ import {
   transferPaymentType,
 } from '@features/customer/util/payment';
 import { addNumberCommas } from '@utils/numberForm';
+import { cancelCustomerRefund } from '@apis/payment/payment.api';
 
 type Props = {
   data: CustomerPaymentRefundData[];
@@ -13,6 +14,16 @@ type Props = {
 
 const CustomerDetailPaymentRefundRefundList = ({ data }: Props) => {
   if (data.length === 0) return <NoResult description={'환불내역이 없어요.'} />;
+
+  const onClickRefundCancelHandler = async (id: number) => {
+    if (confirm('환불 취소를 진행 하시겠습니까?')) {
+      const { data } = await cancelCustomerRefund(id);
+      if (data.affectedRows > 0) alert('환불 취소가 정상적으로 진행되었어요.');
+      else alert('환불 취소에 실패했어요.\n관리자에게 문의해주세요.');
+
+      window.location.reload();
+    }
+  };
 
   return (
     <>
@@ -29,11 +40,12 @@ const CustomerDetailPaymentRefundRefundList = ({ data }: Props) => {
       >
         <div css={{ width: '20%' }}>레슨권</div>
         <div css={{ width: '15%' }}>환불일</div>
-        <div css={{ width: '13%' }}>결제유형</div>
-        <div css={{ width: '13%' }}>할인유형</div>
-        <div css={{ width: '13%' }}>할인금액</div>
-        <div css={{ width: '13%' }}>결제금액</div>
-        <div css={{ width: '13%' }}>환불금액</div>
+        <div css={{ width: '12%' }}>결제유형</div>
+        <div css={{ width: '12%' }}>할인유형</div>
+        <div css={{ width: '10%' }}>할인금액</div>
+        <div css={{ width: '10%' }}>결제금액</div>
+        <div css={{ width: '10%' }}>환불금액</div>
+        <div css={{ width: '11%' }} />
       </div>
       <div
         css={{
@@ -74,19 +86,36 @@ const CustomerDetailPaymentRefundRefundList = ({ data }: Props) => {
                 {lessonName}
               </div>
               <div css={{ width: '15%' }}>{createdAt}</div>
-              <div css={{ width: '13%' }}>{transferPaymentType(type)}</div>
-              <div css={{ width: '13%' }}>
+              <div css={{ width: '12%' }}>{transferPaymentType(type)}</div>
+              <div css={{ width: '12%' }}>
                 {discountType ? transferDiscountType(discountType) : '-'}
               </div>
-              <div css={{ width: '13%' }}>
+              <div css={{ width: '10%' }}>
                 {discountPrice === 0 || !discountPrice
                   ? '-'
                   : addNumberCommas(discountPrice)}
               </div>
-              <div css={{ width: '13%' }}>{addNumberCommas(totalPrice)}</div>
-              <div css={{ width: '13%' }}>
+              <div css={{ width: '10%' }}>{addNumberCommas(totalPrice)}</div>
+              <div css={{ width: '10%' }}>
                 {refundPrice ? addNumberCommas(refundPrice) : '-'}
               </div>
+              <button
+                type="button"
+                onClick={() => onClickRefundCancelHandler(id)}
+                css={{
+                  width: '11%',
+                  backgroundColor: 'var(--business-color)',
+                  color: 'var(--white100)',
+                  fontWeight: '500',
+                  padding: '8px 0',
+                  borderRadius: '6px',
+                  border: 0,
+                  outline: 0,
+                  cursor: 'pointer',
+                }}
+              >
+                환불취소
+              </button>
             </CustomerDetailPaymentRefundTableRow>
           );
         })}
