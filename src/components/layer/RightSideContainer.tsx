@@ -6,11 +6,11 @@ import { fadeOutRight, fadeRight } from '@styles/animation';
 import { OnClickRefOutSideCloseHandler } from '@utils/onClick';
 import { CloseBtnIcon } from '@icons/index';
 
-interface RightSideProps extends PropsWithChildren {
+type RightSideProps = {
   title?: string;
   showRightSide: boolean;
   setShowRightSide: Dispatch<SetStateAction<boolean>>;
-}
+} & PropsWithChildren;
 
 const RightSideContainer = ({
   title = '제목 없음',

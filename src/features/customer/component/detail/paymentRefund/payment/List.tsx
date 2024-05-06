@@ -1,12 +1,14 @@
 import { CustomerPaymentRefundData } from '@apis/payment/payment.type';
-import { NoResult } from '@components/index';
+import { NoResult, Portal } from '@components/index';
 import CustomerDetailPaymentRefundTableRow from '../TableRow';
 import {
   transferDiscountType,
   transferPaymentType,
 } from '@features/customer/util/payment';
 import { addNumberCommas } from '@utils/numberForm';
-import { MouseEvent } from 'react';
+import { MouseEvent, useState } from 'react';
+import RightSideContainer from '@components/layer/RightSideContainer';
+import DrawerPayment from '../../drawer/Payment';
 
 type Props = {
   data: CustomerPaymentRefundData[];
@@ -21,6 +23,10 @@ const CustomerDetailPaymentRefundPaymentList = ({
   onClickOpenRefundModalHandler,
 }: Props) => {
   if (data.length === 0) return <NoResult description={'결제내역이 없어요.'} />;
+
+  const [showDrawer, setShowDrawer] = useState<boolean>(false);
+  const [selectedPaymentItem, setSelectedPaymentItem] =
+    useState<CustomerPaymentRefundData>();
 
   return (
     <>
@@ -69,7 +75,10 @@ const CustomerDetailPaymentRefundPaymentList = ({
           const isDisabledRefund = remainLessonCount === 0;
 
           // 상세보기
-          const onClickPaymentRowHandler = () => {};
+          const onClickPaymentRowHandler = () => {
+            setShowDrawer(true);
+            setSelectedPaymentItem(item);
+          };
 
           return (
             <CustomerDetailPaymentRefundTableRow
@@ -133,6 +142,17 @@ const CustomerDetailPaymentRefundPaymentList = ({
           );
         })}
       </div>
+      {showDrawer && (
+        <Portal id="drawer">
+          <RightSideContainer
+            title={`${selectedPaymentItem?.lessonName} 결제내역`}
+            showRightSide={showDrawer}
+            setShowRightSide={setShowDrawer}
+          >
+            <DrawerPayment data={selectedPaymentItem!} />
+          </RightSideContainer>
+        </Portal>
+      )}
     </>
   );
 };

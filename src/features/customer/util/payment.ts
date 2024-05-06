@@ -1,3 +1,14 @@
+export const transferCategory = (category: 'payment' | 'refund') => {
+  switch (category) {
+    case 'payment':
+      return '결제';
+    case 'refund':
+      return '환불';
+    default:
+      return '기타';
+  }
+};
+
 export const transferPaymentType = (paymentType: string) => {
   switch (paymentType) {
     case 'card':
