@@ -55,6 +55,11 @@ const CustomerDetailDrawerPayment = ({ data }: Props) => {
         css={{ color: data.refundPrice ? 'var(--red100)' : 'var(--black100)' }}
       />
       <DrawerInputContainer
+        label="환불 사유"
+        value={data.refundReason ? data.refundReason : '-'}
+        css={{ backgroundColor: 'var(--white100)' }}
+      />
+      <DrawerInputContainer
         label="총 금액"
         value={
           data.remainPrice
