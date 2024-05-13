@@ -21,6 +21,9 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
   const { dateArray } = getDayList();
 
   const onClickDeleteCustomerHandler = async () => {
+
+    if (!window.confirm('정말로 삭제하시겠습니까?')) return;
+
     const { data } = await deleteCustomer({ customerId });
     if (data.affectedRows > 0) {
       alert('회원이 삭제되었어요.');
