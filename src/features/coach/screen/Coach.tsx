@@ -1,17 +1,22 @@
 import { useState, useEffect } from 'react';
 
-import { PageHeader, TabList, Button } from '@components/index';
+import { PageHeader, TabList, Button, Portal, Modal } from '@components/index';
 import { CustomerWhiteIcon } from '@icons/index';
 import { tabList as coachTabList } from '../data/tabList';
 import CoachList from '../component/CoachList';
 import { useGetCoachListQuery } from '../query/coachQuery';
 import Loading from '@components/common/Loading';
+import CoachCreateModal from '../component/modal/CreateModal';
 
 const CoachScreen = () => {
   const { data } = useGetCoachListQuery({});
 
   const [tabList, setTabList] = useState(coachTabList);
   const [currentTab, setCurrentTab] = useState<string>(tabList[0].id);
+
+  const [showModal, setShowModal] = useState<boolean>(false);
+
+  const onClickShowModalHandler = () => setShowModal(true);
 
   useEffect(() => {
     if (data) {
@@ -48,12 +53,22 @@ const CoachScreen = () => {
               backgroundColor: 'var(--business-active-color)',
               color: 'var(--white100)',
             }}
-            onClick={() => {}}
+            onClick={onClickShowModalHandler}
           />
         }
       />
-      {/* <CoachList /> */}
       <CoachList list={data} />
+      {showModal && (
+        <Portal id="portal">
+          <Modal
+            title="코치 생성"
+            showModal={showModal}
+            setShowModal={setShowModal}
+          >
+            <CoachCreateModal onCloseModal={onClickShowModalHandler} />
+          </Modal>
+        </Portal>
+      )}
     </>
   );
 };
