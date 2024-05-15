@@ -16,7 +16,6 @@ instance.interceptors.request.use(
     return config;
   },
   (error) => {
-    // console.error(error);
     return Promise.reject(error);
   },
 );
@@ -38,7 +37,6 @@ instance.interceptors.response.use(
       }
       return error.response;
     }
-    // console.error(error);
     return Promise.reject(error);
   },
 );
