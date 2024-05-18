@@ -15,7 +15,7 @@ const CoachList = ({ list }: Props) => {
     <>
       {list && list.length > 0 ? (
         <Li.UnOrderList height={'78%'}>
-          {list.map(({ id, name, position, sex, birth, email, phone, age }) => {
+          {list.map(({ id, name, position, sex, email, phone, age }) => {
             return (
               <Li
                 key={id}

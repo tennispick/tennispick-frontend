@@ -72,21 +72,17 @@ Input.TextField = forwardRef(
     ref: ForwardedRef<HTMLInputElement>,
   ): ReactElement<InputHTMLAttributes<HTMLInputElement>> => {
     const {
+      type,
       requiredStatus,
       requiredText,
       isRegexCheck,
       regexText,
-      ...otherProps
+      ...rest
     } = props;
 
     return (
       <>
-        <input
-          type={props.type ? props.type : 'text'}
-          ref={ref}
-          {...otherProps}
-          // css={otherProps.css}
-        />
+        <input type={type ? type : 'text'} ref={ref} {...rest} />
         {requiredStatus && (
           <div
             css={{
