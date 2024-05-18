@@ -20,7 +20,7 @@ export type CustomerPaymentRefundData = {
   remainPrice: number;
   remainLessonCount: number;
   refundRange: string;
-  refundReason: string;
+  reason: string;
   createdAt: string;
 };
 

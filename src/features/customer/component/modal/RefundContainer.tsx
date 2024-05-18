@@ -48,7 +48,7 @@ const CustomerModalRefundContainer = ({
     refundType: 'card',
     refundRange: 'part',
     refundPrice: 0,
-    refundReason: '',
+    reason: '',
   });
 
   // TODO name로 그냥 넣을 수 있을 것 같은데
@@ -71,7 +71,7 @@ const CustomerModalRefundContainer = ({
       'remainPrice',
       String(totalPrice - Number(currentFormData.get('refundPrice'))),
     );
-    currentFormData.append('refundReason', formData.refundReason);
+    currentFormData.append('reason', formData.reason);
 
     const { data } = await createCustomerRefund(currentFormData);
 
@@ -225,11 +225,11 @@ const CustomerModalRefundContainer = ({
           title="환불사유 입력"
           subTitle="결제 내역에 대한 환불 사유를 입력해주세요."
           onCancelHandler={() => setShowModal(false)}
-          onClickDisabled={formData.refundReason === ''}
+          onClickDisabled={formData.reason === ''}
         >
           <Input>
             <Input.TextField
-              name="refundReason"
+              name="reason"
               placeholder="환불 사유를 입력해주세요."
               css={{
                 padding: '16px',
