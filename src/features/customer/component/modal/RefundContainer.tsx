@@ -13,7 +13,7 @@ import CustomerModalReceiptContainer from './ReceiptContainer';
 import { LessonListQueryData } from '@features/lesson/type/lesson.type';
 import useInput from '@hooks/useInput';
 import { refundTypeList } from '@features/customer/data/paymentRefund';
-import { FormEvent, useEffect, useState } from 'react';
+import { ChangeEventHandler, FormEvent, useEffect, useState } from 'react';
 import { createCustomerRefund } from '@apis/payment/payment.api';
 import { useRouter } from 'next/navigation';
 import ConfirmModal from '@components/layer/ConfirmModal';
@@ -72,6 +72,15 @@ const CustomerModalRefundContainer = ({
     else alert('환불에 실패했어요.\n관리자에게 문의해주세요.');
 
     router.refresh();
+  };
+
+  const onChangeOnlyInputHandler: ChangeEventHandler<HTMLInputElement> = (
+    e,
+  ) => {
+    const { name, value } = e.target;
+
+    const onlyNumber = value.replace(/[^0-9]/g, '');
+    setFormData((prev: any) => ({ ...prev, [name]: onlyNumber }));
   };
 
   // TODO remove useEffect
@@ -184,7 +193,7 @@ const CustomerModalRefundContainer = ({
                   ? checkedItem.totalPrice
                   : formData.refundPrice
               }
-              onChange={onChangeFormData}
+              onChange={onChangeOnlyInputHandler}
               disabled={formData.refundRange === 'full'}
             />
           </div>
