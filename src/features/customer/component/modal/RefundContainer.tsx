@@ -30,6 +30,16 @@ const CustomerModalRefundContainer = ({
   checkedItem,
   lessonList,
 }: Props) => {
+  const {
+    id,
+    lessonId,
+    type,
+    totalPrice,
+    lessonName,
+    discountType,
+    discountPrice,
+  } = checkedItem;
+
   const router = useRouter();
 
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -50,19 +60,16 @@ const CustomerModalRefundContainer = ({
       currentFormData.entries(),
     );
 
-    refundMethod === 'match' &&
-      currentFormData.append('refundType', checkedItem.type);
+    refundMethod === 'match' && currentFormData.append('refundType', type);
     refundRange === 'full' &&
-      currentFormData.append('refundPrice', String(checkedItem.totalPrice));
+      currentFormData.append('refundPrice', String(totalPrice));
     currentFormData.append('customerId', customerId);
-    currentFormData.append('paymentRefundHistoryId', String(checkedItem.id));
-    currentFormData.append('lessonId', String(checkedItem.lessonId));
-    currentFormData.append('totalPrice', String(checkedItem.totalPrice));
+    currentFormData.append('paymentRefundHistoryId', String(id));
+    currentFormData.append('lessonId', String(lessonId));
+    currentFormData.append('totalPrice', String(totalPrice));
     currentFormData.append(
       'remainPrice',
-      String(
-        checkedItem.totalPrice - Number(currentFormData.get('refundPrice')),
-      ),
+      String(totalPrice - Number(currentFormData.get('refundPrice'))),
     );
     currentFormData.append('refundReason', formData.refundReason);
 
@@ -80,6 +87,9 @@ const CustomerModalRefundContainer = ({
     const { name, value } = e.target;
 
     const onlyNumber = value.replace(/[^0-9]/g, '');
+
+    if (totalPrice < Number(onlyNumber)) return;
+
     setFormData((prev: any) => ({ ...prev, [name]: onlyNumber }));
   };
 
@@ -88,7 +98,7 @@ const CustomerModalRefundContainer = ({
     if (formData.refundMethod === 'match') {
       setFormData({
         ...formData,
-        refundType: checkedItem.type,
+        refundType: type,
       });
     }
   }, [formData.refundMethod]);
@@ -98,7 +108,7 @@ const CustomerModalRefundContainer = ({
     if (formData.refundRange === 'full') {
       setFormData({
         ...formData,
-        refundPrice: checkedItem.totalPrice,
+        refundPrice: totalPrice,
       });
     }
   }, [formData.refundRange]);
@@ -124,35 +134,35 @@ const CustomerModalRefundContainer = ({
               label="상품명"
               type="text"
               disabled={true}
-              value={checkedItem.lessonName}
+              value={lessonName}
             />
             <InputRow
               name="type"
               label="결제유형"
               type="text"
               disabled={true}
-              value={transferPaymentType(checkedItem.type)}
+              value={transferPaymentType(type)}
             />
             <InputRow
               name="discountType"
               label="할인유형"
               type="text"
               disabled={true}
-              value={transferDiscountType(checkedItem.discountType)}
+              value={transferDiscountType(discountType)}
             />
             <InputRow
               name="discountPrice"
               label="할인금액"
               type="text"
               disabled={true}
-              value={String(checkedItem.discountPrice)}
+              value={String(discountPrice)}
             />
             <InputRow
               name="totalPrice"
               label="결제금액"
               type="text"
               disabled={true}
-              value={String(addNumberCommas(checkedItem.totalPrice))}
+              value={String(addNumberCommas(totalPrice))}
             />
           </div>
           <div css={{ width: '50%' }}>
@@ -169,9 +179,7 @@ const CustomerModalRefundContainer = ({
               type="select"
               options={refundTypeList}
               value={
-                formData.refundMethod === 'match'
-                  ? checkedItem.type
-                  : formData.refundType
+                formData.refundMethod === 'match' ? type : formData.refundType
               }
               onChange={onChangeFormData}
               disabled={formData.refundMethod === 'match'}
@@ -190,7 +198,7 @@ const CustomerModalRefundContainer = ({
               placeholder={'환불 금액을 입력해주세요.'}
               value={
                 formData.refundRange === 'full'
-                  ? checkedItem.totalPrice
+                  ? totalPrice
                   : formData.refundPrice
               }
               onChange={onChangeOnlyInputHandler}
@@ -201,14 +209,14 @@ const CustomerModalRefundContainer = ({
       </div>
       <CustomerModalReceiptContainer
         type={'refund'}
-        lesson={lessonList.find(({ id }) => id === checkedItem.lessonId)}
-        paymentType={checkedItem.type}
-        discountType={checkedItem.discountType}
-        discountPrice={checkedItem.discountPrice}
+        lesson={lessonList.find(({ id }) => id === lessonId)}
+        paymentType={type}
+        discountType={discountType}
+        discountPrice={discountPrice}
         refundType={formData.refundType}
         refundRange={formData.refundRange}
         refundPrice={formData.refundPrice}
-        price={checkedItem.totalPrice}
+        price={totalPrice}
         onClickRefundHandler={() => setShowModal(true)}
       />
       {showModal && (
