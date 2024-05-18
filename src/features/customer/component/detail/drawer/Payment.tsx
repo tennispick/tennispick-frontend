@@ -56,7 +56,7 @@ const CustomerDetailDrawerPayment = ({ data }: Props) => {
       />
       <DrawerInputContainer
         label="환불 사유"
-        value={data.refundReason ? data.refundReason : '-'}
+        value={data.reason ? data.reason : '-'}
         css={{ backgroundColor: 'var(--white100)' }}
       />
       <DrawerInputContainer

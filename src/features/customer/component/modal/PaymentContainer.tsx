@@ -30,6 +30,7 @@ const CustomerModalPaymentContainer = ({
     paymentType: paymentTypeList[0]?.value || '',
     discountType: discountTypeList[0]?.value || '',
     discountPrice: 0,
+    paymentReason: '',
   });
 
   const onChangeOnlyNumberInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -138,6 +139,14 @@ const CustomerModalPaymentContainer = ({
               onChange={onChangeOnlyNumberInputHandler}
               value={formData.discountPrice}
               disabled={formData.discountType === 'none'}
+            />
+            <InputRow
+              name="paymentReason"
+              label="결제사유"
+              type="text"
+              placeholder="결제 사유를 입력해주세요."
+              onChange={onChangeFormData}
+              value={formData.paymentReason}
             />
           </div>
         </div>
