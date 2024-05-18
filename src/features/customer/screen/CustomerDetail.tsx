@@ -3,9 +3,9 @@ import { useCustomerDetailQuery } from '../query/CustomerQuery';
 import Loading from '@components/common/Loading';
 import CustomerInfo from '../component/CustomerInfo';
 import CustomerPayment from '../component/Payment';
-import CustomerLesson from '../component/CustomerLesson';
-import ModalCustomer from '@components/layer/calendar/Customer';
-import ModalCalendar from '@components/layer/calendar/Calendar';
+import ManageContainer from '../component/detail/manage/ManageContainer';
+// import ModalCustomer from '@components/layer/calendar/Customer';
+// import ModalCalendar from '@components/layer/calendar/Calendar';
 
 type Props = {
   id: string;
@@ -38,10 +38,9 @@ const CustomerDatail = ({ id }: Props) => {
           }}
         >
           <CustomerPayment id={id} />
-          <CustomerLesson id={id} />
+          <ManageContainer customerId={id} />
         </div>
-        {/* TODO 컴포넌트화 */}
-        <div
+        {/* <div
           css={{
             margin: '16px 0 0 0',
             padding: '12px',
@@ -68,7 +67,7 @@ const CustomerDatail = ({ id }: Props) => {
               <ModalCalendar day={new Date()} />
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
