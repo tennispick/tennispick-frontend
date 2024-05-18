@@ -99,7 +99,7 @@ const GenerateModal = ({
           requiredStatus={formData.email.isRequired}
           requiredText={'이메일이 입력되지 않았어요.'}
           isRegexCheck={
-            formData.phoneNumber.value !== '' &&
+            formData.email.value !== '' &&
             !emailRegex.test(formData.email.value)
           }
           regexText={'이메일의 형식이 아니에요.'}
@@ -114,7 +114,7 @@ const GenerateModal = ({
           requiredStatus={formData.password.isRequired}
           requiredText={'비밀번호가 입력되지 않았어요.'}
           isRegexCheck={
-            formData.phoneNumber.value !== '' &&
+            formData.password.value !== '' &&
             !passwordRegex.test(formData.password.value)
           }
           regexText={'영문, 숫자, 특수문자를 포함해서 8~25자리를 충족해주세요.'}

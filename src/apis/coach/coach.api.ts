@@ -3,6 +3,7 @@ import {
   URL_FETCH_COACH_LIST,
   URL_DELETE_COACH,
   URL_FETCH_COACH_LESSON_LIST,
+  URL_CREATE_COACH,
 } from './coach.url';
 import {
   CoachDeleteApiPayload,
@@ -19,6 +20,18 @@ export const getCoachLessonList = async (): Promise<
 > => {
   try {
     const result = await axios.get(`${URL_FETCH_COACH_LESSON_LIST}`);
+    return result;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export const createCoach = async (params: FormData) => {
+  try {
+    const result = await axios.post(`${URL_CREATE_COACH}`, params, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
     return result;
   } catch (error) {
     console.error(error);

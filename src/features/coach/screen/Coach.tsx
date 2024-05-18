@@ -64,6 +64,9 @@ const CoachScreen = () => {
             title="코치 생성"
             showModal={showModal}
             setShowModal={setShowModal}
+            css={{
+              top: '47.5%',
+            }}
           >
             <CoachCreateModal onCloseModal={onClickShowModalHandler} />
           </Modal>
