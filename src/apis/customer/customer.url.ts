@@ -4,6 +4,7 @@ const URL_FETCH_CUSTOMER_LESSON_LIST = '/customer/lesson';
 const URL_FETCH_CUSTOMER_LESSON_HISTORY = '/customer/lessonHistory';
 const URL_SEARCH_CUSTOMER_LIST_BY_KEYWORD = '/customer/search';
 const URL_DELETE_CUSTOMER = '/customer';
+const URL_FETCH_CUSTOMER_MEMO_LIST = '/customer/memo';
 
 export {
   URL_FETCH_CUSTOMER_LIST,
@@ -12,4 +13,5 @@ export {
   URL_FETCH_CUSTOMER_LESSON_HISTORY,
   URL_SEARCH_CUSTOMER_LIST_BY_KEYWORD,
   URL_DELETE_CUSTOMER,
+  URL_FETCH_CUSTOMER_MEMO_LIST,
 };

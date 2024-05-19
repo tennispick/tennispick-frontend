@@ -32,7 +32,7 @@ const ManageContainer = ({ customerId }: Props) => {
           {
             lesson: <ManageLesson />,
             additionalLesson: <ManageAdditionalLesson />,
-            memo: <ManageMemo />,
+            memo: <ManageMemo customerId={customerId} />,
           }[currentItem]
         }
       </div>
