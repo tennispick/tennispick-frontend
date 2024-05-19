@@ -63,3 +63,16 @@ export type SearchCustomerListByKeywordApiPayload = {
 export type CustomerDeleteApiPayload = {
   customerId: string;
 };
+
+export type CustomerMemoListApiData = {
+  customerCommentId: number;
+  customerId: number;
+  centerCoachId: number;
+  title: string;
+  content: string;
+  type: string;
+  name: string;
+  position: 'coach' | 'admin';
+  createdAt: string;
+  updatedAt: string;
+};
