@@ -76,3 +76,10 @@ export type CustomerMemoListApiData = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type CustomerMemoApiPayload = {
+  customerId: string;
+  type: string;
+  title: string;
+  content: string;
+};

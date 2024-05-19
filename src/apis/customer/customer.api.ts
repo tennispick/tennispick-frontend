@@ -4,6 +4,7 @@ import {
   URL_FETCH_CUSTOMER_LESSON_HISTORY,
   URL_FETCH_CUSTOMER_LESSON_LIST,
   URL_SEARCH_CUSTOMER_LIST_BY_KEYWORD,
+  URL_CREATE_CUSTOMER_MEMO,
 } from './customer.url';
 import { axios } from '@utils/axios';
 import {
@@ -57,3 +58,6 @@ export const deleteCustomer = async (params: CustomerDeleteApiPayload) =>
 
 export const getCustomerMemoList = async (customerId: string) =>
   await axios.get(`${URL_FETCH_CUSTOMER_MEMO_LIST}/${customerId}`);
+
+export const createCustomerMemo = async (params: FormData) =>
+  await axios.post(`${URL_CREATE_CUSTOMER_MEMO}`, params);

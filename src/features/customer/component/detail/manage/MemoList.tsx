@@ -7,7 +7,6 @@ type Props = {
 };
 
 const ManageMemoList = ({ data }: Props) => {
-  console.log(data);
   return (
     <>
       <div
@@ -46,8 +45,6 @@ const ManageMemoList = ({ data }: Props) => {
             createdAt,
           } = item;
 
-          console.log(item);
-
           return (
             <ManageListRow key={`${index}-${customerCommentId}`}>
               <div
@@ -67,10 +64,10 @@ const ManageMemoList = ({ data }: Props) => {
                   textOverflow: 'ellipsis',
                   whiteSpace: 'nowrap',
                   overflow: 'hidden',
-                  textAlign: 'left',
+                  textAlign: content ? 'left' : 'center',
                 }}
               >
-                {content}
+                {content ? content : '-'}
               </div>
               <div css={{ width: '15%' }}>{`${name} ${transferCoachPosition(
                 position,
