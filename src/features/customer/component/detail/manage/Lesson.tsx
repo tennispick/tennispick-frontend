@@ -1,4 +1,13 @@
-const ManageLesson = () => {
+import { useState } from 'react';
+import { NoResult } from '@components/index';
+
+type Props = {
+  customerId: string;
+};
+
+const ManageLesson = ({ customerId }: Props) => {
+  const [data] = useState([]);
+
   return (
     <>
       <div
@@ -17,13 +26,17 @@ const ManageLesson = () => {
       </div>
       <div
         css={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
+          backgroundColor: 'var(--white100)',
+          borderRadius: '8px',
+          height: 'calc(100% - 60px)',
+          padding: '8px',
         }}
       >
-        수강목록이 없어요.
+        {data && data.length > 0 ? (
+          <>데이터 있을 때</>
+        ) : (
+          <NoResult description="수강목록이 없어요." />
+        )}
       </div>
     </>
   );

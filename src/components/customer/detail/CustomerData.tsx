@@ -16,8 +16,8 @@ type DataProps = {
     sex: string;
     phone: string;
     address: string | null;
-    address_detail: string | null;
-    terms_agree: string;
+    addressDetail: string | null;
+    termsAgree: string;
   };
 };
 
@@ -207,7 +207,7 @@ const CustomerData = ({ data }: DataProps) => {
         <Row>
           <InputHead>약관동의여부</InputHead>
           <InputItem css={{ fontWeight: 600 }}>
-            <>{data.terms_agree === 'agree' ? '동의' : '비동의'}</>
+            <>{data.termsAgree === 'agree' ? '동의' : '비동의'}</>
           </InputItem>
         </Row>
       </div>

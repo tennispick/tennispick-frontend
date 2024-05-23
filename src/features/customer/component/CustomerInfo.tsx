@@ -1,7 +1,12 @@
 import { CustomerDetailData } from '@apis/customer/customer.type';
 import { Input, Select, Button } from '@components/index';
 import { getYearList, getMonthList, getDayList } from '@utils/date';
-import { ProfileManIcon, DeleteWhiteIcon, EditWhiteIcon } from '@icons/index';
+import {
+  ProfileManIcon,
+  ProfileWomanIcon,
+  DeleteWhiteIcon,
+  EditWhiteIcon,
+} from '@icons/index';
 import CustomerInputRow from '@components/customer/detail/InputRow';
 import CustomerSelectRow from '@components/customer/detail/SelectRow';
 import { deleteCustomer } from '@apis/customer/customer.api';
@@ -15,7 +20,21 @@ type Props = {
 const CustomerInfo = ({ customerId, customer }: Props) => {
   const queryClient = useQueryClient();
 
-  const [year, month, date] = customer.birth.split('-');
+  const {
+    name,
+    birth,
+    email,
+    phone,
+    sex,
+    height,
+    weight,
+    address,
+    addressDetail,
+    profileImageUrl,
+    digitalSignatureImageUrl,
+  } = customer;
+
+  const [year, month, date] = birth.split('-');
   const { yearArray } = getYearList();
   const { monthArray } = getMonthList();
   const { dateArray } = getDayList();
@@ -35,6 +54,9 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
     // TODO useMutation으로 변경
     window.location.href = '/customer';
   };
+
+  const checkSexProfileImageUrl =
+    sex === 'man' ? ProfileManIcon.src : ProfileWomanIcon.src;
 
   const onClickEditCustomerHandler = () => {};
 
@@ -59,7 +81,7 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
           label={' '}
           id={'profileImage'}
           variant={'file'}
-          src={ProfileManIcon.src}
+          src={profileImageUrl ?? checkSexProfileImageUrl}
         >
           <Input.TextField type={'file'} />
         </Input>
@@ -68,10 +90,15 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
             textAlign: 'center',
             border: '1px solid var(--grey100)',
             width: '60%',
-            height: '40%',
+            height: '52px',
+            lineHeight: '52px',
             margin: '10% auto 0 auto',
+            verticalAlign: 'middle',
+            borderRadius: '8px',
           }}
-        ></div>
+        >
+          {digitalSignatureImageUrl ?? '서명없음'}
+        </div>
       </div>
       <div
         css={{
@@ -81,21 +108,23 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
         }}
       >
         <CustomerInputRow
-          name={'name'}
-          rowHeadLabel={'이름'}
-          placeholder={'성명을 입력해주세요.'}
-          defaultValue={customer.name}
+          name="name"
+          rowHeadLabel="이름"
+          placeholder="성명을 입력해주세요."
+          defaultValue={name}
+          disabled={true}
         />
         <CustomerSelectRow
-          name={'birth'}
-          rowHeadLabel={'생년월일'}
+          name="birth"
+          rowHeadLabel="생년월일"
           selectChildren={
             <>
               <Select
-                key={'year'}
-                name={'year'}
-                width={'calc((60% / 3) - 4px)'}
+                key="year"
+                name="year"
+                width="calc((60% / 3) - 4px)"
                 defaultValue={year}
+                disabled={true}
               >
                 {yearArray.map((item, index) => {
                   return (
@@ -106,11 +135,12 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
                 })}
               </Select>
               <Select
-                key={'month'}
-                name={'month'}
-                width={'calc((60% / 3) - 4px)'}
+                key="month"
+                name="month"
+                width="calc((60% / 3) - 4px)"
                 margin={'0 6px'}
                 defaultValue={month}
+                disabled={true}
               >
                 {monthArray.map((item, index) => {
                   return (
@@ -121,10 +151,11 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
                 })}
               </Select>
               <Select
-                key={'date'}
-                name={'date'}
-                width={'calc((60% / 3) - 4px)'}
+                key="date"
+                name="date"
+                width="calc((60% / 3) - 4px)"
                 defaultValue={date}
+                disabled={true}
               >
                 {dateArray.map((item, index) => {
                   return (
@@ -138,28 +169,31 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
           }
         />
         <CustomerInputRow
-          name={'email'}
-          rowHeadLabel={'이메일'}
-          placeholder={'이메일을 입력해주세요.'}
-          defaultValue={customer.email}
+          name="email"
+          rowHeadLabel="이메일"
+          placeholder="이메일을 입력해주세요."
+          defaultValue={email}
+          disabled={true}
         />
         <CustomerInputRow
-          name={'phone'}
-          rowHeadLabel={'연락처'}
-          placeholder={'연락처를 입력해주세요.'}
-          defaultValue={customer.phone}
+          name="phone"
+          rowHeadLabel="연락처"
+          placeholder="연락처를 입력해주세요."
+          defaultValue={phone}
+          disabled={true}
         />
         <CustomerSelectRow
-          name={'성별'}
-          rowHeadLabel={'성별'}
+          name="성별"
+          rowHeadLabel="성별"
           selectChildren={
             <Select
-              key={'sex'}
-              name={'sex'}
-              width={'calc(((60% / 3) * 2) - 4px)'}
+              key="sex"
+              name="sex"
+              width="calc(((60% / 3) * 2) - 4px)"
+              disabled={true}
             >
-              <option value={'man'}>남자</option>
-              <option value={'woman'}>여자</option>
+              <option value="man">남자</option>
+              <option value="woman">여자</option>
             </Select>
           }
         />
@@ -185,13 +219,13 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
               name={'height'}
               rowHeadLabel={'키(선택)'}
               placeholder={'키를 입력해주세요.'}
-              defaultValue={customer.height ?? ''}
+              defaultValue={height ?? ''}
             />
             <CustomerInputRow
               name={'weight'}
               rowHeadLabel={'몸무게(선택)'}
               placeholder={'몸무게를 입력해주세요.'}
-              defaultValue={customer.weight ?? ''}
+              defaultValue={weight ?? ''}
               rowHeadStyle={{ width: '100px', margin: '0 0 0 20px' }}
             />
           </div>
@@ -200,13 +234,13 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
               name={'address'}
               rowHeadLabel={'주소(선택)'}
               placeholder={'우편번호 찾기'}
-              defaultValue={customer.address ?? ''}
+              defaultValue={address ?? ''}
             />
             <CustomerInputRow
               name={'addressDetail'}
               rowHeadLabel={'상세주소'}
               placeholder={'상세 주소를 입력해주세요.'}
-              defaultValue={customer.addres_detail ?? ''}
+              defaultValue={addressDetail ?? ''}
               rowHeadStyle={{ width: '100px', margin: '0 0 0 20px' }}
             />
           </div>

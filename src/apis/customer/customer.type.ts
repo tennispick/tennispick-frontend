@@ -42,18 +42,19 @@ export type CustomerLessonHistoryData = {
 
 export type CustomerDetailData = {
   id: number;
-  center_id: number;
+  centerId: number;
   name: string;
   phone: string;
   sex: string;
   birth: string;
   email: string;
-  terms_agree: string;
+  termsAgree: string;
   address?: string;
-  addres_detail?: string;
+  addressDetail?: string;
   weight?: string;
   height?: string;
-  profile_image_url?: string;
+  profileImageUrl?: string;
+  digitalSignatureImageUrl?: string;
 };
 
 export type SearchCustomerListByKeywordApiPayload = {
