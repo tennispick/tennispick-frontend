@@ -1,11 +1,13 @@
 import Input from '@components/common/Input';
-import { CSSProperties } from 'react';
+import { CSSProperties, HTMLAttributes } from 'react';
 
-type Props = {
+type Props = Omit<HTMLAttributes<HTMLInputElement>, 'type'> & {
+  name: string;
   rowHeadLabel: string;
   rowHeadStyle?: CSSProperties;
   type?: string;
-} & Pick<HTMLInputElement, 'name' | 'placeholder' | 'defaultValue'>;
+  disabled?: boolean;
+};
 
 const CustomerInputRow = ({
   rowHeadLabel,
@@ -14,6 +16,7 @@ const CustomerInputRow = ({
   name,
   placeholder,
   defaultValue,
+  ...rest
 }: Props) => {
   return (
     <div
@@ -47,6 +50,7 @@ const CustomerInputRow = ({
           name={name}
           placeholder={placeholder}
           defaultValue={defaultValue}
+          {...rest}
         />
       </Input>
     </div>

@@ -1,5 +1,5 @@
 const URL_FETCH_CUSTOMER_LIST = '/customer';
-const URL_FETCH_CUSTOMER_DETAIL = '/customer';
+const URL_FETCH_CUSTOMER_DETAIL = '/customer/detail';
 const URL_FETCH_CUSTOMER_LESSON_LIST = '/customer/lesson';
 const URL_FETCH_CUSTOMER_LESSON_HISTORY = '/customer/lessonHistory';
 const URL_SEARCH_CUSTOMER_LIST_BY_KEYWORD = '/customer/search';

@@ -1,4 +1,13 @@
-const ManageAdditionalLesson = () => {
+import { useState } from 'react';
+import { NoResult } from '@components/index';
+
+type Props = {
+  customerId: string;
+};
+
+const ManageAdditionalLesson = ({ customerId }: Props) => {
+  const [data] = useState([]);
+
   return (
     <>
       <div
@@ -18,13 +27,17 @@ const ManageAdditionalLesson = () => {
       </div>
       <div
         css={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
+          backgroundColor: 'var(--white100)',
+          borderRadius: '8px',
+          height: 'calc(100% - 60px)',
+          padding: '8px',
         }}
       >
-        보강현황이 없어요.
+        {data && data.length > 0 ? (
+          <>데이터 있을 때</>
+        ) : (
+          <NoResult description="보강현황이 없어요." />
+        )}
       </div>
     </>
   );

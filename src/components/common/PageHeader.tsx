@@ -19,13 +19,13 @@ const PageHeader = ({ title, link = '' }: Props) => {
         <Link
           href={link}
           css={{
-            top: '-4px',
+            top: '-8px',
             backgroundColor: 'var(--business-color)',
             color: 'var(--white100)',
-            height: '32px',
-            lineHeight: '32px',
-            padding: '0 12px',
-            borderRadius: '4px',
+            height: '36px',
+            lineHeight: '36px',
+            padding: '0 16px',
+            borderRadius: '8px',
             fontSize: '1rem',
           }}
         >
