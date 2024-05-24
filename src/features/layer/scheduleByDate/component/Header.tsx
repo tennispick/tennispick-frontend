@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
 import styled from '@emotion/styled';
 import { CustomerLessonType } from 'src/types/customer';
 import { CSS_TYPE, ImageContainer as Image } from '@styles/styles';
@@ -7,10 +6,14 @@ import CancelBtnIcon from '@icons/cancel_black_btn.svg';
 type Props = {
   day: Date;
   customerInfo: CustomerLessonType | null;
-  setShowModal: Dispatch<SetStateAction<boolean>>;
+  onCloseModalHandler: () => void;
 };
 
-const ScheduleByDateHeader = ({ day, customerInfo, setShowModal }: Props) => {
+const ScheduleByDateHeader = ({
+  day,
+  customerInfo,
+  onCloseModalHandler,
+}: Props) => {
   const year = day.getFullYear();
   const month = day.getMonth() + 1;
   const date = day.getDate();
@@ -40,7 +43,7 @@ const ScheduleByDateHeader = ({ day, customerInfo, setShowModal }: Props) => {
           width={28}
           height={28}
           cursor={'pointer'}
-          onClick={() => setShowModal(false)}
+          onClick={onCloseModalHandler}
         />
       </HeaderCautionWrapper>
     </Header>

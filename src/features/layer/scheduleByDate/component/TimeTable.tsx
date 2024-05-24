@@ -5,9 +5,10 @@ import styled from '@emotion/styled';
 
 type Props = {
   day: Date;
+  onChangeCustomerIdHandler: (customerId: string) => void;
 };
 
-const ScheduleByDateTimeTable = ({ day }: Props) => {
+const ScheduleByDateTimeTable = ({ day, onChangeCustomerIdHandler }: Props) => {
   const now = new Date();
 
   // const [user, ] = useRecoilState(userState);
@@ -66,6 +67,7 @@ const ScheduleByDateTimeTable = ({ day }: Props) => {
             lessonType,
             coachName,
             customerName,
+            customerId,
           }: any) => {
             const isAttendance =
               coachAttendance || customerAttendance ? true : false;
@@ -88,6 +90,7 @@ const ScheduleByDateTimeTable = ({ day }: Props) => {
                     borderRadius: '8px',
                   },
                 }}
+                onClick={() => onChangeCustomerIdHandler(customerId)}
               >
                 {handleAttendanceCheck(isAttendance, isPassNowTime)}
                 <div css={{ width: '30%' }}>

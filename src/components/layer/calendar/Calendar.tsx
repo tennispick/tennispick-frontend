@@ -4,12 +4,11 @@ import { getWeekList } from '@utils/date';
 import { STRING_WEEK_LIST_KR } from '@features/schedule/constants/schedule';
 import { CSS_TYPE } from '@styles/styles';
 
-interface Props {
+type Props = {
   day: Date;
-}
+};
 
-const ModalCalendar = ({ ...props }: Props) => {
-  const { day } = props;
+const ModalCalendar = ({ day }: Props) => {
   const today = new Date(day);
   const { currentDate, dateList } = useMemo(() => getWeekList(today), [today]);
 
