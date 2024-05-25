@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
-import { CustomerLessonType } from 'src/types/customer';
 import { CSS_TYPE, ImageContainer as Image } from '@styles/styles';
 import CancelBtnIcon from '@icons/cancel_black_btn.svg';
+import { ScheduleLessonByDateData } from '@apis/schedule/schedule.type';
 
 type Props = {
   day: Date;
-  customerInfo: CustomerLessonType | null;
+  customerInfo: ScheduleLessonByDateData | null;
   onCloseModalHandler: () => void;
 };
 

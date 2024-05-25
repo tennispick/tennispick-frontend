@@ -84,3 +84,8 @@ export type CustomerMemoApiPayload = {
   title: string;
   content: string;
 };
+
+export type CustomerAttendanceApiPayload = {
+  customerId: string;
+  lessonHistoryId: string;
+};

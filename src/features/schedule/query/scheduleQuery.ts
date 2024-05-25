@@ -15,7 +15,6 @@ import {
   URL_SCHEDULE_LESSON_BY_PERIOD,
 } from 'src/apis/schedule/schedule.url';
 
-// 시작날짜와 종료날짜로 스케줄 일정 조회
 const useScheduleByPeriodQuery = (
   params: ScheduleLessonByStartDateEndDatePeriodQueryPayload,
 ) => {
@@ -33,7 +32,6 @@ const useScheduleByPeriodQuery = (
   };
 };
 
-// 스케줄을 날짜로 조회
 const useScheduleByDateQuery = (params: ScheduleLessonByDateQueryPayload) => {
   const { day } = params;
 
@@ -42,7 +40,7 @@ const useScheduleByDateQuery = (params: ScheduleLessonByDateQueryPayload) => {
   const date = day.getDate();
 
   const { data, isFetching, isLoading } = useQuery({
-    queryKey: [URL_SCHEDULE_LESSON_BY_DATE, year, month, date],
+    queryKey: [URL_SCHEDULE_LESSON_BY_DATE, { year, month, date }],
     queryFn: async () => await getScheduleLessonByDate({ day }),
   });
   return {

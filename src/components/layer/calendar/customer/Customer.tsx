@@ -3,20 +3,41 @@ import Button from '@components/common/Button';
 import { useCustomerDetailQuery } from '@features/customer/query/CustomerQuery';
 import CustomerInfo from './CustomerInfo';
 import { useRouter } from 'next/navigation';
+import { ScheduleLessonByDateData } from '@apis/schedule/schedule.type';
+import { useAttendanceMutate } from '@features/customer/mutate/manage';
 
 type Props = {
+  day: Date;
   customerId: string;
+  customerInfo: ScheduleLessonByDateData | null;
   onCloseModalHandler: () => void;
 };
 
-const ModalCustomer = ({ customerId, onCloseModalHandler }: Props) => {
+const ModalCustomer = ({
+  day,
+  customerId,
+  customerInfo,
+  onCloseModalHandler,
+}: Props) => {
   const router = useRouter();
+
   const { data } = useCustomerDetailQuery({ id: customerId });
+  const { mutate } = useAttendanceMutate(day, onCloseModalHandler);
+
+  const { customerAttendance, coachAttendance } = customerInfo ?? {};
+
+  const isAbleAttendacne = !!(customerAttendance || coachAttendance);
 
   const onClickCustomerDetailRouterHandler = () => {
     router.push(`/customer/${customerId}`);
     onCloseModalHandler();
   };
+
+  const onClickCustomerAttendanceHandler = () =>
+    mutate({
+      customerId,
+      lessonHistoryId: customerInfo?.id.toString() ?? '',
+    });
 
   return (
     <Container>
@@ -40,7 +61,8 @@ const ModalCustomer = ({ customerId, onCloseModalHandler }: Props) => {
             fontWeight: 500,
             border: 0,
           }}
-          disabled={!data?.[0]}
+          onClick={onClickCustomerAttendanceHandler}
+          disabled={!data?.[0] || isAbleAttendacne}
         />
         <Button
           label="강습취소"
