@@ -2,21 +2,20 @@ import { useScheduleByDateQuery } from '@features/schedule/query/scheduleQuery';
 import { NormalList as Li } from '@components/index';
 import { CSS_TYPE } from '@styles/styles';
 import styled from '@emotion/styled';
+import { ScheduleLessonByDateData } from '@apis/schedule/schedule.type';
 
 type Props = {
   day: Date;
   onChangeCustomerIdHandler: (customerId: string) => void;
+  onChangeCustomerInfoHandler: (customerInfo: ScheduleLessonByDateData) => void;
 };
 
-const ScheduleByDateTimeTable = ({ day, onChangeCustomerIdHandler }: Props) => {
+const ScheduleByDateTimeTable = ({
+  day,
+  onChangeCustomerIdHandler,
+  onChangeCustomerInfoHandler,
+}: Props) => {
   const now = new Date();
-
-  // const [user, ] = useRecoilState(userState);
-  // const {
-  //   lesson_setting_time: lessonSettingTime,
-  //   business_hours,
-  //   business_end_hours: businessEndHours
-  // } = user;
 
   const { data } = useScheduleByDateQuery({ day });
 
@@ -39,6 +38,13 @@ const ScheduleByDateTimeTable = ({ day, onChangeCustomerIdHandler }: Props) => {
     }
   };
 
+  const onClickScheduleRowHandler = (
+    customerInfo: ScheduleLessonByDateData,
+  ) => {
+    onChangeCustomerInfoHandler(customerInfo);
+    onChangeCustomerIdHandler(customerInfo.customerId.toString());
+  };
+
   return (
     <div
       css={{
@@ -56,8 +62,8 @@ const ScheduleByDateTimeTable = ({ day, onChangeCustomerIdHandler }: Props) => {
           padding: '0 12px 0 12px',
         }}
       >
-        {data?.map(
-          ({
+        {data?.map((item: ScheduleLessonByDateData) => {
+          const {
             id,
             coachAttendance,
             customerAttendance,
@@ -67,44 +73,43 @@ const ScheduleByDateTimeTable = ({ day, onChangeCustomerIdHandler }: Props) => {
             lessonType,
             coachName,
             customerName,
-            customerId,
-          }: any) => {
-            const isAttendance =
-              coachAttendance || customerAttendance ? true : false;
-            // const isSameLessonSettingTime = getDiffTimeMinutes(startTime, endTime) % lessonSettingTime === 0;
+          } = item;
 
-            const isPassNowTime = now > new Date(originEndTime);
+          const isAttendance =
+            coachAttendance || customerAttendance ? true : false;
+          // const isSameLessonSettingTime = getDiffTimeMinutes(startTime, endTime) % lessonSettingTime === 0;
 
-            return (
-              <Li
-                key={id}
-                css={{
-                  padding: '8px 0',
+          const isPassNowTime = now > new Date(originEndTime);
+
+          return (
+            <Li
+              key={id}
+              css={{
+                padding: '8px 0',
+                borderRadius: '8px',
+
+                div: {
+                  textAlign: 'center',
+                },
+
+                ':hover': {
                   borderRadius: '8px',
-
-                  div: {
-                    textAlign: 'center',
-                  },
-
-                  ':hover': {
-                    borderRadius: '8px',
-                  },
-                }}
-                onClick={() => onChangeCustomerIdHandler(customerId)}
-              >
-                {handleAttendanceCheck(isAttendance, isPassNowTime)}
-                <div css={{ width: '30%' }}>
-                  {startTime} ~ {endTime}
-                </div>
-                <div css={{ width: '20%' }}>
-                  {lessonType === 'private' ? '개인레슨' : '그룹레슨'}
-                </div>
-                <div css={{ width: '20%' }}>{coachName}</div>
-                <div css={{ width: '15%' }}>{customerName}</div>
-              </Li>
-            );
-          },
-        )}
+                },
+              }}
+              onClick={() => onClickScheduleRowHandler(item)}
+            >
+              {handleAttendanceCheck(isAttendance, isPassNowTime)}
+              <div css={{ width: '30%' }}>
+                {startTime} ~ {endTime}
+              </div>
+              <div css={{ width: '20%' }}>
+                {lessonType === 'private' ? '개인레슨' : '그룹레슨'}
+              </div>
+              <div css={{ width: '20%' }}>{coachName}</div>
+              <div css={{ width: '15%' }}>{customerName}</div>
+            </Li>
+          );
+        })}
       </Li.UnOrderList>
       {(!data || data?.length === 0) && (
         <div

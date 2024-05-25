@@ -1,15 +1,39 @@
+import { LessonType } from '@features/lesson/type/lesson.type';
 import { ScheduleType } from '@features/schedule/type/schedule.type';
 
-type ScheduleLessonByDateApiPayload = {
+export type ScheduleLessonByDateApiPayload = {
   day: Date;
 };
 
-type ScheduleLessonByStartDateEndDatePeriodPayload = {
+export type ScheduleLessonByDateData = {
+  id: number;
+  coachId: number;
+  courtId: number;
+  customerId: number;
+  lessonId: number;
+  lessonType: LessonType;
+  coachAttendance: string;
+  customerAttendance: string;
+  coachName: string;
+  customerName: string;
+  isForcedLessonChange: number;
+  isRegularLesson: string;
+  startTime: string;
+  originStartTime: string;
+  endTime: string;
+  originEndTime: string;
+  timeDiff: number;
+  year: string;
+  month: string;
+  date: string;
+};
+
+export type ScheduleLessonByStartDateEndDatePeriodPayload = {
   startDate: Date;
   endDate: Date;
 };
 
-type DuplicateCheckScheduleLessonPayload = {
+export type DuplicateCheckScheduleLessonPayload = {
   coachId: string;
   courtId: string;
   schedule: Array<ScheduleType>;
@@ -26,7 +50,7 @@ export type DuplicateCheckScheduleLessonData = {
   endTime: string;
 };
 
-type SchduleLessonByStartDateEndDatePeriodData = {
+export type SchduleLessonByStartDateEndDatePeriodData = {
   id: number;
   coachName: string;
   coachId: number;
@@ -47,11 +71,4 @@ type SchduleLessonByStartDateEndDatePeriodData = {
   originEndTime: string;
   startTime: string;
   endTime: string;
-};
-
-export type {
-  ScheduleLessonByDateApiPayload,
-  ScheduleLessonByStartDateEndDatePeriodPayload,
-  DuplicateCheckScheduleLessonPayload,
-  SchduleLessonByStartDateEndDatePeriodData,
 };

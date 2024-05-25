@@ -6,6 +6,7 @@ const URL_SEARCH_CUSTOMER_LIST_BY_KEYWORD = '/customer/search';
 const URL_DELETE_CUSTOMER = '/customer';
 const URL_FETCH_CUSTOMER_MEMO_LIST = '/customer/memo';
 const URL_CREATE_CUSTOMER_MEMO = '/customer/memo/create';
+const URL_UPDATE_CUSTOMER_ATTENDANCE = '/customer/attendance';
 
 export {
   URL_FETCH_CUSTOMER_LIST,
@@ -16,4 +17,5 @@ export {
   URL_DELETE_CUSTOMER,
   URL_FETCH_CUSTOMER_MEMO_LIST,
   URL_CREATE_CUSTOMER_MEMO,
+  URL_UPDATE_CUSTOMER_ATTENDANCE,
 };

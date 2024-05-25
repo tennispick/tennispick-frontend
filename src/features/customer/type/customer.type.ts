@@ -1,3 +1,4 @@
+import { CustomerAttendanceApiPayload } from '@apis/customer/customer.type';
 import { LessonDateType, LessonType } from '@features/lesson/type/lesson.type';
 import { DayType } from '@features/schedule/type/schedule.type';
 
@@ -49,3 +50,5 @@ export type CustomerLessonHistoryQueryData = {
 export type CustomerDetailQueryPayLoad = {
   id: string;
 };
+
+export type CustomerAttendanceQueryPayLoad = CustomerAttendanceApiPayload;

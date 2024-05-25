@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { CustomerLessonType } from 'src/types/customer';
 import ScheduleByDateHeader from '../component/Header';
 import useKeyEscEvent from '@hooks/useKeyEscEvent';
 import ScheduleByDateTimeTable from '../component/TimeTable';
 import ModalCustomer from '@components/layer/calendar/customer/Customer';
 import ModalCalendar from '@components/layer/calendar/Calendar';
+import { ScheduleLessonByDateData } from '@apis/schedule/schedule.type';
 
 type Props = {
   day: Date;
@@ -12,11 +12,16 @@ type Props = {
 };
 
 const ScheduleByDate = ({ onCloseModalHandler, day }: Props) => {
-  const [customerInfo] = useState<CustomerLessonType | null>(null);
+  const [customerInfo, setCustomerInfo] =
+    useState<ScheduleLessonByDateData | null>(null);
   const [customerId, setCustomerId] = useState<string>('');
 
   const onChangeCustomerIdHandler = (customerId: string) =>
     setCustomerId(customerId);
+
+  const onChangeCustomerInfoHandler = (
+    customerInfo: ScheduleLessonByDateData,
+  ) => setCustomerInfo(customerInfo);
 
   useKeyEscEvent({ event: onCloseModalHandler });
 
@@ -37,6 +42,7 @@ const ScheduleByDate = ({ onCloseModalHandler, day }: Props) => {
         <ScheduleByDateTimeTable
           day={day}
           onChangeCustomerIdHandler={onChangeCustomerIdHandler}
+          onChangeCustomerInfoHandler={onChangeCustomerInfoHandler}
         />
         <div
           css={{
@@ -47,7 +53,9 @@ const ScheduleByDate = ({ onCloseModalHandler, day }: Props) => {
           }}
         >
           <ModalCustomer
+            day={day}
             customerId={customerId}
+            customerInfo={customerInfo}
             onCloseModalHandler={onCloseModalHandler}
           />
           <ModalCalendar day={day} />
