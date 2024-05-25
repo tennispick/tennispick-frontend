@@ -74,6 +74,7 @@ const useCustomerDetailQuery = (params: CustomerDetailQueryPayLoad) => {
     const { data, isLoading } = useQuery({
       queryKey: [URL_FETCH_CUSTOMER_DETAIL, id],
       queryFn: async () => await getCustomerDetail({ id: id }),
+      enabled: !!id,
     });
 
     return {

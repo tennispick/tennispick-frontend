@@ -1,26 +1,30 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { CustomerLessonType } from 'src/types/customer';
 import ScheduleByDateHeader from '../component/Header';
 import useKeyEscEvent from '@hooks/useKeyEscEvent';
 import ScheduleByDateTimeTable from '../component/TimeTable';
-import ModalCustomer from '@components/layer/calendar/Customer';
+import ModalCustomer from '@components/layer/calendar/customer/Customer';
 import ModalCalendar from '@components/layer/calendar/Calendar';
 
 type Props = {
   day: Date;
-  setShowModal: Dispatch<SetStateAction<boolean>>;
+  onCloseModalHandler: () => void;
 };
 
-const ScheduleByDate = ({ setShowModal, day }: Props) => {
+const ScheduleByDate = ({ onCloseModalHandler, day }: Props) => {
   const [customerInfo] = useState<CustomerLessonType | null>(null);
+  const [customerId, setCustomerId] = useState<string>('');
 
-  useKeyEscEvent({ event: () => setShowModal(false) });
+  const onChangeCustomerIdHandler = (customerId: string) =>
+    setCustomerId(customerId);
+
+  useKeyEscEvent({ event: onCloseModalHandler });
 
   return (
     <div css={{ position: 'relative', width: '100%', height: '100%' }}>
       <ScheduleByDateHeader
         day={day}
-        setShowModal={setShowModal}
+        onCloseModalHandler={onCloseModalHandler}
         customerInfo={customerInfo}
       />
       <div
@@ -30,7 +34,10 @@ const ScheduleByDate = ({ setShowModal, day }: Props) => {
           display: 'flex',
         }}
       >
-        <ScheduleByDateTimeTable day={day} />
+        <ScheduleByDateTimeTable
+          day={day}
+          onChangeCustomerIdHandler={onChangeCustomerIdHandler}
+        />
         <div
           css={{
             position: 'relative',
@@ -39,7 +46,10 @@ const ScheduleByDate = ({ setShowModal, day }: Props) => {
             width: '70%',
           }}
         >
-          <ModalCustomer customerInfo={customerInfo} />
+          <ModalCustomer
+            customerId={customerId}
+            onCloseModalHandler={onCloseModalHandler}
+          />
           <ModalCalendar day={day} />
         </div>
       </div>

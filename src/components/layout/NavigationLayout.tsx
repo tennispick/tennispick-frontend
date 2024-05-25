@@ -20,6 +20,8 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const isMobile = useMobile();
 
+  const onCloseModalHandler = () => setShowModal(false);
+
   const onClickCalendarDateHandler = (day: Date) => {
     setShowModal(true);
     setDay(day);
@@ -103,7 +105,10 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
               padding: 0,
             }}
           >
-            <ScheduleByDate day={day} setShowModal={setShowModal} />
+            <ScheduleByDate
+              day={day}
+              onCloseModalHandler={onCloseModalHandler}
+            />
           </Modal>
         </Portal>
       )}
