@@ -1,12 +1,13 @@
-import { useState } from 'react';
 import { NoResult } from '@components/index';
+import { useCustomerAllLessonListQuery } from '@features/customer/query/CustomerQuery';
+import ManageLessonList from './LessonList';
 
 type Props = {
   customerId: string;
 };
 
 const ManageLesson = ({ customerId }: Props) => {
-  const [data] = useState([]);
+  const { data } = useCustomerAllLessonListQuery({ id: customerId });
 
   return (
     <>
@@ -21,7 +22,7 @@ const ManageLesson = ({ customerId }: Props) => {
         }}
       >
         <div css={{ margin: '0 12px 0 0' }}>
-          총 <span>0</span>건
+          총 <span>{data ? data.length : '0'}</span>건
         </div>
       </div>
       <div
@@ -33,7 +34,7 @@ const ManageLesson = ({ customerId }: Props) => {
         }}
       >
         {data && data.length > 0 ? (
-          <>데이터 있을 때</>
+          <ManageLessonList data={data} />
         ) : (
           <NoResult description="수강목록이 없어요." />
         )}
