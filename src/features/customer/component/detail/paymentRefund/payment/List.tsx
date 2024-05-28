@@ -74,7 +74,6 @@ const CustomerDetailPaymentRefundPaymentList = ({
           const isCompleteRefund = !refundPrice ? true : false;
           const isDisabledRefund = remainLessonCount === 0;
 
-          // 상세보기
           const onClickPaymentRowHandler = () => {
             setShowDrawer(true);
             setSelectedPaymentItem(item);

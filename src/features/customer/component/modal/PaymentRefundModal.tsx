@@ -36,9 +36,9 @@ const CustomerPaymentRefundModal = ({
     price - discountPrice;
 
   return (
-    <Portal id={'portal'}>
+    <Portal id="portal">
       <Modal
-        title={''}
+        title=""
         titleContainer={false}
         css={{
           width: 'calc(75vw - 3%)',

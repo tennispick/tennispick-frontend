@@ -11,7 +11,7 @@ const CustomerDetailDrawerInputContainer = ({
   return (
     <div css={{ margin: '0 0 16px 0' }}>
       <div
-        css={{ fontWeight: 600, fontSize: '1.125rem', padding: '0 0 0 4px' }}
+        css={{ fontWeight: 600, fontSize: '0.875rem', padding: '0 0 0 4px' }}
       >
         {label}
       </div>
@@ -23,9 +23,9 @@ const CustomerDetailDrawerInputContainer = ({
           position: 'relative',
           width: '320px',
           height: '100%',
-          padding: '10px 0 10px 10px',
-          margin: '12px 0 0 0',
-          fontSize: '0.95rem',
+          padding: '8px 0 8px 8px',
+          margin: '8px 0 0 0',
+          fontSize: '0.825rem',
           marginRight: 0,
           border: '1px solid var(--grey300)',
           borderRadius: '8px',
