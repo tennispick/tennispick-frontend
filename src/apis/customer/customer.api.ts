@@ -2,6 +2,7 @@ import {
   URL_DELETE_CUSTOMER,
   URL_FETCH_CUSTOMER_DETAIL,
   URL_FETCH_CUSTOMER_LESSON_HISTORY,
+  URL_FETCH_CUSTOMER_ALL_LESSON_LIST,
   URL_FETCH_CUSTOMER_LESSON_LIST,
   URL_SEARCH_CUSTOMER_LIST_BY_KEYWORD,
   URL_CREATE_CUSTOMER_MEMO,
@@ -20,6 +21,10 @@ import {
 } from './customer.type';
 import { Response } from '@/types/response';
 import { URL_FETCH_CUSTOMER_MEMO_LIST } from './customer.url';
+
+export const getCustomerAllLessonList = async (
+  params: Pick<CustomerLessonListApiPayload, 'id'>,
+) => await axios.get(`${URL_FETCH_CUSTOMER_ALL_LESSON_LIST}/${params.id}`);
 
 export const getCustomerLessonList = async (
   params: CustomerLessonListApiPayload,

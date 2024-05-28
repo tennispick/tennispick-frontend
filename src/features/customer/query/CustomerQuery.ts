@@ -5,8 +5,10 @@ import {
   CustomerLessonListQueryData,
   CustomerLessonHistoryQueryData,
   CustomerDetailQueryPayLoad,
+  CustomerAllLessonListQueryData,
 } from '../type/customer.type';
 import {
+  getCustomerAllLessonList,
   getCustomerDetail,
   getCustomerLessonHistory,
   getCustomerLessonList,
@@ -17,8 +19,31 @@ import {
   URL_FETCH_CUSTOMER_DETAIL,
   URL_FETCH_CUSTOMER_LESSON_HISTORY,
   URL_FETCH_CUSTOMER_MEMO_LIST,
+  URL_FETCH_CUSTOMER_ALL_LESSON_LIST,
 } from '@apis/customer/customer.url';
 import { Response } from '@/types/response';
+
+export const useCustomerAllLessonListQuery = (
+  params: Pick<CustomerLessonListQueryPayload, 'id'>,
+) => {
+  try {
+    const { id } = params;
+    const { data, isLoading } = useQuery<
+      Response<CustomerAllLessonListQueryData>
+    >({
+      queryKey: [URL_FETCH_CUSTOMER_ALL_LESSON_LIST, id],
+      queryFn: async () => await getCustomerAllLessonList({ id: id }),
+    });
+
+    return {
+      data: data?.data,
+      isLoading,
+    };
+  } catch (error) {
+    console.error(error);
+    return { data: error };
+  }
+};
 
 const useCustomerLessonListQuery = (params: CustomerLessonListQueryPayload) => {
   try {

@@ -13,6 +13,22 @@ export type CustomerLessonHistoryQueryPayload = {
   page: number;
 };
 
+export type CustomerAllLessonListQueryData = {
+  id: number;
+  centerId: number;
+  customerId: number;
+  centerCoachId: number;
+  lessonId: number;
+  type: LessonType;
+  lessonName: string;
+  coachName: string;
+  registerAbleCount: number;
+  remainLessonCount: number;
+  paymentDt: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type CustomerLessonListQueryData = {
   id: number;
   centerId: number;
