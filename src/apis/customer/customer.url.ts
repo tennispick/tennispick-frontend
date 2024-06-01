@@ -10,6 +10,7 @@ const URL_DELETE_CUSTOMER = '/customer';
 const URL_FETCH_CUSTOMER_MEMO_LIST = '/customer/memo';
 const URL_CREATE_CUSTOMER_MEMO = '/customer/memo/create';
 const URL_UPDATE_CUSTOMER_ATTENDANCE = '/customer/attendance';
+const URL_DELETE_CUSTOMER_LESSON_HISTORY = '/customer/lesson-history';
 
 export {
   URL_FETCH_CUSTOMER_LIST,
@@ -23,4 +24,5 @@ export {
   URL_FETCH_CUSTOMER_MEMO_LIST,
   URL_CREATE_CUSTOMER_MEMO,
   URL_UPDATE_CUSTOMER_ATTENDANCE,
+  URL_DELETE_CUSTOMER_LESSON_HISTORY,
 };

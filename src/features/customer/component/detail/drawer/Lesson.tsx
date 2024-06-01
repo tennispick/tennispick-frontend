@@ -10,12 +10,17 @@ import { LessonStatus } from '@features/customer/util/lesson';
 import ManageListRow from '../manage/ListRow';
 import { useCustomerLessonScheduleHistoryQuery } from '@features/customer/query/CustomerQuery';
 import { CustomerLessonScheduleHistoryData } from '@apis/customer/customer.type';
+import { FormEventHandler } from 'react';
+import { deleteCustomerLesson } from '@apis/customer/customer.api';
+import { useQueryClient } from '@tanstack/react-query';
+import { URL_FETCH_CUSTOMER_ALL_LESSON_LIST } from '@apis/customer/customer.url';
 
 type Props = {
   data: CustomerAllLessonListQueryData;
 };
 
 const DrawerLesson = ({ data }: Props) => {
+  const queryClient = useQueryClient();
   const {
     id,
     customerId,
@@ -34,8 +39,24 @@ const DrawerLesson = ({ data }: Props) => {
       customerLessonId: id,
     });
 
+  const onSubmitHandler: FormEventHandler = async (e) => {
+    e.preventDefault();
+
+    if (!window.confirm('수강을 삭제하시겠습니까?')) return;
+
+    const { data } = await deleteCustomerLesson({ customerLessonId: id });
+    if (data.affectedRows > 0) {
+      alert('수강이 삭제되었어요.');
+      queryClient.invalidateQueries({
+        queryKey: [URL_FETCH_CUSTOMER_ALL_LESSON_LIST, customerId],
+      });
+    } else alert('수강 삭제에 실패했어요.\n관리자에게 문의해주세요.');
+
+    window.location.reload();
+  };
+
   return (
-    <form>
+    <form onSubmit={onSubmitHandler}>
       <DrawerInputContainer
         label="상태"
         value={LessonStatus(
@@ -145,6 +166,7 @@ const DrawerLesson = ({ data }: Props) => {
         }}
       >
         <Button
+          type="submit"
           label="수강 삭제하기"
           variant="iconBtn"
           src={DeleteWhiteIcon}
@@ -157,6 +179,13 @@ const DrawerLesson = ({ data }: Props) => {
             padding: '12px 16px',
             margin: '0 12px 0 0',
           }}
+          disabled={
+            LessonStatus(
+              centerCoachId,
+              remainLessonCount,
+              registerAbleCount,
+            ) !== '수강종료'
+          }
         />
       </div>
     </form>

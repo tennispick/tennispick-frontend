@@ -23,6 +23,7 @@ import {
 } from './customer.type';
 import { Response } from '@/types/response';
 import { URL_FETCH_CUSTOMER_MEMO_LIST } from './customer.url';
+import { URL_DELETE_CUSTOMER_LESSON_HISTORY } from './customer.url';
 
 export const getCustomerAllLessonList = async (
   params: Pick<CustomerLessonListApiPayload, 'id'>,
@@ -82,3 +83,10 @@ export const createCustomerMemo = async (params: FormData) =>
 export const updateCustomerAttendance = async (
   params: CustomerAttendanceApiPayload,
 ) => await axios.post(`${URL_UPDATE_CUSTOMER_ATTENDANCE}`, params);
+
+export const deleteCustomerLesson = async (params: {
+  customerLessonId: number;
+}) =>
+  await axios.delete(
+    `${URL_DELETE_CUSTOMER_LESSON_HISTORY}/${params.customerLessonId}`,
+  );
