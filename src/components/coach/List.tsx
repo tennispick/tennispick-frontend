@@ -113,8 +113,8 @@ const CoachList = () => {
                     }}
                   >
                     <Button
-                      label={'삭제하기'}
-                      variant={'radiusBtn'}
+                      label="삭제하기"
+                      variant="radiusBtn"
                       css={{
                         border: 0,
                         backgroundColor: 'var(--red200)',
@@ -122,11 +122,10 @@ const CoachList = () => {
                         padding: '8px 20px',
                         fontSize: '0.95rem',
                       }}
-                      onClick={() => {}}
                     />
                     <Button
-                      label={'상세보기'}
-                      variant={'radiusBtn'}
+                      label="상세보기"
+                      variant="radiusBtn"
                       css={{
                         border: 0,
                         backgroundColor: 'var(--business-color)',
@@ -134,7 +133,6 @@ const CoachList = () => {
                         padding: '8px 20px',
                         fontSize: '0.95rem',
                       }}
-                      onClick={() => {}}
                     />
                   </div>
                 </div>

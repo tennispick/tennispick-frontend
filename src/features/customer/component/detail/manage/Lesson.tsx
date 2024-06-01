@@ -4,9 +4,17 @@ import ManageLessonList from './LessonList';
 
 type Props = {
   customerId: string;
+  showDrawer: boolean;
+  onClickShowDrawerHandler: () => void;
+  onCloseDrawerHandler: () => void;
 };
 
-const ManageLesson = ({ customerId }: Props) => {
+const ManageLesson = ({
+  customerId,
+  showDrawer,
+  onClickShowDrawerHandler,
+  onCloseDrawerHandler,
+}: Props) => {
   const { data } = useCustomerAllLessonListQuery({ id: customerId });
 
   return (
@@ -34,7 +42,12 @@ const ManageLesson = ({ customerId }: Props) => {
         }}
       >
         {data && data.length > 0 ? (
-          <ManageLessonList data={data} />
+          <ManageLessonList
+            data={data}
+            showDrawer={showDrawer}
+            onClickShowDrawerHandler={onClickShowDrawerHandler}
+            onCloseDrawerHandler={onCloseDrawerHandler}
+          />
         ) : (
           <NoResult description="수강목록이 없어요." />
         )}

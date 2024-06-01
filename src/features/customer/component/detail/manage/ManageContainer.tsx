@@ -11,34 +11,47 @@ type Props = {
 
 const ManageContainer = ({ customerId }: Props) => {
   const [currentItem, setCurrentItem] = useState(lessonList[0].id);
+  const [showDrawer, setShowDrawer] = useState(false);
+
+  const onClickShowDrawerHandler = () => setShowDrawer(true);
+  const onCloseDrawerHandler = () => setShowDrawer(false);
 
   return (
-    <section css={{ position: 'relative', width: '49%' }}>
-      <SNBList
-        currentItem={currentItem}
-        setCurrentItem={setCurrentItem}
-        tabLists={lessonList}
-      />
-      <div
-        css={{
-          position: 'relative',
-          height: '50vh',
-          backgroundColor: 'var(--grey400)',
-          borderRadius: '16px',
-          padding: '12px',
-        }}
-      >
-        {
+    <>
+      <section css={{ position: 'relative', width: '49%' }}>
+        <SNBList
+          currentItem={currentItem}
+          setCurrentItem={setCurrentItem}
+          tabLists={lessonList}
+        />
+        <div
+          css={{
+            position: 'relative',
+            height: '50vh',
+            backgroundColor: 'var(--grey400)',
+            borderRadius: '16px',
+            padding: '12px',
+          }}
+        >
           {
-            lesson: <ManageLesson customerId={customerId} />,
-            additionalLesson: (
-              <ManageAdditionalLesson customerId={customerId} />
-            ),
-            memo: <ManageMemo customerId={customerId} />,
-          }[currentItem]
-        }
-      </div>
-    </section>
+            {
+              lesson: (
+                <ManageLesson
+                  customerId={customerId}
+                  showDrawer={showDrawer}
+                  onClickShowDrawerHandler={onClickShowDrawerHandler}
+                  onCloseDrawerHandler={onCloseDrawerHandler}
+                />
+              ),
+              additionalLesson: (
+                <ManageAdditionalLesson customerId={customerId} />
+              ),
+              memo: <ManageMemo customerId={customerId} />,
+            }[currentItem]
+          }
+        </div>
+      </section>
+    </>
   );
 };
 

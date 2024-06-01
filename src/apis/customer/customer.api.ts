@@ -4,6 +4,7 @@ import {
   URL_FETCH_CUSTOMER_LESSON_HISTORY,
   URL_FETCH_CUSTOMER_ALL_LESSON_LIST,
   URL_FETCH_CUSTOMER_LESSON_LIST,
+  URL_FETCH_CUSTOMER_LESSON_SCHEDULE_HISTORY_LIST,
   URL_SEARCH_CUSTOMER_LIST_BY_KEYWORD,
   URL_CREATE_CUSTOMER_MEMO,
   URL_UPDATE_CUSTOMER_ATTENDANCE,
@@ -18,6 +19,7 @@ import {
   SearchCustomerListByKeywordApiPayload,
   CustomerDeleteApiPayload,
   CustomerAttendanceApiPayload,
+  CustomerLessonScheduleHistoryData,
 } from './customer.type';
 import { Response } from '@/types/response';
 import { URL_FETCH_CUSTOMER_MEMO_LIST } from './customer.url';
@@ -38,6 +40,14 @@ export const getCustomerLessonHistory = async (
 ): Promise<Response<CustomerLessonHistoryData>> =>
   await axios.get(
     `${URL_FETCH_CUSTOMER_LESSON_HISTORY}/${params.customerId}?lessonType=${params.lessonType}&page=${params.page}`,
+  );
+
+export const getCustomerLessonScheduleHistory = async (params: {
+  customerId: number;
+  customerLessonId: number;
+}): Promise<Response<CustomerLessonScheduleHistoryData>> =>
+  await axios.get(
+    `${URL_FETCH_CUSTOMER_LESSON_SCHEDULE_HISTORY_LIST}/${params.customerId}?customerLessonId=${params.customerLessonId}`,
   );
 
 export const getCustomerDetail = async (

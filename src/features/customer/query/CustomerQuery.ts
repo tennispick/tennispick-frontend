@@ -12,6 +12,7 @@ import {
   getCustomerDetail,
   getCustomerLessonHistory,
   getCustomerLessonList,
+  getCustomerLessonScheduleHistory,
   getCustomerMemoList,
 } from '@apis/customer/customer.api';
 import {
@@ -20,6 +21,7 @@ import {
   URL_FETCH_CUSTOMER_LESSON_HISTORY,
   URL_FETCH_CUSTOMER_MEMO_LIST,
   URL_FETCH_CUSTOMER_ALL_LESSON_LIST,
+  URL_FETCH_CUSTOMER_LESSON_SCHEDULE_HISTORY_LIST,
 } from '@apis/customer/customer.url';
 import { Response } from '@/types/response';
 
@@ -83,6 +85,33 @@ const useCustomerLessonHistoryQuery = (
       enabled: !!customerId,
     });
 
+    return {
+      data: data?.data,
+      isLoading,
+    };
+  } catch (error) {
+    console.error(error);
+    return { data: error };
+  }
+};
+
+export const useCustomerLessonScheduleHistoryQuery = (params: {
+  customerId: number;
+  customerLessonId: number;
+}) => {
+  try {
+    const { customerId, customerLessonId } = params;
+    const { data, isLoading } = useQuery({
+      queryKey: [
+        URL_FETCH_CUSTOMER_LESSON_SCHEDULE_HISTORY_LIST,
+        { customerId, customerLessonId },
+      ],
+      queryFn: async () =>
+        await getCustomerLessonScheduleHistory({
+          customerId,
+          customerLessonId,
+        }),
+    });
     return {
       data: data?.data,
       isLoading,
