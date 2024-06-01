@@ -2,71 +2,43 @@ import ManageListRow from './ListRow';
 import { CustomerAllLessonListQueryData } from '@features/customer/type/customer.type';
 import { Button } from '@components/index';
 import { transferLessonType } from '@features/schedule/util/transfer';
+import { LessonStatusCell } from './LessonStatusCell';
+import Portal from '@components/Portal';
+import RightSideContainer from '@components/layer/RightSideContainer';
+import DrawerLesson from '../drawer/Lesson';
+import { useState } from 'react';
+import { LessonStatus } from '@features/customer/util/lesson';
 
 type Props = {
   data: CustomerAllLessonListQueryData[];
+  showDrawer: boolean;
+  onClickShowDrawerHandler: () => void;
+  onCloseDrawerHandler: () => void;
 };
 
-const ManageLessonList = ({ data }: Props) => {
-  const onCheckCustomerLessonStatus = (
-    centerCoachId: number | null,
-    remainLessonCount: number,
-    registerAbleCount: number,
-  ) => {
-    let label = '';
-    let style = {};
+const ButtonStyle = {
+  color: 'var(--white100)',
+  fontWeight: '500',
+  padding: '8px 0',
+  borderRadius: '6px',
+  border: 0,
+  fontSize: '0.875rem',
+  cursor: 'pointer',
+};
 
-    if (centerCoachId === null) {
-      label = '등록필요';
-      style = {
-        backgroundColor: 'var(--red200)',
-        color: 'var(--white100)',
-      };
-    } else if (remainLessonCount === 0) {
-      label = '수강종료';
-      style = {
-        backgroundColor: 'var(--grey500)',
-        color: 'var(--grey800)',
-      };
-    } else if (
-      remainLessonCount === registerAbleCount &&
-      remainLessonCount > 0
-    ) {
-      label = '시작전';
-      style = {
-        backgroundColor: 'var(--green200)',
-        color: 'var(--white100)',
-      };
-    } else if (
-      remainLessonCount !== registerAbleCount &&
-      remainLessonCount > 0
-    ) {
-      label = '수강중';
-      style = {
-        backgroundColor: 'var(--blue300)',
-        color: 'var(--white100)',
-      };
-    } else {
-      label = '수강대기';
-      style = {
-        backgroundColor: 'var(--blue100)',
-        color: 'var(--white100)',
-      };
-    }
+const ManageLessonList = ({
+  data,
+  showDrawer,
+  onClickShowDrawerHandler,
+  onCloseDrawerHandler,
+}: Props) => {
+  const [lessonItem, setLessonItem] = useState(
+    {} as CustomerAllLessonListQueryData,
+  );
 
-    return (
-      <div
-        css={{
-          width: '10%',
-          fontWeight: '500',
-          padding: '8px 0',
-          borderRadius: '6px',
-          ...style,
-        }}
-      >
-        {label}
-      </div>
-    );
+  const onClickLessonRowHandler = (item: CustomerAllLessonListQueryData) => {
+    setLessonItem(item);
+    onClickShowDrawerHandler();
   };
 
   return (
@@ -88,7 +60,7 @@ const ManageLessonList = ({ data }: Props) => {
         <div css={{ width: '15%' }}>코치</div>
         <div css={{ width: '10%' }}>수강현황</div>
         <div css={{ width: '20%' }}>결제날짜</div>
-        <div css={{ width: '22%' }}></div>
+        <div css={{ width: '22%' }} />
       </div>
       <div
         css={{
@@ -111,11 +83,18 @@ const ManageLessonList = ({ data }: Props) => {
           } = item;
 
           return (
-            <ManageListRow key={`${index}-${id}`}>
-              {onCheckCustomerLessonStatus(
-                centerCoachId,
-                remainLessonCount,
-                registerAbleCount,
+            <ManageListRow
+              key={`${index}-${id}`}
+              css={{
+                cursor: 'default',
+              }}
+            >
+              {LessonStatusCell(
+                LessonStatus(
+                  centerCoachId,
+                  remainLessonCount,
+                  registerAbleCount,
+                ),
               )}
               <div css={{ width: '20%' }}>{lessonName}</div>
               <div css={{ width: '8%' }}>{transferLessonType(type)}</div>
@@ -130,14 +109,8 @@ const ManageLessonList = ({ data }: Props) => {
                   css={{
                     width: '46%',
                     backgroundColor: 'var(--business-active-color)',
-                    color: 'var(--white100)',
-                    fontWeight: '500',
-                    padding: '8px 0',
-                    borderRadius: '6px',
-                    border: 0,
-                    cursor: 'pointer',
-                    fontSize: '0.875rem',
                     margin: '0 4% 0 4%',
+                    ...ButtonStyle,
                   }}
                 />
                 <Button
@@ -145,20 +118,26 @@ const ManageLessonList = ({ data }: Props) => {
                   css={{
                     width: '46%',
                     backgroundColor: 'var(--business-color)',
-                    color: 'var(--white100)',
-                    fontWeight: '500',
-                    padding: '8px 0',
-                    borderRadius: '6px',
-                    border: 0,
-                    fontSize: '0.875rem',
-                    cursor: 'pointer',
+                    ...ButtonStyle,
                   }}
+                  onClick={() => onClickLessonRowHandler(item)}
                 />
               </div>
             </ManageListRow>
           );
         })}
       </div>
+      {showDrawer && (
+        <Portal id="drawer">
+          <RightSideContainer
+            title="수강 상세보기"
+            showRightSide={showDrawer}
+            setShowRightSide={onCloseDrawerHandler}
+          >
+            <DrawerLesson data={lessonItem} />
+          </RightSideContainer>
+        </Portal>
+      )}
     </>
   );
 };

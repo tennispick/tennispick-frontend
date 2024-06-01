@@ -57,6 +57,19 @@ export type CustomerDetailData = {
   digitalSignatureImageUrl?: string;
 };
 
+export type CustomerLessonScheduleHistoryData = {
+  id: number;
+  coachName: string;
+  isAttendance: 'Y' | 'N';
+  date: string;
+  day: DayType | null;
+  isRegularLesson: 'Y' | 'N';
+  lessonDateType: LessonDateType;
+  lessonType: LessonType;
+  startTime: string;
+  endTime: string;
+};
+
 export type SearchCustomerListByKeywordApiPayload = {
   keyword: string;
 } & Pick<CommonFormInputType, 'customer' | 'lesson' | 'lessonType'>;
