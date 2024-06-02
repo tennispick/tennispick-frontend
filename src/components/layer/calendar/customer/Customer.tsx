@@ -4,7 +4,10 @@ import { useCustomerDetailQuery } from '@features/customer/query/CustomerQuery';
 import CustomerInfo from './CustomerInfo';
 import { useRouter } from 'next/navigation';
 import { ScheduleLessonByDateData } from '@apis/schedule/schedule.type';
-import { useAttendanceMutate } from '@features/customer/mutate/manage';
+import {
+  useAttendanceMutate,
+  useLessonCancelMutate,
+} from '@features/customer/mutate/manage';
 
 type Props = {
   day: Date;
@@ -22,22 +25,35 @@ const ModalCustomer = ({
   const router = useRouter();
 
   const { data } = useCustomerDetailQuery({ id: customerId });
-  const { mutate } = useAttendanceMutate(day, onCloseModalHandler);
+  const { mutate: attendanceMutate } = useAttendanceMutate(
+    day,
+    onCloseModalHandler,
+  );
+  const { mutate: lessonCancelMutate } = useLessonCancelMutate(
+    day,
+    onCloseModalHandler,
+  );
 
-  const { customerAttendance, coachAttendance } = customerInfo ?? {};
+  const { id, customerAttendance, coachAttendance } = customerInfo ?? {};
 
   const isAbleAttendacne = !!(customerAttendance || coachAttendance);
+
+  const onClickCustomerAttendanceHandler = () =>
+    attendanceMutate({
+      customerId,
+      lessonHistoryId: id?.toString() ?? '',
+    });
+
+  const onClickCustomerLessonCancelHandler = () =>
+    lessonCancelMutate({
+      customerId,
+      lessonHistoryId: id?.toString() ?? '',
+    });
 
   const onClickCustomerDetailRouterHandler = () => {
     router.push(`/customer/${customerId}`);
     onCloseModalHandler();
   };
-
-  const onClickCustomerAttendanceHandler = () =>
-    mutate({
-      customerId,
-      lessonHistoryId: customerInfo?.id.toString() ?? '',
-    });
 
   return (
     <Container>
@@ -76,6 +92,7 @@ const ModalCustomer = ({
             border: 0,
           }}
           disabled={!data?.[0]}
+          onClick={onClickCustomerLessonCancelHandler}
         />
         <Button
           label="상세보기"

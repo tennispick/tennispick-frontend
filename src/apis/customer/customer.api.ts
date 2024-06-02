@@ -8,6 +8,7 @@ import {
   URL_SEARCH_CUSTOMER_LIST_BY_KEYWORD,
   URL_CREATE_CUSTOMER_MEMO,
   URL_UPDATE_CUSTOMER_ATTENDANCE,
+  URL_UPDATE_CUSTOMER_LESSON_CANCEL,
 } from './customer.url';
 import { axios } from '@utils/axios';
 import {
@@ -20,6 +21,7 @@ import {
   CustomerDeleteApiPayload,
   CustomerAttendanceApiPayload,
   CustomerLessonScheduleHistoryData,
+  CustomerLessonCancelApiPayload,
 } from './customer.type';
 import { Response } from '@/types/response';
 import { URL_FETCH_CUSTOMER_MEMO_LIST } from './customer.url';
@@ -83,6 +85,10 @@ export const createCustomerMemo = async (params: FormData) =>
 export const updateCustomerAttendance = async (
   params: CustomerAttendanceApiPayload,
 ) => await axios.post(`${URL_UPDATE_CUSTOMER_ATTENDANCE}`, params);
+
+export const updateCustomerLessonCancel = async (
+  params: CustomerLessonCancelApiPayload,
+) => await axios.put(`${URL_UPDATE_CUSTOMER_LESSON_CANCEL}`, params);
 
 export const deleteCustomerLesson = async (params: {
   customerLessonId: number;

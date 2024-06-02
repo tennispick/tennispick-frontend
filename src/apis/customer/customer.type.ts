@@ -102,3 +102,8 @@ export type CustomerAttendanceApiPayload = {
   customerId: string;
   lessonHistoryId: string;
 };
+
+export type CustomerLessonCancelApiPayload = {
+  customerId: string;
+  lessonHistoryId: string;
+};
