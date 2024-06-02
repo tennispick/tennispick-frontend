@@ -12,9 +12,13 @@ type Props = {
 const ManageContainer = ({ customerId }: Props) => {
   const [currentItem, setCurrentItem] = useState(lessonList[0].id);
   const [showDrawer, setShowDrawer] = useState(false);
+  const [showScheduleChangeModal, setShowScheduleChangeModal] = useState(false);
 
   const onClickShowDrawerHandler = () => setShowDrawer(true);
   const onCloseDrawerHandler = () => setShowDrawer(false);
+
+  const onClickShowModalHandler = () => setShowScheduleChangeModal(true);
+  const onClickCloseModalHandler = () => setShowScheduleChangeModal(false);
 
   return (
     <>
@@ -41,6 +45,9 @@ const ManageContainer = ({ customerId }: Props) => {
                   showDrawer={showDrawer}
                   onClickShowDrawerHandler={onClickShowDrawerHandler}
                   onCloseDrawerHandler={onCloseDrawerHandler}
+                  showScheduleChangeModal={showScheduleChangeModal}
+                  onClickShowModalHandler={onClickShowModalHandler}
+                  onClickCloseModalHandler={onClickCloseModalHandler}
                 />
               ),
               additionalLesson: (

@@ -1,9 +1,10 @@
 import ManageListRow from './ListRow';
+import { Modal, Portal } from '@components/index';
+import ScheduleChangeModal from '../modal/scheduleChange/ScheduleChange';
 import { CustomerAllLessonListQueryData } from '@features/customer/type/customer.type';
 import { Button } from '@components/index';
 import { transferLessonType } from '@features/schedule/util/transfer';
 import { LessonStatusCell } from './LessonStatusCell';
-import Portal from '@components/Portal';
 import RightSideContainer from '@components/layer/RightSideContainer';
 import DrawerLesson from '../drawer/Lesson';
 import { useState } from 'react';
@@ -14,6 +15,9 @@ type Props = {
   showDrawer: boolean;
   onClickShowDrawerHandler: () => void;
   onCloseDrawerHandler: () => void;
+  showScheduleChangeModal: boolean;
+  onClickShowModalHandler: () => void;
+  onClickCloseModalHandler: () => void;
 };
 
 const ButtonStyle = {
@@ -31,10 +35,18 @@ const ManageLessonList = ({
   showDrawer,
   onClickShowDrawerHandler,
   onCloseDrawerHandler,
+  showScheduleChangeModal,
+  onClickShowModalHandler,
+  onClickCloseModalHandler
 }: Props) => {
   const [lessonItem, setLessonItem] = useState(
     {} as CustomerAllLessonListQueryData,
   );
+
+  const onClickScheduleChangeShowModalHandler = (item: CustomerAllLessonListQueryData) => {
+    setLessonItem(item);
+    onClickShowModalHandler();
+  };
 
   const onClickLessonRowHandler = (item: CustomerAllLessonListQueryData) => {
     setLessonItem(item);
@@ -105,6 +117,7 @@ const ManageLessonList = ({
               <div css={{ width: '20%' }}>{paymentDt}</div>
               <div css={{ width: '22%', display: 'flex' }}>
                 <Button
+                  type='button'
                   label="수강변경"
                   css={{
                     width: '46%',
@@ -112,8 +125,10 @@ const ManageLessonList = ({
                     margin: '0 4% 0 4%',
                     ...ButtonStyle,
                   }}
+                  onClick={() => onClickScheduleChangeShowModalHandler(item)}
                 />
                 <Button
+                  type='button'
                   label="상세보기"
                   css={{
                     width: '46%',
@@ -127,6 +142,23 @@ const ManageLessonList = ({
           );
         })}
       </div>
+      {showScheduleChangeModal && (
+        <Portal id="portal">
+          <Modal
+            title="강습일정 변경"
+            showModal={showScheduleChangeModal}
+            setShowModal={onClickCloseModalHandler}
+            css={{
+              top: '45%'
+            }}
+          >
+            <ScheduleChangeModal
+              customerId={lessonItem.customerId}
+              customerLessonId={lessonItem.id}
+            />
+          </Modal>
+        </Portal>
+      )}
       {showDrawer && (
         <Portal id="drawer">
           <RightSideContainer
