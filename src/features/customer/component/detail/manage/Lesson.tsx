@@ -19,9 +19,8 @@ const ManageLesson = ({
   onCloseDrawerHandler,
   showScheduleChangeModal,
   onClickShowModalHandler,
-  onClickCloseModalHandler
+  onClickCloseModalHandler,
 }: Props) => {
-
   const { data } = useCustomerAllLessonListQuery({ id: customerId });
 
   return (

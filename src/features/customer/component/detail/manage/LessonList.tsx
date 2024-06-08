@@ -37,13 +37,15 @@ const ManageLessonList = ({
   onCloseDrawerHandler,
   showScheduleChangeModal,
   onClickShowModalHandler,
-  onClickCloseModalHandler
+  onClickCloseModalHandler,
 }: Props) => {
   const [lessonItem, setLessonItem] = useState(
     {} as CustomerAllLessonListQueryData,
   );
 
-  const onClickScheduleChangeShowModalHandler = (item: CustomerAllLessonListQueryData) => {
+  const onClickScheduleChangeShowModalHandler = (
+    item: CustomerAllLessonListQueryData,
+  ) => {
     setLessonItem(item);
     onClickShowModalHandler();
   };
@@ -117,7 +119,7 @@ const ManageLessonList = ({
               <div css={{ width: '20%' }}>{paymentDt}</div>
               <div css={{ width: '22%', display: 'flex' }}>
                 <Button
-                  type='button'
+                  type="button"
                   label="수강변경"
                   css={{
                     width: '46%',
@@ -128,7 +130,7 @@ const ManageLessonList = ({
                   onClick={() => onClickScheduleChangeShowModalHandler(item)}
                 />
                 <Button
-                  type='button'
+                  type="button"
                   label="상세보기"
                   css={{
                     width: '46%',
@@ -149,7 +151,7 @@ const ManageLessonList = ({
             showModal={showScheduleChangeModal}
             setShowModal={onClickCloseModalHandler}
             css={{
-              top: '45%'
+              top: '45%',
             }}
           >
             <ScheduleChangeModal

@@ -1,13 +1,16 @@
-import { CustomerAllLessonListQueryData } from "@features/customer/type/customer.type";
-import NewSchedule from "./NewSchedule";
-import OriginSchedule from "./OriginSchedule";
-import { FormEventHandler, useState } from "react";
-import { CustomerLessonScheduleHistoryData } from "@apis/customer/customer.type";
-import { Button } from "@components/index";
-import { EditWhiteIcon } from "@icons/index";
-import { isEmptyObj } from "@utils/object";
+import { CustomerAllLessonListQueryData } from '@features/customer/type/customer.type';
+import NewSchedule from './newSchedule/NewSchedule';
+import OriginSchedule from './OriginSchedule';
+import { FormEventHandler, useEffect, useState } from 'react';
+import { CustomerLessonScheduleHistoryData } from '@apis/customer/customer.type';
+import useInput from '@hooks/useInput';
+import { isEmptyObj } from '@utils/object';
+import { useScheduleChangeMutation } from '@features/schedule/mutation/scheduleMutation';
 
-type CustomerLessonItem = Pick<CustomerAllLessonListQueryData, 'customerId' | 'id'>;
+type CustomerLessonItem = Pick<
+  CustomerAllLessonListQueryData,
+  'customerId' | 'id'
+>;
 
 type Props = {
   customerId: CustomerLessonItem['customerId'];
@@ -15,19 +18,51 @@ type Props = {
 };
 
 const ScheduleChangeModal = ({ customerId, customerLessonId }: Props) => {
+  const [selectSchedule, setSelectSchedule] = useState(
+    {} as CustomerLessonScheduleHistoryData,
+  );
 
-  console.log(customerId);
-  console.log(customerLessonId);
+  const [formData, onChangeFormData, setFormData] = useInput({
+    coach: selectSchedule.coachId ?? '',
+    date: selectSchedule.date ?? new Date(),
+    startTime: selectSchedule.startTime ?? '00:00',
+    endTime: selectSchedule.endTime ?? '00:20',
+    court: selectSchedule.courtId ?? '',
+  });
 
-  const [selectSchedule, setSelectSchedule] = useState({} as CustomerLessonScheduleHistoryData);
+  const { mutate } = useScheduleChangeMutation();
 
-  const onClickSelectOriginScheduleHandler = (item: CustomerLessonScheduleHistoryData) =>
-    setSelectSchedule(item);
+  const onClickSelectOriginScheduleHandler = (
+    item: CustomerLessonScheduleHistoryData,
+  ) => setSelectSchedule(item);
 
-  const onSubmitHandler: FormEventHandler = (e) => {
+  const onSubmitHandler: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
 
+    const currentFormData = new FormData(e.currentTarget);
+
+    currentFormData.append('id', `${selectSchedule.id}`);
+    currentFormData.append('customerId', `${customerId}`);
+    currentFormData.append('customerLessonId', `${customerLessonId}`);
+    currentFormData.append('lessonId', `${selectSchedule.lessonId}`);
+    currentFormData.append('lessonType', selectSchedule.lessonType);
+    currentFormData.append('date', formData.date);
+    currentFormData.append('endTime', currentFormData.get('endTime')!);
+
+    mutate({ ...Object.fromEntries(currentFormData) });
   };
+
+  useEffect(() => {
+    if (isEmptyObj(selectSchedule)) return;
+
+    setFormData({
+      coach: selectSchedule.coachId,
+      date: new Date(selectSchedule.date),
+      startTime: selectSchedule.startTime,
+      endTime: selectSchedule.endTime,
+      court: selectSchedule.courtId,
+    });
+  }, [selectSchedule, setFormData]);
 
   return (
     <form onSubmit={onSubmitHandler}>
@@ -39,25 +74,12 @@ const ScheduleChangeModal = ({ customerId, customerLessonId }: Props) => {
       />
       <NewSchedule
         selectSchedule={selectSchedule}
-      />
-      <Button
-        type="submit"
-        label="수강 변경하기"
-        variant="iconBtn"
-        src={EditWhiteIcon}
-        css={{
-          width: '100%',
-          border: 0,
-          justifyContent: 'center',
-          backgroundColor: 'var(--business-sub-color)',
-          color: 'var(--white100)',
-          padding: '12px 16px',
-          margin: '36px 12px 0 0',
-        }}
-        disabled={isEmptyObj(selectSchedule)}
+        formData={formData}
+        onChangeFormData={onChangeFormData}
+        setFormData={setFormData}
       />
     </form>
-  )
+  );
 };
 
 export default ScheduleChangeModal;

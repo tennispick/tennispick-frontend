@@ -189,6 +189,12 @@ export const globalStyles = (
         :focus {
           outline: none;
         }
+
+        :disabled {
+          background-color: transparent;
+          color: var(--grey800);
+          border-color: var(--grey100);
+        }
       }
 
       .hidden {
