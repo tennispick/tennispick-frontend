@@ -231,15 +231,15 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
           </div>
           <div css={{ position: 'relative', display: 'flex' }}>
             <CustomerInputRow
-              name={'address'}
-              rowHeadLabel={'주소(선택)'}
-              placeholder={'우편번호 찾기'}
+              name="address"
+              rowHeadLabel="주소(선택)"
+              placeholder="우편번호 찾기"
               defaultValue={address ?? ''}
             />
             <CustomerInputRow
-              name={'addressDetail'}
-              rowHeadLabel={'상세주소'}
-              placeholder={'상세 주소를 입력해주세요.'}
+              name="addressDetail"
+              rowHeadLabel="상세주소"
+              placeholder="상세 주소를 입력해주세요."
               defaultValue={addressDetail ?? ''}
               rowHeadStyle={{ width: '100px', margin: '0 0 0 20px' }}
             />
@@ -247,8 +247,8 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
         </div>
         <div css={{ display: 'flex', justifyContent: 'end' }}>
           <Button
-            label={'정보 삭제하기'}
-            variant={'iconBtn'}
+            label="정보 삭제하기"
+            variant="iconBtn"
             src={DeleteWhiteIcon}
             css={{
               border: 0,
@@ -260,8 +260,8 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
             onClick={onClickDeleteCustomerHandler}
           />
           <Button
-            label={'정보 수정하기'}
-            variant={'iconBtn'}
+            label="정보 수정하기"
+            variant="iconBtn"
             src={EditWhiteIcon}
             css={{
               border: 0,

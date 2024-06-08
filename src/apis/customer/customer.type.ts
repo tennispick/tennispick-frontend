@@ -59,6 +59,9 @@ export type CustomerDetailData = {
 
 export type CustomerLessonScheduleHistoryData = {
   id: number;
+  courtId: number;
+  lessonId: number;
+  coachId: number;
   coachName: string;
   isAttendance: 'Y' | 'N';
   date: string;

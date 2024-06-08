@@ -1,9 +1,12 @@
 import { useMutation } from '@tanstack/react-query';
-import { createScheduleLesson } from '@apis/schedule/schedule.api';
+import {
+  createChangeScheduleLesson,
+  createScheduleLesson,
+} from '@apis/schedule/schedule.api';
 import { ResponseType } from 'src/types';
 import { isEmptyObj } from '@utils/object';
 
-const useScheduleMutation = () => {
+export const useScheduleMutation = () => {
   const { mutate, isLoading } = useMutation(
     (data: any) => createScheduleLesson(data),
     {
@@ -40,4 +43,24 @@ const useScheduleMutation = () => {
   };
 };
 
-export { useScheduleMutation };
+export const useScheduleChangeMutation = () => {
+  const { mutate, isLoading } = useMutation(
+    (data: any) => createChangeScheduleLesson(data),
+    {
+      onSuccess: (res) => {
+        if (res.affectedRows > 0) alert('스케줄이 변경되었어요.');
+        else alert('스케줄 변경에 실패했어요.\n관리자에게 문의해주세요.');
+        window.location.reload();
+      },
+      onError: (error) => {
+        alert('스케줄 변경에 실패했어요.\n관리자에게 문의해주세요.');
+        console.error(error);
+      },
+    },
+  );
+
+  return {
+    mutate,
+    isLoading,
+  };
+};

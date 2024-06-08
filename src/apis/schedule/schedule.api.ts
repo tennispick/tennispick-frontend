@@ -1,5 +1,6 @@
 import {
   URL_CREATE_SCHEDULE_LESSON,
+  URL_CREATE_CHANGE_SCHEDULE_LESSON,
   URL_SCHEDULE_LESSON_BY_PERIOD,
   URL_SCHEDULE_LESSON_BY_DATE,
   URL_UPDATE_SCHEDULE_LESSON,
@@ -46,6 +47,13 @@ const createScheduleLesson = async (params: any) => {
         ...params,
       };
   const { data } = await axios.post(`${URL_CREATE_SCHEDULE_LESSON}`, param);
+  return data;
+};
+
+export const createChangeScheduleLesson = async (params: any) => {
+  const { data } = await axios.post(`${URL_CREATE_CHANGE_SCHEDULE_LESSON}`, {
+    ...params,
+  });
   return data;
 };
 
