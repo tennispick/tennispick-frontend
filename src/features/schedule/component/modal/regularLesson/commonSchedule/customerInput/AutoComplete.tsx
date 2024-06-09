@@ -6,7 +6,7 @@ type Props = {
   onClickCustomerHandler: (id: string, name: string) => void;
 };
 
-const ScheduleModalRegularLessonCommonScheduleCustomerInputAutoComplete = ({
+const InputAutoComplete = ({
   data,
   onClickCustomerHandler,
 }: Props) => {
@@ -53,4 +53,4 @@ const ScheduleModalRegularLessonCommonScheduleCustomerInputAutoComplete = ({
   );
 };
 
-export default ScheduleModalRegularLessonCommonScheduleCustomerInputAutoComplete;
+export default InputAutoComplete;
