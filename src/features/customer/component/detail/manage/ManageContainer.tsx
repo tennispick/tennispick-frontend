@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { lessonList } from '../../../data/snbList';
 import SNBList from '../../SNBList';
-import ManageLesson from './Lesson';
+import ManageLesson from './lesson/Lesson';
 import ManageAdditionalLesson from './AdditionalLesson';
-import ManageMemo from './Memo';
+import ManageMemo from './memo/Memo';
 
 type Props = {
   customerId: string;
@@ -51,7 +51,12 @@ const ManageContainer = ({ customerId }: Props) => {
                 />
               ),
               additionalLesson: (
-                <ManageAdditionalLesson customerId={customerId} />
+                <ManageAdditionalLesson
+                  customerId={customerId}
+                  showDrawer={showDrawer}
+                  onClickShowDrawerHandler={onClickShowDrawerHandler}
+                  onCloseDrawerHandler={onCloseDrawerHandler}
+                />
               ),
               memo: <ManageMemo customerId={customerId} />,
             }[currentItem]

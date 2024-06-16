@@ -22,8 +22,10 @@ import {
   URL_FETCH_CUSTOMER_MEMO_LIST,
   URL_FETCH_CUSTOMER_ALL_LESSON_LIST,
   URL_FETCH_CUSTOMER_LESSON_SCHEDULE_HISTORY_LIST,
+  URL_FETCH_CUSTOMER_ADDITIONAL_LESSON_LIST,
 } from '@apis/customer/customer.url';
 import { Response } from '@/types/response';
+import { getCustomerAdditionalLessonList } from '@apis/customer/customer.api';
 
 export const useCustomerAllLessonListQuery = (
   params: Pick<CustomerLessonListQueryPayload, 'id'>,
@@ -47,7 +49,9 @@ export const useCustomerAllLessonListQuery = (
   }
 };
 
-const useCustomerLessonListQuery = (params: CustomerLessonListQueryPayload) => {
+export const useCustomerLessonListQuery = (
+  params: CustomerLessonListQueryPayload,
+) => {
   try {
     const { id, lessonType } = params;
     const { data, isLoading } = useQuery<Response<CustomerLessonListQueryData>>(
@@ -68,7 +72,7 @@ const useCustomerLessonListQuery = (params: CustomerLessonListQueryPayload) => {
   }
 };
 
-const useCustomerLessonHistoryQuery = (
+export const useCustomerLessonHistoryQuery = (
   params: CustomerLessonHistoryQueryPayload,
 ) => {
   try {
@@ -122,7 +126,7 @@ export const useCustomerLessonScheduleHistoryQuery = (params: {
   }
 };
 
-const useCustomerDetailQuery = (params: CustomerDetailQueryPayLoad) => {
+export const useCustomerDetailQuery = (params: CustomerDetailQueryPayLoad) => {
   try {
     const { id } = params;
     const { data, isLoading } = useQuery({
@@ -141,7 +145,22 @@ const useCustomerDetailQuery = (params: CustomerDetailQueryPayLoad) => {
   }
 };
 
-const useCustomerMemoListQuery = (customerId: string) => {
+export const useCustomerAdditionalLessonListQuery = (customerId: string) => {
+  try {
+    const { data, isFetching } = useQuery({
+      queryKey: [URL_FETCH_CUSTOMER_ADDITIONAL_LESSON_LIST, { customerId }],
+      queryFn: async () => await getCustomerAdditionalLessonList(customerId),
+      select: (data) => data?.data,
+    });
+
+    return { data, isFetching };
+  } catch (error) {
+    console.error(error);
+    return { data: error };
+  }
+};
+
+export const useCustomerMemoListQuery = (customerId: string) => {
   try {
     const { data, isLoading } = useQuery({
       queryKey: [URL_FETCH_CUSTOMER_MEMO_LIST, customerId],
@@ -156,11 +175,4 @@ const useCustomerMemoListQuery = (customerId: string) => {
     console.error(error);
     return { data: error };
   }
-};
-
-export {
-  useCustomerLessonListQuery,
-  useCustomerLessonHistoryQuery,
-  useCustomerDetailQuery,
-  useCustomerMemoListQuery,
 };

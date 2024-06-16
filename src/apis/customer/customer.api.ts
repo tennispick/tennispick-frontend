@@ -9,6 +9,7 @@ import {
   URL_CREATE_CUSTOMER_MEMO,
   URL_UPDATE_CUSTOMER_ATTENDANCE,
   URL_UPDATE_CUSTOMER_LESSON_CANCEL,
+  URL_FETCH_CUSTOMER_ADDITIONAL_LESSON_LIST,
 } from './customer.url';
 import { axios } from '@utils/axios';
 import {
@@ -76,12 +77,6 @@ export const getSearchCustomerListByKeyword = async (
 export const deleteCustomer = async (params: CustomerDeleteApiPayload) =>
   await axios.delete(`${URL_DELETE_CUSTOMER}/${params.customerId}`);
 
-export const getCustomerMemoList = async (customerId: string) =>
-  await axios.get(`${URL_FETCH_CUSTOMER_MEMO_LIST}/${customerId}`);
-
-export const createCustomerMemo = async (params: FormData) =>
-  await axios.post(`${URL_CREATE_CUSTOMER_MEMO}`, params);
-
 export const updateCustomerAttendance = async (
   params: CustomerAttendanceApiPayload,
 ) => await axios.post(`${URL_UPDATE_CUSTOMER_ATTENDANCE}`, params);
@@ -96,3 +91,12 @@ export const deleteCustomerLesson = async (params: {
   await axios.delete(
     `${URL_DELETE_CUSTOMER_LESSON_HISTORY}/${params.customerLessonId}`,
   );
+
+export const getCustomerAdditionalLessonList = async (customerId: string) =>
+  await axios.get(`${URL_FETCH_CUSTOMER_ADDITIONAL_LESSON_LIST}/${customerId}`);
+
+export const getCustomerMemoList = async (customerId: string) =>
+  await axios.get(`${URL_FETCH_CUSTOMER_MEMO_LIST}/${customerId}`);
+
+export const createCustomerMemo = async (params: FormData) =>
+  await axios.post(`${URL_CREATE_CUSTOMER_MEMO}`, params);
