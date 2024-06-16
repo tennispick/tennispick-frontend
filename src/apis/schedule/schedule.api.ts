@@ -6,6 +6,7 @@ import {
   URL_UPDATE_SCHEDULE_LESSON,
   URL_DELETE_SCHEDULE_LESSON,
   URL_IS_DUPLICATE_CHECK_SCHEDULE_LESSON,
+  URL_CREATE_ADDITIONAL_SCHEDULE_LESSON,
 } from './schedule.url';
 import { axios } from '@utils/axios';
 import {
@@ -47,6 +48,14 @@ const createScheduleLesson = async (params: any) => {
         ...params,
       };
   const { data } = await axios.post(`${URL_CREATE_SCHEDULE_LESSON}`, param);
+  return data;
+};
+
+export const createAdditionalScheduleLesson = async (param: FormData) => {
+  const { data } = await axios.post(
+    `${URL_CREATE_ADDITIONAL_SCHEDULE_LESSON}`,
+    param,
+  );
   return data;
 };
 

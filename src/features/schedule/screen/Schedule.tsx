@@ -57,7 +57,7 @@ const Schedule = () => {
         coachList={coachList ? coachList : []}
       />
       {showModal && (
-        <Portal id='portal'>
+        <Portal id="portal">
           <Modal
             title={
               modalType === 'regular' ? '정규 스케줄 등록' : '보강 스케줄 등록'

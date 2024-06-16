@@ -13,6 +13,8 @@ const ScheduleModalRecentHistoryModalTableBody = ({
   onClickRadioHandler,
   data,
 }: Props) => {
+  const isEmptyData = data.length === 0;
+
   return (
     <table
       css={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed' }}
@@ -71,7 +73,7 @@ const ScheduleModalRecentHistoryModalTableBody = ({
           },
         }}
       >
-        {data.length === 0 && (
+        {isEmptyData && (
           <tr>
             <td colSpan={8}>최근 수강이력이 없어요.</td>
           </tr>

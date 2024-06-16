@@ -48,6 +48,7 @@ export type CustomerLessonListQueryData = {
 export type CustomerLessonHistoryQueryData = {
   lessonHistory: {
     id: number;
+    customerLessonId: number;
     customerName: string;
     lessonId: number;
     lessonName: string;

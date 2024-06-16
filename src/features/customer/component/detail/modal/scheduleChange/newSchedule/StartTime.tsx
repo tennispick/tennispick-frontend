@@ -7,7 +7,12 @@ type Props = {
   onChangeFormData: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const StartTimeSelect = ({ startTime, disabled, onChangeFormData }: Props) => {
+const StartTimeSelect = ({
+  startTime,
+  disabled,
+  onChangeFormData,
+  ...rest
+}: Props) => {
   const data = getTimeList({ isInclude: true }).map((item) => ({
     value: `${item}`,
     label: item,
@@ -27,6 +32,7 @@ const StartTimeSelect = ({ startTime, disabled, onChangeFormData }: Props) => {
       selected={startTime}
       onChangeHandler={onChangeFormData}
       disabled={disabled}
+      {...rest}
     />
   );
 };

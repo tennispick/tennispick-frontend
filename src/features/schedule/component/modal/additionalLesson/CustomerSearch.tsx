@@ -7,10 +7,10 @@ import InputAutoComplete from '../regularLesson/commonSchedule/customerInput/Aut
 
 type Props = {
   setCustomerLesson: any;
-}
+  setCustomerIdHandler: (id: string) => void;
+};
 
-const CustomerSearch = ({ setCustomerLesson }: Props) => {
-
+const CustomerSearch = ({ setCustomerLesson, setCustomerIdHandler }: Props) => {
   const [keyword, setKeyword] = useState<string>('');
   const [searchedCustomerData, setSearchedCustomerData] = useState([
     {
@@ -19,9 +19,11 @@ const CustomerSearch = ({ setCustomerLesson }: Props) => {
     },
   ]);
 
-  const onChangeInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => setKeyword(e.target.value);
+  const onChangeInputHandler = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setKeyword(e.target.value);
 
   const onClickSearchedCustomerHandler = (id: string, name: string) => {
+    setCustomerIdHandler(id);
     setCustomerLesson({
       id: id,
       name: name,
@@ -37,7 +39,7 @@ const CustomerSearch = ({ setCustomerLesson }: Props) => {
         keyword: keyword,
         customer: [],
       });
-      setSearchedCustomerData([ ...response ]);
+      setSearchedCustomerData([...response]);
     };
 
     fetchData();
@@ -46,21 +48,25 @@ const CustomerSearch = ({ setCustomerLesson }: Props) => {
   const isShowAutoComplete = keyword && searchedCustomerData.length > 0;
 
   return (
-    <div css={{
-      display: 'flex',
-      alignItems: 'center',
-      height: '48px',
-      borderBottom: '1px solid var(--grey100)',
-      padding: '0 0 12px 0',
-      margin: '0 0 12px 0'
-    }}>
-      <div css={{
+    <div
+      css={{
         display: 'flex',
         alignItems: 'center',
-        width: '140px',
-        height: '100%',
-        margin: '0 12px 0 0'
-      }}>
+        height: '48px',
+        borderBottom: '1px solid var(--grey100)',
+        padding: '0 0 12px 0',
+        margin: '0 0 12px 0',
+      }}
+    >
+      <div
+        css={{
+          display: 'flex',
+          alignItems: 'center',
+          width: '140px',
+          height: '100%',
+          margin: '0 12px 0 0',
+        }}
+      >
         <Image
           src={CustomerBlackIcon}
           alt="customer"
@@ -97,7 +103,7 @@ const CustomerSearch = ({ setCustomerLesson }: Props) => {
         )}
       </ScheduleModalInput>
     </div>
-  )
+  );
 };
 
 export default CustomerSearch;

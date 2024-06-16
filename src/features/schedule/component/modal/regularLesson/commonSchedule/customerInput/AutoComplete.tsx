@@ -6,10 +6,7 @@ type Props = {
   onClickCustomerHandler: (id: string, name: string) => void;
 };
 
-const InputAutoComplete = ({
-  data,
-  onClickCustomerHandler,
-}: Props) => {
+const InputAutoComplete = ({ data, onClickCustomerHandler }: Props) => {
   return (
     <section
       css={{
