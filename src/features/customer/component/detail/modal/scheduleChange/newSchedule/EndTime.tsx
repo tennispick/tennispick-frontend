@@ -2,9 +2,10 @@ import ScheduleSelect from '../Select';
 
 type Props = {
   endTime: string;
+  onChangeFormData?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const EndTimeSelect = ({ endTime }: Props) => {
+const EndTimeSelect = ({ endTime, onChangeFormData, ...rest }: Props) => {
   const data = [{ value: endTime, label: endTime }];
 
   return (
@@ -19,7 +20,8 @@ const EndTimeSelect = ({ endTime }: Props) => {
         fontSize: '0.875rem',
       }}
       selected={endTime}
-      disabled={true}
+      onChangeHandler={onChangeFormData}
+      {...rest}
     />
   );
 };

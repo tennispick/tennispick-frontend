@@ -1,5 +1,5 @@
-import { PropsWithChildren } from "react";
-import Image from "next/image";
+import { PropsWithChildren } from 'react';
+import Image from 'next/image';
 
 type Props = {
   imgSrc?: string;
@@ -8,11 +8,24 @@ type Props = {
 } & PropsWithChildren;
 
 const ItemRow = ({ imgSrc, label, children, value = '' }: Props) => {
-
   return (
-    <div css={{ display: 'flex', alignItems: 'center', height: '36px', margin: '0 0 12px 0' }}>
-      <div css={{ display: 'flex', alignItems: 'center', width: '140px', margin: '0 12px 0 0' }}>
-        {imgSrc &&
+    <div
+      css={{
+        display: 'flex',
+        alignItems: 'center',
+        height: '36px',
+        margin: '0 0 12px 0',
+      }}
+    >
+      <div
+        css={{
+          display: 'flex',
+          alignItems: 'center',
+          width: '140px',
+          margin: '0 12px 0 0',
+        }}
+      >
+        {imgSrc && (
           <Image
             src={imgSrc}
             alt={label}
@@ -22,10 +35,10 @@ const ItemRow = ({ imgSrc, label, children, value = '' }: Props) => {
               margin: '0 8px 0 0',
             }}
           />
-        }
+        )}
         {label}
       </div>
-      {children ??
+      {children ?? (
         <input
           type="text"
           value={value}
@@ -43,9 +56,9 @@ const ItemRow = ({ imgSrc, label, children, value = '' }: Props) => {
           }}
           readOnly
         />
-      }
+      )}
     </div>
-  )
+  );
 };
 
 export default ItemRow;

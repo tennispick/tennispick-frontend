@@ -22,6 +22,7 @@ export type CustomerDetailApiPayLoad = {
 export type CustomerLessonHistoryData = {
   lessonHistory: {
     id: number;
+    customerLessonId: number;
     customerName: string;
     lessonId: number;
     lessonName: string;

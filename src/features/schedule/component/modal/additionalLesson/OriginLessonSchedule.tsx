@@ -2,87 +2,103 @@ import LessonCouponBlackIcon from '@icons/lesson_coupon_black.svg';
 import CalendarBlackIcon from '@icons/calendar_black.svg';
 import CourtBlackIcon from '@icons/court_black.svg';
 import CoachBlackIcon from '@icons/coach_black.svg';
-import ItemRow from "./ItemRow";
-import { transferSexType } from "@utils/switch";
-import ScheduleSelect from "@features/customer/component/detail/modal/scheduleChange/Select";
-import { CustomerDetailData } from '@apis/customer/customer.type';
+import ItemRow from './ItemRow';
+import { transferSexType } from '@utils/switch';
+import ScheduleSelect from '@features/customer/component/detail/modal/scheduleChange/Select';
+import { CustomerLessonHistoryData } from '@apis/customer/customer.type';
+import { useCustomerDetailQuery } from '@features/customer/query/CustomerQuery';
 
 type Props = {
-  data: CustomerDetailData;
+  customerId: string;
+  data: CustomerLessonHistoryData['lessonHistory'];
 };
 
-const OriginLessonSchedule = ({ data }: Props) => {
+const OriginLessonSchedule = ({
+  customerId,
+  data: initialCustomerLessonData,
+}: Props) => {
+  const { data } = useCustomerDetailQuery({
+    id: customerId,
+  });
 
-  const { name, birth, sex, phone } = data;
-  
+  if (!data) return null;
+
+  const { name, birth, sex, phone } = data[0];
+  const { lessonName, date, startTime, endTime, coachName, courtName } =
+    initialCustomerLessonData;
+
   return (
     <section
       css={{
-        width: '50%'
+        width: '50%',
       }}
     >
       <ItemRow label="성명" value={name} />
       <ItemRow label="생년월일" value={birth} />
       <ItemRow label="성별" value={transferSexType(sex)} />
       <ItemRow label="연락처" value={phone} />
-      <ItemRow
-        label="수강권"
-        imgSrc={LessonCouponBlackIcon}
-        value={phone}
-      >
+      <ItemRow label="수강권" imgSrc={LessonCouponBlackIcon} value={phone}>
         <ScheduleSelect
-          name="1"
-          data={[]}
+          name="originLessonCoupon"
+          data={[{ value: lessonName, label: lessonName }]}
           css={{
-            width: 'calc(100% - 152px)'
+            width: 'calc(100% - 152px)',
           }}
           disabled={true}
         />
       </ItemRow>
-      <ItemRow
-        label="기존 수강날짜"
-        imgSrc={CalendarBlackIcon}
-        value={phone}
-      >
+      <ItemRow label="기존 수강날짜" imgSrc={CalendarBlackIcon} value={phone}>
         <ScheduleSelect
-          name="1"
-          data={[]}
+          name="originDate"
+          data={[{ value: date, label: date }]}
           css={{
-            width: 'calc(100% - 152px)'
+            width: 'calc(100% - 152px)',
           }}
           disabled={true}
         />
       </ItemRow>
-      <ItemRow
-        label="기존 코치"
-        value={phone}
-        imgSrc={CoachBlackIcon}
-      >
+      <ItemRow label="시작시간" imgSrc={CalendarBlackIcon}>
         <ScheduleSelect
-          name="1"
-          data={[]}
+          name="originStartTime"
+          data={[{ value: startTime, label: startTime }]}
           css={{
-            width: 'calc(100% - 152px)'
+            width: 'calc(100% - 152px)',
           }}
           disabled={true}
         />
       </ItemRow>
-      <ItemRow
-        label="기존 코트"
-        value={phone}
-        imgSrc={CourtBlackIcon}
-      >
+      <ItemRow label="종료시간" imgSrc={CalendarBlackIcon}>
         <ScheduleSelect
-          name="1"
-          data={[]}
+          name="originEndTime"
+          data={[{ value: endTime, label: endTime }]}
           css={{
-            width: 'calc(100% - 152px)'
+            width: 'calc(100% - 152px)',
+          }}
+          disabled={true}
+        />
+      </ItemRow>
+      <ItemRow label="기존 코치" imgSrc={CoachBlackIcon}>
+        <ScheduleSelect
+          name="originCoach"
+          data={[{ value: coachName, label: coachName }]}
+          css={{
+            width: 'calc(100% - 152px)',
+          }}
+          disabled={true}
+        />
+      </ItemRow>
+      <ItemRow label="기존 코트" imgSrc={CourtBlackIcon}>
+        <ScheduleSelect
+          name="originCourt"
+          data={[{ value: courtName, label: courtName }]}
+          css={{
+            width: 'calc(100% - 152px)',
           }}
           disabled={true}
         />
       </ItemRow>
     </section>
-  )
+  );
 };
 
 export default OriginLessonSchedule;
