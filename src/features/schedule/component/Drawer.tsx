@@ -8,7 +8,6 @@ import {
   updateScheduleLesson,
 } from '@apis/schedule/schedule.api';
 import { useRouter } from 'next/navigation';
-import { deleteLesson } from '@apis/lesson/lesson.api';
 
 type Props = {
   customer: any;
@@ -19,7 +18,6 @@ const ScheduleDrawer = ({ customer }: Props) => {
 
   // 개인이냐 그룹이냐에 따라 다름
   const {
-    id,
     coachId,
     courtId,
     coachAttendance,
