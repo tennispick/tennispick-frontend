@@ -1,5 +1,5 @@
 import { CustomerMemoListApiData } from '@apis/customer/customer.type';
-import ManageListRow from './ListRow';
+import ManageListRow from '../ListRow';
 import { transferCoachPosition } from '@features/customer/util/memo';
 
 type Props = {

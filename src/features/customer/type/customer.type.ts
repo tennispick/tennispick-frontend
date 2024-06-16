@@ -74,3 +74,19 @@ export type CustomerDetailQueryPayLoad = {
 export type CustomerAttendanceQueryPayLoad = CustomerAttendanceApiPayload;
 
 export type CustomerLessonCancelQueryPayLoad = CustomerLessonCancelApiPayload;
+
+export type CustomerAdditionalLessonListData = {
+  id: number;
+  courtId: number;
+  courtName: string;
+  coachId: number;
+  coachName: string;
+  lessonId: number;
+  lessonName: string;
+  additionalDate: string;
+  additionalStartTime: string;
+  additionalEndTime: string;
+  originDate: string;
+  originStartTime: string;
+  originEndTime: string;
+};

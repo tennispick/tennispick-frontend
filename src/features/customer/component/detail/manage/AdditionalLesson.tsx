@@ -1,12 +1,19 @@
-import { useState } from 'react';
+import Loading from '@components/common/Loading';
 import { NoResult } from '@components/index';
+import { useCustomerAdditionalLessonListQuery } from '@features/customer/query/CustomerQuery';
+import AdditionalLessonList from './additionalLesson/AdditionalLessonList';
 
 type Props = {
   customerId: string;
+  showDrawer: boolean;
+  onClickShowDrawerHandler: () => void;
+  onCloseDrawerHandler: () => void;
 };
 
 const ManageAdditionalLesson = ({ customerId }: Props) => {
-  const [data] = useState([]);
+  const { data, isFetching } = useCustomerAdditionalLessonListQuery(customerId);
+
+  if (isFetching) return <Loading />;
 
   return (
     <>
@@ -22,7 +29,7 @@ const ManageAdditionalLesson = ({ customerId }: Props) => {
         }}
       >
         <div css={{ margin: '0 12px 0 0' }}>
-          총 <span>2</span>건
+          총 <span>{data ? data.length : '0'}</span>건
         </div>
       </div>
       <div
@@ -34,7 +41,7 @@ const ManageAdditionalLesson = ({ customerId }: Props) => {
         }}
       >
         {data && data.length > 0 ? (
-          <>데이터 있을 때</>
+          <AdditionalLessonList data={data} />
         ) : (
           <NoResult description="보강현황이 없어요." />
         )}
