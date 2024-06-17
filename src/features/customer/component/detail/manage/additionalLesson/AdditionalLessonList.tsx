@@ -1,11 +1,32 @@
+import Portal from '@components/Portal';
 import ManageListRow from '../ListRow';
 import { CustomerAdditionalLessonListData } from '@features/customer/type/customer.type';
+import RightSideContainer from '@components/layer/RightSideContainer';
+import DrawerAdditionalLesson from '../../drawer/AdditionalLesson';
+import { useState } from 'react';
 
 type Props = {
   data: CustomerAdditionalLessonListData[];
+  showDrawer: boolean;
+  onClickShowDrawerHandler: () => void;
+  onCloseDrawerHandler: () => void;
 };
 
-const AdditionalLessonList = ({ data }: Props) => {
+const AdditionalLessonList = ({
+  data,
+  showDrawer,
+  onClickShowDrawerHandler,
+  onCloseDrawerHandler,
+}: Props) => {
+  const [additionalLessonItem, setAdditionalLessonItem] = useState(
+    {} as CustomerAdditionalLessonListData,
+  );
+
+  const onClickRowHandler = (item: CustomerAdditionalLessonListData) => {
+    setAdditionalLessonItem(item);
+    onClickShowDrawerHandler();
+  };
+
   return (
     <>
       <div
@@ -47,7 +68,10 @@ const AdditionalLessonList = ({ data }: Props) => {
           } = item;
 
           return (
-            <ManageListRow key={`${index}-${id}`}>
+            <ManageListRow
+              key={`${index}-${id}`}
+              onClick={() => onClickRowHandler(item)}
+            >
               <div css={{ width: '15%' }}>{courtName}</div>
               <div css={{ width: '15%' }}>{coachName}</div>
               <div
@@ -63,6 +87,17 @@ const AdditionalLessonList = ({ data }: Props) => {
           );
         })}
       </div>
+      {showDrawer && (
+        <Portal id="drawer">
+          <RightSideContainer
+            title="보강 상세보기"
+            showRightSide={showDrawer}
+            setShowRightSide={onCloseDrawerHandler}
+          >
+            <DrawerAdditionalLesson item={additionalLessonItem} />
+          </RightSideContainer>
+        </Portal>
+      )}
     </>
   );
 };
