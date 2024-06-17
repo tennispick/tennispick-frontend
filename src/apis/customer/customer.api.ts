@@ -9,7 +9,7 @@ import {
   URL_CREATE_CUSTOMER_MEMO,
   URL_UPDATE_CUSTOMER_ATTENDANCE,
   URL_UPDATE_CUSTOMER_LESSON_CANCEL,
-  URL_FETCH_CUSTOMER_ADDITIONAL_LESSON_LIST,
+  URL_CUSTOMER_ADDITIONAL_LESSON,
 } from './customer.url';
 import { axios } from '@utils/axios';
 import {
@@ -92,9 +92,18 @@ export const deleteCustomerLesson = async (params: {
     `${URL_DELETE_CUSTOMER_LESSON_HISTORY}/${params.customerLessonId}`,
   );
 
+/**
+ * @description 회원상세 보강
+ */
 export const getCustomerAdditionalLessonList = async (customerId: string) =>
-  await axios.get(`${URL_FETCH_CUSTOMER_ADDITIONAL_LESSON_LIST}/${customerId}`);
+  await axios.get(`${URL_CUSTOMER_ADDITIONAL_LESSON}/${customerId}`);
 
+export const deleteCustomerAdditionalLesson = async (lessonHistoryId: number) =>
+  await axios.delete(`${URL_CUSTOMER_ADDITIONAL_LESSON}/${lessonHistoryId}`);
+
+/**
+ * @description 회원상세 메모
+ */
 export const getCustomerMemoList = async (customerId: string) =>
   await axios.get(`${URL_FETCH_CUSTOMER_MEMO_LIST}/${customerId}`);
 
