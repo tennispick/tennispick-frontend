@@ -22,7 +22,7 @@ import {
   URL_FETCH_CUSTOMER_MEMO_LIST,
   URL_FETCH_CUSTOMER_ALL_LESSON_LIST,
   URL_FETCH_CUSTOMER_LESSON_SCHEDULE_HISTORY_LIST,
-  URL_FETCH_CUSTOMER_ADDITIONAL_LESSON_LIST,
+  URL_CUSTOMER_ADDITIONAL_LESSON,
 } from '@apis/customer/customer.url';
 import { Response } from '@/types/response';
 import { getCustomerAdditionalLessonList } from '@apis/customer/customer.api';
@@ -148,7 +148,7 @@ export const useCustomerDetailQuery = (params: CustomerDetailQueryPayLoad) => {
 export const useCustomerAdditionalLessonListQuery = (customerId: string) => {
   try {
     const { data, isFetching } = useQuery({
-      queryKey: [URL_FETCH_CUSTOMER_ADDITIONAL_LESSON_LIST, { customerId }],
+      queryKey: [URL_CUSTOMER_ADDITIONAL_LESSON, { customerId }],
       queryFn: async () => await getCustomerAdditionalLessonList(customerId),
       select: (data) => data?.data,
     });

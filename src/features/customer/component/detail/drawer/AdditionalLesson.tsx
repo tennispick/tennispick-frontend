@@ -1,25 +1,17 @@
-import {
-  CustomerAdditionalLessonListData,
-  CustomerAllLessonListQueryData,
-} from '@features/customer/type/customer.type';
+import { CustomerAdditionalLessonListData } from '@features/customer/type/customer.type';
 import DrawerInputContainer from './InputContainer';
-import {
-  transferLessonDateType,
-  transferLessonType,
-} from '@features/schedule/util/transfer';
 import { Button } from '@components/index';
 import { DeleteWhiteIcon } from '@icons/index';
 import { FormEventHandler } from 'react';
-import { useQueryClient } from '@tanstack/react-query';
+import { deleteCustomerAdditionalLesson } from '@apis/customer/customer.api';
 
 type Props = {
   item: CustomerAdditionalLessonListData;
 };
 
 const DrawerAdditionalLesson = ({ item }: Props) => {
-  const queryClient = useQueryClient();
-
   const {
+    id,
     courtName,
     coachName,
     originDate,
@@ -30,8 +22,17 @@ const DrawerAdditionalLesson = ({ item }: Props) => {
     additionalEndTime,
   } = item;
 
-  const onSubmitHandler: FormEventHandler<HTMLFormElement> = (e) => {
+  const onSubmitHandler: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
+
+    const { data } = await deleteCustomerAdditionalLesson(id);
+
+    if (data.affectedRows > 0) {
+      alert('보강이 취소되었어요.');
+    } else {
+      alert('보강 취소에 실패했어요.\n관리자에게 문의해주세요.');
+    }
+    window.location.reload();
   };
 
   return (
