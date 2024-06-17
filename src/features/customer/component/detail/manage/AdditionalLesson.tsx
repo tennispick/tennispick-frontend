@@ -10,7 +10,12 @@ type Props = {
   onCloseDrawerHandler: () => void;
 };
 
-const ManageAdditionalLesson = ({ customerId }: Props) => {
+const ManageAdditionalLesson = ({
+  customerId,
+  showDrawer,
+  onClickShowDrawerHandler,
+  onCloseDrawerHandler,
+}: Props) => {
   const { data, isFetching } = useCustomerAdditionalLessonListQuery(customerId);
 
   if (isFetching) return <Loading />;
@@ -41,7 +46,12 @@ const ManageAdditionalLesson = ({ customerId }: Props) => {
         }}
       >
         {data && data.length > 0 ? (
-          <AdditionalLessonList data={data} />
+          <AdditionalLessonList
+            data={data}
+            showDrawer={showDrawer}
+            onClickShowDrawerHandler={onClickShowDrawerHandler}
+            onCloseDrawerHandler={onCloseDrawerHandler}
+          />
         ) : (
           <NoResult description="보강현황이 없어요." />
         )}
