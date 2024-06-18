@@ -1,12 +1,31 @@
 import { CustomerMemoListApiData } from '@apis/customer/customer.type';
 import ManageListRow from '../ListRow';
 import { transferCoachPosition } from '@features/customer/util/memo';
+import Portal from '@components/Portal';
+import RightSideContainer from '@components/layer/RightSideContainer';
+import DrawerMemo from '../../drawer/Memo';
+import { useState } from 'react';
 
 type Props = {
   data: CustomerMemoListApiData[];
+  showDrawer: boolean;
+  onClickShowDrawerHandler: () => void;
+  onCloseDrawerHandler: () => void;
 };
 
-const ManageMemoList = ({ data }: Props) => {
+const ManageMemoList = ({
+  data,
+  showDrawer,
+  onClickShowDrawerHandler,
+  onCloseDrawerHandler,
+}: Props) => {
+  const [memoItem, setMemoItem] = useState({} as CustomerMemoListApiData);
+
+  const onClickRowHandler = (item: CustomerMemoListApiData) => {
+    setMemoItem(item);
+    onClickShowDrawerHandler();
+  };
+
   return (
     <>
       <div
@@ -46,7 +65,10 @@ const ManageMemoList = ({ data }: Props) => {
           } = item;
 
           return (
-            <ManageListRow key={`${index}-${customerCommentId}`}>
+            <ManageListRow
+              key={`${index}-${customerCommentId}`}
+              onClick={() => onClickRowHandler(item)}
+            >
               <div
                 css={{
                   width: '20%',
@@ -78,6 +100,17 @@ const ManageMemoList = ({ data }: Props) => {
           );
         })}
       </div>
+      {showDrawer && (
+        <Portal id="drawer">
+          <RightSideContainer
+            title="메모 상세보기"
+            showRightSide={showDrawer}
+            setShowRightSide={onCloseDrawerHandler}
+          >
+            <DrawerMemo item={memoItem} />
+          </RightSideContainer>
+        </Portal>
+      )}
     </>
   );
 };

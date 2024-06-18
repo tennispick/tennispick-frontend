@@ -10,9 +10,17 @@ import { createCustomerMemo } from '@apis/customer/customer.api';
 
 type Props = {
   customerId: string;
+  showDrawer: boolean;
+  onClickShowDrawerHandler: () => void;
+  onCloseDrawerHandler: () => void;
 };
 
-const ManageMemo = ({ customerId }: Props) => {
+const ManageMemo = ({
+  customerId,
+  showDrawer,
+  onClickShowDrawerHandler,
+  onCloseDrawerHandler,
+}: Props) => {
   const { data, isLoading } = useCustomerMemoListQuery(customerId);
 
   const [showMemoModal, setShowMemoModal] = useState<boolean>(false);
@@ -41,7 +49,6 @@ const ManageMemo = ({ customerId }: Props) => {
     <>
       <div
         css={{
-          position: 'relative',
           height: '48px',
           lineHeight: '24px',
           backgroundColor: 'var(--white100)',
@@ -82,7 +89,12 @@ const ManageMemo = ({ customerId }: Props) => {
         }}
       >
         {data && data.length > 0 ? (
-          <ManageMemoList data={data} />
+          <ManageMemoList
+            data={data}
+            showDrawer={showDrawer}
+            onClickShowDrawerHandler={onClickShowDrawerHandler}
+            onCloseDrawerHandler={onCloseDrawerHandler}
+          />
         ) : (
           <NoResult description="메모 내역이 없어요." />
         )}
