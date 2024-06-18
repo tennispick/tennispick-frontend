@@ -19,7 +19,7 @@ import {
   URL_FETCH_CUSTOMER_LESSON_LIST,
   URL_FETCH_CUSTOMER_DETAIL,
   URL_FETCH_CUSTOMER_LESSON_HISTORY,
-  URL_FETCH_CUSTOMER_MEMO_LIST,
+  URL_CUSTOMER_MEMO,
   URL_FETCH_CUSTOMER_ALL_LESSON_LIST,
   URL_FETCH_CUSTOMER_LESSON_SCHEDULE_HISTORY_LIST,
   URL_CUSTOMER_ADDITIONAL_LESSON,
@@ -163,7 +163,7 @@ export const useCustomerAdditionalLessonListQuery = (customerId: string) => {
 export const useCustomerMemoListQuery = (customerId: string) => {
   try {
     const { data, isLoading } = useQuery({
-      queryKey: [URL_FETCH_CUSTOMER_MEMO_LIST, customerId],
+      queryKey: [URL_CUSTOMER_MEMO, customerId],
       queryFn: async () => await getCustomerMemoList(customerId),
     });
 

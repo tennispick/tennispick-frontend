@@ -25,7 +25,7 @@ import {
   CustomerLessonCancelApiPayload,
 } from './customer.type';
 import { Response } from '@/types/response';
-import { URL_FETCH_CUSTOMER_MEMO_LIST } from './customer.url';
+import { URL_CUSTOMER_MEMO } from './customer.url';
 import { URL_DELETE_CUSTOMER_LESSON_HISTORY } from './customer.url';
 
 export const getCustomerAllLessonList = async (
@@ -105,7 +105,7 @@ export const deleteCustomerAdditionalLesson = async (lessonHistoryId: number) =>
  * @description 회원상세 메모
  */
 export const getCustomerMemoList = async (customerId: string) =>
-  await axios.get(`${URL_FETCH_CUSTOMER_MEMO_LIST}/${customerId}`);
+  await axios.get(`${URL_CUSTOMER_MEMO}/${customerId}`);
 
 export const createCustomerMemo = async (params: FormData) =>
   await axios.post(`${URL_CREATE_CUSTOMER_MEMO}`, params);

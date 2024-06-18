@@ -58,7 +58,14 @@ const ManageContainer = ({ customerId }: Props) => {
                   onCloseDrawerHandler={onCloseDrawerHandler}
                 />
               ),
-              memo: <ManageMemo customerId={customerId} />,
+              memo: (
+                <ManageMemo
+                  customerId={customerId}
+                  showDrawer={showDrawer}
+                  onClickShowDrawerHandler={onClickShowDrawerHandler}
+                  onCloseDrawerHandler={onCloseDrawerHandler}
+                />
+              ),
             }[currentItem]
           }
         </div>

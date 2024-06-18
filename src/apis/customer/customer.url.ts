@@ -10,7 +10,6 @@ export const URL_DELETE_CUSTOMER = '/customer';
 export const URL_UPDATE_CUSTOMER_ATTENDANCE = '/customer/attendance';
 export const URL_DELETE_CUSTOMER_LESSON_HISTORY = '/customer/lesson-history';
 export const URL_UPDATE_CUSTOMER_LESSON_CANCEL = '/customer/lesson-cancel';
-export const URL_FETCH_CUSTOMER_MEMO_LIST = '/customer1/memo';
 export const URL_CREATE_CUSTOMER_MEMO = '/customer/memo/create';
 
 /**
@@ -18,3 +17,9 @@ export const URL_CREATE_CUSTOMER_MEMO = '/customer/memo/create';
  * GET / POST / DELETE / PUT 회원 보강 Base URL
  */
 export const URL_CUSTOMER_ADDITIONAL_LESSON = '/customer/additional-lesson';
+
+/**
+ * @description
+ * GET / POST / DELETE / PUT 회원 메모 Base URL
+ */
+export const URL_CUSTOMER_MEMO = '/customer/memo';

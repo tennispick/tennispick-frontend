@@ -1,11 +1,14 @@
+import { PropsWithChildren } from 'react';
+
 type Props = {
   label: string;
-  value: string;
-};
+  value?: string;
+} & PropsWithChildren;
 
 const CustomerDetailDrawerInputContainer = ({
   label,
   value,
+  children,
   ...props
 }: Props) => {
   return (
@@ -15,25 +18,27 @@ const CustomerDetailDrawerInputContainer = ({
       >
         {label}
       </div>
-      <input
-        type="text"
-        value={value}
-        disabled={true}
-        css={{
-          position: 'relative',
-          width: '320px',
-          height: '100%',
-          padding: '8px 0 8px 8px',
-          margin: '8px 0 0 0',
-          fontSize: '0.825rem',
-          marginRight: 0,
-          border: '1px solid var(--grey300)',
-          borderRadius: '8px',
-          outline: 0,
-          zIndex: '1',
-        }}
-        {...props}
-      />
+      {children ?? (
+        <input
+          type="text"
+          value={value}
+          disabled={true}
+          css={{
+            position: 'relative',
+            width: '320px',
+            height: '100%',
+            padding: '8px 0 8px 8px',
+            margin: '8px 0 0 0',
+            fontSize: '0.825rem',
+            marginRight: 0,
+            border: '1px solid var(--grey300)',
+            borderRadius: '8px',
+            outline: 0,
+            zIndex: '1',
+          }}
+          {...props}
+        />
+      )}
     </div>
   );
 };
