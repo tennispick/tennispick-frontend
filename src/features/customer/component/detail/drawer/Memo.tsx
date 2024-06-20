@@ -3,6 +3,7 @@ import { Button } from '@components/index';
 import { DeleteWhiteIcon } from '@icons/index';
 import { FormEventHandler } from 'react';
 import { CustomerMemoListApiData } from '@apis/customer/customer.type';
+import { deleteCustomerMemo } from '@apis/customer/customer.api';
 
 type Props = {
   item: CustomerMemoListApiData;
@@ -12,7 +13,6 @@ const DrawerMemo = ({ item }: Props) => {
   const {
     customerCommentId: id,
     customerId,
-    centerCoachId,
     title,
     content,
     type,
@@ -25,14 +25,14 @@ const DrawerMemo = ({ item }: Props) => {
   const onSubmitHandler: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
-    // const { data } = await deleteCustomerAdditionalLesson(id);
+    const { data } = await deleteCustomerMemo(id, customerId);
 
-    // if (data.affectedRows > 0) {
-    //   alert('보강이 취소되었어요.');
-    // } else {
-    //   alert('보강 취소에 실패했어요.\n관리자에게 문의해주세요.');
-    // }
-    // window.location.reload();
+    if (data.affectedRows > 0) {
+      alert('메모가 삭제되었어요.');
+    } else {
+      alert('메모 삭제에 실패했어요.\n관리자에게 문의해주세요.');
+    }
+    window.location.reload();
   };
 
   return (

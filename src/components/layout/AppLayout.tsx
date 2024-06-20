@@ -38,7 +38,7 @@ const AppLayout = ({ children }: PropsWithChildren) => {
             firstPathName={firstPathName}
           />
           <MainContainer
-            width={isNavSpread ? '90%' : '95%'}
+            width={isNavSpread ? 'calc(100% - 280px)' : 'calc(100% - 80px)'}
             css={isMobile && { ...mobileMainStyle }}
           >
             {!isMobile && (
