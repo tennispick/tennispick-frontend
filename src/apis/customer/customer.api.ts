@@ -109,3 +109,11 @@ export const getCustomerMemoList = async (customerId: string) =>
 
 export const createCustomerMemo = async (params: FormData) =>
   await axios.post(`${URL_CREATE_CUSTOMER_MEMO}`, params);
+
+export const deleteCustomerMemo = async (
+  customerCommentId: number,
+  customerId: number,
+) =>
+  await axios.delete(
+    `${URL_CUSTOMER_MEMO}/${customerCommentId}?customerId=${customerId}`,
+  );
