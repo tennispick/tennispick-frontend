@@ -6,7 +6,7 @@ import { FormEventHandler, useState } from 'react';
 import LayerConfirmModal from '@components/layer/ConfirmModal';
 import { Input } from '@components/index';
 import useInput from '@hooks/useInput';
-import { createCustomerMemo } from '@apis/customer/customer.api';
+import { useCreateMemoMutate } from '@features/customer/mutate/memo';
 
 type Props = {
   customerId: string;
@@ -21,26 +21,27 @@ const ManageMemo = ({
   onClickShowDrawerHandler,
   onCloseDrawerHandler,
 }: Props) => {
-  const { data, isLoading } = useCustomerMemoListQuery(customerId);
+  const onClickShowMemoModal = () => setShowMemoModal(true);
+  const onClickCloseMemoModal = () => setShowMemoModal(false);
+
+  const { data, isLoading, refetch } = useCustomerMemoListQuery(customerId);
+
+  const onSuccessMutateHandler = () => {
+    refetch();
+    onClickCloseMemoModal();
+  };
+  const { mutate } = useCreateMemoMutate(customerId, onSuccessMutateHandler);
 
   const [showMemoModal, setShowMemoModal] = useState<boolean>(false);
   const [formData, onChangeFormData] = useInput({ title: '' });
-
-  const onClickShowMemoModal = () => setShowMemoModal(true);
-
-  const onClickCloseMemoModal = () => setShowMemoModal(false);
 
   const onClickSubmitMemo: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-
     formData.append('customerId', customerId);
 
-    const result = await createCustomerMemo(formData);
-
-    if (result.data.affectedRows > 0) alert('메모가 등록되었어요.');
-    else alert('메모 등록에 실패했어요.\n관리자에게 문의해주세요.');
+    mutate(formData);
   };
 
   if (isLoading) return <Loading />;
