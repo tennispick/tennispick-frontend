@@ -239,29 +239,46 @@ const ModalRegularLesson = () => {
             }[scheduleType]
           }
         </div>
-        <Button
-          type="submit"
-          variant="iconBtn"
-          label="스케줄 등록하기"
-          src={EditWhiteIcon}
-          css={{
-            width: '160px',
-            justifyContent: 'center',
-            border: 0,
-            backgroundColor: 'var(--business-sub-color)',
-            color: 'var(--white100)',
-            padding: '16px',
-            margin: '24px 0 0 auto',
-            borderRadius: '12px',
-          }}
-          disabled={
-            scheduleType === 'all'
-              ? submitButtonCheckDisabled
-              : lesson === ''
-              ? true
-              : false
-          }
-        />
+        <div css={{ display: 'flex', margin: '24px 0 0 0' }}>
+          <div
+            css={{
+              margin: '16px 0 0 0',
+              fontSize: '0.925rem',
+              color: 'var(--business-color)',
+            }}
+          >
+            <span css={{ fontWeight: 600 }}>
+              &#45; 회원이 검색되지 않는 경우, 결제가 진행되었는지 우선
+              확인해주세요.
+            </span>
+            <span css={{ margin: '0 0 0 8px' }}>
+              결제방법: {`회원 관리 > 회원 선택 > 결제하기`}
+            </span>
+          </div>
+          <Button
+            type="submit"
+            variant="iconBtn"
+            label="스케줄 등록하기"
+            src={EditWhiteIcon}
+            css={{
+              width: '160px',
+              justifyContent: 'center',
+              border: 0,
+              backgroundColor: 'var(--business-sub-color)',
+              color: 'var(--white100)',
+              padding: '16px',
+              margin: '0 0 0 auto',
+              borderRadius: '12px',
+            }}
+            disabled={
+              scheduleType === 'all'
+                ? submitButtonCheckDisabled
+                : lesson === ''
+                ? true
+                : false
+            }
+          />
+        </div>
       </form>
       {customerId !== '' && scheduleType === 'all' && (
         <ScheduleModalRecentHistoryModal
