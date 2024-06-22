@@ -161,18 +161,9 @@ export const useCustomerAdditionalLessonListQuery = (customerId: string) => {
 };
 
 export const useCustomerMemoListQuery = (customerId: string) => {
-  try {
-    const { data, isLoading } = useQuery({
-      queryKey: [URL_CUSTOMER_MEMO, customerId],
-      queryFn: async () => await getCustomerMemoList(customerId),
-    });
-
-    return {
-      data: data?.data,
-      isLoading,
-    };
-  } catch (error) {
-    console.error(error);
-    return { data: error };
-  }
+  return useQuery({
+    queryKey: [URL_CUSTOMER_MEMO, customerId],
+    queryFn: async () => await getCustomerMemoList(customerId),
+    select: (data) => data?.data,
+  });
 };
