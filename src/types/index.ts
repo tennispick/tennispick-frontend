@@ -31,6 +31,8 @@ type UseInputType<T> = ChangeEventHandler<T>;
 
 type ObjectType<T> = { [key: string]: T };
 
+export type SexType = 'man' | 'woman';
+
 export type {
   UseQueryType,
   ResponseType,

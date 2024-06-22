@@ -12,7 +12,7 @@ import { Response } from '@/types/response';
 
 const getSettingList = async (
   params: SettingListApiPayload,
-): Promise<Response<SettingListData>> =>
+): Promise<Response<SettingListData[]>> =>
   await axios.get(`${URL_FETCH_SETTING_LIST}?type=${params.type}`);
 
 const updateSettingActiveStatus = async (

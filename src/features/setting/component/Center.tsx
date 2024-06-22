@@ -15,8 +15,8 @@ const SettingCenter = ({ onClickHandler }: Props) => {
 
   return (
     <div css={{ margin: '24px 0 0 0' }}>
-      {data.data &&
-        data.data.map((configuration: SettingListData) => {
+      {data &&
+        data.map((configuration: SettingListData) => {
           const { id, name_kr: name, is_active: isActive } = configuration;
           return (
             <ToggleInput

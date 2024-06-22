@@ -1,11 +1,6 @@
-const URL_FETCH_COACH_LIST = '/coach';
-const URL_FETCH_COACH_LESSON_LIST = '/coach/lesson';
-const URL_CREATE_COACH = '/coach';
-const URL_DELETE_COACH = '/coach';
-
-export {
-  URL_FETCH_COACH_LIST,
-  URL_FETCH_COACH_LESSON_LIST,
-  URL_CREATE_COACH,
-  URL_DELETE_COACH,
-};
+/**
+ * @description
+ * GET / POST / DELETE / PUT 코치 Base URL
+ */
+export const URL_COACH = '/coach';
+export const URL_COACH_LESSON_LIST = '/coach/lesson';

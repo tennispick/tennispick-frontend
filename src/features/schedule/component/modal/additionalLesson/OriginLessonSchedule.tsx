@@ -23,7 +23,7 @@ const OriginLessonSchedule = ({
 
   if (!data) return null;
 
-  const { name, birth, sex, phone } = data[0];
+  const { name, birth, sex, phone } = data;
   const { lessonName, date, startTime, endTime, coachName, courtName } =
     initialCustomerLessonData;
 

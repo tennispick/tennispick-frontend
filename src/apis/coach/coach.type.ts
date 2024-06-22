@@ -1,3 +1,6 @@
+import { CoachPositionType } from '@/types/coach';
+import { SexType } from '@/types/index';
+
 export type CoachListData = {
   id: number;
   name: string;
@@ -21,6 +24,19 @@ export type CoachLessonListData = {
   customerLessonCount: number;
   sex: string;
   position: string;
+};
+
+export type CoachDetailData = {
+  id: number;
+  name: string;
+  birth: string;
+  sex: SexType;
+  phone: string;
+  email: string;
+  color: string;
+  position: CoachPositionType;
+  profileImageUrl: string;
+  loginAt: string;
 };
 
 export type CoachDeleteApiPayload = {

@@ -1,9 +1,11 @@
-import { getCoachLessonList, getCoachList } from '@apis/coach/coach.api';
-import { CoachListData } from '@apis/coach/coach.type';
+import { createInitialData } from '@/types/response';
 import {
-  URL_FETCH_COACH_LESSON_LIST,
-  URL_FETCH_COACH_LIST,
-} from '@apis/coach/coach.url';
+  getCoachDetail,
+  getCoachLessonList,
+  getCoachList,
+} from '@apis/coach/coach.api';
+import { CoachDetailData, CoachListData } from '@apis/coach/coach.type';
+import { URL_COACH } from '@apis/coach/coach.url';
 import { useQuery } from '@tanstack/react-query';
 
 export const useGetCoachListQuery = ({
@@ -16,7 +18,7 @@ export const useGetCoachListQuery = ({
   error: unknown;
 } => {
   const { data, isLoading, error } = useQuery({
-    queryKey: [URL_FETCH_COACH_LIST],
+    queryKey: [URL_COACH],
     queryFn: async (): Promise<{ data: CoachListData[] }> => {
       try {
         return await getCoachList();
@@ -37,11 +39,18 @@ export const useGetCoachListQuery = ({
 };
 
 export const useGetCoachLessonListQuery = () => {
-  const { data, isLoading } = useQuery({
-    queryKey: [URL_FETCH_COACH_LESSON_LIST],
+  return useQuery({
+    queryKey: [URL_COACH],
     queryFn: async () => await getCoachLessonList(),
     select: (data) => data.data,
   });
+};
 
-  return { data, isLoading };
+export const useCoachDetailQuery = (coachId: string) => {
+  return useQuery({
+    queryKey: [URL_COACH, { coachId }],
+    queryFn: async () => await getCoachDetail(coachId),
+    select: (data) => data.data,
+    initialData: createInitialData({} as CoachDetailData),
+  });
 };

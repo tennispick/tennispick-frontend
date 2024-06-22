@@ -59,12 +59,12 @@ const HomeSalesStatus = () => {
             )}
         </div>
         <div>
-          <span css={{ fontWeight: 600 }}>{`총 매출금액: ${price(
+          <span css={{ fontWeight: 600 }}>{`총 매출금액: ${addNumberCommas(
             totalPaymentPrice,
           )} 원`}</span>
-          <span css={{ color: 'var(--red100)', fontWeight: 600 }}>{`(${price(
-            totalRefundPrice,
-          )})`}</span>
+          <span
+            css={{ color: 'var(--red100)', fontWeight: 600 }}
+          >{`(${addNumberCommas(totalRefundPrice)})`}</span>
         </div>
       </div>
       {data && <HomeSalesLegend data={data} />}

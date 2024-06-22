@@ -3,9 +3,7 @@ import {
   CustomerLessonListQueryPayload,
   CustomerLessonHistoryQueryPayload,
   CustomerLessonListQueryData,
-  CustomerLessonHistoryQueryData,
   CustomerDetailQueryPayLoad,
-  CustomerAllLessonListQueryData,
 } from '../type/customer.type';
 import {
   getCustomerAllLessonList,
@@ -24,125 +22,83 @@ import {
   URL_FETCH_CUSTOMER_LESSON_SCHEDULE_HISTORY_LIST,
   URL_CUSTOMER_ADDITIONAL_LESSON,
 } from '@apis/customer/customer.url';
-import { Response } from '@/types/response';
+import { createInitialData } from '@/types/response';
 import { getCustomerAdditionalLessonList } from '@apis/customer/customer.api';
+import { CustomerDetailData } from '@apis/customer/customer.type';
 
 export const useCustomerAllLessonListQuery = (
   params: Pick<CustomerLessonListQueryPayload, 'id'>,
 ) => {
-  try {
-    const { id } = params;
-    const { data, isLoading } = useQuery<
-      Response<CustomerAllLessonListQueryData>
-    >({
-      queryKey: [URL_FETCH_CUSTOMER_ALL_LESSON_LIST, id],
-      queryFn: async () => await getCustomerAllLessonList({ id: id }),
-    });
-
-    return {
-      data: data?.data,
-      isLoading,
-    };
-  } catch (error) {
-    console.error(error);
-    return { data: error };
-  }
+  const { id } = params;
+  return useQuery({
+    queryKey: [URL_FETCH_CUSTOMER_ALL_LESSON_LIST, id],
+    queryFn: async () => await getCustomerAllLessonList({ id: id }),
+    select: (data) => data?.data,
+  });
 };
 
 export const useCustomerLessonListQuery = (
   params: CustomerLessonListQueryPayload,
 ) => {
-  try {
-    const { id, lessonType } = params;
-    const { data, isLoading } = useQuery<Response<CustomerLessonListQueryData>>(
-      {
-        queryKey: [URL_FETCH_CUSTOMER_LESSON_LIST, id, lessonType],
-        queryFn: async () =>
-          await getCustomerLessonList({ id: id, lessonType: lessonType }),
-      },
-    );
-
-    return {
-      data: data?.data,
-      isLoading,
-    };
-  } catch (error) {
-    console.error(error);
-    return { data: error };
-  }
+  const { id, lessonType } = params;
+  return useQuery({
+    queryKey: [URL_FETCH_CUSTOMER_LESSON_LIST, id, lessonType],
+    queryFn: async () =>
+      await getCustomerLessonList({ id: id, lessonType: lessonType }),
+    select: (data) => data?.data,
+  });
 };
 
 export const useCustomerLessonHistoryQuery = (
   params: CustomerLessonHistoryQueryPayload,
 ) => {
-  try {
-    const { customerId, lessonType, page } = params;
-    const { data, isLoading } = useQuery<
-      Response<CustomerLessonHistoryQueryData>
-    >({
-      queryKey: [
-        URL_FETCH_CUSTOMER_LESSON_HISTORY,
-        { customerId, lessonType, page },
-      ],
-      queryFn: async () =>
-        await getCustomerLessonHistory({ customerId, lessonType, page }),
-      enabled: !!customerId,
-    });
+  const { customerId, lessonType, page } = params;
+  const initialData = {
+    lessonHistory: [{}] as any,
+    totalPage: '0',
+  };
 
-    return {
-      data: data?.data,
-      isLoading,
-    };
-  } catch (error) {
-    console.error(error);
-    return { data: error };
-  }
+  return useQuery({
+    queryKey: [
+      URL_FETCH_CUSTOMER_LESSON_HISTORY,
+      { customerId, lessonType, page },
+    ],
+    queryFn: async () =>
+      await getCustomerLessonHistory({ customerId, lessonType, page }),
+    select: (data) => data?.data,
+    initialData: createInitialData(initialData),
+    enabled: !!customerId,
+  });
 };
 
 export const useCustomerLessonScheduleHistoryQuery = (params: {
   customerId: number;
   customerLessonId: number;
 }) => {
-  try {
-    const { customerId, customerLessonId } = params;
-    const { data, isLoading } = useQuery({
-      queryKey: [
-        URL_FETCH_CUSTOMER_LESSON_SCHEDULE_HISTORY_LIST,
-        { customerId, customerLessonId },
-      ],
-      queryFn: async () =>
-        await getCustomerLessonScheduleHistory({
-          customerId,
-          customerLessonId,
-        }),
-    });
-    return {
-      data: data?.data,
-      isLoading,
-    };
-  } catch (error) {
-    console.error(error);
-    return { data: error };
-  }
+  const { customerId, customerLessonId } = params;
+  return useQuery({
+    queryKey: [
+      URL_FETCH_CUSTOMER_LESSON_SCHEDULE_HISTORY_LIST,
+      { customerId, customerLessonId },
+    ],
+    queryFn: async () =>
+      await getCustomerLessonScheduleHistory({
+        customerId,
+        customerLessonId,
+      }),
+    select: (data) => data?.data,
+  });
 };
 
 export const useCustomerDetailQuery = (params: CustomerDetailQueryPayLoad) => {
-  try {
-    const { id } = params;
-    const { data, isLoading } = useQuery({
-      queryKey: [URL_FETCH_CUSTOMER_DETAIL, id],
-      queryFn: async () => await getCustomerDetail({ id: id }),
-      enabled: !!id,
-    });
-
-    return {
-      data: data?.data,
-      isLoading,
-    };
-  } catch (error) {
-    console.error(error);
-    return { data: error };
-  }
+  const { id } = params;
+  return useQuery({
+    queryKey: [URL_FETCH_CUSTOMER_DETAIL, id],
+    queryFn: async () => await getCustomerDetail({ id: id }),
+    select: (data) => data?.data,
+    initialData: createInitialData({} as CustomerDetailData),
+    enabled: !!id,
+  });
 };
 
 export const useCustomerAdditionalLessonListQuery = (customerId: string) => {

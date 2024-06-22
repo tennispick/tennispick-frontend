@@ -1,3 +1,4 @@
+import { SexType } from '@/types/index';
 import { LessonDateType, LessonType } from '@features/lesson/type/lesson.type';
 import {
   CommonFormInputType,
@@ -46,7 +47,7 @@ export type CustomerDetailData = {
   centerId: number;
   name: string;
   phone: string;
-  sex: string;
+  sex: SexType;
   birth: string;
   email: string;
   termsAgree: string;

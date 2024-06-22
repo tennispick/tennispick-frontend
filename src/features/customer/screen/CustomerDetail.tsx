@@ -4,6 +4,7 @@ import Loading from '@components/common/Loading';
 import CustomerInfo from '../component/CustomerInfo';
 import CustomerPayment from '../component/Payment';
 import ManageContainer from '../component/detail/manage/ManageContainer';
+import { isEmptyObj } from '@utils/object';
 // import ModalCustomer from '@components/layer/calendar/Customer';
 // import ModalCalendar from '@components/layer/calendar/Calendar';
 
@@ -14,9 +15,9 @@ type Props = {
 const CustomerDatail = ({ id }: Props) => {
   const { data, isLoading } = useCustomerDetailQuery({ id });
 
-  if (!data || isLoading) return <Loading />;
+  if (isEmptyObj(data) || isLoading) return <Loading />;
 
-  const customer = data[0];
+  const customer = data;
 
   return (
     <div css={{ position: 'relative', height: '100%' }}>
