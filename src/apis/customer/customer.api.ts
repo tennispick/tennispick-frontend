@@ -49,7 +49,7 @@ export const getCustomerLessonHistory = async (
 export const getCustomerLessonScheduleHistory = async (params: {
   customerId: number;
   customerLessonId: number;
-}): Promise<Response<CustomerLessonScheduleHistoryData>> =>
+}): Promise<Response<CustomerLessonScheduleHistoryData[]>> =>
   await axios.get(
     `${URL_FETCH_CUSTOMER_LESSON_SCHEDULE_HISTORY_LIST}/${params.customerId}?customerLessonId=${params.customerLessonId}`,
   );

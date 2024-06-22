@@ -1,35 +1,28 @@
 import { axios } from '@utils/axios';
-import {
-  URL_FETCH_COACH_LIST,
-  URL_DELETE_COACH,
-  URL_FETCH_COACH_LESSON_LIST,
-  URL_CREATE_COACH,
-} from './coach.url';
+import { URL_COACH, URL_COACH_LESSON_LIST } from './coach.url';
 import {
   CoachDeleteApiPayload,
+  CoachDetailData,
   CoachLessonListData,
   CoachListData,
 } from './coach.type';
 import { Response } from '@/types/response';
 
 export const getCoachList = async (): Promise<{ data: CoachListData[] }> =>
-  await axios.get(`${URL_FETCH_COACH_LIST}`);
+  await axios.get(`${URL_COACH}`);
 
 export const getCoachLessonList = async (): Promise<
-  Response<CoachLessonListData>
-> => {
-  try {
-    const result = await axios.get(`${URL_FETCH_COACH_LESSON_LIST}`);
-    return result;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
+  Response<CoachLessonListData[]>
+> => await axios.get(`${URL_COACH_LESSON_LIST}`);
+
+export const getCoachDetail = async (
+  coachId: string,
+): Promise<Response<CoachDetailData>> =>
+  await axios.get(`${URL_COACH}/${coachId}`);
 
 export const createCoach = async (params: FormData) => {
   try {
-    const result = await axios.post(`${URL_CREATE_COACH}`, params, {
+    const result = await axios.post(`${URL_COACH}`, params, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
     return result;
@@ -40,4 +33,4 @@ export const createCoach = async (params: FormData) => {
 };
 
 export const deleteCoach = async (params: CoachDeleteApiPayload) =>
-  await axios.delete(`${URL_DELETE_COACH}/${params.coachId}`);
+  await axios.delete(`${URL_COACH}/${params.coachId}`);

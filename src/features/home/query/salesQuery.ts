@@ -1,4 +1,9 @@
+import { createInitialData } from '@/types/response';
 import { getCoachTotalSales, getTotalSales } from '@apis/payment/payment.api';
+import {
+  CoachTotalSalesData,
+  LessonTotalPaymentData,
+} from '@apis/payment/payment.type';
 import {
   URL_FETCH_TOTAL_COACH_SALES,
   URL_FETCH_TOTAL_SALES,
@@ -6,21 +11,19 @@ import {
 import { useQuery } from '@tanstack/react-query';
 
 export const useGetTotalSalesQuery = () => {
-  const { data } = useQuery({
+  return useQuery({
     queryKey: [URL_FETCH_TOTAL_SALES],
     queryFn: async () => await getTotalSales(),
     select: (data) => data.data,
+    initialData: createInitialData([] as LessonTotalPaymentData[]),
   });
-
-  return { data };
 };
 
 export const useGetCoachTotalSalesQuery = () => {
-  const { data } = useQuery({
+  return useQuery({
     queryKey: [URL_FETCH_TOTAL_COACH_SALES],
     queryFn: async () => await getCoachTotalSales(),
     select: (data) => data.data,
+    initialData: createInitialData([] as CoachTotalSalesData[]),
   });
-
-  return { data };
 };

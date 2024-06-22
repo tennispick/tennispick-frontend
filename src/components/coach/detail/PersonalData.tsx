@@ -1,80 +1,138 @@
 import styled from '@emotion/styled';
 
 import { Divider, Input, Select } from '@components/index';
-import { ProfileManIcon } from '@icons/index';
+import { ProfileManIcon, ProfileWomanIcon } from '@icons/index';
+import { CoachDetailData } from '@apis/coach/coach.type';
+import { getYearList, getMonthList, getDayList } from '@utils/date';
+import { birthSplit } from '@utils/split';
 
-type DataProps = {
-  data?: any;
-};
+interface Props {
+  data: CoachDetailData;
+}
 
-const PersonalData = ({ ...props }: DataProps) => {
+const PersonalData = ({ data }: Props) => {
+  const { name, email, phone, sex, position, birth } = data;
+
+  const [year, month, date] = birthSplit(birth);
+  const { yearArray } = getYearList();
+  const { monthArray } = getMonthList();
+  const { dateArray } = getDayList();
+
   return (
-    <section {...props}>
-      <div
-        css={{
-          position: 'relative',
-          height: '50%',
-        }}
-      >
+    <section
+      css={{
+        width: '30%',
+        height: '100%',
+        padding: '0 32px 0 0',
+      }}
+    >
+      <div css={{ height: '50%' }}>
         <Input
-          label={' '}
-          id={'profileImage'}
-          variant={'file'}
-          src={ProfileManIcon.src}
+          label=" "
+          id="profileImage"
+          variant="file"
+          src={sex === 'man' ? ProfileManIcon.src : ProfileWomanIcon.src}
         >
           <Input.TextField type={'file'} />
         </Input>
       </div>
       <Divider />
-      <div
-        css={{
-          position: 'relative',
-          height: 'auto',
-        }}
-      >
-        <Row>
+      <div>
+        <ItemRow>
           <InputHead>이름</InputHead>
           <InputItem>
-            <Input.TextField placeholder={'성명을 입력해주세요.'} />
+            <Input.TextField
+              placeholder="성명을 입력해주세요."
+              value={name}
+              onChange={() => {}}
+            />
           </InputItem>
-        </Row>
-        <Row>
+        </ItemRow>
+        <ItemRow>
+          <InputHead>이메일</InputHead>
+          <InputItem>
+            <Input.TextField
+              placeholder="이메일을 입력해주세요"
+              value={email}
+              onChange={() => {}}
+            />
+          </InputItem>
+        </ItemRow>
+        <ItemRow>
           <InputHead>생년월일</InputHead>
-          <Select width={'calc(25% - 4px)'}>
-            <option>코치</option>
+          <Select
+            key="year"
+            name="year"
+            width="calc(25% - 4px)"
+            defaultValue={year}
+          >
+            {yearArray.map((item, index) => {
+              return (
+                <option key={index} value={item}>
+                  {item}
+                </option>
+              );
+            })}
           </Select>
-          <Select width={'calc(25% - 4px)'} margin={'0 6px'}>
-            <option>코치</option>
+          <Select
+            key="month"
+            name="month"
+            width="calc(25% - 4px)"
+            margin="0 6px"
+            defaultValue={month}
+          >
+            {monthArray.map((item, index) => {
+              return (
+                <option key={index} value={item}>
+                  {item}
+                </option>
+              );
+            })}
           </Select>
-          <Select width={'calc(25% - 4px)'}>
-            <option>코치</option>
+          <Select
+            key="date"
+            name="date"
+            width="calc((60% / 3) - 4px)"
+            defaultValue={date}
+          >
+            {dateArray.map((item, index) => {
+              return (
+                <option key={index} value={item}>
+                  {item}
+                </option>
+              );
+            })}
           </Select>
-        </Row>
-        <Row>
+        </ItemRow>
+        <ItemRow>
           <InputHead>성별</InputHead>
-          <Select width={'40%'}>
-            <option>남자</option>
-            <option>여자</option>
+          <Select width={'40%'} value={sex} disabled>
+            <option value="man">남자</option>
+            <option value="woman">여자</option>
           </Select>
-        </Row>
-        <Row>
+        </ItemRow>
+        <ItemRow>
           <InputHead>연락처</InputHead>
           <InputItem>
-            <Input.TextField placeholder={'연락처를 입력해주세요.'} />
+            <Input.TextField
+              placeholder="연락처를 입력해주세요."
+              value={phone}
+              onChange={() => {}}
+            />
           </InputItem>
-        </Row>
-        <Row>
+        </ItemRow>
+        <ItemRow>
           <InputHead>직책</InputHead>
-          <Select width={'40%'}>
+          <Select width={'40%'} value={position}>
             <option>코치</option>
           </Select>
-        </Row>
+        </ItemRow>
       </div>
     </section>
   );
 };
 
-const Row = styled.div({
+const ItemRow = styled.div({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',

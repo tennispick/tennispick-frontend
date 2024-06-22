@@ -1,4 +1,6 @@
-export const transferSexType = (sex: string) => {
+import { SexType } from '../types';
+
+export const transferSexType = (sex: SexType) => {
   switch (sex) {
     case 'woman':
       return '여자';

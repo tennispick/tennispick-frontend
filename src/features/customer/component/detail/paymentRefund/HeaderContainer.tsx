@@ -1,13 +1,11 @@
+import { CustomerPaymentRefundData } from '@apis/payment/payment.type';
 import styled from '@emotion/styled';
-import {
-  PaymentRefundData,
-  PaymentRefundType,
-} from '@features/customer/type/payment.type';
+import { PaymentRefundType } from '@features/customer/type/payment.type';
 import { addNumberCommas } from '@utils/numberForm';
 
 type Props = {
   type: PaymentRefundType;
-  data: PaymentRefundData[];
+  data: CustomerPaymentRefundData[];
   onClickOpenModalHandler: () => void;
 };
 

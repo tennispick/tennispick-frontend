@@ -13,49 +13,28 @@ import {
   CustomerPaymentRefundData,
   CustomerRefundCreateApiPayload,
   LessonTotalPaymentData,
+  CoachTotalSalesData,
 } from './payment.type';
 import { Response } from '@/types/response';
 
 export const getPaymentRefundList = async (
   params: CustomerPaymentRefundListApiPayload,
-): Promise<Response<CustomerPaymentRefundData>> => {
-  try {
-    const result = await axios.get(`${URL_FETCH_PAYMENT_REFUND_LIST}`, {
-      params: {
-        type: params.type,
-        customerId: params.customerId,
-      },
-    });
-    return result;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+): Promise<Response<CustomerPaymentRefundData[]>> => {
+  return await axios.get(`${URL_FETCH_PAYMENT_REFUND_LIST}`, {
+    params: {
+      type: params.type,
+      customerId: params.customerId,
+    },
+  });
 };
 
 export const getTotalSales = async (): Promise<
-  Response<LessonTotalPaymentData>
-> => {
-  try {
-    const result = await axios.get(`${URL_FETCH_TOTAL_SALES}`);
-    return result;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
+  Response<LessonTotalPaymentData[]>
+> => await axios.get(`${URL_FETCH_TOTAL_SALES}`);
 
 export const getCoachTotalSales = async (): Promise<
-  Response<LessonTotalPaymentData>
-> => {
-  try {
-    const result = await axios.get(`${URL_FETCH_TOTAL_COACH_SALES}`);
-    return result;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
+  Response<CoachTotalSalesData[]>
+> => await axios.get(`${URL_FETCH_TOTAL_COACH_SALES}`);
 
 export const createCustomerPayment = async (
   params: CustomerPaymentCreateApiPayload,

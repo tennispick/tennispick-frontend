@@ -57,7 +57,7 @@ const ModalCustomer = ({
 
   return (
     <Container>
-      <CustomerInfo data={data?.[0] ?? {}} />
+      <CustomerInfo data={data} />
       <div
         css={{
           position: 'relative',
@@ -78,7 +78,7 @@ const ModalCustomer = ({
             border: 0,
           }}
           onClick={onClickCustomerAttendanceHandler}
-          disabled={!data?.[0] || isAbleAttendacne}
+          disabled={!data || isAbleAttendacne}
         />
         <Button
           label="강습취소"
@@ -91,7 +91,7 @@ const ModalCustomer = ({
             fontWeight: 500,
             border: 0,
           }}
-          disabled={!data?.[0]}
+          disabled={!data}
           onClick={onClickCustomerLessonCancelHandler}
         />
         <Button
@@ -106,7 +106,7 @@ const ModalCustomer = ({
             border: 0,
           }}
           onClick={onClickCustomerDetailRouterHandler}
-          disabled={!data?.[0]}
+          disabled={!data}
         />
       </div>
     </Container>

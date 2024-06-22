@@ -33,6 +33,9 @@ const ScheduleModalRecentHistoryModal = ({
     lessonType: lessonType,
     page: currentPage,
   });
+
+  console.log(data);
+
   const onClickHistoryRadioItemHandler = (e: MouseEvent<HTMLInputElement>) => {
     const { checked, value } = e.target as HTMLInputElement;
     if (checked) setCheckHistoryId(value);
@@ -81,7 +84,7 @@ const ScheduleModalRecentHistoryModal = ({
             data={data?.lessonHistory || []}
           />
           <Pagination
-            totalPage={data?.totalPage.totalPage || 1}
+            totalPage={Number(data?.totalPage) || 1}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
           />
