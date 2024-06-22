@@ -5,6 +5,7 @@ import Portal from '@components/Portal';
 import RightSideContainer from '@components/layer/RightSideContainer';
 import DrawerMemo from '../../drawer/Memo';
 import { useState } from 'react';
+import { transformMemoType } from '@features/customer/util/memo';
 
 type Props = {
   data: CustomerMemoListApiData[];
@@ -94,7 +95,7 @@ const ManageMemoList = ({
               <div css={{ width: '15%' }}>{`${name} ${transferCoachPosition(
                 position,
               )}`}</div>
-              <div css={{ width: '10%' }}>{type ? type : '-'}</div>
+              <div css={{ width: '10%' }}>{transformMemoType(type)}</div>
               <div css={{ width: '20%' }}>{createdAt}</div>
             </ManageListRow>
           );

@@ -82,13 +82,15 @@ export type CustomerDeleteApiPayload = {
   customerId: string;
 };
 
+export type CustomerMemoType = 'payment' | 'normal' | 'etc';
+
 export type CustomerMemoListApiData = {
   customerCommentId: number;
   customerId: number;
   centerCoachId: number;
   title: string;
   content: string;
-  type: string;
+  type: CustomerMemoType;
   name: string;
   position: 'coach' | 'admin';
   createdAt: string;
