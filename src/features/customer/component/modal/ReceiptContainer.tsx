@@ -197,7 +197,8 @@ const RefundReceipt = ({
         <ReceiptRow>
           <div>상품금액</div>
           <div>
-            {addNumberCommas(Number(lesson!.price.replaceAll(',', '')))} 원
+            {/* addNumberCommas(Number(lesson.price.replaceAll(',', ''))) */}
+            {addNumberCommas(Number(lesson?.price.replaceAll(',', '')))} 원
           </div>
         </ReceiptRow>
         <ReceiptRow>

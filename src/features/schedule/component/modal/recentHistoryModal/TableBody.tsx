@@ -78,7 +78,7 @@ const ScheduleModalRecentHistoryModalTableBody = ({
           <tr>
             <td colSpan={8}>최근 수강이력이 없어요.</td>
           </tr>
-        ):
+        ) : (
           data.map(
             ({
               id,
@@ -92,7 +92,6 @@ const ScheduleModalRecentHistoryModalTableBody = ({
               startTime,
               endTime,
             }) => {
-              console.log(id);
               return (
                 <tr key={id}>
                   <td>
@@ -116,9 +115,9 @@ const ScheduleModalRecentHistoryModalTableBody = ({
                   </td>
                 </tr>
               );
-            }
+            },
           )
-        }
+        )}
       </tbody>
     </table>
   );

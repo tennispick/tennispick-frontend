@@ -7,7 +7,6 @@ import { useGetCourtListQuery } from '@features/court/query/courtQuery';
 import { getTimeList } from '@utils/date';
 import { useEffect, useMemo } from 'react';
 import { numberZeroFillFormat } from '@utils/numberForm';
-import { isEmptyObj } from '@utils/object';
 
 type Props = {
   formData: any;
@@ -64,9 +63,11 @@ const ScheduleDrawerInputField = ({
         <TextField
           name="lesson"
           defaultValue={
-            !isEmptyObj(lessonList) ? lessonList.filter(
-              (item: any) => item.id === formData.lesson.value,
-            )[0].name : []
+            lessonList.length > 0
+              ? lessonList.filter(
+                  (item: any) => item.id === formData.lesson.value,
+                )[0].name
+              : []
           }
           disabled={true}
         />
