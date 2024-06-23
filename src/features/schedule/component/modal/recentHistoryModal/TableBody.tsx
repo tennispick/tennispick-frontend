@@ -1,5 +1,6 @@
 import { CustomerLessonHistoryData } from '@apis/customer/customer.type';
 import { transferLessonDateType } from '@features/schedule/util/transfer';
+import { isEmptyObj } from '@utils/object';
 import { MouseEvent } from 'react';
 
 type Props = {
@@ -13,7 +14,7 @@ const ScheduleModalRecentHistoryModalTableBody = ({
   onClickRadioHandler,
   data,
 }: Props) => {
-  const isEmptyData = data.length === 0;
+  const isEmptyData = data.length === 0 || isEmptyObj(data[0]);
 
   return (
     <table
@@ -73,49 +74,51 @@ const ScheduleModalRecentHistoryModalTableBody = ({
           },
         }}
       >
-        {isEmptyData && (
+        {isEmptyData ? (
           <tr>
             <td colSpan={8}>최근 수강이력이 없어요.</td>
           </tr>
-        )}
-        {data.map(
-          ({
-            id,
-            customerName,
-            lessonName,
-            coachName,
-            courtName,
-            lessonDateType,
-            isAble,
-            date,
-            startTime,
-            endTime,
-          }) => {
-            return (
-              <tr key={id}>
-                <td>
-                  <input
-                    type="radio"
-                    name="history"
-                    onClick={onClickRadioHandler}
-                    value={id}
-                    defaultChecked={Number(checkHistoryId) === id}
-                    disabled={isAble === 'N' ? true : false}
-                  />
-                </td>
-                <td>{customerName}</td>
-                <td>{lessonName}</td>
-                <td>{coachName}</td>
-                <td>{courtName}</td>
-                <td>{transferLessonDateType(lessonDateType)}</td>
-                <td>{date}</td>
-                <td>
-                  {startTime} ~ {endTime}
-                </td>
-              </tr>
-            );
-          },
-        )}
+        ):
+          data.map(
+            ({
+              id,
+              customerName,
+              lessonName,
+              coachName,
+              courtName,
+              lessonDateType,
+              isAble,
+              date,
+              startTime,
+              endTime,
+            }) => {
+              console.log(id);
+              return (
+                <tr key={id}>
+                  <td>
+                    <input
+                      type="radio"
+                      name="history"
+                      onClick={onClickRadioHandler}
+                      value={id}
+                      defaultChecked={Number(checkHistoryId) === id}
+                      disabled={isAble === 'N' ? true : false}
+                    />
+                  </td>
+                  <td>{customerName}</td>
+                  <td>{lessonName}</td>
+                  <td>{coachName}</td>
+                  <td>{courtName}</td>
+                  <td>{transferLessonDateType(lessonDateType)}</td>
+                  <td>{date}</td>
+                  <td>
+                    {startTime} ~ {endTime}
+                  </td>
+                </tr>
+              );
+            }
+          )
+        }
       </tbody>
     </table>
   );
