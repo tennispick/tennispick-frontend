@@ -31,7 +31,7 @@ const CoachScreen = () => {
 
   return (
     <>
-      <PageHeader title={'코치 목록'} />
+      <PageHeader title="코치 목록" />
       {/* <Filter /> */}
       {/* <Search /> */}
       <TabList
@@ -41,8 +41,8 @@ const CoachScreen = () => {
         borderBottom={true}
         buttonElement={
           <Button
-            variant={'iconBtn'}
-            label={'코치 등록하기'}
+            variant="iconBtn"
+            label="코치 등록하기"
             src={CustomerWhiteIcon}
             imageCss={{
               width: '20px',

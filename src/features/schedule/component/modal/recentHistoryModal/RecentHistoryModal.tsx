@@ -34,8 +34,6 @@ const ScheduleModalRecentHistoryModal = ({
     page: currentPage,
   });
 
-  console.log(data);
-
   const onClickHistoryRadioItemHandler = (e: MouseEvent<HTMLInputElement>) => {
     const { checked, value } = e.target as HTMLInputElement;
     if (checked) setCheckHistoryId(value);
