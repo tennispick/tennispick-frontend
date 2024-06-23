@@ -70,7 +70,10 @@ const ScheduleContainer = ({
           startTime={initialStartTime}
           onChangeFormData={onChangeFormData}
         />
-        <EndTimeSelect endTime={initialEndTime} />
+        <EndTimeSelect
+          endTime={initialEndTime}
+          onChangeFormData={onChangeFormData}
+        />
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ const useLessonListQuery = (params: LessonListQueryPayload) => {
     queryKey: [URL_FETCH_LESSON_LIST, { type }],
     queryFn: async () => await getLessonList({ type: type }),
     select: (data) => data.data,
-    initialData: createInitialData({} as LessonListQueryData[]),
+    initialData: createInitialData([] as LessonListQueryData[]),
     suspense: isSuspense,
   });
 };

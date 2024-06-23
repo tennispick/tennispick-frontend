@@ -17,11 +17,9 @@ const ModalAdditionalLesson = () => {
   const isSelectCustomer = customerLesson.id !== '';
 
   const setCustomerIdHandler = (id: string) => setCustomerId(id);
-  const onClickCloseModalHandler = () =>{
-    console.log('클릭')
+  const onClickCloseModalHandler = () => {
     setCustomerLesson(EMPTY_CUSTOMER_LESSON);
-  }
-    
+  };
 
   const onClickSaveCustomerLessonHistoryHandler = (
     target: CustomerLessonHistoryData['lessonHistory'][],
