@@ -1,4 +1,7 @@
+import { PaymentType } from '@/types/payment';
 import { PaymentRefundType } from '@features/customer/type/payment.type';
+import { LessonDateType, LessonType } from '@features/lesson/type/lesson.type';
+import { DayType } from '@features/schedule/type/schedule.type';
 
 export type CustomerPaymentRefundListApiPayload = {
   customerId: string;
@@ -38,6 +41,39 @@ export type CoachTotalSalesData = {
   totalCardPrice: string;
   totalCashPrice: string;
   totalAccountTransferPrice: string;
+};
+
+export type CoachSalesByDateData = {
+  id: number;
+  centerId: number;
+  centerCoachId: number;
+  coachId: number;
+  courtId: number;
+  customerId: number;
+  lessonId: number;
+  customerLessonId: number;
+  lessonType: LessonType;
+  lessonDateType: LessonDateType;
+  date: string;
+  day: DayType;
+  startTime: string;
+  endTime: string;
+  isReluarLesson: 'Y' | 'N';
+  coachAttendance: string;
+  customerAttendance: string;
+  registerAbleCount: number;
+  remainLessonCount: number;
+  category: 'payment' | 'refund';
+  type: PaymentType;
+  discountType: string;
+  doscountPrice: number;
+  price: string;
+  lessonCount: number;
+  timePrice: number;
+  totalPrice: number;
+  refundRange: string;
+  refundPrice: string;
+  remainPrice: string;
 };
 
 export type CustomerPaymentCreateApiPayload = FormData;

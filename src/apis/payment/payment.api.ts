@@ -1,4 +1,5 @@
 import {
+  URL_COACH_MONTH_SALES,
   URL_CREATE_PAYMENT,
   URL_CREATE_REFUND,
   URL_DELETE_REFUND,
@@ -14,6 +15,7 @@ import {
   CustomerRefundCreateApiPayload,
   LessonTotalPaymentData,
   CoachTotalSalesData,
+  CoachSalesByDateData,
 } from './payment.type';
 import { Response } from '@/types/response';
 
@@ -35,6 +37,11 @@ export const getTotalSales = async (): Promise<
 export const getCoachTotalSales = async (): Promise<
   Response<CoachTotalSalesData[]>
 > => await axios.get(`${URL_FETCH_TOTAL_COACH_SALES}`);
+
+export const getCoachMonthSales = async (
+  coachId: string,
+): Promise<Response<CoachSalesByDateData[]>> =>
+  await axios.get(`${URL_COACH_MONTH_SALES}/${coachId}`);
 
 export const createCustomerPayment = async (
   params: CustomerPaymentCreateApiPayload,

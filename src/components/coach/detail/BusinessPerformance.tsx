@@ -1,6 +1,10 @@
 import Divider from '@components/common/Divider';
 import styled from '@emotion/styled';
 import {
+  useGetCoachMonthSalesQuery,
+  useGetCoachTotalSalesQuery,
+} from '@features/home/query/salesQuery';
+import {
   AppGreenIcon,
   AppCreditCardBlueIcon,
   AppAtmPurpleIcon,
@@ -8,22 +12,66 @@ import {
   BusinessSingleArrowRight,
 } from '@icons/index';
 import { CSS_TYPE } from '@styles/styles';
+import { addNumberCommas } from '@utils/numberForm';
 import Image from 'next/image';
 
-const BusinessPerformance = () => {
+interface Props {
+  coachId: string;
+}
+
+const BusinessPerformance = ({ coachId }: Props) => {
+  const { data: totalSales } = useGetCoachTotalSalesQuery();
+  const { data: monthSales } = useGetCoachMonthSalesQuery(coachId);
+
+  const coachTotalSales = totalSales.reduce((total, item) => {
+    const { id, totalCardPrice, totalCashPrice, totalAccountTransferPrice } =
+      item;
+    if (`${id}` === coachId) {
+      total +=
+        Number(totalCardPrice) +
+        Number(totalCashPrice) +
+        Number(totalAccountTransferPrice);
+    }
+    return total;
+  }, 0);
+
+  const coachMonthSales = monthSales.reduce(
+    (total, item) => {
+      const { type, totalPrice } = item;
+      if (type === 'card') total.card += Number(totalPrice);
+      else if (type === 'cash') total.cash += Number(totalPrice);
+      else if (type === 'accountTransfer')
+        total.accountTransfer += Number(totalPrice);
+
+      return total;
+    },
+    {
+      card: 0,
+      cash: 0,
+      accountTransfer: 0,
+    },
+  );
+
+  const { card, cash, accountTransfer } = coachMonthSales;
+
   return (
     <>
-      <SettlementContainer>
+      <div css={{ height: 'calc(28% - 12px)' }}>
         <h4>결산내역</h4>
         <SettlementTableContainer>
-          <SectionContainer width={'15%'} margin={'12px'}>
-            <SettlementWrapper margin={'1.5rem 0 0 0'}>
-              <div>
-                <DescriptionIconWrapper backgroundColor={'#B1DDD2'}>
-                  <Image src={AppGreenIcon} alt={'total sales'} />
-                </DescriptionIconWrapper>
-              </div>
-              <PayMoney>999,999,999 원</PayMoney>
+          <SectionContainer
+            width="15%"
+            margin="12px"
+            css={{
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            <SettlementWrapper width="100%">
+              <DescriptionIconWrapper backgroundColor={'#B1DDD2'}>
+                <Image src={AppGreenIcon} alt={'total sales'} />
+              </DescriptionIconWrapper>
+              <PayMoney>{addNumberCommas(coachTotalSales)}원</PayMoney>
               <div>전체 매출현황</div>
             </SettlementWrapper>
           </SectionContainer>
@@ -51,7 +99,7 @@ const BusinessPerformance = () => {
                     <Image src={AppCreditCardBlueIcon} alt={'credit card'} />
                   </DescriptionIconWrapper>
                 </div>
-                <PayMoney>999,999,999 원</PayMoney>
+                <PayMoney>{addNumberCommas(card)} 원</PayMoney>
                 <div>카드 결제</div>
               </SettlementWrapper>
               <SettlementWrapper width={'25%'}>
@@ -60,7 +108,7 @@ const BusinessPerformance = () => {
                     <Image src={AppAtmPurpleIcon} alt={'atm'} />
                   </DescriptionIconWrapper>
                 </div>
-                <PayMoney>999,999,999 원</PayMoney>
+                <PayMoney>{addNumberCommas(accountTransfer)} 원</PayMoney>
                 <div>계좌 이체</div>
               </SettlementWrapper>
               <SettlementWrapper width={'25%'}>
@@ -69,7 +117,7 @@ const BusinessPerformance = () => {
                     <Image src={AppDolorYellowIcon} alt={'dolor'} />
                   </DescriptionIconWrapper>
                 </div>
-                <PayMoney>999,999,999 원</PayMoney>
+                <PayMoney>{addNumberCommas(cash)} 원</PayMoney>
                 <div>현금 결제</div>
               </SettlementWrapper>
             </div>
@@ -95,18 +143,13 @@ const BusinessPerformance = () => {
             </GoDetailSectionContainer>
           </section>
         </SettlementTableContainer>
-      </SettlementContainer>
+      </div>
       <Divider width={'100%'} margin={'12px 0'} />
     </>
   );
 };
 
-const SettlementContainer = styled.section({
-  position: 'relative',
-  height: 'calc(28% - 12px)',
-});
 const SettlementTableContainer = styled.div({
-  position: 'relative',
   display: 'flex',
   height: 'calc(85% - 12px)',
   margin: '12px 0 0 0',
@@ -115,7 +158,6 @@ const SettlementTableContainer = styled.div({
 });
 const SectionContainer = styled.section<CSS_TYPE>(
   {
-    position: 'relative',
     backgroundColor: 'var(--white100)',
     borderRadius: '16px',
     textAlign: 'center',
@@ -131,7 +173,6 @@ const SettlementWrapper = styled.div<CSS_TYPE>({}, (props) => ({
 }));
 const DescriptionIconWrapper = styled.label<CSS_TYPE>(
   {
-    position: 'relative',
     display: 'inline-block',
     width: '40px',
     height: '40px',
@@ -149,6 +190,7 @@ const DescriptionIconWrapper = styled.label<CSS_TYPE>(
   }),
 );
 const PayMoney = styled.div({
+  margin: '8px 0 0 0',
   fontWeight: '500',
 });
 const GoDetailSectionContainer = styled.div({

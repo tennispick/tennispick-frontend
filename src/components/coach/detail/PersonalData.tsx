@@ -65,6 +65,7 @@ const PersonalData = ({ data }: Props) => {
             name="year"
             width="calc(25% - 4px)"
             defaultValue={year}
+            onChange={() => {}}
           >
             {yearArray.map((item, index) => {
               return (
@@ -80,6 +81,7 @@ const PersonalData = ({ data }: Props) => {
             width="calc(25% - 4px)"
             margin="0 6px"
             defaultValue={month}
+            onChange={() => {}}
           >
             {monthArray.map((item, index) => {
               return (
@@ -94,6 +96,7 @@ const PersonalData = ({ data }: Props) => {
             name="date"
             width="calc((60% / 3) - 4px)"
             defaultValue={date}
+            onChange={() => {}}
           >
             {dateArray.map((item, index) => {
               return (
@@ -106,7 +109,7 @@ const PersonalData = ({ data }: Props) => {
         </ItemRow>
         <ItemRow>
           <InputHead>성별</InputHead>
-          <Select width={'40%'} value={sex} disabled>
+          <Select width="40%" value={sex} disabled>
             <option value="man">남자</option>
             <option value="woman">여자</option>
           </Select>
@@ -123,7 +126,7 @@ const PersonalData = ({ data }: Props) => {
         </ItemRow>
         <ItemRow>
           <InputHead>직책</InputHead>
-          <Select width={'40%'} value={position}>
+          <Select width={'40%'} value={position} onChange={() => {}}>
             <option>코치</option>
           </Select>
         </ItemRow>
