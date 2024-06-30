@@ -4,6 +4,7 @@ import {
   useGetCoachMonthSalesQuery,
   useGetCoachTotalSalesQuery,
 } from '@features/home/query/salesQuery';
+import useModal from '@hooks/useModal';
 import {
   AppGreenIcon,
   AppCreditCardBlueIcon,
@@ -15,11 +16,17 @@ import { CSS_TYPE } from '@styles/styles';
 import { addNumberCommas } from '@utils/numberForm';
 import Image from 'next/image';
 
-interface Props {
+type Props = {
   coachId: string;
-}
+};
 
 const BusinessPerformance = ({ coachId }: Props) => {
+  // useModal에서 children 전달하고, isOpen이랑 이런거 값 꺼내서 쓰고 싶은데
+
+  const { onShowModal } = useModal({
+    children: <div>test</div>,
+  });
+
   const { data: totalSales } = useGetCoachTotalSalesQuery();
   const { data: monthSales } = useGetCoachMonthSalesQuery(coachId);
 
@@ -135,7 +142,7 @@ const BusinessPerformance = ({ coachId }: Props) => {
                   fontWeight: '500',
                   cursor: 'pointer',
                 }}
-                onClick={() => {}}
+                onClick={onShowModal}
               >
                 내역 상세보기
               </span>

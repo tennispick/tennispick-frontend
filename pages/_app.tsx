@@ -11,6 +11,7 @@ import { AppLayout } from '@components/index';
 import { globalStyles } from '@styles/styles';
 import { config } from '@lib/react-query/config';
 import { RecoilRoot } from 'recoil';
+import ModalProvider from 'src/provider/ModalProvider';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient(config));
@@ -34,6 +35,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <div id="layerPortal" />
           <div id="confirmModal" />
           <div id="drawer" />
+          <ModalProvider />
         </Hydrate>
       </QueryClientProvider>
     </RecoilRoot>

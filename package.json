@@ -43,7 +43,8 @@
     "recoil-persist": "^5.1.0",
     "typescript": "5.0.4",
     "uuid": "^9.0.0",
-    "yup": "^1.2.0"
+    "yup": "^1.2.0",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
     "@types/react-datepicker": "^4.19.3",

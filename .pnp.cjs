@@ -64,7 +64,8 @@ const RAW_RUNTIME_STATE =
           ["recoil-persist", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:5.1.0"],\
           ["typescript", "patch:typescript@npm%3A5.0.4#optional!builtin<compat/typescript>::version=5.0.4&hash=b5f058"],\
           ["uuid", "npm:9.0.0"],\
-          ["yup", "npm:1.2.0"]\
+          ["yup", "npm:1.2.0"],\
+          ["zustand", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.5.4"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -8656,7 +8657,8 @@ const RAW_RUNTIME_STATE =
           ["recoil-persist", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:5.1.0"],\
           ["typescript", "patch:typescript@npm%3A5.0.4#optional!builtin<compat/typescript>::version=5.0.4&hash=b5f058"],\
           ["uuid", "npm:9.0.0"],\
-          ["yup", "npm:1.2.0"]\
+          ["yup", "npm:1.2.0"],\
+          ["zustand", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.5.4"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -9484,6 +9486,33 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../../Users/Admin/AppData/Local/Yarn/Berry/cache/zod-npm-3.21.4-9f570b215c-10c0.zip/node_modules/zod/",\
         "packageDependencies": [\
           ["zod", "npm:3.21.4"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["zustand", [\
+      ["npm:4.5.4", {\
+        "packageLocation": "../../../../Users/Admin/AppData/Local/Yarn/Berry/cache/zustand-npm-4.5.4-99cce0f45c-10c0.zip/node_modules/zustand/",\
+        "packageDependencies": [\
+          ["zustand", "npm:4.5.4"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.5.4", {\
+        "packageLocation": "./.yarn/__virtual__/zustand-virtual-1426e33471/5/Users/Admin/AppData/Local/Yarn/Berry/cache/zustand-npm-4.5.4-99cce0f45c-10c0.zip/node_modules/zustand/",\
+        "packageDependencies": [\
+          ["zustand", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.5.4"],\
+          ["@types/immer", null],\
+          ["@types/react", "npm:18.2.6"],\
+          ["immer", null],\
+          ["react", "npm:18.2.0"],\
+          ["use-sync-external-store", "virtual:2cb6a2b25fa7d10d82b5fdffdc07da3f642959014c5fad7bb599e36dfb8c7b5dbe0a58b374323420cedf84e22082d46bc9cb1c77716ca4a65a0fa5955997229d#npm:1.2.0"]\
+        ],\
+        "packagePeers": [\
+          "@types/immer",\
+          "@types/react",\
+          "immer",\
+          "react"\
         ],\
         "linkType": "HARD"\
       }]\
