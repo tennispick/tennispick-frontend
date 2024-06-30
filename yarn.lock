@@ -7228,6 +7228,7 @@ __metadata:
     typescript: "npm:5.0.4"
     uuid: "npm:^9.0.0"
     yup: "npm:^1.2.0"
+    zustand: "npm:^4.5.4"
   languageName: unknown
   linkType: soft
 
@@ -7623,7 +7624,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-sync-external-store@npm:^1.2.0":
+"use-sync-external-store@npm:1.2.0, use-sync-external-store@npm:^1.2.0":
   version: 1.2.0
   resolution: "use-sync-external-store@npm:1.2.0"
   peerDependencies:
@@ -7939,5 +7940,25 @@ __metadata:
   version: 3.21.4
   resolution: "zod@npm:3.21.4"
   checksum: 161e8cf7aea38a99244d65da4a9477d9d966f6a533e503feaa20ff7968a9691065c38c6f1eab5cbbdc8374142fff4a05c9cacb8479803ab50ab6a6ca80e5d624
+  languageName: node
+  linkType: hard
+
+"zustand@npm:^4.5.4":
+  version: 4.5.4
+  resolution: "zustand@npm:4.5.4"
+  dependencies:
+    use-sync-external-store: "npm:1.2.0"
+  peerDependencies:
+    "@types/react": ">=16.8"
+    immer: ">=9.0.6"
+    react: ">=16.8"
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    immer:
+      optional: true
+    react:
+      optional: true
+  checksum: 479af491ffa1f1eb2c38b3ba25dc4e14339e8b35a60033d3f6c165b22f8be8163f7e1370015ded9c6e28548cd25af84a73fb40b5fad0bd7882d16ddd5ed613c6
   languageName: node
   linkType: hard
