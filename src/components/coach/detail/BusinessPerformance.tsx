@@ -15,13 +15,13 @@ import {
 import { CSS_TYPE } from '@styles/styles';
 import { addNumberCommas } from '@utils/numberForm';
 import Image from 'next/image';
+import TabList from 'src/widgets/TabList';
 
 type Props = {
   coachId: string;
 };
 
 const BusinessPerformance = ({ coachId }: Props) => {
-  // useModal에서 children 전달하고, isOpen이랑 이런거 값 꺼내서 쓰고 싶은데
 
   const { onShowModal } = useModal({
     children: <div>test</div>,
@@ -64,7 +64,9 @@ const BusinessPerformance = ({ coachId }: Props) => {
   return (
     <>
       <div css={{ height: 'calc(28% - 12px)' }}>
-        <h4>결산내역</h4>
+        <TabList>
+
+        </TabList>
         <SettlementTableContainer>
           <SectionContainer
             width="15%"
