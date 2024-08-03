@@ -15,20 +15,21 @@ import {
 import { CSS_TYPE } from '@styles/styles';
 import { addNumberCommas } from '@utils/numberForm';
 import Image from 'next/image';
+import TabList from '@widgets/TabList';
 
 type Props = {
   coachId: string;
 };
 
 const BusinessPerformance = ({ coachId }: Props) => {
-  // useModal에서 children 전달하고, isOpen이랑 이런거 값 꺼내서 쓰고 싶은데
+  const { Tabs, Panel } = TabList();
 
   const { onShowModal } = useModal({
     children: <div>test</div>,
   });
 
   const { data: totalSales } = useGetCoachTotalSalesQuery();
-  const { data: monthSales } = useGetCoachMonthSalesQuery(coachId);
+  // const { data: monthSales } = useGetCoachMonthSalesQuery(coachId);
 
   const coachTotalSales = totalSales.reduce((total, item) => {
     const { id, totalCardPrice, totalCashPrice, totalAccountTransferPrice } =
@@ -42,30 +43,34 @@ const BusinessPerformance = ({ coachId }: Props) => {
     return total;
   }, 0);
 
-  const coachMonthSales = monthSales.reduce(
-    (total, item) => {
-      const { type, totalPrice } = item;
-      if (type === 'card') total.card += Number(totalPrice);
-      else if (type === 'cash') total.cash += Number(totalPrice);
-      else if (type === 'accountTransfer')
-        total.accountTransfer += Number(totalPrice);
+  // const coachMonthSales = monthSales.reduce(
+  //   (total, item) => {
+  //     const { type, totalPrice } = item;
+  //     if (type === 'card') total.card += Number(totalPrice);
+  //     else if (type === 'cash') total.cash += Number(totalPrice);
+  //     else if (type === 'accountTransfer')
+  //       total.accountTransfer += Number(totalPrice);
 
-      return total;
-    },
-    {
-      card: 0,
-      cash: 0,
-      accountTransfer: 0,
-    },
-  );
+  //     return total;
+  //   },
+  //   {
+  //     card: 0,
+  //     cash: 0,
+  //     accountTransfer: 0,
+  //   },
+  // );
 
-  const { card, cash, accountTransfer } = coachMonthSales;
+  // const { card, cash, accountTransfer } = coachMonthSales;
 
   return (
     <>
       <div css={{ height: 'calc(28% - 12px)' }}>
-        <h4>결산내역</h4>
-        <SettlementTableContainer>
+        <Tabs defaultActiveKey={'sales'}>
+          <Panel activeKey={'sales'}>매출내역</Panel>
+          <Panel activeKey={'accounts'}>정산내역</Panel>
+          <Panel activeKey={'customer'}>수강생 목록</Panel>
+        </Tabs>
+        {/* <SettlementTableContainer>
           <SectionContainer
             width="15%"
             margin="12px"
@@ -149,7 +154,7 @@ const BusinessPerformance = ({ coachId }: Props) => {
               <Image src={BusinessSingleArrowRight} alt={'arrow right'} />
             </GoDetailSectionContainer>
           </section>
-        </SettlementTableContainer>
+        </SettlementTableContainer> */}
       </div>
       <Divider width={'100%'} margin={'12px 0'} />
     </>
