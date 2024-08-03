@@ -15,14 +15,13 @@ import {
 import { CSS_TYPE } from '@styles/styles';
 import { addNumberCommas } from '@utils/numberForm';
 import Image from 'next/image';
-import TabList from 'src/widgets/TabList';
+import TabList from '@widgets/TabList';
 
 type Props = {
   coachId: string;
 };
 
 const BusinessPerformance = ({ coachId }: Props) => {
-
   const { Tabs, Panel } = TabList();
 
   const { onShowModal } = useModal({
@@ -66,10 +65,10 @@ const BusinessPerformance = ({ coachId }: Props) => {
   return (
     <>
       <div css={{ height: 'calc(28% - 12px)' }}>
-        <Tabs defaultActiveKey={"sales"}>
-          <Panel activeKey={"sales"}>매출내역</Panel>
-          <Panel activeKey={"accounts"}>정산내역</Panel>
-          <Panel activeKey={"customer"}>수강생 목록</Panel>
+        <Tabs defaultActiveKey={'sales'}>
+          <Panel activeKey={'sales'}>매출내역</Panel>
+          <Panel activeKey={'accounts'}>정산내역</Panel>
+          <Panel activeKey={'customer'}>수강생 목록</Panel>
         </Tabs>
         {/* <SettlementTableContainer>
           <SectionContainer
