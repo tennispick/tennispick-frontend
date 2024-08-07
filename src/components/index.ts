@@ -20,11 +20,6 @@ export { default as AppLayout } from '@components/layout/AppLayout';
 export { default as MobileScreen } from '@components/layout/MobileScreen';
 export { default as NavigationLayout } from '@components/layout/NavigationLayout';
 
-/** home */
-export { default as CoachLesson } from '@features/home/component/CoachLesson';
-export { default as PreDashBoard } from '@features/home/component/PreDashBoard';
-export { default as Sales } from '@features/home/component/SalesStatus';
-
 export { default as Calendar } from '@features/schedule/component/ScheduleCalendar';
 
 /** customer */
