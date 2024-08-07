@@ -144,6 +144,7 @@ export const globalStyles = (
         --grey600: rgba(249, 249, 249, 100); // #F9F9F9
         --grey800: rgba(174, 174, 174, 100); // #AEAEAE
         --grey1000: rgba(146, 146, 146, 100); // #929292
+        --grey1600: rgba(98, 98, 98, 100); // # 626262
 
         --business-active-color: rgba(101, 165, 185, 100); // #65A5B9
         --deactive-color: rgba(204, 204, 204, 100); // #CCCCCC
