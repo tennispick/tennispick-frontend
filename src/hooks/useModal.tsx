@@ -1,14 +1,21 @@
 import useModalStore from '@lib/zustand/modal';
 import { PropsWithChildren } from 'react';
 
-type ModalType = 'full' | 'normal' | 'large' | 'small' | 'confirm' | 'download';
+type ModalType =
+  | 'full'
+  | 'normal'
+  | 'large'
+  | 'small'
+  | 'confirm'
+  | 'download'
+  | 'overlay';
 
 type Props = {
   type?: ModalType;
 } & PropsWithChildren;
 
 const useModal = ({ type = 'normal', children }: Props = {}) => {
-  const { openModal, closeModal } = useModalStore();
+  const { isOpen, openModal, closeModal } = useModalStore();
 
   const onShowModal = () =>
     openModal({
@@ -18,6 +25,7 @@ const useModal = ({ type = 'normal', children }: Props = {}) => {
     });
 
   return {
+    isOpen,
     onShowModal,
     closeModal,
   };

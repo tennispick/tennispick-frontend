@@ -49,6 +49,12 @@ const ModalProvider = () => {
           width: '640px',
           height: '220px',
         };
+      case 'overlay':
+        return {
+          width: '400px',
+          height: '200px',
+          padding: 0,
+        };
       default:
         return {
           width: '640px',
@@ -66,7 +72,6 @@ const ModalProvider = () => {
             top: '40%',
             left: '50%',
             transform: 'translate(-50%,-50%)',
-            padding: '24px',
             backgroundColor: 'var(--white100)',
             borderRadius: '16px',
             boxShadow: '2px 4px 12px 2px rgb(255 255 255 / 15%)',
@@ -75,11 +80,12 @@ const ModalProvider = () => {
             minHeight: modalSize(type).minHeight,
             width: modalSize(type).width,
             height: modalSize(type).height,
+            padding: modalSize(type).padding ?? '24px',
           },
           fadeUp,
         ])}
       >
-        {title && (
+        {type !== 'overlay' && title && (
           <TitleContainer>
             <Title>{title}</Title>
             <Image

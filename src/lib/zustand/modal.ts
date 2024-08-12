@@ -7,7 +7,8 @@ export type ModalType =
   | 'large'
   | 'small'
   | 'confirm'
-  | 'download';
+  | 'download'
+  | 'overlay';
 
 type State = {
   isOpen: boolean;
