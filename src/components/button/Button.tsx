@@ -1,21 +1,14 @@
 type Props = {
   size: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  variant: 'primary' | 'secondary' | 'ghost' | 'text' |'positive' | 'negative';
+  variant: 'primary' | 'secondary' | 'ghost' | 'text' | 'positive' | 'negative';
   text?: string;
   children?: React.ReactNode;
 } & React.ComponentPropsWithoutRef<'button'>;
 
-const Button = ({
-  size,
-  variant,
-  text,
-  children,
-  ...rest
-}: Props) => {
-
+const Button = ({ size, variant, text, children, ...rest }: Props) => {
   const defaultStyles = {
-    border: '0'
-  }
+    border: '0',
+  };
 
   const sizeStyles = {
     xs: {
@@ -84,7 +77,7 @@ const Button = ({
     >
       {children || text}
     </button>
-  )
+  );
 };
 
 export default Button;
