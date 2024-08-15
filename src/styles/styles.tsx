@@ -2,6 +2,8 @@ import { Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import ArrowDropDownIcon from '@icons/arrow_drop_down_black.svg';
+import WhiteCheckboxIcon from '@icons/checkbox/white_check.svg';
+import WhiteCheckboxIndeterminateIcon from '@icons/checkbox/white_check_indeterminate.svg';
 
 export type CSS_TYPE = {
   width?: string | number;
@@ -197,6 +199,46 @@ export const globalStyles = (
           color: var(--grey800);
           border-color: var(--grey100);
         }
+      }
+
+      input[type='checkbox'] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 1rem;
+        height: 1rem;
+        border: 1px solid var(--grey1600);
+        border-radius: 2px;
+        outline: none;
+        cursor: pointer;
+      }
+
+      input[type='checkbox']:checked,
+      input[type='checkbox']:indeterminate {
+        background-color: var(--business-active-color);
+        border: 0;
+      }
+
+      input[type='checkbox']:checked::after,
+      input[type='checkbox']:indeterminate::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0.75rem;
+        height: 0.75rem;
+
+        background-size: contain;
+        background-repeat: no-repeat;
+        transform: translate(-50%, -50%);
+      }
+
+      input[type='checkbox']:checked::after {
+        background-image: url('${WhiteCheckboxIcon.src}');
+      }
+
+      input[type='checkbox']:indeterminate::after {
+        background-image: url('${WhiteCheckboxIndeterminateIcon.src}');
       }
 
       .hidden {

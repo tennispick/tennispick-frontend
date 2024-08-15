@@ -13,7 +13,7 @@ type Props = {
   data: CoachDetailData;
 };
 
-const PersonalData = ({ data }: Props) => {
+const CoachDetailProfile = ({ data }: Props) => {
   const { name, email, phone, sex, position, birth } = data;
   const [year, month, date] = birthSplit(birth);
   const [color, setColor] = useColor('#000000');
@@ -134,4 +134,4 @@ const StaticProfileValue = styled.div({
   fontWeight: 600,
 });
 
-export default PersonalData;
+export default CoachDetailProfile;
