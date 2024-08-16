@@ -2,7 +2,6 @@ import {
   useGetCoachMonthSalesQuery,
   useGetCoachTotalSalesQuery,
 } from '@features/home/query/salesQuery';
-import useModal from '@hooks/useModal';
 import Tab from '@widgets/Tab';
 import SalesContainer from './sales/SalesContainer';
 import PaymentContainer from './payment/PaymentContainer';
