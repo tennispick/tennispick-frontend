@@ -1,14 +1,18 @@
-type Props = {
-  size: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  variant: 'primary' | 'secondary' | 'ghost' | 'text' | 'positive' | 'negative';
-  text?: string;
-  children?: React.ReactNode;
-} & React.ComponentPropsWithoutRef<'button'>;
+import { ButtonType } from "@/types/button";
+import { CSSObject } from "@emotion/react";
 
-const Button = ({ size, variant, text, children, ...rest }: Props) => {
-  const defaultStyles = {
+const Button = ({
+  size,
+  variant,
+  text,
+  children,
+  ...rest
+}: ButtonType) => {
+
+  const defaultStyles: CSSObject = {
     border: '0',
-  };
+    cursor: 'pointer'
+  }
 
   const sizeStyles = {
     xs: {

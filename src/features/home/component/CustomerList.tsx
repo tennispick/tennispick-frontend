@@ -2,6 +2,7 @@ const CustomerList = () => {
   return (
     <div css={{ width: '65%' }}>
       <div css={{
+        height: '3.75rem',
         padding: '0 0 16px 0',
         fontSize: '1.25rem',
         fontWeight: 600,
