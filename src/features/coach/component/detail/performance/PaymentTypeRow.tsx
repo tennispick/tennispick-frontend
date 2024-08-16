@@ -41,10 +41,10 @@ const PaymentTypeRow = () => {
         display: 'flex',
         alignItems: 'center',
         gap: '1.5rem',
-        margin: '0 0 20px 0',
+        margin: '0 0 24px 0',
       }}
     >
-      <div>결제 유형</div>
+      <div css={{ width: '7rem' }}>결제 유형</div>
       <CheckboxGroup
         checkList={checkList}
         checkedItems={checkedItems}

@@ -122,6 +122,7 @@ export const globalStyles = (
         --blue400: rgba(32, 77, 195, 100); // #204DC3
         --blue500: rgba(0, 119, 240, 100); // #0077F0
         --blue900: rgba(208, 217, 255, 100); // #D0D9FF
+        --blue1200: rgba(244, 249, 255, 100); // #F4F9FF
 
         --green050: rgba(0, 154, 136, 1); // #009A88
         --green100: rgba(3, 199, 90, 100); // #03C75A

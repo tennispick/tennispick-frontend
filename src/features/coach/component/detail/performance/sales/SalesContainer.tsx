@@ -1,6 +1,6 @@
 import { Divider } from '@components/index';
-import PaymentTypeRow from './PaymentTypeRow';
-import SearchPeriodRow from './SearchPeriodRow';
+import PaymentTypeRow from '../PaymentTypeRow';
+import SearchPeriodRow from '../SearchPeriodRow';
 import Image from 'next/image';
 import TotalSalesIcon from '@icons/payment/group_total_sales.svg';
 import AccountTransferIcon from '@icons/payment/group_atm.svg';

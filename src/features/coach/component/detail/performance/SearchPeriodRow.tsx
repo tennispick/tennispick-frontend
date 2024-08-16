@@ -18,10 +18,10 @@ const SearchPeriodRow = () => {
         display: 'flex',
         alignItems: 'center',
         gap: '1.5rem',
-        margin: '0 0 20px 0',
+        margin: '0 0 24px 0',
       }}
     >
-      <div>조회 기간</div>
+      <div css={{ width: '7rem' }}>조회 기간</div>
       <RangeCalendar
         startDate={startDate}
         endDate={endDate}

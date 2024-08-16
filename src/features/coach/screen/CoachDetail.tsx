@@ -3,7 +3,7 @@ import ButtonContainer from '../component/detail/ButtonContainer';
 import { useCoachDetailQuery } from '../query/coachQuery';
 import Loading from '@components/common/Loading';
 import CoachDetailProfile from '../component/detail/CoachDetailProfile';
-import BusinessPerformance from '../component/detail/BusinessPerformance';
+import BusinessPerformance from '../component/detail/performance/BusinessPerformance';
 
 type Props = {
   coachId: string;
