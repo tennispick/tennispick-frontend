@@ -6085,6 +6085,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-color-palette@npm:^7.2.2":
+  version: 7.2.2
+  resolution: "react-color-palette@npm:7.2.2"
+  peerDependencies:
+    react: ">=16.8"
+  checksum: f52d59d3e877c875a385eb38a1d860d33005d864136ec0e0546bf99c01468a3aee4708481411cb9a5ae29c5ee507185e568cd3be364c179df37b97855f60dab5
+  languageName: node
+  linkType: hard
+
 "react-cookie@npm:^4.1.1":
   version: 4.1.1
   resolution: "react-cookie@npm:4.1.1"
@@ -7217,6 +7226,7 @@ __metadata:
     prettier: "npm:^3.0.3"
     react: "npm:18.2.0"
     react-calendar: "npm:^4.6.1"
+    react-color-palette: "npm:^7.2.2"
     react-cookie: "npm:^4.1.1"
     react-datepicker: "npm:^4.24.0"
     react-dom: "npm:18.2.0"

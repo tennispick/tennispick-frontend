@@ -54,6 +54,7 @@ const RAW_RUNTIME_STATE =
           ["prettier", "npm:3.0.3"],\
           ["react", "npm:18.2.0"],\
           ["react-calendar", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.6.1"],\
+          ["react-color-palette", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:7.2.2"],\
           ["react-cookie", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.1.1"],\
           ["react-datepicker", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.24.0"],\
           ["react-dom", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:18.2.0"],\
@@ -7302,6 +7303,28 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["react-color-palette", [\
+      ["npm:7.2.2", {\
+        "packageLocation": "../../../../.yarn/berry/cache/react-color-palette-npm-7.2.2-1e32c783f0-10c0.zip/node_modules/react-color-palette/",\
+        "packageDependencies": [\
+          ["react-color-palette", "npm:7.2.2"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:7.2.2", {\
+        "packageLocation": "./.yarn/__virtual__/react-color-palette-virtual-2db041d8db/5/.yarn/berry/cache/react-color-palette-npm-7.2.2-1e32c783f0-10c0.zip/node_modules/react-color-palette/",\
+        "packageDependencies": [\
+          ["react-color-palette", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:7.2.2"],\
+          ["@types/react", "npm:18.2.6"],\
+          ["react", "npm:18.2.0"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["react-cookie", [\
       ["npm:4.1.1", {\
         "packageLocation": "../../../../Users/Admin/AppData/Local/Yarn/Berry/cache/react-cookie-npm-4.1.1-90d4f0fcb5-10c0.zip/node_modules/react-cookie/",\
@@ -8647,6 +8670,7 @@ const RAW_RUNTIME_STATE =
           ["prettier", "npm:3.0.3"],\
           ["react", "npm:18.2.0"],\
           ["react-calendar", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.6.1"],\
+          ["react-color-palette", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:7.2.2"],\
           ["react-cookie", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.1.1"],\
           ["react-datepicker", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.24.0"],\
           ["react-dom", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:18.2.0"],\

@@ -29,11 +29,6 @@ export { default as CustomerLessonList } from '@components/customer/detail/Lesso
 export { default as CustomerMemoList } from '@components/customer/detail/MemoList';
 export { default as GenerateCustomerModal } from '@components/customer/GenerateModal';
 
-/** coach */
-export { default as BusinessPerformance } from '@components/coach/detail/BusinessPerformance';
-export { default as CoachCustomerList } from '@components/coach/detail/CustomerList';
-export { default as PersonalData } from '@components/coach/detail/PersonalData';
-
 /** court */
 export { default as CourtList } from '@components/court/List';
 export { default as DetailCourt } from '@components/court/Detail';
