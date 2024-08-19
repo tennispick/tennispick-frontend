@@ -242,6 +242,31 @@ export const globalStyles = (
         background-image: url('${WhiteCheckboxIndeterminateIcon.src}');
       }
 
+      input[type='radio'] {
+        appearance: none;
+        position: relative;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 1.25rem;
+        height: 1.25rem;
+        border: 1.5px solid var(--business-active-color);
+        border-radius: 50%;
+        outline: none;
+        cursor: pointer;
+      }
+
+      input[type='radio']:checked::after {
+        background-color: var(--business-active-color);
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0.75rem;
+        height: 0.75rem;
+        border-radius: 100%;
+        transform: translate(-50%, -50%);
+      }
+
       .hidden {
         display: none;
         opacity: 0;

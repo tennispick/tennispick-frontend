@@ -7,11 +7,11 @@ import {
   Hydrate,
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { AppLayout } from '@components/index';
 import { globalStyles } from '@styles/styles';
 import { config } from '@lib/react-query/config';
 import { RecoilRoot } from 'recoil';
 import ModalProvider from 'src/provider/ModalProvider';
+import AppLayout from '@components/layout/AppLayout';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient(config));

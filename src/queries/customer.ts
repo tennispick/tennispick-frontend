@@ -1,7 +1,8 @@
 import { axios } from '@utils/axios';
+import serverAxios from '@utils/axios/axios.server';
 import { useQuery } from '@tanstack/react-query';
 
-const getCustomerFetch = async (): Promise<any> => await axios.get('/customer');
+const getCustomerFetch = async () => await serverAxios.get('/customer');
 
 const getCustomerDetailFetch = async (id: string): Promise<any> =>
   await axios.get(`/customer/${id}`);
@@ -9,6 +10,7 @@ const getCustomerDetailFetch = async (id: string): Promise<any> =>
 const generateCustomer = async (data: object): Promise<any> =>
   await axios.post('/customer', { data: data });
 
+// TODO Delete
 const getCustomerQuery = (): any => {
   try {
     const { data } = useQuery({
@@ -19,6 +21,7 @@ const getCustomerQuery = (): any => {
       data,
     };
   } catch (error) {
+    console.log(error);
     console.error(error);
     return { data: error };
   }

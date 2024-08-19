@@ -32,6 +32,7 @@ const RAW_RUNTIME_STATE =
           ["@next/eslint-plugin-next", "npm:14.1.0"],\
           ["@tanstack/react-query", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.33.0"],\
           ["@tanstack/react-query-devtools", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:5.34.1"],\
+          ["@types/js-cookie", "npm:3.0.6"],\
           ["@types/node", "npm:20.2.3"],\
           ["@types/react", "npm:18.2.6"],\
           ["@types/react-datepicker", "npm:4.19.3"],\
@@ -49,13 +50,13 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-prettier", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:5.0.1"],\
           ["eslint-plugin-simple-import-sort", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:12.1.0"],\
           ["eslint-plugin-unused-imports", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.0.0"],\
+          ["js-cookie", "npm:3.0.5"],\
           ["jwt-decode", "npm:3.1.2"],\
           ["next", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:13.4.3"],\
           ["prettier", "npm:3.0.3"],\
           ["react", "npm:18.2.0"],\
           ["react-calendar", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.6.1"],\
           ["react-color-palette", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:7.2.2"],\
-          ["react-cookie", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.1.1"],\
           ["react-datepicker", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.24.0"],\
           ["react-dom", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:18.2.0"],\
           ["react-hook-form", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:7.45.4"],\
@@ -784,22 +785,11 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["@types/cookie", [\
-      ["npm:0.3.3", {\
-        "packageLocation": "../../../../.yarn/berry/cache/@types-cookie-npm-0.3.3-a5ddc16db3-10c0.zip/node_modules/@types/cookie/",\
+    ["@types/js-cookie", [\
+      ["npm:3.0.6", {\
+        "packageLocation": "../../../../.yarn/berry/cache/@types-js-cookie-npm-3.0.6-c9126e5b48-10c0.zip/node_modules/@types/js-cookie/",\
         "packageDependencies": [\
-          ["@types/cookie", "npm:0.3.3"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@types/hoist-non-react-statics", [\
-      ["npm:3.3.1", {\
-        "packageLocation": "../../../../.yarn/berry/cache/@types-hoist-non-react-statics-npm-3.3.1-c0081332b2-10c0.zip/node_modules/@types/hoist-non-react-statics/",\
-        "packageDependencies": [\
-          ["@types/hoist-non-react-statics", "npm:3.3.1"],\
-          ["@types/react", "npm:18.2.6"],\
-          ["hoist-non-react-statics", "npm:3.3.2"]\
+          ["@types/js-cookie", "npm:3.0.6"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2658,15 +2648,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../../.yarn/berry/cache/convert-source-map-npm-1.9.0-e294555f4b-10c0.zip/node_modules/convert-source-map/",\
         "packageDependencies": [\
           ["convert-source-map", "npm:1.9.0"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["cookie", [\
-      ["npm:0.4.2", {\
-        "packageLocation": "../../../../.yarn/berry/cache/cookie-npm-0.4.2-7761894d5f-10c0.zip/node_modules/cookie/",\
-        "packageDependencies": [\
-          ["cookie", "npm:0.4.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -5559,6 +5540,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["js-cookie", [\
+      ["npm:3.0.5", {\
+        "packageLocation": "../../../../.yarn/berry/cache/js-cookie-npm-3.0.5-8fc8fcc9b4-10c0.zip/node_modules/js-cookie/",\
+        "packageDependencies": [\
+          ["js-cookie", "npm:3.0.5"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["js-tokens", [\
       ["npm:3.0.2", {\
         "packageLocation": "../../../../.yarn/berry/cache/js-tokens-npm-3.0.2-fe6fb334bd-10c0.zip/node_modules/js-tokens/",\
@@ -7325,31 +7315,6 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["react-cookie", [\
-      ["npm:4.1.1", {\
-        "packageLocation": "../../../../.yarn/berry/cache/react-cookie-npm-4.1.1-90d4f0fcb5-10c0.zip/node_modules/react-cookie/",\
-        "packageDependencies": [\
-          ["react-cookie", "npm:4.1.1"]\
-        ],\
-        "linkType": "SOFT"\
-      }],\
-      ["virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.1.1", {\
-        "packageLocation": "./.yarn/__virtual__/react-cookie-virtual-d23fbf8bb0/5/.yarn/berry/cache/react-cookie-npm-4.1.1-90d4f0fcb5-10c0.zip/node_modules/react-cookie/",\
-        "packageDependencies": [\
-          ["react-cookie", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.1.1"],\
-          ["@types/hoist-non-react-statics", "npm:3.3.1"],\
-          ["@types/react", "npm:18.2.6"],\
-          ["hoist-non-react-statics", "npm:3.3.2"],\
-          ["react", "npm:18.2.0"],\
-          ["universal-cookie", "npm:4.0.4"]\
-        ],\
-        "packagePeers": [\
-          "@types/react",\
-          "react"\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
     ["react-datepicker", [\
       ["npm:4.24.0", {\
         "packageLocation": "../../../../.yarn/berry/cache/react-datepicker-npm-4.24.0-3ae093e83c-10c0.zip/node_modules/react-datepicker/",\
@@ -8648,6 +8613,7 @@ const RAW_RUNTIME_STATE =
           ["@next/eslint-plugin-next", "npm:14.1.0"],\
           ["@tanstack/react-query", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.33.0"],\
           ["@tanstack/react-query-devtools", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:5.34.1"],\
+          ["@types/js-cookie", "npm:3.0.6"],\
           ["@types/node", "npm:20.2.3"],\
           ["@types/react", "npm:18.2.6"],\
           ["@types/react-datepicker", "npm:4.19.3"],\
@@ -8665,13 +8631,13 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-prettier", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:5.0.1"],\
           ["eslint-plugin-simple-import-sort", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:12.1.0"],\
           ["eslint-plugin-unused-imports", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.0.0"],\
+          ["js-cookie", "npm:3.0.5"],\
           ["jwt-decode", "npm:3.1.2"],\
           ["next", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:13.4.3"],\
           ["prettier", "npm:3.0.3"],\
           ["react", "npm:18.2.0"],\
           ["react-calendar", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.6.1"],\
           ["react-color-palette", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:7.2.2"],\
-          ["react-cookie", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.1.1"],\
           ["react-datepicker", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.24.0"],\
           ["react-dom", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:18.2.0"],\
           ["react-hook-form", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:7.45.4"],\
@@ -9076,17 +9042,6 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["unique-slug", "npm:4.0.0"],\
           ["imurmurhash", "npm:0.1.4"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["universal-cookie", [\
-      ["npm:4.0.4", {\
-        "packageLocation": "../../../../.yarn/berry/cache/universal-cookie-npm-4.0.4-aa9b4bcfbf-10c0.zip/node_modules/universal-cookie/",\
-        "packageDependencies": [\
-          ["universal-cookie", "npm:4.0.4"],\
-          ["@types/cookie", "npm:0.3.3"],\
-          ["cookie", "npm:0.4.2"]\
         ],\
         "linkType": "HARD"\
       }]\
