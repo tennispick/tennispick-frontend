@@ -4,9 +4,9 @@ import { deleteCoach } from '@apis/coach/coach.api';
 import { URL_COACH } from '@apis/coach/coach.url';
 import { useQueryClient } from '@tanstack/react-query';
 
-interface Props {
+type Props = {
   coachId: string;
-}
+};
 
 const ButtonContainer = ({ coachId }: Props) => {
   const queryClient = useQueryClient();
@@ -31,7 +31,6 @@ const ButtonContainer = ({ coachId }: Props) => {
         display: 'flex',
         height: '46px',
         justifyContent: 'end',
-        margin: '12px 0 0 0',
       }}
     >
       <Button

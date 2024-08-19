@@ -1,5 +1,13 @@
 import { CSSObject } from '@emotion/react';
-import { PropsWithChildren, createContext, useContext, useState } from 'react';
+import {
+  HTMLAttributes,
+  PropsWithChildren,
+  createContext,
+  useContext,
+  useState,
+  Children,
+  Fragment,
+} from 'react';
 import { SetStateAction } from '../types';
 
 type TabContextType = {
@@ -22,10 +30,13 @@ const defaultTabContext = {
 
 const TabContext = createContext<TabContextType>(defaultTabContext);
 
-const TabList = () => {
+const Tab = () => {
   return {
     Tabs,
-    Panel,
+    TabLists,
+    TabList,
+    TabPanels,
+    TabPanel,
   };
 };
 
@@ -34,20 +45,33 @@ const Tabs = ({ defaultActiveKey, children }: TabsProps) => {
 
   return (
     <TabContext.Provider value={{ activeKey, setActiveKey }}>
-      <ul
-        css={{
-          display: 'flex',
-          alignItems: 'center',
-          borderBottom: '1px solid var(--grey100)',
-        }}
-      >
-        {children}
-      </ul>
+      {children}
     </TabContext.Provider>
   );
 };
 
-const Panel = ({ activeKey: panelKey, children }: PanelProps) => {
+const TabLists = ({
+  children,
+  ...rest
+}: PropsWithChildren<HTMLAttributes<HTMLUListElement>>) => {
+  return (
+    <ul
+      css={{
+        height: '2.875rem',
+        display: 'flex',
+        alignItems: 'center',
+        borderBottom: '1px solid var(--grey100)',
+      }}
+      {...rest}
+    >
+      {Children.map(children, (child, index) => {
+        return <Fragment key={index}>{child}</Fragment>;
+      })}
+    </ul>
+  );
+};
+
+const TabList = ({ activeKey: panelKey, children }: PanelProps) => {
   const { activeKey, setActiveKey } = useContext(TabContext);
 
   const activeStyle: CSSObject = {
@@ -70,6 +94,7 @@ const Panel = ({ activeKey: panelKey, children }: PanelProps) => {
       css={[
         activeKey === panelKey ? activeStyle : deactiveStyle,
         {
+          height: '2.875rem',
           margin: '0 24px 0 0',
           padding: '8px 0 12px 0',
           transition: 'all 0.1s',
@@ -82,4 +107,27 @@ const Panel = ({ activeKey: panelKey, children }: PanelProps) => {
   );
 };
 
-export default TabList;
+const TabPanels = ({ children, ...rest }: PropsWithChildren) => {
+  return <div {...rest}>{children}</div>;
+};
+
+const TabPanel = ({
+  activeKey: panelKey,
+  children,
+  ...rest
+}: PropsWithChildren<PanelProps>) => {
+  const { activeKey } = useContext(TabContext);
+  const isActive = activeKey === panelKey;
+
+  return (
+    <>
+      {isActive && (
+        <div role={'tabpanel'} data-tab={panelKey} {...rest}>
+          {children}
+        </div>
+      )}
+    </>
+  );
+};
+
+export default Tab;

@@ -10,7 +10,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     const contentType = config.headers['Content-Type'];
-    const accessToken = getCookie();
+    const accessToken = getCookie('userACT');
     config.headers['Content-type'] = contentType ?? 'application/json';
     config.headers['Authorization'] = `Bearer ${accessToken}`;
 

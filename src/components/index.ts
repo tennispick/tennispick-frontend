@@ -16,7 +16,6 @@ export { default as Portal } from '@components/Portal';
 export { default as Modal } from '@components/layer/Modal';
 
 /** layout */
-export { default as AppLayout } from '@components/layout/AppLayout';
 export { default as MobileScreen } from '@components/layout/MobileScreen';
 export { default as NavigationLayout } from '@components/layout/NavigationLayout';
 
@@ -28,11 +27,6 @@ export { default as CustomerData } from '@components/customer/detail/CustomerDat
 export { default as CustomerLessonList } from '@components/customer/detail/LessonList';
 export { default as CustomerMemoList } from '@components/customer/detail/MemoList';
 export { default as GenerateCustomerModal } from '@components/customer/GenerateModal';
-
-/** coach */
-export { default as BusinessPerformance } from '@components/coach/detail/BusinessPerformance';
-export { default as CoachCustomerList } from '@components/coach/detail/CustomerList';
-export { default as PersonalData } from '@components/coach/detail/PersonalData';
 
 /** court */
 export { default as CourtList } from '@components/court/List';

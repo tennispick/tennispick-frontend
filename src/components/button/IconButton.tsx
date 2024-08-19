@@ -1,12 +1,12 @@
-import { ButtonType } from "@/types/button";
-import Button from "./Button";
-import Image from "next/image";
+import { ButtonType } from '@/types/button';
+import Button from './Button';
+import Image from 'next/image';
 
 type Props = {
   iconSrc: string;
   iconAlign: 'left' | 'right';
   iconAlt: string;
-} & ButtonType
+} & ButtonType;
 
 const IconButton = ({
   iconSrc,
@@ -27,19 +27,14 @@ const IconButton = ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection: iconAlign === 'right' ? 'row' : 'row-reverse'
+        flexDirection: iconAlign === 'right' ? 'row' : 'row-reverse',
       }}
       {...rest}
     >
-      <Image
-        src={iconSrc}
-        alt={iconAlt}
-        width={24}
-        height={24}
-      />
+      <Image src={iconSrc} alt={iconAlt} width={24} height={24} />
       {children || text}
     </Button>
-  )
+  );
 };
 
 export default IconButton;

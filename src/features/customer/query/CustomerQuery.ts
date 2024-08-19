@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 import {
   CustomerLessonListQueryPayload,
   CustomerLessonHistoryQueryPayload,
-  CustomerLessonListQueryData,
   CustomerDetailQueryPayLoad,
 } from '../type/customer.type';
 import {
@@ -25,6 +24,16 @@ import {
 import { createInitialData } from '@/types/response';
 import { getCustomerAdditionalLessonList } from '@apis/customer/customer.api';
 import { CustomerDetailData } from '@apis/customer/customer.type';
+import { getCustomerFetch } from '@queries/customer';
+
+export const useCustomerListQuery = () => {
+  return useQuery({
+    queryKey: ['customer'],
+    queryFn: async () => await getCustomerFetch(),
+    select: (data) => data?.data,
+    suspense: true,
+  });
+};
 
 export const useCustomerAllLessonListQuery = (
   params: Pick<CustomerLessonListQueryPayload, 'id'>,

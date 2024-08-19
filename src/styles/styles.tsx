@@ -2,6 +2,8 @@ import { Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import ArrowDropDownIcon from '@icons/arrow_drop_down_black.svg';
+import WhiteCheckboxIcon from '@icons/checkbox/white_check.svg';
+import WhiteCheckboxIndeterminateIcon from '@icons/checkbox/white_check_indeterminate.svg';
 
 export type CSS_TYPE = {
   width?: string | number;
@@ -120,6 +122,7 @@ export const globalStyles = (
         --blue400: rgba(32, 77, 195, 100); // #204DC3
         --blue500: rgba(0, 119, 240, 100); // #0077F0
         --blue900: rgba(208, 217, 255, 100); // #D0D9FF
+        --blue1200: rgba(244, 249, 255, 100); // #F4F9FF
 
         --green050: rgba(0, 154, 136, 1); // #009A88
         --green100: rgba(3, 199, 90, 100); // #03C75A
@@ -144,6 +147,7 @@ export const globalStyles = (
         --grey600: rgba(249, 249, 249, 100); // #F9F9F9
         --grey800: rgba(174, 174, 174, 100); // #AEAEAE
         --grey1000: rgba(146, 146, 146, 100); // #929292
+        --grey1500: rgba(102, 102, 102, 100); // #666666
         --grey1600: rgba(98, 98, 98, 100); // # 626262
 
         --business-active-color: rgba(101, 165, 185, 100); // #65A5B9
@@ -196,6 +200,71 @@ export const globalStyles = (
           color: var(--grey800);
           border-color: var(--grey100);
         }
+      }
+
+      input[type='checkbox'] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 1rem;
+        height: 1rem;
+        border: 1px solid var(--grey1600);
+        border-radius: 2px;
+        outline: none;
+        cursor: pointer;
+      }
+
+      input[type='checkbox']:checked,
+      input[type='checkbox']:indeterminate {
+        background-color: var(--business-active-color);
+        border: 0;
+      }
+
+      input[type='checkbox']:checked::after,
+      input[type='checkbox']:indeterminate::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0.75rem;
+        height: 0.75rem;
+
+        background-size: contain;
+        background-repeat: no-repeat;
+        transform: translate(-50%, -50%);
+      }
+
+      input[type='checkbox']:checked::after {
+        background-image: url('${WhiteCheckboxIcon.src}');
+      }
+
+      input[type='checkbox']:indeterminate::after {
+        background-image: url('${WhiteCheckboxIndeterminateIcon.src}');
+      }
+
+      input[type='radio'] {
+        appearance: none;
+        position: relative;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 1.25rem;
+        height: 1.25rem;
+        border: 1.5px solid var(--business-active-color);
+        border-radius: 50%;
+        outline: none;
+        cursor: pointer;
+      }
+
+      input[type='radio']:checked::after {
+        background-color: var(--business-active-color);
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0.75rem;
+        height: 0.75rem;
+        border-radius: 100%;
+        transform: translate(-50%, -50%);
       }
 
       .hidden {

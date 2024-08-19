@@ -1,18 +1,11 @@
-import { ButtonType } from "@/types/button";
-import { CSSObject } from "@emotion/react";
+import { ButtonType } from '@/types/button';
+import { CSSObject } from '@emotion/react';
 
-const Button = ({
-  size,
-  variant,
-  text,
-  children,
-  ...rest
-}: ButtonType) => {
-
+const Button = ({ size, variant, text, children, ...rest }: ButtonType) => {
   const defaultStyles: CSSObject = {
     border: '0',
-    cursor: 'pointer'
-  }
+    cursor: 'pointer',
+  };
 
   const sizeStyles = {
     xs: {
@@ -81,7 +74,7 @@ const Button = ({
     >
       {children || text}
     </button>
-  )
+  );
 };
 
 export default Button;
