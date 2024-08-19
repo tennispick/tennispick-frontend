@@ -2,7 +2,7 @@ import Head from 'next/head';
 import NavigationHeader from '../component/NavigationHeader';
 import CustomerChart from '../component/chart/CustomerChart';
 import SalesChart from '../component/chart/SalesChart';
-import CustomerList from '../component/CustomerList';
+import CustomerDashboard from '../component/customerDashboard/CustomerDashboard';
 import SalesStatistics from '../component/salesStatistics/SalesStatistics';
 
 const HomeScreen = () => {
@@ -18,7 +18,7 @@ const HomeScreen = () => {
         <SalesChart />
       </div>
       <div css={{ display: 'flex', height: 'calc(100% - 222px)', gap: '20px' }}>
-        <CustomerList />
+        <CustomerDashboard />
         <SalesStatistics />
       </div>
     </div>

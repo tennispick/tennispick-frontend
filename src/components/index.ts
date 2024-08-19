@@ -16,7 +16,6 @@ export { default as Portal } from '@components/Portal';
 export { default as Modal } from '@components/layer/Modal';
 
 /** layout */
-export { default as AppLayout } from '@components/layout/AppLayout';
 export { default as MobileScreen } from '@components/layout/MobileScreen';
 export { default as NavigationLayout } from '@components/layout/NavigationLayout';
 

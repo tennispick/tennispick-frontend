@@ -1,9 +1,5 @@
-/** common */
-
-/** schedule */
 export { getScheduleFetch, getScheduleQuery } from '@queries/schedule';
 
-/** customer */
 export {
   getCustomerFetch,
   getCustomerDetailFetch,
@@ -12,7 +8,6 @@ export {
   getCustomerDetailQuery,
 } from '@queries/customer';
 
-/** coach */
 export {
   getCourtFetch,
   getCourtDetailFetch,
@@ -22,11 +17,3 @@ export {
   getCourtQuery,
   getCourtDetailQuery,
 } from '@queries/court';
-
-/** court */
-
-/** lesson */
-
-/** community */
-
-/** statistics */
