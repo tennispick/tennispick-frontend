@@ -4,23 +4,30 @@ import SearchIcon from '@icons/search_black_icon.svg';
 type Options = {
   label: string;
   value: string;
-}
+};
 
 type Props = {
   searchOption?: string;
   searchOptions?: Array<Options>;
   handleChangeKeyword: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSearchOption: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+};
 
-const SearchBox = ({ searchOption, searchOptions, handleChangeKeyword, handleSearchOption }: Props) => {
+const SearchBox = ({
+  searchOption,
+  searchOptions,
+  handleChangeKeyword,
+  handleSearchOption,
+}: Props) => {
   return (
-    <div css={{
-      display: 'flex',
-      alignItems: 'center',
-      gap: '0.5rem',
-      fontSize: '1rem'
-    }}>
+    <div
+      css={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.5rem',
+        fontSize: '1rem',
+      }}
+    >
       {searchOptions?.map(({ label, value }) => {
         return (
           <div
@@ -36,14 +43,14 @@ const SearchBox = ({ searchOption, searchOptions, handleChangeKeyword, handleSea
               name={'searchOption'}
               value={value}
               css={{
-                margin: '0 8px 0 0'
+                margin: '0 8px 0 0',
               }}
               checked={searchOption === value}
               onChange={handleSearchOption}
             />
             <label htmlFor={value}>{label}</label>
           </div>
-        )
+        );
       })}
       <SearchInput
         type="text"
@@ -55,7 +62,7 @@ const SearchBox = ({ searchOption, searchOptions, handleChangeKeyword, handleSea
         onChange={handleChangeKeyword}
       />
     </div>
-  )
+  );
 };
 
 const SearchInput = styled.input({
@@ -75,6 +82,5 @@ const SearchInput = styled.input({
     textIndent: '0',
   },
 });
-
 
 export default SearchBox;

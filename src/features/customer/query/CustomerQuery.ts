@@ -33,7 +33,7 @@ export const useCustomerListQuery = () => {
     select: (data) => data?.data,
     suspense: true,
   });
-}
+};
 
 export const useCustomerAllLessonListQuery = (
   params: Pick<CustomerLessonListQueryPayload, 'id'>,

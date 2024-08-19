@@ -1,4 +1,4 @@
-import SearchBox from "@widgets/SearchBox";
+import SearchBox from '@widgets/SearchBox';
 
 type Props = {
   searchOption: string;
@@ -11,19 +11,24 @@ const searchOptions = [
   { label: '연락처', value: 'phone' },
 ];
 
-const DashboardHeader = ({ searchOption, handleChangeKeyword, handleSearchOption }: Props) => {
-
+const DashboardHeader = ({
+  searchOption,
+  handleChangeKeyword,
+  handleSearchOption,
+}: Props) => {
   return (
-    <div css={{
-      width: '100%',
-      height: '3.75rem',
-      display: 'flex',
-      justifyContent: 'space-between',
-      padding: '0 0 16px 0',
-      fontSize: '1.25rem',
-      fontWeight: 600,
-      borderBottom: '1px solid var(--grey100)',
-    }}>
+    <div
+      css={{
+        width: '100%',
+        height: '3.75rem',
+        display: 'flex',
+        justifyContent: 'space-between',
+        padding: '0 0 16px 0',
+        fontSize: '1.25rem',
+        fontWeight: 600,
+        borderBottom: '1px solid var(--grey100)',
+      }}
+    >
       <div>
         회원목록
         <span>4,444 명</span>

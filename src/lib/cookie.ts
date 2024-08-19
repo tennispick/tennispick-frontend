@@ -1,7 +1,7 @@
 import jwt_decode from 'jwt-decode';
-import { getCookie as getNextCookie, setCookie as setNextCookie, deleteCookie } from 'cookies-next';
+import cookie from 'js-cookie';
 
-const getCookie = () => getNextCookie('userACT');
+const getCookie = (cookieName: string) => cookie.get(cookieName);
 
 const setCookie = (accessToken: string) => {
   const expires = new Date();
@@ -14,15 +14,15 @@ const setCookie = (accessToken: string) => {
     expires,
   };
 
-  return setNextCookie('userACT', accessToken, options);
+  return cookie.set('userACT', accessToken, options);
 };
 
 const removeCookie = (key: string) => {
-  return deleteCookie(key);
+  return cookie.remove(key);
 };
 
 const getAdminInfo = (key: string) => {
-  const accessToken = getCookie();
+  const accessToken = getCookie('userACT');
   const adminInfo: { [key: string]: string } = jwt_decode(accessToken ?? '');
 
   return key === 'all' ? adminInfo : adminInfo[key];

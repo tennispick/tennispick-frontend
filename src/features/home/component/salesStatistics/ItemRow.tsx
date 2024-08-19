@@ -1,10 +1,10 @@
-import Image, { StaticImageData } from "next/image";
+import Image, { StaticImageData } from 'next/image';
 
 type Props = {
   icon: string | StaticImageData;
   title: string;
   value: string;
-}
+};
 
 const ItemRow = ({ icon, title, value }: Props) => {
   return (
@@ -14,25 +14,22 @@ const ItemRow = ({ icon, title, value }: Props) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        margin: '0 0 24px 0'
+        margin: '0 0 24px 0',
       }}
     >
       <div
         css={{
           display: 'flex',
           alignItems: 'center',
-          gap: '8px'
+          gap: '8px',
         }}
       >
-        <Image
-          src={icon}
-          alt={title}
-        />
+        <Image src={icon} alt={title} />
         {title}
       </div>
       {value}
     </li>
-  )
+  );
 };
 
 export default ItemRow;

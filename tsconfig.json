@@ -34,13 +34,19 @@
       "@utils/*": ["src/utils/*"],
       "@widgets/*": ["src/widgets/*"],
       "@/types/*": ["src/types/*"]
-    }
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/hooks/useMobile.tsX"
+    "src/hooks/useMobile.tsX",
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }

@@ -6,14 +6,20 @@ import CustomerDashboard from '../component/customerDashboard/CustomerDashboard'
 import SalesStatistics from '../component/salesStatistics/SalesStatistics';
 
 const HomeScreen = () => {
-
   return (
     <div css={{ height: '100%', padding: '', overflowY: 'scroll' }}>
       <Head>
         <title>테니스 닥터 - 홈</title>
       </Head>
       <NavigationHeader />
-      <div css={{ display: 'flex', height: '150px', margin: '0 0 24px 0', gap: '20px' }}>
+      <div
+        css={{
+          display: 'flex',
+          height: '150px',
+          margin: '0 0 24px 0',
+          gap: '20px',
+        }}
+      >
         <CustomerChart />
         <SalesChart />
       </div>
