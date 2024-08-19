@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prepare": "panda codegen",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -48,6 +49,7 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
+    "@pandacss/dev": "^0.45.1",
     "@types/js-cookie": "^3",
     "@types/react-datepicker": "^4.19.3",
     "@types/uuid": "^9.0.1",
