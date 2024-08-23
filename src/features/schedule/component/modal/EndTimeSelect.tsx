@@ -3,6 +3,7 @@ import ScheduleModalSelect from './Select';
 import { useEffect } from 'react';
 import { SetStateAction } from '@/types/index';
 import { ScheduleType } from '@features/schedule/type/schedule.type';
+import { css } from 'styled-system/css';
 
 type Props = {
   index: number;
@@ -44,10 +45,7 @@ const ScheduleModalEndTimeSelect = ({
     <ScheduleModalSelect
       name="endTime"
       data={data}
-      css={{
-        width: '120px',
-        margin: '0 0 0 12px',
-      }}
+      className={css({ width: '120px', margin: '0 0 0 12px' })}
       selected={startTime}
       disabled={true}
     />

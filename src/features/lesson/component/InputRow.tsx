@@ -1,9 +1,10 @@
 import Input from '@components/common/Input';
-import { CSSProperties } from 'react';
+import { Styles, css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   rowHeadLabel: string;
-  rowHeadStyle?: CSSProperties;
+  rowHeadStyle?: Styles;
   type?: string;
   defaultValue: string | number;
   maxLength?: number;
@@ -26,27 +27,25 @@ const InputRow = ({
   requiredStatus,
   requiredText,
 }: Props) => {
+  const className = css(
+    {
+      width: '160px',
+      padding: '4px 0',
+      fontSize: '1rem',
+      fontWeight: 600,
+    },
+    rowHeadStyle,
+  );
+
   return (
     <div
-      css={{
-        position: 'relative',
-        display: 'flex',
+      className={flex({
         alignItems: 'baseline',
         minHeight: '40px',
         margin: '0 0 20px 0',
-      }}
+      })}
     >
-      <div
-        css={{
-          fontSize: '1rem',
-          fontWeight: '600',
-          width: '160px',
-          padding: '4px 0',
-          ...rowHeadStyle,
-        }}
-      >
-        {rowHeadLabel}
-      </div>
+      <div className={className}>{rowHeadLabel}</div>
       {type === 'text' && (
         <Input
           css={{
@@ -57,15 +56,13 @@ const InputRow = ({
           <Input.TextField
             type={type}
             name={name}
+            className={css({ height: '40px' })}
             placeholder={placeholder}
             defaultValue={`${defaultValue}`}
             maxLength={maxLength}
             requiredStatus={requiredStatus}
             requiredText={requiredText}
             onChange={onChange}
-            css={{
-              height: '40px',
-            }}
           />
         </Input>
       )}
@@ -98,15 +95,14 @@ const ToggleInput = ({
       id={`${id}`}
       name={name}
       type="checkbox"
-      css={{
-        position: 'relative',
+      className={css({
         appearance: 'none',
         borderRadius: '24px',
         width: '54px',
         height: '28px',
         backgroundColor: 'var(--grey100)',
 
-        '::before': {
+        _before: {
           content: '""',
           position: 'absolute',
           top: '4px',
@@ -118,24 +114,24 @@ const ToggleInput = ({
           transition: 'left 300ms linear',
         },
 
-        ':checked': {
+        _checked: {
           backgroundColor: 'var(--blue500)',
+
+          _before: {
+            left: '30px',
+          },
         },
 
-        ':checked::before': {
-          left: '30px',
-        },
-
-        ':disabled': {
+        _disabled: {
           borderColor: 'var(--grey100)',
           backgroundColor: 'var(--grey100)',
           cursor: 'not-allowed',
-        },
 
-        ':disabled::before': {
-          backgroundColor: 'var(--grey100)',
+          _before: {
+            backgroundColor: 'var(--grey100)',
+          },
         },
-      }}
+      })}
       onClick={(e) => {
         const { name, checked } = e.currentTarget;
         const isActive = checked ? 'Y' : 'N';

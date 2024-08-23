@@ -1,13 +1,13 @@
 import { getDayOfWeek } from '@utils/date';
-import { useScheduleByPeriodQuery } from '../query/scheduleQuery';
+import { useLessonScheduleByPeriodQuery } from '../query/scheduleQuery';
 import { GET_WEEK_LIST_COUNT } from '@features/constant/schedule';
 import Loading from '@components/common/Loading';
 import ScheduleTimeTable from './ScheduleTimeTable';
 
 import { getDayOfWeekList } from '@utils/date';
-import styled from '@emotion/styled';
 import { CoachListData } from '@apis/coach/coach.type';
-import { CSS_TYPE } from '@styles/styles';
+import { styled } from 'styled-system/jsx';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   isMobile: boolean;
@@ -20,7 +20,7 @@ const DaySchedule = ({ isMobile, date, coachList }: Props) => {
   const nextWeekSunday = new Date(thisWeekSunday);
   nextWeekSunday.setDate(thisWeekSunday.getDate() + GET_WEEK_LIST_COUNT * 7);
 
-  const { data, isLoading } = useScheduleByPeriodQuery({
+  const { data, isLoading } = useLessonScheduleByPeriodQuery({
     startDate: thisWeekSunday,
     endDate: nextWeekSunday,
   });
@@ -29,14 +29,13 @@ const DaySchedule = ({ isMobile, date, coachList }: Props) => {
     <>
       {isLoading && <Loading />}
       <div
-        css={{
-          display: 'flex',
+        className={flex({
           width: '100%',
           height: 'calc(100% - 176px)',
           flexDirection: isMobile ? 'column' : 'row',
-        }}
+        })}
       >
-        <SchduleTimeTableContainer width={'100%'}>
+        <SchduleTimeTableContainer>
           <SchduleTimeTableTitle>평일</SchduleTimeTableTitle>
           <ScheduleTimeTable
             coach={coachList}
@@ -44,7 +43,7 @@ const DaySchedule = ({ isMobile, date, coachList }: Props) => {
             timeTableMapList={getDayOfWeekList(date, GET_WEEK_LIST_COUNT, true)}
           />
         </SchduleTimeTableContainer>
-        <SchduleTimeTableContainer width={'100%'}>
+        <SchduleTimeTableContainer>
           <SchduleTimeTableTitle>주말</SchduleTimeTableTitle>
           <ScheduleTimeTable
             coach={coachList}
@@ -61,22 +60,20 @@ const DaySchedule = ({ isMobile, date, coachList }: Props) => {
   );
 };
 
-const SchduleTimeTableContainer = styled.div<CSS_TYPE>(
-  {
-    position: 'relative',
+const SchduleTimeTableContainer = styled('div', {
+  base: {
+    width: '100%',
     height: '100%',
   },
-  (props) => ({
-    width: props.width ? props.width : '50%',
-  }),
-);
+});
 
-const SchduleTimeTableTitle = styled.div({
-  position: 'relative',
-  height: '24px',
-  fontSize: '1.25rem',
-  fontWeight: 600,
-  margin: '0 0 16px 0',
+const SchduleTimeTableTitle = styled('div', {
+  base: {
+    height: '24px',
+    fontSize: '1.25rem',
+    fontWeight: 600,
+    margin: '0 0 16px 0',
+  },
 });
 
 export default DaySchedule;

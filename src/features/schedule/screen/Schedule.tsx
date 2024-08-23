@@ -1,13 +1,17 @@
+'use client';
+
 import { useState } from 'react';
 import PageHeader from '@components/common/PageHeader';
 import Portal from '@components/Portal';
 import Modal from '@components/layer/Modal';
-import ScheduleCreateModal from '@features/schedule/component/modal/CreateModal';
-import DaySchedule from '../component/DaySchedule';
-import ButtonContainer from '../component/ButtonContainer';
+import ButtonToolbar from '@features/schedule/component/buttonToolbar/ButtonToolBar';
 import { useGetCoachListQuery } from '@features/coach/query/coachQuery';
 import useMobile from '@hooks/useMobile';
-import { useGetCourtListQuery } from '@features/court/query/courtQuery';
+import { css } from 'styled-system/css';
+import CourtContainer from '../component/CourtContainer';
+import ModalAdditionalLesson from '../component/modal/additionalLesson/ModalAdditionalLesson';
+import ModalRegularLesson from '../component/modal/regularLesson/ModalRegularLesson';
+import ScheduleCalendarTable from '../component/scheduleCalendarTable/ScheduleCalendarTable';
 
 const Schedule = () => {
   const today = new Date();
@@ -15,47 +19,44 @@ const Schedule = () => {
   const isMobile = useMobile();
   const [calendarDate, setCalendarDate] = useState(today);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [modalType, setModalType] = useState<string>('');
+  const [modalType, setModalType] = useState<'regular' | 'additional'>(
+    'regular',
+  );
 
-  const { data: coachList } = useGetCoachListQuery({});
+  const { data } = useGetCoachListQuery({});
 
-  const { data: courtList } = useGetCourtListQuery({});
+  const handleChangeDate = (date: Date) => setCalendarDate(date);
+
+  const handleCreateRegularLessonClick = () => {
+    setModalType('regular');
+    setShowModal(true);
+  };
+
+  const handleCreateAdditionalLessonClick = () => {
+    setModalType('additional');
+    setShowModal(true);
+  };
 
   return (
     <>
       <PageHeader title={'스케줄 관리'} />
-      <div css={{ padding: '0 0 12px 0' }}>
-        <ul css={{ display: 'flex' }}>
-          {courtList &&
-            courtList?.map((el) => {
-              return (
-                <li
-                  key={el.id}
-                  css={{
-                    backgroundColor: `var(--black100)`,
-                    color: 'var(--white100)',
-                    padding: '8px 16px',
-                    borderRadius: '8px',
-                    margin: '0 8px 0 0',
-                  }}
-                >
-                  <span>{el.name}</span>
-                </li>
-              );
-            })}
-        </ul>
-      </div>
-      <ButtonContainer
+      <CourtContainer />
+      <ButtonToolbar
         calendarDate={calendarDate}
-        setCalendarDate={setCalendarDate}
-        setModalType={setModalType}
-        setShowModal={setShowModal}
+        handleChangeDate={handleChangeDate}
+        handleCreateRegularLessonClick={handleCreateRegularLessonClick}
+        handleCreateAdditionalLessonClick={handleCreateAdditionalLessonClick}
       />
-      <DaySchedule
+      <ScheduleCalendarTable
         isMobile={isMobile}
         date={calendarDate}
-        coachList={coachList ? coachList : []}
+        coachList={data ?? []}
       />
+      {/* <DaySchedule
+        isMobile={isMobile}
+        date={calendarDate}
+        coachList={data ?? []}
+      /> */}
       {showModal && (
         <Portal id="portal">
           <Modal
@@ -64,14 +65,19 @@ const Schedule = () => {
             }
             showModal={showModal}
             setShowModal={setShowModal}
-            css={{
+            className={css({
               top: '45%',
               maxWidth: '1440px',
               minHeight: '500px',
               width: modalType === 'regular' ? '1440px' : '720px',
-            }}
+            })}
           >
-            <ScheduleCreateModal modalType={modalType} />
+            {
+              {
+                regular: <ModalRegularLesson />,
+                additional: <ModalAdditionalLesson />,
+              }[modalType]
+            }
           </Modal>
         </Portal>
       )}

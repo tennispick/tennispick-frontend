@@ -7,6 +7,8 @@ import {
 } from '@features/customer/util/payment';
 import { addNumberCommas } from '@utils/numberForm';
 import { cancelCustomerRefund } from '@apis/payment/payment.api';
+import { flex } from 'styled-system/patterns';
+import { css } from 'styled-system/css';
 
 type Props = {
   data: CustomerPaymentRefundData[];
@@ -28,32 +30,31 @@ const CustomerDetailPaymentRefundRefundList = ({ data }: Props) => {
   return (
     <>
       <div
-        css={{
+        className={flex({
           height: '28px',
-          display: 'flex',
           alignItems: 'center',
           textAlign: 'center',
           fontSize: '0.9rem',
           padding: '6px 8px',
           gap: '2px',
-        }}
+        })}
       >
-        <div css={{ width: '20%' }}>레슨권</div>
-        <div css={{ width: '15%' }}>환불일</div>
-        <div css={{ width: '12%' }}>결제유형</div>
-        <div css={{ width: '12%' }}>할인유형</div>
-        <div css={{ width: '10%' }}>할인금액</div>
-        <div css={{ width: '10%' }}>결제금액</div>
-        <div css={{ width: '10%' }}>환불금액</div>
-        <div css={{ width: '11%' }} />
+        <div className={css({ width: '20%' })}>레슨권</div>
+        <div className={css({ width: '15%' })}>환불일</div>
+        <div className={css({ width: '12%' })}>결제유형</div>
+        <div className={css({ width: '12%' })}>할인유형</div>
+        <div className={css({ width: '10%' })}>할인금액</div>
+        <div className={css({ width: '10%' })}>결제금액</div>
+        <div className={css({ width: '10%' })}>환불금액</div>
+        <div className={css({ width: '11%' })} />
       </div>
       <div
-        css={{
+        className={css({
           height: 'calc(100% - 28px)',
           padding: '8px 0',
           overflowY: 'auto',
           fontSize: '0.9rem',
-        }}
+        })}
       >
         {data.map((item) => {
           const {
@@ -70,39 +71,41 @@ const CustomerDetailPaymentRefundRefundList = ({ data }: Props) => {
           return (
             <CustomerDetailPaymentRefundTableRow
               key={id}
-              css={{
-                padding: '12px 8px',
-              }}
+              className={css({ padding: '12px 8px' })}
             >
               <div
-                css={{
+                className={css({
                   width: '20%',
                   textOverflow: 'ellipsis',
                   whiteSpace: 'nowrap',
                   overflow: 'hidden',
                   textAlign: 'left',
-                }}
+                })}
               >
                 {lessonName}
               </div>
-              <div css={{ width: '15%' }}>{createdAt}</div>
-              <div css={{ width: '12%' }}>{transferPaymentType(type)}</div>
-              <div css={{ width: '12%' }}>
+              <div className={css({ width: '15%' })}>{createdAt}</div>
+              <div className={css({ width: '12%' })}>
+                {transferPaymentType(type)}
+              </div>
+              <div className={css({ width: '12%' })}>
                 {discountType ? transferDiscountType(discountType) : '-'}
               </div>
-              <div css={{ width: '10%' }}>
+              <div className={css({ width: '10%' })}>
                 {discountPrice === 0 || !discountPrice
                   ? '-'
                   : addNumberCommas(discountPrice)}
               </div>
-              <div css={{ width: '10%' }}>{addNumberCommas(totalPrice)}</div>
-              <div css={{ width: '10%' }}>
+              <div className={css({ width: '10%' })}>
+                {addNumberCommas(totalPrice)}
+              </div>
+              <div className={css({ width: '10%' })}>
                 {refundPrice ? addNumberCommas(refundPrice) : '-'}
               </div>
               <button
                 type="button"
                 onClick={() => onClickRefundCancelHandler(id)}
-                css={{
+                className={css({
                   width: '11%',
                   backgroundColor: 'var(--business-color)',
                   color: 'var(--white100)',
@@ -112,7 +115,7 @@ const CustomerDetailPaymentRefundRefundList = ({ data }: Props) => {
                   border: 0,
                   outline: 0,
                   cursor: 'pointer',
-                }}
+                })}
               >
                 환불취소
               </button>

@@ -7,6 +7,8 @@ import LayerConfirmModal from '@components/layer/ConfirmModal';
 import { Input } from '@components/index';
 import useInput from '@hooks/useInput';
 import { useCreateMemoMutate } from '@features/customer/mutate/memo';
+import { css } from 'styled-system/css';
+import { Flex } from 'styled-system/jsx';
 
 type Props = {
   customerId: string;
@@ -49,45 +51,39 @@ const ManageMemo = ({
   return (
     <>
       <div
-        css={{
+        className={css({
           height: '48px',
           lineHeight: '24px',
           backgroundColor: 'var(--white100)',
           margin: '0 0 12px 0',
           padding: '12px',
           borderRadius: '8px',
-        }}
+        })}
       >
-        <div
-          css={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
-          <div css={{ margin: '0 12px 0 0' }}>
+        <Flex alignItems={'center'} justifyContent={'space-between'}>
+          <div className={css({ margin: '0 12px 0 0' })}>
             총 <span>{data.length}</span>건
           </div>
           <div
-            css={{
+            className={css({
               color: 'var(--business-color)',
               fontWeight: 600,
               margin: '0 8px 0 0',
               cursor: 'pointer',
-            }}
+            })}
             onClick={onClickShowMemoModal}
           >
             등록하기
           </div>
-        </div>
+        </Flex>
       </div>
       <div
-        css={{
+        className={css({
           backgroundColor: 'var(--white100)',
           borderRadius: '8px',
           height: 'calc(100% - 60px)',
           padding: '8px',
-        }}
+        })}
       >
         {data && data.length > 0 ? (
           <ManageMemoList
@@ -109,40 +105,37 @@ const ManageMemo = ({
           onClickDisabled={formData.title === ''}
         >
           <form id="memoForm" onSubmit={onClickSubmitMemo}>
-            <div css={{ margin: '12px 0' }}>
-              <div css={{ margin: '0 0 8px 0' }}>메모 유형</div>
+            <div className={css({ margin: '12px 0' })}>
+              <div className={css({ margin: '0 0 8px 0' })}>메모 유형</div>
               <Select
                 name="type"
-                css={{
-                  width: '40%',
-                  fontSize: '0.875rem',
-                }}
+                className={css({ width: '40%', fontSize: '0.875rem' })}
               >
                 <option value="normal">일반</option>
                 <option value="payment">결제</option>
                 <option value="etc">기타</option>
               </Select>
             </div>
-            <div css={{ margin: '12px 0' }}>
-              <div css={{ margin: '0 0 8px 0' }}>제목</div>
+            <div className={css({ margin: '12px 0' })}>
+              <div className={css({ margin: '0 0 8px 0' })}>제목</div>
               <Input>
                 <Input.TextField
                   name="title"
                   placeholder="제목을 입력해주세요."
-                  css={{
+                  className={css({
                     padding: '16px',
                     fontSize: '0.875rem',
-                  }}
+                  })}
                   onChange={onChangeFormData}
                 />
               </Input>
             </div>
-            <div css={{ margin: '12px 0' }}>
-              <div css={{ margin: '0 0 8px 0' }}>내용</div>
+            <div className={css({ margin: '12px 0' })}>
+              <div className={css({ margin: '0 0 8px 0' })}>내용</div>
               <textarea
                 name="content"
                 placeholder="메모 내용을 입력해주세요."
-                css={{
+                className={css({
                   minHeight: '120px',
                   padding: '16px',
                   width: '100%',
@@ -150,7 +143,7 @@ const ManageMemo = ({
                   border: '1px solid var(--grey300)',
                   outline: 'none',
                   borderRadius: '8px',
-                }}
+                })}
               />
             </div>
           </form>

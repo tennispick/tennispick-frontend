@@ -1,4 +1,5 @@
 import Image, { StaticImageData } from 'next/image';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   icon: string | StaticImageData;
@@ -10,19 +11,18 @@ const ItemRow = ({ icon, title, value }: Props) => {
   return (
     <li
       key={title}
-      css={{
-        display: 'flex',
+      className={flex({
         alignItems: 'center',
         justifyContent: 'space-between',
         margin: '0 0 24px 0',
-      }}
+      })}
     >
       <div
-        css={{
+        className={flex({
           display: 'flex',
           alignItems: 'center',
           gap: '8px',
-        }}
+        })}
       >
         <Image src={icon} alt={title} />
         {title}

@@ -1,17 +1,18 @@
 import { Dispatch, FormEvent, SetStateAction } from 'react';
-import styled from '@emotion/styled';
 import { useRouter } from 'next/navigation';
 
 import useInput from '@hooks/useInput';
 import { Button, Input } from '@components/index';
 import { generateCourt } from '@queries/index';
 import { EditWhiteIcon } from '@icons/index';
+import { css } from 'styled-system/css';
+import { styled } from 'styled-system/jsx';
 
-const GenerateModal = ({
-  setShowModal,
-}: {
+type Props = {
   setShowModal: Dispatch<SetStateAction<boolean>>;
-}) => {
+};
+
+const GenerateModal = ({ setShowModal }: Props) => {
   const router = useRouter();
   const [formData, onChangeFormData, setFormData] = useInput({
     name: {
@@ -85,8 +86,7 @@ const GenerateModal = ({
         variant={'iconBtn'}
         label={'코트 생성하기'}
         src={EditWhiteIcon}
-        css={{
-          position: 'relative',
+        className={css({
           width: '100%',
           justifyContent: 'center',
           border: 0,
@@ -94,23 +94,28 @@ const GenerateModal = ({
           color: 'var(--white100)',
           padding: '12px 16px',
           margin: '96px 0 0 0',
-        }}
+        })}
       />
     </form>
   );
 };
 
-const InputWrapper = styled((props: any) => <Input {...props} />)({
-  margin: '0 0 28px 0',
+const InputWrapper = styled(Input, {
+  base: {
+    margin: '0 0 28px 0',
 
-  label: {
-    display: 'block',
+    '& label': {
+      display: 'block',
+    },
   },
 });
-const TextField = styled((props: any) => <Input.TextField {...props} />)({
-  width: '60%',
-  padding: '10px 0 10px 10px',
-  margin: '12px 0 0 0',
+
+const TextField = styled(Input.TextField, {
+  base: {
+    width: '60%',
+    padding: '10px 0 10px 10px',
+    margin: '12px 0 0 0',
+  },
 });
 
 export default GenerateModal;

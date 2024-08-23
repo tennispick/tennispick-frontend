@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import trendingUpIcon from '@icons/trending_up.svg';
 import trendingDownIcon from '@icons/trending_down.svg';
+import { css } from 'styled-system/css';
+import { Flex } from 'styled-system/jsx';
 
 type ChartChangeType = 'Up' | 'Down' | 'NoChange';
 
@@ -32,29 +34,30 @@ const Card = ({ title, subTitle, chartType, content }: Props) => {
 
   return (
     <div
-      css={{
+      className={css({
         width: '200px',
-        height: '110px',
         flex: '0 0 auto',
         backgroundColor: '#F8F8F8',
         borderRadius: '8px',
         padding: '16px',
         margin: '0 12px 0 0',
-      }}
+      })}
     >
-      <div css={{ fontSize: '0.875rem', fontWeight: 600 }}>{title}</div>
-      <div css={{ fontSize: '0.75rem', margin: '8px 0 20px 0' }}>
+      <div className={css({ fontSize: '0.875rem', fontWeight: 600 })}>
+        {title}
+      </div>
+      <div className={css({ fontSize: '0.75rem', margin: '8px 0 20px 0' })}>
         {subTitle}
       </div>
-      <div css={{ display: 'flex', justifyContent: 'space-between' }}>
+      <Flex justify={'space-between'}>
         <div
-          css={{
+          className={css({
             fontWeight: 600,
             color: chartTypeColor[chartType],
-          }}
+          })}
         >{`${chartTypePrefix[chartType]} ${content}`}</div>
         {chartType !== 'NoChange' && (
-          <div css={{ width: '20px', height: '20px' }}>
+          <div className={css({ width: '20px', height: '20px' })}>
             <Image
               src={chartTypeImage[chartType]}
               alt="arrow"
@@ -63,7 +66,7 @@ const Card = ({ title, subTitle, chartType, content }: Props) => {
             />
           </div>
         )}
-      </div>
+      </Flex>
     </div>
   );
 };

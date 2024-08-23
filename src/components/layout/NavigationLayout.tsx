@@ -1,6 +1,4 @@
 import Link from 'next/link';
-import styled from '@emotion/styled';
-import { CSS_TYPE } from '@styles/styles';
 import Image from 'next/image';
 import { NavigationList } from 'src/mocks/navigation';
 import Calendar from '@components/home/Calendar';
@@ -9,6 +7,8 @@ import { Modal, Portal } from '@components/index';
 import ScheduleByDate from '@features/layer/scheduleByDate/screen/ScheduleByDate';
 import Logo from '@icons/white_bg_logo.svg';
 import useMobile from '@hooks/useMobile';
+import { css } from 'styled-system/css';
+import { styled } from 'styled-system/jsx';
 
 type Props = {
   firstPathName: string;
@@ -42,36 +42,55 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
     <NavContainer
       width={isNavSpread ? '280px' : '80px'}
       padding={isNavSpread ? '0 20px 0 0' : '0'}
-      css={isMobile && { ...mobileNavigationStyle }}
+      className={css({
+        ...(isMobile && { ...mobileNavigationStyle }),
+      })}
     >
       <div>
         {isNavSpread && (
-          <div css={{ width: '100%', minHeight: '48px', padding: '8px 0 0 0' }}>
+          <div
+            className={css({
+              width: '100%',
+              minHeight: '48px',
+              padding: '8px 0 0 0',
+            })}
+          >
             <Image
               src={Logo}
               alt="logo"
               placeholder="empty"
-              priority={true}
-              css={{
+              className={css({
                 width: '100%',
+                height: '3rem',
                 margin: '0 auto 0 auto',
-              }}
+              })}
+              priority={true}
             />
           </div>
         )}
-        <NavLists margin={isNavSpread ? '16px 0 0 0' : '90px 0 0 0'}>
+        <NavLists
+          className={css({ margin: isNavSpread ? '16px 0 0 0' : '90px 0 0 0' })}
+        >
           {NavigationList &&
             NavigationList.map((item) => {
               return (
                 <Link key={item.id} href="" as={`/${item.path}`} passHref>
                   <NavList
-                    isActive={isNavSpread}
-                    flexDirection={isNavSpread ? 'row' : 'column'}
-                    css={{
-                      '::before': {
+                    className={css({
+                      flexDirection: isNavSpread ? 'row' : 'column',
+                      padding: isNavSpread ? '16px' : '16px 0',
+                      margin: isNavSpread ? '0 0 12px 0' : '2px 0',
+
+                      _before: {
                         width: firstPathName === item.path ? '100%' : '0',
+                        borderRadius: isNavSpread ? '16px' : '0',
                       },
-                    }}
+
+                      '& span': {
+                        fontSize: isNavSpread ? '1rem' : '0.925rem',
+                        margin: isNavSpread ? '0 0 0 16px' : '4px 0 0 0',
+                      },
+                    })}
                   >
                     <Image
                       src={item.src}
@@ -98,12 +117,12 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
           <Modal
             title={'스케줄 등록'}
             titleContainer={false}
-            css={{
+            className={css({
               width: 'calc(100vw - 3%)',
               height: 'calc(100vh - 5%)',
               top: '50%',
               padding: 0,
-            }}
+            })}
           >
             <ScheduleByDate
               day={day}
@@ -116,8 +135,8 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
   );
 };
 
-const NavContainer = styled((props: any) => <nav {...props} />)(
-  {
+const NavContainer = styled('div', {
+  base: {
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
@@ -126,83 +145,42 @@ const NavContainer = styled((props: any) => <nav {...props} />)(
     transition: 'all 0.35s ease-in-out',
     overflowY: 'scroll',
   },
-  (props) => ({
-    width: props.width,
-    padding: props.padding,
-  }),
-);
+});
 
-// const NavContainer = styled.nav<CSS_TYPE>(
-//   {
-//     position: 'relative',
-//     display: 'flex',
-//     flexDirection: 'column',
-//     justifyContent: 'space-between',
-//     height: 'calc(100vh - 48px)',
-//     transition: 'all 0.35s ease-in-out',
-//     overflowY: 'scroll',
-//   },
-//   (props) => ({
-//     width: props.width,
-//     padding: props.padding,
-//   }),
-// );
-const NavLists = styled.ul<CSS_TYPE>(
-  {
+const NavLists = styled('ul', {
+  base: {
     position: 'relative',
     width: '100%',
   },
-  (props) => ({
-    margin: props.margin,
-  }),
-);
-const NavList = styled.li<CSS_TYPE>(
-  {
+});
+
+const NavList = styled('li', {
+  base: {
     display: 'flex',
     position: 'relative',
     alignItems: 'center',
     fontSize: '16px',
     cursor: 'pointer',
 
-    img: {
-      zIndex: '2',
+    '& img': {
+      zIndex: 2,
     },
 
-    '::before': {
+    _before: {
       transition: 'width 0.25s',
       position: 'absolute',
       content: "''",
-      width: '0%',
       height: '100%',
-      top: '0',
-      left: '0',
+      top: 0,
+      left: 0,
       backgroundColor: 'var(--business-sub-color)',
-      borderRadius: '16px',
-      zIndex: '1',
+      zIndex: 1,
     },
-  },
-  (props) => ({
-    flexDirection: props.flexDirection,
-    padding: props.isActive ? '16px' : '16px 0',
-    margin: props.isActive ? '0 0 12px 0' : '2px 0',
 
-    span: {
-      fontSize: props.isActive ? '16px' : '14px',
-      margin: props.isActive ? '0 0 0 16px' : '4px 0 0 0',
+    '& span': {
       zIndex: '2',
     },
-
-    '::before': {
-      left: props.isActive ? '0' : '0',
-      borderRadius: props.isActive ? '16px' : '0',
-    },
-
-    ':hover': {
-      '::before': {
-        width: '100%',
-      },
-    },
-  }),
-);
+  },
+});
 
 export default NavigationLayout;

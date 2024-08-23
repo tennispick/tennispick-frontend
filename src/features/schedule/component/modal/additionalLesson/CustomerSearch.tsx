@@ -4,6 +4,8 @@ import ScheduleModalInput from '../Input';
 import { useState, useEffect } from 'react';
 import { getSearchCustomerListByKeyword } from '@apis/customer/customer.api';
 import InputAutoComplete from '../regularLesson/commonSchedule/customerInput/AutoComplete';
+import { flex } from 'styled-system/patterns';
+import { css } from 'styled-system/css';
 
 type Props = {
   setCustomerLesson: any;
@@ -49,30 +51,28 @@ const CustomerSearch = ({ setCustomerLesson, setCustomerIdHandler }: Props) => {
 
   return (
     <div
-      css={{
-        display: 'flex',
+      className={flex({
         alignItems: 'center',
         height: '48px',
         borderBottom: '1px solid var(--grey100)',
         padding: '0 0 12px 0',
         margin: '0 0 12px 0',
-      }}
+      })}
     >
       <div
-        css={{
-          display: 'flex',
+        className={flex({
           alignItems: 'center',
           width: '140px',
           height: '100%',
           margin: '0 12px 0 0',
-        }}
+        })}
       >
         <Image
           src={CustomerBlackIcon}
           alt="customer"
           width={20}
           height={20}
-          css={{ margin: '0 8px 0 0' }}
+          className={css({ margin: '0 8px 0 0' })}
         />
         회원 선택
       </div>
@@ -83,7 +83,7 @@ const CustomerSearch = ({ setCustomerLesson, setCustomerIdHandler }: Props) => {
         value={keyword}
         onChange={onChangeInputHandler}
         placeholder="회원명으로 검색해주세요."
-        css={{
+        className={css({
           position: 'relative',
           width: '100%',
           height: '100%',
@@ -93,7 +93,7 @@ const CustomerSearch = ({ setCustomerLesson, setCustomerIdHandler }: Props) => {
           border: '1px solid var(--grey300)',
           borderRadius: '8px',
           zIndex: '1',
-        }}
+        })}
       >
         {isShowAutoComplete && (
           <InputAutoComplete

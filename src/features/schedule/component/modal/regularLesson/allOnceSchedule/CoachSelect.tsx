@@ -5,6 +5,8 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { CoachListData } from '@apis/coach/coach.type';
 import { SetStateAction } from '@/types/index';
 import { AllOnceFormDataProps } from '@features/schedule/type/regularLesson';
+import { css } from 'styled-system/css';
+import { Flex } from 'styled-system/jsx';
 
 type Props = {
   coach: string;
@@ -47,18 +49,24 @@ const ScheduleModalRegularLessonAllOnceScheduleCoachSelect = ({
   }, [coach]);
 
   return (
-    <div css={{ margin: '0 0 20px 0' }}>
-      <div css={{ display: 'flex', alignItems: 'center' }}>
+    <div className={css({ margin: '0 0 20px 0' })}>
+      <Flex alignItems="center">
         <Image
           src={CoachBlackIcon}
           alt="coach"
           width={20}
           height={20}
-          css={{ margin: '0 6px 0 0' }}
+          className={css({ margin: '0 6px 0 0' })}
         />
         코치 선택
-      </div>
-      <div css={{ width: ' 80%', margin: '12px 0 0 0', padding: '0 0 0 2px' }}>
+      </Flex>
+      <div
+        className={css({
+          width: ' 80%',
+          margin: '12px 0 0 0',
+          padding: '0 0 0 2px',
+        })}
+      >
         <ScheduleModalSelect
           name="coach"
           data={

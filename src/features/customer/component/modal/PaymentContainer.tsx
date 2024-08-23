@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import InputRow from './InputRow';
 import {
   discountTypeList,
@@ -11,6 +10,8 @@ import { FormEvent } from 'react';
 import { createCustomerPayment } from '@apis/payment/payment.api';
 import { useRouter } from 'next/navigation';
 import { LessonListQueryData } from '@features/lesson/type/lesson.type';
+import { css } from 'styled-system/css';
+import { styled } from 'styled-system/jsx';
 
 type Props = {
   customerId: string;
@@ -90,17 +91,20 @@ const CustomerModalPaymentContainer = ({
   }, [formData.discountType]);
 
   return (
-    <form css={{ width: '100%', display: 'flex' }} onSubmit={onSubmitHandler}>
+    <form
+      className={css({ width: '100%', display: 'flex' })}
+      onSubmit={onSubmitHandler}
+    >
       <div
-        css={{
+        className={css({
           width: '70%',
-          padding: '16px 28px',
           height: '100%',
+          padding: '16px 28px',
           borderRight: '1px solid var(--grey100)',
-        }}
+        })}
       >
-        <div css={{ display: 'flex', height: 'calc(100% - 24px)' }}>
-          <div css={{ width: '50%' }}>
+        <div className={css({ display: 'flex', height: 'calc(100% - 24px)' })}>
+          <div className={css({ width: '50%' })}>
             <InputRow
               name="name"
               label="상품명"
@@ -168,20 +172,23 @@ const CustomerModalPaymentContainer = ({
   );
 };
 
-const PaymentDescription = styled.div({
-  position: 'absolute',
-  height: '40px',
-  bottom: 0,
-  span: {
-    color: 'var(--red200)',
-    margin: '0 24px 0 0',
-    fontWeight: 600,
+const PaymentDescription = styled('div', {
+  base: {
+    position: 'absolute',
+    height: '40px',
+    bottom: 0,
 
-    '::before': {
-      content: "'*'",
-      position: 'relative',
-      top: '2px',
-      margin: '0 4px 0 0',
+    '& span': {
+      color: 'var(--red200)',
+      margin: '0 24px 0 0',
+      fontWeight: 600,
+
+      '&::before': {
+        content: "'*'",
+        position: 'relative',
+        top: '2px',
+        margin: '0 4px 0 0',
+      },
     },
   },
 });

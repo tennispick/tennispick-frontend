@@ -6,6 +6,7 @@ import Tab from '@widgets/Tab';
 import SalesContainer from './sales/SalesContainer';
 import PaymentContainer from './payment/PaymentContainer';
 import CustomerContainer from './customer/CustomerContainer';
+import { css } from 'styled-system/css';
 
 type Props = {
   coachId: string;
@@ -49,29 +50,29 @@ const BusinessPerformance = ({ coachId }: Props) => {
   // const { card, cash, accountTransfer } = coachMonthSales;
 
   return (
-    <div css={{ width: '70%', height: '100%' }}>
+    <div className={css({ width: '70%', height: '100%' })}>
       <Tabs defaultActiveKey={'sales'}>
         <TabLists>
           <TabList activeKey={'sales'}>매출내역</TabList>
           <TabList activeKey={'payment'}>정산내역</TabList>
           <TabList activeKey={'customer'}>수강생 목록</TabList>
         </TabLists>
-        <TabPanels css={{ height: 'calc(100% - 2.875rem)' }}>
+        <TabPanels className={css({ height: 'calc(100% - 2.875rem)' })}>
           <TabPanel
             activeKey={'sales'}
-            css={{ height: '100%', padding: '12px 0' }}
+            className={css({ height: '100%', padding: '12px 0' })}
           >
             <SalesContainer />
           </TabPanel>
           <TabPanel
             activeKey={'payment'}
-            css={{ height: '100%', padding: '12px 0' }}
+            className={css({ height: '100%', padding: '12px 0' })}
           >
             <PaymentContainer />
           </TabPanel>
           <TabPanel
             activeKey={'customer'}
-            css={{ height: '100%', padding: '12px 0' }}
+            className={css({ height: '100%', padding: '12px 0' })}
           >
             <CustomerContainer />
           </TabPanel>

@@ -1,6 +1,7 @@
+'use client';
+
 import { FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import styled from '@emotion/styled';
 import Input from '@components/common/Input';
 import Divider from '@components/common/Divider';
 import Button from '@components/common/Button';
@@ -9,6 +10,8 @@ import { axios } from '@utils/axios';
 import { setCookie } from '@lib/cookie';
 import { useRecoilState } from 'recoil';
 import { userState } from '@lib/recoil/userState';
+import { css } from 'styled-system/css';
+import { styled } from 'styled-system/jsx';
 
 const Login = () => {
   const router = useRouter();
@@ -33,12 +36,7 @@ const Login = () => {
   };
 
   return (
-    <section
-      css={{
-        position: 'relative',
-        width: '50%',
-      }}
-    >
+    <section className={css({ position: 'relative', width: '50%' })}>
       <LoginContainer>
         <LoginTitle>Ten Sports</LoginTitle>
         <form onSubmit={onSubmitHandler}>
@@ -47,10 +45,7 @@ const Login = () => {
               id={'id'}
               label={'아이디'}
               variant={'labelBox'}
-              css={{
-                width: '60%',
-                height: '48px',
-              }}
+              css={{ width: '60%', height: '48px' }}
             >
               <Input.TextField
                 name={'id'}
@@ -63,10 +58,7 @@ const Login = () => {
             <Input
               label={'비밀번호'}
               variant={'labelBox'}
-              css={{
-                width: '60%',
-                height: '48px',
-              }}
+              css={{ width: '60%', height: '48px' }}
             >
               <Input.TextField
                 type={'password'}
@@ -84,7 +76,6 @@ const Login = () => {
               label={'로그인'}
               variant={'radiusBtn'}
               css={{
-                disaplay: 'block',
                 width: '60%',
                 margin: '0 0 16px 0',
                 fontWeight: '500',
@@ -97,7 +88,6 @@ const Login = () => {
               label={'문의하기'}
               variant={'radiusBtn'}
               css={{
-                disaplay: 'block',
                 width: '60%',
                 fontWeight: '500',
                 color: 'var(--white100)',
@@ -109,24 +99,22 @@ const Login = () => {
         </form>
         <Divider width={'60%'} content={'또는'} />
         <span
-          css={{
+          className={css({
             color: 'var(--navy100)',
             fontWeight: '600',
             margin: '0 8px 0 0',
             cursor: 'pointer',
-          }}
-          onClick={() => {}}
+          })}
         >
           이용약관
         </span>
         <span
-          css={{
+          className={css({
             color: 'var(--navy100)',
             fontWeight: '600',
             margin: '0 0 0 8px',
             cursor: 'pointer',
-          }}
-          onClick={() => {}}
+          })}
         >
           개인정보 처리방침
         </span>
@@ -135,20 +123,24 @@ const Login = () => {
   );
 };
 
-const LoginContainer = styled.div({
-  position: 'absolute',
-  top: '45%',
-  left: '50%',
-  width: '80%',
-  minHeight: '360px',
-  textAlign: 'center',
-  transform: 'translate(-50%, -50%)',
+const LoginContainer = styled('div', {
+  base: {
+    position: 'absolute',
+    top: '45%',
+    left: '50%',
+    width: '80%',
+    minHeight: '360px',
+    textAlign: 'center',
+    transform: 'translate(-50%, -50%)',
+  },
 });
-const LoginTitle = styled.div({
-  fontSize: '40px',
-  fontWeight: '600',
-  color: 'var(--business-color)',
-  margin: '0 0 36px 0',
+const LoginTitle = styled('div', {
+  base: {
+    fontSize: '40px',
+    fontWeight: '600',
+    color: 'var(--business-color)',
+    margin: '0 0 36px 0',
+  },
 });
 
 export default Login;

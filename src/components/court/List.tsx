@@ -1,21 +1,27 @@
 import { Dispatch, SetStateAction, useState } from 'react';
-import styled from '@emotion/styled';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import { CardList, NoResult, Button } from '@components/index';
 import { DefaultCourt } from '@images/index';
 import { deleteCourtDetailInfo } from '@queries/index';
+import { css } from 'styled-system/css';
+import { styled } from 'styled-system/jsx';
 
-interface CourtListProps {
+type Props = {
   data: Array<{ [key: string]: string | number }>;
   setCourtId: Dispatch<SetStateAction<string>>;
   setShowRightSide: Dispatch<SetStateAction<boolean>>;
-}
+};
 
-const CourtList = ({ data, setCourtId, setShowRightSide }: CourtListProps) => {
+const CourtList = ({ data, setCourtId, setShowRightSide }: Props) => {
   const router = useRouter();
   const [list] = useState<Array<{ [key: string]: string | number }>>(data);
+
+  const handleCourtDetailClick = (id: string) => {
+    setCourtId(id);
+    setShowRightSide(true);
+  };
 
   return (
     <>
@@ -25,33 +31,31 @@ const CourtList = ({ data, setCourtId, setShowRightSide }: CourtListProps) => {
             return (
               <CardList key={item.id} height={'360px'} minHeight={'360px'}>
                 <div
-                  css={{
-                    position: 'relative',
+                  className={css({
                     height: '60%',
                     borderTopLeftRadius: '25px',
                     borderTopRightRadius: '25px',
-                  }}
+                  })}
                 >
                   <Image
                     src={DefaultCourt}
                     alt={'default court image'}
-                    css={{
-                      width: '100%',
-                      height: '100%',
-                    }}
                     loading={'eager'}
                     priority={true}
+                    className={css({
+                      width: '100%',
+                      height: '100%',
+                    })}
                   />
                 </div>
                 <div
-                  css={{
+                  className={css({
                     position: 'absolute',
                     top: '56.5%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
                     minWidth: '140px',
                     padding: '12px 0',
-                    // backgroundColor: 'var(--business-sub-color,
                     backgroundColor: 'var(--blue300)',
                     color: 'var(--white100)',
                     fontSize: '1.1rem',
@@ -59,16 +63,15 @@ const CourtList = ({ data, setCourtId, setShowRightSide }: CourtListProps) => {
                     borderRadius: '12px',
                     textAlign: 'center',
                     zIndex: 99,
-                  }}
+                  })}
                 >
                   {item.name}
                 </div>
                 <div
-                  css={{
-                    position: 'relative',
+                  className={css({
                     height: '40%',
                     padding: '16px 24px 0 24px',
-                  }}
+                  })}
                 >
                   <CourtDetailInfo>&#45; {item.floor}층</CourtDetailInfo>
                   <CourtDetailInfo>
@@ -79,23 +82,23 @@ const CourtList = ({ data, setCourtId, setShowRightSide }: CourtListProps) => {
                     )}
                   </CourtDetailInfo>
                   <div
-                    css={{
+                    className={css({
                       display: 'flex',
                       justifyContent: 'center',
                       gap: '8px',
                       margin: '16px 0 0 0',
-                    }}
+                    })}
                   >
                     <Button
                       label={'삭제하기'}
                       variant={'radiusBtn'}
-                      css={{
+                      className={css({
                         border: 0,
                         backgroundColor: 'var(--red200)',
                         color: 'var(--white100)',
                         padding: '8px 16px',
                         fontSize: '0.95rem',
-                      }}
+                      })}
                       onClick={async () => {
                         const { data } = await deleteCourtDetailInfo(
                           item.id as string,
@@ -111,16 +114,15 @@ const CourtList = ({ data, setCourtId, setShowRightSide }: CourtListProps) => {
                     <Button
                       label={'상세보기'}
                       variant={'radiusBtn'}
-                      css={{
+                      className={css({
                         border: 0,
                         backgroundColor: 'var(--business-color)',
                         color: 'var(--white100)',
                         padding: '8px 16px',
                         fontSize: '0.95rem',
-                      }}
+                      })}
                       onClick={() => {
-                        setCourtId(item.id as string);
-                        setShowRightSide(true);
+                        handleCourtDetailClick(item.id as string);
                       }}
                     />
                   </div>
@@ -130,13 +132,7 @@ const CourtList = ({ data, setCourtId, setShowRightSide }: CourtListProps) => {
           })}
         </CardList.UnOrderList>
       ) : (
-        <div
-          css={{
-            position: 'relative',
-            height: '20vh',
-            borderRadius: '25px',
-          }}
-        >
+        <div className={css({ height: '20vh', borderRadius: '25px' })}>
           <NoResult description={'생성된 코트가 없어요.'} margin="16px 0 0 0" />
         </div>
       )}
@@ -144,9 +140,11 @@ const CourtList = ({ data, setCourtId, setShowRightSide }: CourtListProps) => {
   );
 };
 
-const CourtDetailInfo = styled.div({
-  fontWeight: '500',
-  lineHeight: '32px',
+const CourtDetailInfo = styled('div', {
+  base: {
+    fontWeight: '500',
+    lineHeight: '32px',
+  },
 });
 
 export default CourtList;

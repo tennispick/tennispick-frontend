@@ -1,5 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { TabLists } from '../type/tabLists.type';
+import { flex } from 'styled-system/patterns';
+import { css } from 'styled-system/css';
 
 type Props = {
   currentItem: number;
@@ -20,13 +22,12 @@ const SettingTabLists = ({ currentItem, setCurrentItem, tabLists }: Props) => {
 
   return (
     <ul
-      css={{
+      className={flex({
         width: '100%',
-        display: 'flex',
         borderBottom: '1px solid var(--grey100)',
         margin: '0 0 12px 0',
         fontSize: '1.2rem',
-      }}
+      })}
     >
       {tabLists.map(({ id, name }) => {
         const selectedItem = currentItem === id;
@@ -34,7 +35,7 @@ const SettingTabLists = ({ currentItem, setCurrentItem, tabLists }: Props) => {
         return (
           <li
             key={id}
-            css={[
+            className={css(
               {
                 margin: '0 28px 0 0',
                 color: selectedItem ? 'var(--black100)' : 'var(--grey800)',
@@ -42,11 +43,9 @@ const SettingTabLists = ({ currentItem, setCurrentItem, tabLists }: Props) => {
                 cursor: 'pointer',
               },
               selectedItem && {
-                ':after': {
-                  ...afterBorderStyle,
-                },
+                _after: { ...afterBorderStyle },
               },
-            ]}
+            )}
             onClick={() => setCurrentItem(id)}
           >
             {name}

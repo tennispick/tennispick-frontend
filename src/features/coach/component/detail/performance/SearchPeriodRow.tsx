@@ -1,5 +1,6 @@
 import RangeCalendar from '@widgets/RangeCalendar';
 import { useState } from 'react';
+import { css } from 'styled-system/css';
 
 const SearchPeriodRow = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -14,14 +15,14 @@ const SearchPeriodRow = () => {
 
   return (
     <div
-      css={{
+      className={css({
         display: 'flex',
         alignItems: 'center',
         gap: '1.5rem',
         margin: '0 0 24px 0',
-      }}
+      })}
     >
-      <div css={{ width: '7rem' }}>조회 기간</div>
+      <div className={css({ width: '7rem' })}>조회 기간</div>
       <RangeCalendar
         startDate={startDate}
         endDate={endDate}

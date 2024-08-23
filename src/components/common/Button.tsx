@@ -1,9 +1,9 @@
 import { ButtonHTMLAttributes } from 'react';
-import { StaticImageData } from 'next/image';
-import { ImageContainer as Image } from '@styles/styles';
-import { ObjectProps } from '@interfaces/common';
+import Image, { StaticImageData } from 'next/image';
+import { css, cva } from 'styled-system/css';
+import { Styles } from 'styled-system/css';
 
-type ButtonProps = {
+type Props = {
   type?: 'submit' | 'reset' | 'button';
   label: string;
   variant?: 'default' | 'iconBtn' | 'radiusBtn' | 'iconRadiusBtn';
@@ -11,8 +11,38 @@ type ButtonProps = {
   alt?: string;
   placeholder?: 'empty' | 'blur' | undefined;
   imageCss?: any;
+  css?: Styles;
   onClick?: () => void;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
+
+const BUTTON_VARIANT_STYLE = cva({
+  base: {},
+  variants: {
+    variant: {
+      default: {
+        border: '1px solid var(--grey100)',
+        borderRadius: '8px',
+        padding: '12px 16px',
+      },
+      iconBtn: {
+        display: 'flex',
+        alignItems: 'center',
+        border: '1px solid var(--grey100)',
+        borderRadius: '8px',
+        padding: '10px 20px',
+      },
+      radiusBtn: {
+        border: '1px solid var(--grey100)',
+        borderRadius: '50px',
+        padding: '12px 20px',
+      },
+      iconRadiusBtn: {
+        display: 'flex',
+        alignItems: 'center',
+      },
+    },
+  },
+});
 
 const Button = ({
   type = 'button',
@@ -28,8 +58,9 @@ const Button = ({
   },
   onClick,
   ...props
-}: ButtonProps) => {
-  const { disabled } = props;
+}: Props) => {
+  const { css: cssProp = {}, disabled, ...rest } = props;
+
   const disabledStyle = {
     backgroundColor: 'var(--grey500) !important',
     color: 'var(--grey800) !important',
@@ -37,25 +68,30 @@ const Button = ({
     cursor: 'not-allowed !important',
   };
 
+  const variantStyle = BUTTON_VARIANT_STYLE.raw({ variant });
+
+  const defaultStyle = {
+    backgroundColor: 'transparent',
+    fontSize: '1rem',
+    outline: 'none',
+    border: 0,
+    margin: 0,
+    padding: 0,
+    cursor: 'pointer',
+    ...(disabled && disabledStyle),
+  };
+
+  const className = css(defaultStyle, variantStyle, cssProp);
+
   return (
     <>
       {variant === 'iconBtn' || variant === 'iconRadiusBtn' ? (
         <button
           type={type}
-          css={{
-            backgroundColor: 'transparent',
-            fontSize: '1rem',
-            outline: 'none',
-            border: 0,
-            margin: 0,
-            padding: 0,
-            cursor: 'pointer',
-            ...BUTTON_VARIANT_STYLE[variant],
-            ...(disabled && disabledStyle),
-          }}
+          className={className}
           disabled={disabled}
           onClick={onClick}
-          {...props}
+          {...rest}
         >
           <Image
             src={src}
@@ -64,55 +100,21 @@ const Button = ({
             priority={true}
             {...imageCss}
           />
-          <span css={{ fontWeight: '500' }}>{label}</span>
+          <span className={css({ fontWeight: 500 })}>{label}</span>
         </button>
       ) : (
         <button
           type={type}
-          css={{
-            backgroundColor: 'transparent',
-            fontSize: '1rem',
-            outline: 'none',
-            border: 0,
-            margin: 0,
-            padding: 0,
-            cursor: 'pointer',
-            ...BUTTON_VARIANT_STYLE[variant],
-            ...(disabled && disabledStyle),
-          }}
+          className={className}
           disabled={disabled}
           onClick={onClick}
-          {...props}
+          {...rest}
         >
           {label}
         </button>
       )}
     </>
   );
-};
-
-const BUTTON_VARIANT_STYLE: ObjectProps<object> = {
-  default: {
-    border: '1px solid var(--grey100)',
-    borderRadius: '8px',
-    padding: '12px 16px',
-  },
-  iconBtn: {
-    display: 'flex',
-    alignItems: 'center',
-    border: '1px solid var(--grey100)',
-    borderRadius: '8px',
-    padding: '10px 20px',
-  },
-  radiusBtn: {
-    border: '1px solid var(--grey100)',
-    borderRadius: '50px',
-    padding: '12px 20px',
-  },
-  iconRadiusBtn: {
-    display: 'flex',
-    alignItems: 'center',
-  },
 };
 
 export default Button;

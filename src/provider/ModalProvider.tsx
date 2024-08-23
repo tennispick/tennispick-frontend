@@ -1,10 +1,9 @@
 import useModalStore, { ModalType } from '@lib/zustand/modal';
-import styled from '@emotion/styled';
 import { PORTAL_Z_INDEX } from 'src/constants/portal';
-import { fadeUp } from '@styles/animation';
-import { ImageContainer as Image } from '@styles/styles';
 import CancelBtnIcon from '@icons/cancel_black_btn.svg';
-import { css } from '@emotion/react';
+import { css } from 'styled-system/css';
+import Image from 'next/image';
+import { styled } from 'styled-system/jsx';
 
 const ModalProvider = () => {
   const {
@@ -12,7 +11,7 @@ const ModalProvider = () => {
     type = 'normal',
     title = '',
     modalChildren,
-    closeModal,
+    closeModal: handleCloseModal,
   } = useModalStore();
 
   if (!isOpen) return null;
@@ -66,24 +65,22 @@ const ModalProvider = () => {
   return (
     <Provider>
       <div
-        css={css([
-          {
-            position: 'absolute',
-            top: '40%',
-            left: '50%',
-            transform: 'translate(-50%,-50%)',
-            backgroundColor: 'var(--white100)',
-            borderRadius: '16px',
-            boxShadow: '2px 4px 12px 2px rgb(255 255 255 / 15%)',
-            zIndex: PORTAL_Z_INDEX + 1,
-            minWidth: modalSize(type).minWidth,
-            minHeight: modalSize(type).minHeight,
-            width: modalSize(type).width,
-            height: modalSize(type).height,
-            padding: modalSize(type).padding ?? '24px',
-          },
-          fadeUp,
-        ])}
+        className={css({
+          position: 'absolute',
+          top: '40%',
+          left: '50%',
+          transform: 'translate(-50%,-50%)',
+          backgroundColor: 'var(--white100)',
+          borderRadius: '16px',
+          boxShadow: '2px 4px 12px 2px rgb(255 255 255 / 15%)',
+          zIndex: PORTAL_Z_INDEX + 1,
+          minWidth: modalSize(type).minWidth,
+          minHeight: modalSize(type).minHeight,
+          width: modalSize(type).width,
+          height: modalSize(type).height,
+          padding: modalSize(type).padding ?? '24px',
+          animationName: 'fadeUp',
+        })}
       >
         {type !== 'overlay' && title && (
           <TitleContainer>
@@ -93,11 +90,13 @@ const ModalProvider = () => {
               alt={'close button'}
               width={28}
               height={28}
-              position={'absolute'}
-              top={0}
-              right={0}
-              cursor={'pointer'}
-              onClick={closeModal}
+              className={css({
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                cursor: 'pointer',
+              })}
+              onClick={handleCloseModal}
             />
           </TitleContainer>
         )}
@@ -107,27 +106,32 @@ const ModalProvider = () => {
   );
 };
 
-const Provider = styled.div({
-  position: 'fixed',
-  width: '100vw',
-  height: '100vh',
-  top: '0',
-  backgroundColor: 'rgb(18, 18, 18, 0.7)',
-  zIndex: PORTAL_Z_INDEX,
+const Provider = styled('div', {
+  base: {
+    position: 'fixed',
+    width: '100vw',
+    height: '100vh',
+    top: '0',
+    backgroundColor: 'rgb(18, 18, 18, 0.7)',
+    zIndex: PORTAL_Z_INDEX,
+  },
 });
 
-const TitleContainer = styled.div({
-  position: 'relative',
-  textAlign: 'center',
-  color: 'var(--black100)',
-  padding: '4px 0',
-  margin: '0 0 24px 0',
+const TitleContainer = styled('div', {
+  base: {
+    textAlign: 'center',
+    color: 'var(--black100)',
+    padding: '4px 0',
+    margin: '0 0 24px 0',
+  },
 });
 
-const Title = styled.div({
-  color: 'var(--business-color)',
-  fontSize: '1.2rem',
-  fontWeight: '500',
+const Title = styled('div', {
+  base: {
+    color: 'var(--business-color)',
+    fontSize: '1.2rem',
+    fontWeight: 500,
+  },
 });
 
 export default ModalProvider;

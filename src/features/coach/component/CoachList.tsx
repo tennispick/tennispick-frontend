@@ -3,6 +3,7 @@ import { NoResult, NormalList as Li } from '@components/index';
 import { useRouter } from 'next/navigation';
 import { ProfileManIcon, ProfileWomanIcon } from '@icons/index';
 import Image from 'next/image';
+import { css } from 'styled-system/css';
 
 type Props = {
   list: CoachListData[];
@@ -20,17 +21,14 @@ const CoachList = ({ list }: Props) => {
               <Li
                 key={id}
                 onClick={() => router.push(`/coach/${id}`)}
-                css={{
-                  minHeight: '48px',
-                }}
+                className={css({ minHeight: '48px' })}
               >
                 <div
-                  css={{
-                    position: 'relative',
+                  className={css({
                     width: '5%',
                     minHeight: '40px',
                     textAlign: 'center',
-                  }}
+                  })}
                 >
                   <Image
                     src={sex === 'man' ? ProfileManIcon : ProfileWomanIcon}
@@ -39,7 +37,7 @@ const CoachList = ({ list }: Props) => {
                   />
                 </div>
                 <div
-                  css={{
+                  className={css({
                     width: '52px',
                     height: '24px',
                     lineHeight: '24px',
@@ -51,29 +49,23 @@ const CoachList = ({ list }: Props) => {
                         : 'var(--green200)',
                     color: 'var(--white100)',
                     borderRadius: '4px',
-                  }}
+                  })}
                 >
                   {position === 'coach' ? '코치' : '헤드코치'}
                 </div>
-                <div
-                  css={{
-                    position: 'relative',
-                    width: 'calc(70% - 52px)',
-                  }}
-                >
-                  <div css={{ fontWeight: '600' }}>
+                <div className={css({ width: 'calc(70% - 52px)' })}>
+                  <div className={css({ fontWeight: 600 })}>
                     {name} &#40;{age}, {sex === 'man' ? '남' : '여'}&#41;
                   </div>
                 </div>
                 <div
-                  css={{
-                    position: 'relative',
+                  className={css({
                     width: '25%',
                     backgroundColor: 'var(--grey400)',
                     borderRadius: '16px',
                     padding: '12px 0',
                     textAlign: 'center',
-                  }}
+                  })}
                 >
                   {phone} &#183; {email}
                 </div>
@@ -83,11 +75,10 @@ const CoachList = ({ list }: Props) => {
         </Li.UnOrderList>
       ) : (
         <div
-          css={{
-            position: 'relative',
+          className={css({
             height: '20vh',
             borderRadius: '25px',
-          }}
+          })}
         >
           <NoResult
             description={'코치님이 존재하지 않아요.'}

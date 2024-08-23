@@ -5,7 +5,6 @@ import {
   SetStateAction,
   useCallback,
 } from 'react';
-import styled from '@emotion/styled';
 import { v4 as uuidV4 } from 'uuid';
 import NormalList from '@components/common/NormalList';
 import {
@@ -17,8 +16,9 @@ import {
 import { useRecoilState } from 'recoil';
 import { userState } from '@lib/recoil/userState';
 import { TransferTimeList } from '@interfaces/calendar';
-import { CSS_TYPE } from '@styles/styles';
 import { CustomerLessonType } from 'src/types/customer';
+import { css } from 'styled-system/css';
+import { styled } from 'styled-system/jsx';
 
 type LessonCustomerItemType = TransferTimeList & { isAttendance?: boolean };
 type LessonTimeType = LessonCustomerItemType[];
@@ -55,7 +55,6 @@ const ModalSchedule = ({ ...props }: Props) => {
     [],
   );
 
-  // TODO any
   const updateLessonTime = useCallback(
     (index: number, item: any, isAttendance: boolean) => {
       lessonTimeList[index] = {
@@ -111,29 +110,29 @@ const ModalSchedule = ({ ...props }: Props) => {
 
   return (
     <Container>
-      <NormalList.UnOrderList css={{ height: '100%', margin: '12px 12px 0 0' }}>
+      <NormalList.UnOrderList
+        className={css({ height: '100%', margin: '12px 12px 0 0' })}
+      >
         {lessonTimeList.map((item: any) => {
-          // TODO Any 삭제
-
           return (
             <NormalList
               key={uuidV4()}
-              css={{
+              className={css({
                 width: '100%',
                 padding: '8px 4px 8px 16px',
                 backgroundColor:
                   customerInfo?.id &&
                   (customerInfo?.id === item.id ? 'var(--grey500)' : ''),
 
-                ':hover': {
+                _hover: {
                   borderRadius: '8px',
                 },
 
-                div: {
+                '& div': {
                   padding: '6px auto',
                   fontWeight: 500,
                 },
-              }}
+              })}
               onClick={() => {
                 item.id && setCustomerInfo(item);
               }}
@@ -144,12 +143,12 @@ const ModalSchedule = ({ ...props }: Props) => {
                     if (item.isAttendance) {
                       return (
                         <Status
-                          css={{
+                          className={css({
                             width: '12%',
                             textAlign: 'center',
                             backgroundColor: 'var(--blue900)',
                             color: 'var(--blue100)',
-                          }}
+                          })}
                         >
                           출석
                         </Status>
@@ -161,12 +160,12 @@ const ModalSchedule = ({ ...props }: Props) => {
                       if (isAfterNow) {
                         return (
                           <Status
-                            css={{
+                            className={css({
                               width: '12%',
                               textAlign: 'center',
                               backgroundColor: 'var(--green900)',
                               color: 'var(--green150)',
-                            }}
+                            })}
                           >
                             예약
                           </Status>
@@ -174,45 +173,57 @@ const ModalSchedule = ({ ...props }: Props) => {
                       } else {
                         return (
                           <Status
-                            css={{
+                            className={css({
                               width: '12%',
                               textAlign: 'center',
                               backgroundColor: 'var(--pink900)',
                               color: 'var(--pink100)',
-                            }}
+                            })}
                           >
                             결석
                           </Status>
                         );
                       }
                     }
-
-                    // TODO 현재는 ID로만 가지고 오고 있어서, 나중에 이름으로 가져오기
                   })()}
                   <div
-                    css={{ width: '29%', textAlign: 'center' }}
+                    className={css({ width: '29%', textAlign: 'center' })}
                   >{`${item.startTime} - ${item.endTime}`}</div>
-                  <div css={{ width: '10%', textAlign: 'center' }}>개인</div>
-                  <div css={{ width: '15%', textAlign: 'center' }}>
+                  <div className={css({ width: '10%', textAlign: 'center' })}>
+                    개인
+                  </div>
+                  <div className={css({ width: '15%', textAlign: 'center' })}>
                     3번 코트
                   </div>
-                  <div css={{ width: '20%', textAlign: 'center' }}>루카스</div>
-                  <div css={{ width: '17%', textAlign: 'center' }}>
+                  <div className={css({ width: '20%', textAlign: 'center' })}>
+                    루카스
+                  </div>
+                  <div className={css({ width: '17%', textAlign: 'center' })}>
                     광개토대왕
                   </div>
                 </>
               ) : (
                 <>
-                  <Status css={{ width: '12%', textAlign: 'center' }}>
+                  <Status
+                    className={css({ width: '12%', textAlign: 'center' })}
+                  >
                     미예약
                   </Status>
                   <div
-                    css={{ width: '29%', textAlign: 'center' }}
+                    className={css({ width: '29%', textAlign: 'center' })}
                   >{`${item.startTime} - ${item.endTime}`}</div>
-                  <div css={{ width: '10%', textAlign: 'center' }}>-</div>
-                  <div css={{ width: '15%', textAlign: 'center' }}>-</div>
-                  <div css={{ width: '20%', textAlign: 'center' }}>-</div>
-                  <div css={{ width: '17%', textAlign: 'center' }}>-</div>
+                  <div className={css({ width: '10%', textAlign: 'center' })}>
+                    -
+                  </div>
+                  <div className={css({ width: '15%', textAlign: 'center' })}>
+                    -
+                  </div>
+                  <div className={css({ width: '20%', textAlign: 'center' })}>
+                    -
+                  </div>
+                  <div className={css({ width: '17%', textAlign: 'center' })}>
+                    -
+                  </div>
                 </>
               )}
             </NormalList>
@@ -223,24 +234,22 @@ const ModalSchedule = ({ ...props }: Props) => {
   );
 };
 
-const Container = styled.section({
-  position: 'relative',
-  width: '30%',
-  borderRight: '1px solid var(--grey100)',
-  padding: '0 0 32px 0',
+const Container = styled('section', {
+  base: {
+    width: '30%',
+    borderRight: '1px solid var(--grey100)',
+    padding: '0 0 32px 0',
+  },
 });
-const Status = styled.div<CSS_TYPE>(
-  {
+
+const Status = styled('div', {
+  base: {
     fontWeight: 700,
     padding: '6px 8px',
     borderRadius: '4px',
+    backgroundColor: 'var(--grey1000)',
+    color: 'var(--white100)',
   },
-  (props) => ({
-    backgroundColor: props.backgroundColor
-      ? props.backgroundColor
-      : 'var(--grey1000)',
-    color: props.color ? props.color : 'var(--white100)',
-  }),
-);
+});
 
 export default ModalSchedule;

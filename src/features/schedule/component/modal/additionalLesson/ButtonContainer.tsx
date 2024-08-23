@@ -1,4 +1,5 @@
 import { Button } from '@components/index';
+import { css } from 'styled-system/css';
 
 type Props = {
   onClickCloseModalHandler: () => void;
@@ -7,7 +8,7 @@ type Props = {
 
 const ButtonContainer = ({ onClickCloseModalHandler, disabled }: Props) => {
   return (
-    <div css={{ width: 'fit-content', margin: '12px 0 0 auto' }}>
+    <div className={css({ width: 'fit-content', margin: '12px 0 0 auto' })}>
       <Button
         type="button"
         label="취소"

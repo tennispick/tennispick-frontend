@@ -1,8 +1,7 @@
 import { axios } from '@utils/axios';
-import serverAxios from '@utils/axios/axios.server';
 import { useQuery } from '@tanstack/react-query';
 
-const getCustomerFetch = async () => await serverAxios.get('/customer');
+const getCustomerFetch = async () => await axios.get('/customer');
 
 const getCustomerDetailFetch = async (id: string): Promise<any> =>
   await axios.get(`/customer/${id}`);

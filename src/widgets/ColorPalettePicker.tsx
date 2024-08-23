@@ -1,6 +1,8 @@
 import useModal from '@hooks/useModal';
 import { ColorPicker, IColor } from 'react-color-palette';
 import 'react-color-palette/css';
+import { css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   color: IColor;
@@ -19,35 +21,35 @@ const ColorPalettePicker = ({ color, setColor }: Props) => {
     ),
   });
 
-  const onClickPaletteContainer = () => (isOpen ? closeModal() : onShowModal());
+  const handleClickPaletteContainer = () =>
+    isOpen ? closeModal() : onShowModal();
 
   return (
     <div
-      css={{
+      className={css({
         width: '100%',
         height: '100%',
         border: '1px solid var(--grey300)',
         borderRadius: '8px',
         cursor: 'pointer',
-      }}
-      onClick={onClickPaletteContainer}
+      })}
+      onClick={handleClickPaletteContainer}
     >
       <div
-        css={{
-          display: 'flex',
+        className={flex({
           gap: '8px',
           height: '100%',
           alignItems: 'center',
           padding: '0 0 0 10px',
-        }}
+        })}
       >
         <div
-          css={{
+          className={css({
             width: 20,
             height: 20,
             backgroundColor: color.hex,
             borderRadius: '4px',
-          }}
+          })}
         />
         <div>{color.hex}</div>
       </div>

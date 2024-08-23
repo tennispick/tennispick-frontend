@@ -7,6 +7,7 @@ import CoachList from '../component/CoachList';
 import { useGetCoachListQuery } from '../query/coachQuery';
 import Loading from '@components/common/Loading';
 import CoachCreateModal from '../component/modal/CreateModal';
+import { css } from 'styled-system/css';
 
 const CoachScreen = () => {
   const { data } = useGetCoachListQuery({});
@@ -32,8 +33,6 @@ const CoachScreen = () => {
   return (
     <>
       <PageHeader title="코치 목록" />
-      {/* <Filter /> */}
-      {/* <Search /> */}
       <TabList
         state={currentTab}
         setState={setCurrentTab}
@@ -49,10 +48,10 @@ const CoachScreen = () => {
               height: '20px',
               margin: '0 8px 0 0',
             }}
-            css={{
+            className={css({
               backgroundColor: 'var(--business-active-color)',
               color: 'var(--white100)',
-            }}
+            })}
             onClick={onClickShowModalHandler}
           />
         }
@@ -64,9 +63,7 @@ const CoachScreen = () => {
             title="코치 생성"
             showModal={showModal}
             setShowModal={setShowModal}
-            css={{
-              top: '47.5%',
-            }}
+            className={css({ top: '47.5%' })}
           >
             <CoachCreateModal onCloseModal={onClickShowModalHandler} />
           </Modal>

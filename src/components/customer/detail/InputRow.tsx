@@ -1,10 +1,11 @@
 import Input from '@components/common/Input';
-import { CSSProperties, HTMLAttributes } from 'react';
+import { HTMLAttributes } from 'react';
+import { css } from 'styled-system/css';
 
 type Props = Omit<HTMLAttributes<HTMLInputElement>, 'type'> & {
   name: string;
   rowHeadLabel: string;
-  rowHeadStyle?: CSSProperties;
+  rowHeadStyle?: { [key: string]: string };
   type?: string;
   disabled?: boolean;
 };
@@ -20,31 +21,25 @@ const CustomerInputRow = ({
 }: Props) => {
   return (
     <div
-      css={{
-        position: 'relative',
+      className={css({
         display: 'flex',
         alignItems: 'center',
         height: '40px',
         margin: '0 0 16px 0',
-      }}
+      })}
     >
       <div
-        css={{
+        className={css({
           fontSize: '1rem',
           fontWeight: '600',
           width: '120px',
           padding: '4px 0',
           ...rowHeadStyle,
-        }}
+        })}
       >
         {rowHeadLabel}
       </div>
-      <Input
-        css={{
-          width: '60%',
-          height: '100%',
-        }}
-      >
+      <Input className={css({ width: '60%', height: '100%' })}>
         <Input.TextField
           type={type}
           name={name}

@@ -2,6 +2,7 @@ import { CustomerLessonHistoryData } from '@apis/customer/customer.type';
 import { transferLessonDateType } from '@features/schedule/util/transfer';
 import { isEmptyObj } from '@utils/object';
 import { MouseEvent } from 'react';
+import { css } from 'styled-system/css';
 
 type Props = {
   checkHistoryId: string;
@@ -18,28 +19,32 @@ const ScheduleModalRecentHistoryModalTableBody = ({
 
   return (
     <table
-      css={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed' }}
+      className={css({
+        width: '100%',
+        borderCollapse: 'collapse',
+        tableLayout: 'fixed',
+      })}
     >
       <colgroup>
-        <col css={{ width: '36px' }} />
-        <col css={{ width: '72px' }} />
-        <col css={{ width: '152px' }} />
-        <col css={{ width: '100px' }} />
-        <col css={{ width: '150px' }} />
-        <col css={{ width: '120px' }} />
-        <col css={{ width: '110px' }} />
-        <col css={{ width: '120px' }} />
+        <col className={css({ width: '36px' })} />
+        <col className={css({ width: '72px' })} />
+        <col className={css({ width: '152px' })} />
+        <col className={css({ width: '100px' })} />
+        <col className={css({ width: '150px' })} />
+        <col className={css({ width: '120px' })} />
+        <col className={css({ width: '110px' })} />
+        <col className={css({ width: '120px' })} />
       </colgroup>
       <thead
-        css={{
-          'tr > th': {
+        className={css({
+          '& tr > th': {
             textAlign: 'left',
             backgroundColor: 'var(--business-color)',
             color: 'var(--white100)',
             padding: '10px 8px ',
             fontSize: '1rem',
           },
-        }}
+        })}
       >
         <tr>
           <th></th>
@@ -53,26 +58,26 @@ const ScheduleModalRecentHistoryModalTableBody = ({
         </tr>
       </thead>
       <tbody
-        css={{
+        className={css({
           minHeight: '210px',
 
-          tr: {
+          '& tr': {
             borderBottom: '1px solid var(--grey200)',
-          },
 
-          'tr > td:first-of-type': {
-            textAlign: 'center',
-          },
+            '& td': {
+              textAlign: 'left',
+              padding: '12px 8px',
+              textOverflow: 'ellipsis',
+              overflow: 'hidden',
+              whiteSpace: 'nowrap',
+              fontSize: '0.925rem',
 
-          'tr > td': {
-            textAlign: 'left',
-            padding: '12px 8px',
-            textOverflow: 'ellipsis',
-            overflow: 'hidden',
-            whiteSpace: 'nowrap',
-            fontSize: '0.925rem',
+              _first: {
+                textAlign: 'center',
+              },
+            },
           },
-        }}
+        })}
       >
         {isEmptyData ? (
           <tr>

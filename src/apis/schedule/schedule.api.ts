@@ -11,14 +11,15 @@ import {
 import { axios } from '@utils/axios';
 import {
   ScheduleLessonByDateApiPayload,
-  ScheduleLessonByStartDateEndDatePeriodPayload,
+  LessonScheduleByPeriodPayload,
   DuplicateCheckScheduleLessonPayload,
-  SchduleLessonByStartDateEndDatePeriodData,
+  LessonSchduleByPeriodData,
 } from './schedule.type';
 
-const getScheduleLessonByStartDateEndDatePeriod = async (
-  params: ScheduleLessonByStartDateEndDatePeriodPayload,
-): Promise<SchduleLessonByStartDateEndDatePeriodData> => {
+// 특정 기간내에 스케줄이 있는지
+export const getLessonSchduleByPeriod = async (
+  params: LessonScheduleByPeriodPayload,
+): Promise<LessonSchduleByPeriodData> => {
   try {
     const { startDate, endDate } = params;
     const { data } = await axios.get(
@@ -100,7 +101,6 @@ const isDuplicateCheckScheduleLesson = async (
 
 export {
   getScheduleLessonByDate,
-  getScheduleLessonByStartDateEndDatePeriod,
   createScheduleLesson,
   updateScheduleLesson,
   deleteScheduleLesson,

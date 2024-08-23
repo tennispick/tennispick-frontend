@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import DatePicker from 'react-datepicker';
 import { Input, Select } from '@components/index';
 import { useGetCoachListQuery } from '@features/coach/query/coachQuery';
@@ -7,6 +6,8 @@ import { useGetCourtListQuery } from '@features/court/query/courtQuery';
 import { getTimeList } from '@utils/date';
 import { useEffect, useMemo } from 'react';
 import { numberZeroFillFormat } from '@utils/numberForm';
+import { css } from 'styled-system/css';
+import { styled } from 'styled-system/jsx';
 
 type Props = {
   formData: any;
@@ -121,10 +122,10 @@ const CalendarContainer = ({
   }, [formData.startTime.value]);
 
   return (
-    <div css={{ margin: '0 0 20px' }}>
+    <div className={css({ margin: '0 0 20px' })}>
       <div>스케줄 일정</div>
-      <div css={{ margin: '12px 0 0 0' }}>
-        <div css={{ display: 'flex', alignItems: 'center' }}>
+      <div className={css({ margin: '12px 0 0 0' })}>
+        <div className={css({ display: 'flex', alignItems: 'center' })}>
           <DatePicker
             name="date"
             showIcon
@@ -135,9 +136,7 @@ const CalendarContainer = ({
                 height="12"
                 viewBox="0 0 16 18"
                 fill="none"
-                css={{
-                  zIndex: 99,
-                }}
+                className={css({ zIndex: 99 })}
               >
                 <path
                   d="M2.16667 17.3334C1.70833 17.3334 1.31597 17.1702 0.989583 16.8438C0.663194 16.5174 0.5 16.1251 0.5 15.6667V4.00008C0.5 3.54175 0.663194 3.14939 0.989583 2.823C1.31597 2.49661 1.70833 2.33341 2.16667 2.33341H3V0.666748H4.66667V2.33341H11.3333V0.666748H13V2.33341H13.8333C14.2917 2.33341 14.684 2.49661 15.0104 2.823C15.3368 3.14939 15.5 3.54175 15.5 4.00008V15.6667C15.5 16.1251 15.3368 16.5174 15.0104 16.8438C14.684 17.1702 14.2917 17.3334 13.8333 17.3334H2.16667ZM2.16667 15.6667H13.8333V7.33341H2.16667V15.6667ZM2.16667 5.66675H13.8333V4.00008H2.16667V5.66675Z"
@@ -145,14 +144,14 @@ const CalendarContainer = ({
                 />
               </svg>
             }
-            css={{
+            className={css({
               width: '160px',
               padding: '10px 0px 10px 32px !important',
+              margin: '0 16px 0 0',
               border: '1px solid var(--grey300)',
               borderRadius: '8px',
               fontSize: '0.875rem',
-              margin: '0 16px 0 0',
-            }}
+            })}
             dateFormat="yyyy.MM.dd"
             selected={new Date(formData.date.value)}
             onChange={(date) => {
@@ -176,11 +175,11 @@ const CalendarContainer = ({
           />
           <Select
             name={'startTime'}
-            css={{
+            className={css({
+              width: '120px',
               backgroundColor: 'var(--white100)',
-            }}
-            width={'120px'}
-            margin={'0 4px 0 0'}
+              margin: '0 4px 0 0',
+            })}
             onChange={onChangeFormData}
             value={formData.startTime.value}
           >
@@ -191,11 +190,11 @@ const CalendarContainer = ({
           ~
           <Select
             name={'endTime'}
-            css={{
+            className={css({
+              width: '120px',
               backgroundColor: 'var(--white100)',
-            }}
-            width={'120px'}
-            margin={'0 0 0 4px'}
+              margin: '0 0 0 4px',
+            })}
             onChange={onChangeFormData}
             value={formData.endTime.value}
           >
@@ -214,23 +213,25 @@ const LessonTypeContainer = ({
   onChangeFormData,
 }: Pick<Props, 'formData' | 'onChangeFormData'>) => {
   return (
-    <div css={{ margin: '0 0 20px' }}>
+    <div className={css({ margin: '0 0 20px' })}>
       <div>레슨유형</div>
       <div
-        css={{ display: 'flex', alignItems: 'center', margin: '12px 0 0 0' }}
+        className={css({
+          display: 'flex',
+          alignItems: 'center',
+          margin: '12px 0 0 0',
+        })}
       >
         <InputContainer
           id="regular"
           label="정규레슨"
-          css={{
-            margin: '0 12px 0 0',
-          }}
+          className={css({ margin: '0 12px 0 0' })}
         >
           <Input.TextField
             type="radio"
             name="isRegularLesson"
             value="Y"
-            css={{ width: 'auto', margin: '0 6px 0 2px' }}
+            className={css({ width: 'auto', margin: '0 6px 0 2px' })}
             defaultChecked={formData.isRegularLesson.value === 'Y'}
             onChange={onChangeFormData}
           />
@@ -238,15 +239,13 @@ const LessonTypeContainer = ({
         <InputContainer
           id="additional"
           label="보강레슨"
-          css={{
-            margin: '0 12px 0 0',
-          }}
+          className={css({ margin: '0 12px 0 0' })}
         >
           <Input.TextField
             type="radio"
             name="isRegularLesson"
             value="N"
-            css={{ width: 'auto', margin: '0 6px 0 2px' }}
+            className={css({ width: 'auto', margin: '0 6px 0 2px' })}
             defaultChecked={formData.isRegularLesson.value === 'N'}
             onChange={onChangeFormData}
           />
@@ -261,53 +260,51 @@ const IsAttendanceContainer = ({
   onChangeFormData,
 }: Pick<Props, 'formData' | 'onChangeFormData'>) => {
   return (
-    <div css={{ margin: '0 0 20px' }}>
+    <div className={css({ margin: '0 0 20px' })}>
       <div>출석현황</div>
       <div
-        css={{ display: 'flex', alignItems: 'center', margin: '12px 0 0 0' }}
+        className={css({
+          display: 'flex',
+          alignItems: 'center',
+          margin: '12px 0 0 0',
+        })}
       >
         <InputContainer
           id="before"
           label="시작전"
-          css={{
-            margin: '0 12px 0 0',
-          }}
+          className={css({ margin: '0 12px 0 0' })}
         >
           <Input.TextField
             type="radio"
             name="isAttendance"
             value="before"
-            css={{ width: 'auto', margin: '0 6px 0 2px' }}
+            className={css({ width: 'auto', margin: '0 6px 0 2px' })}
             onChange={onChangeFormData}
           />
         </InputContainer>
         <InputContainer
           id="attendance"
           label="출석"
-          css={{
-            margin: '0 12px 0 0',
-          }}
+          className={css({ margin: '0 12px 0 0' })}
         >
           <Input.TextField
             type="radio"
             name="isAttendance"
             value="attendance"
-            css={{ width: 'auto', margin: '0 6px 0 2px' }}
+            className={css({ width: 'auto', margin: '0 6px 0 2px' })}
             onChange={onChangeFormData}
           />
         </InputContainer>
         <InputContainer
           id="absent"
           label="결석"
-          css={{
-            margin: '0 12px 0 0',
-          }}
+          className={css({ margin: '0 12px 0 0' })}
         >
           <Input.TextField
             type="radio"
             name="isAttendance"
             value="absent"
-            css={{ width: 'auto', margin: '0 6px 0 2px' }}
+            className={css({ width: 'auto', margin: '0 6px 0 2px' })}
             onChange={onChangeFormData}
           />
         </InputContainer>
@@ -327,15 +324,15 @@ const SelectContainer = ({
   'formData' | 'onChangeFormData'
 >) => {
   return (
-    <div css={{ margin: '0 0 20px' }}>
+    <div className={css({ margin: '0 0 20px' })}>
       <div>{label}</div>
       <Select
         name={name}
-        css={{
+        className={css({
           width: '30%',
           margin: '12px 0 0 0',
           backgroundColor: 'var(--white100)',
-        }}
+        })}
         defaultValue={formData[name].value}
         onChange={onChangeFormData}
       >
@@ -349,23 +346,29 @@ const SelectContainer = ({
   );
 };
 
-const InputWrapper = styled((props: any) => <Input {...props} />)({
-  margin: '0 0 20px 0',
+const InputWrapper = styled(Input, {
+  base: {
+    margin: '0 0 20px 0',
 
-  label: {
-    display: 'block',
+    '& label': {
+      display: 'block',
+    },
   },
 });
-const InputContainer = styled(Input)({
-  display: 'flex',
-  flexDirection: 'row-reverse',
-  justifyContent: 'flex-end',
-  alignItems: 'center',
+const InputContainer = styled(Input, {
+  base: {
+    display: 'flex',
+    flexDirection: 'row-reverse',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
 });
-const TextField = styled((props: any) => <Input.TextField {...props} />)({
-  width: '30%',
-  padding: '10px 0 10px 10px',
-  margin: '12px 0 0 0',
+const TextField = styled(Input.TextField, {
+  base: {
+    width: '30%',
+    padding: '10px 0 10px 10px',
+    margin: '12px 0 0 0',
+  },
 });
 
 export default ScheduleDrawerInputField;

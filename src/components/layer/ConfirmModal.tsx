@@ -1,6 +1,8 @@
 import { Button } from '@components/index';
 import { PropsWithChildren } from 'react';
 import { Portal } from '..';
+import { css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   formId?: string;
@@ -23,17 +25,17 @@ const LayerConfirmModal = ({
   return (
     <Portal id="confirmModal">
       <div
-        css={{
+        className={css({
           position: 'fixed',
           width: '100vw',
           height: '100vh',
           top: 0,
           backgroundColor: 'rgb(18, 18, 18, 0.7)',
           zIndex: 999,
-        }}
+        })}
       >
         <section
-          css={{
+          className={css({
             position: 'absolute',
             width: '400px',
             height: 'auto',
@@ -43,20 +45,18 @@ const LayerConfirmModal = ({
             padding: '20px',
             backgroundColor: 'var(--white100)',
             borderRadius: '12px',
-          }}
+          })}
         >
-          <div css={{ fontWeight: 600, fontSize: '1.125rem' }}>{title}</div>
-          {subTitle && <div css={{ margin: '8px 0 0 0' }}>{subTitle}</div>}
-          {children && (
-            <div
-              css={{
-                margin: '20px 0 0 0',
-              }}
-            >
-              {children}
-            </div>
+          <div className={css({ fontWeight: 600, fontSize: '1.125rem' })}>
+            {title}
+          </div>
+          {subTitle && (
+            <div className={css({ margin: '8px 0 0 0' })}>{subTitle}</div>
           )}
-          <div css={{ display: 'flex', gap: '8px', margin: '40px 0 0 0' }}>
+          {children && (
+            <div className={css({ margin: '20px 0 0 0' })}>{children}</div>
+          )}
+          <div className={flex({ gap: '8px', margin: '40px 0 0 0' })}>
             <Button
               type="reset"
               label="취소"

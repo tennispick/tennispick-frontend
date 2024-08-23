@@ -1,5 +1,4 @@
 import { Button, Input, Select } from '@components/index';
-import styled from '@emotion/styled';
 import useInput from '@hooks/useInput';
 import { EditWhiteIcon } from '@icons/index';
 import { getYearList, getMonthList, getDayList } from '@utils/date';
@@ -8,6 +7,7 @@ import { emailRegex, passwordRegex, phoneNumberRegex } from '@utils/validation';
 import FileInput from './FileInput';
 import { createCoach } from '@apis/coach/coach.api';
 import { useRouter } from 'next/navigation';
+import { styled } from 'styled-system/jsx';
 
 type Props = {
   onCloseModal: () => void;
@@ -220,26 +220,32 @@ const CoachCreateModal = ({ onCloseModal }: Props) => {
   );
 };
 
-const Row = styled.div({
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  height: '46px',
-  lineHeight: '30px',
-  padding: '4px 0',
-  margin: '8px 0 12px 0',
-});
-const InputWrapper = styled((props: any) => <Input {...props} />)({
-  margin: '0 0 12px 0',
-
-  label: {
-    display: 'block',
+const Row = styled('div', {
+  base: {
+    display: 'flex',
+    alignItems: 'center',
+    height: '46px',
+    lineHeight: '30px',
+    padding: '4px 0',
+    margin: '8px 0 12px 0',
   },
 });
-const TextField = styled((props: any) => <Input.TextField {...props} />)({
-  width: '50%',
-  padding: '10px 0 10px 10px',
-  margin: '12px 0 0 0',
+const InputWrapper = styled(Input, {
+  base: {
+    margin: '0 0 12px 0',
+
+    '& label': {
+      display: 'block',
+    },
+  },
+});
+
+const TextField = styled(Input.TextField, {
+  base: {
+    width: '50%',
+    padding: '10px 0 10px 10px',
+    margin: '12px 0 0 0',
+  },
 });
 
 export default CoachCreateModal;

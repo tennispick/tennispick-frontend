@@ -28,7 +28,7 @@ export type ScheduleLessonByDateData = {
   date: string;
 };
 
-export type ScheduleLessonByStartDateEndDatePeriodPayload = {
+export type LessonScheduleByPeriodPayload = {
   startDate: Date;
   endDate: Date;
 };
@@ -50,7 +50,7 @@ export type DuplicateCheckScheduleLessonData = {
   endTime: string;
 };
 
-export type SchduleLessonByStartDateEndDatePeriodData = {
+export type LessonSchduleByPeriodData = {
   id: number;
   coachName: string;
   coachId: number;

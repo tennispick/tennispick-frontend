@@ -1,14 +1,16 @@
 import Portal from '@components/Portal';
 import { Modal } from '@components/index';
 import { SetStateAction } from '@/types/index';
-import styled from '@emotion/styled';
-import { ImageContainer as Image } from '@styles/styles';
 import CancelBtnIcon from '@icons/cancel_black_btn.svg';
 import CustomerInfoContainer from './CustomerInfoContainer';
 import PaymentContainer from './PaymentContainer';
 import RefundContainer from './RefundContainer';
 import { CustomerPaymentRefundData } from '@apis/payment/payment.type';
 import { useLessonListQuery } from '@features/lesson/query/LessonQuery';
+import { css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
+import Image from 'next/image';
+import { styled } from 'styled-system/jsx';
 
 type Props = {
   id: string;
@@ -40,12 +42,12 @@ const CustomerPaymentRefundModal = ({
       <Modal
         title=""
         titleContainer={false}
-        css={{
+        className={css({
           width: 'calc(75vw - 3%)',
           height: 'calc(100vh - 5%)',
           top: '50%',
           padding: 0,
-        }}
+        })}
         showModal={showModal}
         setShowModal={setShowModal}
       >
@@ -54,7 +56,7 @@ const CustomerPaymentRefundModal = ({
           setShowModal={setShowModal}
         />
         <CustomerInfoContainer isPayment={isPayment} />
-        <div css={{ display: 'flex', height: 'calc(100% - 194px)' }}>
+        <div className={flex({ width: 'calc(100% - 194px)' })}>
           {
             {
               payment: (
@@ -88,7 +90,7 @@ const CustomerPaymentRefundModalHeader = ({
 }) => {
   return (
     <Header>
-      <span css={{ fontWeight: 600, fontSize: '1.1rem' }}>
+      <span className={css({ fontWeight: 600, fontSize: '1.1rem' })}>
         {isPayment ? '결제하기' : '환불하기'}
       </span>
       <Image
@@ -96,21 +98,22 @@ const CustomerPaymentRefundModalHeader = ({
         alt={'close button'}
         width={28}
         height={28}
-        cursor={'pointer'}
+        className={css({ cursor: 'pointer' })}
         onClick={() => setShowModal(false)}
       />
     </Header>
   );
 };
 
-const Header = styled.div({
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  height: '64px',
-  borderBottom: '1px solid var(--grey100)',
-  padding: '16px 28px',
+const Header = styled('div', {
+  base: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    height: '64px',
+    borderBottom: '1px solid var(--grey100)',
+    padding: '16px 28px',
+  },
 });
 
 export default CustomerPaymentRefundModal;

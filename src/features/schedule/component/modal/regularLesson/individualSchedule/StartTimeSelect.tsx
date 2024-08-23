@@ -1,5 +1,6 @@
 import { getTimeList } from '@utils/date';
 import ScheduleModalSelect from '../../Select';
+import { css } from 'styled-system/css';
 
 type Props = {
   startTime: string;
@@ -21,10 +22,10 @@ const ScheduleModalRegularLessonIndividualScheduleStartTimeSelect = ({
     <ScheduleModalSelect
       name="startTime"
       data={data}
-      css={{
+      className={css({
         width: '100px',
         margin: '0 0 0 12px',
-      }}
+      })}
       selected={startTime}
       onChangeHandler={onChangeHandler}
       disabled={disabled}

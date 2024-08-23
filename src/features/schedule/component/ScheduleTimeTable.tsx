@@ -3,6 +3,7 @@ import { STRING_WEEK_LIST } from '../constants/schedule';
 import dynamic from 'next/dynamic';
 import Loading from '@components/common/Loading';
 import { CoachListData } from '@apis/coach/coach.type';
+import { css } from 'styled-system/css';
 const ScheduleTableBody = dynamic(() => import('./table/Body'), {
   loading: () => <Loading />,
   ssr: false,
@@ -19,24 +20,24 @@ const ScheduleTimeTable = ({ timeTableMapList, coach, data }: Props) => {
 
   return (
     <section
-      css={{
+      className={css({
         height: 'calc(100% - 40px)',
         overflowY: 'scroll',
         padding: '0 16px 0 0',
-      }}
+      })}
     >
       {Array.from(timeTableMapList).map(([key, monthMapList]) => {
         const weekKrIndex = STRING_WEEK_LIST.findIndex((week) => week === key);
         return (
           <div
             key={key}
-            css={{
+            className={css({
               textAlign: 'center',
               width: '100%',
               margin: '0 0 24px 0',
               border: '1px solid var(--black100)',
               borderRight: 0,
-            }}
+            })}
           >
             <ScheduleTableHeader
               weekKrIndex={weekKrIndex}

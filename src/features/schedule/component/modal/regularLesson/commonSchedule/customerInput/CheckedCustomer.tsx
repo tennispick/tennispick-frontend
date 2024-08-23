@@ -1,5 +1,7 @@
 import CancelWhiteBtn from '@icons/cancel_white_btn.svg';
 import Image from 'next/image';
+import { css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   customer: { id: string; name: string }[];
@@ -12,20 +14,18 @@ const ScheduleModalRegularLessonCommonScheduleCustomerInputCheckedCustomer = ({
 }: Props) => {
   return (
     <ul
-      css={{
-        display: 'flex',
+      className={flex({
         justifyContent: 'space-between',
         flexWrap: 'wrap',
         width: '80%',
         margin: '12px 0 0 0',
-      }}
+      })}
     >
       {customer.map(({ id, name }) => {
         return (
           <div
             key={id}
-            css={{
-              display: 'flex',
+            className={flex({
               alignItems: 'center',
               justifyContent: 'center',
               gap: '4px',
@@ -36,16 +36,14 @@ const ScheduleModalRegularLessonCommonScheduleCustomerInputCheckedCustomer = ({
               backgroundColor: 'var(--blue100)',
               color: 'var(--white100)',
               borderRadius: '8px',
-            }}
+            })}
           >
             {name}
             <Image
               id={id}
               src={CancelWhiteBtn}
               alt="close"
-              css={{
-                cursor: 'pointer',
-              }}
+              className={css({ cursor: 'pointer' })}
               width={20}
               height={20}
               onClick={() => onClickCancelCustomerHandler(id)}

@@ -8,6 +8,8 @@ import AutoComplete from './AutoComplete';
 import { SetStateAction } from '@/types/index';
 import CheckedCustomer from './CheckedCustomer';
 import { CommonDataProps } from '@features/schedule/type/regularLesson';
+import { css } from 'styled-system/css';
+import { Flex } from 'styled-system/jsx';
 
 type Props = {
   lessonType: LessonType;
@@ -77,18 +79,24 @@ const ScheduleModalRegularLessonCommonScheduleCustomerInput = ({
   const isShowAutoComplete = keyword && searchedCustomerData.length > 0;
 
   return (
-    <div css={{ margin: '0 0 20px 0' }}>
-      <div css={{ display: 'flex', alignItems: 'center' }}>
+    <div className={css({ margin: '0 0 20px 0' })}>
+      <Flex alignItems="center">
         <Image
           src={CustomerBlackIcon}
           alt="scheduleType"
           width={20}
           height={20}
-          css={{ margin: '0 6px 0 0' }}
+          className={css({ margin: '0 6px 0 0' })}
         />
         회원 선택
-      </div>
-      <div css={{ width: ' 80%', margin: '12px 0 0 0', padding: '0 0 0 2px' }}>
+      </Flex>
+      <div
+        className={css({
+          width: ' 80%',
+          margin: '12px 0 0 0',
+          padding: '0 0 0 2px',
+        })}
+      >
         <ScheduleModalInput
           id="customer"
           type="text"
@@ -96,8 +104,7 @@ const ScheduleModalRegularLessonCommonScheduleCustomerInput = ({
           value={keyword}
           onChange={onChangeCustomerInputHandler}
           placeholder="회원명으로 검색해주세요."
-          css={{
-            position: 'relative',
+          className={css({
             width: '100%',
             height: '100%',
             padding: '10px 0 10px 10px',
@@ -107,7 +114,7 @@ const ScheduleModalRegularLessonCommonScheduleCustomerInput = ({
             borderRadius: '8px',
             outline: 0,
             zIndex: '1',
-          }}
+          })}
         >
           {isShowAutoComplete && (
             <AutoComplete

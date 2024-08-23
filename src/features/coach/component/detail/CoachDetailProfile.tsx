@@ -1,5 +1,3 @@
-import styled from '@emotion/styled';
-
 import { Divider, Input, Select } from '@components/index';
 import { ProfileManIcon, ProfileWomanIcon } from '@icons/index';
 import { CoachDetailData } from '@apis/coach/coach.type';
@@ -8,6 +6,8 @@ import { transferSexType } from '@utils/switch';
 import { useColor } from 'react-color-palette';
 
 import ColorPalettePicker from '@widgets/ColorPalettePicker';
+import { css } from 'styled-system/css';
+import { styled } from 'styled-system/jsx';
 
 type Props = {
   data: CoachDetailData;
@@ -20,11 +20,11 @@ const CoachDetailProfile = ({ data }: Props) => {
 
   return (
     <section
-      css={{
+      className={css({
         width: '30%',
         height: '100%',
         padding: '0 32px 0 0',
-      }}
+      })}
     >
       <div>
         <Input
@@ -32,21 +32,25 @@ const CoachDetailProfile = ({ data }: Props) => {
           id="profileImage"
           variant="file"
           src={sex === 'man' ? ProfileManIcon.src : ProfileWomanIcon.src}
-          css={{ width: '10rem', height: '10rem', margin: '0 auto' }}
+          className={css({
+            width: '10rem',
+            height: '10rem',
+            margin: '0 auto',
+          })}
         >
           <Input.TextField type={'file'} />
         </Input>
         <div
-          css={{
+          className={css({
             textAlign: 'center',
             margin: '20px 0',
             fontSize: '1.125rem',
             fontWeight: 600,
-          }}
+          })}
         >
           {email}
         </div>
-        <div css={{ display: 'flex' }}>
+        <div className={css({ display: 'flex' })}>
           <StaticProfileContainer>
             <StaticProfileValue>{name}</StaticProfileValue>
             <StaticProfleKey>이름</StaticProfleKey>
@@ -64,7 +68,7 @@ const CoachDetailProfile = ({ data }: Props) => {
       <Divider margin="24px 0" />
       <ItemRow>
         <InputHead>코치 고유 색상</InputHead>
-        <InputItem css={{ width: '40%' }}>
+        <InputItem className={css({ width: '40%' })}>
           <ColorPalettePicker color={color} setColor={setColor} />
         </InputItem>
       </ItemRow>
@@ -99,39 +103,47 @@ const CoachDetailProfile = ({ data }: Props) => {
   );
 };
 
-const ItemRow = styled.div({
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  height: '46px',
-  lineHeight: '30px',
-  padding: '4px 12px',
-  margin: '12px 0',
+const ItemRow = styled('div', {
+  base: {
+    display: 'flex',
+    alignItems: 'center',
+    height: '46px',
+    lineHeight: '30px',
+    padding: '4px 12px',
+    margin: '12px 0',
+  },
 });
-const InputHead = styled.div({
-  fontSize: '1rem',
-  fontWeight: '600',
-  width: '35%',
-  padding: '4px 0',
+const InputHead = styled('div', {
+  base: {
+    width: '35%',
+    fontSize: '1rem',
+    fontWeight: 600,
+    padding: '4px 0',
+  },
 });
-const InputItem = styled((props: any) => <Input {...props} />)({
-  position: 'relative',
-  width: '65%',
-  height: '100%',
+const InputItem = styled(Input, {
+  base: {
+    width: '65%',
+    height: '100%',
+  },
 });
-const StaticProfileContainer = styled.div({
-  width: 'calc(100% / 3)',
-  textAlign: 'center',
+const StaticProfileContainer = styled('div', {
+  base: {
+    width: 'calc(100% / 3)',
+    textAlign: 'center',
+  },
 });
 
-const StaticProfleKey = styled.div({
-  color: 'var(--grey1500)',
+const StaticProfleKey = styled('div', {
+  base: { color: 'var(--grey1500)' },
 });
 
-const StaticProfileValue = styled.div({
-  margin: '0 0 8px 0',
-  fontSize: '1.125rem',
-  fontWeight: 600,
+const StaticProfileValue = styled('div', {
+  base: {
+    margin: '0 0 8px 0',
+    fontSize: '1.125rem',
+    fontWeight: 600,
+  },
 });
 
 export default CoachDetailProfile;

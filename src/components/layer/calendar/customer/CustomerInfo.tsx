@@ -1,8 +1,9 @@
 import ProfileManIcon from '@icons/profile_man.svg';
 import ProfileWomanIcon from '@icons/profile_woman.svg';
 import Image from 'next/image';
-import styled from '@emotion/styled';
 import { CustomerDetailData } from '@apis/customer/customer.type';
+import { css } from 'styled-system/css';
+import { styled } from 'styled-system/jsx';
 
 type Props = {
   data: CustomerDetailData;
@@ -19,31 +20,37 @@ const CustomerInfo = ({ data }: Props) => {
 
   return (
     <div
-      css={{
+      className={css({
         position: 'relative',
         display: 'flex',
         width: 'calc(100% - 100px)',
         height: '100%',
         alignItems: 'center',
-      }}
+      })}
     >
-      <div css={{ position: 'relative' }}>
+      <div>
         {/* TODO Image URL Check */}
         <Image
           src={checkSexProfileImageUrl}
           alt="profile man"
           placeholder="empty"
           priority={true}
-          css={{
+          className={css({
             width: '100px',
             height: '100px',
-          }}
+          })}
           width={24}
           height={24}
         />
       </div>
-      <div css={{ position: 'relative', display: 'flex', padding: '0 32px' }}>
-        <div css={{ margin: '0 64px 0 0' }}>
+      <div
+        className={css({
+          position: 'relative',
+          display: 'flex',
+          padding: '0 32px',
+        })}
+      >
+        <div className={css({ margin: '0 64px 0 0' })}>
           <InfoRow>
             <dt>이름</dt>
             <dd>{name ?? '-'}</dd>
@@ -80,18 +87,20 @@ const CustomerInfo = ({ data }: Props) => {
   );
 };
 
-const InfoRow = styled.dl({
-  position: 'relative',
-  display: 'flex',
-  lineHeight: '1.8rem',
+const InfoRow = styled('dl', {
+  base: {
+    position: 'relative',
+    display: 'flex',
+    lineHeight: '1.8rem',
 
-  dt: {
-    minWidth: '100px',
-    fontWeight: '700',
-  },
+    '&dt': {
+      minWidth: '100px',
+      fontWeight: 700,
+    },
 
-  dd: {
-    minWidth: '140px',
+    '&dd': {
+      minWidth: '140px',
+    },
   },
 });
 

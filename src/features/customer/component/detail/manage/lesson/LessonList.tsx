@@ -9,6 +9,8 @@ import RightSideContainer from '@components/layer/RightSideContainer';
 import DrawerLesson from '../../drawer/Lesson';
 import { useState } from 'react';
 import { LessonStatus } from '@features/customer/util/lesson';
+import { flex } from 'styled-system/patterns';
+import { css } from 'styled-system/css';
 
 type Props = {
   data: CustomerAllLessonListQueryData[];
@@ -58,31 +60,30 @@ const ManageLessonList = ({
   return (
     <>
       <div
-        css={{
+        className={flex({
           height: '28px',
-          display: 'flex',
           alignItems: 'center',
           textAlign: 'center',
           fontSize: '0.9rem',
           padding: '6px 8px',
           gap: '2px',
-        }}
+        })}
       >
-        <div css={{ width: '10%' }}>상태</div>
-        <div css={{ width: '20%' }}>상품명</div>
-        <div css={{ width: '8%' }}>강습유형</div>
-        <div css={{ width: '15%' }}>코치</div>
-        <div css={{ width: '10%' }}>수강현황</div>
-        <div css={{ width: '20%' }}>결제날짜</div>
-        <div css={{ width: '22%' }} />
+        <div className={css({ width: '10%' })}>상태</div>
+        <div className={css({ width: '20%' })}>상품명</div>
+        <div className={css({ width: '8%' })}>강습유형</div>
+        <div className={css({ width: '15%' })}>코치</div>
+        <div className={css({ width: '10%' })}>수강현황</div>
+        <div className={css({ width: '20%' })}>결제날짜</div>
+        <div className={css({ width: '22%' })} />
       </div>
       <div
-        css={{
+        className={css({
           height: 'calc(100% - 28px)',
           padding: '8px 0',
           overflowY: 'auto',
           fontSize: '0.9rem',
-        }}
+        })}
       >
         {data.map((item, index) => {
           const {
@@ -99,9 +100,7 @@ const ManageLessonList = ({
           return (
             <ManageListRow
               key={`${index}-${id}`}
-              css={{
-                cursor: 'default',
-              }}
+              className={css({ cursor: 'default' })}
             >
               {LessonStatusCell(
                 LessonStatus(
@@ -110,14 +109,16 @@ const ManageLessonList = ({
                   registerAbleCount,
                 ),
               )}
-              <div css={{ width: '20%' }}>{lessonName}</div>
-              <div css={{ width: '8%' }}>{transferLessonType(type)}</div>
-              <div css={{ width: '15%' }}>{coachName ?? '-'}</div>
+              <div className={css({ width: '20%' })}>{lessonName}</div>
+              <div className={css({ width: '8%' })}>
+                {transferLessonType(type)}
+              </div>
+              <div className={css({ width: '15%' })}>{coachName ?? '-'}</div>
               <div
-                css={{ width: '10%' }}
+                className={css({ width: '10%' })}
               >{`${remainLessonCount}회 / ${registerAbleCount}회`}</div>
-              <div css={{ width: '20%' }}>{paymentDt}</div>
-              <div css={{ width: '22%', display: 'flex' }}>
+              <div className={css({ width: '20%' })}>{paymentDt}</div>
+              <div className={flex({ width: '22%' })}>
                 <Button
                   type="button"
                   label="수강변경"
@@ -150,9 +151,7 @@ const ManageLessonList = ({
             title="강습일정 변경"
             showModal={showScheduleChangeModal}
             setShowModal={onClickCloseModalHandler}
-            css={{
-              top: '45%',
-            }}
+            className={css({ top: '45%' })}
           >
             <ScheduleChangeModal
               customerId={lessonItem.customerId}

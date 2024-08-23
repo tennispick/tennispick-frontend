@@ -4,6 +4,7 @@ import { DeleteWhiteIcon } from '@icons/index';
 import { FormEventHandler } from 'react';
 import { CustomerMemoListApiData } from '@apis/customer/customer.type';
 import { deleteCustomerMemo } from '@apis/customer/customer.api';
+import { css } from 'styled-system/css';
 
 type Props = {
   item: CustomerMemoListApiData;
@@ -47,7 +48,7 @@ const DrawerMemo = ({ item }: Props) => {
         <textarea
           name="content"
           placeholder="메모 내용을 입력해주세요."
-          css={{
+          className={css({
             padding: '8px',
             width: '100%',
             minHeight: '320px',
@@ -60,17 +61,12 @@ const DrawerMemo = ({ item }: Props) => {
             backgroundColor: 'transparent',
             color: 'var(--grey700)',
             borderColor: 'var(--grey100)',
-          }}
+          })}
           value={content ?? '-'}
           readOnly={true}
         />
       </DrawerInputContainer>
-      <div
-        css={{
-          position: 'fixed',
-          bottom: '20px',
-        }}
-      >
+      <div className={css({ position: 'fixed', bottom: '20px' })}>
         <Button
           type="submit"
           label="메모 삭제하기"

@@ -1,11 +1,14 @@
+'use client';
+
 import { PropsWithChildren, useState } from 'react';
-import styled from '@emotion/styled';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-import { CSS_TYPE } from '@styles/styles';
 import doubleArrowLeft from '@icons/keyboard_double_arrow_left.svg';
-import { NavigationLayout } from '@components/index';
 import useMobile from '@hooks/useMobile';
+
+import { css } from 'styled-system/css';
+import { styled } from 'styled-system/jsx';
+import NavigationLayout from './NavigationLayout';
 
 const AppLayout = ({ children }: PropsWithChildren) => {
   const [isNavSpread, setIsNavSpread] = useState<boolean>(true);
@@ -30,8 +33,10 @@ const AppLayout = ({ children }: PropsWithChildren) => {
         <>{children}</>
       ) : (
         <LayoutContainer
-          padding={isNavSpread ? '20px' : '20px 20px 20px 0'}
-          css={isMobile && { ...mobileLayoutStyle }}
+          className={css({
+            padding: isNavSpread ? '20px' : '20px 20px 20px 0',
+            ...(isMobile && mobileLayoutStyle),
+          })}
         >
           <NavigationLayout
             isNavSpread={isNavSpread}
@@ -39,10 +44,12 @@ const AppLayout = ({ children }: PropsWithChildren) => {
           />
           <MainContainer
             width={isNavSpread ? 'calc(100% - 280px)' : 'calc(100% - 80px)'}
-            css={isMobile && { ...mobileMainStyle }}
+            className={css({
+              ...(isMobile && mobileLayoutStyle),
+            })}
           >
             {!isMobile && (
-              <NavControlBtnWrapper>
+              <NavButtonController>
                 <NavControlBtn
                   src={doubleArrowLeft}
                   alt="double arrow left"
@@ -51,7 +58,7 @@ const AppLayout = ({ children }: PropsWithChildren) => {
                   onClick={() => setIsNavSpread(!isNavSpread)}
                   rotate={isNavSpread ? 'rotate(0deg)' : 'rotate(180deg)'}
                 />
-              </NavControlBtnWrapper>
+              </NavButtonController>
             )}
             <ChildrenContainer>{children}</ChildrenContainer>
           </MainContainer>
@@ -61,8 +68,8 @@ const AppLayout = ({ children }: PropsWithChildren) => {
   );
 };
 
-const LayoutContainer = styled((props: any) => <div {...props} />)(
-  {
+const LayoutContainer = styled('div', {
+  base: {
     width: '100vw',
     height: '100vh',
     backgroundColor: 'var(--business-color)',
@@ -70,53 +77,73 @@ const LayoutContainer = styled((props: any) => <div {...props} />)(
     color: 'var(--white100)',
     display: 'flex',
   },
-  (props) => ({
-    padding: props.padding,
-  }),
-);
+});
 
-const MainContainer = styled((props: any) => <main {...props} />)(
-  {
-    position: 'relative',
+const MainContainer = styled('main', {
+  base: {
     height: 'calc(100vh - 48px)',
     backgroundColor: 'var(--white100)',
     borderRadius: '12px',
     transition: 'all 0.35s ease-in-out',
   },
-  (props) => ({
-    width: props.width,
-  }),
-);
-const ChildrenContainer = styled.div({
-  position: 'relative',
-  width: '100%',
-  height: '100%',
-  padding: '24px',
-  color: 'var(--black100)',
-  overflow: 'hidden',
+  //   (props) => ({
+  //     width: props.width,
+  //   }),
 });
-const NavControlBtnWrapper = styled.i({
-  position: 'absolute',
-  display: 'inline-block',
-  width: '36px',
-  height: '36px',
-  backgroundColor: 'var(--white100)',
-  left: '-36px',
-  top: '20px',
-  borderTopLeftRadius: '12px',
-  borderBottomLeftRadius: '12px',
-  cursor: 'pointer',
+
+const NavButtonController = styled('i', {
+  base: {
+    position: 'absolute',
+    display: 'inline-block',
+    width: '36px',
+    height: '36px',
+    backgroundColor: 'var(--white100)',
+    left: '-36px',
+    top: '20px',
+    borderTopLeftRadius: '12px',
+    borderBottomLeftRadius: '12px',
+    cursor: 'pointer',
+  },
 });
-const NavControlBtn = styled(Image)<CSS_TYPE>(
-  {
+
+const ChildrenContainer = styled('div', {
+  base: {
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    padding: '24px',
+    color: 'var(--black100)',
+    overflow: 'hidden',
+  },
+});
+
+// const NavControlBtn = styled(Image)<CSS_TYPE>(
+//   {
+//     position: 'absolute',
+//     top: '50%',
+//     left: '50%',
+//     transition: 'all 0.3s ease-out',
+//   },
+//   (props) => ({
+//     transform: 'translate(-50%, -50%) ' + props.rotate,
+//   }),
+// );
+
+const NavControlBtn = styled(Image, {
+  base: {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transition: 'all 0.3s ease-out',
+    transform: 'translate(-50%, -50%)',
   },
-  (props) => ({
-    transform: 'translate(-50%, -50%) ' + props.rotate,
-  }),
-);
+  // variants: {
+  //   rotate: {
+  //     custom: (value: string) => ({
+  //       transform: `translate(-50%, -50%) ${value}`,
+  //     }),
+  //   },
+  // } ,
+});
 
 export default AppLayout;

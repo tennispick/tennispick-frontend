@@ -4,6 +4,7 @@ import SNBList from '../../SNBList';
 import ManageLesson from './lesson/Lesson';
 import ManageAdditionalLesson from './AdditionalLesson';
 import ManageMemo from './memo/Memo';
+import { css } from 'styled-system/css';
 
 type Props = {
   customerId: string;
@@ -14,28 +15,27 @@ const ManageContainer = ({ customerId }: Props) => {
   const [showDrawer, setShowDrawer] = useState(false);
   const [showScheduleChangeModal, setShowScheduleChangeModal] = useState(false);
 
-  const onClickShowDrawerHandler = () => setShowDrawer(true);
-  const onCloseDrawerHandler = () => setShowDrawer(false);
+  const handleShowDrawerClick = () => setShowDrawer(true);
+  const handleHideDrawerClick = () => setShowDrawer(false);
 
-  const onClickShowModalHandler = () => setShowScheduleChangeModal(true);
-  const onClickCloseModalHandler = () => setShowScheduleChangeModal(false);
+  const handleShowModalClick = () => setShowScheduleChangeModal(true);
+  const handleHideModalClick = () => setShowScheduleChangeModal(false);
 
   return (
     <>
-      <section css={{ position: 'relative', width: '49%' }}>
+      <section className={css({ width: '49%' })}>
         <SNBList
           currentItem={currentItem}
           setCurrentItem={setCurrentItem}
           tabLists={lessonList}
         />
         <div
-          css={{
-            position: 'relative',
+          className={css({
             height: '50vh',
             backgroundColor: 'var(--grey400)',
             borderRadius: '16px',
             padding: '12px',
-          }}
+          })}
         >
           {
             {
@@ -43,27 +43,27 @@ const ManageContainer = ({ customerId }: Props) => {
                 <ManageLesson
                   customerId={customerId}
                   showDrawer={showDrawer}
-                  onClickShowDrawerHandler={onClickShowDrawerHandler}
-                  onCloseDrawerHandler={onCloseDrawerHandler}
+                  onClickShowDrawerHandler={handleShowDrawerClick}
+                  onCloseDrawerHandler={handleHideDrawerClick}
                   showScheduleChangeModal={showScheduleChangeModal}
-                  onClickShowModalHandler={onClickShowModalHandler}
-                  onClickCloseModalHandler={onClickCloseModalHandler}
+                  onClickShowModalHandler={handleShowModalClick}
+                  onClickCloseModalHandler={handleHideModalClick}
                 />
               ),
               additionalLesson: (
                 <ManageAdditionalLesson
                   customerId={customerId}
                   showDrawer={showDrawer}
-                  onClickShowDrawerHandler={onClickShowDrawerHandler}
-                  onCloseDrawerHandler={onCloseDrawerHandler}
+                  onClickShowDrawerHandler={handleShowDrawerClick}
+                  onCloseDrawerHandler={handleHideDrawerClick}
                 />
               ),
               memo: (
                 <ManageMemo
                   customerId={customerId}
                   showDrawer={showDrawer}
-                  onClickShowDrawerHandler={onClickShowDrawerHandler}
-                  onCloseDrawerHandler={onCloseDrawerHandler}
+                  onClickShowDrawerHandler={handleShowDrawerClick}
+                  onCloseDrawerHandler={handleHideDrawerClick}
                 />
               ),
             }[currentItem]

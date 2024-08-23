@@ -4,6 +4,9 @@ import ScheduleModalInput from '../../Input';
 import { SetStateAction } from '@/types/index';
 import { CommonDataProps } from '@features/schedule/type/regularLesson';
 import { ScheduleInputType } from '@features/schedule/type/schedule.type';
+import { flex } from 'styled-system/patterns';
+import { css } from 'styled-system/css';
+import { Flex } from 'styled-system/jsx';
 
 type Props = {
   setCommonData: SetStateAction<CommonDataProps>;
@@ -22,24 +25,23 @@ const ScheduleModalRegularLessonCommonScheduleTypeInput = ({
   };
 
   return (
-    <div css={{ margin: '0 0 20px 0' }}>
-      <div css={{ display: 'flex', alignItems: 'center' }}>
+    <div className={css({ margin: '0 0 20px 0' })}>
+      <Flex alignItems="center">
         <Image
           src={CalendarBlackIcon}
           alt="scheduleType"
           width={20}
           height={20}
-          css={{ margin: '0 6px 0 0' }}
+          className={css({ margin: '0 6px 0 0' })}
         />
         스케줄 등록유형 선택
-      </div>
+      </Flex>
       <div
-        css={{
-          display: 'flex',
+        className={flex({
           alignItems: 'center',
           margin: '12px 0 0 0',
           padding: '0 0 0 2px',
-        }}
+        })}
       >
         <ScheduleModalInput
           id="all"

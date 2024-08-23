@@ -1,6 +1,9 @@
 import { GET_WEEK_LIST_COUNT } from '@features/constant/schedule';
 import { STRING_WEEK_LIST_KR } from '@features/schedule/constants/schedule';
 import { CoachListData } from '@apis/coach/coach.type';
+import { Flex } from 'styled-system/jsx';
+import { css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   weekKrIndex: number;
@@ -10,26 +13,26 @@ type Props = {
 
 const ScheduleTableHeader = ({ weekKrIndex, monthList, coach }: Props) => {
   return (
-    <div css={{ display: 'flex', width: '100%' }}>
-      <div css={{ width: '8%' }}>
+    <div className={flex({ width: '100%' })}>
+      <div className={css({ width: '8%' })}>
         <div
-          css={{
+          className={css({
             borderBottom: '1px solid var(--black100)',
             borderRight: '1px solid var(--black100)',
-          }}
+          })}
         >
           코치
         </div>
         <div
-          css={{
-            borderRight: '1px solid var(--black100)',
+          className={css({
             borderBottom: '1px solid var(--black100)',
-          }}
+            borderRight: '1px solid var(--black100)',
+          })}
         >
           {STRING_WEEK_LIST_KR[weekKrIndex]}
         </div>
       </div>
-      <div css={{ display: 'flex', width: '92%' }}>
+      <div className={flex({ width: '92%' })}>
         <ScheduleTableHeader.MonthContainer
           weekListCount={GET_WEEK_LIST_COUNT}
           coach={coach}
@@ -42,25 +45,25 @@ const ScheduleTableHeader = ({ weekKrIndex, monthList, coach }: Props) => {
 
 const CoachContainer = ({ coach }: any) => {
   return (
-    <div css={{ display: 'flex' }}>
+    <Flex>
       {coach.map((el: any) => (
         <div
           key={el.id}
-          css={{
+          className={css({
             width: `calc(100%/${coach.length})`,
             textAlign: 'center',
             borderBottom: '1px solid var(--black100)',
             borderRight: '1px solid var(--grey1000)',
 
-            '&:last-child': {
+            _last: {
               borderRight: '1px solid var(--black100)',
             },
-          }}
+          })}
         >
           {el.name.charAt(0)}
         </div>
       ))}
-    </div>
+    </Flex>
   );
 };
 
@@ -75,33 +78,34 @@ const MonthContainer = ({ weekListCount, coach, monthList }: MonthProps) => {
     <>
       {Array.from(monthList).map(([month, monthDateList]) => {
         return (
-          <div
+          <Flex
             key={month}
-            css={{
-              display: 'flex',
+            className={css({
               width: `calc((100%/${weekListCount})*${monthDateList.length})`,
-            }}
+            })}
           >
             {monthDateList.map((date: number) => {
               return (
                 <div
                   key={date}
-                  css={{ width: `calc(100%/${monthDateList.length})` }}
+                  className={css({
+                    width: `calc(100%/${monthDateList.length})`,
+                  })}
                 >
                   <ScheduleTableHeader.CoachContainer coach={coach} />
                   <div
-                    css={{
+                    className={css({
                       textAlign: 'center',
                       borderBottom: '1px solid var(--black100)',
                       borderRight: '1px solid var(--black100)',
-                    }}
+                    })}
                   >
                     {month}/{date}
                   </div>
                 </div>
               );
             })}
-          </div>
+          </Flex>
         );
       })}
     </>

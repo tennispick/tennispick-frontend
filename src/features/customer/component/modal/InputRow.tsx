@@ -1,6 +1,9 @@
 import { Input, Select } from '@components/index';
 import { ChangeEventHandler } from 'react';
 import { InputHTMLAttributes, SelectHTMLAttributes } from 'react';
+import { css } from 'styled-system/css';
+import { Flex } from 'styled-system/jsx';
+import { flex } from 'styled-system/patterns';
 
 type InputType = 'text' | 'select' | 'radio';
 
@@ -51,14 +54,15 @@ const InputRow = ({
 }: Props) => {
   return (
     <div
-      css={{
-        display: 'flex',
+      className={flex({
         alignItems: 'center',
         height: '40px',
         margin: '0 0 12px 0',
-      }}
+      })}
     >
-      <div css={{ width: '120px', fontSize: '1.1rem', fontWeight: 600 }}>
+      <div
+        className={css({ width: '120px', fontSize: '1.1rem', fontWeight: 600 })}
+      >
         {label}
       </div>
       {
@@ -100,7 +104,7 @@ const Text = ({ name, placeholder, onChange, value, disabled }: InputProps) => {
       <Input.TextField
         name={name}
         placeholder={placeholder}
-        css={{ padding: '8px 12px' }}
+        className={css({ padding: '8px 12px' })}
         onChange={onChange}
         value={value}
         disabled={disabled}
@@ -119,7 +123,7 @@ const SelectProperty = ({
   return (
     <Select
       name={name}
-      css={{ width: '60%' }}
+      className={css({ width: '60% ' })}
       onChange={onChange}
       disabled={disabled}
       value={value}
@@ -138,7 +142,7 @@ const SelectProperty = ({
 
 const Radio = ({ radioGroup, onChange }: RadioProps) => {
   return (
-    <div css={{ display: 'flex', alignItems: 'center' }}>
+    <Flex alignItems="center">
       {radioGroup &&
         radioGroup.map(({ name, label, value }, index) => {
           return (
@@ -146,26 +150,25 @@ const Radio = ({ radioGroup, onChange }: RadioProps) => {
               key={`${label}-${index}`}
               id={value}
               label={label}
-              css={{
-                display: 'flex',
+              className={flex({
                 flexDirection: 'row-reverse',
                 justifyContent: 'flex-end',
                 alignItems: 'center',
                 margin: '0 12px 0 0',
-              }}
+              })}
             >
               <Input.TextField
                 type={'radio'}
                 name={name}
                 value={value}
-                css={{ width: 'auto', margin: '0 4px 0 0' }}
+                className={css({ width: 'auto', margin: '0 4px 0 0' })}
                 onChange={onChange}
                 defaultChecked={index === 0}
               />
             </Input>
           );
         })}
-    </div>
+    </Flex>
   );
 };
 

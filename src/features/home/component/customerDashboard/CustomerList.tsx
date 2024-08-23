@@ -1,27 +1,36 @@
 'use client';
 
 import { useCustomerListQuery } from '@features/customer/query/CustomerQuery';
+import { css } from 'styled-system/css';
 
 type Props = {
   keyword: string;
 };
 
 const CustomerList = ({ keyword }: Props) => {
-  // 회원목록 가져오기
-  const { data } = useCustomerListQuery();
+  const { isLoading, data } = useCustomerListQuery();
 
-  console.log(data);
+  if (isLoading) {
+    return (
+      <div
+        className={css({
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+        })}
+      >
+        Data Loading...
+      </div>
+    );
+  }
 
   return (
-    // <>{data?.map((item: any) => {
-    //   return (
-    //     <div key={item.id}>
-    //       {item.name}
-    //     </div>
-    //   )
-    // })}</>
-
-    <>3</>
+    <>
+      {data?.map((item: any) => {
+        return <div key={item.id}>{item.name}</div>;
+      })}
+    </>
   );
 };
 

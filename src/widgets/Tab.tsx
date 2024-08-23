@@ -1,4 +1,3 @@
-import { CSSObject } from '@emotion/react';
 import {
   HTMLAttributes,
   PropsWithChildren,
@@ -9,6 +8,8 @@ import {
   Fragment,
 } from 'react';
 import { SetStateAction } from '../types';
+import { flex } from 'styled-system/patterns';
+import { css } from 'styled-system/css';
 
 type TabContextType = {
   activeKey: string;
@@ -56,12 +57,11 @@ const TabLists = ({
 }: PropsWithChildren<HTMLAttributes<HTMLUListElement>>) => {
   return (
     <ul
-      css={{
+      className={flex({
         height: '2.875rem',
-        display: 'flex',
         alignItems: 'center',
         borderBottom: '1px solid var(--grey100)',
-      }}
+      })}
       {...rest}
     >
       {Children.map(children, (child, index) => {
@@ -74,25 +74,26 @@ const TabLists = ({
 const TabList = ({ activeKey: panelKey, children }: PanelProps) => {
   const { activeKey, setActiveKey } = useContext(TabContext);
 
-  const activeStyle: CSSObject = {
+  const activeStyle = css.raw({
     color: 'var(--black100)',
     fontWeight: '500',
     borderBottom: '2px solid var(--black100)',
-  };
+  });
 
-  const deactiveStyle = {
+  const deactiveStyle = css.raw({
     color: 'var(--deactive-color)',
     borderBottom: '2px solid var(--white100)',
-  };
+  });
 
   const onClickTabPanelHandler = () => setActiveKey(panelKey);
+
+  const style = activeKey === panelKey ? activeStyle : deactiveStyle;
 
   return (
     <li
       key={panelKey}
       onClick={onClickTabPanelHandler}
-      css={[
-        activeKey === panelKey ? activeStyle : deactiveStyle,
+      className={css(
         {
           height: '2.875rem',
           margin: '0 24px 0 0',
@@ -100,29 +101,45 @@ const TabList = ({ activeKey: panelKey, children }: PanelProps) => {
           transition: 'all 0.1s',
           cursor: 'pointer',
         },
-      ]}
+        style,
+      )}
     >
       {children}
     </li>
   );
 };
 
-const TabPanels = ({ children, ...rest }: PropsWithChildren) => {
-  return <div {...rest}>{children}</div>;
+const TabPanels = ({
+  children,
+  ...props
+}: PropsWithChildren & React.ComponentPropsWithoutRef<'div'>) => {
+  const { className, ...rest } = props;
+
+  return (
+    <div className={className} {...rest}>
+      {children}
+    </div>
+  );
 };
 
 const TabPanel = ({
   activeKey: panelKey,
   children,
-  ...rest
-}: PropsWithChildren<PanelProps>) => {
+  ...props
+}: PropsWithChildren<PanelProps> & React.ComponentPropsWithoutRef<'div'>) => {
+  const { className, ...rest } = props;
   const { activeKey } = useContext(TabContext);
   const isActive = activeKey === panelKey;
 
   return (
     <>
       {isActive && (
-        <div role={'tabpanel'} data-tab={panelKey} {...rest}>
+        <div
+          className={className}
+          role={'tabpanel'}
+          data-tab={panelKey}
+          {...rest}
+        >
           {children}
         </div>
       )}

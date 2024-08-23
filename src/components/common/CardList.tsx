@@ -1,4 +1,6 @@
 import { ReactNode } from 'react';
+import { css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
 
 interface CardListProps {
   height?: string;
@@ -9,8 +11,7 @@ interface CardListProps {
 const CardList = ({ height, minHeight, children }: CardListProps) => {
   return (
     <li
-      css={{
-        position: 'relative',
+      className={css({
         width: 'calc((100% - 112px) / 6)',
         height: height,
         minHeight: minHeight,
@@ -19,14 +20,14 @@ const CardList = ({ height, minHeight, children }: CardListProps) => {
         borderRadius: '25px',
         margin: '12px 0 0 0',
 
-        ':nth-of-type(2n)': {
+        '&:nth-of-type(2n)': {
           margin: '12px 16px 0 16px',
         },
 
-        ':nth-of-type(6n+1)': {
+        '&:nth-of-type(6n+1)': {
           marginLeft: '16px',
         },
-      }}
+      })}
     >
       {children}
     </li>
@@ -37,20 +38,13 @@ const CardList = ({ height, minHeight, children }: CardListProps) => {
 CardList.UnOrderList = ({ children }: { children: ReactNode }) => {
   return (
     <ul
-      css={{
-        position: 'relative',
-        display: 'flex',
+      className={flex({
         flexWrap: 'wrap',
         height: '80%',
         overflowY: 'scroll',
         padding: '0 0 24px 0',
         margin: '16px 0 0 0',
-
-        '::-webkit-scrollbar': {
-          scrollBehavior: 'smooth',
-          display: 'none',
-        },
-      }}
+      })}
     >
       {children}
     </ul>

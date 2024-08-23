@@ -1,13 +1,13 @@
-import { ImageContainer as Image } from '@styles/styles';
-import { StaticImageData } from 'next/image';
+import Image, { StaticImageData } from 'next/image';
+import { Flex } from 'styled-system/jsx';
 
-interface InlineImageDivProps {
+type Props = {
   src: string | StaticImageData;
   alt: string;
   placeholder?: 'empty' | 'blur' | undefined;
   imageCss?: { [key: string]: string };
   text: string;
-}
+};
 
 const InlineImageDiv = ({
   src,
@@ -15,15 +15,9 @@ const InlineImageDiv = ({
   placeholder = 'empty',
   imageCss = { width: '16px', heigth: '16px', margin: '0 8px 0 0' },
   text,
-}: InlineImageDivProps) => {
+}: Props) => {
   return (
-    <div
-      css={{
-        position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
-      }}
-    >
+    <Flex alignItems="center">
       <Image
         src={src}
         alt={alt}
@@ -32,7 +26,7 @@ const InlineImageDiv = ({
         {...imageCss}
       />
       <span>{text}</span>
-    </div>
+    </Flex>
   );
 };
 

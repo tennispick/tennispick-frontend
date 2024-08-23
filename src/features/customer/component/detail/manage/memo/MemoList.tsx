@@ -6,6 +6,8 @@ import RightSideContainer from '@components/layer/RightSideContainer';
 import DrawerMemo from '../../drawer/Memo';
 import { useState } from 'react';
 import { transformMemoType } from '@features/customer/util/memo';
+import { flex } from 'styled-system/patterns';
+import { css } from 'styled-system/css';
 
 type Props = {
   data: CustomerMemoListApiData[];
@@ -30,29 +32,28 @@ const ManageMemoList = ({
   return (
     <>
       <div
-        css={{
+        className={flex({
           height: '28px',
-          display: 'flex',
           alignItems: 'center',
           textAlign: 'center',
           fontSize: '0.9rem',
           padding: '6px 8px',
           gap: '2px',
-        }}
+        })}
       >
-        <div css={{ width: '20%' }}>제목</div>
-        <div css={{ width: '35%' }}>내용</div>
-        <div css={{ width: '15%' }}>담당코치</div>
-        <div css={{ width: '10%' }}>유형</div>
-        <div css={{ width: '20%' }}>등록날짜</div>
+        <div className={css({ width: '20%' })}>제목</div>
+        <div className={css({ width: '35%' })}>내용</div>
+        <div className={css({ width: '15%' })}>담당코치</div>
+        <div className={css({ width: '10%' })}>유형</div>
+        <div className={css({ width: '20%' })}>등록날짜</div>
       </div>
       <div
-        css={{
+        className={css({
           height: 'calc(100% - 28px)',
           padding: '8px 0',
           overflowY: 'auto',
           fontSize: '0.9rem',
-        }}
+        })}
       >
         {data.map((item, index) => {
           const {
@@ -71,32 +72,34 @@ const ManageMemoList = ({
               onClick={() => onClickRowHandler(item)}
             >
               <div
-                css={{
+                className={css({
                   width: '20%',
                   textOverflow: 'ellipsis',
                   whiteSpace: 'nowrap',
                   overflow: 'hidden',
                   textAlign: 'left',
-                }}
+                })}
               >
                 {title}
               </div>
               <div
-                css={{
+                className={css({
                   width: '35%',
                   textOverflow: 'ellipsis',
                   whiteSpace: 'nowrap',
                   overflow: 'hidden',
                   textAlign: content ? 'left' : 'center',
-                }}
+                })}
               >
                 {content ? content : '-'}
               </div>
-              <div css={{ width: '15%' }}>{`${name} ${transferCoachPosition(
-                position,
-              )}`}</div>
-              <div css={{ width: '10%' }}>{transformMemoType(type)}</div>
-              <div css={{ width: '20%' }}>{createdAt}</div>
+              <div
+                className={css({ width: '15%' })}
+              >{`${name} ${transferCoachPosition(position)}`}</div>
+              <div className={css({ width: '10%' })}>
+                {transformMemoType(type)}
+              </div>
+              <div className={css({ width: '20%' })}>{createdAt}</div>
             </ManageListRow>
           );
         })}

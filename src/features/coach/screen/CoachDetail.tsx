@@ -4,6 +4,8 @@ import { useCoachDetailQuery } from '../query/coachQuery';
 import Loading from '@components/common/Loading';
 import CoachDetailProfile from '../component/detail/CoachDetailProfile';
 import BusinessPerformance from '../component/detail/performance/BusinessPerformance';
+import { css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   coachId: string;
@@ -19,8 +21,8 @@ const CoachDetailScreen = ({ coachId }: Props) => {
   return (
     <>
       <PageHeader title={`${name} 님`} link="/coach" />
-      <div css={{ height: 'calc(100% - 52px)', overflowY: 'auto' }}>
-        <div css={{ display: 'flex', height: 'calc(100% - 46px)' }}>
+      <div className={css({ height: 'calc(100% - 52px)', overflowY: 'auto' })}>
+        <div className={flex({ height: 'calc(100% - 46px)' })}>
           <CoachDetailProfile data={data} />
           <BusinessPerformance coachId={coachId} />
         </div>

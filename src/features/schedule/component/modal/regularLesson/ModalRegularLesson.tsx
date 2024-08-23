@@ -23,6 +23,8 @@ import ScheduleModalRegularLessonIndividualSchedule from './individualSchedule/I
 import { handleInputArrayValidationCheck } from '@utils/validation';
 
 import { individualCreateFormValidationSet } from '@features/schedule/util/inputFormValidationSet';
+import { flex } from 'styled-system/patterns';
+import { css } from 'styled-system/css';
 
 const ModalRegularLesson = () => {
   const { mutate } = useScheduleMutation();
@@ -198,14 +200,14 @@ const ModalRegularLesson = () => {
   return (
     <>
       <form
-        css={{ display: 'flex', width: '100%', flexDirection: 'column' }}
+        className={flex({ width: '100%', flexDirection: 'column' })}
         onSubmit={
           scheduleType === 'all'
             ? onSubmitAllCreateHandler
             : onSubmitIndividualCreateHandler
         }
       >
-        <div css={{ display: 'flex', width: '100%', minHeight: '320px' }}>
+        <div className={flex({ width: '100%', minHeight: '320px' })}>
           <CommonSchedule
             commonData={{ scheduleType, lessonType, customer, lesson }}
             setCommonData={setCommonData}
@@ -239,19 +241,19 @@ const ModalRegularLesson = () => {
             }[scheduleType]
           }
         </div>
-        <div css={{ display: 'flex', margin: '24px 0 0 0' }}>
+        <div className={flex({ margin: '24px 0 0 0' })}>
           <div
-            css={{
+            className={css({
               margin: '16px 0 0 0',
               fontSize: '0.925rem',
               color: 'var(--business-color)',
-            }}
+            })}
           >
-            <span css={{ fontWeight: 600 }}>
+            <span className={css({ fontWeight: 600 })}>
               &#45; 회원이 검색되지 않는 경우, 결제가 진행되었는지 우선
               확인해주세요.
             </span>
-            <span css={{ margin: '0 0 0 8px' }}>
+            <span className={css({ margin: '0 0 0 8px' })}>
               결제방법: {`회원 관리 > 회원 선택 > 결제하기`}
             </span>
           </div>
@@ -260,7 +262,7 @@ const ModalRegularLesson = () => {
             variant="iconBtn"
             label="스케줄 등록하기"
             src={EditWhiteIcon}
-            css={{
+            className={css({
               width: '160px',
               justifyContent: 'center',
               border: 0,
@@ -269,7 +271,7 @@ const ModalRegularLesson = () => {
               padding: '16px',
               margin: '0 0 0 auto',
               borderRadius: '12px',
-            }}
+            })}
             disabled={
               scheduleType === 'all'
                 ? submitButtonCheckDisabled

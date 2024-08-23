@@ -1,6 +1,7 @@
 import { ButtonType } from '@/types/button';
 import Button from './Button';
 import Image from 'next/image';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   iconSrc: string;
@@ -14,7 +15,7 @@ const IconButton = ({
   iconAlign,
   size,
   variant,
-  text,
+  label,
   children,
   ...rest
 }: Props) => {
@@ -22,17 +23,23 @@ const IconButton = ({
     <Button
       size={size}
       variant={variant}
-      text={text}
-      css={{
-        display: 'flex',
+      label={label}
+      className={flex({
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection: iconAlign === 'right' ? 'row' : 'row-reverse',
-      }}
+        flexDirection: iconAlign === 'left' ? 'row' : 'row-reverse',
+        gap: '0.5rem',
+      })}
       {...rest}
     >
-      <Image src={iconSrc} alt={iconAlt} width={24} height={24} />
-      {children || text}
+      <Image
+        src={iconSrc}
+        alt={iconAlt}
+        width={20}
+        height={20}
+        style={{ width: '1rem', height: '1rem' }}
+      />
+      {children || label}
     </Button>
   );
 };

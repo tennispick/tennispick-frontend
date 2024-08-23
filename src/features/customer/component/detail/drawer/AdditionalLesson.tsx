@@ -4,6 +4,7 @@ import { Button } from '@components/index';
 import { DeleteWhiteIcon } from '@icons/index';
 import { FormEventHandler } from 'react';
 import { deleteCustomerAdditionalLesson } from '@apis/customer/customer.api';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   item: CustomerAdditionalLessonListData;
@@ -48,12 +49,7 @@ const DrawerAdditionalLesson = ({ item }: Props) => {
       <DrawerInputContainer label="보강 예약날짜" value={additionalDate} />
       <DrawerInputContainer label="보강 시작시간" value={additionalStartTime} />
       <DrawerInputContainer label="보강 종료시간" value={additionalEndTime} />
-      <div
-        css={{
-          position: 'fixed',
-          bottom: '20px',
-        }}
-      >
+      <div className={flex({ bottom: '20px' })}>
         <Button
           type="submit"
           label="보강 취소하기"

@@ -11,6 +11,7 @@ import { useDuplicateCheckScheduleLessonQuery } from '@features/schedule/query/s
 import { CustomerLessonScheduleHistoryData } from '@apis/customer/customer.type';
 import { isEmptyObj } from '@utils/object';
 import { getEndTimeByStartTime } from '@utils/date';
+import { css } from 'styled-system/css';
 
 type Props = {
   formData: any;
@@ -86,17 +87,19 @@ const NewSchedule = ({
   return (
     <>
       <section>
-        <div css={{ fontWeight: 600 }}>변경 후 일정</div>
-        <div css={{ margin: '12px 0 8px 0' }}>
-          <div css={{ fontSize: '0.9rem', margin: '0 0 8px 0' }}>코치</div>
+        <div className={css({ fontWeight: 600 })}>변경 후 일정</div>
+        <div className={css({ margin: '12px 0 8px 0' })}>
+          <div className={css({ fontSize: '0.9rem', margin: '0 0 8px 0' })}>
+            코치
+          </div>
           <ScheduleSelect
             name="coach"
             data={transferCoachListFormat(coachList || [])}
-            css={{
+            className={css({
               width: '160px',
               height: '36px',
               borderRadius: '6px',
-            }}
+            })}
             selected={formData.coach ?? initialSelectedCoach?.id}
             onChangeHandler={onChangeFormData}
             disabled={isSelectedSchedule}
@@ -112,37 +115,41 @@ const NewSchedule = ({
         />
         {isDuplicated() && (
           <div
-            css={{
+            className={css({
               margin: '8px 0 0 2px',
               color: 'var(--red200)',
               fontSize: '0.925rem ',
-            }}
+            })}
           >
             예약이 불가능한 날짜에요.
           </div>
         )}
-        <div css={{ margin: '12px 0 8px 0' }}>
-          <div css={{ fontSize: '0.9rem', margin: '0 0 8px 0' }}>코트</div>
+        <div className={css({ margin: '12px 0 8px 0' })}>
+          <div className={css({ fontSize: '0.9rem', margin: '0 0 8px 0' })}>
+            코트
+          </div>
           <ScheduleSelect
             name="court"
             data={transferCourtListFormat(courtList || [])}
-            css={{
+            className={css({
               width: '160px',
               height: '36px',
               borderRadius: '6px',
-            }}
+            })}
             selected={formData.court ?? initialSelectedCourt?.id}
             onChangeHandler={onChangeFormData}
             disabled={isSelectedSchedule}
           />
         </div>
-        <div css={{ margin: '12px 0 8px 0' }}>
-          <div css={{ fontSize: '0.9rem', margin: '0 0 8px 0' }}>사유 입력</div>
+        <div className={css({ margin: '12px 0 8px 0' })}>
+          <div className={css({ fontSize: '0.9rem', margin: '0 0 8px 0' })}>
+            사유 입력
+          </div>
           <input
             type="text"
             name="reason"
             placeholder="사유를 입력해주세요."
-            css={{
+            className={css({
               width: '100%',
               height: '36px',
               borderRadius: '6px',
@@ -152,7 +159,7 @@ const NewSchedule = ({
               border: '1px solid var(--grey300)',
               outline: 0,
               zIndex: '1',
-            }}
+            })}
             disabled={isSelectedSchedule}
             maxLength={200}
           />

@@ -1,6 +1,7 @@
 import { Select } from '@components/index';
 import { LessonDetailData } from '../type/lesson.type';
 import InputRow from './InputRow';
+import { css } from 'styled-system/css';
 
 type Props = {
   formData: {
@@ -26,7 +27,7 @@ const LessonDetailInputField = ({ formData, onChangeFormData }: Props) => {
   } = formData;
 
   return (
-    <div css={{ width: '50%' }}>
+    <div className={css({ width: '50%' })}>
       <InputRow
         name={'name'}
         rowHeadLabel={'레슨권 이름'}

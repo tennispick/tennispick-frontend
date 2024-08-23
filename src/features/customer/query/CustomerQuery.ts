@@ -31,7 +31,6 @@ export const useCustomerListQuery = () => {
     queryKey: ['customer'],
     queryFn: async () => await getCustomerFetch(),
     select: (data) => data?.data,
-    suspense: true,
   });
 };
 

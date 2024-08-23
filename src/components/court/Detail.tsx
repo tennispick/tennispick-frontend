@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import styled from '@emotion/styled';
 
 import useInput from '@hooks/useInput';
 import { Input, Button } from '@components/index';
@@ -10,13 +9,15 @@ import {
   updateCourtDetailInfo,
 } from '@queries/index';
 import { EditWhiteIcon, DeleteWhiteIcon } from '@icons/index';
+import { css } from 'styled-system/css';
+import { styled } from 'styled-system/jsx';
 
-type CourtDetailProps = {
+type Props = {
   id: string;
   setShowRightSide: Dispatch<SetStateAction<boolean>>;
 };
 
-const DetailCourt = ({ id, setShowRightSide }: CourtDetailProps) => {
+const DetailCourt = ({ id, setShowRightSide }: Props) => {
   const { data } = getCourtDetailQuery(id);
 
   const router = useRouter();
@@ -122,16 +123,16 @@ const DetailCourt = ({ id, setShowRightSide }: CourtDetailProps) => {
             />
           </InputWrapper>
           <div
-            css={{
+            className={css({
               position: 'fixed',
               bottom: '20px',
-            }}
+            })}
           >
             <Button
               label={'코트 수정하기'}
               variant={'iconBtn'}
               src={EditWhiteIcon}
-              css={{
+              className={css({
                 width: 'calc(40vw - 40px)',
                 justifyContent: 'center',
                 border: 0,
@@ -139,21 +140,21 @@ const DetailCourt = ({ id, setShowRightSide }: CourtDetailProps) => {
                 color: 'var(--white100)',
                 padding: '12px 16px',
                 margin: '0 0 12px 0',
-              }}
+              })}
               onClick={onModifyHandler}
             />
             <Button
               label={'코트 삭제하기'}
               variant={'iconBtn'}
               src={DeleteWhiteIcon}
-              css={{
+              className={css({
                 width: 'calc(40vw - 40px)',
                 justifyContent: 'center',
                 border: 0,
                 backgroundColor: 'var(--red200)',
                 color: 'var(--white100)',
                 padding: '12px 16px',
-              }}
+              })}
               onClick={onDeleteHandler}
             />
           </div>
@@ -163,17 +164,22 @@ const DetailCourt = ({ id, setShowRightSide }: CourtDetailProps) => {
   );
 };
 
-const InputWrapper = styled((props: any) => <Input {...props} />)({
-  margin: '0 0 28px 0',
+const InputWrapper = styled(Input, {
+  base: {
+    margin: '0 0 28px 0',
 
-  label: {
-    display: 'block',
+    '& label': {
+      display: 'block',
+    },
   },
 });
-const TextField = styled((props: any) => <Input.TextField {...props} />)({
-  width: '60%',
-  padding: '10px 0 10px 10px',
-  margin: '12px 0 0 0',
+
+const TextField = styled(Input.TextField, {
+  base: {
+    width: '60%',
+    padding: '10px 0 10px 10px',
+    margin: '12px 0 0 0',
+  },
 });
 
 export default DetailCourt;

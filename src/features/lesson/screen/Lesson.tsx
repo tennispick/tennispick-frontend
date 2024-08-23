@@ -7,6 +7,7 @@ import LessonList from '../component/LessonList';
 import Loading from '@components/common/Loading';
 import Modal from '@components/layer/Modal';
 import LessonModal from '../component/modal/LessonModal';
+import { css } from 'styled-system/css';
 
 const LessonScreen = () => {
   const tabListArr = [
@@ -69,9 +70,7 @@ const LessonScreen = () => {
             title={'레슨권 생성'}
             showModal={showModal}
             setShowModal={setShowModal}
-            css={{
-              top: '47.5%',
-            }}
+            className={css({ top: '47.5%' })}
           >
             <LessonModal setShowModal={setShowModal} />
           </Modal>
