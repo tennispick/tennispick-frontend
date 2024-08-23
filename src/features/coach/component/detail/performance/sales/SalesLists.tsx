@@ -1,4 +1,5 @@
 import { NoResult } from '@components/index';
+import { css } from 'styled-system/css';
 
 const SalesLists = () => {
   // TODO
@@ -6,12 +7,12 @@ const SalesLists = () => {
 
   return (
     <div
-      css={{
+      className={css({
         height: 'calc(100% - 14.25rem)',
         backgroundColor: 'var(--grey400)',
         borderRadius: '1.25rem',
         padding: '1rem',
-      }}
+      })}
     >
       {data.length === 0 ? (
         <NoResult description={'매출내역이 아직 존재하지 않아요.'} />

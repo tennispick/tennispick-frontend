@@ -1,3 +1,5 @@
+import { css } from 'styled-system/css';
+
 export const LessonStatusCell = (status: string) => {
   let style = {};
 
@@ -30,13 +32,15 @@ export const LessonStatusCell = (status: string) => {
 
   return (
     <div
-      css={{
-        width: '10%',
-        fontWeight: '500',
-        padding: '8px 0',
-        borderRadius: '6px',
-        ...style,
-      }}
+      className={css(
+        {
+          width: '10%',
+          fontWeight: '500',
+          padding: '8px 0',
+          borderRadius: '6px',
+        },
+        style,
+      )}
     >
       {status}
     </div>

@@ -1,7 +1,8 @@
-import styled from '@emotion/styled';
-import { CSS_TYPE, ImageContainer as Image } from '@styles/styles';
 import CancelBtnIcon from '@icons/cancel_black_btn.svg';
 import { ScheduleLessonByDateData } from '@apis/schedule/schedule.type';
+import Image from 'next/image';
+import { css } from 'styled-system/css';
+import { styled } from 'styled-system/jsx';
 
 type Props = {
   day: Date;
@@ -21,19 +22,25 @@ const ScheduleByDateHeader = ({
   return (
     <Header>
       <div
-        css={{
-          position: 'relative',
+        className={css({
           width: '30%',
           fontSize: '1.1rem',
           fontWeight: 500,
-        }}
+        })}
       >
         {year}년 {month}월 {date}일
       </div>
       <HeaderCautionWrapper>
         {/* TODO 남은횟수 2회 이하일 때, 색상 변경 */}
         {customerInfo ? (
-          <RemainLessonCount>남은횟수: 3회</RemainLessonCount>
+          <RemainLessonCount
+            className={css({
+              color: 'var(--yellow300)',
+              backgroundColor: 'var(--yellow200)',
+            })}
+          >
+            남은횟수: 3회
+          </RemainLessonCount>
         ) : (
           <div></div>
         )}
@@ -42,42 +49,40 @@ const ScheduleByDateHeader = ({
           alt={'close button'}
           width={28}
           height={28}
-          cursor={'pointer'}
           onClick={onCloseModalHandler}
+          className={css({ cursor: 'pointer' })}
         />
       </HeaderCautionWrapper>
     </Header>
   );
 };
 
-const Header = styled.div({
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  height: '64px',
-  borderBottom: '1px solid var(--grey100)',
-  padding: '16px 28px',
+const Header = styled('div', {
+  base: {
+    display: 'flex',
+    alignItems: 'center',
+    height: '64px',
+    borderBottom: '1px solid var(--grey100)',
+    padding: '16px 28px',
+  },
 });
-const HeaderCautionWrapper = styled.div({
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  width: '70%',
+
+const HeaderCautionWrapper = styled('div', {
+  base: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '70%',
+  },
 });
-const RemainLessonCount = styled.div<CSS_TYPE>(
-  {
+
+const RemainLessonCount = styled('div', {
+  base: {
     width: '120px',
     padding: '8px 16px',
     borderRadius: '8px',
     fontWeight: 500,
   },
-  (props) => ({
-    color: props.color ? props.color : 'var(--yellow300)',
-    backgroundColor: props.backgroundColor
-      ? props.backgroundColor
-      : 'var(--yellow200)',
-  }),
-);
+});
 
 export default ScheduleByDateHeader;

@@ -7,6 +7,7 @@ import { transferSexType } from '@utils/switch';
 import ScheduleSelect from '@features/customer/component/detail/modal/scheduleChange/Select';
 import { CustomerLessonHistoryData } from '@apis/customer/customer.type';
 import { useCustomerDetailQuery } from '@features/customer/query/CustomerQuery';
+import { css } from 'styled-system/css';
 
 type Props = {
   customerId: string;
@@ -28,11 +29,7 @@ const OriginLessonSchedule = ({
     initialCustomerLessonData;
 
   return (
-    <section
-      css={{
-        width: '50%',
-      }}
-    >
+    <section className={css({ width: '50%' })}>
       <ItemRow label="성명" value={name} />
       <ItemRow label="생년월일" value={birth} />
       <ItemRow label="성별" value={transferSexType(sex)} />
@@ -41,9 +38,7 @@ const OriginLessonSchedule = ({
         <ScheduleSelect
           name="originLessonCoupon"
           data={[{ value: lessonName, label: lessonName }]}
-          css={{
-            width: 'calc(100% - 152px)',
-          }}
+          className={css({ width: 'calc(100% - 152px)' })}
           disabled={true}
         />
       </ItemRow>
@@ -51,9 +46,7 @@ const OriginLessonSchedule = ({
         <ScheduleSelect
           name="originDate"
           data={[{ value: date, label: date }]}
-          css={{
-            width: 'calc(100% - 152px)',
-          }}
+          className={css({ width: 'calc(100% - 152px)' })}
           disabled={true}
         />
       </ItemRow>
@@ -61,9 +54,7 @@ const OriginLessonSchedule = ({
         <ScheduleSelect
           name="originStartTime"
           data={[{ value: startTime, label: startTime }]}
-          css={{
-            width: 'calc(100% - 152px)',
-          }}
+          className={css({ width: 'calc(100% - 152px)' })}
           disabled={true}
         />
       </ItemRow>
@@ -71,9 +62,7 @@ const OriginLessonSchedule = ({
         <ScheduleSelect
           name="originEndTime"
           data={[{ value: endTime, label: endTime }]}
-          css={{
-            width: 'calc(100% - 152px)',
-          }}
+          className={css({ width: 'calc(100% - 152px)' })}
           disabled={true}
         />
       </ItemRow>
@@ -81,9 +70,7 @@ const OriginLessonSchedule = ({
         <ScheduleSelect
           name="originCoach"
           data={[{ value: coachName, label: coachName }]}
-          css={{
-            width: 'calc(100% - 152px)',
-          }}
+          className={css({ width: 'calc(100% - 152px)' })}
           disabled={true}
         />
       </ItemRow>
@@ -91,9 +78,7 @@ const OriginLessonSchedule = ({
         <ScheduleSelect
           name="originCourt"
           data={[{ value: courtName, label: courtName }]}
-          css={{
-            width: 'calc(100% - 152px)',
-          }}
+          className={css({ width: 'calc(100% - 152px)' })}
           disabled={true}
         />
       </ItemRow>

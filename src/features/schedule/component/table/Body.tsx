@@ -8,19 +8,22 @@ import { userState } from '@lib/recoil/userState';
 import { TransferTimeList } from '@interfaces/calendar';
 import { GET_WEEK_LIST_COUNT } from '@features/constant/schedule';
 import { CoachListData } from '@apis/coach/coach.type';
-import { SchduleLessonByStartDateEndDatePeriodData } from '@apis/schedule/schedule.type';
+import { ScheduleLessonByDateData } from '@apis/schedule/schedule.type';
 import { checkOnTime } from '@features/schedule/util/time';
 
 import { Portal } from '@components/index';
 import RightSideContainer from '@components/layer/RightSideContainer';
 import ScheduleDrawer from '../Drawer';
+import { css } from 'styled-system/css';
+import { Flex } from 'styled-system/jsx';
+import { flex } from 'styled-system/patterns';
 
 type LessonTimeType = Array<TransferTimeList & { isAttendance?: boolean }>;
 
 type Props = {
   monthList: Map<number, number[]>;
   coach: CoachListData[];
-  data: SchduleLessonByStartDateEndDatePeriodData[];
+  data: ScheduleLessonByDateData[];
 };
 
 const getBusinessHours = () => {
@@ -43,19 +46,19 @@ const ScheduleTableBody = ({ monthList, coach, data }: Props) => {
   );
 
   return (
-    <div css={{ fontSize: '0.85rem' }}>
+    <div className={css({ fontSize: '0.85rem' })}>
       {lessonTimeList.map(({ startTime }) => {
         const filterstartTimeList = data.filter(
           (item: any) => item.startTime === startTime,
         );
 
         return (
-          <div
+          <Flex
             key={startTime}
-            css={{ display: 'flex', minHeight: '20px', lineHeight: '19px' }}
+            className={css({ minHeight: '20px', lineHeight: '19px' })}
           >
             <div
-              css={{
+              className={css({
                 width: '8%',
                 borderRight: '1px solid var(--black100)',
                 borderBottom: '1px solid var(--grey1000)',
@@ -63,18 +66,18 @@ const ScheduleTableBody = ({ monthList, coach, data }: Props) => {
                 backgroundColor: checkOnTime(startTime)
                   ? 'var(--grey100)'
                   : 'var(--white100)',
-              }}
+              })}
             >
               {startTime}
             </div>
-            <div css={{ display: 'flex', width: '92%' }}>
+            <div className={flex({ width: '92%' })}>
               <ScheduleTableBody.MonthContainer
                 coach={coach}
                 monthList={monthList}
                 data={filterstartTimeList}
               />
             </div>
-          </div>
+          </Flex>
         );
       })}
     </div>
@@ -94,7 +97,7 @@ const CoachContainer = ({
 
   return (
     <>
-      <div css={{ display: 'flex' }}>
+      <Flex>
         {coach.map((el: any) => {
           const isReservation =
             reservationCustomer.length > 0 &&
@@ -103,7 +106,7 @@ const CoachContainer = ({
           return (
             <div
               key={el.id}
-              css={{
+              className={css({
                 width: `calc(100%/${coach.length})`,
                 minHeight: '20px',
                 textAlign: 'center',
@@ -115,19 +118,19 @@ const CoachContainer = ({
                   isReservation ? `var(--${el.coachColor})` : 'var(--white100)'
                 }`,
 
-                '&:last-child': {
+                _last: {
                   borderRight: '1px solid var(--black100)',
                 },
 
                 cursor: isReservation ? 'pointer' : 'default',
-              }}
+              })}
               onClick={() => isReservation && setShowRightSide(true)}
             >
               {/*TODO 시간이 다를 때 숫자 표현해줘야 함*/}
             </div>
           );
         })}
-      </div>
+      </Flex>
       {showRightSide && (
         <Portal id={'drawer'}>
           <RightSideContainer
@@ -171,10 +174,9 @@ const MonthContainer = ({
         return (
           <div
             key={month}
-            css={{
-              display: 'flex',
+            className={flex({
               width: `calc((100%/${GET_WEEK_LIST_COUNT})*${dayList.length})`,
-            }}
+            })}
           >
             {dayList.map((day) => {
               const reservationCustomer = customerFilter.filter(
@@ -183,7 +185,10 @@ const MonthContainer = ({
               );
 
               return (
-                <div key={day} css={{ width: `calc(100%/${dayList.length})` }}>
+                <div
+                  key={day}
+                  className={css({ width: `calc(100%/${dayList.length})` })}
+                >
                   <ScheduleTableBody.CoachContainer
                     coach={coach}
                     reservationCustomer={

@@ -1,36 +1,38 @@
+import { css } from 'styled-system/css';
+import { Flex } from 'styled-system/jsx';
+
 type Props = {
-  id: number | string;
+  id: string;
   label: string;
   checked: boolean;
   onClick: (e: React.MouseEvent<HTMLInputElement>) => void;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
-const ToggleInput = ({ id, label, checked, onClick, ...rest }: Props) => {
+const ToggleInput = ({ id, label, checked, onClick, ...props }: Props) => {
+  const { className, ...rest } = props;
+
   return (
-    <div
-      css={{
-        display: 'flex',
-        alignItems: 'center',
-      }}
-      {...rest}
-    >
+    <Flex className={className} alignItems="center" {...rest}>
       <label
-        css={{ fontSize: '1.1rem', margin: '0 16px 0 0', minWidth: '400px' }}
+        className={css({
+          fontSize: '1.1rem',
+          margin: '0 16px 0 0',
+          minWidth: '400px',
+        })}
       >
         {label}
       </label>
       <input
         id={`${id}`}
         type="checkbox"
-        css={{
-          position: 'relative',
+        className={css({
           appearance: 'none',
           borderRadius: '24px',
           width: '54px',
           height: '28px',
           backgroundColor: 'var(--grey100)',
 
-          '::before': {
+          _before: {
             content: '""',
             position: 'absolute',
             top: '4px',
@@ -42,28 +44,28 @@ const ToggleInput = ({ id, label, checked, onClick, ...rest }: Props) => {
             transition: 'left 300ms linear',
           },
 
-          ':checked': {
+          _checked: {
             backgroundColor: 'var(--blue500)',
+
+            _before: {
+              left: '30px',
+            },
           },
 
-          ':checked::before': {
-            left: '30px',
-          },
-
-          ':disabled': {
+          _disabled: {
             borderColor: 'var(--grey100)',
             backgroundColor: 'var(--grey100)',
             cursor: 'not-allowed',
-          },
 
-          ':disabled::before': {
-            backgroundColor: 'var(--grey100)',
+            _before: {
+              backgroundColor: 'var(--grey100)',
+            },
           },
-        }}
+        })}
         onClick={(e) => onClick(e)}
         defaultChecked={checked}
       />
-    </div>
+    </Flex>
   );
 };
 

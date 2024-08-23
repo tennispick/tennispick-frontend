@@ -1,32 +1,35 @@
+import { css, cx } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
+
 type Props = {
   onClick?: () => void;
-} & React.PropsWithChildren;
+} & React.PropsWithChildren &
+  React.HTMLAttributes<HTMLDivElement>;
 
 const CustomerDetailPaymentRefundTableRow = ({
   children,
   onClick,
-  ...rest
+  ...props
 }: Props) => {
-  return (
-    <div
-      css={{
-        display: 'flex',
-        height: '44px',
-        alignItems: 'center',
-        textAlign: 'center',
-        padding: '6px 8px',
-        gap: '2px',
-        borderRadius: '4px',
-        borderTop: '1px solid var(--grey500)',
-        cursor: 'pointer',
+  const { className, ...rest } = props;
 
-        ':hover': {
-          backgroundColor: 'var(--grey500)',
-        },
-      }}
-      onClick={onClick}
-      {...rest}
-    >
+  const style = flex.raw({
+    height: '44px',
+    alignItems: 'center',
+    textAlign: 'center',
+    padding: '6px 8px',
+    gap: '2px',
+    borderRadius: '4px',
+    borderTop: '1px solid var(--grey500)',
+    cursor: 'pointer',
+
+    _hover: {
+      backgroundColor: 'var(--grey500)',
+    },
+  });
+
+  return (
+    <div className={cx(css(style), className)} onClick={onClick} {...rest}>
       {children}
     </div>
   );

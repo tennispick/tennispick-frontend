@@ -8,6 +8,7 @@ import {
   updateScheduleLesson,
 } from '@apis/schedule/schedule.api';
 import { useRouter } from 'next/navigation';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   customer: any;
@@ -99,12 +100,7 @@ const ScheduleDrawer = ({ customer }: Props) => {
         customerName={customer.map((item: any) => item.customerName).join(', ')}
         lessonTime={customer[0].timeDiff}
       />
-      <div
-        css={{
-          position: 'fixed',
-          bottom: '20px',
-        }}
-      >
+      <div className={flex({ bottom: '20px' })}>
         <Button
           type="submit"
           label={'스케줄 수정하기'}

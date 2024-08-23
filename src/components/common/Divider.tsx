@@ -1,39 +1,41 @@
-import styled from '@emotion/styled';
-import { CSS_TYPE } from '@styles/styles';
-import { ObjectProps } from '@interfaces/common';
+import { css } from 'styled-system/css';
+import { styled } from 'styled-system/jsx';
 
-interface DividerProps {
+type Props = {
   type?: 'horizontal' | 'vertical';
   width?: string;
   height?: string;
   margin?: string;
   content?: string;
-}
+};
 
 const Divider = ({
   type = 'horizontal',
-  width,
+  width = '100%',
   height,
-  margin,
+  margin = '32px auto',
   content,
-}: DividerProps) => {
+}: Props) => {
+  const style = css({
+    width,
+    height,
+    margin,
+    _before: {
+      display: content ? 'inline' : 'none',
+      content: content ? 'attr(data-content)' : '',
+    },
+  });
+
   return (
-    <DividerWrapper
-      width={width}
-      height={height}
-      content={content}
-      margin={margin}
-      css={{ ...DIVIDER_TYPE[type] }}
-    />
+    <DividerLine variant={type} className={style} data-content={content} />
   );
 };
 
-const DividerWrapper = styled.div<CSS_TYPE>(
-  {
+const DividerLine = styled('div', {
+  base: {
     textAlign: 'center',
 
-    ':before': {
-      position: 'relative',
+    _before: {
       fontSize: '1rem',
       fontWeight: '600',
       backgroundColor: 'var(--white100)',
@@ -42,28 +44,19 @@ const DividerWrapper = styled.div<CSS_TYPE>(
       top: '-10px',
     },
   },
-  (props) => ({
-    width: props.width ? props.width : '100%',
-    height: props.height,
-    margin: props.margin ? props.margin : '32px auto',
-
-    ':before': {
-      display: props.content ? 'inline' : 'block',
-      content: props.content ? `"${props.content}"` : '""',
+  variants: {
+    variant: {
+      horizontal: {
+        height: '0',
+        borderTop: '1px solid var(--grey100)',
+      },
+      vertical: {
+        width: '1px',
+        backgroundColor: 'var(--grey100)',
+        margin: '0',
+      },
     },
-  }),
-);
-
-const DIVIDER_TYPE: ObjectProps<object> = {
-  horizontal: {
-    height: '0',
-    borderTop: '1px solid var(--grey100)',
   },
-  vertical: {
-    width: '1px',
-    backgroundColor: 'var(--grey100)',
-    margin: '0',
-  },
-};
+});
 
 export default Divider;

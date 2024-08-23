@@ -9,6 +9,9 @@ import { deleteLesson, updateLesson } from '@apis/lesson/lesson.api';
 import { FormEvent } from 'react';
 import useInput from '@hooks/useInput';
 import { useRouter } from 'next/navigation';
+import { css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
+import { Flex } from 'styled-system/jsx';
 
 type Props = {
   data: LessonDetailData;
@@ -83,19 +86,17 @@ const LessonDetail = ({ data }: Props) => {
 
   return (
     <form
-      css={{ position: 'relative', height: '100%' }}
+      className={css({ height: '100%' })}
       onSubmit={onClickEditLessonHandler}
     >
       <PageHeader title={`레슨권: ${data.name}`} link="/lesson" />
-      <div css={{ display: 'flex', height: '88%' }}>
+      <div className={flex({ height: '88%' })}>
         <LessonDetailInputField
           formData={formData}
           onChangeFormData={onChangeFormData}
         />
-        {/* TODO */}
-        {/* <>다른 영역</> */}
       </div>
-      <div css={{ display: 'flex', justifyContent: 'end' }}>
+      <Flex justifyContent="end">
         <Button
           label={'정보 삭제하기'}
           variant={'iconBtn'}
@@ -121,7 +122,7 @@ const LessonDetail = ({ data }: Props) => {
             padding: '12px 16px',
           }}
         />
-      </div>
+      </Flex>
     </form>
   );
 };

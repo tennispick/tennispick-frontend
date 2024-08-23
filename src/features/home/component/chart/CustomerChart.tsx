@@ -1,12 +1,20 @@
+import { css } from 'styled-system/css';
 import Card from './Card';
+import { flex } from 'styled-system/patterns';
 
 const CustomerChart = () => {
   return (
-    <div css={{ width: '65%' }}>
-      <div css={{ margin: '0 0 16px 0', fontSize: '1.25rem', fontWeight: 600 }}>
+    <div className={css({ width: '65%' })}>
+      <div
+        className={css({
+          margin: '0 0 16px 0',
+          fontSize: '1.25rem',
+          fontWeight: 600,
+        })}
+      >
         회원 통계
       </div>
-      <div css={{ display: 'flex', overflowX: 'auto' }}>
+      <div className={flex({ overflowX: 'auto' })}>
         <Card
           title={'현재 회원 수'}
           subTitle={'1개월 전보다'}

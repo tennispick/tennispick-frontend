@@ -2,6 +2,8 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/locale';
 import CalendarIcon from '@icons/calendar/calendar';
+import { Flex } from 'styled-system/jsx';
+import { css } from 'styled-system/css';
 
 type Props = {
   startDate: Date | null;
@@ -25,19 +27,21 @@ const RangeCalendar = ({
   };
 
   return (
-    <div css={{ display: 'flex', alignItems: 'center' }}>
+    <Flex alignItems="center">
       <DatePicker
         locale={ko}
         showIcon={true}
-        icon={<CalendarIcon css={{ fill: 'var(--grey300)', zIndex: 99 }} />}
-        css={[
-          { ...calendarStyle },
-          {
-            borderRight: 0,
-            borderTopRightRadius: 0,
-            borderBottomRightRadius: 0,
-          },
-        ]}
+        icon={
+          <CalendarIcon
+            className={css({ fill: 'var(--grey300)', zIndex: 99 })}
+          />
+        }
+        className={css({
+          ...calendarStyle,
+          borderRight: 0,
+          borderTopRightRadius: 0,
+          borderBottomRightRadius: 0,
+        })}
         selected={startDate}
         onChange={onChangeStartDateHandler}
         selectsStart
@@ -46,28 +50,30 @@ const RangeCalendar = ({
         dateFormat="yyyy.MM.dd"
       />
       <div
-        css={{
+        className={css({
           height: '40px',
           lineHeight: '40px',
           padding: '0 12px 0 0',
           borderTop: '1px solid var(--grey300)',
           borderBottom: '1px solid var(--grey300)',
-        }}
+        })}
       >
         {'-'}
       </div>
       <DatePicker
         locale={ko}
         showIcon={true}
-        icon={<CalendarIcon css={{ fill: 'var(--grey300)', zIndex: 99 }} />}
-        css={[
-          { ...calendarStyle },
-          {
-            borderLeft: 0,
-            borderTopLeftRadius: 0,
-            borderBottomLeftRadius: 0,
-          },
-        ]}
+        icon={
+          <CalendarIcon
+            className={css({ fill: 'var(--grey300)', zIndex: 99 })}
+          />
+        }
+        className={css({
+          ...calendarStyle,
+          borderRight: 0,
+          borderTopLeftRadius: 0,
+          borderBottomLeftRadius: 0,
+        })}
         selected={endDate}
         onChange={onChangeEndDateHandler}
         selectsEnd
@@ -76,7 +82,7 @@ const RangeCalendar = ({
         minDate={startDate}
         dateFormat="yyyy.MM.dd"
       />
-    </div>
+    </Flex>
   );
 };
 

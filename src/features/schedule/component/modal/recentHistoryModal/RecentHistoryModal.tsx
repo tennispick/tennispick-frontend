@@ -9,6 +9,7 @@ import { MouseEvent } from 'react';
 import { useCustomerLessonHistoryQuery } from '@features/customer/query/CustomerQuery';
 import { CustomerLessonHistoryData } from '@apis/customer/customer.type';
 import { LessonType } from '@features/lesson/type/lesson.type';
+import { css } from 'styled-system/css';
 
 type Props = {
   customerId: string;
@@ -52,17 +53,17 @@ const ScheduleModalRecentHistoryModal = ({
   return (
     <Portal id="layerPortal">
       <div
-        css={{
+        className={css({
           position: 'fixed',
           width: '100vw',
           height: '100vh',
           top: 0,
           backgroundColor: 'rgb(18, 18, 18, 0.7)',
           zIndex: LAYER_PORTAL_Z_INDEX,
-        }}
+        })}
       >
         <section
-          css={{
+          className={css({
             position: 'absolute',
             width: '900px',
             minHeight: '320px',
@@ -73,7 +74,7 @@ const ScheduleModalRecentHistoryModal = ({
             padding: '20px',
             backgroundColor: 'var(--white100)',
             borderRadius: '12px',
-          }}
+          })}
         >
           <ModalHeader onClickCloseModalHandler={onClickCloseModalHandler} />
           <ScheduleModalRecentHistoryModalTableBody

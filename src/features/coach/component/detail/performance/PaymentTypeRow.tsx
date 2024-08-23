@@ -1,5 +1,7 @@
 import CheckboxGroup from '@widgets/CheckboxGroup';
 import { useState } from 'react';
+import { css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
 
 const checkList = [
   {
@@ -37,14 +39,13 @@ const PaymentTypeRow = () => {
 
   return (
     <div
-      css={{
-        display: 'flex',
+      className={flex({
         alignItems: 'center',
         gap: '1.5rem',
         margin: '0 0 24px 0',
-      }}
+      })}
     >
-      <div css={{ width: '7rem' }}>결제 유형</div>
+      <div className={css({ width: '7rem' })}>결제 유형</div>
       <CheckboxGroup
         checkList={checkList}
         checkedItems={checkedItems}

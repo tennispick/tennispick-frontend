@@ -12,6 +12,7 @@ import {
 import { getCourtQuery } from '@queries/index';
 import { EditWhiteIcon } from '@icons/index';
 import RightSideContainer from '@components/layer/RightSideContainer';
+import { css } from 'styled-system/css';
 
 const CourtPage = () => {
   const { data } = getCourtQuery();
@@ -20,6 +21,8 @@ const CourtPage = () => {
   const [courtId, setCourtId] = useState<string>('');
   const [showRightSide, setShowRightSide] = useState<boolean>(false);
 
+  const handleShowModalClick = () => setShowModal(true);
+
   return (
     <>
       <PageHeader title={'코트 목록'} />
@@ -27,14 +30,14 @@ const CourtPage = () => {
         variant={'iconBtn'}
         label={'코트 생성하기'}
         src={EditWhiteIcon}
-        css={{
+        className={css({
           border: 0,
           backgroundColor: 'var(--business-sub-color)',
           color: 'var(--white100)',
           padding: '12px 16px',
           margin: '0 12px 0 auto',
-        }}
-        onClick={() => setShowModal(true)}
+        })}
+        onClick={handleShowModalClick}
       />
       {data && (
         <CourtList

@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
-import styled from '@emotion/styled';
 import { getWeekList } from '@utils/date';
 import { STRING_WEEK_LIST_KR } from '@features/schedule/constants/schedule';
-import { CSS_TYPE } from '@styles/styles';
+import { css } from 'styled-system/css';
+import { styled } from 'styled-system/jsx';
 
 type Props = {
   day: Date;
@@ -16,33 +16,33 @@ const ModalCalendar = ({ day }: Props) => {
     <Container>
       <LessonTypeContainer>
         <LessonTypeRow>
-          <div css={{ backgroundColor: 'var(--green200)' }} />
+          <div className={css({ backgroundColor: 'var(--green200)' })} />
           출석
         </LessonTypeRow>
         <LessonTypeRow>
-          <div css={{ backgroundColor: 'var(--grey1000)' }} />
+          <div className={css({ backgroundColor: 'var(--grey1000)' })} />
           결석
         </LessonTypeRow>
         <LessonTypeRow>
-          <div css={{ backgroundColor: 'var(--blue400)' }} />
+          <div className={css({ backgroundColor: 'var(--blue400)' })} />
           예약
         </LessonTypeRow>
         <LessonTypeRow>
-          <div css={{ backgroundColor: 'var(--gold100)' }} />
+          <div className={css({ backgroundColor: 'var(--gold100)' })} />
           보강
         </LessonTypeRow>
         <LessonTypeRow>
-          <div css={{ backgroundColor: 'var(--purple100)' }} />
+          <div className={css({ backgroundColor: 'var(--purple100)' })} />
           강습취소
         </LessonTypeRow>
       </LessonTypeContainer>
-      <div css={{ position: 'relative' }}>
+      <div>
         <CalendarWeekHeaderContainer>
           {STRING_WEEK_LIST_KR.map((item) => {
             return (
               <div
                 key={item}
-                css={{ width: 'calc(100% / 7)', fontWeight: 500 }}
+                className={css({ width: 'calc(100% / 7)', fontWeight: 500 })}
               >
                 {item}
               </div>
@@ -52,26 +52,30 @@ const ModalCalendar = ({ day }: Props) => {
         {dateList.map((list, index) => {
           return (
             <div
-              css={{ display: 'flex', flexWrap: 'wrap', width: '100%' }}
               key={index}
+              className={css({
+                display: 'flex',
+                flexWrap: 'wrap',
+                width: '100%',
+              })}
             >
               {list.dateWeekList.map((item) => {
                 let date = item.date;
                 if (typeof date === 'string') date = '';
+                const dateItemColor =
+                  item.day === 'Sat'
+                    ? 'var(--blue100)'
+                    : item.day === 'Sun'
+                    ? 'var(--red200)'
+                    : '';
 
                 return (
                   <DateList
                     key={item.date}
-                    color={
-                      item.day === 'Sat'
-                        ? 'var(--blue100)'
-                        : item.day === 'Sun'
-                        ? 'var(--red200)'
-                        : ''
-                    }
+                    className={css({ color: dateItemColor })}
                   >
                     <span
-                      css={{
+                      className={css({
                         backgroundColor:
                           date === currentDate
                             ? 'var(--business-active-color)'
@@ -79,7 +83,7 @@ const ModalCalendar = ({ day }: Props) => {
                         color: date === currentDate ? 'var(--white100)' : '',
                         padding: date === currentDate ? '2px 6px' : '2px 0',
                         borderRadius: '4px',
-                      }}
+                      })}
                     >
                       {date}
                     </span>
@@ -94,42 +98,54 @@ const ModalCalendar = ({ day }: Props) => {
   );
 };
 
-const Container = styled.section({
-  position: 'relative',
-  height: '82%',
-  overflowY: 'scroll',
-});
-const LessonTypeContainer = styled.div({
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  padding: '8px 24px',
-  margin: '0 0 16px 0',
-});
-const LessonTypeRow = styled.dl({
-  display: 'flex',
-  alignItems: 'center',
-  fontWeight: 700,
-  margin: '0 24px 0 0',
-
-  div: {
-    width: '16px',
-    height: '16px',
-    borderRadius: '4px',
-    margin: '0 6px 0 0',
+const Container = styled('div', {
+  base: {
+    position: 'relative',
+    height: '82%',
+    overflowY: 'scroll',
   },
 });
-const CalendarWeekHeaderContainer = styled.div({
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  width: '100%',
-  borderBottom: '1px solid var(--grey110)',
-  textAlign: 'center',
-  padding: '0 0 16px 0',
+
+const LessonTypeContainer = styled('div', {
+  base: {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    padding: '8px 24px',
+    margin: '0 0 16px 0',
+  },
 });
-const DateList = styled.div<CSS_TYPE>(
-  {
+
+const LessonTypeRow = styled('dl', {
+  base: {
+    display: 'flex',
+    alignItems: 'center',
+    fontWeight: 700,
+    margin: '0 24px 0 0',
+
+    '&div': {
+      width: '16px',
+      height: '16px',
+      borderRadius: '4px',
+      margin: '0 6px 0 0',
+    },
+  },
+});
+
+const CalendarWeekHeaderContainer = styled('div', {
+  base: {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    width: '100%',
+    borderBottom: '1px solid var(--grey110)',
+    textAlign: 'center',
+    padding: '0 0 16px 0',
+  },
+});
+
+const DateList = styled('div', {
+  base: {
     position: 'relative',
     width: 'calc(100% / 7)',
     minHeight: '96px',
@@ -138,9 +154,6 @@ const DateList = styled.div<CSS_TYPE>(
     padding: '8px',
     fontWeight: 300,
   },
-  (props) => ({
-    color: props.color,
-  }),
-);
+});
 
 export default ModalCalendar;

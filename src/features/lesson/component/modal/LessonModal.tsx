@@ -1,12 +1,13 @@
 import { SetStateAction } from '@/types/index';
 import { FormEvent } from 'react';
-import styled from '@emotion/styled';
 import { useRouter } from 'next/navigation';
 import { EditWhiteIcon } from '@icons/index';
 
 import useInput from '@hooks/useInput';
 import { Button, Input, Select } from '@components/index';
 import { createLesson } from '@apis/lesson/lesson.api';
+import { Flex, styled } from 'styled-system/jsx';
+import { css } from 'styled-system/css';
 
 type Props = {
   setShowModal: SetStateAction<boolean>;
@@ -102,8 +103,8 @@ const LessonModal = ({ setShowModal }: Props) => {
           requiredText={'가격이 입력되지 않았어요.'}
         />
       </InputWrapper>
-      <div css={{ display: 'flex' }}>
-        <div css={{ width: 'calc(50%)' }}>
+      <Flex>
+        <div className={css({ width: 'calc(50%)' })}>
           <div>평일/주말 여부</div>
           <Row>
             <Select
@@ -117,7 +118,7 @@ const LessonModal = ({ setShowModal }: Props) => {
             </Select>
           </Row>
         </div>
-        <div css={{ width: 'calc(50%)', padding: '0 0 0 16px' }}>
+        <div className={css({ width: 'calc(50%)', padding: '0 0 0 16px' })}>
           <div>수강권 유형</div>
           <Row>
             <Select
@@ -131,7 +132,7 @@ const LessonModal = ({ setShowModal }: Props) => {
             </Select>
           </Row>
         </div>
-      </div>
+      </Flex>
       <InputWrapper label={'1회 레슨시간'}>
         <TextField
           name={'time'}
@@ -163,7 +164,6 @@ const LessonModal = ({ setShowModal }: Props) => {
         label={'레슨권 생성하기'}
         src={EditWhiteIcon}
         css={{
-          position: 'relative',
           width: '100%',
           justifyContent: 'center',
           border: 0,
@@ -177,26 +177,33 @@ const LessonModal = ({ setShowModal }: Props) => {
   );
 };
 
-const Row = styled.div({
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  height: '46px',
-  lineHeight: '30px',
-  padding: '4px 0',
-  margin: '8px 0 12px 0',
-});
-const InputWrapper = styled((props: any) => <Input {...props} />)({
-  margin: '0 0 12px 0',
-
-  label: {
-    display: 'block',
+const Row = styled('div', {
+  base: {
+    display: 'flex',
+    alignItems: 'center',
+    height: '46px',
+    lineHeight: '30px',
+    padding: '4px 0',
+    margin: '8px 0 12px 0',
   },
 });
-const TextField = styled((props: any) => <Input.TextField {...props} />)({
-  width: '50%',
-  padding: '10px 0 10px 10px',
-  margin: '12px 0 0 0',
+
+const InputWrapper = styled(Input, {
+  base: {
+    margin: '0 0 12px 0',
+
+    '& label': {
+      display: 'block',
+    },
+  },
+});
+
+const TextField = styled(Input.TextField, {
+  base: {
+    width: '50%',
+    padding: '10px 0 10px 10px',
+    margin: '12px 0 0 0',
+  },
 });
 
 export default LessonModal;

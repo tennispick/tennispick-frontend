@@ -5,6 +5,7 @@ import { transferPaymentType } from '@features/customer/util/payment';
 import { addNumberCommas } from '@utils/numberForm';
 import { transferDiscountType } from '@features/customer/util/payment';
 import { transferRefundRange } from '@features/customer/util/payment';
+import { css } from 'styled-system/css';
 
 type Props = {
   data: CustomerPaymentRefundData;
@@ -37,22 +38,30 @@ const CustomerDetailDrawerPayment = ({ data }: Props) => {
       <DrawerInputContainer
         label="할인유형"
         value={transferDiscountType(data.discountType)}
-        css={{ color: data.refundPrice ? 'var(--blue100)' : 'var(--black100)' }}
+        className={css({
+          color: data.refundPrice ? 'var(--blue100)' : 'var(--black100)',
+        })}
       />
       <DrawerInputContainer
         label="할인금액"
         value={addNumberCommas(data.discountPrice)}
-        css={{ color: data.refundPrice ? 'var(--blue100)' : 'var(--black100)' }}
+        className={css({
+          color: data.refundPrice ? 'var(--blue100)' : 'var(--black100)',
+        })}
       />
       <DrawerInputContainer
         label="환불금액"
         value={data.refundPrice ? addNumberCommas(data.refundPrice) : '0'}
-        css={{ color: data.refundPrice ? 'var(--red100)' : 'var(--black100)' }}
+        className={css({
+          color: data.refundPrice ? 'var(--red100)' : 'var(--black100)',
+        })}
       />
       <DrawerInputContainer
         label="환불유형"
         value={data.refundRange ? transferRefundRange(data.refundRange) : '-'}
-        css={{ color: data.refundPrice ? 'var(--red100)' : 'var(--black100)' }}
+        className={css({
+          color: data.refundPrice ? 'var(--red100)' : 'var(--black100)',
+        })}
       />
       <DrawerInputContainer
         label="환불 사유"

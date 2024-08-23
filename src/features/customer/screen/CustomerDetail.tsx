@@ -1,3 +1,5 @@
+'use client';
+
 import { PageHeader } from '@components/index';
 import { useCustomerDetailQuery } from '../query/CustomerQuery';
 import Loading from '@components/common/Loading';
@@ -5,6 +7,8 @@ import CustomerInfo from '../component/CustomerInfo';
 import CustomerPayment from '../component/Payment';
 import ManageContainer from '../component/detail/manage/ManageContainer';
 import { isEmptyObj } from '@utils/object';
+import { css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
 // import ModalCustomer from '@components/layer/calendar/Customer';
 // import ModalCalendar from '@components/layer/calendar/Calendar';
 
@@ -12,7 +16,7 @@ type Props = {
   id: string;
 };
 
-const CustomerDatail = ({ id }: Props) => {
+const CustomerDetailScreen = ({ id }: Props) => {
   const { data, isLoading } = useCustomerDetailQuery({ id });
 
   if (isEmptyObj(data) || isLoading) return <Loading />;
@@ -20,26 +24,18 @@ const CustomerDatail = ({ id }: Props) => {
   const customer = data;
 
   return (
-    <div css={{ position: 'relative', height: '100%' }}>
+    <div className={css({ height: '100%' })}>
       <PageHeader title={`${customer.name} 님`} link="/customer" />
       <CustomerInfo customerId={id} customer={customer} />
-      <div
-        css={{
-          position: 'relative',
-          height: 'calc(65% - 52px)',
-          overflowY: 'scroll',
-        }}
-      >
+      <div className={css({ height: 'calc(65% - 52px)', overflowY: 'scroll' })}>
         <div
-          css={{
+          className={flex({
             height: '100%',
-            position: 'relative',
-            display: 'flex',
             justifyContent: 'space-between',
-          }}
+          })}
         >
           <CustomerPayment id={id} />
-          <ManageContainer customerId={id} />
+          {/* <ManageContainer customerId={id} /> */}
         </div>
         {/* <div
           css={{
@@ -74,4 +70,4 @@ const CustomerDatail = ({ id }: Props) => {
   );
 };
 
-export default CustomerDatail;
+export default CustomerDetailScreen;

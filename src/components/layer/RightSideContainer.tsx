@@ -1,12 +1,12 @@
 import { Dispatch, PropsWithChildren, SetStateAction, useRef } from 'react';
-import styled from '@emotion/styled';
 import Image from 'next/image';
 
-import { fadeOutRight, fadeRight } from '@styles/animation';
 import { OnClickRefOutSideCloseHandler } from '@utils/onClick';
 import { CloseBtnIcon } from '@icons/index';
+import { css } from 'styled-system/css';
+import { styled } from 'styled-system/jsx';
 
-type RightSideProps = {
+type Props = {
   title?: string;
   showRightSide: boolean;
   setShowRightSide: Dispatch<SetStateAction<boolean>>;
@@ -17,68 +17,62 @@ const RightSideContainer = ({
   children,
   showRightSide,
   setShowRightSide,
-}: RightSideProps) => {
+}: Props) => {
   const sideRef = useRef(null);
   OnClickRefOutSideCloseHandler(sideRef, setShowRightSide);
 
+  const handleCloseDrawerClick = () => setShowRightSide(false);
+
   return (
     <section
-      css={{
+      className={css({
         position: 'fixed',
         width: '100vw',
         height: '100vh',
         top: 0,
         backgroundColor: 'rgb(18, 18, 18, 0.7)',
         zIndex: 99,
-      }}
+      })}
     >
-      <Wrapper ref={sideRef} css={showRightSide ? fadeRight : fadeOutRight}>
+      <Wrapper
+        ref={sideRef}
+        className={css({
+          animationName: showRightSide ? 'fadeRight' : 'fadeOutRight',
+        })}
+      >
         <div
-          css={{
-            position: 'relative',
+          className={css({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             fontSize: '1.2rem',
-          }}
+          })}
         >
-          <div
-            css={{
-              fontWeight: 600,
-            }}
-          >
-            {title}
-          </div>
+          <div className={css({ fontWeight: 600 })}>{title}</div>
           <Image
             src={CloseBtnIcon}
             alt={'close'}
-            css={{
-              cursor: 'pointer',
-            }}
-            onClick={() => setShowRightSide(false)}
+            className={css({ cursor: 'pointer' })}
+            onClick={handleCloseDrawerClick}
           />
         </div>
-        <div
-          css={{
-            margin: '48px 0',
-          }}
-        >
-          {children}
-        </div>
+        <div className={css({ margin: '48px 0' })}>{children}</div>
       </Wrapper>
     </section>
   );
 };
 
-const Wrapper = styled.div({
-  position: 'absolute',
-  width: '40vw',
-  height: '100vh',
-  right: 0,
-  backgroundColor: 'var(--grey600)',
-  borderTopLeftRadius: '16px',
-  borderBottomLeftRadius: '16px',
-  padding: '20px',
+const Wrapper = styled('div', {
+  base: {
+    position: 'absolute',
+    width: '40vw',
+    height: '100vh',
+    right: 0,
+    padding: '20px',
+    backgroundColor: 'var(--grey600)',
+    borderTopLeftRadius: '16px',
+    borderBottomLeftRadius: '16px',
+  },
 });
 
 export default RightSideContainer;

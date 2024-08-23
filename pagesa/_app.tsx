@@ -7,7 +7,7 @@ import {
   Hydrate,
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { globalStyles } from '@styles/styles';
+// import { globalStyles } from '@styles/styles';
 import { config } from '@lib/react-query/config';
 import { RecoilRoot } from 'recoil';
 import ModalProvider from 'src/provider/ModalProvider';
@@ -27,7 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={true} />
         <Hydrate state={pageProps?.dehydrateState}>
-          {globalStyles}
+          {/* {globalStyles} */}
           <AppLayout>
             <Component {...pageProps} />
           </AppLayout>

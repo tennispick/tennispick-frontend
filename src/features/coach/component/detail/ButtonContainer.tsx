@@ -3,6 +3,7 @@ import { DeleteWhiteIcon, EditWhiteIcon } from '@icons/index';
 import { deleteCoach } from '@apis/coach/coach.api';
 import { URL_COACH } from '@apis/coach/coach.url';
 import { useQueryClient } from '@tanstack/react-query';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   coachId: string;
@@ -26,13 +27,7 @@ const ButtonContainer = ({ coachId }: Props) => {
   };
 
   return (
-    <div
-      css={{
-        display: 'flex',
-        height: '46px',
-        justifyContent: 'end',
-      }}
-    >
+    <div className={flex({ height: '46px', justifyContent: 'end' })}>
       <Button
         label="코치 삭제하기"
         variant="iconBtn"

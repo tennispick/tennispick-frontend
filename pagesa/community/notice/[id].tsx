@@ -1,24 +1,14 @@
 import { Input, PageHeader } from '@components/index';
-import styled from '@emotion/styled';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { css } from 'styled-system/css';
+import { styled } from 'styled-system/jsx';
 
 const CommunityDetail = () => {
-  // TODO id === string 일 때 구분
-
   return (
     <>
       <PageHeader title={'공지사항'} link="/community" />
-      <div
-        css={{
-          position: 'relative',
-          height: 'calc(100% - 52px)',
-        }}
-      >
-        <div
-          css={{
-            position: 'relative',
-          }}
-        >
+      <div className={css({ height: 'calc(100% - 52px)' })}>
+        <div>
           <Row>
             <InputHead>제목</InputHead>
             <InputItem>
@@ -32,8 +22,7 @@ const CommunityDetail = () => {
             <InputItem
               label={'일반'}
               id={'normal'}
-              css={{
-                // backgroundColor: '#e4e4e4',
+              className={css({
                 backgroundColor: '#a5dc86',
                 color: 'rgba(0, 0, 0, 0.6)',
                 fontSize: '14px',
@@ -46,15 +35,15 @@ const CommunityDetail = () => {
                   'inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1)',
                 transition: 'all 0.1s ease-in-out',
 
-                ':hover': {
+                '&::hover': {
                   cursor: 'pointer',
                 },
-              }}
+              })}
             >
               <Input.TextField
                 type={'radio'}
                 name={'noticeType'}
-                css={{
+                className={css({
                   position: 'absolute',
                   clip: 'rect(0, 0, 0, 0)',
                   width: '1px',
@@ -62,11 +51,11 @@ const CommunityDetail = () => {
                   border: 0,
                   overflow: 'hidden',
 
-                  ':checked + label': {
+                  '&:checked + label': {
                     backgroundColor: '#a5dc86',
                     boxShadow: 'none',
                   },
-                }}
+                })}
                 defaultChecked
               />
             </InputItem>
@@ -94,30 +83,29 @@ const CommunityDetail = () => {
   );
 };
 
-const Row = styled.div({
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  height: '46px',
-  lineHeight: '38px',
-  padding: '4px 12px',
-  margin: '8px 0',
-});
-const InputHead = styled.div({
-  fontSize: '1rem',
-  fontWeight: '600',
-  width: '10%',
-  padding: '4px 0',
-});
-const InputItem = styled((props: any) => <Input {...props} />)(
-  {
-    position: 'relative',
-    height: '100%',
+const Row = styled('div', {
+  base: {
+    display: 'flex',
+    alignItems: 'center',
+    height: '46px',
+    lineHeight: '38px',
+    padding: '4px 12px',
+    margin: '8px 0',
   },
-  (props) => ({
-    width: props.width ? props.width : '30%',
-  }),
-);
+});
+
+const InputHead = styled('div', {
+  base: {
+    fontSize: '1rem',
+    fontWeight: '600',
+    width: '10%',
+    padding: '4px 0',
+  },
+});
+
+const InputItem = styled(Input, {
+  base: { height: '100%' },
+});
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext,

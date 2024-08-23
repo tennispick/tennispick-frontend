@@ -1,4 +1,5 @@
 import { LiHTMLAttributes, ReactElement, ReactNode } from 'react';
+import { css } from 'styled-system/css';
 
 interface NormalListProps extends LiHTMLAttributes<HTMLLIElement> {
   props?: LiHTMLAttributes<HTMLLIElement>;
@@ -12,7 +13,7 @@ const NormalList = ({
 }: NormalListProps): ReactElement<LiHTMLAttributes<HTMLLIElement>> => {
   return (
     <li
-      css={{
+      className={css({
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
@@ -21,11 +22,11 @@ const NormalList = ({
         cursor: 'pointer',
         borderBottom: '1px solid var(--grey500)',
 
-        ':hover': {
+        _hover: {
           backgroundColor: 'var(--grey500)',
           borderRadius: '8px',
         },
-      }}
+      })}
       {...props}
     >
       {props.children}
@@ -33,22 +34,20 @@ const NormalList = ({
   );
 };
 
-// eslint-disable-next-line react/display-name
-NormalList.UnOrderList = ({
-  height,
-  children,
-  ...rest
-}: {
+type UlProps = {
   height?: string;
   children: ReactNode;
-}) => {
+} & LiHTMLAttributes<HTMLUListElement>;
+
+// eslint-disable-next-line react/display-name
+NormalList.UnOrderList = ({ height, children, ...rest }: UlProps) => {
   return (
     <ul
-      css={{
+      className={css({
         position: 'relative',
         height: height ? height : '90%',
         overflowY: 'scroll',
-      }}
+      })}
       {...rest}
     >
       {children}

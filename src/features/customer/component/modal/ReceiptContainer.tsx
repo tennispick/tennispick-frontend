@@ -1,5 +1,4 @@
 import { Button } from '@components/index';
-import styled from '@emotion/styled';
 import {
   discountTypeList,
   paymentTypeList,
@@ -11,6 +10,8 @@ import {
 } from '@features/customer/util/payment';
 import { LessonListQueryData } from '@features/lesson/type/lesson.type';
 import { addNumberCommas } from '@utils/numberForm';
+import { css } from 'styled-system/css';
+import { styled } from 'styled-system/jsx';
 
 type Props = {
   type: PaymentRefundType;
@@ -40,7 +41,7 @@ const CustomerModalReceiptContainer = ({
   onClickRefundHandler,
 }: Props) => {
   return (
-    <div css={{ position: 'relative', width: '30%', height: '100%' }}>
+    <div className={css({ width: '30%', height: '100%' })}>
       {
         {
           payment: (
@@ -84,7 +85,7 @@ const PaymentReceipt = ({
 
   return (
     <>
-      <div css={{ height: '45%', padding: '36px 32px 0 28px' }}>
+      <div className={css({ height: '45%', padding: '36px 32px 0 28px' })}>
         <ReceiptRow>
           <div>상품명</div>
           <div>{lesson?.name}</div>
@@ -127,24 +128,23 @@ const PaymentReceipt = ({
         </ReceiptRow>
       </div>
       <div
-        css={{
-          position: 'relative',
+        className={css({
           height: '96px',
           padding: '36px 32px 0 28px',
           borderTop: '1px solid var(--grey100)',
-        }}
+        })}
       >
         <ReceiptRow>
           <div
-            css={{
+            className={css({
               fontWeight: 600,
               fontSize: '1.2rem',
               color: 'var(--red200)',
-            }}
+            })}
           >
             결제 예정금액
           </div>
-          <div css={{ fontWeight: 600, fontSize: '1.2rem' }}>
+          <div className={css({ fontWeight: 600, fontSize: '1.2rem' })}>
             {addNumberCommas(
               totalPrice!(numberFormatPrice, numberFormatDiscountPrice),
             )}{' '}
@@ -189,7 +189,7 @@ const RefundReceipt = ({
 >) => {
   return (
     <>
-      <div css={{ height: '50%', padding: '36px 32px 0 28px' }}>
+      <div className={css({ height: '50%', padding: '36px 32px 0 28px' })}>
         <ReceiptRow>
           <div>상품명</div>
           <div>{lesson?.name}</div>
@@ -197,7 +197,6 @@ const RefundReceipt = ({
         <ReceiptRow>
           <div>상품금액</div>
           <div>
-            {/* addNumberCommas(Number(lesson.price.replaceAll(',', ''))) */}
             {addNumberCommas(Number(lesson?.price.replaceAll(',', '')))} 원
           </div>
         </ReceiptRow>
@@ -209,38 +208,37 @@ const RefundReceipt = ({
           <div>결제금액</div>
           <div>{addNumberCommas(Number(price))}원</div>
         </ReceiptRow>
-        <ReceiptRow css={{ color: 'var(--red200)' }}>
+        <ReceiptRow className={css({ color: 'var(--red200)' })}>
           <div>환불유형</div>
           <div>{transferPaymentType(refundType!)}</div>
         </ReceiptRow>
-        <ReceiptRow css={{ color: 'var(--red200)' }}>
+        <ReceiptRow className={css({ color: 'var(--red200)' })}>
           <div>환불범위</div>
           <div>{transferRefundRange(refundRange!)}</div>
         </ReceiptRow>
-        <ReceiptRow css={{ color: 'var(--red200)' }}>
+        <ReceiptRow className={css({ color: 'var(--red200)' })}>
           <div>환불금액</div>
           <div>{addNumberCommas(refundPrice!)} 원</div>
         </ReceiptRow>
       </div>
       <div
-        css={{
-          position: 'relative',
+        className={css({
           height: '96px',
           padding: '36px 32px 0 28px',
           borderTop: '1px solid var(--grey100)',
-        }}
+        })}
       >
         <ReceiptRow>
           <div
-            css={{
+            className={css({
               fontWeight: 600,
               fontSize: '1.2rem',
               color: 'var(--red200)',
-            }}
+            })}
           >
             예정 환불금액
           </div>
-          <div css={{ fontWeight: 600, fontSize: '1.2rem' }}>
+          <div className={css({ fontWeight: 600, fontSize: '1.2rem' })}>
             {addNumberCommas(refundPrice!)} 원
           </div>
         </ReceiptRow>
@@ -263,13 +261,14 @@ const RefundReceipt = ({
   );
 };
 
-const ReceiptRow = styled.div({
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  fontSize: '1.05rem',
-  margin: '0 0 20px 0',
+const ReceiptRow = styled('div', {
+  base: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    fontSize: '1.05rem',
+    margin: '0 0 20px 0',
+  },
 });
 
 CustomerModalReceiptContainer.PaymentReceipt = PaymentReceipt;

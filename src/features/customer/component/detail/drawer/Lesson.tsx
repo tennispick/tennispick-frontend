@@ -14,6 +14,8 @@ import { FormEventHandler } from 'react';
 import { deleteCustomerLesson } from '@apis/customer/customer.api';
 import { useQueryClient } from '@tanstack/react-query';
 import { URL_FETCH_CUSTOMER_ALL_LESSON_LIST } from '@apis/customer/customer.url';
+import { css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   data: CustomerAllLessonListQueryData;
@@ -76,37 +78,40 @@ const DrawerLesson = ({ data }: Props) => {
       />
       <div>
         <div
-          css={{ fontWeight: 600, fontSize: '0.925rem', padding: '0 0 0 4px' }}
+          className={css({
+            fontWeight: 600,
+            fontSize: '0.925rem',
+            padding: '0 0 0 4px',
+          })}
         >
           수강이력
         </div>
         <div
-          css={{
+          className={flex({
             height: '28px',
-            display: 'flex',
             alignItems: 'center',
             textAlign: 'center',
             fontSize: '0.9rem',
             margin: '12px 0 0 0',
             padding: '6px 8px',
-          }}
+          })}
         >
-          <div css={{ width: '10%' }}>출석여부</div>
-          <div css={{ width: '15%' }}>코치</div>
-          <div css={{ width: '10%' }}>보강유무</div>
-          <div css={{ width: '15%' }}>레슨 유형</div>
-          <div css={{ width: '15%' }}>예약 유형</div>
-          <div css={{ width: '15%' }}>날짜</div>
-          <div css={{ width: '10%' }}>시작시간</div>
-          <div css={{ width: '10%' }}>종료시간</div>
+          <div className={css({ width: '10%' })}>출석여부</div>
+          <div className={css({ width: '15%' })}>코치</div>
+          <div className={css({ width: '10%' })}>보강유무</div>
+          <div className={css({ width: '15%' })}>레슨 유형</div>
+          <div className={css({ width: '15%' })}>예약 유형</div>
+          <div className={css({ width: '15%' })}>날짜</div>
+          <div className={css({ width: '10%' })}>시작시간</div>
+          <div className={css({ width: '10%' })}>종료시간</div>
         </div>
         <div
-          css={{
+          className={css({
             height: '240px',
             padding: '8px 0',
             overflowY: 'auto',
             fontSize: '0.9rem',
-          }}
+          })}
         >
           {initialLessonScheduleHistoryData &&
           initialLessonScheduleHistoryData.length > 0 ? (
@@ -127,45 +132,42 @@ const DrawerLesson = ({ data }: Props) => {
                 return (
                   <ManageListRow
                     key={`${index}-${centerCoachId}`}
-                    css={{
-                      cursor: 'default',
+                    className={css({
                       color: isAttendance === 'Y' ? '' : 'var(--red100)',
                       opacity: isAttendance === 'Y' ? 1 : 0.65,
-                    }}
+                      cursor: 'default',
+                    })}
                   >
-                    <div css={{ width: '10%' }}>
+                    <div className={css({ width: '10%' })}>
                       {isAttendance === 'Y' ? '출석' : '결석'}
                     </div>
-                    <div css={{ width: '15%' }}>{coachName ?? '-'}</div>
-                    <div css={{ width: '10%' }}>
+                    <div className={css({ width: '15%' })}>
+                      {coachName ?? '-'}
+                    </div>
+                    <div className={css({ width: '10%' })}>
                       {isRegularLesson === 'Y' ? '정규레슨' : '보강레슨'}
                     </div>
-                    <div css={{ width: '15%' }}>
+                    <div className={css({ width: '15%' })}>
                       {transferLessonType(lessonType)}강습
                     </div>
-                    <div css={{ width: '15%' }}>
+                    <div className={css({ width: '15%' })}>
                       {transferLessonDateType(lessonDateType)}로 예약
                     </div>
-                    <div css={{ width: '15%' }}>{date}</div>
-                    <div css={{ width: '10%' }}>{startTime}</div>
-                    <div css={{ width: '10%' }}>{endTime}</div>
+                    <div className={css({ width: '15%' })}>{date}</div>
+                    <div className={css({ width: '10%' })}>{startTime}</div>
+                    <div className={css({ width: '10%' })}>{endTime}</div>
                   </ManageListRow>
                 );
               },
             )
           ) : (
-            <div css={{ textAlign: 'center', margin: '16px 0 0 0' }}>
+            <div className={css({ textAlign: 'center', margin: '16px 0 0 0' })}>
               수강이력이 존재하지 않아요.
             </div>
           )}
         </div>
       </div>
-      <div
-        css={{
-          position: 'fixed',
-          bottom: '20px',
-        }}
-      >
+      <div className={css({ position: 'fixed', bottom: '20px' })}>
         <Button
           type="submit"
           label="수강 삭제하기"

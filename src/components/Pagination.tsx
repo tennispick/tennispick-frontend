@@ -1,4 +1,3 @@
-import { ImageContainer as Image } from '@styles/styles';
 import { SetStateAction } from '../types';
 import DoubleLeftArrow from '@icons/paging_double_left_arrow.svg';
 import SingleLeftArrow from '@icons/paging_single_left_arrow.svg';
@@ -8,6 +7,8 @@ import DoubleLeftDisabledArrow from '@icons/paging_double_left_disabled_arrow.sv
 import SingleLeftDisabledArrow from '@icons/paging_single_left_disabled_arrow.svg';
 import SingleRightDisabledArrow from '@icons/paging_single_right_disabled_arrow.svg';
 import DoubleRightDisabledArrow from '@icons/paging_double_right_disabled_arrow.svg';
+import Image from 'next/image';
+import { css } from 'styled-system/css';
 
 type Props = {
   totalPage: number;
@@ -30,21 +31,19 @@ const Pagination = ({
 
   return (
     <div
-      css={{
+      className={css({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         margin: '16px 0 0 0',
-      }}
+      })}
     >
       <Image
         src={currentSet > 1 ? DoubleLeftArrow : DoubleLeftDisabledArrow}
         alt="double left arrow"
         width={28}
         height={28}
-        css={{
-          cursor: currentSet > 1 ? 'pointer' : 'not-allowed',
-        }}
+        className={css({ cursor: currentSet > 1 ? 'pointer' : 'not-allowed' })}
         onClick={() => (currentSet > 1 ? setCurrentPage(1) : null)}
       />
       <Image
@@ -52,21 +51,19 @@ const Pagination = ({
         alt="single left arrow"
         width={28}
         height={28}
-        css={{
-          cursor: currentSet > 1 ? 'pointer' : 'not-allowed',
-        }}
+        className={css({ cursor: currentSet > 1 ? 'pointer' : 'not-allowed' })}
         onClick={() =>
           currentSet > 1 ? setCurrentPage(startPage - offset) : null
         }
       />
-      <ul css={{ display: 'flex', alignItems: 'center' }}>
+      <ul className={css({ display: 'flex', alignItems: 'center' })}>
         {Array.from(
           { length: endPage - startPage + 1 },
           (_, i) => i + startPage,
         ).map((page) => (
           <li
             key={page}
-            css={{
+            className={css({
               width: '28px',
               height: '28px',
               padding: '4px 8px',
@@ -79,7 +76,7 @@ const Pagination = ({
                   : 'var(--grey300)',
               fontWeight: currentPage === page ? 600 : 400,
               cursor: 'pointer',
-            }}
+            })}
             onClick={() => setCurrentPage(page)}
           >
             {page}
@@ -93,9 +90,9 @@ const Pagination = ({
         alt="single right arrow"
         width={28}
         height={28}
-        css={{
+        className={css({
           cursor: currentSet < totalSets ? 'pointer' : 'not-allowed',
-        }}
+        })}
         onClick={() =>
           currentSet < totalSets ? setCurrentPage(startPage + offset) : null
         }
@@ -107,9 +104,9 @@ const Pagination = ({
         alt="double right arrow"
         width={28}
         height={28}
-        css={{
+        className={css({
           cursor: currentSet < totalSets ? 'pointer' : 'not-allowed',
-        }}
+        })}
         onClick={() =>
           currentSet < totalSets ? setCurrentPage(totalPage) : null
         }

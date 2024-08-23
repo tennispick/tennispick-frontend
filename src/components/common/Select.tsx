@@ -5,6 +5,7 @@ import {
   ReactElement,
   ReactNode,
 } from 'react';
+import { css } from 'styled-system/css';
 
 interface Props extends SelectHTMLAttributes<HTMLSelectElement> {
   props?: SelectHTMLAttributes<HTMLSelectElement>;
@@ -22,12 +23,12 @@ const Select = forwardRef(
     return (
       <select
         ref={ref}
-        css={{
+        className={css({
           width: props.width,
           height: props.height,
           margin: props.margin,
           ...VARIANT_STYLE,
-        }}
+        })}
         {...props}
       >
         {props.children}
@@ -38,7 +39,7 @@ const Select = forwardRef(
 
 Select.displayName = 'Select';
 
-const VARIANT_STYLE: object = {
+const VARIANT_STYLE = css.raw({
   position: 'relative',
   height: '100%',
   lineHeight: '34px',
@@ -47,6 +48,6 @@ const VARIANT_STYLE: object = {
   border: '1px solid var(--grey300)',
   borderRadius: '8px',
   outline: 0,
-};
+});
 
 export default Select;

@@ -4,12 +4,13 @@ import Image from 'next/image';
 import { NoResult, NormalList } from '@components/index';
 import { ProfileManIcon, ProfileWomanIcon } from '@icons/index';
 import { useRouter } from 'next/navigation';
+import { css } from 'styled-system/css';
 
-interface CustomerListProps {
+type Props = {
   data: Array<{ [key: string]: string | number }>;
-}
+};
 
-const CustomerList = ({ data }: CustomerListProps) => {
+const CustomerList = ({ data }: Props) => {
   const router = useRouter();
   const [list] = useState<Array<{ [key: string]: string | number }>>(data);
 
@@ -24,12 +25,11 @@ const CustomerList = ({ data }: CustomerListProps) => {
                 onClick={() => router.push(`/customer/${item.id}`)}
               >
                 <div
-                  css={{
-                    position: 'relative',
+                  className={css({
                     width: '5%',
                     minHeight: '40px',
                     textAlign: 'center',
-                  }}
+                  })}
                 >
                   <Image
                     src={item.sex === 'man' ? ProfileManIcon : ProfileWomanIcon}
@@ -37,27 +37,21 @@ const CustomerList = ({ data }: CustomerListProps) => {
                     fill
                   />
                 </div>
-                <div
-                  css={{
-                    position: 'relative',
-                    width: '70%',
-                  }}
-                >
-                  <div css={{ fontWeight: '600' }}>
+                <div className={css({ width: '70%' })}>
+                  <div className={css({ fontWeight: 600 })}>
                     {item.name} &#40;{item.age},{' '}
                     {item.sex === 'man' ? '남' : '여'}&#41;
                   </div>
                   <div>미수금: {item.outStandingMoney} </div>
                 </div>
                 <div
-                  css={{
-                    position: 'relative',
+                  className={css({
                     width: '25%',
                     backgroundColor: 'var(--grey400)',
                     borderRadius: '16px',
                     padding: '12px 0',
                     textAlign: 'center',
-                  }}
+                  })}
                 >
                   {item.phone} &#183; {item.email}
                 </div>
@@ -67,11 +61,10 @@ const CustomerList = ({ data }: CustomerListProps) => {
         </NormalList.UnOrderList>
       ) : (
         <div
-          css={{
-            position: 'relative',
+          className={css({
             height: '20vh',
             borderRadius: '25px',
-          }}
+          })}
         >
           <NoResult
             description={'아직 회원님이 존재하지 않아요.'}

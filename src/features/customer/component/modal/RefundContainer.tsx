@@ -18,6 +18,8 @@ import { createCustomerRefund } from '@apis/payment/payment.api';
 import { useRouter } from 'next/navigation';
 import ConfirmModal from '@components/layer/ConfirmModal';
 import { Input } from '@components/index';
+import { flex } from 'styled-system/patterns';
+import { css } from 'styled-system/css';
 
 type Props = {
   customerId: string;
@@ -116,19 +118,19 @@ const CustomerModalRefundContainer = ({
   return (
     <form
       id="refundForm"
-      css={{ width: '100%', display: 'flex' }}
+      className={flex({ width: '100%' })}
       onSubmit={onSubmitHandler}
     >
       <div
-        css={{
+        className={css({
           width: '70%',
           padding: '16px 28px',
           height: '100%',
           borderRight: '1px solid var(--grey100)',
-        }}
+        })}
       >
-        <div css={{ display: 'flex', height: 'calc(100% - 24px)' }}>
-          <div css={{ width: '50%' }}>
+        <div className={flex({ height: 'calc(100% - 24px)' })}>
+          <div className={css({ width: '50%' })}>
             <InputRow
               name="name"
               label="상품명"
@@ -165,7 +167,7 @@ const CustomerModalRefundContainer = ({
               value={String(addNumberCommas(totalPrice))}
             />
           </div>
-          <div css={{ width: '50%' }}>
+          <div className={css({ width: '50%' })}>
             <InputRow
               name="refundMethod"
               label="환불수단"
@@ -231,9 +233,7 @@ const CustomerModalRefundContainer = ({
             <Input.TextField
               name="reason"
               placeholder="환불 사유를 입력해주세요."
-              css={{
-                padding: '16px',
-              }}
+              className={css({ padding: '16px' })}
               onChange={onChangeFormData}
             />
           </Input>

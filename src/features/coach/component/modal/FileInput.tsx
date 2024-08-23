@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import uploadIcon from '@icons/drive_folder_upload.svg';
 import { ChangeEventHandler, useState } from 'react';
+import { flex } from 'styled-system/patterns';
+import { css } from 'styled-system/css';
 
 const PREVIEW_IMAGE_WIDTH_SIZE = 117;
 const PREVIEW_IMAGE_HEIGHT_SIZE = 156;
@@ -30,12 +32,11 @@ const FileInput = ({ onChangeFileHandler }: Props) => {
     <div>
       <div>프로필 이미지 업로드(선택)</div>
       <div
-        css={{
-          display: 'flex',
+        className={flex({
           alignItems: 'end',
           height: preview ? `${PREVIEW_IMAGE_HEIGHT_SIZE}px` : 'auto',
           margin: '12px 0',
-        }}
+        })}
       >
         {preview && (
           <Image
@@ -43,7 +44,7 @@ const FileInput = ({ onChangeFileHandler }: Props) => {
             alt="preview image"
             width={PREVIEW_IMAGE_WIDTH_SIZE}
             height={PREVIEW_IMAGE_HEIGHT_SIZE}
-            css={{ margin: '0 16px 0 0' }}
+            className={css({ margin: '0 16px 0 0' })}
           />
         )}
         <input
@@ -51,17 +52,16 @@ const FileInput = ({ onChangeFileHandler }: Props) => {
           type="file"
           accept="image/jpeg,image/jpg"
           onChange={onChangeFileInputHandler}
-          css={{
+          className={css({
             position: 'absolute',
             visibility: 'hidden',
             width: 0,
             height: 0,
-          }}
+          })}
         />
         <label
           htmlFor="image"
-          css={{
-            display: 'flex',
+          className={flex({
             alignItems: 'center',
             width: 'calc(100% - 160px)',
             height: '44px',
@@ -69,10 +69,12 @@ const FileInput = ({ onChangeFileHandler }: Props) => {
             borderRadius: 8,
             border: '1px solid var(--grey300)',
             cursor: 'pointer',
-          }}
+          })}
         >
           <Image src={uploadIcon} alt="upload icon" width={24} height={24} />
-          <div css={{ margin: '0 0 0 8px' }}>이미지를 첨부해주세요.</div>
+          <div className={css({ margin: '0 0 0 8px' })}>
+            이미지를 첨부해주세요.
+          </div>
         </label>
       </div>
     </div>

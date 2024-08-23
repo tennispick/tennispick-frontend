@@ -1,32 +1,32 @@
-import { spinner } from '@styles/animation';
+import { css } from 'styled-system/css';
 
 const Loading = () => {
   return (
     <div
-      css={{
+      className={css({
         position: 'fixed',
         width: '100vw',
         height: '100vh',
         top: '0',
         left: '0',
         zIndex: '9999',
-      }}
+      })}
     >
       <div
-        css={{
+        className={css({
           position: 'absolute',
           top: '47.5%',
           left: '47.5%',
           transform: 'translate(-50%, -50%)',
-        }}
+        })}
       >
         <svg
-          css={spinner}
           width="120"
           height="120"
           viewBox="0 0 140 140"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className={css({ animation: 'spin 1s linear infinite' })}
         >
           <g clipPath="url(#clip0_4186_141878)">
             <path

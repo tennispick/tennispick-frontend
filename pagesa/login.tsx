@@ -1,6 +1,6 @@
-import styled from '@emotion/styled';
 import IntroContainer from '@components/login/Intro';
 import LoginContainer from '@components/login/Login';
+import { styled } from 'styled-system/jsx';
 
 const Login = () => {
   return (
@@ -10,11 +10,11 @@ const Login = () => {
     </Container>
   );
 };
-const Container = styled.div({
-  position: 'relative',
-  width: '100vw',
-  height: '100vh',
-  display: 'flex',
+const Container = styled('div', {
+  base: {
+    width: '100vw',
+    height: '100vh',
+    display: 'flex',
+  },
 });
-
 export default Login;

@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
-import { Button, Filter, PageHeader, Search, TabList } from '@components/index';
+import { Button, PageHeader, TabList } from '@components/index';
 import { comunityTabList } from '@mocks/tabList';
 import { EditWhiteIcon } from '@icons/index';
 import NoticeList from '@components/community/List';
 import { useRouter } from 'next/navigation';
+import { css } from 'styled-system/css';
 
 const CommunityPage = () => {
   const [currentTab, setCurrentTab] = useState<string>(comunityTabList[0].id);
@@ -15,8 +16,6 @@ const CommunityPage = () => {
   return (
     <>
       <PageHeader title={'공지사항'} />
-      <Filter />
-      <Search />
       <TabList
         state={currentTab}
         setState={setCurrentTab}
@@ -32,10 +31,10 @@ const CommunityPage = () => {
               height: '20px',
               margin: '0 8px 0 0',
             }}
-            css={{
+            className={css({
               backgroundColor: 'var(--business-active-color)',
               color: 'var(--white100)',
-            }}
+            })}
             onClick={() => router.push('/community/notice/create')}
           />
         }

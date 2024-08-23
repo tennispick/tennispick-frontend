@@ -1,8 +1,10 @@
 import { ChangeEvent, PropsWithChildren } from 'react';
+import { flex } from 'styled-system/patterns';
 
 type Props = Pick<HTMLInputElement, 'type' | 'name' | 'value'> & {
   id?: string;
   label?: string;
+  className?: string;
   defaultChecked?: boolean;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
@@ -22,24 +24,26 @@ const ScheduleModalInput = ({
   checked,
   ...props
 }: Props) => {
+  const { className, ...rest } = props;
+
   return (
     <div
-      css={{
-        display: 'flex',
+      className={flex({
         alignItems: 'center',
         gap: type !== 'text' ? '6px' : 0,
         margin: type !== 'text' ? '0 16px 0 0' : '',
-      }}
+      })}
     >
       <input
         id={id}
         type={type}
         name={name}
+        className={className}
         value={value}
         defaultChecked={defaultChecked}
         placeholder={placeholder}
         checked={checked}
-        {...props}
+        {...rest}
       />
       {children}
       {label && <label htmlFor={id}>{label}</label>}

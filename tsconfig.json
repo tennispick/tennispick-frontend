@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -13,10 +13,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "jsxImportSource": "@emotion/react",
     "incremental": true,
     "baseUrl": "./",
-    "types": ["react", "@emotion/react/types/css-prop"],
+    "types": ["react"],
     "paths": {
       "@icons/*": ["src/assets/icons/*"],
       "@images/*": ["src/assets/images/*"],
@@ -45,8 +44,9 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/hooks/useMobile.tsX",
-    ".next/types/**/*.ts"
+    "src/hooks/useMobile.tsx",
+    ".next/types/**/*.ts",
+    "styled-system"
   ],
   "exclude": ["node_modules"]
 }

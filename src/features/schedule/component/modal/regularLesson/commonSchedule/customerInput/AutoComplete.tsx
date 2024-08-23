@@ -1,3 +1,5 @@
+import { css } from 'styled-system/css';
+
 type Props = {
   data: {
     id: string;
@@ -9,7 +11,7 @@ type Props = {
 const InputAutoComplete = ({ data, onClickCustomerHandler }: Props) => {
   return (
     <section
-      css={{
+      className={css({
         position: 'absolute',
         width: '100%',
         minHeight: '40px',
@@ -22,22 +24,23 @@ const InputAutoComplete = ({ data, onClickCustomerHandler }: Props) => {
         borderRadius: '8px',
         overflowY: 'scroll',
         zIndex: 1,
-      }}
+      })}
     >
-      <ul css={{ minHeight: '40px', padding: '4px 0' }}>
+      <ul className={css({ minHeight: '40px', padding: '4px 0' })}>
         {data.map(({ id, name }) => {
           return (
             <li
               key={id}
               id={id}
-              css={{
+              className={css({
                 cursor: 'pointer',
                 padding: '8px 12px',
-                ':hover': {
+
+                _hover: {
                   borderRadius: '4px',
                   backgroundColor: 'var(--grey400)',
                 },
-              }}
+              })}
               value={name}
               onClick={() => onClickCustomerHandler(id, name)}
             >

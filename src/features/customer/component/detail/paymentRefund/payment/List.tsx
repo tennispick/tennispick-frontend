@@ -9,6 +9,8 @@ import { addNumberCommas } from '@utils/numberForm';
 import { MouseEvent, useState } from 'react';
 import RightSideContainer from '@components/layer/RightSideContainer';
 import DrawerPayment from '../../drawer/Payment';
+import { flex } from 'styled-system/patterns';
+import { css } from 'styled-system/css';
 
 type Props = {
   data: CustomerPaymentRefundData[];
@@ -31,32 +33,31 @@ const CustomerDetailPaymentRefundPaymentList = ({
   return (
     <>
       <div
-        css={{
+        className={flex({
           height: '28px',
-          display: 'flex',
           alignItems: 'center',
           textAlign: 'center',
           fontSize: '0.9rem',
           padding: '6px 8px',
           gap: '2px',
-        }}
+        })}
       >
-        <div css={{ width: '20%' }}>레슨권</div>
-        <div css={{ width: '13%' }}>결제일</div>
-        <div css={{ width: '11%' }}>결제유형</div>
-        <div css={{ width: '11%' }}>할인유형</div>
-        <div css={{ width: '11%' }}>할인금액</div>
-        <div css={{ width: '11%' }}>결제금액</div>
-        <div css={{ width: '10%' }}>환불금액</div>
-        <div css={{ width: '10%' }}></div>
+        <div className={css({ width: '20%' })}>레슨권</div>
+        <div className={css({ width: '13%' })}>결제일</div>
+        <div className={css({ width: '11%' })}>결제유형</div>
+        <div className={css({ width: '11%' })}>할인유형</div>
+        <div className={css({ width: '11%' })}>할인금액</div>
+        <div className={css({ width: '11%' })}>결제금액</div>
+        <div className={css({ width: '10%' })}>환불금액</div>
+        <div className={css({ width: '10%' })}></div>
       </div>
       <div
-        css={{
+        className={css({
           height: 'calc(100% - 28px)',
           padding: '8px 0',
           overflowY: 'auto',
           fontSize: '0.9rem',
-        }}
+        })}
       >
         {data.map((item) => {
           const {
@@ -85,31 +86,35 @@ const CustomerDetailPaymentRefundPaymentList = ({
               onClick={onClickPaymentRowHandler}
             >
               <div
-                css={{
+                className={css({
                   width: '20%',
                   textOverflow: 'ellipsis',
                   whiteSpace: 'nowrap',
                   overflow: 'hidden',
                   textAlign: 'left',
-                }}
+                })}
               >
                 {lessonName}
               </div>
-              <div css={{ width: '13%' }}>{createdAt}</div>
-              <div css={{ width: '11%' }}>{transferPaymentType(type)}</div>
-              <div css={{ width: '11%' }}>
+              <div className={css({ width: '13%' })}>{createdAt}</div>
+              <div className={css({ width: '11%' })}>
+                {transferPaymentType(type)}
+              </div>
+              <div className={css({ width: '11%' })}>
                 {transferDiscountType(discountType)}
               </div>
-              <div css={{ width: '11%' }}>
+              <div className={css({ width: '11%' })}>
                 {discountPrice === 0 ? '-' : addNumberCommas(discountPrice)}
               </div>
-              <div css={{ width: '11%' }}>{addNumberCommas(totalPrice)}</div>
-              <div css={{ width: '10%' }}>
+              <div className={css({ width: '11%' })}>
+                {addNumberCommas(totalPrice)}
+              </div>
+              <div className={css({ width: '10%' })}>
                 {refundPrice ? addNumberCommas(refundPrice) : '-'}
               </div>
               {isCompleteRefund ? (
                 <button
-                  css={{
+                  className={css({
                     width: '10%',
                     backgroundColor: 'var(--red200)',
                     color: 'var(--white100)',
@@ -119,12 +124,12 @@ const CustomerDetailPaymentRefundPaymentList = ({
                     border: 0,
                     cursor: 'pointer',
 
-                    ':disabled': {
+                    _disabled: {
                       borderColor: 'var(--grey100)',
                       backgroundColor: 'var(--grey100)',
                       cursor: 'not-allowed',
                     },
-                  }}
+                  })}
                   onClick={(e) => onClickOpenRefundModalHandler(e, item)}
                   disabled={isDisabledRefund}
                 >
@@ -132,7 +137,11 @@ const CustomerDetailPaymentRefundPaymentList = ({
                 </button>
               ) : (
                 <div
-                  css={{ width: '10%', textAlign: 'center', fontWeight: 600 }}
+                  className={css({
+                    width: '10%',
+                    textAlign: 'center',
+                    fontWeight: 600,
+                  })}
                 >
                   환불완료
                 </div>

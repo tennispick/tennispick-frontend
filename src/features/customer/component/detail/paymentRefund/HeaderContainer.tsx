@@ -1,7 +1,8 @@
 import { CustomerPaymentRefundData } from '@apis/payment/payment.type';
-import styled from '@emotion/styled';
 import { PaymentRefundType } from '@features/customer/type/payment.type';
 import { addNumberCommas } from '@utils/numberForm';
+import { css } from 'styled-system/css';
+import { styled } from 'styled-system/jsx';
 
 type Props = {
   type: PaymentRefundType;
@@ -21,23 +22,23 @@ const CustomerDetailPaymentRefundHeaderContainer = ({
   return (
     <HeaderContainer>
       <div
-        css={{
+        className={css({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-        }}
+        })}
       >
-        <div css={{ display: 'flex', alignItems: 'center' }}>
-          <div css={{ margin: '0 16px 0 0' }}>
+        <div className={css({ display: 'flex', alignItems: 'center' })}>
+          <div className={css({ margin: '0 16px 0 0' })}>
             총{' '}
-            <span css={{ fontWeight: 600 }}>
+            <span className={css({ fontWeight: 600 })}>
               {addNumberCommas(totalLength)}
             </span>
             건
           </div>
           <div>
             총 {type === 'payment' ? '결제' : '환불'}금액 :{' '}
-            <span css={{ fontWeight: 600 }}>
+            <span className={css({ fontWeight: 600 })}>
               {addNumberCommas(
                 type === 'payment' ? totalPrice : totalRefundPrice,
               )}
@@ -47,12 +48,12 @@ const CustomerDetailPaymentRefundHeaderContainer = ({
         </div>
         {type === 'payment' && (
           <div
-            css={{
+            className={css({
               color: 'var(--business-color)',
               fontWeight: 600,
               margin: '0 8px 0 0',
               cursor: 'pointer',
-            }}
+            })}
             onClick={onClickOpenModalHandler}
           >
             결제하기
@@ -63,14 +64,15 @@ const CustomerDetailPaymentRefundHeaderContainer = ({
   );
 };
 
-const HeaderContainer = styled.div({
-  position: 'relative',
-  height: '48px',
-  lineHeight: '24px',
-  backgroundColor: 'var(--white100)',
-  margin: '0 0 12px 0',
-  padding: '12px',
-  borderRadius: '8px',
+const HeaderContainer = styled('div', {
+  base: {
+    height: '48px',
+    lineHeight: '24px',
+    backgroundColor: 'var(--white100)',
+    margin: '0 0 12px 0',
+    padding: '12px',
+    borderRadius: '8px',
+  },
 });
 
 export default CustomerDetailPaymentRefundHeaderContainer;

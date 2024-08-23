@@ -3,7 +3,6 @@ import { v4 as uuidV4 } from 'uuid';
 
 import { NoResult, InlineImageDiv, CardList, Button } from '@components/index';
 import { coachList } from 'src/mocks/data';
-import { ImageContainer as Image } from '@styles/styles';
 import {
   ProfileManIcon,
   CallBlackIcon,
@@ -11,6 +10,9 @@ import {
   MailBlackIcon,
   SupportAgentBlackIcon,
 } from '@icons/index';
+import { css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
+import Image from 'next/image';
 
 const CoachList = () => {
   // TODO Mocks Data
@@ -20,34 +22,26 @@ const CoachList = () => {
     <>
       {data && data.length > 0 ? (
         <ul
-          css={{
-            position: 'relative',
-            display: 'flex',
+          className={flex({
             flexWrap: 'wrap',
             height: '80%',
             overflowY: 'scroll',
             padding: '0 0 24px 0',
-
-            '::-webkit-scrollbar': {
-              scrollBehavior: 'smooth',
-              display: 'none',
-            },
-          }}
+          })}
         >
           {data.map((item) => {
             return (
               <CardList key={uuidV4()} minHeight={'390px'}>
                 <div
-                  css={{
-                    position: 'relative',
+                  className={css({
                     height: '30%',
                     borderRadius: '25px 25px 0px 0px',
                     background: '#EBF9FF',
-                  }}
+                  })}
                 />
                 {/* Profile Image */}
                 <div
-                  css={{
+                  className={css({
                     position: 'absolute',
                     width: '120px',
                     height: 'auto',
@@ -55,7 +49,7 @@ const CoachList = () => {
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
                     borderRadius: '25px 25px 0px 0px',
-                  }}
+                  })}
                 >
                   <Image
                     src={ProfileManIcon}
@@ -65,24 +59,28 @@ const CoachList = () => {
                   />
                 </div>
                 <div
-                  css={{
-                    position: 'relative',
+                  className={css({
                     height: 'calc(70% - 42px)',
                     margin: '42px 0 0 0',
                     padding: '8px 24px 0 24px',
-                  }}
+                  })}
                 >
                   <div
-                    css={{
+                    className={css({
                       fontSize: '1.1rem',
                       fontWeight: 600,
                       margin: '0 0 12px 0',
                       textAlign: 'center',
-                    }}
+                    })}
                   >
                     {item.name}&#40;{item.age}&#44; {item.sex}&#41;
                   </div>
-                  <div css={{ lineHeight: '1.7rem', fontSize: '0.95rem' }}>
+                  <div
+                    className={css({
+                      lineHeight: '1.7rem',
+                      fontSize: '0.95rem',
+                    })}
+                  >
                     <InlineImageDiv
                       src={CallBlackIcon}
                       alt={'phone numeber'}
@@ -105,12 +103,11 @@ const CoachList = () => {
                     />
                   </div>
                   <div
-                    css={{
-                      display: 'flex',
+                    className={flex({
                       justifyContent: 'center',
                       gap: '8px',
                       margin: '16px 0 0 0',
-                    }}
+                    })}
                   >
                     <Button
                       label="삭제하기"
@@ -142,11 +139,10 @@ const CoachList = () => {
         </ul>
       ) : (
         <div
-          css={{
-            position: 'relative',
+          className={css({
             height: '20vh',
             borderRadius: '25px',
-          }}
+          })}
         >
           <NoResult
             description={'아직 코치님이 존재하지 않아요.'}

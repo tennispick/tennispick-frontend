@@ -6,6 +6,8 @@ import useInput from '@hooks/useInput';
 
 import { useDuplicateCheckScheduleLessonQuery } from '@features/schedule/query/scheduleQuery';
 import { getEndTimeByStartTime } from '@utils/date';
+import { Flex } from 'styled-system/jsx';
+import { css } from 'styled-system/css';
 
 type Props = {
   customerId: string;
@@ -49,7 +51,7 @@ const ScheduleLessonContainer = ({
 
   return (
     <>
-      <div css={{ display: 'flex' }}>
+      <Flex>
         <OriginLessonSchedule
           customerId={customerId}
           data={customerLessonData}
@@ -60,14 +62,14 @@ const ScheduleLessonContainer = ({
           setFormData={setFormData}
           endTime={transFerEndTime}
         />
-      </div>
+      </Flex>
       {isDuplicated && (
         <div
-          css={{
+          className={css({
             color: 'var(--red200)',
             padding: '8px 0 16px 8px',
             textAlign: 'right',
-          }}
+          })}
         >
           예약이 불가능한 날짜에요.
         </div>

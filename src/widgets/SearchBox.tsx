@@ -1,5 +1,7 @@
-import styled from '@emotion/styled';
 import SearchIcon from '@icons/search_black_icon.svg';
+import { css } from 'styled-system/css';
+import { styled } from 'styled-system/jsx';
+import { flex } from 'styled-system/patterns';
 
 type Options = {
   label: string;
@@ -21,30 +23,21 @@ const SearchBox = ({
 }: Props) => {
   return (
     <div
-      css={{
-        display: 'flex',
+      className={flex({
         alignItems: 'center',
         gap: '0.5rem',
         fontSize: '1rem',
-      }}
+      })}
     >
       {searchOptions?.map(({ label, value }) => {
         return (
-          <div
-            key={label}
-            css={{
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
+          <div key={label} className={flex({ alignItems: 'center' })}>
             <input
               type="radio"
               id={value}
               name={'searchOption'}
               value={value}
-              css={{
-                margin: '0 8px 0 0',
-              }}
+              className={css({ margin: '0 8px 0 0' })}
               checked={searchOption === value}
               onChange={handleSearchOption}
             />
@@ -65,21 +58,23 @@ const SearchBox = ({
   );
 };
 
-const SearchInput = styled.input({
-  minWidth: '320px',
-  fontSize: '0.9rem',
-  borderRadius: '8px',
-  padding: '6px 32px 6px 12px',
-  margin: '0 0 0 8px',
+const SearchInput = styled('input', {
+  base: {
+    minWidth: '320px',
+    fontSize: '0.9rem',
+    borderRadius: '8px',
+    padding: '6px 32px 6px 12px',
+    margin: '0 0 0 8px',
 
-  '&::placeholder': {
-    padding: '0 0 0 24px',
-    backgroundImage: `url(${SearchIcon.src})`,
-    backgroundSize: '',
-    backgroundPosition: '1px center',
-    backgroundRepeat: 'no-repeat',
-    textAlign: 'left',
-    textIndent: '0',
+    '&::placeholder': {
+      padding: '0 0 0 24px',
+      backgroundImage: `url(${SearchIcon.src})`,
+      backgroundSize: '',
+      backgroundPosition: '1px center',
+      backgroundRepeat: 'no-repeat',
+      textAlign: 'left',
+      textIndent: '0',
+    },
   },
 });
 

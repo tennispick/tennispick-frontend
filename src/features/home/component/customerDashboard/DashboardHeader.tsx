@@ -1,4 +1,5 @@
 import SearchBox from '@widgets/SearchBox';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   searchOption: string;
@@ -18,16 +19,15 @@ const DashboardHeader = ({
 }: Props) => {
   return (
     <div
-      css={{
+      className={flex({
         width: '100%',
         height: '3.75rem',
-        display: 'flex',
         justifyContent: 'space-between',
         padding: '0 0 16px 0',
         fontSize: '1.25rem',
         fontWeight: 600,
         borderBottom: '1px solid var(--grey100)',
-      }}
+      })}
     >
       <div>
         회원목록

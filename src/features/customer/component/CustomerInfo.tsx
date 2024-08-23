@@ -11,6 +11,9 @@ import CustomerInputRow from '@components/customer/detail/InputRow';
 import CustomerSelectRow from '@components/customer/detail/SelectRow';
 import { deleteCustomer } from '@apis/customer/customer.api';
 import { useQueryClient } from '@tanstack/react-query';
+import { flex } from 'styled-system/patterns';
+import { css } from 'styled-system/css';
+import { Flex } from 'styled-system/jsx';
 
 type Props = {
   customerId: string;
@@ -62,20 +65,17 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
 
   return (
     <div
-      css={{
-        position: 'relative',
-        display: 'flex',
+      className={flex({
         height: '35%',
         borderBottom: '1px solid var(--grey100)',
         margin: '0 0 16px 0',
-      }}
+      })}
     >
       <div
-        css={{
-          position: 'relative',
+        className={css({
           width: '20%',
           height: '50%',
-        }}
+        })}
       >
         <Input
           label={' '}
@@ -86,7 +86,7 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
           <Input.TextField type={'file'} />
         </Input>
         <div
-          css={{
+          className={css({
             textAlign: 'center',
             border: '1px solid var(--grey100)',
             width: '60%',
@@ -95,17 +95,16 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
             margin: '10% auto 0 auto',
             verticalAlign: 'middle',
             borderRadius: '8px',
-          }}
+          })}
         >
           {digitalSignatureImageUrl ?? '서명없음'}
         </div>
       </div>
       <div
-        css={{
-          position: 'relative',
+        className={css({
           width: '40%',
           padding: '0 0 0 24px',
-        }}
+        })}
       >
         <CustomerInputRow
           name="name"
@@ -198,7 +197,7 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
           }
         />
       </div>
-      <div css={{ position: 'relative', width: '40%' }}>
+      <div className={css({ width: '40%' })}>
         <div>
           <CustomerInputRow
             type={'password'}
@@ -214,7 +213,7 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
             placeholder={'비밀번호를 다시 입력해주세요.'}
             defaultValue={''}
           />
-          <div css={{ position: 'relative', display: 'flex' }}>
+          <Flex>
             <CustomerInputRow
               name={'height'}
               rowHeadLabel={'키(선택)'}
@@ -228,8 +227,8 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
               defaultValue={weight ?? ''}
               rowHeadStyle={{ width: '100px', margin: '0 0 0 20px' }}
             />
-          </div>
-          <div css={{ position: 'relative', display: 'flex' }}>
+          </Flex>
+          <Flex>
             <CustomerInputRow
               name="address"
               rowHeadLabel="주소(선택)"
@@ -243,9 +242,9 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
               defaultValue={addressDetail ?? ''}
               rowHeadStyle={{ width: '100px', margin: '0 0 0 20px' }}
             />
-          </div>
+          </Flex>
         </div>
-        <div css={{ display: 'flex', justifyContent: 'end' }}>
+        <Flex justifyContent="end">
           <Button
             label="정보 삭제하기"
             variant="iconBtn"
@@ -271,7 +270,7 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
             }}
             onClick={onClickEditCustomerHandler}
           />
-        </div>
+        </Flex>
       </div>
     </div>
   );

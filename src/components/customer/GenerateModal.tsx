@@ -1,5 +1,4 @@
 import { Dispatch, FormEvent, SetStateAction } from 'react';
-import styled from '@emotion/styled';
 import { useRouter } from 'next/navigation';
 import { v4 as uuidV4 } from 'uuid';
 
@@ -9,13 +8,14 @@ import { Button, Input, Select } from '@components/index';
 import { generateCustomer } from '@queries/index';
 import { getYearList, getMonthList, getDayList } from '@utils/date';
 import { emailRegex, passwordRegex, phoneNumberRegex } from '@utils/validation';
+import { css } from 'styled-system/css';
+import { styled } from 'styled-system/jsx';
 
-const GenerateModal = ({
-  setShowModal,
-}: {
+type Props = {
   setShowModal: Dispatch<SetStateAction<boolean>>;
-}) => {
-  // Date Array List
+};
+
+const GenerateModal = ({ setShowModal }: Props) => {
   const { yearArray, year } = getYearList();
   const { monthArray, month } = getMonthList();
   const { dateArray, date } = getDayList();
@@ -219,8 +219,7 @@ const GenerateModal = ({
         variant={'iconBtn'}
         label={'회원 등록하기'}
         src={EditWhiteIcon}
-        css={{
-          position: 'relative',
+        className={css({
           width: '100%',
           justifyContent: 'center',
           border: 0,
@@ -228,32 +227,39 @@ const GenerateModal = ({
           color: 'var(--white100)',
           padding: '12px 16px',
           margin: '36px 0 0 0',
-        }}
+        })}
       />
     </form>
   );
 };
 
-const Row = styled.div({
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  height: '46px',
-  lineHeight: '30px',
-  padding: '4px 0',
-  margin: '8px 0 12px 0',
-});
-const InputWrapper = styled((props: any) => <Input {...props} />)({
-  margin: '0 0 16px 0',
-
-  label: {
-    display: 'block',
+const Row = styled('div', {
+  base: {
+    display: 'flex',
+    alignItems: 'center',
+    height: '46px',
+    lineHeight: '30px',
+    padding: '4px 0',
+    margin: '8px 0 12px 0',
   },
 });
-const TextField = styled((props: any) => <Input.TextField {...props} />)({
-  width: '60%',
-  padding: '10px 0 10px 10px',
-  margin: '8px 0 0 0',
+
+const InputWrapper = styled(Input, {
+  base: {
+    margin: '0 0 16px 0',
+
+    '& label': {
+      display: 'block',
+    },
+  },
+});
+
+const TextField = styled(Input.TextField, {
+  base: {
+    width: '60%',
+    padding: '10px 0 10px 10px',
+    margin: '8px 0 0 0',
+  },
 });
 
 export default GenerateModal;

@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import {
-  getScheduleLessonByStartDateEndDatePeriod,
   getScheduleLessonByDate,
   isDuplicateCheckScheduleLesson,
+  getLessonSchduleByPeriod,
 } from 'src/apis/schedule/schedule.api';
 import {
   ScheduleLessonByStartDateEndDatePeriodQueryPayload,
@@ -15,21 +15,16 @@ import {
   URL_SCHEDULE_LESSON_BY_PERIOD,
 } from 'src/apis/schedule/schedule.url';
 
-const useScheduleByPeriodQuery = (
+export const useLessonScheduleByPeriodQuery = (
   params: ScheduleLessonByStartDateEndDatePeriodQueryPayload,
 ) => {
   const { startDate, endDate } = params;
 
-  const { data, isFetching, isLoading } = useQuery({
+  return useQuery({
     queryKey: [URL_SCHEDULE_LESSON_BY_PERIOD, startDate, endDate],
-    queryFn: async () =>
-      await getScheduleLessonByStartDateEndDatePeriod({ startDate, endDate }),
+    queryFn: async () => await getLessonSchduleByPeriod({ startDate, endDate }),
+    select: (data) => data,
   });
-  return {
-    data,
-    isFetching,
-    isLoading,
-  };
 };
 
 const useScheduleByDateQuery = (params: ScheduleLessonByDateQueryPayload) => {
@@ -73,8 +68,4 @@ const useDuplicateCheckScheduleLessonQuery = (
   };
 };
 
-export {
-  useScheduleByPeriodQuery,
-  useScheduleByDateQuery,
-  useDuplicateCheckScheduleLessonQuery,
-};
+export { useScheduleByDateQuery, useDuplicateCheckScheduleLessonQuery };

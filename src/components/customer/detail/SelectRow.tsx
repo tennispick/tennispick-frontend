@@ -1,4 +1,6 @@
 import { ReactNode } from 'react';
+import { css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   rowHeadLabel: string;
@@ -9,21 +11,19 @@ type Props = {
 const CustomerSelectRow = ({ rowHeadLabel, selectChildren }: Props) => {
   return (
     <div
-      css={{
-        position: 'relative',
-        display: 'flex',
+      className={flex({
         alignItems: 'center',
         height: '40px',
         margin: '0 0 16px 0',
-      }}
+      })}
     >
       <div
-        css={{
-          fontSize: '1rem',
-          fontWeight: '600',
+        className={css({
           width: '120px',
           padding: '4px 0',
-        }}
+          fontSize: '1rem',
+          fontWeight: 600,
+        })}
       >
         {rowHeadLabel}
       </div>

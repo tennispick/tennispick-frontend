@@ -5,6 +5,8 @@ import ScheduleByDateTimeTable from '../component/TimeTable';
 import ModalCustomer from '@components/layer/calendar/customer/Customer';
 import ModalCalendar from '@components/layer/calendar/Calendar';
 import { ScheduleLessonByDateData } from '@apis/schedule/schedule.type';
+import { flex } from 'styled-system/patterns';
+import { css } from 'styled-system/css';
 
 type Props = {
   day: Date;
@@ -26,32 +28,19 @@ const ScheduleByDate = ({ onCloseModalHandler, day }: Props) => {
   useKeyEscEvent({ event: onCloseModalHandler });
 
   return (
-    <div css={{ position: 'relative', width: '100%', height: '100%' }}>
+    <div className={css({ width: '100%', height: '100%' })}>
       <ScheduleByDateHeader
         day={day}
         onCloseModalHandler={onCloseModalHandler}
         customerInfo={customerInfo}
       />
-      <div
-        css={{
-          position: 'relative',
-          height: 'calc(100% - 64px)',
-          display: 'flex',
-        }}
-      >
+      <div className={flex({ height: 'calc(100% - 64px)' })}>
         <ScheduleByDateTimeTable
           day={day}
           onChangeCustomerIdHandler={onChangeCustomerIdHandler}
           onChangeCustomerInfoHandler={onChangeCustomerInfoHandler}
         />
-        <div
-          css={{
-            position: 'relative',
-            display: 'flex',
-            flexDirection: 'column',
-            width: '70%',
-          }}
-        >
+        <div className={flex({ flexDirection: 'column', width: '70%' })}>
           <ModalCustomer
             day={day}
             customerId={customerId}

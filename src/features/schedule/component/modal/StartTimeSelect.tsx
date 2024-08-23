@@ -1,6 +1,7 @@
 import ScheduleModalSelect from './Select';
 import { getTimeList } from '@utils/date';
 import { ChangeEvent } from 'react';
+import { css } from 'styled-system/css';
 
 type Props = {
   index: number;
@@ -37,10 +38,7 @@ const ScheduleModalStartTimeSelect = ({
     <ScheduleModalSelect
       name="startTime"
       data={data}
-      css={{
-        width: '120px',
-        margin: '0 0 0 12px',
-      }}
+      className={css({ width: '120px', margin: '0 0 0 12px' })}
       selected={startTime}
       onChangeHandler={onChangeHandler}
       disabled={disabled}

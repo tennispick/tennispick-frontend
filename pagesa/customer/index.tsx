@@ -12,6 +12,7 @@ import {
 } from '@components/index';
 import { CustomerWhiteIcon } from '@icons/index';
 import { customerTabList } from '@mocks/tabList';
+import { css } from 'styled-system/css';
 
 const CustomerPage = () => {
   const { data } = getCustomerQuery();
@@ -33,8 +34,6 @@ const CustomerPage = () => {
   return (
     <>
       <PageHeader title={'회원 목록'} />
-      {/* <Filter /> */}
-      {/* <Search /> */}
       <TabList
         state={currentTab}
         setState={setCurrentTab}
@@ -50,10 +49,10 @@ const CustomerPage = () => {
               height: '20px',
               margin: '0 8px 0 0',
             }}
-            css={{
+            className={css({
               backgroundColor: 'var(--business-active-color)',
               color: 'var(--white100)',
-            }}
+            })}
             onClick={() => setShowModal(true)}
           />
         }
@@ -65,9 +64,7 @@ const CustomerPage = () => {
             title={'회원 등록'}
             showModal={showModal}
             setShowModal={setShowModal}
-            css={{
-              top: '47.5%',
-            }}
+            className={css({ top: '47.5%' })}
           >
             <GenerateCustomerModal setShowModal={setShowModal} />
           </Modal>
