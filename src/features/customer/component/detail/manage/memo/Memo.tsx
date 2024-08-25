@@ -28,16 +28,18 @@ const ManageMemo = ({
 
   const { data, isLoading, refetch } = useCustomerMemoListQuery(customerId);
 
-  const onSuccessMutateHandler = () => {
+  const handleCreateMemoClick = () => {
     refetch();
     onClickCloseMemoModal();
   };
-  const { mutate } = useCreateMemoMutate(customerId, onSuccessMutateHandler);
+  const { mutate } = useCreateMemoMutate(customerId, handleCreateMemoClick);
 
   const [showMemoModal, setShowMemoModal] = useState<boolean>(false);
   const [formData, onChangeFormData] = useInput({ title: '' });
 
-  const onClickSubmitMemo: FormEventHandler<HTMLFormElement> = async (e) => {
+  const handleSubmitMemoClick: FormEventHandler<HTMLFormElement> = async (
+    e,
+  ) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
@@ -104,7 +106,7 @@ const ManageMemo = ({
           onCancelHandler={onClickCloseMemoModal}
           onClickDisabled={formData.title === ''}
         >
-          <form id="memoForm" onSubmit={onClickSubmitMemo}>
+          <form id="memoForm" onSubmit={handleSubmitMemoClick}>
             <div className={css({ margin: '12px 0' })}>
               <div className={css({ margin: '0 0 8px 0' })}>메모 유형</div>
               <Select
@@ -118,7 +120,7 @@ const ManageMemo = ({
             </div>
             <div className={css({ margin: '12px 0' })}>
               <div className={css({ margin: '0 0 8px 0' })}>제목</div>
-              <Input>
+              <Input css={{ height: '44px' }}>
                 <Input.TextField
                   name="title"
                   placeholder="제목을 입력해주세요."

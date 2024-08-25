@@ -37,9 +37,12 @@ const OriginSchedule = ({
           height: '28px',
           alignItems: 'center',
           textAlign: 'center',
-          fontSize: '0.9rem',
           margin: '8px 0 0 0',
           padding: '6px 0',
+
+          '& div': {
+            fontSize: '0.875rem',
+          },
         })}
       >
         <div className={css({ width: '10%' })}>출석여부</div>
@@ -53,11 +56,14 @@ const OriginSchedule = ({
       </div>
       <div
         className={css({
-          maxHeight: '160px',
+          maxHeight: '8rem',
           padding: '8px 0',
           overflowY: 'auto',
-          fontSize: '0.9rem',
-          margin: '0 0 12px 0',
+          margin: '0 0 8px 0',
+
+          '& div': {
+            fontSize: '0.875rem',
+          },
         })}
       >
         {data && data.length > 0 ? (
@@ -120,9 +126,12 @@ const OriginSchedule = ({
           height: '28px',
           alignItems: 'center',
           textAlign: 'center',
-          fontSize: '0.9rem',
           margin: '8px 0 0 0',
           padding: '6px 0',
+
+          '& div': {
+            fontSize: '0.875rem',
+          },
         })}
       >
         <div className={css({ width: '10%' })}>출석여부</div>
@@ -134,7 +143,13 @@ const OriginSchedule = ({
         <div className={css({ width: '10%' })}>시작시간</div>
         <div className={css({ width: '10%' })}>종료시간</div>
       </div>
-      <div className={css({ fontSize: '0.9rem' })}>
+      <div
+        className={css({
+          '& div': {
+            fontSize: '0.875rem',
+          },
+        })}
+      >
         {!isEmptyObj(selectSchedule) ? (
           <ManageListRow
             className={css({
@@ -168,7 +183,11 @@ const OriginSchedule = ({
           </ManageListRow>
         ) : (
           <div
-            className={css({ textAlign: 'center', padding: '12px 0 8px 0' })}
+            className={css({
+              textAlign: 'center',
+              padding: '12px 0 8px 0',
+              fontSize: '0.875rem',
+            })}
           >
             선택된 일정이 없어요.
           </div>

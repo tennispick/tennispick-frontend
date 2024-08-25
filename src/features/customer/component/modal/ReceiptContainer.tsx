@@ -85,7 +85,7 @@ const PaymentReceipt = ({
 
   return (
     <>
-      <div className={css({ height: '45%', padding: '36px 32px 0 28px' })}>
+      <div className={css({ height: '45%', padding: '1.5rem 32px 0 28px' })}>
         <ReceiptRow>
           <div>상품명</div>
           <div>{lesson?.name}</div>
@@ -130,7 +130,7 @@ const PaymentReceipt = ({
       <div
         className={css({
           height: '96px',
-          padding: '36px 32px 0 28px',
+          padding: '1.5rem 32px 0 28px',
           borderTop: '1px solid var(--grey100)',
         })}
       >
@@ -189,7 +189,7 @@ const RefundReceipt = ({
 >) => {
   return (
     <>
-      <div className={css({ height: '50%', padding: '36px 32px 0 28px' })}>
+      <div className={css({ height: '50%', padding: '1.5rem 32px 0 28px' })}>
         <ReceiptRow>
           <div>상품명</div>
           <div>{lesson?.name}</div>
@@ -224,7 +224,7 @@ const RefundReceipt = ({
       <div
         className={css({
           height: '96px',
-          padding: '36px 32px 0 28px',
+          padding: '1.5rem 32px 0 28px',
           borderTop: '1px solid var(--grey100)',
         })}
       >

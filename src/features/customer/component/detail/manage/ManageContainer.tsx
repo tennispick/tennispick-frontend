@@ -12,7 +12,7 @@ type Props = {
 
 const ManageContainer = ({ customerId }: Props) => {
   const [currentItem, setCurrentItem] = useState(lessonList[0].id);
-  const [showDrawer, setShowDrawer] = useState(false);
+  const [showDrawer, setShowDrawer] = useState<boolean>(false);
   const [showScheduleChangeModal, setShowScheduleChangeModal] = useState(false);
 
   const handleShowDrawerClick = () => setShowDrawer(true);
@@ -46,8 +46,8 @@ const ManageContainer = ({ customerId }: Props) => {
                   onClickShowDrawerHandler={handleShowDrawerClick}
                   onCloseDrawerHandler={handleHideDrawerClick}
                   showScheduleChangeModal={showScheduleChangeModal}
-                  onClickShowModalHandler={handleShowModalClick}
-                  onClickCloseModalHandler={handleHideModalClick}
+                  handleShowModalClick={handleShowModalClick}
+                  handleHideModalClick={handleHideModalClick}
                 />
               ),
               additionalLesson: (

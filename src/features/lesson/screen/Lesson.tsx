@@ -31,7 +31,7 @@ const LessonScreen = () => {
 
   const [currentTab, setCurrentTab] = useState<string>(tabListArr[0].id);
   const [tabList] = useState(tabListArr);
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
   const { data } = useLessonListQuery({ type: currentTab });
 
@@ -59,20 +59,19 @@ const LessonScreen = () => {
               backgroundColor: 'var(--business-active-color)',
               color: 'var(--white100)',
             }}
-            onClick={() => setShowModal(true)}
+            onClick={() => setOpenModal(true)}
           />
         }
       />
       <LessonList list={data} />
-      {showModal && (
+      {openModal && (
         <Portal id={'portal'}>
           <Modal
             title={'레슨권 생성'}
-            showModal={showModal}
-            setShowModal={setShowModal}
+            setOpenModal={setOpenModal}
             className={css({ top: '47.5%' })}
           >
-            <LessonModal setShowModal={setShowModal} />
+            <LessonModal setOpenModal={setOpenModal} />
           </Modal>
         </Portal>
       )}

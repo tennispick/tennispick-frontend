@@ -1,10 +1,10 @@
 import { CustomerAdditionalLessonListData } from '@features/customer/type/customer.type';
 import DrawerInputContainer from './InputContainer';
-import { Button } from '@components/index';
 import { DeleteWhiteIcon } from '@icons/index';
 import { FormEventHandler } from 'react';
 import { deleteCustomerAdditionalLesson } from '@apis/customer/customer.api';
-import { flex } from 'styled-system/patterns';
+import IconButton from '@components/button/IconButton';
+import { css } from 'styled-system/css';
 
 type Props = {
   item: CustomerAdditionalLessonListData;
@@ -37,7 +37,7 @@ const DrawerAdditionalLesson = ({ item }: Props) => {
   };
 
   return (
-    <form onSubmit={onSubmitHandler}>
+    <form onSubmit={onSubmitHandler} className={css({ height: '100%' })}>
       <DrawerInputContainer label="코트명" value={courtName} />
       <DrawerInputContainer label="코치명" value={coachName} />
       <DrawerInputContainer label="기존 강습 예약날짜" value={originDate} />
@@ -49,23 +49,21 @@ const DrawerAdditionalLesson = ({ item }: Props) => {
       <DrawerInputContainer label="보강 예약날짜" value={additionalDate} />
       <DrawerInputContainer label="보강 시작시간" value={additionalStartTime} />
       <DrawerInputContainer label="보강 종료시간" value={additionalEndTime} />
-      <div className={flex({ bottom: '20px' })}>
-        <Button
-          type="submit"
-          label="보강 취소하기"
-          variant="iconBtn"
-          src={DeleteWhiteIcon}
-          css={{
-            width: 'calc(40vw - 40px)',
-            border: 0,
-            justifyContent: 'center',
-            backgroundColor: 'var(--red200)',
-            color: 'var(--white100)',
-            padding: '12px 16px',
-            margin: '0 12px 0 0',
-          }}
-        />
-      </div>
+      <IconButton
+        type="submit"
+        iconAlign="left"
+        iconAlt="cancel"
+        iconSrc={DeleteWhiteIcon}
+        size="lg"
+        variant="negative"
+        label={'보강 취소하기'}
+        full={true}
+        className={css({
+          position: 'absolute',
+          bottom: 0,
+          margin: '12px 0 0 0',
+        })}
+      />
     </form>
   );
 };

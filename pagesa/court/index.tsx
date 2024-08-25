@@ -17,11 +17,11 @@ import { css } from 'styled-system/css';
 const CourtPage = () => {
   const { data } = getCourtQuery();
 
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const [courtId, setCourtId] = useState<string>('');
   const [showRightSide, setShowRightSide] = useState<boolean>(false);
 
-  const handleShowModalClick = () => setShowModal(true);
+  const handleShowModalClick = () => setOpenModal(true);
 
   return (
     <>
@@ -46,14 +46,10 @@ const CourtPage = () => {
           setShowRightSide={setShowRightSide}
         />
       )}
-      {showModal && (
+      {openModal && (
         <Portal id={'portal'}>
-          <Modal
-            title={'코트 생성'}
-            showModal={showModal}
-            setShowModal={setShowModal}
-          >
-            <GenerateCourtModal setShowModal={setShowModal} />
+          <Modal title={'코트 생성'} setOpenModal={setOpenModal}>
+            <GenerateCourtModal setOpenModal={setOpenModal} />
           </Modal>
         </Portal>
       )}

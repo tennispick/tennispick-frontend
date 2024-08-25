@@ -2,28 +2,46 @@ import React, { Dispatch, SetStateAction } from 'react';
 import CancelBtnIcon from '@icons/cancel_black_btn.svg';
 import { styled } from 'styled-system/jsx';
 import Image from 'next/image';
-import { css } from 'styled-system/css';
+import { Styles, css, cx } from 'styled-system/css';
 
 type Props = {
   title: string;
   children: React.ReactNode;
   titleContainer?: boolean;
-  showModal?: boolean;
-  setShowModal?: Dispatch<SetStateAction<boolean>>;
+  openModal?: boolean;
+  setOpenModal?: Dispatch<SetStateAction<boolean>>;
+  css?: Styles;
 } & React.HTMLAttributes<HTMLDivElement>;
+
+const defaultStyle = css.raw({
+  position: 'absolute',
+  minWidth: '640px',
+  minHeight: '220px',
+  top: '40%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  padding: '24px',
+  backgroundColor: 'var(--white100)',
+  borderRadius: '16px',
+  boxShadow: '2px 4px 12px 2px rgb(255 255 255 / 15%)',
+});
 
 const Modal = ({
   title,
   children,
   titleContainer = true,
-  setShowModal,
+  setOpenModal,
   ...props
 }: Props) => {
-  const handleModalCloseClick = () => setShowModal && setShowModal(false);
+  const handleModalCloseClick = () => setOpenModal && setOpenModal(false);
+
+  const { css: cssProp, ...rest } = props;
+
+  const className = cx(css(defaultStyle, cssProp, { animationName: 'fadeUp' }));
 
   return (
     <Container>
-      <ModalContainer className={css({ animationName: 'fadeUp' })} {...props}>
+      <div className={className} {...rest}>
         {titleContainer && (
           <TitleContainer>
             <Title>{title}</Title>
@@ -43,7 +61,7 @@ const Modal = ({
           </TitleContainer>
         )}
         {children}
-      </ModalContainer>
+      </div>
     </Container>
   );
 };
@@ -58,33 +76,19 @@ const Container = styled('div', {
     zIndex: 99,
   },
 });
-const ModalContainer = styled('div', {
-  base: {
-    position: 'absolute',
-    minWidth: '640px',
-    minHeight: '220px',
-    top: '40%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    padding: '24px',
-    backgroundColor: 'var(--white100)',
-    borderRadius: '16px',
-    boxShadow: '2px 4px 12px 2px rgb(255 255 255 / 15%)',
-  },
-});
 const TitleContainer = styled('div', {
   base: {
     textAlign: 'center',
     color: 'var(--black100)',
     padding: '4px 0',
-    margin: '0 0 24px 0',
+    margin: '0 0 12px 0',
   },
 });
 const Title = styled('div', {
   base: {
     color: 'var(--business-color)',
     fontSize: '1.2rem',
-    fontWeight: '500',
+    fontWeight: 500,
   },
 });
 

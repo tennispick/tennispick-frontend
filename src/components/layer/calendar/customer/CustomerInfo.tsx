@@ -93,12 +93,12 @@ const InfoRow = styled('dl', {
     display: 'flex',
     lineHeight: '1.8rem',
 
-    '&dt': {
+    '& dt': {
       minWidth: '100px',
       fontWeight: 700,
     },
 
-    '&dd': {
+    '& dd': {
       minWidth: '140px',
     },
   },

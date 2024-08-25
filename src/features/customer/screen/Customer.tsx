@@ -1,74 +1,67 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
 import Modal from '@components/layer/Modal';
-import { getCustomerQuery } from '@queries/index';
 import {
   PageHeader,
-  TabList,
-  Button,
   CustomerList,
   Portal,
   GenerateCustomerModal,
 } from '@components/index';
 import { CustomerWhiteIcon } from '@icons/index';
-import { customerTabList } from '@mocks/tabList';
 import { css } from 'styled-system/css';
+import { useCustomerListQuery } from '../query/CustomerQuery';
+import Loading from '@components/common/Loading';
+import Tab from '@widgets/Tab';
+import IconButton from '@components/button/IconButton';
+import { useState } from 'react';
 
 const CustomerScreen = () => {
-  const { data } = getCustomerQuery();
+  const { Tabs, TabLists, TabList, TabPanels, TabPanel } = Tab();
+  const { isLoading, data } = useCustomerListQuery();
 
-  const [tabList, setTabList] = useState(customerTabList);
-  const [currentTab, setCurrentTab] = useState<string>(tabList[0].id);
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState(false);
 
-  useEffect(() => {
-    if (data) {
-      const prevTabList = [...tabList];
-      prevTabList[0].name = `전체(${data.data.length})`;
-      setTabList(prevTabList);
-    }
+  if (isLoading) return <Loading />;
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  const handleCreateCustomerClick = () => setOpenModal(true);
 
   return (
     <>
       <PageHeader title={'회원 목록'} />
-      <TabList
-        state={currentTab}
-        setState={setCurrentTab}
-        list={tabList}
-        borderBottom={true}
-        buttonElement={
-          <Button
-            variant={'iconBtn'}
+      <Tabs defaultActiveKey={'all'}>
+        <TabLists>
+          <TabList activeKey={'all'}>전체</TabList>
+        </TabLists>
+        <div
+          className={css({ position: 'absolute', top: '76px', right: '24px' })}
+        >
+          <IconButton
+            iconAlign="left"
+            iconSrc={CustomerWhiteIcon}
+            iconAlt="customer"
+            variant="primary"
+            size="md"
             label={'회원 등록하기'}
-            src={CustomerWhiteIcon}
-            imageCss={{
-              width: '20px',
-              height: '20px',
-              margin: '0 8px 0 0',
-            }}
-            className={css({
-              backgroundColor: 'var(--business-active-color)',
-              color: 'var(--white100)',
-            })}
-            onClick={() => setShowModal(true)}
+            onClick={handleCreateCustomerClick}
           />
-        }
-      />
-      {data && <CustomerList data={data.data} />}
-      {showModal && (
+        </div>
+        <TabPanels className={css({ height: 'calc(100% - 2.875rem - 52px)' })}>
+          <TabPanel
+            activeKey={'all'}
+            className={css({ height: '100%', padding: '12px 0' })}
+          >
+            <CustomerList data={data} />
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
+      {openModal && (
         <Portal id={'portal'}>
           <Modal
             title={'회원 등록'}
-            showModal={showModal}
-            setShowModal={setShowModal}
-            className={css({ top: '47.5%' })}
+            setOpenModal={setOpenModal}
+            css={{ top: '47.5%' }}
           >
-            <GenerateCustomerModal setShowModal={setShowModal} />
+            <GenerateCustomerModal setOpenModal={setOpenModal} />
           </Modal>
         </Portal>
       )}

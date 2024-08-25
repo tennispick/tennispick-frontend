@@ -6,6 +6,16 @@ const nextConfig = {
     workerThreads: false,
     cpus: 1,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'sihyunhada.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;

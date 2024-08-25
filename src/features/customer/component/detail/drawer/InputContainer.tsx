@@ -29,10 +29,11 @@ const CustomerDetailDrawerInputContainer = ({
   });
 
   return (
-    <div className={css({ margin: '0 0 16px 0' })}>
+    <div className={css({ margin: '0 0 12px 0' })}>
       <div
         className={css({
           fontWeight: 600,
+          height: '1.5rem',
           fontSize: '0.875rem',
           padding: '0 0 0 4px',
         })}

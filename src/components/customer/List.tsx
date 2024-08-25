@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Image from 'next/image';
 
 import { NoResult, NormalList } from '@components/index';
@@ -12,13 +11,12 @@ type Props = {
 
 const CustomerList = ({ data }: Props) => {
   const router = useRouter();
-  const [list] = useState<Array<{ [key: string]: string | number }>>(data);
 
   return (
     <>
-      {list && list.length > 0 ? (
-        <NormalList.UnOrderList height={'78%'}>
-          {list.map((item) => {
+      {data && data.length > 0 ? (
+        <NormalList.UnOrderList height={'100%'}>
+          {data.map((item) => {
             return (
               <NormalList
                 key={item.id}

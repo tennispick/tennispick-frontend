@@ -18,17 +18,17 @@ type Props = {
   onClickShowDrawerHandler: () => void;
   onCloseDrawerHandler: () => void;
   showScheduleChangeModal: boolean;
-  onClickShowModalHandler: () => void;
-  onClickCloseModalHandler: () => void;
+  handleShowModalClick: () => void;
+  handleHideModalClick: () => void;
 };
 
 const ButtonStyle = {
   color: 'var(--white100)',
-  fontWeight: '500',
-  padding: '8px 0',
+  fontWeight: 500,
+  padding: '8px 4px',
   borderRadius: '6px',
   border: 0,
-  fontSize: '0.875rem',
+  fontSize: '0.725rem',
   cursor: 'pointer',
 };
 
@@ -38,18 +38,18 @@ const ManageLessonList = ({
   onClickShowDrawerHandler,
   onCloseDrawerHandler,
   showScheduleChangeModal,
-  onClickShowModalHandler,
-  onClickCloseModalHandler,
+  handleShowModalClick,
+  handleHideModalClick,
 }: Props) => {
   const [lessonItem, setLessonItem] = useState(
     {} as CustomerAllLessonListQueryData,
   );
 
-  const onClickScheduleChangeShowModalHandler = (
+  const handleOpenScheduleChangeModalClick = (
     item: CustomerAllLessonListQueryData,
   ) => {
     setLessonItem(item);
-    onClickShowModalHandler();
+    handleShowModalClick();
   };
 
   const onClickLessonRowHandler = (item: CustomerAllLessonListQueryData) => {
@@ -64,25 +64,31 @@ const ManageLessonList = ({
           height: '28px',
           alignItems: 'center',
           textAlign: 'center',
-          fontSize: '0.9rem',
           padding: '6px 8px',
           gap: '2px',
+
+          '& div': {
+            fontSize: '0.875rem',
+          },
         })}
       >
         <div className={css({ width: '10%' })}>상태</div>
         <div className={css({ width: '20%' })}>상품명</div>
-        <div className={css({ width: '8%' })}>강습유형</div>
+        <div className={css({ width: '10%' })}>강습유형</div>
         <div className={css({ width: '15%' })}>코치</div>
         <div className={css({ width: '10%' })}>수강현황</div>
         <div className={css({ width: '20%' })}>결제날짜</div>
-        <div className={css({ width: '22%' })} />
+        <div className={css({ width: '20%' })} />
       </div>
       <div
         className={css({
           height: 'calc(100% - 28px)',
           padding: '8px 0',
           overflowY: 'auto',
-          fontSize: '0.9rem',
+
+          '& div': {
+            fontSize: '0.875rem',
+          },
         })}
       >
         {data.map((item, index) => {
@@ -109,8 +115,19 @@ const ManageLessonList = ({
                   registerAbleCount,
                 ),
               )}
-              <div className={css({ width: '20%' })}>{lessonName}</div>
-              <div className={css({ width: '8%' })}>
+              <div
+                className={css({
+                  width: '20%',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textAlign: 'left',
+                  padding: '0 0 0 8px',
+                })}
+              >
+                {lessonName}
+              </div>
+              <div className={css({ width: '10%' })}>
                 {transferLessonType(type)}
               </div>
               <div className={css({ width: '15%' })}>{coachName ?? '-'}</div>
@@ -118,7 +135,7 @@ const ManageLessonList = ({
                 className={css({ width: '10%' })}
               >{`${remainLessonCount}회 / ${registerAbleCount}회`}</div>
               <div className={css({ width: '20%' })}>{paymentDt}</div>
-              <div className={flex({ width: '22%' })}>
+              <div className={flex({ width: '20%' })}>
                 <Button
                   type="button"
                   label="수강변경"
@@ -128,7 +145,7 @@ const ManageLessonList = ({
                     margin: '0 4% 0 4%',
                     ...ButtonStyle,
                   }}
-                  onClick={() => onClickScheduleChangeShowModalHandler(item)}
+                  onClick={() => handleOpenScheduleChangeModalClick(item)}
                 />
                 <Button
                   type="button"
@@ -149,9 +166,8 @@ const ManageLessonList = ({
         <Portal id="portal">
           <Modal
             title="강습일정 변경"
-            showModal={showScheduleChangeModal}
-            setShowModal={onClickCloseModalHandler}
-            className={css({ top: '45%' })}
+            setOpenModal={handleHideModalClick}
+            css={{ top: '47.5%' }}
           >
             <ScheduleChangeModal
               customerId={lessonItem.customerId}

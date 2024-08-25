@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const useCreateMemoMutate = (
   customerId: string,
-  onSuccessHandler: () => void,
+  handleCreateMemoClick: () => void,
 ) => {
   const queryClient = useQueryClient();
 
@@ -19,7 +19,7 @@ export const useCreateMemoMutate = (
       }
 
       queryClient.invalidateQueries([URL_CUSTOMER_MEMO, { customerId }]);
-      onSuccessHandler();
+      handleCreateMemoClick();
     },
   });
 };

@@ -15,23 +15,22 @@ import { styled } from 'styled-system/jsx';
 type Props = {
   id: string;
   type: string;
-  showModal: boolean;
-  setShowModal: SetStateAction<boolean>;
+  setOpenModal: SetStateAction<boolean>;
   checkedItem: CustomerPaymentRefundData | undefined;
 };
 
 const CustomerPaymentRefundModal = ({
   id,
   type,
-  showModal,
-  setShowModal,
+  setOpenModal,
   checkedItem,
 }: Props) => {
   const isPayment = type === 'payment';
 
-  const { data: lessonList } = useLessonListQuery({
+  const { data } = useLessonListQuery({
     type: 'all',
     isSuspense: true,
+    isInitialData: false,
   });
 
   const totalPrice = (price: number, discountPrice: number) =>
@@ -42,27 +41,26 @@ const CustomerPaymentRefundModal = ({
       <Modal
         title=""
         titleContainer={false}
-        className={css({
+        setOpenModal={setOpenModal}
+        css={{
           width: 'calc(75vw - 3%)',
           height: 'calc(100vh - 5%)',
           top: '50%',
           padding: 0,
-        })}
-        showModal={showModal}
-        setShowModal={setShowModal}
+        }}
       >
         <CustomerPaymentRefundModalHeader
           isPayment={isPayment}
-          setShowModal={setShowModal}
+          setOpenModal={setOpenModal}
         />
         <CustomerInfoContainer isPayment={isPayment} />
-        <div className={flex({ width: 'calc(100% - 194px)' })}>
+        <div className={flex({ height: 'calc(100% - 194px)' })}>
           {
             {
               payment: (
                 <PaymentContainer
                   customerId={id}
-                  lessonList={lessonList}
+                  lessonList={data!}
                   totalPrice={totalPrice}
                 />
               ),
@@ -70,7 +68,7 @@ const CustomerPaymentRefundModal = ({
                 <RefundContainer
                   customerId={id}
                   checkedItem={checkedItem!}
-                  lessonList={lessonList}
+                  lessonList={data!}
                 />
               ),
             }[type]
@@ -83,10 +81,10 @@ const CustomerPaymentRefundModal = ({
 
 const CustomerPaymentRefundModalHeader = ({
   isPayment,
-  setShowModal,
+  setOpenModal,
 }: {
   isPayment: boolean;
-  setShowModal: SetStateAction<boolean>;
+  setOpenModal: SetStateAction<boolean>;
 }) => {
   return (
     <Header>
@@ -99,7 +97,7 @@ const CustomerPaymentRefundModalHeader = ({
         width={28}
         height={28}
         className={css({ cursor: 'pointer' })}
-        onClick={() => setShowModal(false)}
+        onClick={() => setOpenModal(false)}
       />
     </Header>
   );

@@ -76,7 +76,7 @@ const TabList = ({ activeKey: panelKey, children }: PanelProps) => {
 
   const activeStyle = css.raw({
     color: 'var(--black100)',
-    fontWeight: '500',
+    fontWeight: 500,
     borderBottom: '2px solid var(--black100)',
   });
 

@@ -64,7 +64,7 @@ const ScheduleDrawerInputField = ({
         <TextField
           name="lesson"
           defaultValue={
-            lessonList.length > 0
+            lessonList && lessonList.length > 0
               ? lessonList.filter(
                   (item: any) => item.id === formData.lesson.value,
                 )[0].name

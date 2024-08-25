@@ -13,13 +13,12 @@ const CustomerSelectRow = ({ rowHeadLabel, selectChildren }: Props) => {
     <div
       className={flex({
         alignItems: 'center',
-        height: '40px',
-        margin: '0 0 16px 0',
+        height: 'calc((100%/ 5) - 16px)',
       })}
     >
       <div
         className={css({
-          width: '120px',
+          width: '25%',
           padding: '4px 0',
           fontSize: '1rem',
           fontWeight: 600,

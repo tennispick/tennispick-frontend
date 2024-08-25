@@ -18,7 +18,7 @@ const Schedule = () => {
 
   const isMobile = useMobile();
   const [calendarDate, setCalendarDate] = useState(today);
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const [modalType, setModalType] = useState<'regular' | 'additional'>(
     'regular',
   );
@@ -29,12 +29,12 @@ const Schedule = () => {
 
   const handleCreateRegularLessonClick = () => {
     setModalType('regular');
-    setShowModal(true);
+    setOpenModal(true);
   };
 
   const handleCreateAdditionalLessonClick = () => {
     setModalType('additional');
-    setShowModal(true);
+    setOpenModal(true);
   };
 
   return (
@@ -57,14 +57,14 @@ const Schedule = () => {
         date={calendarDate}
         coachList={data ?? []}
       /> */}
-      {showModal && (
+      {openModal && (
         <Portal id="portal">
           <Modal
             title={
               modalType === 'regular' ? '정규 스케줄 등록' : '보강 스케줄 등록'
             }
-            showModal={showModal}
-            setShowModal={setShowModal}
+            openModal={openModal}
+            setOpenModal={setOpenModal}
             className={css({
               top: '45%',
               maxWidth: '1440px',

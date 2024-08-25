@@ -44,7 +44,7 @@ const CustomerModalRefundContainer = ({
 
   const router = useRouter();
 
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const [formData, onChangeFormData, setFormData] = useInput({
     refundMethod: 'match',
     refundType: 'card',
@@ -219,14 +219,14 @@ const CustomerModalRefundContainer = ({
         refundRange={formData.refundRange}
         refundPrice={formData.refundPrice}
         price={totalPrice}
-        onClickRefundHandler={() => setShowModal(true)}
+        onClickRefundHandler={() => setOpenModal(true)}
       />
-      {showModal && (
+      {openModal && (
         <ConfirmModal
           formId="refundForm"
           title="환불사유 입력"
           subTitle="결제 내역에 대한 환불 사유를 입력해주세요."
-          onCancelHandler={() => setShowModal(false)}
+          onCancelHandler={() => setOpenModal(false)}
           onClickDisabled={formData.reason === ''}
         >
           <Input>

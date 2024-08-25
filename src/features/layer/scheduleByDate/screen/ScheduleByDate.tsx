@@ -10,10 +10,10 @@ import { css } from 'styled-system/css';
 
 type Props = {
   day: Date;
-  onCloseModalHandler: () => void;
+  handleCloseModalClick: () => void;
 };
 
-const ScheduleByDate = ({ onCloseModalHandler, day }: Props) => {
+const ScheduleByDate = ({ handleCloseModalClick, day }: Props) => {
   const [customerInfo, setCustomerInfo] =
     useState<ScheduleLessonByDateData | null>(null);
   const [customerId, setCustomerId] = useState<string>('');
@@ -25,13 +25,13 @@ const ScheduleByDate = ({ onCloseModalHandler, day }: Props) => {
     customerInfo: ScheduleLessonByDateData,
   ) => setCustomerInfo(customerInfo);
 
-  useKeyEscEvent({ event: onCloseModalHandler });
+  useKeyEscEvent({ event: handleCloseModalClick });
 
   return (
     <div className={css({ width: '100%', height: '100%' })}>
       <ScheduleByDateHeader
         day={day}
-        onCloseModalHandler={onCloseModalHandler}
+        handleCloseModalClick={handleCloseModalClick}
         customerInfo={customerInfo}
       />
       <div className={flex({ height: 'calc(100% - 64px)' })}>
@@ -45,7 +45,7 @@ const ScheduleByDate = ({ onCloseModalHandler, day }: Props) => {
             day={day}
             customerId={customerId}
             customerInfo={customerInfo}
-            onCloseModalHandler={onCloseModalHandler}
+            handleCloseModalClick={handleCloseModalClick}
           />
           <ModalCalendar day={day} />
         </div>

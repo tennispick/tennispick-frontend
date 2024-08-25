@@ -2,18 +2,18 @@ import { CustomerPaymentRefundData } from '@apis/payment/payment.type';
 import { PaymentRefundType } from '@features/customer/type/payment.type';
 import { addNumberCommas } from '@utils/numberForm';
 import { css } from 'styled-system/css';
-import { styled } from 'styled-system/jsx';
+import { Flex, styled } from 'styled-system/jsx';
 
 type Props = {
   type: PaymentRefundType;
   data: CustomerPaymentRefundData[];
-  onClickOpenModalHandler: () => void;
+  handleShowPaymentModalClick: () => void;
 };
 
 const CustomerDetailPaymentRefundHeaderContainer = ({
   type,
   data,
-  onClickOpenModalHandler,
+  handleShowPaymentModalClick,
 }: Props) => {
   const totalLength = data.length;
   const totalPrice = data.reduce((acc, cur) => acc + cur.totalPrice, 0);
@@ -21,14 +21,8 @@ const CustomerDetailPaymentRefundHeaderContainer = ({
 
   return (
     <HeaderContainer>
-      <div
-        className={css({
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        })}
-      >
-        <div className={css({ display: 'flex', alignItems: 'center' })}>
+      <Flex alignItems="center" justifyContent="space-between">
+        <Flex alignItems="center">
           <div className={css({ margin: '0 16px 0 0' })}>
             총{' '}
             <span className={css({ fontWeight: 600 })}>
@@ -45,7 +39,7 @@ const CustomerDetailPaymentRefundHeaderContainer = ({
             </span>
             원
           </div>
-        </div>
+        </Flex>
         {type === 'payment' && (
           <div
             className={css({
@@ -54,12 +48,12 @@ const CustomerDetailPaymentRefundHeaderContainer = ({
               margin: '0 8px 0 0',
               cursor: 'pointer',
             })}
-            onClick={onClickOpenModalHandler}
+            onClick={handleShowPaymentModalClick}
           >
             결제하기
           </div>
         )}
-      </div>
+      </Flex>
     </HeaderContainer>
   );
 };

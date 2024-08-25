@@ -8,7 +8,7 @@ type Props = {
 };
 
 const CustomerList = ({ keyword }: Props) => {
-  const { isLoading, data } = useCustomerListQuery();
+  const { data, isLoading } = useCustomerListQuery();
 
   if (isLoading) {
     return (

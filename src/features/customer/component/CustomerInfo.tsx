@@ -1,5 +1,5 @@
 import { CustomerDetailData } from '@apis/customer/customer.type';
-import { Input, Select, Button } from '@components/index';
+import { Input, Select } from '@components/index';
 import { getYearList, getMonthList, getDayList } from '@utils/date';
 import {
   ProfileManIcon,
@@ -14,6 +14,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { flex } from 'styled-system/patterns';
 import { css } from 'styled-system/css';
 import { Flex } from 'styled-system/jsx';
+import IconButton from '@components/button/IconButton';
 
 type Props = {
   customerId: string;
@@ -29,10 +30,6 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
     email,
     phone,
     sex,
-    height,
-    weight,
-    address,
-    addressDetail,
     profileImageUrl,
     digitalSignatureImageUrl,
   } = customer;
@@ -42,7 +39,7 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
   const { monthArray } = getMonthList();
   const { dateArray } = getDayList();
 
-  const onClickDeleteCustomerHandler = async () => {
+  const handleDeleteCustomerClick = async () => {
     if (!window.confirm('정말로 삭제하시겠습니까?')) return;
 
     const { data } = await deleteCustomer({ customerId });
@@ -61,27 +58,28 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
   const checkSexProfileImageUrl =
     sex === 'man' ? ProfileManIcon.src : ProfileWomanIcon.src;
 
-  const onClickEditCustomerHandler = () => {};
-
   return (
     <div
       className={flex({
         height: '35%',
         borderBottom: '1px solid var(--grey100)',
         margin: '0 0 16px 0',
+        gap: '24px',
       })}
     >
       <div
         className={css({
           width: '20%',
-          height: '50%',
+          height: 'calc(100% - 84px)',
         })}
       >
         <Input
           label={' '}
           id={'profileImage'}
-          variant={'file'}
-          src={profileImageUrl ?? checkSexProfileImageUrl}
+          variant="file"
+          style={{
+            backgroundImage: profileImageUrl ?? checkSexProfileImageUrl,
+          }}
         >
           <Input.TextField type={'file'} />
         </Input>
@@ -89,10 +87,10 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
           className={css({
             textAlign: 'center',
             border: '1px solid var(--grey100)',
-            width: '60%',
+            width: 'calc(75% - 48px)',
             height: '52px',
             lineHeight: '52px',
-            margin: '10% auto 0 auto',
+            margin: '16px auto 16px auto',
             verticalAlign: 'middle',
             borderRadius: '8px',
           })}
@@ -101,8 +99,10 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
         </div>
       </div>
       <div
-        className={css({
+        className={flex({
           width: '40%',
+          flexDirection: 'column',
+          gap: '16px',
           padding: '0 0 0 24px',
         })}
       >
@@ -121,7 +121,7 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
               <Select
                 key="year"
                 name="year"
-                width="calc((60% / 3) - 4px)"
+                width="calc(((75% - 48px) / 3) - 4px)"
                 defaultValue={year}
                 disabled={true}
               >
@@ -136,7 +136,7 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
               <Select
                 key="month"
                 name="month"
-                width="calc((60% / 3) - 4px)"
+                width="calc(((75% - 48px) / 3) - 4px)"
                 margin={'0 6px'}
                 defaultValue={month}
                 disabled={true}
@@ -152,7 +152,7 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
               <Select
                 key="date"
                 name="date"
-                width="calc((60% / 3) - 4px)"
+                width="calc(((75% - 48px) / 3) - 4px)"
                 defaultValue={date}
                 disabled={true}
               >
@@ -188,7 +188,7 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
             <Select
               key="sex"
               name="sex"
-              width="calc(((60% / 3) * 2) - 4px)"
+              width="calc((75% - 48px) / 2)"
               disabled={true}
             >
               <option value="man">남자</option>
@@ -197,14 +197,17 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
           }
         />
       </div>
-      <div className={css({ width: '40%' })}>
-        <div>
+      <div
+        className={flex({ width: '40%', flexDirection: 'column', gap: '16px' })}
+      >
+        <div className={css({ height: 'calc(((100% / 5) * 4) - 16px)' })}>
           <CustomerInputRow
             type={'password'}
             name={'password'}
             rowHeadLabel={'비밀번호'}
             placeholder={'비밀번호를 입력해주세요.'}
             defaultValue={''}
+            css={css.raw({ height: 'calc(100% / 5)', marginBottom: '16px' })}
           />
           <CustomerInputRow
             type={'password'}
@@ -212,63 +215,26 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
             rowHeadLabel={'비밀번호 확인'}
             placeholder={'비밀번호를 다시 입력해주세요.'}
             defaultValue={''}
+            css={css.raw({ height: 'calc(100% / 5)', marginBottom: '16px' })}
           />
-          <Flex>
-            <CustomerInputRow
-              name={'height'}
-              rowHeadLabel={'키(선택)'}
-              placeholder={'키를 입력해주세요.'}
-              defaultValue={height ?? ''}
-            />
-            <CustomerInputRow
-              name={'weight'}
-              rowHeadLabel={'몸무게(선택)'}
-              placeholder={'몸무게를 입력해주세요.'}
-              defaultValue={weight ?? ''}
-              rowHeadStyle={{ width: '100px', margin: '0 0 0 20px' }}
-            />
-          </Flex>
-          <Flex>
-            <CustomerInputRow
-              name="address"
-              rowHeadLabel="주소(선택)"
-              placeholder="우편번호 찾기"
-              defaultValue={address ?? ''}
-            />
-            <CustomerInputRow
-              name="addressDetail"
-              rowHeadLabel="상세주소"
-              placeholder="상세 주소를 입력해주세요."
-              defaultValue={addressDetail ?? ''}
-              rowHeadStyle={{ width: '100px', margin: '0 0 0 20px' }}
-            />
-          </Flex>
         </div>
-        <Flex justifyContent="end">
-          <Button
-            label="정보 삭제하기"
-            variant="iconBtn"
-            src={DeleteWhiteIcon}
-            css={{
-              border: 0,
-              backgroundColor: 'var(--red200)',
-              color: 'var(--white100)',
-              padding: '12px 16px',
-              margin: '0 12px 0 0',
-            }}
-            onClick={onClickDeleteCustomerHandler}
+        <Flex justifyContent="end" gap="8px">
+          <IconButton
+            iconAlign="left"
+            iconAlt={'delete customer info'}
+            iconSrc={DeleteWhiteIcon}
+            variant="negative"
+            size="lg"
+            label={'정보 삭제하기'}
+            onClick={handleDeleteCustomerClick}
           />
-          <Button
-            label="정보 수정하기"
-            variant="iconBtn"
-            src={EditWhiteIcon}
-            css={{
-              border: 0,
-              backgroundColor: 'var(--business-active-color)',
-              color: 'var(--white100)',
-              padding: '12px 16px',
-            }}
-            onClick={onClickEditCustomerHandler}
+          <IconButton
+            iconAlign="left"
+            iconAlt={'edit customer info'}
+            iconSrc={EditWhiteIcon}
+            variant="primary"
+            size="lg"
+            label={'정보 수정하기'}
           />
         </Flex>
       </div>

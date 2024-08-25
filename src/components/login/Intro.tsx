@@ -70,7 +70,7 @@ const AdvertiseWrapper = styled('div', {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     fontSize: '3rem',
-    fontWeight: '500',
+    fontWeight: 500,
   },
 });
 const SiteMapContainer = styled('div', {

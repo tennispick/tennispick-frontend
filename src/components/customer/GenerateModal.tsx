@@ -4,18 +4,19 @@ import { v4 as uuidV4 } from 'uuid';
 
 import { EditWhiteIcon } from '@icons/index';
 import useInput from '@hooks/useInput';
-import { Button, Input, Select } from '@components/index';
+import { Input, Select } from '@components/index';
 import { generateCustomer } from '@queries/index';
 import { getYearList, getMonthList, getDayList } from '@utils/date';
 import { emailRegex, passwordRegex, phoneNumberRegex } from '@utils/validation';
 import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';
+import IconButton from '@components/button/IconButton';
 
 type Props = {
-  setShowModal: Dispatch<SetStateAction<boolean>>;
+  setOpenModal: Dispatch<SetStateAction<boolean>>;
 };
 
-const GenerateModal = ({ setShowModal }: Props) => {
+const GenerateModal = ({ setOpenModal }: Props) => {
   const { yearArray, year } = getYearList();
   const { monthArray, month } = getMonthList();
   const { dateArray, date } = getDayList();
@@ -83,7 +84,7 @@ const GenerateModal = ({ setShowModal }: Props) => {
       const { data } = await generateCustomer(formData);
       if (data.affectedRows > 0) {
         alert('생성이 완료되었습니다.');
-        setShowModal(false);
+        setOpenModal(false);
         router.refresh();
       }
     } else return false;
@@ -214,20 +215,15 @@ const GenerateModal = ({ setShowModal }: Props) => {
           regexText={'연락처의 형식이 아니에요.'}
         />
       </InputWrapper>
-      <Button
-        type={'submit'}
-        variant={'iconBtn'}
+      <IconButton
+        type="submit"
+        iconAlign="left"
+        iconSrc={EditWhiteIcon}
+        iconAlt="customer"
+        variant="primary"
+        size="lg"
         label={'회원 등록하기'}
-        src={EditWhiteIcon}
-        className={css({
-          width: '100%',
-          justifyContent: 'center',
-          border: 0,
-          backgroundColor: 'var(--business-sub-color)',
-          color: 'var(--white100)',
-          padding: '12px 16px',
-          margin: '36px 0 0 0',
-        })}
+        className={css({ marginLeft: 'auto' })}
       />
     </form>
   );
@@ -257,6 +253,7 @@ const InputWrapper = styled(Input, {
 const TextField = styled(Input.TextField, {
   base: {
     width: '60%',
+    height: 'calc(0.95rem * 2.725)',
     padding: '10px 0 10px 10px',
     margin: '8px 0 0 0',
   },
