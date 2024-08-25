@@ -35,7 +35,7 @@ export const LessonStatusCell = (status: string) => {
       className={css(
         {
           width: '10%',
-          fontWeight: '500',
+          fontWeight: 500,
           padding: '8px 0',
           borderRadius: '6px',
         },

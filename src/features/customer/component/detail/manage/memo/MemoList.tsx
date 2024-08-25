@@ -36,9 +36,12 @@ const ManageMemoList = ({
           height: '28px',
           alignItems: 'center',
           textAlign: 'center',
-          fontSize: '0.9rem',
           padding: '6px 8px',
           gap: '2px',
+
+          '& div': {
+            fontSize: '0.875rem',
+          },
         })}
       >
         <div className={css({ width: '20%' })}>제목</div>
@@ -52,7 +55,10 @@ const ManageMemoList = ({
           height: 'calc(100% - 28px)',
           padding: '8px 0',
           overflowY: 'auto',
-          fontSize: '0.9rem',
+
+          '& div': {
+            fontSize: '0.875rem',
+          },
         })}
       >
         {data.map((item, index) => {

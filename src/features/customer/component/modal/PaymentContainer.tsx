@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 import { LessonListQueryData } from '@features/lesson/type/lesson.type';
 import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   customerId: string;
@@ -91,10 +92,7 @@ const CustomerModalPaymentContainer = ({
   }, [formData.discountType]);
 
   return (
-    <form
-      className={css({ width: '100%', display: 'flex' })}
-      onSubmit={onSubmitHandler}
-    >
+    <form className={flex({ width: '100%' })} onSubmit={onSubmitHandler}>
       <div
         className={css({
           width: '70%',
@@ -103,7 +101,7 @@ const CustomerModalPaymentContainer = ({
           borderRight: '1px solid var(--grey100)',
         })}
       >
-        <div className={css({ display: 'flex', height: 'calc(100% - 24px)' })}>
+        <div className={flex({ height: 'calc(100% - 24px)' })}>
           <div className={css({ width: '50%' })}>
             <InputRow
               name="name"
@@ -183,9 +181,8 @@ const PaymentDescription = styled('div', {
       margin: '0 24px 0 0',
       fontWeight: 600,
 
-      '&::before': {
+      _before: {
         content: "'*'",
-        position: 'relative',
         top: '2px',
         margin: '0 4px 0 0',
       },

@@ -6,6 +6,8 @@ export default defineConfig({
   // Whether to use css reset
   preflight: true,
 
+  cwd: process.cwd(),
+
   // Where to look for your css declarations
   include: [
     './src/styles/**/*.{js,jsx,ts,tsx}',

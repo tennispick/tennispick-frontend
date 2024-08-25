@@ -22,11 +22,11 @@ const CustomerPayment = ({ id }: Props) => {
     CustomerPaymentRefundData | undefined
   >(undefined);
 
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const [modalType, setModalType] = useState<PaymentRefundType>('payment');
 
-  const onClickOpenModalHandler = () => {
-    setShowModal(true);
+  const handleShowPaymentModalClick = () => {
+    setOpenModal(true);
     setModalType('payment');
   };
 
@@ -36,7 +36,7 @@ const CustomerPayment = ({ id }: Props) => {
   ) => {
     e.stopPropagation();
 
-    setShowModal(true);
+    setOpenModal(true);
     setModalType('refund');
     setCheckedItem(target);
   };
@@ -60,18 +60,17 @@ const CustomerPayment = ({ id }: Props) => {
           <CustomerDetailPaymentRefundContainer
             customerId={id}
             type={currentItem}
-            onClickOpenModalHandler={onClickOpenModalHandler}
+            handleShowPaymentModalClick={handleShowPaymentModalClick}
             onClickOpenRefundModalHandler={onClickOpenRefundModalHandler}
           />
         </Suspense>
       </div>
-      {showModal && (
+      {openModal && (
         <Suspense fallback={<Loading />}>
           <PaymentRefundModal
             id={id}
             type={modalType}
-            showModal={showModal}
-            setShowModal={setShowModal}
+            setOpenModal={setOpenModal}
             checkedItem={checkedItem}
           />
         </Suspense>

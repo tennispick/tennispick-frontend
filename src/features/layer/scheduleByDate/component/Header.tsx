@@ -7,13 +7,13 @@ import { styled } from 'styled-system/jsx';
 type Props = {
   day: Date;
   customerInfo: ScheduleLessonByDateData | null;
-  onCloseModalHandler: () => void;
+  handleCloseModalClick: () => void;
 };
 
 const ScheduleByDateHeader = ({
   day,
   customerInfo,
-  onCloseModalHandler,
+  handleCloseModalClick,
 }: Props) => {
   const year = day.getFullYear();
   const month = day.getMonth() + 1;
@@ -49,7 +49,7 @@ const ScheduleByDateHeader = ({
           alt={'close button'}
           width={28}
           height={28}
-          onClick={onCloseModalHandler}
+          onClick={handleCloseModalClick}
           className={css({ cursor: 'pointer' })}
         />
       </HeaderCautionWrapper>

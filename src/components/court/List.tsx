@@ -59,7 +59,7 @@ const CourtList = ({ data, setCourtId, setShowRightSide }: Props) => {
                     backgroundColor: 'var(--blue300)',
                     color: 'var(--white100)',
                     fontSize: '1.1rem',
-                    fontWeight: '600',
+                    fontWeight: 600,
                     borderRadius: '12px',
                     textAlign: 'center',
                     zIndex: 99,
@@ -142,7 +142,7 @@ const CourtList = ({ data, setCourtId, setShowRightSide }: Props) => {
 
 const CourtDetailInfo = styled('div', {
   base: {
-    fontWeight: '500',
+    fontWeight: 500,
     lineHeight: '32px',
   },
 });

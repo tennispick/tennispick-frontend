@@ -24,7 +24,7 @@ const SalesStatistics = () => {
           variant="primary"
           iconSrc={SingleRightArrowIcon}
           iconAlt="single-right-arrow"
-          iconAlign="left"
+          iconAlign="right"
           label="매출 통계보기"
           className={css({ marginLeft: 'auto' })}
         />

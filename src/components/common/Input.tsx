@@ -47,7 +47,7 @@ const LABEL_VARIANT_STYLE = cva({
         top: '-10px',
         left: '14px',
         padding: '0 12px',
-        fontWeight: '500',
+        fontWeight: 500,
         color: 'var(--business-color)',
         backgroundColor: 'var(--white100)',
         zIndex: '2',
@@ -71,26 +71,27 @@ const Input = ({
 }: Props): ReactElement => {
   const child = Children.only(children);
 
-  const { css: cssProp, ...rest } = props;
+  const { css: cssProp, style, ...rest } = props;
 
   const className = css(
     CONTAINER_VARIANT_STYLE.raw({ variant: variant }),
     cssProp,
   );
 
+  const backgroundImage = style?.backgroundImage;
+
   return (
     <div className={className} {...rest}>
       {label && (
         <label
           htmlFor={id}
-          className={cx(
-            css(LABEL_VARIANT_STYLE.raw({ variant: variant }), {
-              background: props.src
-                ? `url("${props.src}") no-repeat center`
-                : '',
-              backgroundSize: props.src ? 'contain' : '',
-            }),
-          )}
+          className={cx(css(LABEL_VARIANT_STYLE.raw({ variant: variant })))}
+          style={{
+            background: backgroundImage
+              ? `url("${backgroundImage}") no-repeat center`
+              : '',
+            backgroundSize: backgroundImage ? 'contain' : '',
+          }}
         >
           {label}
         </label>
@@ -121,6 +122,7 @@ Input.TextField = forwardRef(
   ): ReactElement<InputHTMLAttributes<HTMLInputElement>> => {
     const {
       type,
+      className,
       requiredStatus,
       requiredText,
       isRegexCheck,
@@ -130,7 +132,12 @@ Input.TextField = forwardRef(
 
     return (
       <>
-        <input type={type ? type : 'text'} ref={ref} {...rest} />
+        <input
+          type={type ? type : 'text'}
+          className={className}
+          ref={ref}
+          {...rest}
+        />
         {requiredStatus && (
           <div
             className={css({

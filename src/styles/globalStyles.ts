@@ -60,6 +60,21 @@ export const globalStyles = defineGlobalStyles({
     padding: 0,
     margin: 0,
     lineHeight: 'normal',
+    sm: {
+      fontSize: '10px',
+    },
+    md: {
+      fontSize: '12px',
+    },
+    lg: {
+      fontSize: '12px',
+    },
+    xl: {
+      fontSize: '14px',
+    },
+    '2xl': {
+      fontSize: '16px',
+    },
   },
   'html, body': {
     width: '100%',
@@ -82,7 +97,8 @@ export const globalStyles = defineGlobalStyles({
   },
   select: {
     appearance: 'none',
-    background: `url('/icons/arrow_drop_down_black.svg') no-repeat right 9px center`,
+    background:
+      'url(/icons/arrow_drop_down_black.svg) no-repeat right 9px center',
     outline: 0,
   },
   a: {
@@ -117,7 +133,7 @@ export const globalStyles = defineGlobalStyles({
         backgroundColor: 'var(--business-active-color)',
         border: 0,
 
-        '::after': {
+        _after: {
           content: '""',
           position: 'absolute',
           top: '50%',
@@ -131,8 +147,8 @@ export const globalStyles = defineGlobalStyles({
         },
       },
 
-      '&:indeterminate': {
-        '::after': {
+      _indeterminate: {
+        _after: {
           content: '""',
           position: 'absolute',
           top: '50%',

@@ -15,7 +15,6 @@ const SNBList = ({ currentItem, setCurrentItem, tabLists }: Props) => {
       className={flex({
         width: '100%',
         margin: '0 0 12px 12px',
-        fontSize: '1.1rem',
       })}
     >
       {tabLists.map(({ id, name }) => {

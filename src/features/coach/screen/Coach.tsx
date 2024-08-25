@@ -15,9 +15,9 @@ const CoachScreen = () => {
   const [tabList, setTabList] = useState(coachTabList);
   const [currentTab, setCurrentTab] = useState<string>(tabList[0].id);
 
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
-  const onClickShowModalHandler = () => setShowModal(true);
+  const handleOpenModalClick = () => setOpenModal(true);
 
   useEffect(() => {
     if (data) {
@@ -52,20 +52,20 @@ const CoachScreen = () => {
               backgroundColor: 'var(--business-active-color)',
               color: 'var(--white100)',
             })}
-            onClick={onClickShowModalHandler}
+            onClick={handleOpenModalClick}
           />
         }
       />
       <CoachList list={data} />
-      {showModal && (
+      {openModal && (
         <Portal id="portal">
           <Modal
             title="코치 생성"
-            showModal={showModal}
-            setShowModal={setShowModal}
+            openModal={openModal}
+            setOpenModal={setOpenModal}
             className={css({ top: '47.5%' })}
           >
-            <CoachCreateModal onCloseModal={onClickShowModalHandler} />
+            <CoachCreateModal onCloseModal={handleOpenModalClick} />
           </Modal>
         </Portal>
       )}

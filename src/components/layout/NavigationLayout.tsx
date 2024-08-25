@@ -17,13 +17,13 @@ type Props = {
 
 const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
   const [day, setDay] = useState<Date>(new Date());
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [openModal, setOpenodal] = useState<boolean>(false);
   const isMobile = useMobile();
 
-  const onCloseModalHandler = () => setShowModal(false);
+  const handleCloseModalClick = () => setOpenodal(false);
 
   const onClickCalendarDateHandler = (day: Date) => {
-    setShowModal(true);
+    setOpenodal(true);
     setDay(day);
   };
 
@@ -78,7 +78,7 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
                   <NavList
                     className={css({
                       flexDirection: isNavSpread ? 'row' : 'column',
-                      padding: isNavSpread ? '16px' : '16px 0',
+                      padding: isNavSpread ? '0.875rem' : '0.875rem 0',
                       margin: isNavSpread ? '0 0 12px 0' : '2px 0',
 
                       _before: {
@@ -112,21 +112,21 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
           onClick={onClickCalendarDateHandler}
         />
       )}
-      {showModal && (
+      {openModal && (
         <Portal id={'portal'}>
           <Modal
             title={'스케줄 등록'}
             titleContainer={false}
-            className={css({
+            css={{
               width: 'calc(100vw - 3%)',
               height: 'calc(100vh - 5%)',
               top: '50%',
               padding: 0,
-            })}
+            }}
           >
             <ScheduleByDate
               day={day}
-              onCloseModalHandler={onCloseModalHandler}
+              handleCloseModalClick={handleCloseModalClick}
             />
           </Modal>
         </Portal>

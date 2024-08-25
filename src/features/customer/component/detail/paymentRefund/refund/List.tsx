@@ -34,9 +34,12 @@ const CustomerDetailPaymentRefundRefundList = ({ data }: Props) => {
           height: '28px',
           alignItems: 'center',
           textAlign: 'center',
-          fontSize: '0.9rem',
           padding: '6px 8px',
           gap: '2px',
+
+          '& div': {
+            fontSize: '0.875rem',
+          },
         })}
       >
         <div className={css({ width: '20%' })}>레슨권</div>
@@ -53,7 +56,10 @@ const CustomerDetailPaymentRefundRefundList = ({ data }: Props) => {
           height: 'calc(100% - 28px)',
           padding: '8px 0',
           overflowY: 'auto',
-          fontSize: '0.9rem',
+
+          '& div': {
+            fontSize: '0.875rem',
+          },
         })}
       >
         {data.map((item) => {
@@ -109,9 +115,10 @@ const CustomerDetailPaymentRefundRefundList = ({ data }: Props) => {
                   width: '11%',
                   backgroundColor: 'var(--business-color)',
                   color: 'var(--white100)',
-                  fontWeight: '500',
+                  fontWeight: 600,
                   padding: '8px 0',
                   borderRadius: '6px',
+                  fontSize: '0.875rem',
                   border: 0,
                   outline: 0,
                   cursor: 'pointer',

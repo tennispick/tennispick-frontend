@@ -5,13 +5,13 @@ import { useGetCourtListQuery } from '@features/court/query/courtQuery';
 import { CourtListData } from '@apis/court/court.type';
 import ScheduleContainer from './ScheduleContainer';
 import { SetStateAction } from '@/types/index';
-import { Button } from '@components/index';
 import { EditWhiteIcon } from '@icons/index';
 import { useDuplicateCheckScheduleLessonQuery } from '@features/schedule/query/scheduleQuery';
 import { CustomerLessonScheduleHistoryData } from '@apis/customer/customer.type';
 import { isEmptyObj } from '@utils/object';
 import { getEndTimeByStartTime } from '@utils/date';
 import { css } from 'styled-system/css';
+import IconButton from '@components/button/IconButton';
 
 type Props = {
   formData: any;
@@ -118,14 +118,14 @@ const NewSchedule = ({
             className={css({
               margin: '8px 0 0 2px',
               color: 'var(--red200)',
-              fontSize: '0.925rem ',
+              fontSize: '0.875rem ',
             })}
           >
             예약이 불가능한 날짜에요.
           </div>
         )}
         <div className={css({ margin: '12px 0 8px 0' })}>
-          <div className={css({ fontSize: '0.9rem', margin: '0 0 8px 0' })}>
+          <div className={css({ fontSize: '0.875rem', margin: '0 0 8px 0' })}>
             코트
           </div>
           <ScheduleSelect
@@ -142,7 +142,7 @@ const NewSchedule = ({
           />
         </div>
         <div className={css({ margin: '12px 0 8px 0' })}>
-          <div className={css({ fontSize: '0.9rem', margin: '0 0 8px 0' })}>
+          <div className={css({ fontSize: '0.875rem', margin: '0 0 8px 0' })}>
             사유 입력
           </div>
           <input
@@ -165,21 +165,16 @@ const NewSchedule = ({
           />
         </div>
       </section>
-      <Button
-        type="submit"
-        label="수강 변경하기"
-        variant="iconBtn"
-        src={EditWhiteIcon}
-        css={{
-          width: '100%',
-          border: 0,
-          justifyContent: 'center',
-          backgroundColor: 'var(--business-sub-color)',
-          color: 'var(--white100)',
-          padding: '12px 16px',
-          margin: '36px 12px 0 0',
-        }}
+      <IconButton
+        iconAlign="left"
+        iconAlt="edit icon"
+        iconSrc={EditWhiteIcon}
+        label={'수강 변경하기'}
+        variant="primary"
+        size="lg"
+        full={true}
         disabled={lessonChangeDisabled}
+        className={css({ margin: '24px 0 0 0' })}
       />
     </>
   );

@@ -9,8 +9,8 @@ type Props = {
   onClickShowDrawerHandler: () => void;
   onCloseDrawerHandler: () => void;
   showScheduleChangeModal: boolean;
-  onClickShowModalHandler: () => void;
-  onClickCloseModalHandler: () => void;
+  handleShowModalClick: () => void;
+  handleHideModalClick: () => void;
 };
 
 const ManageLesson = ({
@@ -19,8 +19,8 @@ const ManageLesson = ({
   onClickShowDrawerHandler,
   onCloseDrawerHandler,
   showScheduleChangeModal,
-  onClickShowModalHandler,
-  onClickCloseModalHandler,
+  handleShowModalClick,
+  handleHideModalClick,
 }: Props) => {
   const { data } = useCustomerAllLessonListQuery({ id: customerId });
 
@@ -55,8 +55,8 @@ const ManageLesson = ({
             onClickShowDrawerHandler={onClickShowDrawerHandler}
             onCloseDrawerHandler={onCloseDrawerHandler}
             showScheduleChangeModal={showScheduleChangeModal}
-            onClickShowModalHandler={onClickShowModalHandler}
-            onClickCloseModalHandler={onClickCloseModalHandler}
+            handleShowModalClick={handleShowModalClick}
+            handleHideModalClick={handleHideModalClick}
           />
         ) : (
           <NoResult description="수강목록이 없어요." />

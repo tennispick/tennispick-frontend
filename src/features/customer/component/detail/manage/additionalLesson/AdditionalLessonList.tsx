@@ -36,14 +36,17 @@ const AdditionalLessonList = ({
           height: '28px',
           alignItems: 'center',
           textAlign: 'center',
-          fontSize: '0.9rem',
           padding: '6px 8px',
           gap: '2px',
+
+          '& div': {
+            fontSize: '0.875rem',
+          },
         })}
       >
-        <div className={css({ width: '15%' })}>코트</div>
-        <div className={css({ width: '15%' })}>코치</div>
-        <div className={css({ width: '30%' })}>날짜</div>
+        <div className={css({ width: '12%' })}>코트</div>
+        <div className={css({ width: '12%' })}>코치</div>
+        <div className={css({ width: '33%' })}>날짜</div>
         <div className={css({ width: '20%' })}>시작시간</div>
         <div className={css({ width: '20%' })}>종료시간</div>
       </div>
@@ -52,7 +55,10 @@ const AdditionalLessonList = ({
           height: 'calc(100% - 28px)',
           padding: '8px 0',
           overflowY: 'auto',
-          fontSize: '0.9rem',
+
+          '& div': {
+            fontSize: '0.875rem',
+          },
         })}
       >
         {data.map((item, index) => {
@@ -73,10 +79,28 @@ const AdditionalLessonList = ({
               key={`${index}-${id}`}
               onClick={() => onClickRowHandler(item)}
             >
-              <div className={css({ width: '15%' })}>{courtName}</div>
-              <div className={css({ width: '15%' })}>{coachName}</div>
               <div
-                className={css({ width: '30%' })}
+                className={css({
+                  width: '12%',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                })}
+              >
+                {courtName}
+              </div>
+              <div
+                className={css({
+                  width: '12%',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                })}
+              >
+                {coachName}
+              </div>
+              <div
+                className={css({ width: '36%' })}
               >{`${originDate} -> ${additionalDate}`}</div>
               <div
                 className={css({ width: '20%' })}

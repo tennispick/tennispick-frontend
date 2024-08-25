@@ -14,25 +14,25 @@ type Props = {
   day: Date;
   customerId: string;
   customerInfo: ScheduleLessonByDateData | null;
-  onCloseModalHandler: () => void;
+  handleCloseModalClick: () => void;
 };
 
 const ModalCustomer = ({
   day,
   customerId,
   customerInfo,
-  onCloseModalHandler,
+  handleCloseModalClick,
 }: Props) => {
   const router = useRouter();
 
   const { data } = useCustomerDetailQuery({ id: customerId });
   const { mutate: attendanceMutate } = useAttendanceMutate(
     day,
-    onCloseModalHandler,
+    handleCloseModalClick,
   );
   const { mutate: lessonCancelMutate } = useLessonCancelMutate(
     day,
-    onCloseModalHandler,
+    handleCloseModalClick,
   );
 
   const { id, customerAttendance, coachAttendance } = customerInfo ?? {};
@@ -53,7 +53,7 @@ const ModalCustomer = ({
 
   const onClickCustomerDetailRouterHandler = () => {
     router.push(`/customer/${customerId}`);
-    onCloseModalHandler();
+    handleCloseModalClick();
   };
 
   return (

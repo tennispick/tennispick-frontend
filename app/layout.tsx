@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react';
 import QueryProvider from 'src/provider/QueryProvider';
 import RecoilProvider from 'src/provider/RecoilProvider';
 import './global.css';
-import '../src/styles/react-date-picker.css';
+import '@styles/react-date-picker.css';
 import AppLayout from '@components/layout/AppLayout';
 
 export default async function RootLayout({ children }: PropsWithChildren) {

@@ -1,8 +1,7 @@
 import React from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { css } from 'styled-system/css';
+import { usePathname, useRouter } from 'next/navigation';
 import { styled } from 'styled-system/jsx';
+import Button from '@components/button/Button';
 
 type Props = {
   title: string;
@@ -10,28 +9,22 @@ type Props = {
 };
 
 const PageHeader = ({ title, link = '' }: Props) => {
+  const router = useRouter();
   const pathName = usePathname();
   const detailPathName = pathName?.split('/')[2];
+
+  const handleGoBack = () => router.push(link);
 
   return (
     <Container>
       {title}
       {detailPathName && (
-        <Link
-          href={link}
-          className={css({
-            top: '-8px',
-            backgroundColor: 'var(--business-color)',
-            color: 'var(--white100)',
-            height: '36px',
-            lineHeight: '36px',
-            padding: '0 16px',
-            borderRadius: '8px',
-            fontSize: '1rem',
-          })}
-        >
-          목록으로 가기
-        </Link>
+        <Button
+          variant="primary"
+          size="sm"
+          label={'목록으로 가기'}
+          onClick={handleGoBack}
+        />
       )}
     </Container>
   );
@@ -39,12 +32,13 @@ const PageHeader = ({ title, link = '' }: Props) => {
 
 const Container = styled('div', {
   base: {
+    display: 'flex',
     height: '40px',
     fontSize: '1.2rem',
-    fontWeight: '600',
+    fontWeight: 600,
     borderBottom: '1px solid var(--grey100)',
     margin: '0 0 12px 0',
-    display: 'flex',
+    justifyContent: 'space-between',
   },
 });
 

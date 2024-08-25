@@ -9,10 +9,10 @@ import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';
 
 type Props = {
-  setShowModal: Dispatch<SetStateAction<boolean>>;
+  setOpenModal: Dispatch<SetStateAction<boolean>>;
 };
 
-const GenerateModal = ({ setShowModal }: Props) => {
+const GenerateModal = ({ setOpenModal }: Props) => {
   const router = useRouter();
   const [formData, onChangeFormData, setFormData] = useInput({
     name: {
@@ -48,7 +48,7 @@ const GenerateModal = ({ setShowModal }: Props) => {
       const { data } = await generateCourt(formData);
       if (data.affectedRows > 0) {
         alert('생성이 완료되었습니다.');
-        setShowModal(false);
+        setOpenModal(false);
         router.refresh();
       }
     } else return false;

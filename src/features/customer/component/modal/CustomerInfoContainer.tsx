@@ -2,6 +2,7 @@ import { ProfileManIcon } from '@icons/index';
 import Image from 'next/image';
 import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   isPayment: boolean;
@@ -9,10 +10,9 @@ type Props = {
 
 const CustomerModalCustomerInfoContainer = ({ isPayment }: Props) => {
   return (
-    <div className={css({ display: 'flex', height: '130px' })}>
+    <div className={flex({ height: '130px' })}>
       <div
-        className={css({
-          display: 'flex',
+        className={flex({
           width: '70%',
           height: '130px',
           borderBottom: '1px solid var(--grey100)',
@@ -26,9 +26,16 @@ const CustomerModalCustomerInfoContainer = ({ isPayment }: Props) => {
             alt="profile man"
             placeholder="empty"
             priority={true}
+            className={css({ width: '100%', height: '100%' })}
           />
         </div>
-        <div className={css({ width: '40%' })}>
+        <div
+          className={flex({
+            width: '40%',
+            flexDirection: 'column',
+            gap: '4px',
+          })}
+        >
           <InfoRow>
             <div className={css({ width: '96px', fontWeight: 600 })}>이름</div>
             <div>광개토 대왕</div>
@@ -52,7 +59,13 @@ const CustomerModalCustomerInfoContainer = ({ isPayment }: Props) => {
             <div>010-1234-5678</div>
           </InfoRow>
         </div>
-        <div className={css({ width: '40%' })}>
+        <div
+          className={flex({
+            width: '40%',
+            flexDirection: 'column',
+            gap: '4px',
+          })}
+        >
           <InfoRow>
             <div className={css({ width: '96px', fontWeight: 600 })}>성별</div>
             <div>남성</div>
@@ -91,7 +104,6 @@ const InfoRow = styled('div', {
   base: {
     display: 'flex',
     alignItems: 'center',
-    margin: '0 0 8px 0',
   },
 });
 

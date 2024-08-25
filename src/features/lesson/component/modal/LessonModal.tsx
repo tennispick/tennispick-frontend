@@ -10,10 +10,10 @@ import { Flex, styled } from 'styled-system/jsx';
 import { css } from 'styled-system/css';
 
 type Props = {
-  setShowModal: SetStateAction<boolean>;
+  setOpenModal: SetStateAction<boolean>;
 };
 
-const LessonModal = ({ setShowModal }: Props) => {
+const LessonModal = ({ setOpenModal }: Props) => {
   const router = useRouter();
 
   const [formData, onChangeFormData, setFormData] = useInput({
@@ -68,7 +68,7 @@ const LessonModal = ({ setShowModal }: Props) => {
       const { data } = await createLesson(formData);
       if (data.affectedRows > 0) {
         alert('생성이 완료되었습니다.');
-        setShowModal(false);
+        setOpenModal(false);
         router.refresh();
       }
     } else return false;

@@ -19,7 +19,7 @@ const CustomerPage = () => {
 
   const [tabList, setTabList] = useState(customerTabList);
   const [currentTab, setCurrentTab] = useState<string>(tabList[0].id);
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
   useEffect(() => {
     if (data) {
@@ -53,20 +53,19 @@ const CustomerPage = () => {
               backgroundColor: 'var(--business-active-color)',
               color: 'var(--white100)',
             })}
-            onClick={() => setShowModal(true)}
+            onClick={() => setOpenModal(true)}
           />
         }
       />
       {data && <CustomerList data={data.data} />}
-      {showModal && (
+      {openModal && (
         <Portal id={'portal'}>
           <Modal
             title={'회원 등록'}
-            showModal={showModal}
-            setShowModal={setShowModal}
+            setOpenModal={setOpenModal}
             className={css({ top: '47.5%' })}
           >
-            <GenerateCustomerModal setShowModal={setShowModal} />
+            <GenerateCustomerModal setOpenModal={setOpenModal} />
           </Modal>
         </Portal>
       )}

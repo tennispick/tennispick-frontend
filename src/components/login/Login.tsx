@@ -78,7 +78,7 @@ const Login = () => {
               css={{
                 width: '60%',
                 margin: '0 0 16px 0',
-                fontWeight: '500',
+                fontWeight: 500,
                 color: 'var(--white100)',
                 backgroundColor: 'var(--blue300)',
                 border: 0,
@@ -89,7 +89,7 @@ const Login = () => {
               variant={'radiusBtn'}
               css={{
                 width: '60%',
-                fontWeight: '500',
+                fontWeight: 500,
                 color: 'var(--white100)',
                 backgroundColor: 'var(--navy100)',
                 border: 0,
@@ -101,7 +101,7 @@ const Login = () => {
         <span
           className={css({
             color: 'var(--navy100)',
-            fontWeight: '600',
+            fontWeight: 600,
             margin: '0 8px 0 0',
             cursor: 'pointer',
           })}
@@ -111,7 +111,7 @@ const Login = () => {
         <span
           className={css({
             color: 'var(--navy100)',
-            fontWeight: '600',
+            fontWeight: 600,
             margin: '0 0 0 8px',
             cursor: 'pointer',
           })}
@@ -137,7 +137,7 @@ const LoginContainer = styled('div', {
 const LoginTitle = styled('div', {
   base: {
     fontSize: '40px',
-    fontWeight: '600',
+    fontWeight: 600,
     color: 'var(--business-color)',
     margin: '0 0 36px 0',
   },

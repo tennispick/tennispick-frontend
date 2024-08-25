@@ -9,8 +9,6 @@ import ManageContainer from '../component/detail/manage/ManageContainer';
 import { isEmptyObj } from '@utils/object';
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
-// import ModalCustomer from '@components/layer/calendar/Customer';
-// import ModalCalendar from '@components/layer/calendar/Calendar';
 
 type Props = {
   id: string;
@@ -35,36 +33,8 @@ const CustomerDetailScreen = ({ id }: Props) => {
           })}
         >
           <CustomerPayment id={id} />
-          {/* <ManageContainer customerId={id} /> */}
+          <ManageContainer customerId={id} />
         </div>
-        {/* <div
-          css={{
-            margin: '16px 0 0 0',
-            padding: '12px',
-            backgroundColor: 'var(--grey400)',
-            borderRadius: '16px',
-          }}
-        >
-          <div
-            css={{
-              position: 'relative',
-              height: '100%',
-              backgroundColor: 'var(--white100)',
-            }}
-          >
-            <div
-              css={{
-                position: 'relative',
-                display: 'flex',
-                flexDirection: 'column',
-                width: '100%',
-              }}
-            >
-              <ModalCustomer customerInfo={customer} />
-              <ModalCalendar day={new Date()} />
-            </div>
-          </div>
-        </div> */}
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import { OnClickRefOutSideCloseHandler } from '@utils/onClick';
 import { CloseBtnIcon } from '@icons/index';
 import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   title?: string;
@@ -41,8 +42,7 @@ const RightSideContainer = ({
         })}
       >
         <div
-          className={css({
-            display: 'flex',
+          className={flex({
             alignItems: 'center',
             justifyContent: 'space-between',
             fontSize: '1.2rem',
@@ -56,7 +56,14 @@ const RightSideContainer = ({
             onClick={handleCloseDrawerClick}
           />
         </div>
-        <div className={css({ margin: '48px 0' })}>{children}</div>
+        <div
+          className={css({
+            height: 'calc(100% - (1rem + 32px))',
+            margin: '16px 0 0 0',
+          })}
+        >
+          {children}
+        </div>
       </Wrapper>
     </section>
   );

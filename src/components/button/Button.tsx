@@ -1,7 +1,14 @@
 import { ButtonType } from '@/types/button';
 import { css, cva, cx } from 'styled-system/css';
 
-const Button = ({ size, variant, label, children, ...props }: ButtonType) => {
+const Button = ({
+  size,
+  variant,
+  label,
+  children,
+  full,
+  ...props
+}: ButtonType) => {
   const { className, ...rest } = props;
 
   const sizeStyles = cva({
@@ -36,6 +43,13 @@ const Button = ({ size, variant, label, children, ...props }: ButtonType) => {
           borderRadius: '0.375rem',
         },
         xl: {
+          height: '3rem',
+          fontSize: '1.25rem',
+          padding: '0 2.5rem',
+          borderRadius: '0.375rem',
+        },
+        full: {
+          width: '100%',
           height: '3rem',
           fontSize: '1.25rem',
           padding: '0 2.5rem',
@@ -80,7 +94,11 @@ const Button = ({ size, variant, label, children, ...props }: ButtonType) => {
   return (
     <button
       className={cx(
-        css(sizeStyles.raw({ variant: size }), variantStyles.raw({ variant })),
+        css(
+          sizeStyles.raw({ variant: size }),
+          variantStyles.raw({ variant }),
+          full && { width: '100%' },
+        ),
         className,
       )}
       {...rest}
