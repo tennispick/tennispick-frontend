@@ -15,6 +15,13 @@ const Button = ({
     base: {
       border: 0,
       cursor: 'pointer',
+
+      _disabled: {
+        backgroundColor: 'var(--grey500)',
+        color: 'var(--grey800)',
+        borderColor: 'var(--grey100)',
+        cursor: 'not-allowed',
+      },
     },
     variants: {
       variant: {
@@ -52,6 +59,13 @@ const Button = ({
           width: '100%',
           height: '3rem',
           fontSize: '1.25rem',
+          padding: '0 2.5rem',
+          borderRadius: '0.375rem',
+        },
+        half: {
+          width: '50%',
+          height: '3rem',
+          fontSize: '1rem',
           padding: '0 2.5rem',
           borderRadius: '0.375rem',
         },

@@ -1,8 +1,8 @@
-import { Button } from '@components/index';
 import { PropsWithChildren } from 'react';
 import { Portal } from '..';
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
+import Button from '@components/button/Button';
 
 type Props = {
   formId?: string;
@@ -59,28 +59,17 @@ const LayerConfirmModal = ({
           <div className={flex({ gap: '8px', margin: '40px 0 0 0' })}>
             <Button
               type="reset"
+              variant="ghost"
+              size="half"
               label="취소"
               onClick={onCancelHandler}
-              css={{
-                width: 'calc(50% - 4px)',
-                fontSize: '1rem',
-                padding: '16px 0',
-                border: 0,
-              }}
             />
             <Button
-              form={formId}
               type="submit"
+              form={formId}
+              variant="positive"
+              size="half"
               label={onClickActionText}
-              css={{
-                width: 'calc(50% - 4px)',
-                fontSize: '1rem',
-                borderRadius: '12px',
-                backgroundColor: 'var(--blue500)',
-                color: 'var(--white100)',
-                padding: '16px 0',
-                border: 0,
-              }}
               disabled={onClickDisabled}
             />
           </div>
