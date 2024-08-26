@@ -17,25 +17,12 @@ export const useGetCoachListQuery = ({
   isLoading?: boolean;
   error: unknown;
 } => {
-  const { data, isLoading, error } = useQuery({
+  return useQuery({
     queryKey: [URL_COACH],
-    queryFn: async (): Promise<{ data: CoachListData[] }> => {
-      try {
-        return await getCoachList();
-      } catch (error) {
-        console.error(error);
-        throw error;
-      }
-    },
-    select: (data) => data.data,
+    queryFn: async () => await getCoachList(),
+    select: (data) => data?.data,
     enabled: enabled,
   });
-
-  return {
-    data: data,
-    isLoading,
-    error,
-  };
 };
 
 export const useGetCoachLessonListQuery = () => {

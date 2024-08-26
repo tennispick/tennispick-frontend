@@ -1,28 +1,26 @@
 import { CoachListData } from '@apis/coach/coach.type';
-import { NoResult, NormalList as Li } from '@components/index';
+import { NoResult, NormalList } from '@components/index';
 import { useRouter } from 'next/navigation';
 import { ProfileManIcon, ProfileWomanIcon } from '@icons/index';
 import Image from 'next/image';
 import { css } from 'styled-system/css';
 
 type Props = {
-  list: CoachListData[];
+  data: CoachListData[];
 };
 
-const CoachList = ({ list }: Props) => {
+const CoachList = ({ data }: Props) => {
   const router = useRouter();
+
+  const handleCoachDetailClick = (id: number) => router.push(`/coach/${id}`);
 
   return (
     <>
-      {list && list.length > 0 ? (
-        <Li.UnOrderList height={'78%'}>
-          {list.map(({ id, name, position, sex, email, phone, age }) => {
+      {data && data.length > 0 ? (
+        <NormalList.UnOrderList height={'100%'}>
+          {data.map(({ id, name, position, sex, email, phone, age }) => {
             return (
-              <Li
-                key={id}
-                onClick={() => router.push(`/coach/${id}`)}
-                className={css({ minHeight: '48px' })}
-              >
+              <NormalList key={id} onClick={() => handleCoachDetailClick(id)}>
                 <div
                   className={css({
                     width: '5%',
@@ -42,7 +40,7 @@ const CoachList = ({ list }: Props) => {
                     height: '24px',
                     lineHeight: '24px',
                     textAlign: 'center',
-                    margin: '0 16px 0 12px',
+                    margin: '0 16px 0 0',
                     backgroundColor:
                       position === 'coach'
                         ? 'var(--business-active-color)'
@@ -53,14 +51,14 @@ const CoachList = ({ list }: Props) => {
                 >
                   {position === 'coach' ? '코치' : '헤드코치'}
                 </div>
-                <div className={css({ width: 'calc(70% - 52px)' })}>
+                <div className={css({ width: 'calc(60% - 52px)' })}>
                   <div className={css({ fontWeight: 600 })}>
                     {name} &#40;{age}, {sex === 'man' ? '남' : '여'}&#41;
                   </div>
                 </div>
                 <div
                   className={css({
-                    width: '25%',
+                    width: '35%',
                     backgroundColor: 'var(--grey400)',
                     borderRadius: '16px',
                     padding: '12px 0',
@@ -69,10 +67,10 @@ const CoachList = ({ list }: Props) => {
                 >
                   {phone} &#183; {email}
                 </div>
-              </Li>
+              </NormalList>
             );
           })}
-        </Li.UnOrderList>
+        </NormalList.UnOrderList>
       ) : (
         <div
           className={css({

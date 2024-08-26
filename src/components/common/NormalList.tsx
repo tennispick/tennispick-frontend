@@ -1,5 +1,6 @@
 import { LiHTMLAttributes, ReactElement, ReactNode } from 'react';
 import { css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
 
 interface NormalListProps extends LiHTMLAttributes<HTMLLIElement> {
   props?: LiHTMLAttributes<HTMLLIElement>;
@@ -13,9 +14,7 @@ const NormalList = ({
 }: NormalListProps): ReactElement<LiHTMLAttributes<HTMLLIElement>> => {
   return (
     <li
-      className={css({
-        position: 'relative',
-        display: 'flex',
+      className={flex({
         alignItems: 'center',
         padding: '8px 12px 8px 0',
         fontSize: '0.9rem',

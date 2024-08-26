@@ -31,12 +31,15 @@ const CoachDetailProfile = ({ data }: Props) => {
           label=" "
           id="profileImage"
           variant="file"
-          src={sex === 'man' ? ProfileManIcon.src : ProfileWomanIcon.src}
           className={css({
             width: '10rem',
             height: '10rem',
             margin: '0 auto',
           })}
+          style={{
+            backgroundImage:
+              sex === 'man' ? ProfileManIcon.src : ProfileWomanIcon.src,
+          }}
         >
           <Input.TextField type={'file'} />
         </Input>

@@ -46,10 +46,7 @@ const CustomerScreen = () => {
           />
         </div>
         <TabPanels className={css({ height: 'calc(100% - 2.875rem - 52px)' })}>
-          <TabPanel
-            activeKey={'all'}
-            className={css({ height: '100%', padding: '12px 0' })}
-          >
+          <TabPanel activeKey={'all'} className={css({ height: '100%' })}>
             <CustomerList data={data} />
           </TabPanel>
         </TabPanels>
