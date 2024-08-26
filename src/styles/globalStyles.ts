@@ -112,7 +112,7 @@ export const globalStyles = defineGlobalStyles({
       outline: 'none',
     },
 
-    ':disabled': {
+    _disabled: {
       backgroundColor: 'transparent',
       color: 'var(--grey800)',
       borderColor: 'var(--grey100)',

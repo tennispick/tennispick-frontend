@@ -229,7 +229,7 @@ const CustomerModalRefundContainer = ({
           onCancelHandler={() => setOpenModal(false)}
           onClickDisabled={formData.reason === ''}
         >
-          <Input>
+          <Input css={{ height: '44px' }}>
             <Input.TextField
               name="reason"
               placeholder="환불 사유를 입력해주세요."

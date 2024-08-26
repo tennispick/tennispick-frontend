@@ -10,7 +10,7 @@ export default defineConfig({
 
   // Where to look for your css declarations
   include: [
-    './src/styles/**/*.{js,jsx,ts,tsx}',
+    './src/styles/**/*.{js,jsx,ts,tsx,css}',
     './src/features/**/*.{js,jsx,ts,tsx}',
     './src/components/**/*.{js,jsx,ts,tsx}',
     './src/widgets/**/*.{js,jsx,ts,tsx}',
