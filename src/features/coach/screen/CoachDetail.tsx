@@ -1,3 +1,5 @@
+'use client';
+
 import { PageHeader } from '@components/index';
 import ButtonContainer from '../component/detail/ButtonContainer';
 import { useCoachDetailQuery } from '../query/coachQuery';
@@ -8,11 +10,11 @@ import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
 
 type Props = {
-  coachId: string;
+  id: string;
 };
 
-const CoachDetailScreen = ({ coachId }: Props) => {
-  const { data, isFetching } = useCoachDetailQuery(coachId);
+const CoachDetailScreen = ({ id }: Props) => {
+  const { data, isFetching } = useCoachDetailQuery(id);
 
   if (isFetching) return <Loading />;
 
@@ -24,9 +26,9 @@ const CoachDetailScreen = ({ coachId }: Props) => {
       <div className={css({ height: 'calc(100% - 52px)', overflowY: 'auto' })}>
         <div className={flex({ height: 'calc(100% - 46px)' })}>
           <CoachDetailProfile data={data} />
-          <BusinessPerformance coachId={coachId} />
+          <BusinessPerformance coachId={id} />
         </div>
-        <ButtonContainer coachId={coachId} />
+        <ButtonContainer coachId={id} />
       </div>
     </>
   );
