@@ -1,21 +1,27 @@
-import { LessonListQueryData } from '../type/lesson.type';
-
-import { NoResult, NormalList as Li } from '@components/index';
+import { NoResult, NormalList } from '@components/index';
 import { useRouter } from 'next/navigation';
 import { css } from 'styled-system/css';
+import { useLessonListQuery } from '../query/LessonQuery';
+import Loading from '@components/common/Loading';
 
 type Props = {
-  list: LessonListQueryData[];
+  type: string;
 };
 
-const LessonList = ({ list }: Props) => {
+const LessonList = ({ type }: Props) => {
+  const { isLoading, isFetching, data } = useLessonListQuery({ type: type });
+
   const router = useRouter();
+
+  if (isLoading || isFetching) return <Loading />;
+
+  const handleLessonDetailClick = (id: number) => router.push(`/lesson/${id}`);
 
   return (
     <>
-      {list && list.length > 0 ? (
-        <Li.UnOrderList height={'88%'}>
-          {list.map(
+      {data && data.length > 0 ? (
+        <NormalList.UnOrderList height={'100%'}>
+          {data.map(
             ({
               id,
               name,
@@ -27,10 +33,9 @@ const LessonList = ({ list }: Props) => {
               timesAWeek,
             }) => {
               return (
-                <Li
+                <NormalList
                   key={id}
-                  onClick={() => router.push(`/lesson/${id}`)}
-                  className={css({ minHeight: '48px', padding: '0 12px' })}
+                  onClick={() => handleLessonDetailClick(id)}
                 >
                   <div
                     className={css({
@@ -73,11 +78,11 @@ const LessonList = ({ list }: Props) => {
                   <div className={css({ width: '4%', textAlign: 'center' })}>
                     주 {timesAWeek}회
                   </div>
-                </Li>
+                </NormalList>
               );
             },
           )}
-        </Li.UnOrderList>
+        </NormalList.UnOrderList>
       ) : (
         <div className={css({ height: '20vh', borderRadius: '25px' })}>
           <NoResult

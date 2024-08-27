@@ -4,10 +4,11 @@ import { useRouter } from 'next/navigation';
 import { EditWhiteIcon } from '@icons/index';
 
 import useInput from '@hooks/useInput';
-import { Button, Input, Select } from '@components/index';
+import { Input, Select } from '@components/index';
 import { createLesson } from '@apis/lesson/lesson.api';
 import { Flex, styled } from 'styled-system/jsx';
 import { css } from 'styled-system/css';
+import IconButton from '@components/button/IconButton';
 
 type Props = {
   setOpenModal: SetStateAction<boolean>;
@@ -158,20 +159,16 @@ const LessonModal = ({ setOpenModal }: Props) => {
           onChange={onChangeFormData}
         />
       </InputWrapper>
-      <Button
-        type={'submit'}
-        variant={'iconBtn'}
+      <IconButton
+        type="submit"
+        iconAlign="left"
+        iconSrc={EditWhiteIcon}
+        iconAlt="customer"
+        variant="primary"
+        size="lg"
         label={'레슨권 생성하기'}
-        src={EditWhiteIcon}
-        css={{
-          width: '100%',
-          justifyContent: 'center',
-          border: 0,
-          backgroundColor: 'var(--business-sub-color)',
-          color: 'var(--white100)',
-          padding: '12px 16px',
-          margin: '36px 0 0 0',
-        }}
+        full={true}
+        className={css({ marginLeft: 'auto' })}
       />
     </form>
   );
@@ -190,6 +187,7 @@ const Row = styled('div', {
 
 const InputWrapper = styled(Input, {
   base: {
+    fontSize: '0.875rem',
     margin: '0 0 12px 0',
 
     '& label': {
@@ -201,7 +199,7 @@ const InputWrapper = styled(Input, {
 const TextField = styled(Input.TextField, {
   base: {
     width: '50%',
-    padding: '10px 0 10px 10px',
+    padding: '10px 0 10px 10px !important', // TODO !important 제거
     margin: '12px 0 0 0',
   },
 });
