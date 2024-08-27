@@ -24,6 +24,10 @@ type PanelProps = {
   activeKey: string;
 } & PropsWithChildren;
 
+type TabListProps = {
+  handleActiveKeyClick?: () => void;
+} & PanelProps;
+
 const defaultTabContext = {
   activeKey: '',
   setActiveKey: () => {},
@@ -38,6 +42,7 @@ const Tab = () => {
     TabList,
     TabPanels,
     TabPanel,
+    SingleTabPanel,
   };
 };
 
@@ -71,7 +76,11 @@ const TabLists = ({
   );
 };
 
-const TabList = ({ activeKey: panelKey, children }: PanelProps) => {
+const TabList = ({
+  handleActiveKeyClick,
+  activeKey: panelKey,
+  children,
+}: TabListProps) => {
   const { activeKey, setActiveKey } = useContext(TabContext);
 
   const activeStyle = css.raw({
@@ -85,14 +94,17 @@ const TabList = ({ activeKey: panelKey, children }: PanelProps) => {
     borderBottom: '2px solid var(--white100)',
   });
 
-  const onClickTabPanelHandler = () => setActiveKey(panelKey);
+  const handleTabePanelClick = () => {
+    if (handleActiveKeyClick) handleActiveKeyClick();
+    setActiveKey(panelKey);
+  };
 
   const style = activeKey === panelKey ? activeStyle : deactiveStyle;
 
   return (
     <li
       key={panelKey}
-      onClick={onClickTabPanelHandler}
+      onClick={handleTabePanelClick}
       className={css(
         {
           height: '2.875rem',
@@ -144,6 +156,22 @@ const TabPanel = ({
         </div>
       )}
     </>
+  );
+};
+
+const SingleTabPanel = ({
+  stateKey,
+  children,
+  ...props
+}: PropsWithChildren<React.ComponentPropsWithoutRef<'div'>> & {
+  stateKey: string;
+}) => {
+  const { className, ...rest } = props;
+
+  return (
+    <div className={className} role={'tabpanel'} data-tab={stateKey} {...rest}>
+      {children}
+    </div>
   );
 };
 

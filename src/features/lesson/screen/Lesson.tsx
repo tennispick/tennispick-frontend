@@ -1,75 +1,83 @@
+'use client';
+
 import { useState } from 'react';
 
-import { PageHeader, TabList, Button, Portal } from '@components/index';
+import { PageHeader, Portal } from '@components/index';
 import { EditWhiteIcon } from '@icons/index';
-import { useLessonListQuery } from '../query/LessonQuery';
+
 import LessonList from '../component/LessonList';
-import Loading from '@components/common/Loading';
 import Modal from '@components/layer/Modal';
 import LessonModal from '../component/modal/LessonModal';
 import { css } from 'styled-system/css';
+import Tab from '@widgets/Tab';
+import IconButton from '@components/button/IconButton';
 
 const LessonScreen = () => {
-  const tabListArr = [
-    {
-      id: 'all',
-      name: '전체 레슨',
-    },
-    {
-      id: 'weekday',
-      name: '평일 레슨',
-    },
-    {
-      id: 'weekend',
-      name: '주말 레슨',
-    },
-    {
-      id: 'coupon',
-      name: '쿠폰 레슨',
-    },
-  ];
+  const { Tabs, TabLists, TabList, SingleTabPanel } = Tab();
 
-  const [currentTab, setCurrentTab] = useState<string>(tabListArr[0].id);
-  const [tabList] = useState(tabListArr);
+  const [stateKey, setStateKey] = useState<string>('all');
   const [openModal, setOpenModal] = useState<boolean>(false);
 
-  const { data } = useLessonListQuery({ type: currentTab });
+  const handleCreateLessonClick = () => setOpenModal(true);
 
-  if (!data) return <Loading />;
+  const handleActiveKeyClick = (key: string) => setStateKey(key);
 
   return (
     <>
       <PageHeader title={'레슨권 목록'} />
-      <TabList
-        state={currentTab}
-        setState={setCurrentTab}
-        list={tabList}
-        borderBottom={true}
-        buttonElement={
-          <Button
-            variant={'iconBtn'}
-            label={'레슨권 생성하기'}
-            src={EditWhiteIcon}
-            imageCss={{
-              width: '20px',
-              height: '20px',
-              margin: '0 8px 0 0',
-            }}
-            css={{
-              backgroundColor: 'var(--business-active-color)',
-              color: 'var(--white100)',
-            }}
-            onClick={() => setOpenModal(true)}
+      <Tabs defaultActiveKey={'all'}>
+        <TabLists>
+          <TabList
+            activeKey={'all'}
+            handleActiveKeyClick={() => handleActiveKeyClick('all')}
+          >
+            전체
+          </TabList>
+          <TabList
+            activeKey={'weekday'}
+            handleActiveKeyClick={() => handleActiveKeyClick('weekday')}
+          >
+            평일 레슨
+          </TabList>
+          <TabList
+            activeKey={'weekend'}
+            handleActiveKeyClick={() => handleActiveKeyClick('weekend')}
+          >
+            주말 레슨
+          </TabList>
+          <TabList
+            activeKey={'coupon'}
+            handleActiveKeyClick={() => handleActiveKeyClick('coupon')}
+          >
+            쿠폰 레슨
+          </TabList>
+        </TabLists>
+        <div
+          className={css({ position: 'absolute', top: '76px', right: '24px' })}
+        >
+          <IconButton
+            iconAlign="left"
+            iconSrc={EditWhiteIcon}
+            iconAlt="lesson"
+            variant="primary"
+            size="md"
+            label={'레슨권 등록하기'}
+            onClick={handleCreateLessonClick}
           />
-        }
-      />
-      <LessonList list={data} />
+        </div>
+        <SingleTabPanel
+          stateKey={stateKey}
+          className={css({ height: 'calc(100% - 2.875rem - 52px)' })}
+        >
+          <LessonList type={stateKey} />
+        </SingleTabPanel>
+      </Tabs>
       {openModal && (
         <Portal id={'portal'}>
           <Modal
             title={'레슨권 생성'}
             setOpenModal={setOpenModal}
-            className={css({ top: '47.5%' })}
+            css={{ top: '47.5%' }}
           >
             <LessonModal setOpenModal={setOpenModal} />
           </Modal>

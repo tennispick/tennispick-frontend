@@ -2,7 +2,6 @@
 
 import { PageHeader } from '@components/index';
 import { Button } from '@components/index';
-import { LessonDetailData } from '../type/lesson.type';
 import { DeleteWhiteIcon, EditWhiteIcon } from '@icons/index';
 import LessonDetailInputField from '../component/LessonDetailInputField';
 import { deleteLesson, updateLesson } from '@apis/lesson/lesson.api';
@@ -12,12 +11,13 @@ import { useRouter } from 'next/navigation';
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
 import { Flex } from 'styled-system/jsx';
+import { LessonDetailData } from '../type/lesson.type';
 
 type Props = {
   data: LessonDetailData;
 };
 
-const LessonDetail = ({ data }: Props) => {
+const LessonDetailScreen = ({ data }: Props) => {
   const router = useRouter();
 
   const [formData, onChangeFormData, setFormData] = useInput({
@@ -127,4 +127,4 @@ const LessonDetail = ({ data }: Props) => {
   );
 };
 
-export default LessonDetail;
+export default LessonDetailScreen;

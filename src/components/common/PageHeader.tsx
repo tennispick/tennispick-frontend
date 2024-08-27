@@ -20,6 +20,7 @@ const PageHeader = ({ title, link = '' }: Props) => {
       {title}
       {detailPathName && (
         <Button
+          type="button"
           variant="primary"
           size="sm"
           label={'목록으로 가기'}
