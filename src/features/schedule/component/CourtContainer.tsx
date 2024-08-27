@@ -1,9 +1,9 @@
 import { flex } from 'styled-system/patterns';
 import { css } from 'styled-system/css';
-import { useGetCourtListQuery } from '@features/court/query/courtQuery';
+import { useCourtListQuery } from '@features/court/query/courtQuery';
 
 const CourtContainer = () => {
-  const { data } = useGetCourtListQuery({});
+  const { data } = useCourtListQuery({});
 
   return (
     <div className={css({ padding: '0 0 12px 0' })}>

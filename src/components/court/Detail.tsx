@@ -1,8 +1,8 @@
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 import useInput from '@hooks/useInput';
-import { Input, Button } from '@components/index';
+import { Input } from '@components/index';
 import {
   deleteCourtDetailInfo,
   getCourtDetailQuery,
@@ -11,13 +11,15 @@ import {
 import { EditWhiteIcon, DeleteWhiteIcon } from '@icons/index';
 import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';
+import IconButton from '@components/button/IconButton';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   id: string;
-  setShowRightSide: Dispatch<SetStateAction<boolean>>;
+  handleHideRightSideClick: () => void;
 };
 
-const DetailCourt = ({ id, setShowRightSide }: Props) => {
+const DetailCourt = ({ id, handleHideRightSideClick }: Props) => {
   const { data } = getCourtDetailQuery(id);
 
   const router = useRouter();
@@ -35,7 +37,7 @@ const DetailCourt = ({ id, setShowRightSide }: Props) => {
     },
   });
 
-  const onModifyHandler = async () => {
+  const handleCourtModifyClick = async () => {
     let isCheck = true;
     const formDataKeys = Object.keys(formData);
     for (const key of formDataKeys) {
@@ -54,18 +56,18 @@ const DetailCourt = ({ id, setShowRightSide }: Props) => {
 
       if (data.affectedRows > 0) {
         alert('수정 되었습니다.');
-        setShowRightSide(false);
+        handleHideRightSideClick();
         router.refresh();
       } else alert('다시 시도해주세요.');
     } else return false;
   };
 
-  const onDeleteHandler = async () => {
+  const handleDeleteCourtClick = async () => {
     const { data } = await deleteCourtDetailInfo(id);
 
     if (data.affectedRows > 0) {
       alert('삭제 되었습니다.');
-      setShowRightSide(false);
+      handleHideRightSideClick;
       router.refresh();
     } else alert('다시 시도해주세요.');
   };
@@ -92,43 +94,66 @@ const DetailCourt = ({ id, setShowRightSide }: Props) => {
     <>
       {data && (
         <>
-          <InputWrapper label={'코트 이름'}>
-            <TextField
-              name={'name'}
-              placeholder={'코트 이름을 입력해주세요.'}
-              defaultValue={data.data[0].name}
-              onChange={onChangeFormData}
-              requiredStatus={formData.name.isRequired}
-              requiredText={'코트 이름이 입력되지 않았어요.'}
-            />
-          </InputWrapper>
-          <InputWrapper label={'위치(층수)'}>
-            <TextField
-              name={'floor'}
-              placeholder={'위치(층수)를 입력해주세요. ex)3 '}
-              defaultValue={data.data[0].floor}
-              onChange={onChangeFormData}
-              requiredStatus={formData.floor.isRequired}
-              requiredText={'위치(층수)가 입력되지 않았어요.'}
-            />
-          </InputWrapper>
-          <InputWrapper label={'코트 설명(선택)'}>
-            <TextField
-              name={'description'}
-              placeholder={'코트 설명을 입력해주세요.'}
-              defaultValue={
-                data.data[0].description ? data.data[0].description : undefined
-              }
-              onChange={onChangeFormData}
-            />
-          </InputWrapper>
+          <div className={css({ height: 'calc(100% - 48px)' })}>
+            <InputWrapper label={'코트 이름'}>
+              <TextField
+                name={'name'}
+                placeholder={'코트 이름을 입력해주세요.'}
+                defaultValue={data.data[0].name}
+                onChange={onChangeFormData}
+                requiredStatus={formData.name.isRequired}
+                requiredText={'코트 이름이 입력되지 않았어요.'}
+              />
+            </InputWrapper>
+            <InputWrapper label={'위치(층수)'}>
+              <TextField
+                name={'floor'}
+                placeholder={'위치(층수)를 입력해주세요. ex)3 '}
+                defaultValue={data.data[0].floor}
+                onChange={onChangeFormData}
+                requiredStatus={formData.floor.isRequired}
+                requiredText={'위치(층수)가 입력되지 않았어요.'}
+              />
+            </InputWrapper>
+            <InputWrapper label={'코트 설명(선택)'}>
+              <TextField
+                name={'description'}
+                placeholder={'코트 설명을 입력해주세요.'}
+                defaultValue={
+                  data.data[0].description
+                    ? data.data[0].description
+                    : undefined
+                }
+                onChange={onChangeFormData}
+              />
+            </InputWrapper>
+          </div>
           <div
-            className={css({
-              position: 'fixed',
-              bottom: '20px',
+            className={flex({
+              width: '100%',
+              position: 'relative',
+              gap: '16px',
             })}
           >
-            <Button
+            <IconButton
+              iconAlign="left"
+              iconSrc={EditWhiteIcon}
+              iconAlt="modify court"
+              variant="primary"
+              size="half"
+              label={'코트 수정하기'}
+              onClick={handleCourtModifyClick}
+            />
+            <IconButton
+              iconAlign="left"
+              iconSrc={DeleteWhiteIcon}
+              iconAlt="delete court"
+              variant="negative"
+              size="half"
+              label={'코트 삭제하기'}
+              onClick={handleDeleteCourtClick}
+            />
+            {/* <Button
               label={'코트 수정하기'}
               variant={'iconBtn'}
               src={EditWhiteIcon}
@@ -141,7 +166,7 @@ const DetailCourt = ({ id, setShowRightSide }: Props) => {
                 padding: '12px 16px',
                 margin: '0 0 12px 0',
               })}
-              onClick={onModifyHandler}
+              onClick={handleCourtModifyClick}
             />
             <Button
               label={'코트 삭제하기'}
@@ -155,8 +180,8 @@ const DetailCourt = ({ id, setShowRightSide }: Props) => {
                 color: 'var(--white100)',
                 padding: '12px 16px',
               })}
-              onClick={onDeleteHandler}
-            />
+              onClick={handleDeleteCourtClick}
+            /> */}
           </div>
         </>
       )}
@@ -177,7 +202,7 @@ const InputWrapper = styled(Input, {
 const TextField = styled(Input.TextField, {
   base: {
     width: '60%',
-    padding: '10px 0 10px 10px',
+    padding: '10px 0 10px 10px !important', // TODO: !important 제거
     margin: '12px 0 0 0',
   },
 });

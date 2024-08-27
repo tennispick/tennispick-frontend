@@ -2,7 +2,7 @@ import DatePicker from 'react-datepicker';
 import { Input, Select } from '@components/index';
 import { useGetCoachListQuery } from '@features/coach/query/coachQuery';
 import { useLessonListQuery } from '@features/lesson/query/LessonQuery';
-import { useGetCourtListQuery } from '@features/court/query/courtQuery';
+import { useCourtListQuery } from '@features/court/query/courtQuery';
 import { getTimeList } from '@utils/date';
 import { useEffect, useMemo } from 'react';
 import { numberZeroFillFormat } from '@utils/numberForm';
@@ -26,7 +26,7 @@ const ScheduleDrawerInputField = ({
 }: Props) => {
   // TODO 이용가능한 코치 및 코트만 보여줘야 함
   const { data: coachList } = useGetCoachListQuery({});
-  const { data: courtList } = useGetCourtListQuery({});
+  const { data: courtList } = useCourtListQuery({});
   const { data: lessonList } = useLessonListQuery({ type: 'all' });
 
   return (

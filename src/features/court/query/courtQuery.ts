@@ -3,7 +3,11 @@ import { CourtListData } from '@apis/court/court.type';
 import { URL_FETCH_COURT_LIST } from '@apis/court/court.url';
 import { useQuery } from '@tanstack/react-query';
 
-const useGetCourtListQuery = ({ enabled = true }: { enabled?: boolean }) => {
+export const useCourtListQuery = ({
+  enabled = true,
+}: {
+  enabled?: boolean;
+}) => {
   return useQuery({
     queryKey: [URL_FETCH_COURT_LIST],
     queryFn: async (): Promise<{ data: CourtListData[] }> => {
@@ -18,5 +22,3 @@ const useGetCourtListQuery = ({ enabled = true }: { enabled?: boolean }) => {
     enabled: enabled,
   });
 };
-
-export { useGetCourtListQuery };
