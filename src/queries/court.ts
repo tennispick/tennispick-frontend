@@ -15,21 +15,6 @@ const updateCourtDetailInfo = async (id: string, data: object): Promise<any> =>
 const deleteCourtDetailInfo = async (id: string): Promise<any> =>
   await axios.delete('/court', { data: { id: id } });
 
-const getCourtQuery = (): any => {
-  try {
-    const { data } = useQuery({
-      queryKey: ['court'],
-      queryFn: async () => await getCourtFetch(),
-    });
-    return {
-      data: data,
-    };
-  } catch (error) {
-    console.error(error);
-    return { data: error };
-  }
-};
-
 const getCourtDetailQuery = (id: string) => {
   try {
     const { data } = useQuery({
@@ -51,6 +36,5 @@ export {
   updateCourtDetailInfo,
   deleteCourtDetailInfo,
   generateCourt,
-  getCourtQuery,
   getCourtDetailQuery,
 };

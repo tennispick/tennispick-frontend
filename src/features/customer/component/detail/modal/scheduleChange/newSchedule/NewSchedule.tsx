@@ -1,7 +1,7 @@
 import ScheduleSelect from '../Select';
 import { useGetCoachListQuery } from '@features/coach/query/coachQuery';
 import { CoachListData } from '@apis/coach/coach.type';
-import { useGetCourtListQuery } from '@features/court/query/courtQuery';
+import { useCourtListQuery } from '@features/court/query/courtQuery';
 import { CourtListData } from '@apis/court/court.type';
 import ScheduleContainer from './ScheduleContainer';
 import { SetStateAction } from '@/types/index';
@@ -32,7 +32,7 @@ const NewSchedule = ({
   const { data: coachList } = useGetCoachListQuery({
     enabled: !isSelectedSchedule,
   });
-  const { data: courtList } = useGetCourtListQuery({
+  const { data: courtList } = useCourtListQuery({
     enabled: !isSelectedSchedule,
   });
 

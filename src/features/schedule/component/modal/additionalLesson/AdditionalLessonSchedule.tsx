@@ -1,6 +1,6 @@
 import ItemRow from './ItemRow';
 import ScheduleSelect from '@features/customer/component/detail/modal/scheduleChange/Select';
-import { useGetCourtListQuery } from '@features/court/query/courtQuery';
+import { useCourtListQuery } from '@features/court/query/courtQuery';
 import { CourtListData } from '@apis/court/court.type';
 import { useGetCoachListQuery } from '@features/coach/query/coachQuery';
 import { CoachListData } from '@apis/coach/coach.type';
@@ -23,7 +23,7 @@ const AdditionalLessonSchedule = ({
 }: Props) => {
   const { date, startTime, coach: coachId, court: courtId } = formData;
 
-  const { data: courtList } = useGetCourtListQuery({});
+  const { data: courtList } = useCourtListQuery({});
   const { data: coachList } = useGetCoachListQuery({});
 
   const transferCourtListFormat = (data: CourtListData[]) => {

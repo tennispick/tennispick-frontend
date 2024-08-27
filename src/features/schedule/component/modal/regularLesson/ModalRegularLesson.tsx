@@ -4,7 +4,7 @@ import { Button } from '@components/index';
 import { EditWhiteIcon } from '@icons/index';
 import { useScheduleMutation } from '@features/schedule/mutation/scheduleMutation';
 import { useCustomerLessonListQuery } from '@features/customer/query/CustomerQuery';
-import { useGetCourtListQuery } from '@features/court/query/courtQuery';
+import { useCourtListQuery } from '@features/court/query/courtQuery';
 import { useGetCoachListQuery } from '@features/coach/query/coachQuery';
 import { useDuplicateCheckScheduleLessonQuery } from '@features/schedule/query/scheduleQuery';
 
@@ -59,7 +59,7 @@ const ModalRegularLesson = () => {
     },
   ]);
 
-  const { data: courtList } = useGetCourtListQuery({ enabled: lesson !== '' });
+  const { data: courtList } = useCourtListQuery({ enabled: lesson !== '' });
   const { data: coachList } = useGetCoachListQuery({ enabled: lesson !== '' });
 
   const { data: lessonList } = useCustomerLessonListQuery({

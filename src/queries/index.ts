@@ -14,6 +14,5 @@ export {
   updateCourtDetailInfo,
   deleteCourtDetailInfo,
   generateCourt,
-  getCourtQuery,
   getCourtDetailQuery,
 } from '@queries/court';
