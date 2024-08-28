@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { tabLists } from '@features/setting/data/tabLists';
 import TabLists from '../component/TabLists';
@@ -12,7 +14,7 @@ const SettingScreen = () => {
 
   const { mutate } = useSettingMutation();
 
-  const onClickToggleHandler = (e: React.MouseEvent<HTMLInputElement>) => {
+  const handleToggleClick = (e: React.MouseEvent<HTMLInputElement>) => {
     const { id, checked } = e.currentTarget;
     const isActive = checked ? 'Y' : 'N';
     mutate({ id, isActive });
@@ -27,10 +29,10 @@ const SettingScreen = () => {
       />
       {
         {
-          1: <SettingCenter onClickHandler={onClickToggleHandler} />,
-          2: <SettingCoach onClickHandler={onClickToggleHandler} />,
-          3: <SettingLesson onClickHandler={onClickToggleHandler} />,
-          4: <SettingPayment onClickHandler={onClickToggleHandler} />,
+          1: <SettingCenter handleToggleClick={handleToggleClick} />,
+          2: <SettingCoach handleToggleClick={handleToggleClick} />,
+          3: <SettingLesson handleToggleClick={handleToggleClick} />,
+          4: <SettingPayment handleToggleClick={handleToggleClick} />,
         }[currentItem]
       }
     </div>
