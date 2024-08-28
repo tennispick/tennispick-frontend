@@ -5,10 +5,10 @@ import { SettingListData } from '@apis/setting/setting.type';
 import { css } from 'styled-system/css';
 
 type Props = {
-  onClickHandler: (e: React.MouseEvent<HTMLInputElement>) => void;
+  handleToggleClick: (e: React.MouseEvent<HTMLInputElement>) => void;
 };
 
-const SettingLesson = ({ onClickHandler }: Props) => {
+const SettingLesson = ({ handleToggleClick }: Props) => {
   const { data, isLoading } = useSettingListQuery({ type: 'lesson' });
 
   if (isLoading) return <Loading />;
@@ -26,7 +26,7 @@ const SettingLesson = ({ onClickHandler }: Props) => {
               label={name}
               checked={isActive === 'Y'}
               className={css({ margin: '0 0 16px 0' })}
-              onClick={onClickHandler}
+              onClick={handleToggleClick}
             />
           );
         })}
