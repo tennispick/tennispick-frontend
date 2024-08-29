@@ -22,7 +22,7 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
 
   const handleCloseModalClick = () => setOpenodal(false);
 
-  const onClickCalendarDateHandler = (day: Date) => {
+  const handleDateClick = (day: Date) => {
     setOpenodal(true);
     setDay(day);
   };
@@ -109,7 +109,7 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
       {!isMobile && (
         <Calendar
           css={!isNavSpread && { display: 'none' }}
-          onClick={onClickCalendarDateHandler}
+          onClick={handleDateClick}
         />
       )}
       {openModal && (
