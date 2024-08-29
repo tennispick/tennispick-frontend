@@ -193,4 +193,9 @@ export const globalStyles = defineGlobalStyles({
       },
     },
   },
+  // '&.react-calendar__navigation': {
+  //   display: 'flex',
+  //   height: '32px',
+  //   marginBottom: '0.5em',
+  // },
 });

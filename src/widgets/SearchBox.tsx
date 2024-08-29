@@ -1,4 +1,3 @@
-import SearchIcon from '@icons/search_black_icon.svg';
 import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';
 import { flex } from 'styled-system/patterns';
@@ -67,7 +66,7 @@ const SearchInput = styled('input', {
 
     '&::placeholder': {
       padding: '0 0 0 24px',
-      backgroundImage: `url(${SearchIcon.src})`,
+      backgroundImage: 'url(/icons/search_black_icon.svg)',
       backgroundSize: '',
       backgroundPosition: '1px center',
       backgroundRepeat: 'no-repeat',

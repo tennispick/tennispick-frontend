@@ -53,10 +53,11 @@ const AppLayout = ({ children }: PropsWithChildren) => {
                 <NavControlBtn
                   src={doubleArrowLeft}
                   alt="double arrow left"
-                  width={28}
-                  height={28}
+                  width={24}
+                  height={24}
                   onClick={() => setIsNavSpread(!isNavSpread)}
                   rotate={isNavSpread ? 'rotate(0deg)' : 'rotate(180deg)'}
+                  style={{ width: '28px', height: '28px' }}
                 />
               </NavButtonController>
             )}
@@ -86,9 +87,6 @@ const MainContainer = styled('main', {
     borderRadius: '12px',
     transition: 'all 0.35s ease-in-out',
   },
-  //   (props) => ({
-  //     width: props.width,
-  //   }),
 });
 
 const NavButtonController = styled('i', {
@@ -116,18 +114,6 @@ const ChildrenContainer = styled('div', {
     overflow: 'hidden',
   },
 });
-
-// const NavControlBtn = styled(Image)<CSS_TYPE>(
-//   {
-//     position: 'absolute',
-//     top: '50%',
-//     left: '50%',
-//     transition: 'all 0.3s ease-out',
-//   },
-//   (props) => ({
-//     transform: 'translate(-50%, -50%) ' + props.rotate,
-//   }),
-// );
 
 const NavControlBtn = styled(Image, {
   base: {
