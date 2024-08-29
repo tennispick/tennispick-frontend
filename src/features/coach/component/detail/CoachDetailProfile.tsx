@@ -7,7 +7,7 @@ import { useColor } from 'react-color-palette';
 
 import ColorPalettePicker from '@widgets/ColorPalettePicker';
 import { css } from 'styled-system/css';
-import { styled } from 'styled-system/jsx';
+import { Flex, styled } from 'styled-system/jsx';
 
 type Props = {
   data: CoachDetailData;
@@ -53,7 +53,7 @@ const CoachDetailProfile = ({ data }: Props) => {
         >
           {email}
         </div>
-        <div className={css({ display: 'flex' })}>
+        <Flex>
           <StaticProfileContainer>
             <StaticProfileValue>{name}</StaticProfileValue>
             <StaticProfleKey>이름</StaticProfleKey>
@@ -66,7 +66,7 @@ const CoachDetailProfile = ({ data }: Props) => {
             <StaticProfileValue>{`${year}.${month}.${date}`}</StaticProfileValue>
             <StaticProfleKey>생년월일</StaticProfleKey>
           </StaticProfileContainer>
-        </div>
+        </Flex>
       </div>
       <Divider margin="24px 0" />
       <ItemRow>

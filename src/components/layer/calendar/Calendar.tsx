@@ -3,6 +3,7 @@ import { getWeekList } from '@utils/date';
 import { STRING_WEEK_LIST_KR } from '@features/schedule/constants/schedule';
 import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   day: Date;
@@ -53,8 +54,7 @@ const ModalCalendar = ({ day }: Props) => {
           return (
             <div
               key={index}
-              className={css({
-                display: 'flex',
+              className={flex({
                 flexWrap: 'wrap',
                 width: '100%',
               })}

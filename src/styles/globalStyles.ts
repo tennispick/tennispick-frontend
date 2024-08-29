@@ -108,7 +108,7 @@ export const globalStyles = defineGlobalStyles({
   input: {
     margin: 0,
 
-    ':focus': {
+    _focus: {
       outline: 'none',
     },
 
@@ -118,7 +118,7 @@ export const globalStyles = defineGlobalStyles({
       borderColor: 'var(--grey100)',
     },
 
-    '[type="checkbox"]': {
+    '&[type="checkbox"]': {
       appearance: 'none',
       '-webkit-appearance': 'none',
       '-moz-appearance': 'none',
@@ -129,7 +129,7 @@ export const globalStyles = defineGlobalStyles({
       outline: 'none',
       cursor: 'pointer',
 
-      '&:checked': {
+      _checked: {
         backgroundColor: 'var(--business-active-color)',
         border: 0,
 
@@ -143,11 +143,13 @@ export const globalStyles = defineGlobalStyles({
           backgroundSize: 'contain',
           backgroundRepeat: 'no-repeat',
           transform: 'translate(-50%, -50%)',
-          backgroundImage: 'url("/icons/white_checkbox.svg")',
+          backgroundImage: 'url(/icons/checkbox/white_check.svg)',
         },
       },
-
       _indeterminate: {
+        backgroundColor: 'var(--business-active-color)',
+        border: 0,
+
         _after: {
           content: '""',
           position: 'absolute',
@@ -158,11 +160,11 @@ export const globalStyles = defineGlobalStyles({
           backgroundSize: 'contain',
           backgroundRepeat: 'no-repeat',
           transform: 'translate(-50%, -50%)',
-          backgroundImage: 'url("/icons/white_checkbox_indeterminate.svg")',
+          backgroundImage: 'url(/icons/checkbox/white_check_indeterminate.svg)',
         },
       },
     },
-    '[type="radio"]': {
+    '&[type="radio"]': {
       appearance: 'none',
       '-webkit-appearance': 'none',
       '-moz-appearance': 'none',
@@ -173,21 +175,20 @@ export const globalStyles = defineGlobalStyles({
       outline: 'none',
       cursor: 'pointer',
 
-      '&:checked': {
-        backgroundColor: 'var(--business-active-color)',
-        border: 0,
+      _checked: {
+        backgroundColor: 'var(--white100)',
+        border: '1.5px solid var(--business-active-color)',
 
-        '::after': {
+        _after: {
           content: '""',
           position: 'absolute',
           top: '50%',
           left: '50%',
           width: '0.75rem',
           height: '0.75rem',
-          backgroundSize: 'contain',
-          backgroundRepeat: 'no-repeat',
+          borderRadius: '50%',
           transform: 'translate(-50%, -50%)',
-          backgroundImage: 'url("/icons/white_radio.svg")',
+          backgroundColor: 'var(--business-active-color)',
         },
       },
     },

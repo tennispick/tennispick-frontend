@@ -1,6 +1,7 @@
 import RangeCalendar from '@widgets/RangeCalendar';
 import { useState } from 'react';
 import { css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
 
 const SearchPeriodRow = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -15,8 +16,7 @@ const SearchPeriodRow = () => {
 
   return (
     <div
-      className={css({
-        display: 'flex',
+      className={flex({
         alignItems: 'center',
         gap: '1.5rem',
         margin: '0 0 24px 0',

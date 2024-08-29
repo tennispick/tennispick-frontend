@@ -4,6 +4,7 @@ import InformationIcon from '@icons/information';
 import { NoResult } from '@components/index';
 import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';
+import { flex } from 'styled-system/patterns';
 
 const PaymentContainer = () => {
   return (
@@ -43,9 +44,8 @@ const PaymentContainer = () => {
         />
       </CalculationField>
       <div
-        className={css({
+        className={flex({
           height: '56px',
-          display: 'flex',
           alignItems: 'center',
           gap: '8px',
           backgroundColor: 'var(--blue1200)',

@@ -9,6 +9,7 @@ import {
 } from '@features/customer/mutate/manage';
 import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   day: Date;
@@ -60,8 +61,7 @@ const ModalCustomer = ({
     <Container>
       <CustomerInfo data={data} />
       <div
-        className={css({
-          display: 'flex',
+        className={flex({
           flexDirection: 'column',
           justifyContent: 'space-evenly',
         })}

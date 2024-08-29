@@ -19,7 +19,6 @@ const ItemRow = ({ icon, title, value }: Props) => {
     >
       <div
         className={flex({
-          display: 'flex',
           alignItems: 'center',
           gap: '8px',
         })}

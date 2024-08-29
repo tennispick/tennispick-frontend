@@ -7,7 +7,8 @@ import { getTimeList } from '@utils/date';
 import { useEffect, useMemo } from 'react';
 import { numberZeroFillFormat } from '@utils/numberForm';
 import { css } from 'styled-system/css';
-import { styled } from 'styled-system/jsx';
+import { Flex, styled } from 'styled-system/jsx';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   formData: any;
@@ -125,7 +126,7 @@ const CalendarContainer = ({
     <div className={css({ margin: '0 0 20px' })}>
       <div>스케줄 일정</div>
       <div className={css({ margin: '12px 0 0 0' })}>
-        <div className={css({ display: 'flex', alignItems: 'center' })}>
+        <Flex alignItems="center">
           <DatePicker
             name="date"
             showIcon
@@ -202,7 +203,7 @@ const CalendarContainer = ({
               return <option key={time + index}>{time}</option>;
             })}
           </Select>
-        </div>
+        </Flex>
       </div>
     </div>
   );
@@ -216,8 +217,7 @@ const LessonTypeContainer = ({
     <div className={css({ margin: '0 0 20px' })}>
       <div>레슨유형</div>
       <div
-        className={css({
-          display: 'flex',
+        className={flex({
           alignItems: 'center',
           margin: '12px 0 0 0',
         })}
@@ -263,8 +263,7 @@ const IsAttendanceContainer = ({
     <div className={css({ margin: '0 0 20px' })}>
       <div>출석현황</div>
       <div
-        className={css({
-          display: 'flex',
+        className={flex({
           alignItems: 'center',
           margin: '12px 0 0 0',
         })}

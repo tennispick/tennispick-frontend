@@ -4,9 +4,10 @@ import { NoResult, NormalList } from '@components/index';
 import { ProfileManIcon, ProfileWomanIcon } from '@icons/index';
 import { useRouter } from 'next/navigation';
 import { css } from 'styled-system/css';
+import { CustomerListQueryData } from '@features/customer/type/customer.type';
 
 type Props = {
-  data: Array<{ [key: string]: string | number }>;
+  data: CustomerListQueryData[];
 };
 
 const CustomerList = ({ data }: Props) => {
@@ -40,7 +41,7 @@ const CustomerList = ({ data }: Props) => {
                     {item.name} &#40;{item.age},{' '}
                     {item.sex === 'man' ? '남' : '여'}&#41;
                   </div>
-                  <div>미수금: {item.outStandingMoney} </div>
+                  <div>미수금: - </div>
                 </div>
                 <div
                   className={css({

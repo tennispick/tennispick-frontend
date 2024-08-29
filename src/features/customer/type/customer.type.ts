@@ -1,9 +1,25 @@
+import { SexType } from '@/types/index';
 import {
   CustomerAttendanceApiPayload,
   CustomerLessonCancelApiPayload,
 } from '@apis/customer/customer.type';
 import { LessonDateType, LessonType } from '@features/lesson/type/lesson.type';
 import { DayType } from '@features/schedule/type/schedule.type';
+
+// TODO Type Transfer
+export type CustomerListQueryData = {
+  id: number;
+  center_id: number;
+  name: string;
+  age: string;
+  birth: string;
+  email: string;
+  phone: string;
+  sex: SexType;
+  profile_image_url: string | null;
+  created_at: string;
+  updated_at: string;
+};
 
 export type CustomerLessonListQueryPayload = {
   id: string;
