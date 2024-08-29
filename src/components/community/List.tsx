@@ -5,11 +5,7 @@ type Props = {
 };
 
 const NoticeList = ({}: Props) => {
-  return (
-    <>
-      <NoResult description={'작성된 공지사항이 없어요.'} margin="16px 0 0 0" />
-    </>
-  );
+  return <NoResult description={'작성된 공지사항이 없어요.'} />;
 };
 
 export default NoticeList;
