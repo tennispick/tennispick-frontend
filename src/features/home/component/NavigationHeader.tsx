@@ -1,8 +1,8 @@
-import { css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
 
 const NavigationHeader = () => {
   return (
-    <div className={css({ display: 'flex', height: '48px' })}>
+    <div className={flex({ height: '48px' })}>
       <div>2024년 7월</div>
       <div>
         <button>이전</button>

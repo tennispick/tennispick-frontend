@@ -7,6 +7,7 @@ import {
 import {
   getCustomerAllLessonList,
   getCustomerDetail,
+  getCustomerFetch,
   getCustomerLessonHistory,
   getCustomerLessonList,
   getCustomerLessonScheduleHistory,
@@ -24,7 +25,6 @@ import {
 import { createInitialData } from '@/types/response';
 import { getCustomerAdditionalLessonList } from '@apis/customer/customer.api';
 import { CustomerDetailData } from '@apis/customer/customer.type';
-import { getCustomerFetch } from '@queries/customer';
 
 export const useCustomerListQuery = () => {
   return useQuery({

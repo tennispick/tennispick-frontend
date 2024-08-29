@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { CustomerDetailData } from '@apis/customer/customer.type';
 import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   data: CustomerDetailData;
@@ -20,9 +21,7 @@ const CustomerInfo = ({ data }: Props) => {
 
   return (
     <div
-      className={css({
-        position: 'relative',
-        display: 'flex',
+      className={flex({
         width: 'calc(100% - 100px)',
         height: '100%',
         alignItems: 'center',
@@ -44,9 +43,7 @@ const CustomerInfo = ({ data }: Props) => {
         />
       </div>
       <div
-        className={css({
-          position: 'relative',
-          display: 'flex',
+        className={flex({
           padding: '0 32px',
         })}
       >

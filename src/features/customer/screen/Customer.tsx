@@ -21,7 +21,7 @@ const CustomerScreen = () => {
 
   const [openModal, setOpenModal] = useState(false);
 
-  if (isLoading) return <Loading />;
+  if (isLoading || !data) return <Loading />;
 
   const handleCreateCustomerClick = () => setOpenModal(true);
 

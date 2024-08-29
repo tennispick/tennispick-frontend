@@ -1,12 +1,6 @@
 export { getScheduleFetch, getScheduleQuery } from '@queries/schedule';
 
-export {
-  getCustomerFetch,
-  getCustomerDetailFetch,
-  generateCustomer,
-  getCustomerQuery,
-  getCustomerDetailQuery,
-} from '@queries/customer';
+export { generateCustomer } from '@queries/customer';
 
 export {
   getCourtFetch,

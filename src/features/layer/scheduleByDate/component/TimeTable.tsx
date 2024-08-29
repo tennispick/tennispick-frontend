@@ -3,6 +3,7 @@ import { NormalList as Li } from '@components/index';
 import { ScheduleLessonByDateData } from '@apis/schedule/schedule.type';
 import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   day: Date;
@@ -143,8 +144,7 @@ const ScheduleByDateTimeTable = ({
 const Header = () => {
   return (
     <ul
-      className={css({
-        display: 'flex',
+      className={flex({
         alignItems: 'center',
         textAlign: 'center',
         borderBottom: '1px solid var(--grey100)',

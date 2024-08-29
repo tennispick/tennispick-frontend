@@ -26,7 +26,6 @@ const SearchBox = ({
       className={flex({
         alignItems: 'center',
         gap: '0.5rem',
-        fontSize: '1rem',
       })}
     >
       {searchOptions?.map(({ label, value }) => {

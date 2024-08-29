@@ -8,6 +8,7 @@ import CardIcon from '@icons/payment/group_credit_card.svg';
 import CashIcon from '@icons/payment/group_attach_money.svg';
 import SalesLists from './SalesLists';
 import { css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
 
 const SalesContainer = () => {
   return (
@@ -19,17 +20,15 @@ const SalesContainer = () => {
       <div className={css({ height: '1.25rem ' })}>매출 내역조회</div>
       <Divider margin="1rem 0" />
       <div
-        className={css({
+        className={flex({
           height: '2rem',
-          display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           margin: '0 0 1rem 0',
         })}
       >
         <div
-          className={css({
-            display: 'flex',
+          className={flex({
             alignItems: 'center',
             gap: '0.5rem',
           })}
@@ -39,15 +38,13 @@ const SalesContainer = () => {
           <span>999,999,999 원</span>
         </div>
         <div
-          className={css({
-            display: 'flex',
+          className={flex({
             alignItems: 'center',
             gap: '1rem',
           })}
         >
           <div
-            className={css({
-              display: 'flex',
+            className={flex({
               alignItems: 'center',
               gap: '0.5rem',
             })}
@@ -57,8 +54,7 @@ const SalesContainer = () => {
             <span>999,999,999 원</span>
           </div>
           <div
-            className={css({
-              display: 'flex',
+            className={flex({
               alignItems: 'center',
               gap: '0.5rem',
             })}
@@ -68,8 +64,7 @@ const SalesContainer = () => {
             <span>999,999,999 원</span>
           </div>
           <div
-            className={css({
-              display: 'flex',
+            className={flex({
               alignItems: 'center',
               gap: '0.5rem',
             })}

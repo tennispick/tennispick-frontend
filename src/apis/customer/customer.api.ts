@@ -27,6 +27,12 @@ import {
 import { Response } from '@/types/response';
 import { URL_CUSTOMER_MEMO } from './customer.url';
 import { URL_DELETE_CUSTOMER_LESSON_HISTORY } from './customer.url';
+import { AxiosResponse } from 'axios';
+import { CustomerListQueryData } from '@features/customer/type/customer.type';
+
+export const getCustomerFetch = async (): Promise<
+  AxiosResponse<CustomerListQueryData[]>
+> => await axios.get('/customer');
 
 export const getCustomerAllLessonList = async (
   params: Pick<CustomerLessonListApiPayload, 'id'>,

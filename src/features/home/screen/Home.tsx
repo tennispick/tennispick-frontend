@@ -1,3 +1,4 @@
+import { flex } from 'styled-system/patterns';
 import NavigationHeader from '../component/NavigationHeader';
 import CustomerChart from '../component/chart/CustomerChart';
 import SalesChart from '../component/chart/SalesChart';
@@ -7,11 +8,10 @@ import { css } from 'styled-system/css';
 
 const HomeScreen = () => {
   return (
-    <div className={css({ height: '100%', overflowY: 'scroll' })}>
+    <div className={css({ height: '100%', overflowY: 'hidden' })}>
       <NavigationHeader />
       <div
-        className={css({
-          display: 'flex',
+        className={flex({
           height: '11rem',
           margin: '0 0 24px 0',
           gap: '20px',
@@ -21,9 +21,8 @@ const HomeScreen = () => {
         <SalesChart />
       </div>
       <div
-        className={css({
-          display: 'flex',
-          height: 'calc(100% - 222px)',
+        className={flex({
+          height: 'calc(100% - 248px)',
           gap: '20px',
         })}
       >

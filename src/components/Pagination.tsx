@@ -9,6 +9,7 @@ import SingleRightDisabledArrow from '@icons/paging_single_right_disabled_arrow.
 import DoubleRightDisabledArrow from '@icons/paging_double_right_disabled_arrow.svg';
 import Image from 'next/image';
 import { css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   totalPage: number;
@@ -31,8 +32,7 @@ const Pagination = ({
 
   return (
     <div
-      className={css({
-        display: 'flex',
+      className={flex({
         alignItems: 'center',
         justifyContent: 'center',
         margin: '16px 0 0 0',
@@ -56,7 +56,7 @@ const Pagination = ({
           currentSet > 1 ? setCurrentPage(startPage - offset) : null
         }
       />
-      <ul className={css({ display: 'flex', alignItems: 'center' })}>
+      <ul className={flex({ alignItems: 'center' })}>
         {Array.from(
           { length: endPage - startPage + 1 },
           (_, i) => i + startPage,
