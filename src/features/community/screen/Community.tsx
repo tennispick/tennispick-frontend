@@ -1,7 +1,7 @@
 'use client';
 
 import IconButton from '@components/button/IconButton';
-import NoticeList from '@components/community/List';
+import NoticeList from '@features/community/component/List';
 import { PageHeader } from '@components/index';
 import Tab from '@widgets/Tab';
 import { EditWhiteIcon } from '@icons/index';

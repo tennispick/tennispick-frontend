@@ -1,4 +1,4 @@
-import { NoResult } from '..';
+import { NoResult } from '../../../components';
 
 type Props = {
   data?: Array<{ [key: string]: string | number }>;
