@@ -7,12 +7,12 @@ const SearchPeriodRow = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
-  const onChangeStartDateHandler = (date: Date) => {
+  const handleChangeStartDate = (date: Date) => {
     if (date > endDate) setEndDate(date);
 
     setStartDate(date);
   };
-  const onChangeEndDateHandler = (date: Date) => setEndDate(date);
+  const handleChangeEndDate = (date: Date) => setEndDate(date);
 
   return (
     <div
@@ -26,8 +26,8 @@ const SearchPeriodRow = () => {
       <RangeCalendar
         startDate={startDate}
         endDate={endDate}
-        onChangeStartDateHandler={onChangeStartDateHandler}
-        onChangeEndDateHandler={onChangeEndDateHandler}
+        handleChangeStartDate={handleChangeStartDate}
+        handleChangeEndDate={handleChangeEndDate}
       />
     </div>
   );

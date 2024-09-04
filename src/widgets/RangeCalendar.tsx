@@ -8,15 +8,17 @@ import { css } from 'styled-system/css';
 type Props = {
   startDate: Date | null;
   endDate?: Date | null;
-  onChangeStartDateHandler: (date: Date) => void;
-  onChangeEndDateHandler: (date: Date) => void;
+  handleChangeStartDate: (date: Date) => void;
+  handleChangeEndDate: (date: Date) => void;
+  disabled?: boolean;
 };
 
 const RangeCalendar = ({
   startDate,
   endDate,
-  onChangeStartDateHandler,
-  onChangeEndDateHandler,
+  handleChangeStartDate,
+  handleChangeEndDate,
+  disabled = false,
 }: Props) => {
   const calendarStyle = {
     width: '10rem',
@@ -31,23 +33,20 @@ const RangeCalendar = ({
       <DatePicker
         locale={ko}
         showIcon={true}
-        icon={
-          <CalendarIcon
-            className={css({ fill: 'var(--grey300)', zIndex: 99 })}
-          />
-        }
+        icon={<CalendarIcon className={css({ fill: 'var(--grey300)' })} />}
         className={css({
           ...calendarStyle,
-          borderRight: 0,
+          borderRight: '0 !important',
           borderTopRightRadius: 0,
           borderBottomRightRadius: 0,
         })}
         selected={startDate}
-        onChange={onChangeStartDateHandler}
+        onChange={handleChangeStartDate}
         selectsStart
         startDate={startDate}
         endDate={endDate}
         dateFormat="yyyy.MM.dd"
+        disabled={disabled}
       />
       <div
         className={css({
@@ -63,24 +62,21 @@ const RangeCalendar = ({
       <DatePicker
         locale={ko}
         showIcon={true}
-        icon={
-          <CalendarIcon
-            className={css({ fill: 'var(--grey300)', zIndex: 99 })}
-          />
-        }
+        icon={<CalendarIcon className={css({ fill: 'var(--grey300)' })} />}
         className={css({
           ...calendarStyle,
-          borderRight: 0,
+          borderLeft: '0 !important',
           borderTopLeftRadius: 0,
           borderBottomLeftRadius: 0,
         })}
         selected={endDate}
-        onChange={onChangeEndDateHandler}
+        onChange={handleChangeEndDate}
         selectsEnd
         startDate={startDate}
         endDate={endDate}
         minDate={startDate}
         dateFormat="yyyy.MM.dd"
+        disabled={disabled}
       />
     </Flex>
   );

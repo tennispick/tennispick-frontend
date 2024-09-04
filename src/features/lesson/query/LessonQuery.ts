@@ -12,7 +12,7 @@ import { useQuery } from '@tanstack/react-query';
 import { createInitialData } from '@/types/response';
 
 const useLessonListQuery = (params: LessonListQueryPayload) => {
-  const { type, isSuspense = false, isInitialData = true } = params;
+  const { type, isInitialData = true } = params;
   return useQuery({
     queryKey: [URL_FETCH_LESSON_LIST, { type }],
     queryFn: async () => await getLessonList({ type: type }),
@@ -20,7 +20,6 @@ const useLessonListQuery = (params: LessonListQueryPayload) => {
     initialData: isInitialData
       ? createInitialData([] as LessonListQueryData[])
       : undefined,
-    suspense: isSuspense,
   });
 };
 

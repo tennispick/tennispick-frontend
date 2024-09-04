@@ -1,3 +1,4 @@
+import { PaymentType } from '@/types/payment';
 import { Button } from '@components/index';
 import {
   discountTypeList,
@@ -16,12 +17,12 @@ import { styled } from 'styled-system/jsx';
 type Props = {
   type: PaymentRefundType;
   lesson: LessonListQueryData | undefined;
-  paymentType: string;
+  paymentType: PaymentType;
   discountType: string;
   discountPrice: number;
   totalPrice?: (price: number, disCountPrice: number) => number;
   price?: number;
-  refundType?: string;
+  refundType?: PaymentType;
   refundRange?: string;
   refundPrice?: number;
   onClickRefundHandler?: () => void;

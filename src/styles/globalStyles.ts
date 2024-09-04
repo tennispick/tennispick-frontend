@@ -57,8 +57,6 @@ export const globalStyles = defineGlobalStyles({
     boxSizing: 'border-box',
     fontFamily: `'Pretendard-Regular', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif`,
     fontWeight: 400,
-    padding: 0,
-    margin: 0,
     lineHeight: 'normal',
     sm: {
       fontSize: '10px',
@@ -79,8 +77,6 @@ export const globalStyles = defineGlobalStyles({
   'html, body': {
     width: '100%',
     height: 'auto',
-    padding: 0,
-    margin: 0,
     fontSize: '16px',
     color: `var(--black100)`,
   },
@@ -193,9 +189,4 @@ export const globalStyles = defineGlobalStyles({
       },
     },
   },
-  // '&.react-calendar__navigation': {
-  //   display: 'flex',
-  //   height: '32px',
-  //   marginBottom: '0.5em',
-  // },
 });

@@ -32,7 +32,9 @@
       "@styles/*": ["src/styles/*"],
       "@utils/*": ["src/utils/*"],
       "@widgets/*": ["src/widgets/*"],
-      "@/types/*": ["src/types/*"]
+      "@/types/*": ["src/types/*"],
+      "@/constants/*": ["src/constants/*"],
+      "@/recipes/*": ["src/recipes/*"]
     },
     "plugins": [
       {

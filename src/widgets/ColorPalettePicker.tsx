@@ -10,19 +10,19 @@ type Props = {
 };
 
 const ColorPalettePicker = ({ color, setColor }: Props) => {
-  const { isOpen, onShowModal, closeModal } = useModal({
+  const { isOpen, handleShowModal, handleCloseModal } = useModal({
     type: 'overlay',
     children: (
       <ColorPicker
         color={color}
         onChange={setColor}
-        onChangeComplete={() => closeModal()}
+        onChangeComplete={() => handleCloseModal()}
       />
     ),
   });
 
-  const handleClickPaletteContainer = () =>
-    isOpen ? closeModal() : onShowModal();
+  const handlePaletteContainerClick = () =>
+    isOpen ? handleCloseModal() : handleShowModal();
 
   return (
     <div
@@ -33,7 +33,7 @@ const ColorPalettePicker = ({ color, setColor }: Props) => {
         borderRadius: '8px',
         cursor: 'pointer',
       })}
-      onClick={handleClickPaletteContainer}
+      onClick={handlePaletteContainerClick}
     >
       <div
         className={flex({

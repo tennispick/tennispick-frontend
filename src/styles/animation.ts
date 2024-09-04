@@ -1,4 +1,6 @@
-export const keyframes = {
+import { defineKeyframes } from '@pandacss/dev';
+
+export const keyframes = defineKeyframes({
   fadeUp: {
     '0%': {
       opacity: 0,
@@ -58,12 +60,13 @@ export const keyframes = {
       transform: 'rotate(360deg)',
     },
   },
-  animation: {
-    fadeUp: 'fadeUp 0.65s ease',
-    fadeRight: 'fadeRight 0.65s ease',
-    fadeOutRight: 'fadeOutRight 0.65s ease',
-    dropDownActive: 'dropDownActive 0.2s ease-in-out',
-    dropDownDeActive: 'dropDownDeActive 0.2s ease-in-out',
-    spinner: 'spinner 1s linear infinite',
-  },
-};
+});
+
+// animation: {
+//     fadeUp: 'fadeUp 0.65s ease',
+//     fadeRight: 'fadeRight 0.65s ease',
+//     fadeOutRight: 'fadeOutRight 0.65s ease',
+//     dropDownActive: 'dropDownActive 0.2s ease-in-out',
+//     dropDownDeActive: 'dropDownDeActive 0.2s ease-in-out',
+//     spinner: 'spinner 1s linear infinite',
+//   },

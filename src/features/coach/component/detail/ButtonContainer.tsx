@@ -1,9 +1,9 @@
-import { Button } from '@components/index';
 import { DeleteWhiteIcon, EditWhiteIcon } from '@icons/index';
 import { deleteCoach } from '@apis/coach/coach.api';
 import { URL_COACH } from '@apis/coach/coach.url';
 import { useQueryClient } from '@tanstack/react-query';
 import { flex } from 'styled-system/patterns';
+import IconButton from '@components/button/IconButton';
 
 type Props = {
   coachId: string;
@@ -12,7 +12,7 @@ type Props = {
 const ButtonContainer = ({ coachId }: Props) => {
   const queryClient = useQueryClient();
 
-  const onClickDeleteHandler = async () => {
+  const handleDeleteClick = async () => {
     if (!window.confirm('정말로 삭제하시겠습니까?')) return;
 
     const { data } = await deleteCoach({ coachId });
@@ -26,31 +26,29 @@ const ButtonContainer = ({ coachId }: Props) => {
     window.location.href = '/coach';
   };
 
+  const handleModifyClick = () => {};
+
   return (
-    <div className={flex({ height: '46px', justifyContent: 'end' })}>
-      <Button
-        label="코치 삭제하기"
-        variant="iconBtn"
-        src={DeleteWhiteIcon}
-        css={{
-          border: 0,
-          backgroundColor: 'var(--red200)',
-          color: 'var(--white100)',
-          padding: '12px 16px',
-          margin: '0 12px 0 0',
-        }}
-        onClick={onClickDeleteHandler}
+    <div
+      className={flex({ height: '46px', justifyContent: 'end', gap: '8px' })}
+    >
+      <IconButton
+        size="lg"
+        variant="negative"
+        label={'코치 삭제하기'}
+        iconSrc={DeleteWhiteIcon}
+        iconAlign="left"
+        iconAlt="delete"
+        onClick={handleDeleteClick}
       />
-      <Button
-        label="코치 수정하기"
-        variant="iconBtn"
-        src={EditWhiteIcon}
-        css={{
-          border: 0,
-          backgroundColor: 'var(--business-active-color)',
-          color: 'var(--white100)',
-          padding: '12px 16px',
-        }}
+      <IconButton
+        size="lg"
+        variant="primary"
+        label={'코치 수정하기'}
+        iconSrc={EditWhiteIcon}
+        iconAlign="left"
+        iconAlt="modify"
+        onClick={handleModifyClick}
       />
     </div>
   );

@@ -113,7 +113,7 @@ const ScheduleModalRegularLessonCommonScheduleCustomerInput = ({
             border: '1px solid var(--grey300)',
             borderRadius: '8px',
             outline: 0,
-            zIndex: '1',
+            zIndex: 1,
           })}
         >
           {isShowAutoComplete && (

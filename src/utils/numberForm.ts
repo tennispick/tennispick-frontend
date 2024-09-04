@@ -1,6 +1,6 @@
 export const addNumberCommas = (numebr: number) => {
   const returnString = numebr?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  return returnString;
+  return returnString ?? '-';
 };
 
 // 입력한 숫자가 두자리수보다 아래일 때, 입력된 자릿수부터 0을 채워서 반환.

@@ -37,7 +37,7 @@ const Card = ({ title, subTitle, chartType, content }: Props) => {
       className={css({
         width: '200px',
         flex: '0 0 auto',
-        backgroundColor: '#F8F8F8',
+        backgroundColor: 'var(--grey400)',
         borderRadius: '8px',
         padding: '16px',
         margin: '0 12px 0 0',

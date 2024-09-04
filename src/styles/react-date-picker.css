@@ -43,26 +43,26 @@
 }
 
 .react-datepicker__day:nth-of-type(1) {
-  color: var(--red100) !important;
+  color: var(--red100);
 }
 
 .react-datepicker__day:nth-of-type(7) {
-  color: var(--blue100) !important;
+  color: var(--blue100);
 }
 
 .react-datepicker__day-name:nth-of-type(1) {
-  color: var(--red100) !important;
+  color: var(--red100);
 }
 
 .react-datepicker__day-name:nth-of-type(7) {
-  color: var(--blue100) !important;
+  color: var(--blue100);
 }
 
 .react-datepicker__day--selected {
   color: var(--white100) !important;
-  background-color: var(--blue100) !important;
+  background-color: var(--blue100);
 }
 
 .react-datepicker__day--disabled {
-  color: var(--grey300) !important;
+  color: var(--grey300);
 }

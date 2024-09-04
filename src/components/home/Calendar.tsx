@@ -52,7 +52,7 @@ const CalendarContainer = styled(ReactCalendar, {
     // 일
     '& .react-calendar__month-view__days__day': {
       '&:nth-of-type(7n + 1)': {
-        color: 'var(--red100) !important',
+        color: 'var(--red100)',
       },
       '&:nth-of-type(7n)': {
         color: 'var(--blue100) !important',

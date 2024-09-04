@@ -490,3 +490,11 @@ export const getDayOfWeek = (inputDate: Date, inputDay: string) => {
   );
   return inputDayDate;
 };
+
+export const getDateToKoreanString = (date: Date) => {
+  const year = date.getFullYear();
+  const month = numberZeroFillFormat(date.getMonth() + 1, 2);
+  const day = numberZeroFillFormat(date.getDate(), 2);
+
+  return `${year}-${month}-${day}`;
+};
