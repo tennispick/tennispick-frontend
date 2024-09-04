@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const useSettingMutation = () => {
   const queryClient = useQueryClient();
-  const { mutate, isLoading } = useMutation({
+  return useMutation({
     mutationKey: [URL_CHANGE_SETTING_ACTIVE_STATUS],
     mutationFn: updateSettingActiveStatus,
     onSuccess: (res) => {
@@ -23,12 +23,9 @@ const useSettingMutation = () => {
       console.error(error);
     },
     onSettled: () =>
-      queryClient.invalidateQueries([URL_CHANGE_SETTING_ACTIVE_STATUS]),
+      queryClient.invalidateQueries({
+        queryKey: [URL_CHANGE_SETTING_ACTIVE_STATUS],
+      }),
   });
-
-  return {
-    mutate,
-    isLoading,
-  };
 };
 export { useSettingMutation };

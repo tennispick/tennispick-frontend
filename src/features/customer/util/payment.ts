@@ -1,3 +1,5 @@
+import { PaymentType } from '@/types/payment';
+
 export const transferCategory = (category: 'payment' | 'refund') => {
   switch (category) {
     case 'payment':
@@ -9,8 +11,10 @@ export const transferCategory = (category: 'payment' | 'refund') => {
   }
 };
 
-export const transferPaymentType = (paymentType: string) => {
+export const transferPaymentType = (paymentType: PaymentType) => {
   switch (paymentType) {
+    case 'all':
+      return '전체';
     case 'card':
       return '카드 결제';
     case 'accountTransfer':
@@ -44,6 +48,6 @@ export const transferRefundRange = (refundRange: string) => {
     case 'part':
       return '일부환불';
     default:
-      return '';
+      return '-';
   }
 };

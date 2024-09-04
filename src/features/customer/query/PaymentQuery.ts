@@ -7,17 +7,11 @@ import { CustomerPaymentRefundData } from '@apis/payment/payment.type';
 
 export const usePaymentListQuery = (params: PaymentRefundListQueryPayload) => {
   const { type, customerId } = params;
-  const { data, isLoading } = useQuery({
+  return useQuery({
     queryKey: [URL_FETCH_PAYMENT_REFUND_LIST, { type, customerId }],
     queryFn: async () =>
       await getPaymentRefundList({ type: type, customerId: customerId }),
     select: (data) => data.data,
     initialData: createInitialData([] as CustomerPaymentRefundData[]),
-    suspense: true,
   });
-
-  return {
-    data,
-    isLoading,
-  };
 };

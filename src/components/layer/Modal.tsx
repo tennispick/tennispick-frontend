@@ -73,9 +73,10 @@ const Container = styled('div', {
     height: '100vh',
     top: '0',
     backgroundColor: 'rgb(18, 18, 18, 0.7)',
-    zIndex: 99,
+    zIndex: 92,
   },
 });
+
 const TitleContainer = styled('div', {
   base: {
     textAlign: 'center',

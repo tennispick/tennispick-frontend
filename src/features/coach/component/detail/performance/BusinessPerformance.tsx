@@ -62,7 +62,7 @@ const BusinessPerformance = ({ coachId }: Props) => {
             activeKey={'sales'}
             className={css({ height: '100%', padding: '12px 0' })}
           >
-            <SalesContainer />
+            <SalesContainer coachId={coachId} />
           </TabPanel>
           <TabPanel
             activeKey={'payment'}

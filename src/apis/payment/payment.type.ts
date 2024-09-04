@@ -13,7 +13,7 @@ export type CustomerPaymentRefundData = {
   lessonName: string;
   lessonId: number;
   category: 'payment' | 'refund';
-  type: string;
+  type: PaymentType;
   isWeekday: string;
   lessonType: string;
   discountType: string;

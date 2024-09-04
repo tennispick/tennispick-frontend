@@ -1,1 +1,1 @@
-export type PaymentType = 'card' | 'accountTransfer' | 'cash';
+export type PaymentType = 'all' | 'card' | 'accountTransfer' | 'cash';

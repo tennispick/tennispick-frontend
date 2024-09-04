@@ -14,6 +14,8 @@ export default defineConfig({
     './src/features/**/*.{js,jsx,ts,tsx}',
     './src/components/**/*.{js,jsx,ts,tsx}',
     './src/widgets/**/*.{js,jsx,ts,tsx}',
+    './src/constants/**/*.{js,jsx,ts,tsx}',
+    './src/recipes/**/*.{js,jsx,ts,tsx}',
     './app/**/*.{js,jsx,ts,tsx}',
   ],
 
@@ -23,7 +25,7 @@ export default defineConfig({
   // Useful for theme customization
   theme: {
     extend: {
-      keyframes: { keyframes },
+      keyframes: { ...keyframes },
     },
   },
 

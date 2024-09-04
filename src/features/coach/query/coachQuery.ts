@@ -3,10 +3,15 @@ import {
   getCoachDetail,
   getCoachLessonList,
   getCoachList,
+  getCoachTotalSales,
 } from '@apis/coach/coach.api';
-import { CoachDetailData, CoachListData } from '@apis/coach/coach.type';
-import { URL_COACH } from '@apis/coach/coach.url';
-import { useQuery } from '@tanstack/react-query';
+import {
+  CoachDetailData,
+  CoachListData,
+  CoachTotalSalesPayload,
+} from '@apis/coach/coach.type';
+import { URL_COACH, URL_COACH_TOTAL_SALES } from '@apis/coach/coach.url';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 export const useGetCoachListQuery = ({
   enabled = true,
@@ -39,5 +44,23 @@ export const useCoachDetailQuery = (coachId: string) => {
     queryFn: async () => await getCoachDetail(coachId),
     select: (data) => data.data,
     initialData: createInitialData({} as CoachDetailData),
+  });
+};
+
+export const useCoachTotalSalesListQuery = (params: CoachTotalSalesPayload) => {
+  return useInfiniteQuery({
+    queryKey: [URL_COACH_TOTAL_SALES, params],
+    queryFn: async ({ pageParam = 1 }) =>
+      await getCoachTotalSales({ ...params, page: pageParam }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPage) => {
+      return lastPage?.data && lastPage.data.length > 0
+        ? allPage.length + 1
+        : undefined;
+    },
+    select: (data) => ({
+      pages: data.pages.flatMap((page) => page.data),
+      pageParams: [...data.pageParams],
+    }),
   });
 };

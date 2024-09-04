@@ -1,0 +1,166 @@
+import { css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
+import SalesSummary from '../SalesSummary';
+import { useCoachTotalSalesListQuery } from '@features/coach/query/coachQuery';
+import { SearchConditionType } from '@features/coach/data/salesModalData';
+import { getDateToKoreanString } from '@utils/date';
+import { CoachTotalSalesData } from '@apis/coach/coach.type';
+import Loading from '@components/common/Loading';
+import {
+  transferCategory,
+  transferDiscountType,
+  transferPaymentType,
+} from '@features/customer/util/payment';
+import { addNumberCommas } from '@utils/numberForm';
+import { NoResult } from '@components/index';
+
+type Props = {
+  checkedItem: string;
+  coachId: string;
+  startDate: Date;
+  endDate: Date;
+  searchCondition: SearchConditionType;
+  keyword: string;
+};
+
+const ModalSalesLists = ({
+  checkedItem,
+  coachId,
+  startDate,
+  endDate,
+  searchCondition,
+  keyword,
+}: Props) => {
+  // TODO Infinite Scroll TEST
+  const { isLoading, data } = useCoachTotalSalesListQuery({
+    page: 1,
+    coachId,
+    checkedItem,
+    startDate: getDateToKoreanString(startDate),
+    endDate: getDateToKoreanString(endDate),
+    searchCondition,
+    keyword,
+    paymentType: 'all',
+  });
+
+  if (isLoading || !data) return <Loading />;
+
+  return (
+    <>
+      <SalesSummary />
+      <div
+        className={css({
+          height: 'calc(100% - (128px + 3rem))',
+          borderTop: '1px solid var(--grey100)',
+          padding: '0.825rem 0',
+        })}
+      >
+        <SalesListsHeader />
+        <SalesLists data={data?.pages} />
+      </div>
+    </>
+  );
+};
+
+const SalesListsHeader = () => {
+  return (
+    <ul
+      role="rowheader"
+      className={flex({
+        padding: '0 16px',
+
+        '& li': {
+          fontSize: '0.875rem',
+          fontWeight: 600,
+        },
+      })}
+    >
+      <li className={css({ width: '5%' })}>{'이름'}</li>
+      <li className={css({ width: '10%' })}>{'연락처'}</li>
+      <li className={css({ width: '14%' })}>{'상품명'}</li>
+      <li className={css({ width: '8%' })}>{'결제유형'}</li>
+      <li className={css({ width: '3%' })}>{'유형'}</li>
+      <li className={css({ width: '10%' })}>{'결제금액'}</li>
+      <li className={css({ width: '10%' })}>{'환불금액'}</li>
+      <li className={css({ width: '10%' })}>{'할인유형'}</li>
+      <li className={css({ width: '10%' })}>{'할인금액'}</li>
+      <li className={css({ width: '10%' })}>{'총 금액'}</li>
+      <li className={css({ width: '15%' })}>{'결제날짜'}</li>
+      <li className={css({ width: '10%' })}>{'환불날짜'}</li>
+    </ul>
+  );
+};
+
+const SalesLists = ({ data }: { data: CoachTotalSalesData[] }) => {
+  if (data.length === 0) return <NoResult description={'데이터가 없어요.'} />;
+
+  return (
+    <>
+      {data.map(
+        ({
+          customerLessonId,
+          customerName,
+          customerPhone,
+          lessonName,
+          category,
+          type,
+          discountPrice,
+          discountType,
+          totalPrice,
+          refundPrice,
+          remainPrice,
+          createdAt,
+        }) => {
+          return (
+            <ul
+              key={customerLessonId}
+              role="row"
+              className={flex({
+                padding: '10px 16px',
+                margin: '4px 0 0 0',
+
+                '& li': {
+                  fontSize: '0.825rem',
+                },
+
+                _hover: {
+                  backgroundColor: 'var(--blue1200)',
+                  borderRadius: '8px',
+                },
+              })}
+            >
+              <li className={css({ width: '5%' })}>{customerName}</li>
+              <li className={css({ width: '10%' })}>{customerPhone}</li>
+              <li className={css({ width: '14%' })}>{lessonName}</li>
+              <li className={css({ width: '8%' })}>
+                {transferPaymentType(type)}
+              </li>
+              <li className={css({ width: '3%' })}>
+                {transferCategory(category)}
+              </li>
+              <li className={css({ width: '10%' })}>
+                {addNumberCommas(totalPrice)}
+              </li>
+              <li className={css({ width: '10%' })}>
+                {addNumberCommas(refundPrice)}
+              </li>
+              <li className={css({ width: '10%' })}>
+                {transferDiscountType(discountType)}
+              </li>
+              <li className={css({ width: '10%' })}>
+                {addNumberCommas(discountPrice)}
+              </li>
+              <li className={css({ width: '10%' })}>
+                {addNumberCommas(remainPrice)}
+              </li>
+              <li className={css({ width: '15%' })}>{createdAt}</li>
+              <li className={css({ width: '10%' })}>{'환불날짜'}</li>
+            </ul>
+          );
+        },
+      )}
+    </>
+  );
+};
+
+export default ModalSalesLists;

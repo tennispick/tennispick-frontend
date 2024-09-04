@@ -178,7 +178,7 @@ const NavList = styled('li', {
     },
 
     '& span': {
-      zIndex: '2',
+      zIndex: 2,
     },
   },
 });

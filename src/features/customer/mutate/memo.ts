@@ -18,7 +18,9 @@ export const useCreateMemoMutate = (
         alert('메모 등록에 실패했어요.\n관리자에게 문의해주세요.');
       }
 
-      queryClient.invalidateQueries([URL_CUSTOMER_MEMO, { customerId }]);
+      queryClient.invalidateQueries({
+        queryKey: [URL_CUSTOMER_MEMO, { customerId }],
+      });
       handleCreateMemoClick();
     },
   });

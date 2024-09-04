@@ -1,5 +1,7 @@
 import { CoachPositionType } from '@/types/coach';
 import { SexType } from '@/types/index';
+import { PaymentType } from '@/types/payment';
+import { SearchConditionType } from '@features/coach/data/salesModalData';
 
 export type CoachListData = {
   id: number;
@@ -41,4 +43,33 @@ export type CoachDetailData = {
 
 export type CoachDeleteApiPayload = {
   coachId: string;
+};
+
+export type CoachTotalSalesPayload = {
+  page: number;
+  coachId: string;
+  checkedItem: string;
+  startDate: string;
+  endDate: string;
+  searchCondition: SearchConditionType;
+  keyword: string;
+  paymentType: PaymentType;
+};
+
+export type CoachTotalSalesData = {
+  customerLessonId: number;
+  customerName: string;
+  customerPhone: string;
+  lessonName: string;
+  category: 'payment' | 'refund';
+  type: PaymentType;
+  discountType: string;
+  discountPrice: number;
+  totalPrice: number;
+  refundRange: string;
+  refundPrice: number;
+  reason: string;
+  remainPrice: number;
+  createdAt: string;
+  updatedAt: string;
 };

@@ -4,3 +4,4 @@
  */
 export const URL_COACH = '/coach';
 export const URL_COACH_LESSON_LIST = '/coach/lesson';
+export const URL_COACH_TOTAL_SALES = '/coach/totalSales';

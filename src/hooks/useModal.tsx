@@ -3,31 +3,32 @@ import { PropsWithChildren } from 'react';
 
 type ModalType =
   | 'full'
-  | 'normal'
-  | 'large'
-  | 'small'
+  | 'md'
+  | 'lg'
+  | 'sm'
   | 'confirm'
   | 'download'
   | 'overlay';
 
 type Props = {
   type?: ModalType;
+  title?: string | undefined;
 } & PropsWithChildren;
 
-const useModal = ({ type = 'normal', children }: Props = {}) => {
-  const { isOpen, openModal, closeModal } = useModalStore();
+const useModal = ({ type = 'md', title, children }: Props = {}) => {
+  const { isOpen, openModal, closeModal: handleCloseModal } = useModalStore();
 
-  const onShowModal = () =>
+  const handleShowModal = () =>
     openModal({
       type,
-      title: '상세모달',
+      title,
       modalChildren: children,
     });
 
   return {
     isOpen,
-    onShowModal,
-    closeModal,
+    handleShowModal,
+    handleCloseModal,
   };
 };
 
