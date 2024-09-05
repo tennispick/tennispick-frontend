@@ -12,13 +12,13 @@ import { css } from 'styled-system/css';
 type Props = {
   customerId: string;
   data: CustomerLessonHistoryData['lessonHistory'];
-  onClickCloseModalHandler: () => void;
+  handleCloseModal: () => void;
 };
 
 const ScheduleLessonContainer = ({
   customerId,
   data: customerLessonData,
-  onClickCloseModalHandler,
+  handleCloseModal,
 }: Props) => {
   const [formData, onChangeFormData, setFormData] = useInput({
     coach: customerLessonData.coachId,
@@ -75,7 +75,7 @@ const ScheduleLessonContainer = ({
         </div>
       )}
       <ButtonContainer
-        onClickCloseModalHandler={onClickCloseModalHandler}
+        onClickCloseModalHandler={handleCloseModal}
         disabled={isDuplicated}
       />
     </>

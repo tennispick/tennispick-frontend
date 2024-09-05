@@ -4,12 +4,10 @@ import { css } from 'styled-system/css';
 import Image from 'next/image';
 
 type Props = {
-  onClickCloseModalHandler: () => void;
+  handleCloseModal: () => void;
 };
 
-const ScheduleModalRecentHistoryModalHeader = ({
-  onClickCloseModalHandler,
-}: Props) => {
+const ScheduleModalRecentHistoryModalHeader = ({ handleCloseModal }: Props) => {
   return (
     <Flex>
       <div className={css({ margin: '0 0 28px 0' })}>
@@ -35,7 +33,7 @@ const ScheduleModalRecentHistoryModalHeader = ({
           right: 0,
           cursor: 'pointer',
         })}
-        onClick={onClickCloseModalHandler}
+        onClick={handleCloseModal}
       />
     </Flex>
   );
