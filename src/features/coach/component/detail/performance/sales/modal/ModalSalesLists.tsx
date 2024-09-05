@@ -13,6 +13,7 @@ import {
 } from '@features/customer/util/payment';
 import { addNumberCommas } from '@utils/numberForm';
 import { NoResult } from '@components/index';
+import { styled } from 'styled-system/jsx';
 
 type Props = {
   checkedItem: string;
@@ -92,7 +93,12 @@ const SalesListsHeader = () => {
 };
 
 const SalesLists = ({ data }: { data: CoachTotalSalesData[] }) => {
-  if (data.length === 0) return <NoResult description={'데이터가 없어요.'} />;
+  if (data.length === 0)
+    return (
+      <NoResultContainer>
+        <NoResult description={'데이터가 없어요.'} />
+      </NoResultContainer>
+    );
 
   return (
     <>
@@ -162,5 +168,14 @@ const SalesLists = ({ data }: { data: CoachTotalSalesData[] }) => {
     </>
   );
 };
+
+const NoResultContainer = styled('div', {
+  base: {
+    width: '100%',
+    height: '100%',
+    padding: '16px 0',
+    borderRadius: '8px',
+  }
+})
 
 export default ModalSalesLists;
