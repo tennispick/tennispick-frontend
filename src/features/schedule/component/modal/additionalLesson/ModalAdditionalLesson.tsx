@@ -18,7 +18,7 @@ const ModalAdditionalLesson = () => {
   const isSelectCustomer = customerLesson.id !== '';
 
   const setCustomerIdHandler = (id: string) => setCustomerId(id);
-  const onClickCloseModalHandler = () => {
+  const handleCloseModal = () => {
     setCustomerLesson(EMPTY_CUSTOMER_LESSON);
   };
 
@@ -26,7 +26,7 @@ const ModalAdditionalLesson = () => {
     target: CustomerLessonHistoryData['lessonHistory'][],
   ) => {
     setCustomerLessonData(target[0]);
-    onClickCloseModalHandler();
+    handleCloseModal();
   };
 
   const onSubmitHandler: FormEventHandler<HTMLFormElement> = async (e) => {
@@ -53,7 +53,14 @@ const ModalAdditionalLesson = () => {
   const isSelectCustomerLessonData = !!customerLessonData;
 
   return (
-    <form onSubmit={onSubmitHandler}>
+    <form
+      onSubmit={onSubmitHandler}
+      className={css({
+        backgroundColor: 'var(--white100)',
+        padding: '24px',
+        borderRadius: '12px',
+      })}
+    >
       <div className={css({ minHeight: '420px' })}>
         <CustomerSearch
           setCustomerLesson={setCustomerLesson}
@@ -63,7 +70,7 @@ const ModalAdditionalLesson = () => {
           <ScheduleLessonContainer
             customerId={customerId}
             data={customerLessonData}
-            onClickCloseModalHandler={onClickCloseModalHandler}
+            handleCloseModal={handleCloseModal}
           />
         ) : (
           <div className={css({ height: '420px' })}>
@@ -75,7 +82,7 @@ const ModalAdditionalLesson = () => {
         <ScheduleModalRecentHistoryModal
           customerId={customerLesson.id!}
           lessonType="private"
-          onClickCloseModalHandler={onClickCloseModalHandler}
+          handleCloseModal={handleCloseModal}
           onClickSaveCustomerLessonHistoryHandler={
             onClickSaveCustomerLessonHistoryHandler
           }

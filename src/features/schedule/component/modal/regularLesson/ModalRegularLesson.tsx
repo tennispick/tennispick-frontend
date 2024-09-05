@@ -1,6 +1,5 @@
 import { FormEventHandler, useEffect, useState } from 'react';
 
-import { Button } from '@components/index';
 import { EditWhiteIcon } from '@icons/index';
 import { useScheduleMutation } from '@features/schedule/mutation/scheduleMutation';
 import { useCustomerLessonListQuery } from '@features/customer/query/CustomerQuery';
@@ -25,6 +24,7 @@ import { handleInputArrayValidationCheck } from '@utils/validation';
 import { individualCreateFormValidationSet } from '@features/schedule/util/inputFormValidationSet';
 import { flex } from 'styled-system/patterns';
 import { css } from 'styled-system/css';
+import IconButton from '@components/button/IconButton';
 
 const ModalRegularLesson = () => {
   const { mutate } = useScheduleMutation();
@@ -81,7 +81,7 @@ const ModalRegularLesson = () => {
     },
   ]);
 
-  const onClickRecentHistoryModalCloseHandler = () => setCustomerId('');
+  const handleCloseModal = () => setCustomerId('');
 
   const onClickSaveCustomerLessonHistoryHandler = (target: any) => {
     const {
@@ -200,14 +200,23 @@ const ModalRegularLesson = () => {
   return (
     <>
       <form
-        className={flex({ width: '100%', flexDirection: 'column' })}
+        className={flex({
+          flexDirection: 'column',
+          width: '100%',
+          height: 'calc(100% - 68px)',
+          backgroundColor: 'var(--white100)',
+          padding: '24px',
+          borderRadius: '12px',
+        })}
         onSubmit={
           scheduleType === 'all'
             ? onSubmitAllCreateHandler
             : onSubmitIndividualCreateHandler
         }
       >
-        <div className={flex({ width: '100%', minHeight: '320px' })}>
+        <div
+          className={flex({ width: '100%', height: 'calc(100% - 2.75rem)' })}
+        >
           <CommonSchedule
             commonData={{ scheduleType, lessonType, customer, lesson }}
             setCommonData={setCommonData}
@@ -241,10 +250,15 @@ const ModalRegularLesson = () => {
             }[scheduleType]
           }
         </div>
-        <div className={flex({ margin: '24px 0 0 0' })}>
+        <div
+          className={flex({
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            height: '2.75rem',
+          })}
+        >
           <div
             className={css({
-              margin: '16px 0 0 0',
               fontSize: '0.925rem',
               color: 'var(--business-color)',
             })}
@@ -257,21 +271,14 @@ const ModalRegularLesson = () => {
               결제방법: {`회원 관리 > 회원 선택 > 결제하기`}
             </span>
           </div>
-          <Button
+          <IconButton
             type="submit"
-            variant="iconBtn"
-            label="스케줄 등록하기"
-            src={EditWhiteIcon}
-            className={css({
-              width: '160px',
-              justifyContent: 'center',
-              border: 0,
-              backgroundColor: 'var(--business-sub-color)',
-              color: 'var(--white100)',
-              padding: '16px',
-              margin: '0 0 0 auto',
-              borderRadius: '12px',
-            })}
+            iconAlign="left"
+            iconAlt="create legular lesson"
+            iconSrc={EditWhiteIcon}
+            size="lg"
+            variant="primary"
+            label={'스케줄 등록하기'}
             disabled={
               scheduleType === 'all'
                 ? submitButtonCheckDisabled
@@ -286,7 +293,7 @@ const ModalRegularLesson = () => {
         <ScheduleModalRecentHistoryModal
           customerId={customerId}
           lessonType={lessonType}
-          onClickCloseModalHandler={onClickRecentHistoryModalCloseHandler}
+          handleCloseModal={handleCloseModal}
           onClickSaveCustomerLessonHistoryHandler={
             onClickSaveCustomerLessonHistoryHandler
           }

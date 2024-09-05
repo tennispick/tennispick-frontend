@@ -3,13 +3,13 @@ import { CalendarWhiteIcon } from '@icons/index';
 import { Flex } from 'styled-system/jsx';
 
 type Props = {
-  handleCreateRegularLessonClick: () => void;
-  handleCreateAdditionalLessonClick: () => void;
+  handleShowRegularModal: () => void;
+  handleShowAdditionalModal: () => void;
 };
 
 const LessonButtonContainer = ({
-  handleCreateRegularLessonClick,
-  handleCreateAdditionalLessonClick,
+  handleShowRegularModal,
+  handleShowAdditionalModal,
 }: Props) => {
   return (
     <Flex gap="8px">
@@ -20,7 +20,7 @@ const LessonButtonContainer = ({
         iconSrc={CalendarWhiteIcon}
         iconAlt={'일정 등록하기'}
         iconAlign="left"
-        onClick={handleCreateRegularLessonClick}
+        onClick={handleShowRegularModal}
       />
       <IconButton
         size="md"
@@ -29,7 +29,7 @@ const LessonButtonContainer = ({
         iconSrc={CalendarWhiteIcon}
         iconAlt={'보강 등록하기'}
         iconAlign="left"
-        onClick={handleCreateAdditionalLessonClick}
+        onClick={handleShowAdditionalModal}
       />
     </Flex>
   );

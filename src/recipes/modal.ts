@@ -26,6 +26,7 @@ export const modal = cva({
       md: {
         minWidth: '640px',
         minHeight: '220px',
+        height: 'auto',
       },
       lg: {
         width: '800px',

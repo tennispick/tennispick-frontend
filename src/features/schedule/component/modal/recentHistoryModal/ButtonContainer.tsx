@@ -3,14 +3,14 @@ import { css } from 'styled-system/css';
 
 type Props = {
   checkHistoryId: string;
-  onClickCloseModalHandler: () => void;
-  onClickSaveHandler: () => void;
+  handleCloseModal: () => void;
+  handleSaveClick: () => void;
 };
 
 const ScheduleModalRecentHistoryModalButtonContainer = ({
   checkHistoryId,
-  onClickCloseModalHandler,
-  onClickSaveHandler,
+  handleCloseModal,
+  handleSaveClick,
 }: Props) => {
   return (
     <div className={css({ width: 'fit-content', margin: '12px 0 0 auto' })}>
@@ -24,7 +24,7 @@ const ScheduleModalRecentHistoryModalButtonContainer = ({
           padding: '16px 0',
           border: 0,
         }}
-        onClick={onClickCloseModalHandler}
+        onClick={handleCloseModal}
       />
       <Button
         type="button"
@@ -38,7 +38,7 @@ const ScheduleModalRecentHistoryModalButtonContainer = ({
           padding: '16px 0',
           border: 0,
         }}
-        onClick={onClickSaveHandler}
+        onClick={handleSaveClick}
         disabled={checkHistoryId === ''}
       />
     </div>

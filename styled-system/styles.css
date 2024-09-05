@@ -227,11 +227,6 @@
     line-height: var(--line-heights-normal);
 }
 
-  *,*:after,*:before,html,body {
-    padding: var(--spacing-0);
-    margin: var(--spacing-0);
-}
-
   html,body {
     width: 100%;
     height: auto;
@@ -1365,22 +1360,6 @@
     border-right: 0;
 }
 
-  .w_1440px {
-    width: 1440px;
-}
-
-  .w_720px {
-    width: 720px;
-}
-
-  .max-w_1440px {
-    max-width: 1440px;
-}
-
-  .min-h_500px {
-    min-height: 500px;
-}
-
   .m_24px_0_0_0 {
     margin: 24px 0 0 0;
 }
@@ -2245,6 +2224,14 @@
     padding: 0.825rem 0;
 }
 
+  .w_14\% {
+    width: 14%;
+}
+
+  .w_3\% {
+    width: 3%;
+}
+
   .p_0_16px {
     padding: 0 16px;
 }
@@ -2945,10 +2932,6 @@
     justify-content: center;
 }
 
-  .top_45\% {
-    top: 45%;
-}
-
   .fs_1\.2rem {
     font-size: 1.2rem;
 }
@@ -3119,6 +3102,10 @@
 
   .bg-c_rgb\(18\,_18\,_18\,_0\.7\) {
     background-color: rgb(18, 18, 18, 0.7);
+}
+
+  .top_45\% {
+    top: 45%;
 }
 
   .bg-c_var\(--blue1200\) {
@@ -3319,6 +3306,10 @@
 
   .bdr-bl_0 {
     border-bottom-left-radius: 0;
+}
+
+  .anim-dur_0\.6s {
+    animation-duration: 0.6s;
 }
 
   .\[\&\:checked_\+_label\]\:bx-sh_none:checked + label {
