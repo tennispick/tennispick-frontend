@@ -33,20 +33,21 @@ const DaySchedule = ({ isMobile, date, coachList }: Props) => {
           width: '100%',
           height: 'calc(100% - 176px)',
           flexDirection: isMobile ? 'column' : 'row',
+          gap: '16px',
         })}
       >
-        <SchduleTimeTableContainer>
-          <SchduleTimeTableTitle>평일</SchduleTimeTableTitle>
+        <ScheduleCalendarContainer>
+          <DayTitle>평일</DayTitle>
           <ScheduleTimeTable
-            coach={coachList}
+            coachList={coachList}
             data={data}
             timeTableMapList={getDayOfWeekList(date, GET_WEEK_LIST_COUNT, true)}
           />
-        </SchduleTimeTableContainer>
-        <SchduleTimeTableContainer>
-          <SchduleTimeTableTitle>주말</SchduleTimeTableTitle>
+        </ScheduleCalendarContainer>
+        <ScheduleCalendarContainer>
+          <DayTitle>주말</DayTitle>
           <ScheduleTimeTable
-            coach={coachList}
+            coachList={coachList}
             data={data}
             timeTableMapList={getDayOfWeekList(
               date,
@@ -54,20 +55,20 @@ const DaySchedule = ({ isMobile, date, coachList }: Props) => {
               false,
             )}
           />
-        </SchduleTimeTableContainer>
+        </ScheduleCalendarContainer>
       </div>
     </>
   );
 };
 
-const SchduleTimeTableContainer = styled('div', {
+const ScheduleCalendarContainer = styled('div', {
   base: {
-    width: '100%',
+    width: 'calc(50% - 8px)',
     height: '100%',
   },
 });
 
-const SchduleTimeTableTitle = styled('div', {
+const DayTitle = styled('div', {
   base: {
     height: '24px',
     fontSize: '1.25rem',

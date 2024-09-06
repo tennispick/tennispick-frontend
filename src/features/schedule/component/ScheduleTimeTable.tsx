@@ -1,21 +1,17 @@
-import ScheduleTableHeader from './table/Header';
+import DayScheduleCalendarHeader from './dayScheduleCalendar/header/Header';
 import { STRING_WEEK_LIST } from '../constants/schedule';
-import dynamic from 'next/dynamic';
 import Loading from '@components/common/Loading';
 import { CoachListData } from '@apis/coach/coach.type';
 import { css } from 'styled-system/css';
-const ScheduleTableBody = dynamic(() => import('./table/Body'), {
-  loading: () => <Loading />,
-  ssr: false,
-});
+import DayScheduleCalendarBody from './dayScheduleCalendar/Body';
 
 type Props = {
   timeTableMapList: Map<string, Map<number, Array<number>>>;
-  coach: CoachListData[];
+  coachList: CoachListData[];
   data: any;
 };
 
-const ScheduleTimeTable = ({ timeTableMapList, coach, data }: Props) => {
+const ScheduleTimeTable = ({ timeTableMapList, coachList, data }: Props) => {
   if (!data) return <Loading />;
 
   return (
@@ -23,7 +19,6 @@ const ScheduleTimeTable = ({ timeTableMapList, coach, data }: Props) => {
       className={css({
         height: 'calc(100% - 40px)',
         overflowY: 'scroll',
-        padding: '0 16px 0 0',
       })}
     >
       {Array.from(timeTableMapList).map(([key, monthMapList]) => {
@@ -35,18 +30,18 @@ const ScheduleTimeTable = ({ timeTableMapList, coach, data }: Props) => {
               textAlign: 'center',
               width: '100%',
               margin: '0 0 24px 0',
-              border: '1px solid var(--black100)',
-              borderRight: 0,
+              borderTop: '1px solid var(--black100)',
+              borderLeft: '1px solid var(--black100)',
             })}
           >
-            <ScheduleTableHeader
+            <DayScheduleCalendarHeader
               weekKrIndex={weekKrIndex}
               monthList={monthMapList}
-              coach={coach}
+              coachList={coachList}
             />
-            <ScheduleTableBody
+            <DayScheduleCalendarBody
               monthList={monthMapList}
-              coach={coach}
+              coachList={coachList}
               data={data}
             />
           </div>
