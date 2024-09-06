@@ -69,6 +69,10 @@ const CalendarContainer = styled(ReactCalendar, {
         backgroundColor: 'var(--business-color) !important',
         color: 'var(--white100) !important',
       },
+
+      '&:nth-of-type(7n)': {
+        color: 'var(--white100) !important',
+      },
     },
 
     '& .react-calendar__tile': {

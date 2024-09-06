@@ -8,8 +8,8 @@ import useMobile from '@hooks/useMobile';
 import CourtContainer from '../component/CourtContainer';
 import ModalAdditionalLesson from '../component/modal/additionalLesson/ModalAdditionalLesson';
 import ModalRegularLesson from '../component/modal/regularLesson/ModalRegularLesson';
-import ScheduleCalendarTable from '../component/scheduleCalendarTable/ScheduleCalendarTable';
 import useModal from '@hooks/useModal';
+import DayScheduleCalendar from '../component/DayScheduleCalendar';
 
 const Schedule = () => {
   const today = new Date();
@@ -43,16 +43,16 @@ const Schedule = () => {
         handleShowRegularModal={handleShowRegularModal}
         handleShowAdditionalModal={handleShowAdditionalModal}
       />
-      <ScheduleCalendarTable
-        isMobile={isMobile}
-        date={calendarDate}
-        coachList={data ?? []}
-      />
-      {/* <DaySchedule
+      {/* <ScheduleCalendarTable
         isMobile={isMobile}
         date={calendarDate}
         coachList={data ?? []}
       /> */}
+      <DayScheduleCalendar
+        isMobile={isMobile}
+        date={calendarDate}
+        coachList={data ?? []}
+      />
     </>
   );
 };

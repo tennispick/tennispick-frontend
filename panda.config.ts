@@ -35,4 +35,29 @@ export default defineConfig({
   jsxFramework: 'react',
 
   globalCss: globalStyles,
+
+  staticCss: {
+    css: [
+      {
+        properties: {
+          width: [
+            'calc((100% / 7) * 7)',
+            'calc((100% / 7) * 6)',
+            'calc((100% / 7) * 5)',
+            'calc((100% / 7) * 4)',
+            'calc((100% / 7) * 3)',
+            'calc((100% / 7) * 2)',
+            'calc((100% / 7) * 1)',
+            'calc(100% / 7)',
+            'calc(100% / 6)',
+            'calc(100% / 5)',
+            'calc(100% / 4)',
+            'calc(100% / 3)',
+            'calc(100% / 2)',
+            'calc(100% / 1)',
+          ],
+        },
+      },
+    ],
+  },
 });
