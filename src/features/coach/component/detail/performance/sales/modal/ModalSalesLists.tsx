@@ -175,7 +175,7 @@ const NoResultContainer = styled('div', {
     height: '100%',
     padding: '16px 0',
     borderRadius: '8px',
-  }
-})
+  },
+});
 
 export default ModalSalesLists;

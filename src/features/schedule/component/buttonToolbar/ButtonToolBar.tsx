@@ -6,15 +6,15 @@ import { css } from 'styled-system/css';
 type Props = {
   calendarDate: Date;
   handleChangeDate: (date: Date) => void;
-  handleCreateRegularLessonClick: () => void;
-  handleCreateAdditionalLessonClick: () => void;
+  handleShowRegularModal: () => void;
+  handleShowAdditionalModal: () => void;
 };
 
 const ButtonToolbar = ({
   calendarDate,
   handleChangeDate,
-  handleCreateRegularLessonClick,
-  handleCreateAdditionalLessonClick,
+  handleShowRegularModal,
+  handleShowAdditionalModal,
 }: Props) => {
   return (
     <Flex justifyContent="space-between" className={css({ margin: '16px 0' })}>
@@ -23,8 +23,8 @@ const ButtonToolbar = ({
         handleChangeDate={handleChangeDate}
       />
       <LessonButtonContainer
-        handleCreateRegularLessonClick={handleCreateRegularLessonClick}
-        handleCreateAdditionalLessonClick={handleCreateAdditionalLessonClick}
+        handleShowRegularModal={handleShowRegularModal}
+        handleShowAdditionalModal={handleShowAdditionalModal}
       />
     </Flex>
   );

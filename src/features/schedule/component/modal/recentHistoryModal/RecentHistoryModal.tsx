@@ -1,5 +1,4 @@
 import Portal from '@components/Portal';
-import { LAYER_PORTAL_Z_INDEX } from 'src/constants/portal';
 import ModalHeader from './Header';
 import ScheduleModalRecentHistoryModalTableBody from './TableBody';
 import ButtonContainer from './ButtonContainer';
@@ -14,7 +13,7 @@ import { css } from 'styled-system/css';
 type Props = {
   customerId: string;
   lessonType: LessonType;
-  onClickCloseModalHandler: () => void;
+  handleCloseModal: () => void;
   onClickSaveCustomerLessonHistoryHandler: (
     target: CustomerLessonHistoryData['lessonHistory'][],
   ) => void;
@@ -23,7 +22,7 @@ type Props = {
 const ScheduleModalRecentHistoryModal = ({
   customerId,
   lessonType,
-  onClickCloseModalHandler,
+  handleCloseModal,
   onClickSaveCustomerLessonHistoryHandler,
 }: Props) => {
   const [checkHistoryId, setCheckHistoryId] = useState<string>('');
@@ -40,7 +39,7 @@ const ScheduleModalRecentHistoryModal = ({
     if (checked) setCheckHistoryId(value);
   };
 
-  const onClickSaveHandler = () => {
+  const handleSaveClick = () => {
     const { lessonHistory } = data;
     const target = lessonHistory.filter(
       ({ id }: Pick<CustomerLessonHistoryData['lessonHistory'], 'id'>) =>
@@ -59,7 +58,7 @@ const ScheduleModalRecentHistoryModal = ({
           height: '100vh',
           top: 0,
           backgroundColor: 'rgb(18, 18, 18, 0.7)',
-          zIndex: LAYER_PORTAL_Z_INDEX,
+          zIndex: 99999,
         })}
       >
         <section
@@ -76,7 +75,7 @@ const ScheduleModalRecentHistoryModal = ({
             borderRadius: '12px',
           })}
         >
-          <ModalHeader onClickCloseModalHandler={onClickCloseModalHandler} />
+          <ModalHeader handleCloseModal={handleCloseModal} />
           <ScheduleModalRecentHistoryModalTableBody
             checkHistoryId={checkHistoryId}
             onClickRadioHandler={onClickHistoryRadioItemHandler}
@@ -89,8 +88,8 @@ const ScheduleModalRecentHistoryModal = ({
           />
           <ButtonContainer
             checkHistoryId={checkHistoryId}
-            onClickCloseModalHandler={onClickCloseModalHandler}
-            onClickSaveHandler={onClickSaveHandler}
+            handleCloseModal={handleCloseModal}
+            handleSaveClick={handleSaveClick}
           />
         </section>
       </div>
