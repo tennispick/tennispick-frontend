@@ -73,3 +73,30 @@ export type CoachTotalSalesData = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type CoachCustomersData = {
+  centerId: number;
+  customerId: number;
+  name: string;
+  lessonName: string;
+  price: number;
+  birth: string;
+  sex: SexType;
+  phone: string;
+  recentLessonTime: string;
+  nextLessonTime: string;
+  profileImageUrl: string | null;
+  termsAgree: 'Y' | 'N';
+  registerAbleCount: number;
+  remainLessonCount: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CoachCustomersPayload = {
+  page: number;
+  coachId: string;
+  checkedItems: string[];
+  keyword: string;
+  searchCondition: string;
+};

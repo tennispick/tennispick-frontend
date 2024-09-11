@@ -1,16 +1,22 @@
 import { createInitialData } from '@/types/response';
 import {
+  getCoachCustomers,
   getCoachDetail,
   getCoachLessonList,
   getCoachList,
   getCoachTotalSales,
 } from '@apis/coach/coach.api';
 import {
+  CoachCustomersPayload,
   CoachDetailData,
   CoachListData,
   CoachTotalSalesPayload,
 } from '@apis/coach/coach.type';
-import { URL_COACH, URL_COACH_TOTAL_SALES } from '@apis/coach/coach.url';
+import {
+  URL_COACH,
+  URL_COACH_CUSTOMERS,
+  URL_COACH_TOTAL_SALES,
+} from '@apis/coach/coach.url';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 export const useGetCoachListQuery = ({
@@ -52,6 +58,25 @@ export const useCoachTotalSalesListQuery = (params: CoachTotalSalesPayload) => {
     queryKey: [URL_COACH_TOTAL_SALES, params],
     queryFn: async ({ pageParam = 1 }) =>
       await getCoachTotalSales({ ...params, page: pageParam }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPage) => {
+      return lastPage?.data && lastPage.data.length > 0
+        ? allPage.length + 1
+        : undefined;
+    },
+    select: (data) => ({
+      pages: data.pages.flatMap((page) => page.data),
+      pageParams: [...data.pageParams],
+    }),
+  });
+};
+
+export const useCoachCustomersQuery = (params: CoachCustomersPayload) => {
+  const { coachId } = params;
+  return useInfiniteQuery({
+    queryKey: [URL_COACH_CUSTOMERS(coachId), params],
+    queryFn: async ({ pageParam = 1 }) =>
+      await getCoachCustomers({ ...params, page: pageParam }),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPage) => {
       return lastPage?.data && lastPage.data.length > 0

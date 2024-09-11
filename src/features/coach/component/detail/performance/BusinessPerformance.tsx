@@ -74,7 +74,7 @@ const BusinessPerformance = ({ coachId }: Props) => {
             activeKey={'customer'}
             className={css({ height: '100%', padding: '12px 0' })}
           >
-            <CustomerContainer />
+            <CustomerContainer coachId={coachId} />
           </TabPanel>
         </TabPanels>
       </Tabs>
