@@ -23,12 +23,12 @@ const PaymentTypeRow = () => {
     checkList.map((item) => item.id),
   );
 
-  const onChangeAllCheckboxHandler = () => {
+  const handleAllCheckboxClick = () => {
     if (checkedItems.length === checkList.length) setCheckedItems([]);
     else setCheckedItems(checkList.map((item) => item.id));
   };
 
-  const onChangeCheckboxHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCheckboxClick = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target;
     const checked = target.checked;
     const id = target.id;
@@ -49,8 +49,8 @@ const PaymentTypeRow = () => {
       <CheckboxGroup
         checkList={checkList}
         checkedItems={checkedItems}
-        allCheckboxHandler={onChangeAllCheckboxHandler}
-        checkboxHandler={onChangeCheckboxHandler}
+        allCheckboxHandler={handleAllCheckboxClick}
+        checkboxHandler={handleCheckboxClick}
       />
     </div>
   );
