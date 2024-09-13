@@ -8,6 +8,7 @@ import {
   quickButtonPeriodData,
   searchConditions,
 } from '@features/coach/data/salesModalData';
+import { getDateByQuickButton } from '@features/coach/util/quickButtonDate';
 
 type Props = {
   coachId: string;
@@ -32,6 +33,8 @@ const ModalBody = ({ coachId }: Props) => {
 
   const handleCheckedChange = (e: MouseEvent<HTMLLabelElement>) => {
     const value = e.currentTarget.htmlFor;
+
+    getDateByQuickButton(value, handleChangeStartDate, handleChangeEndDate);
     setCheckedItem(value);
   };
 
