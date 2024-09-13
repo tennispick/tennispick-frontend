@@ -498,3 +498,9 @@ export const getDateToKoreanString = (date: Date) => {
 
   return `${year}-${month}-${day}`;
 };
+
+export const setDateToStartOfDay = (date: Date) => {
+  const newDate = new Date(date);
+  newDate.setHours(0, 0, 0, 0);
+  return newDate;
+};
