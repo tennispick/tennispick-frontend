@@ -8,29 +8,27 @@ import CoachDetailProfile from '../component/detail/CoachDetailProfile';
 import BusinessPerformance from '../component/detail/performance/BusinessPerformance';
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
-
 type Props = {
   id: string;
 };
 
 const CoachDetailScreen = ({ id }: Props) => {
   const { data, isFetching } = useCoachDetailQuery(id);
-
   if (isFetching) return <Loading />;
 
   const { name } = data;
 
   return (
-    <>
+    <div className={css({ width: '100%', height: '100%' })}>
       <PageHeader title={`${name} 님`} link="/coach" />
       <div className={css({ height: 'calc(100% - 52px)', overflowY: 'auto' })}>
         <div className={flex({ height: 'calc(100% - 46px)' })}>
-          <CoachDetailProfile data={data} />
+          <CoachDetailProfile coachId={id} data={data} />
           <BusinessPerformance coachId={id} />
         </div>
         <ButtonContainer coachId={id} />
       </div>
-    </>
+    </div>
   );
 };
 
