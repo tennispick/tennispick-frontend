@@ -26,8 +26,6 @@ const ButtonContainer = ({ coachId }: Props) => {
     window.location.href = '/coach';
   };
 
-  const handleModifyClick = () => {};
-
   return (
     <div
       className={flex({ height: '46px', justifyContent: 'end', gap: '8px' })}
@@ -42,13 +40,14 @@ const ButtonContainer = ({ coachId }: Props) => {
         onClick={handleDeleteClick}
       />
       <IconButton
+        form="coachForm"
+        type="submit"
         size="lg"
         variant="primary"
         label={'코치 수정하기'}
         iconSrc={EditWhiteIcon}
         iconAlign="left"
         iconAlt="modify"
-        onClick={handleModifyClick}
       />
     </div>
   );

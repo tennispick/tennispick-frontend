@@ -45,11 +45,11 @@ const ColorPalettePicker = ({ color, setColor }: Props) => {
       >
         <div
           className={css({
-            width: 20,
-            height: 20,
-            backgroundColor: color.hex,
+            width: '20px',
+            height: '20px',
             borderRadius: '4px',
           })}
+          style={{ backgroundColor: color.hex }}
         />
         <div>{color.hex}</div>
       </div>

@@ -8,23 +8,105 @@ import { useColor } from 'react-color-palette';
 import ColorPalettePicker from '@widgets/ColorPalettePicker';
 import { css } from 'styled-system/css';
 import { Flex, styled } from 'styled-system/jsx';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { FormError } from '@components/FormError';
+import { passwordRegex, phoneNumberRegex } from '@utils/validation';
+import { ChangeEventHandler, useState } from 'react';
+import { useUpdateCoachDetailMutation } from '@features/coach/mutate/coach';
+
+const schema = z
+  .object({
+    phone: z
+      .string()
+      .trim()
+      .min(10, { message: '전화번호는 10자리 이상이어야 합니다.' })
+      .regex(phoneNumberRegex, { message: '올바른 전화번호 형식이 아닙니다.' }),
+    password: z
+      .string()
+      .regex(passwordRegex, {
+        message: '비밀번호는 8자 이상, 영문, 숫자, 특수문자를 포함해야 합니다.',
+      })
+      .or(z.literal('')),
+    passwordConfirm: z.string().optional(),
+    position: z.string(),
+  })
+  .superRefine(({ password, passwordConfirm }, ctx) => {
+    if (password && password !== passwordConfirm) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: '비밀번호가 일치하지 않습니다.',
+        path: ['passwordConfirm'],
+      });
+    }
+  });
+
+export type CoachFormSchema = z.infer<typeof schema>;
 
 type Props = {
+  coachId: string;
   data: CoachDetailData;
 };
 
-const CoachDetailProfile = ({ data }: Props) => {
-  const { name, email, phone, sex, position, birth } = data;
+const CoachDetailProfile = ({ coachId, data }: Props) => {
+  const { name, email, phone, sex, position, birth, profileImageUrl } = data;
   const [year, month, date] = birthSplit(birth);
-  const [color, setColor] = useColor('#000000');
+
+  const [file, setFile] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
+  const [color, setColor] = useColor(data.color);
+  const profileImage = profileImageUrl
+    ? profileImageUrl
+    : sex === 'man'
+    ? ProfileManIcon.src
+    : ProfileWomanIcon.src;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CoachFormSchema>({
+    resolver: async (data, context, options) =>
+      zodResolver(schema)(data, context, options),
+  });
+
+  const { mutate } = useUpdateCoachDetailMutation(coachId);
+
+  const handleFileChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    if (!e.target.files) return;
+
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setPreview(reader.result as string);
+    };
+    setFile(file);
+  };
+
+  const handleFormSubmit = (data: CoachFormSchema) => {
+    const formData = new FormData();
+    Object.keys(data).forEach((key) => {
+      const typedKey = key as keyof CoachFormSchema;
+      formData.append(key, data[typedKey] as string);
+    });
+
+    file && formData.append('file', file);
+    formData.append('color', color.hex);
+
+    mutate(formData);
+  };
 
   return (
-    <section
+    <form
+      id="coachForm"
       className={css({
         width: '30%',
         height: '100%',
         padding: '0 32px 0 0',
       })}
+      onSubmit={handleSubmit(handleFormSubmit)}
     >
       <div>
         <Input
@@ -37,11 +119,10 @@ const CoachDetailProfile = ({ data }: Props) => {
             margin: '0 auto',
           })}
           style={{
-            backgroundImage:
-              sex === 'man' ? ProfileManIcon.src : ProfileWomanIcon.src,
+            backgroundImage: preview ? preview : profileImage,
           }}
         >
-          <Input.TextField type={'file'} />
+          <Input.TextField type={'file'} onChange={handleFileChange} />
         </Input>
         <div
           className={css({
@@ -79,30 +160,58 @@ const CoachDetailProfile = ({ data }: Props) => {
         <InputHead>연락처</InputHead>
         <InputItem>
           <Input.TextField
+            {...register('phone')}
             placeholder="연락처를 입력해주세요."
             defaultValue={phone}
           />
         </InputItem>
       </ItemRow>
+      {errors.phone?.message && (
+        <FormError
+          error={errors.phone.message}
+          className={css({ margin: '0 0 0 35%', padding: '0 4px' })}
+        />
+      )}
       <ItemRow>
         <InputHead>비밀번호</InputHead>
         <InputItem>
-          <Input.TextField placeholder="비밀번호를 입력해주세요." />
+          <Input.TextField
+            {...register('password')}
+            type="password"
+            placeholder="비밀번호를 입력해주세요."
+          />
         </InputItem>
       </ItemRow>
+      {errors.password?.message && (
+        <FormError
+          error={errors.password.message}
+          className={css({ margin: '0 0 0 35%', padding: '0 4px' })}
+        />
+      )}
       <ItemRow>
         <InputHead>비밀번호 확인</InputHead>
         <InputItem>
-          <Input.TextField placeholder="비밀번호를 다시 입력해주세요." />
+          <Input.TextField
+            {...register('passwordConfirm')}
+            type="password"
+            placeholder="비밀번호를 다시 입력해주세요."
+          />
         </InputItem>
       </ItemRow>
+      {errors.passwordConfirm?.message && (
+        <FormError
+          error={errors.passwordConfirm.message}
+          className={css({ margin: '0 0 0 35%', padding: '0 4px' })}
+        />
+      )}
       <ItemRow>
         <InputHead>직책</InputHead>
-        <Select width={'40%'} value={position} onChange={() => {}}>
-          <option>코치</option>
+        <Select {...register('position')} width={'40%'} defaultValue={position}>
+          <option value="">선택</option>
+          <option value="coach">코치</option>
         </Select>
       </ItemRow>
-    </section>
+    </form>
   );
 };
 

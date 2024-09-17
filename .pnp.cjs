@@ -66,6 +66,7 @@ const RAW_RUNTIME_STATE =
           ["typescript", "patch:typescript@npm%3A5.0.4#optional!builtin<compat/typescript>::version=5.0.4&hash=b5f058"],\
           ["uuid", "npm:9.0.0"],\
           ["yup", "npm:1.2.0"],\
+          ["zod", "npm:3.23.8"],\
           ["zustand", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.5.4"]\
         ],\
         "linkType": "SOFT"\
@@ -10321,6 +10322,7 @@ const RAW_RUNTIME_STATE =
           ["typescript", "patch:typescript@npm%3A5.0.4#optional!builtin<compat/typescript>::version=5.0.4&hash=b5f058"],\
           ["uuid", "npm:9.0.0"],\
           ["yup", "npm:1.2.0"],\
+          ["zod", "npm:3.23.8"],\
           ["zustand", "virtual:d99276c8e08560e473441d56bd9756748a7829876d3fe0ba60de65f76fbea5d5dcc410faabad4ab6c67a35807cb648ede4478623ba01bd7e02ead705008f3bf5#npm:4.5.4"]\
         ],\
         "linkType": "SOFT"\
@@ -11300,6 +11302,15 @@ const RAW_RUNTIME_STATE =
           ["tiny-case", "npm:1.0.3"],\
           ["toposort", "npm:2.0.2"],\
           ["type-fest", "npm:2.19.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["zod", [\
+      ["npm:3.23.8", {\
+        "packageLocation": "../../../../.yarn/berry/cache/zod-npm-3.23.8-11c49c85b5-10c0.zip/node_modules/zod/",\
+        "packageDependencies": [\
+          ["zod", "npm:3.23.8"]\
         ],\
         "linkType": "HARD"\
       }]\
