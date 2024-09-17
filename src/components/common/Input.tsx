@@ -87,10 +87,9 @@ const Input = ({
           htmlFor={id}
           className={cx(css(LABEL_VARIANT_STYLE.raw({ variant: variant })))}
           style={{
-            background: backgroundImage
-              ? `url("${backgroundImage}") no-repeat center`
-              : '',
-            backgroundSize: backgroundImage ? 'contain' : '',
+            backgroundImage: backgroundImage ? `url("${backgroundImage}")` : '',
+            backgroundSize: backgroundImage ? 'cover' : 'contain',
+            backgroundPosition: backgroundImage ? 'center' : '',
           }}
         >
           {label}

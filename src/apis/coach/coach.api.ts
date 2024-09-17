@@ -2,6 +2,7 @@ import { axios } from '@utils/axios';
 import {
   URL_COACH,
   URL_COACH_CUSTOMERS,
+  URL_COACH_DETAIL,
   URL_COACH_LESSON_LIST,
   URL_COACH_TOTAL_SALES,
 } from './coach.url';
@@ -60,5 +61,11 @@ export const getCoachCustomers = async (
   const { coachId, ...rest } = params;
   return await axios.get(URL_COACH_CUSTOMERS(coachId), {
     params: { ...rest },
+  });
+};
+
+export const updateCoachDetail = async (coachId: string, params: FormData) => {
+  return await axios.put(`${URL_COACH_DETAIL(coachId)}`, params, {
+    headers: { 'Content-Type': 'multipart/form-data' },
   });
 };
