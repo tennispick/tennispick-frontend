@@ -116,6 +116,14 @@ export const getCustomerMemoList = async (customerId: string) =>
 export const createCustomerMemo = async (params: FormData) =>
   await axios.post(`${URL_CREATE_CUSTOMER_MEMO}`, params);
 
+export const updateCustomerMemo = async (
+  customerCommentId: string,
+  params: FormData,
+) =>
+  await axios.put(`${URL_CUSTOMER_MEMO}/${customerCommentId}`, params, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+
 export const deleteCustomerMemo = async (
   customerCommentId: number,
   customerId: number,

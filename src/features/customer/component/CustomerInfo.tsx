@@ -77,6 +77,11 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
           label={' '}
           id={'profileImage'}
           variant="file"
+          className={css({
+            width: '10rem',
+            height: '10rem',
+            margin: '0 auto',
+          })}
           style={{
             backgroundImage: profileImageUrl ?? checkSexProfileImageUrl,
           }}
