@@ -1,4 +1,7 @@
-import { createCustomerMemo } from '@apis/customer/customer.api';
+import {
+  createCustomerMemo,
+  updateCustomerMemo,
+} from '@apis/customer/customer.api';
 import { URL_CUSTOMER_MEMO } from '@apis/customer/customer.url';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -23,5 +26,30 @@ export const useCreateMemoMutate = (
       });
       handleCreateMemoClick();
     },
+  });
+};
+
+export const useUpdateMemoMutate = (
+  id: string,
+  customerId: string,
+  handleHideDrawerClick: () => void,
+) => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationKey: [`${URL_CUSTOMER_MEMO}/put`, { customerCommentId: id }],
+    mutationFn: (params: FormData) => updateCustomerMemo(id, params),
+    onSuccess: ({ data }) => {
+      if (data.affectedRows > 0) {
+        alert('메모가 수정되었어요.');
+
+        // TODO SetQueryData
+        queryClient.invalidateQueries({
+          queryKey: [URL_CUSTOMER_MEMO, customerId],
+        });
+      } else {
+        alert('메모 수정에 실패했어요.\n관리자에게 문의해주세요.');
+      }
+    },
+    onSettled: () => handleHideDrawerClick(),
   });
 };

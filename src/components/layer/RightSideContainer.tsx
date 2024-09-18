@@ -39,10 +39,12 @@ const RightSideContainer = ({
         ref={sideRef}
         className={css({
           animationName: showRightSide ? 'fadeRight' : 'fadeOutRight',
+          animationDuration: '0.45s',
         })}
       >
         <div
           className={flex({
+            height: '32px',
             alignItems: 'center',
             justifyContent: 'space-between',
             fontSize: '1.2rem',
@@ -58,7 +60,7 @@ const RightSideContainer = ({
         </div>
         <div
           className={css({
-            height: 'calc(100% - (1rem + 32px))',
+            height: 'calc(100% - 48px)',
             margin: '16px 0 0 0',
           })}
         >

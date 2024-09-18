@@ -1,16 +1,33 @@
 import DrawerInputContainer from './InputContainer';
-import { Button } from '@components/index';
-import { DeleteWhiteIcon } from '@icons/index';
-import { FormEventHandler } from 'react';
+import { DeleteWhiteIcon, EditWhiteIcon } from '@icons/index';
 import { CustomerMemoListApiData } from '@apis/customer/customer.type';
 import { deleteCustomerMemo } from '@apis/customer/customer.api';
 import { css } from 'styled-system/css';
+import IconButton from '@components/button/IconButton';
+import { flex } from 'styled-system/patterns';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { Select } from '@components/index';
+import { FormError } from '@components/FormError';
+import { useUpdateMemoMutate } from '@features/customer/mutate/memo';
+
+const schema = z.object({
+  title: z.string().min(4, { message: '제목은 최소 4자 이상이어야 합니다.' }),
+  type: z.enum(['normal', 'payment', 'etc']),
+  content: z
+    .string()
+    .min(4, { message: '메모 내용은 최소 4자 이상이어야 합니다.' }),
+});
+
+type MemoFormSchema = z.infer<typeof schema>;
 
 type Props = {
   item: CustomerMemoListApiData;
+  handleHideDrawerClick: () => void;
 };
 
-const DrawerMemo = ({ item }: Props) => {
+const DrawerMemo = ({ item, handleHideDrawerClick }: Props) => {
   const {
     customerCommentId: id,
     customerId,
@@ -23,9 +40,30 @@ const DrawerMemo = ({ item }: Props) => {
     updatedAt,
   } = item;
 
-  const onSubmitHandler: FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<MemoFormSchema>({
+    resolver: async (data, context, options) => {
+      return zodResolver(schema)(data, context, options);
+    },
+  });
 
+  const { mutate } = useUpdateMemoMutate(
+    `${id}`,
+    `${customerId}`,
+    handleHideDrawerClick,
+  );
+
+  const handleFormSubmit = (data: MemoFormSchema) => {
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => formData.append(key, value));
+
+    mutate(formData);
+  };
+
+  const handleDeleteClick = async () => {
     const { data } = await deleteCustomerMemo(id, customerId);
 
     if (data.affectedRows > 0) {
@@ -37,21 +75,57 @@ const DrawerMemo = ({ item }: Props) => {
   };
 
   return (
-    <form onSubmit={onSubmitHandler}>
-      <DrawerInputContainer label="제목" value={title} />
-      <DrawerInputContainer label="작성자" value={name} />
-      <DrawerInputContainer label="권한" value={position ?? '관리자'} />
-      <DrawerInputContainer label="유형" value={type} />
-      <DrawerInputContainer label="작성시간" value={createdAt} />
-      <DrawerInputContainer label="최종 수정시간" value={updatedAt} />
+    <form
+      onSubmit={handleSubmit(handleFormSubmit)}
+      className={css({ height: '100%' })}
+    >
+      <DrawerInputContainer
+        {...register('title')}
+        label="제목"
+        defaultValue={title}
+        Error={
+          errors.title?.message && <FormError error={errors.title.message} />
+        }
+      />
+      <DrawerInputContainer label="작성자" value={name} disabled />
+      <DrawerInputContainer
+        label="권한"
+        value={position ?? '관리자'}
+        disabled
+      />
+      <div className={css({ margin: '0 0 12px 0' })}>
+        <div
+          className={css({
+            fontWeight: 600,
+            height: '1.5rem',
+            fontSize: '0.875rem',
+            padding: '0 0 0 4px',
+          })}
+        >
+          유형
+        </div>
+        <Select
+          {...register('type')}
+          className={css({ margin: '8px 0 0 0' })}
+          width="280px"
+          defaultValue={type}
+        >
+          <option value="normal">일반</option>
+          <option value="payment">결제</option>
+          <option value="etc">기타</option>
+        </Select>
+      </div>
+      <DrawerInputContainer label="작성시간" value={createdAt} disabled />
+      <DrawerInputContainer label="최종 수정시간" value={updatedAt} disabled />
       <DrawerInputContainer label="내용">
         <textarea
+          {...register('content')}
           name="content"
           placeholder="메모 내용을 입력해주세요."
           className={css({
             padding: '8px',
             width: '100%',
-            minHeight: '320px',
+            minHeight: errors.content?.message ? '176px' : '198px',
             lineHeight: '1.375',
             outline: 'none',
             resize: 'none',
@@ -60,27 +134,38 @@ const DrawerMemo = ({ item }: Props) => {
             margin: '8px 0 0 0',
             backgroundColor: 'transparent',
             color: 'var(--grey700)',
-            borderColor: 'var(--grey100)',
+            border: '1px solid var(--grey100)',
           })}
-          value={content ?? '-'}
-          readOnly={true}
+          defaultValue={content ?? '-'}
         />
+        {errors.content?.message && (
+          <FormError error={errors.content.message} />
+        )}
       </DrawerInputContainer>
-      <div className={css({ position: 'fixed', bottom: '20px' })}>
-        <Button
+      <div
+        className={flex({
+          width: '100%',
+          gap: '16px',
+        })}
+      >
+        <IconButton
+          type="button"
+          iconSrc={DeleteWhiteIcon}
+          iconAlt="delete"
+          iconAlign="left"
+          variant="negative"
+          size="half"
+          label="삭제하기"
+          onClick={handleDeleteClick}
+        />
+        <IconButton
           type="submit"
-          label="메모 삭제하기"
-          variant="iconBtn"
-          src={DeleteWhiteIcon}
-          css={{
-            width: 'calc(40vw - 40px)',
-            border: 0,
-            justifyContent: 'center',
-            backgroundColor: 'var(--red200)',
-            color: 'var(--white100)',
-            padding: '12px 16px',
-            margin: '0 12px 0 0',
-          }}
+          iconSrc={EditWhiteIcon}
+          iconAlt="edit"
+          iconAlign="left"
+          variant="primary"
+          size="half"
+          label="수정하기"
         />
       </div>
     </form>
