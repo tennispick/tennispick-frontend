@@ -12,21 +12,21 @@ import { css } from 'styled-system/css';
 type Props = {
   data: CustomerMemoListApiData[];
   showDrawer: boolean;
-  onClickShowDrawerHandler: () => void;
-  onCloseDrawerHandler: () => void;
+  handleShowDrawerClick: () => void;
+  handleHideDrawerClick: () => void;
 };
 
 const ManageMemoList = ({
   data,
   showDrawer,
-  onClickShowDrawerHandler,
-  onCloseDrawerHandler,
+  handleShowDrawerClick,
+  handleHideDrawerClick,
 }: Props) => {
   const [memoItem, setMemoItem] = useState({} as CustomerMemoListApiData);
 
   const onClickRowHandler = (item: CustomerMemoListApiData) => {
     setMemoItem(item);
-    onClickShowDrawerHandler();
+    handleShowDrawerClick();
   };
 
   return (
@@ -115,9 +115,12 @@ const ManageMemoList = ({
           <RightSideContainer
             title="메모 상세보기"
             showRightSide={showDrawer}
-            setShowRightSide={onCloseDrawerHandler}
+            setShowRightSide={handleHideDrawerClick}
           >
-            <DrawerMemo item={memoItem} />
+            <DrawerMemo
+              item={memoItem}
+              handleHideDrawerClick={handleHideDrawerClick}
+            />
           </RightSideContainer>
         </Portal>
       )}

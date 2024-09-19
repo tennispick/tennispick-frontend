@@ -13,15 +13,15 @@ import { Flex } from 'styled-system/jsx';
 type Props = {
   customerId: string;
   showDrawer: boolean;
-  onClickShowDrawerHandler: () => void;
-  onCloseDrawerHandler: () => void;
+  handleShowDrawerClick: () => void;
+  handleHideDrawerClick: () => void;
 };
 
 const ManageMemo = ({
   customerId,
   showDrawer,
-  onClickShowDrawerHandler,
-  onCloseDrawerHandler,
+  handleShowDrawerClick,
+  handleHideDrawerClick,
 }: Props) => {
   const onClickShowMemoModal = () => setShowMemoModal(true);
   const onClickCloseMemoModal = () => setShowMemoModal(false);
@@ -91,8 +91,8 @@ const ManageMemo = ({
           <ManageMemoList
             data={data}
             showDrawer={showDrawer}
-            onClickShowDrawerHandler={onClickShowDrawerHandler}
-            onCloseDrawerHandler={onCloseDrawerHandler}
+            handleShowDrawerClick={handleShowDrawerClick}
+            handleHideDrawerClick={handleHideDrawerClick}
           />
         ) : (
           <NoResult description="메모 내역이 없어요." />

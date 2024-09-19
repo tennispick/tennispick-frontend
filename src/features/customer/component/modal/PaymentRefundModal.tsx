@@ -11,6 +11,7 @@ import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
 import Image from 'next/image';
 import { styled } from 'styled-system/jsx';
+import Loading from '@components/common/Loading';
 
 type Props = {
   id: string;
@@ -27,14 +28,15 @@ const CustomerPaymentRefundModal = ({
 }: Props) => {
   const isPayment = type === 'payment';
 
-  const { data } = useLessonListQuery({
+  const { data, isFetching } = useLessonListQuery({
     type: 'all',
     isSuspense: true,
-    isInitialData: false,
   });
 
   const totalPrice = (price: number, discountPrice: number) =>
     price - discountPrice;
+
+  if (isFetching) return <Loading />;
 
   return (
     <Portal id="portal">
