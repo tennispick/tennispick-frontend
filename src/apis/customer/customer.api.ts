@@ -1,6 +1,5 @@
 import {
   URL_DELETE_CUSTOMER,
-  URL_FETCH_CUSTOMER_DETAIL,
   URL_FETCH_CUSTOMER_LESSON_HISTORY,
   URL_FETCH_CUSTOMER_ALL_LESSON_LIST,
   URL_FETCH_CUSTOMER_LESSON_LIST,
@@ -10,6 +9,7 @@ import {
   URL_UPDATE_CUSTOMER_ATTENDANCE,
   URL_UPDATE_CUSTOMER_LESSON_CANCEL,
   URL_CUSTOMER_ADDITIONAL_LESSON,
+  URL_CUSTOMER_DETAIL,
 } from './customer.url';
 import { axios } from '@utils/axios';
 import {
@@ -63,7 +63,7 @@ export const getCustomerLessonScheduleHistory = async (params: {
 export const getCustomerDetail = async (
   params: CustomerDetailApiPayLoad,
 ): Promise<Response<CustomerDetailData>> =>
-  await axios.get(`${URL_FETCH_CUSTOMER_DETAIL}/${params.id}`);
+  await axios.get(`${URL_CUSTOMER_DETAIL(params.id)}`);
 
 export const getSearchCustomerListByKeyword = async (
   params: SearchCustomerListByKeywordApiPayload,
@@ -79,6 +79,17 @@ export const getSearchCustomerListByKeyword = async (
   });
   return data;
 };
+
+/**
+ * @description 회원상세
+ */
+export const updateCustomerDetail = async (
+  customerId: string,
+  params: FormData,
+) =>
+  await axios.put(`${URL_CUSTOMER_DETAIL(customerId)}`, params, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
 
 export const deleteCustomer = async (params: CustomerDeleteApiPayload) =>
   await axios.delete(`${URL_DELETE_CUSTOMER}/${params.customerId}`);
