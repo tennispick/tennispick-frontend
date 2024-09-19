@@ -15,12 +15,12 @@ import {
 } from '@apis/customer/customer.api';
 import {
   URL_FETCH_CUSTOMER_LESSON_LIST,
-  URL_FETCH_CUSTOMER_DETAIL,
   URL_FETCH_CUSTOMER_LESSON_HISTORY,
   URL_CUSTOMER_MEMO,
   URL_FETCH_CUSTOMER_ALL_LESSON_LIST,
   URL_FETCH_CUSTOMER_LESSON_SCHEDULE_HISTORY_LIST,
   URL_CUSTOMER_ADDITIONAL_LESSON,
+  URL_CUSTOMER_DETAIL,
 } from '@apis/customer/customer.url';
 import { createInitialData } from '@/types/response';
 import { getCustomerAdditionalLessonList } from '@apis/customer/customer.api';
@@ -101,7 +101,7 @@ export const useCustomerLessonScheduleHistoryQuery = (params: {
 export const useCustomerDetailQuery = (params: CustomerDetailQueryPayLoad) => {
   const { id } = params;
   return useQuery({
-    queryKey: [URL_FETCH_CUSTOMER_DETAIL, id],
+    queryKey: [URL_CUSTOMER_DETAIL(id), id],
     queryFn: async () => await getCustomerDetail({ id: id }),
     select: (data) => data?.data,
     initialData: createInitialData({} as CustomerDetailData),
