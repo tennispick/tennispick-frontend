@@ -15,6 +15,40 @@ import { flex } from 'styled-system/patterns';
 import { css } from 'styled-system/css';
 import { Flex } from 'styled-system/jsx';
 import IconButton from '@components/button/IconButton';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { ChangeEventHandler, useState } from 'react';
+import { passwordRegex } from '@utils/validation';
+import { FormError } from '@components/FormError';
+import { useUpdateCustomerDetailMutation } from '../mutate/profile';
+
+const schema = z
+  .object({
+    // phone: z
+    //   .string()
+    //   .trim()
+    //   .min(10, { message: '전화번호는 10자리 이상이어야 합니다.' })
+    //   .regex(phoneNumberRegex, { message: '올바른 전화번호 형식이 아닙니다.' }),
+    password: z
+      .string()
+      .regex(passwordRegex, {
+        message: '비밀번호는 8자 이상, 영문, 숫자, 특수문자를 포함해야 합니다.',
+      })
+      .or(z.literal('')),
+    passwordConfirm: z.string().optional(),
+  })
+  .superRefine(({ password, passwordConfirm }, ctx) => {
+    if (password !== passwordConfirm) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: '비밀번호가 일치하지 않습니다.',
+        path: ['passwordConfirm'],
+      });
+    }
+  });
+
+type CustomerFormSchema = z.infer<typeof schema>;
 
 type Props = {
   customerId: string;
@@ -39,6 +73,27 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
   const { monthArray } = getMonthList();
   const { dateArray } = getDayList();
 
+  const [file, setFile] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
+
+  const profileImage = profileImageUrl
+    ? profileImageUrl
+    : sex === 'man'
+    ? ProfileManIcon.src
+    : ProfileWomanIcon.src;
+
+  const { mutate } = useUpdateCustomerDetailMutation(customerId);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CustomerFormSchema>({
+    resolver: async (data, context, options) =>
+      zodResolver(schema)(data, context, options),
+  });
+
+  // TODO useMutation으로 변경
   const handleDeleteCustomerClick = async () => {
     if (!window.confirm('정말로 삭제하시겠습니까?')) return;
 
@@ -51,21 +106,42 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
       });
     } else alert('회원 삭제에 실패했어요.\n관리자에게 문의해주세요.');
 
-    // TODO useMutation으로 변경
     window.location.href = '/customer';
   };
 
-  const checkSexProfileImageUrl =
-    sex === 'man' ? ProfileManIcon.src : ProfileWomanIcon.src;
+  const handleFileChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    if (!e.target.files) return;
+
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setPreview(reader.result as string);
+    };
+    setFile(file);
+  };
+
+  const handleFormSubmit = (data: CustomerFormSchema) => {
+    const formData = new FormData();
+    Object.keys(data).forEach((key) => {
+      const typedKey = key as keyof CustomerFormSchema;
+      formData.append(key, data[typedKey] as string);
+    });
+
+    file && formData.append('file', file);
+
+    mutate(formData);
+  };
 
   return (
-    <div
+    <form
       className={flex({
         height: '35%',
         borderBottom: '1px solid var(--grey100)',
         margin: '0 0 16px 0',
         gap: '24px',
       })}
+      onSubmit={handleSubmit(handleFormSubmit)}
     >
       <div
         className={css({
@@ -83,10 +159,10 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
             margin: '0 auto',
           })}
           style={{
-            backgroundImage: profileImageUrl ?? checkSexProfileImageUrl,
+            backgroundImage: preview ? preview : profileImage,
           }}
         >
-          <Input.TextField type={'file'} />
+          <Input.TextField type={'file'} onChange={handleFileChange} />
         </Input>
         <div
           className={css({
@@ -207,21 +283,41 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
       >
         <div className={css({ height: 'calc(((100% / 5) * 4) - 16px)' })}>
           <CustomerInputRow
+            {...register('password')}
             type={'password'}
             name={'password'}
             rowHeadLabel={'비밀번호'}
             placeholder={'비밀번호를 입력해주세요.'}
             defaultValue={''}
-            css={css.raw({ height: 'calc(100% / 5)', marginBottom: '16px' })}
+            css={css.raw({
+              height: 'calc(100% / 5)',
+              marginBottom: errors.password ? '8px' : '16px',
+            })}
           />
+          {errors.password?.message && (
+            <FormError
+              error={errors.password.message}
+              className={css({ margin: '0 0 8px 25%', padding: '0 4px' })}
+            />
+          )}
           <CustomerInputRow
+            {...register('passwordConfirm')}
             type={'password'}
             name={'passwordConfirm'}
             rowHeadLabel={'비밀번호 확인'}
             placeholder={'비밀번호를 다시 입력해주세요.'}
             defaultValue={''}
-            css={css.raw({ height: 'calc(100% / 5)', marginBottom: '16px' })}
+            css={css.raw({
+              height: 'calc(100% / 5)',
+              marginBottom: errors.passwordConfirm ? '8px' : '16px',
+            })}
           />
+          {errors.passwordConfirm?.message && (
+            <FormError
+              error={errors.passwordConfirm.message}
+              className={css({ margin: '0 0 8px 25%', padding: '0 4px' })}
+            />
+          )}
         </div>
         <Flex justifyContent="end" gap="8px">
           <IconButton
@@ -243,7 +339,7 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
           />
         </Flex>
       </div>
-    </div>
+    </form>
   );
 };
 
