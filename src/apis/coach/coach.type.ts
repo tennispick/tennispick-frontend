@@ -57,6 +57,17 @@ export type CoachTotalSalesPayload = {
 };
 
 export type CoachTotalSalesData = {
+  totalPrice: number;
+  totalCashPrice: number;
+  totalAccountTransferPrice: number;
+  totalCardPrice: number;
+  totalRefundPrice: number;
+  totalRefundCashPrice: number;
+  totalRefundAccountTransferPrice: number;
+  totalRefundCardPrice: number;
+};
+
+export type CoachTotalSalesListData = {
   customerLessonId: number;
   customerName: string;
   customerPhone: string;

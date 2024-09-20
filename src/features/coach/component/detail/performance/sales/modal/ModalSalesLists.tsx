@@ -1,10 +1,13 @@
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
 import SalesSummary from '../SalesSummary';
-import { useCoachTotalSalesListQuery } from '@features/coach/query/coachQuery';
+import {
+  useCoachTotalSalesListQuery,
+  useCoachTotalSalesQuery,
+} from '@features/coach/query/coachQuery';
 import { SearchConditionType } from '@features/coach/data/salesModalData';
 import { getDateToKoreanString } from '@utils/date';
-import { CoachTotalSalesData } from '@apis/coach/coach.type';
+import { CoachTotalSalesListData } from '@apis/coach/coach.type';
 import Loading from '@components/common/Loading';
 import {
   transferCategory,
@@ -32,23 +35,39 @@ const ModalSalesLists = ({
   searchCondition,
   keyword,
 }: Props) => {
-  // TODO Infinite Scroll TEST
-  const { isLoading, data } = useCoachTotalSalesListQuery({
-    page: 1,
-    coachId,
-    checkedItem,
-    startDate: getDateToKoreanString(startDate),
-    endDate: getDateToKoreanString(endDate),
-    searchCondition,
-    keyword,
-    paymentType: 'all',
-  });
+  const { isFetching: totalSalesDataFetching, data: totalSalesData } =
+    useCoachTotalSalesQuery({
+      page: 1,
+      coachId,
+      checkedItem,
+      startDate: getDateToKoreanString(startDate),
+      endDate: getDateToKoreanString(endDate),
+      searchCondition,
+      keyword,
+      paymentType: 'all',
+    });
 
-  if (isLoading || !data) return <Loading />;
+  // TODO Infinite Scroll TEST
+  const { isFetching: totalSalesFetching, data: totalSalesList } =
+    useCoachTotalSalesListQuery({
+      page: 1,
+      coachId,
+      checkedItem,
+      startDate: getDateToKoreanString(startDate),
+      endDate: getDateToKoreanString(endDate),
+      searchCondition,
+      keyword,
+      paymentType: 'all',
+    });
+
+  const isFetchSalesData = totalSalesDataFetching || !totalSalesData;
+  const isFetchSalesList = totalSalesFetching || !totalSalesList;
+
+  if (isFetchSalesList || isFetchSalesData) return <Loading />;
 
   return (
     <>
-      <SalesSummary />
+      <SalesSummary data={totalSalesData[0]} />
       <div
         className={css({
           height: 'calc(100% - (128px + 3rem))',
@@ -57,7 +76,7 @@ const ModalSalesLists = ({
         })}
       >
         <SalesListsHeader />
-        <SalesLists data={data?.pages} />
+        <SalesLists data={totalSalesList.pages} />
       </div>
     </>
   );
@@ -92,7 +111,7 @@ const SalesListsHeader = () => {
   );
 };
 
-const SalesLists = ({ data }: { data: CoachTotalSalesData[] }) => {
+const SalesLists = ({ data }: { data: CoachTotalSalesListData[] }) => {
   if (data.length === 0)
     return (
       <NoResultContainer>

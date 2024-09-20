@@ -5,20 +5,17 @@ import AccountTransferIcon from '@icons/payment/group_atm.svg';
 import CardIcon from '@icons/payment/group_credit_card.svg';
 import CashIcon from '@icons/payment/group_attach_money.svg';
 import { addNumberCommas } from '@utils/numberForm';
+import { CoachTotalSalesData } from '@apis/coach/coach.type';
 
-type Props = {
-  totalSales?: number;
-  accountTransfer?: number;
-  card?: number;
-  cash?: number;
-};
+type Props = { data: CoachTotalSalesData };
 
-const SalesSummary = ({
-  totalSales = 0,
-  accountTransfer = 0,
-  card = 0,
-  cash = 0,
-}: Props) => {
+const SalesSummary = ({ data }: Props) => {
+  const {
+    totalPrice: totalSales,
+    totalCashPrice,
+    totalAccountTransferPrice,
+    totalCardPrice,
+  } = data ?? {};
   return (
     <div
       className={flex({
@@ -52,7 +49,7 @@ const SalesSummary = ({
         >
           <Image src={AccountTransferIcon} alt={'account transfer'} />
           계좌이체
-          <span>{addNumberCommas(accountTransfer)} 원</span>
+          <span>{addNumberCommas(totalAccountTransferPrice)} 원</span>
         </div>
         <div
           className={flex({
@@ -62,7 +59,7 @@ const SalesSummary = ({
         >
           <Image src={CardIcon} alt={'card'} />
           카드결제
-          <span>{addNumberCommas(card)} 원</span>
+          <span>{addNumberCommas(totalCardPrice)} 원</span>
         </div>
         <div
           className={flex({
@@ -72,7 +69,7 @@ const SalesSummary = ({
         >
           <Image src={CashIcon} alt={'cash'} />
           현금결제
-          <span>{addNumberCommas(cash)} 원</span>
+          <span>{addNumberCommas(totalCashPrice)} 원</span>
         </div>
       </div>
     </div>

@@ -57,7 +57,7 @@ const SalesContainer = ({ coachId }: Props) => {
         </div>
       </div>
       <Divider margin="1rem 0" />
-      <SalesSummary />
+      {/* <SalesSummary data={}/> */}
       <SalesLists />
     </>
   );
