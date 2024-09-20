@@ -4,7 +4,6 @@ import {
   URL_COACH_CUSTOMERS,
   URL_COACH_DETAIL,
   URL_COACH_LESSON_LIST,
-  URL_COACH_TOTAL_SALES,
 } from './coach.url';
 import {
   CoachCustomersPayload,
@@ -13,6 +12,7 @@ import {
   CoachLessonListData,
   CoachListData,
   CoachTotalSalesData,
+  CoachTotalSalesListData,
   CoachTotalSalesPayload,
 } from './coach.type';
 import { Response } from '@/types/response';
@@ -49,7 +49,16 @@ export const getCoachTotalSales = async (
   params: CoachTotalSalesPayload,
 ): Promise<Response<CoachTotalSalesData[]>> => {
   const { coachId, ...rest } = params;
-  return await axios.get(`${URL_COACH_TOTAL_SALES}/${coachId}`, {
+  return await axios.get(`${URL_COACH_DETAIL(coachId)}/totalSales`, {
+    params: { ...rest },
+  });
+};
+
+export const getCoachTotalSalesList = async (
+  params: CoachTotalSalesPayload,
+): Promise<Response<CoachTotalSalesListData[]>> => {
+  const { coachId, ...rest } = params;
+  return await axios.get(`${URL_COACH_DETAIL(coachId)}/totalSalesList`, {
     params: { ...rest },
   });
 };
