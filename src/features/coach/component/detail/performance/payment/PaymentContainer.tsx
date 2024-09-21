@@ -9,8 +9,8 @@ import { flex } from 'styled-system/patterns';
 const PaymentContainer = () => {
   return (
     <>
-      <SearchPeriodRow />
-      <PaymentTypeRow />
+      {/* <SearchPeriodRow />
+      <PaymentTypeRow /> */}
       <InfoField>
         <InfoLabel>{'페널티 점수'}</InfoLabel>
         <InfoValue>-</InfoValue>
