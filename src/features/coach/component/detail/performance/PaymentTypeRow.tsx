@@ -1,42 +1,20 @@
 import CheckboxGroup from '@widgets/CheckboxGroup';
-import { useState } from 'react';
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
 
-const checkList = [
-  {
-    id: 'accountTransfer',
-    value: '계좌이체',
-  },
-  {
-    id: 'card',
-    value: '카드결제',
-  },
-  {
-    id: 'cash',
-    value: '현금결제',
-  },
-];
+type Props = {
+  checkList: Array<{ id: string; value: string }>;
+  checkedItems: Array<string>;
+  handleAllCheckboxClick: () => void;
+  handleCheckboxClick: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
-const PaymentTypeRow = () => {
-  const [checkedItems, setCheckedItems] = useState<Array<string>>(
-    checkList.map((item) => item.id),
-  );
-
-  const handleAllCheckboxClick = () => {
-    if (checkedItems.length === checkList.length) setCheckedItems([]);
-    else setCheckedItems(checkList.map((item) => item.id));
-  };
-
-  const handleCheckboxClick = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = e.target;
-    const checked = target.checked;
-    const id = target.id;
-
-    if (checked) setCheckedItems((prev) => [...prev, id]);
-    else setCheckedItems((prev) => prev.filter((item) => item !== id));
-  };
-
+const PaymentTypeRow = ({
+  checkList,
+  checkedItems,
+  handleAllCheckboxClick,
+  handleCheckboxClick,
+}: Props) => {
   return (
     <div
       className={flex({

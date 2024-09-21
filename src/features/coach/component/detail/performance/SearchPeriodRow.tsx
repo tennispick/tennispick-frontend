@@ -1,19 +1,20 @@
 import RangeCalendar from '@widgets/RangeCalendar';
-import { useState } from 'react';
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
 
-const SearchPeriodRow = () => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+type Props = {
+  startDate: Date;
+  endDate: Date;
+  handleChangeStartDate: (date: Date) => void;
+  handleChangeEndDate: (date: Date) => void;
+};
 
-  const handleChangeStartDate = (date: Date) => {
-    if (date > endDate) setEndDate(date);
-
-    setStartDate(date);
-  };
-  const handleChangeEndDate = (date: Date) => setEndDate(date);
-
+const SearchPeriodRow = ({
+  startDate,
+  endDate,
+  handleChangeStartDate,
+  handleChangeEndDate,
+}: Props) => {
   return (
     <div
       className={flex({
