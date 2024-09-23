@@ -41,6 +41,8 @@ export default defineConfig({
       {
         properties: {
           width: [
+            'calc((100% / 7) * 9)',
+            'calc((100% / 7) * 8)',
             'calc((100% / 7) * 7)',
             'calc((100% / 7) * 6)',
             'calc((100% / 7) * 5)',
@@ -48,6 +50,8 @@ export default defineConfig({
             'calc((100% / 7) * 3)',
             'calc((100% / 7) * 2)',
             'calc((100% / 7) * 1)',
+            'calc(100% / 9)',
+            'calc(100% / 8)',
             'calc(100% / 7)',
             'calc(100% / 6)',
             'calc(100% / 5)',
