@@ -10,7 +10,7 @@ import { useSettingMutation } from '../mutation/settingMutation';
 import SettingLesson from '../component/Lesson';
 
 const SettingScreen = () => {
-  const [currentItem, setCurrentItem] = useState<number>(tabLists[0].id);
+  const [currentItem, setCurrentItem] = useState<number>(tabLists[3].id);
 
   const { mutate } = useSettingMutation();
 
