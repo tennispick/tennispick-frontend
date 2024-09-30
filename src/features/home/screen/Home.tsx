@@ -33,8 +33,8 @@ const HomeScreen = () => {
           gap: '20px',
         })}
       >
-        <CustomerChart date={date} />
-        <SalesChart date={date} />
+        <CustomerChart />
+        <SalesChart />
       </div>
       <div
         className={flex({
@@ -43,7 +43,7 @@ const HomeScreen = () => {
         })}
       >
         <CustomerDashboard />
-        <SalesStatistics date={date} />
+        <SalesStatistics />
       </div>
     </div>
   );
