@@ -101,7 +101,7 @@ const Row = styled('div', {
 
 const InputHead = styled('div', {
   base: {
-    fontSize: '1rem',
+    fontSize: '16px',
     fontWeight: 600,
     width: '10%',
     padding: '4px 0',
