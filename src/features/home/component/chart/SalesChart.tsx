@@ -1,27 +1,8 @@
 import { Flex } from 'styled-system/jsx';
 import Card from './Card';
 import { css } from 'styled-system/css';
-import { useHomeSalesStatisticsQuery } from '@features/home/query/statisticsQuery';
-import { addNumberCommas } from '@utils/numberForm';
 
-type Props = {
-  date: Date;
-};
-
-const SalesChart = ({ date }: Props) => {
-  const { isFetching, data } = useHomeSalesStatisticsQuery(date);
-
-  if (isFetching || !data) return null;
-
-  const { currentCustomer, totalSalesPrice } = data;
-  const { lastMonth, thisMonth } = currentCustomer;
-
-  const getIncreased = (lastMonth: number, thisMonth: number) => {
-    if (lastMonth < thisMonth) return 'Up';
-    if (lastMonth > thisMonth) return 'Down';
-    return 'NoChange';
-  };
-
+const SalesChart = () => {
   return (
     <div className={css({ width: 'calc(35% - 20px)' })}>
       <div
@@ -37,14 +18,14 @@ const SalesChart = ({ date }: Props) => {
         <Card
           title={'이번 달 매출금액'}
           subTitle={'1개월 전보다'}
-          chartType={getIncreased(lastMonth, thisMonth)}
-          content={`${addNumberCommas(thisMonth - lastMonth)} 원`}
+          chartType={'Up'}
+          content={'164명'}
         />
         <Card
           title={'누적 매출금액'}
           subTitle={'지금까지'}
           chartType={'NoChange'}
-          content={`${addNumberCommas(totalSalesPrice.paymentPrice)} 원`}
+          content={'999,999,999원'}
         />
       </Flex>
     </div>

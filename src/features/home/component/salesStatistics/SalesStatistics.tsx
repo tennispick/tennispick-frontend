@@ -6,20 +6,8 @@ import AccountTransferIcon from '@icons/payment/group_atm.svg';
 import CardIcon from '@icons/payment/group_credit_card.svg';
 import CashIcon from '@icons/payment/group_attach_money.svg';
 import { css } from 'styled-system/css';
-import { useTotalSalesQuery } from '@features/home/query/statisticsQuery';
-import { addNumberCommas } from '@utils/numberForm';
 
-type Props = {
-  date: Date;
-};
-
-const SalesStatistics = ({ date }: Props) => {
-  const { isFetching, data } = useTotalSalesQuery(date);
-
-  if (isFetching || !data) return null;
-
-  const [accountTransfer, card, cash, all] = data;
-
+const SalesStatistics = () => {
   return (
     <div className={css({ width: 'calc(35% - 20px)' })}>
       <div
@@ -45,31 +33,15 @@ const SalesStatistics = ({ date }: Props) => {
         <ItemRow
           icon={TotalSalesIcon}
           title={'전체 매출현황'}
-          value={`₩ ${addNumberCommas(all.paymentPrice)}(${addNumberCommas(
-            all.paymentCount,
-          )})`}
+          value={'₩ 1,000,000'}
         />
         <ItemRow
           icon={AccountTransferIcon}
           title={'계좌 이체'}
-          value={`₩ ${addNumberCommas(
-            accountTransfer.paymentPrice,
-          )}(${addNumberCommas(accountTransfer.paymentCount)})`}
+          value={'₩ 1,000,000'}
         />
-        <ItemRow
-          icon={CardIcon}
-          title={'카드 결제'}
-          value={`₩ ${addNumberCommas(card.paymentPrice)}(${addNumberCommas(
-            card.paymentCount,
-          )})`}
-        />
-        <ItemRow
-          icon={CashIcon}
-          title={'현금 결제'}
-          value={`₩ ${addNumberCommas(cash.paymentPrice)}(${addNumberCommas(
-            cash.paymentCount,
-          )})`}
-        />
+        <ItemRow icon={CardIcon} title={'카드 결제'} value={'₩ 1,000,000'} />
+        <ItemRow icon={CashIcon} title={'현금 결제'} value={'₩ 1,000,000'} />
       </ul>
     </div>
   );
