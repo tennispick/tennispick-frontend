@@ -26,7 +26,7 @@ const ButtonContainer = ({ onClickCloseModalHandler, disabled }: Props) => {
         label="등록하기"
         css={{
           width: "160px",
-          fontSize: '1rem',
+          fontSize: "1rem",
           borderRadius: '12px',
           backgroundColor: 'var(--blue500)',
           color: 'var(--white100)',
