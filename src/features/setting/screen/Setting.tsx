@@ -8,10 +8,13 @@ import SettingCoach from '../component/Coach';
 import SettingPayment from '../component/payment/Payment';
 import { useSettingMutation } from '../mutation/settingMutation';
 import SettingLesson from '../component/Lesson';
+import { usePaymentSettingQuery } from '../query/settingQuery';
+import Loading from '@components/common/Loading';
 
 const SettingScreen = () => {
   const [currentItem, setCurrentItem] = useState<number>(tabLists[3].id);
 
+  const { data, isFetching } = usePaymentSettingQuery();
   const { mutate } = useSettingMutation();
 
   const handleToggleClick = (e: React.MouseEvent<HTMLInputElement>) => {
@@ -32,7 +35,7 @@ const SettingScreen = () => {
           1: <SettingCenter handleToggleClick={handleToggleClick} />,
           2: <SettingCoach handleToggleClick={handleToggleClick} />,
           3: <SettingLesson handleToggleClick={handleToggleClick} />,
-          4: <SettingPayment />,
+          4: isFetching ? <Loading /> : <SettingPayment data={data} />,
         }[currentItem]
       }
     </div>
