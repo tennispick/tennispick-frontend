@@ -2,6 +2,7 @@ import { axios } from '@utils/axios';
 import {
   URL_CHANGE_SETTING_ACTIVE_STATUS,
   URL_FETCH_SETTING_LIST,
+  URL_UPDATE_PAYMENT_SETTING,
 } from './setting.url';
 import {
   SettingListApiPayload,
@@ -9,13 +10,14 @@ import {
   SettingListData,
 } from './setting.type';
 import { Response } from '@/types/response';
+import { PaymentFormSchema } from '@features/setting/component/payment/Payment';
 
-const getSettingList = async (
+export const getSettingList = async (
   params: SettingListApiPayload,
 ): Promise<Response<SettingListData[]>> =>
   await axios.get(`${URL_FETCH_SETTING_LIST}?type=${params.type}`);
 
-const updateSettingActiveStatus = async (
+export const updateSettingActiveStatus = async (
   params: SettingActiveStatusApiPayload,
 ) =>
   await axios.patch(`${URL_CHANGE_SETTING_ACTIVE_STATUS}`, {
@@ -23,4 +25,7 @@ const updateSettingActiveStatus = async (
     isActive: params.isActive,
   });
 
-export { getSettingList, updateSettingActiveStatus };
+export const updatePaymentSetting = async (params: PaymentFormSchema) =>
+  await axios.put(URL_UPDATE_PAYMENT_SETTING, {
+    ...params,
+  });
