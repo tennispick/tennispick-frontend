@@ -2,12 +2,14 @@ import { css } from 'styled-system/css';
 import { Flex, styled } from 'styled-system/jsx';
 
 type Props = {
+  name: string;
   checkedItem: string;
-  data: { label: string; value: string }[];
+  data: { id: string; label: string; value: string }[];
   handleCheckedChange: (e: React.MouseEvent<HTMLLabelElement>) => void;
 };
 
 const RadioSelectorGroup = ({
+  name,
   checkedItem,
   data,
   handleCheckedChange,
@@ -21,16 +23,16 @@ const RadioSelectorGroup = ({
         borderRadius: '8px',
       })}
     >
-      {data.map(({ label, value }, index) => {
+      {data.map(({ id, label, value }, index) => {
         const key = `${label}-${value}-${index}`;
-        const isChecked = checkedItem === value;
+        const isChecked = checkedItem === id;
 
         return (
           <div key={key}>
             <Input
               type="radio"
-              id={value}
-              name="radioSelector"
+              id={id}
+              name={name}
               value={value}
               className={css({
                 '& + label': {
@@ -40,7 +42,7 @@ const RadioSelectorGroup = ({
                 },
               })}
             />
-            <label htmlFor={value} onClick={handleCheckedChange}>
+            <label id={id} htmlFor={id} onClick={handleCheckedChange}>
               {label}
             </label>
           </div>

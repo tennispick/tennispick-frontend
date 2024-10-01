@@ -1,8 +1,15 @@
-import { updateSettingActiveStatus } from '@apis/setting/setting.api';
-import { URL_CHANGE_SETTING_ACTIVE_STATUS } from '@apis/setting/setting.url';
+import {
+  updatePaymentSetting,
+  updateSettingActiveStatus,
+} from '@apis/setting/setting.api';
+import {
+  URL_CHANGE_SETTING_ACTIVE_STATUS,
+  URL_UPDATE_PAYMENT_SETTING,
+} from '@apis/setting/setting.url';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { PaymentFormSchema } from '../component/payment/Payment';
 
-const useSettingMutation = () => {
+export const useSettingMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: [URL_CHANGE_SETTING_ACTIVE_STATUS],
@@ -28,4 +35,19 @@ const useSettingMutation = () => {
       }),
   });
 };
-export { useSettingMutation };
+
+export const useUpdatePaymentSettingMutation = () => {
+  return useMutation({
+    mutationKey: [URL_UPDATE_PAYMENT_SETTING],
+    mutationFn: (params: PaymentFormSchema) => updatePaymentSetting(params),
+    onSuccess: ({ data }) => {
+      if (data.affectedRows > 0) {
+        alert('센터 정산설정값이 정상적으로 변경되었어요.');
+        window.location.reload();
+      } else
+        alert(
+          '센터 정산설정값 변경중에 문제가 생겼어요.\n관리자에게 문의해주세요.',
+        );
+    },
+  });
+};
