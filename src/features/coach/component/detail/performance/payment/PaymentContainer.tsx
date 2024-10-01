@@ -5,8 +5,12 @@ import { NoResult } from '@components/index';
 import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';
 import { flex } from 'styled-system/patterns';
+import useCenterPaymentSettingStore from '@lib/zustand/center';
 
 const PaymentContainer = () => {
+  // TODO: Implement the logic to fetch the payment list
+  const { salary } = useCenterPaymentSettingStore();
+
   return (
     <>
       {/* <SearchPeriodRow />
