@@ -6,12 +6,13 @@ import Input from '@components/common/Input';
 import Divider from '@components/common/Divider';
 import Button from '@components/common/Button';
 import useInput from '@hooks/useInput';
-import { axios } from '@utils/axios';
 import { setCookie } from '@lib/cookie';
 import { useRecoilState } from 'recoil';
 import { userState } from '@lib/recoil/userState';
 import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';
+import { useLoginMutation } from '../mutate/login';
+import useCenterPaymentSettingStore from '@lib/zustand/center';
 
 const Login = () => {
   const router = useRouter();
@@ -19,27 +20,47 @@ const Login = () => {
     id: '',
     password: '',
   });
+
+  const { setCenterPaymentSetting } = useCenterPaymentSettingStore();
   const [, setUserState] = useRecoilState(userState);
 
-  const onSubmitHandler = async (e: FormEvent) => {
-    e.preventDefault();
-
-    const { data } = await axios.post('/auth/login', { ...login });
-
+  const handleMutateSuccess = (data: any) => {
     if (data.accessToken !== '' && data.accessToken !== undefined) {
       setCookie(data.accessToken);
 
-      if (data?.payload) setUserState(data.payload);
+      if (data?.payload) {
+        const { payload } = data;
+
+        setUserState(payload);
+        setCenterPaymentSetting({
+          salary: payload.salary,
+          totalSalesOption: payload.totalSalesOption,
+          totalSales: payload.totalSales,
+          individualSalesOption: payload.individualSalesOption,
+          individualSales: payload.individualSales,
+          settlementRateOption: payload.settlementRateOption,
+          settlementRate: payload.settlementRate,
+          vatOption: payload.vatOption,
+          insuranceOption: payload.insuranceOption,
+        });
+      }
 
       router.push('/');
     }
   };
 
+  const { mutate } = useLoginMutation(handleMutateSuccess);
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    mutate({ ...login });
+  };
+
   return (
-    <section className={css({ position: 'relative', width: '50%' })}>
+    <section className={css({ width: '50%' })}>
       <LoginContainer>
         <LoginTitle>Ten Sports</LoginTitle>
-        <form onSubmit={onSubmitHandler}>
+        <form onSubmit={handleSubmit}>
           <div>
             <Input
               id={'id'}
