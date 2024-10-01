@@ -8,12 +8,13 @@ import FileInput from './FileInput';
 import { createCoach } from '@apis/coach/coach.api';
 import { useRouter } from 'next/navigation';
 import { styled } from 'styled-system/jsx';
+import { css } from 'styled-system/css';
 
 type Props = {
-  onCloseModal: () => void;
+  handleClose: () => void;
 };
 
-const CoachCreateModal = ({ onCloseModal }: Props) => {
+const CoachCreateModal = ({ handleClose }: Props) => {
   const router = useRouter();
 
   const { yearArray, year } = getYearList();
@@ -49,7 +50,7 @@ const CoachCreateModal = ({ onCloseModal }: Props) => {
 
   const onChangeFileInputHandler = (rowFile: File) => setFile(rowFile);
 
-  const onSubmitHandler: FormEventHandler<HTMLFormElement> = async (e) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
     let isCheck = true;
@@ -85,14 +86,22 @@ const CoachCreateModal = ({ onCloseModal }: Props) => {
       } else {
         alert('생성에 실패했어요.\n관리자에게 문의해주세요.');
       }
-      onCloseModal();
+      handleClose();
       router.refresh();
     } else return false;
   };
 
   return (
     <>
-      <form onSubmit={onSubmitHandler}>
+      <form
+        id="coachCreateForm"
+        onSubmit={handleSubmit}
+        className={css({
+          height: 'calc(90% - (1.2rem + 16px))',
+          overflowY: 'auto',
+          margin: '0 0 16px 0',
+        })}
+      >
         <InputWrapper label="이메일">
           <TextField
             name="email"
@@ -199,23 +208,23 @@ const CoachCreateModal = ({ onCloseModal }: Props) => {
           </Select>
         </Row>
         <FileInput onChangeFileHandler={onChangeFileInputHandler} />
-        <Button
-          type="submit"
-          variant="iconBtn"
-          label="코치 등록하기"
-          src={EditWhiteIcon}
-          css={{
-            position: 'relative',
-            width: '100%',
-            justifyContent: 'center',
-            border: 0,
-            backgroundColor: 'var(--business-sub-color)',
-            color: 'var(--white100)',
-            padding: '12px 16px',
-            margin: '36px 0 0 0',
-          }}
-        />
       </form>
+      <Button
+        type="submit"
+        form="coachCreateForm"
+        variant="iconBtn"
+        label="코치 등록하기"
+        src={EditWhiteIcon}
+        css={{
+          position: 'relative',
+          width: '100%',
+          justifyContent: 'center',
+          border: 0,
+          backgroundColor: 'var(--business-sub-color)',
+          color: 'var(--white100)',
+          padding: '12px 16px',
+        }}
+      />
     </>
   );
 };
@@ -230,6 +239,7 @@ const Row = styled('div', {
     margin: '8px 0 12px 0',
   },
 });
+
 const InputWrapper = styled(Input, {
   base: {
     margin: '0 0 12px 0',
@@ -243,8 +253,9 @@ const InputWrapper = styled(Input, {
 const TextField = styled(Input.TextField, {
   base: {
     width: '50%',
+    height: 'calc(0.95rem * 2.725)',
     padding: '10px 0 10px 10px',
-    margin: '12px 0 0 0',
+    margin: '8px 0 0 0',
   },
 });
 
