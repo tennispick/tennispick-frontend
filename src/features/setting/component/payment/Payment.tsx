@@ -21,7 +21,20 @@ import { useUpdatePaymentSettingMutation } from '@features/setting/mutation/sett
 
 export type PaymentFormSchema = z.infer<typeof PaymentSettingSchema>;
 
-const SettingPayment = () => {
+type Props = {
+  data: PaymentFormSchema;
+};
+
+const SettingPayment = ({ data }: Props) => {
+  const {
+    salary,
+    totalSalesOption,
+    totalSales,
+    individualSalesOption,
+    settlementRateOption,
+    vatOption,
+    insuranceOption,
+  } = data;
   const { mutate } = useUpdatePaymentSettingMutation();
 
   const {
@@ -33,12 +46,13 @@ const SettingPayment = () => {
     formState: { errors },
   } = useForm<PaymentFormSchema>({
     defaultValues: {
-      salary: 0,
-      totalSalesOption: totalSalesRadioGroup[0].id,
-      individualSalesOption: individualSalesRadioGroup[0].id,
-      settlementRateOption: settlementRateRadioGroup[0].id,
-      vatOption: vatRadioGroup[0].id,
-      insuranceOption: insuranceRadioGroup[0].id,
+      salary: salary,
+      totalSalesOption: totalSalesOption,
+      totalSales: totalSales,
+      individualSalesOption: individualSalesOption,
+      settlementRateOption: settlementRateOption,
+      vatOption: vatOption,
+      insuranceOption: insuranceOption,
     },
     resolver: zodResolver(PaymentSettingSchema),
   });

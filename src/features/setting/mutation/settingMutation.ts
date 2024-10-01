@@ -4,7 +4,7 @@ import {
 } from '@apis/setting/setting.api';
 import {
   URL_CHANGE_SETTING_ACTIVE_STATUS,
-  URL_UPDATE_PAYMENT_SETTING,
+  URL_PAYMENT_SETTING,
 } from '@apis/setting/setting.url';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { PaymentFormSchema } from '../component/payment/Payment';
@@ -38,7 +38,7 @@ export const useSettingMutation = () => {
 
 export const useUpdatePaymentSettingMutation = () => {
   return useMutation({
-    mutationKey: [URL_UPDATE_PAYMENT_SETTING],
+    mutationKey: [URL_PAYMENT_SETTING],
     mutationFn: (params: PaymentFormSchema) => updatePaymentSetting(params),
     onSuccess: ({ data }) => {
       if (data.affectedRows > 0) {

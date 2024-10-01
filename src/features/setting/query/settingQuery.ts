@@ -1,9 +1,12 @@
-import { getSettingList } from '@apis/setting/setting.api';
+import { getPaymentSetting, getSettingList } from '@apis/setting/setting.api';
 import { SettingListApiPayload } from '@apis/setting/setting.type';
-import { URL_FETCH_SETTING_LIST } from '@apis/setting/setting.url';
+import {
+  URL_FETCH_SETTING_LIST,
+  URL_PAYMENT_SETTING,
+} from '@apis/setting/setting.url';
 import { useQuery } from '@tanstack/react-query';
 
-const useSettingListQuery = (params: SettingListApiPayload) => {
+export const useSettingListQuery = (params: SettingListApiPayload) => {
   const { type } = params;
   return useQuery({
     queryKey: [URL_FETCH_SETTING_LIST, type],
@@ -12,4 +15,10 @@ const useSettingListQuery = (params: SettingListApiPayload) => {
   });
 };
 
-export { useSettingListQuery };
+export const usePaymentSettingQuery = () => {
+  return useQuery({
+    queryKey: [URL_PAYMENT_SETTING],
+    queryFn: async () => await getPaymentSetting(),
+    select: (data) => data?.data[0],
+  });
+};
