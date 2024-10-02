@@ -13,7 +13,7 @@ const BusinessPerformance = ({ coachId }: Props) => {
 
   return (
     <div className={css({ width: '70%', height: '100%' })}>
-      <Tabs defaultActiveKey={'sales'}>
+      <Tabs defaultActiveKey={'payment'}>
         <TabLists>
           <TabList activeKey={'sales'}>매출내역</TabList>
           <TabList activeKey={'payment'}>정산내역</TabList>

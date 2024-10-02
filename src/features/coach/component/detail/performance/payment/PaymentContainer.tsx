@@ -1,52 +1,115 @@
 import PaymentTypeRow from '../PaymentTypeRow';
 import SearchPeriodRow from '../SearchPeriodRow';
 import InformationIcon from '@icons/information';
-import { NoResult } from '@components/index';
 import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';
 import { flex } from 'styled-system/patterns';
 import useCenterPaymentSettingStore from '@lib/zustand/center';
+import Incentive from './Incentive';
+import EstimatedReceipt from './EstimatedReceipt';
+import { useState } from 'react';
+
+const checkList = [
+  {
+    id: 'accountTransfer',
+    value: '계좌이체',
+  },
+  {
+    id: 'card',
+    value: '카드결제',
+  },
+  {
+    id: 'cash',
+    value: '현금결제',
+  },
+];
 
 const PaymentContainer = () => {
+
   // TODO: Implement the logic to fetch the payment list
-  const { salary } = useCenterPaymentSettingStore();
+  const {
+    salary,
+    totalSalesOption,
+    totalSales,
+    individualSalesOption,
+    individualSales,
+    settlementRateOption,
+    settlementRate,
+    vatOption,
+    insuranceOption
+  } = useCenterPaymentSettingStore();
+
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [checkedItems, setCheckedItems] = useState<Array<string>>(
+    checkList.map((item) => item.id),
+  );
+
+  const handleChangeStartDate = (date: Date) => {
+    if (date > endDate) setEndDate(date);
+
+    setStartDate(date);
+  };
+
+  const handleChangeEndDate = (date: Date) => setEndDate(date);
+
+  const handleAllCheckboxClick = () => {
+    if (checkedItems.length === checkList.length) setCheckedItems([]);
+    else setCheckedItems(checkList.map((item) => item.id));
+  };
+
+  const handleCheckboxClick = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const target = e.target;
+    const checked = target.checked;
+    const id = target.id;
+
+    if (checked) setCheckedItems((prev) => [...prev, id]);
+    else setCheckedItems((prev) => prev.filter((item) => item !== id));
+  };
 
   return (
     <>
-      {/* <SearchPeriodRow />
-      <PaymentTypeRow /> */}
+      <SearchPeriodRow
+        startDate={startDate}
+        endDate={endDate}
+        handleChangeStartDate={handleChangeStartDate}
+        handleChangeEndDate={handleChangeEndDate}
+      />
+      <PaymentTypeRow
+        checkList={checkList}
+        checkedItems={checkedItems}
+        handleAllCheckboxClick={handleAllCheckboxClick}
+        handleCheckboxClick={handleCheckboxClick}
+      />
       <InfoField>
-        <InfoLabel>{'페널티 점수'}</InfoLabel>
-        <InfoValue>-</InfoValue>
+        <InfoLabel>월 기본 급여</InfoLabel>
+        <div>3,000,000 원</div>
       </InfoField>
       <InfoField>
-        <InfoLabel>{'월 기본 급여'}</InfoLabel>
-        <InfoValue>3,000,000 원</InfoValue>
+        <InfoLabel className={css({ fontWeight: 600 })}>지급 인센티브</InfoLabel>
+        <div>300,000 원</div>
       </InfoField>
-      <InfoField className={css({ margin: '0 0 12px 0' })}>
-        <InfoLabel className={css({ fontWeight: 600 })}>
-          {'지급 인센티브'}
-        </InfoLabel>
-        <InfoValue>300,000 원</InfoValue>
+      <Incentive
+        totalSalesOption={totalSalesOption}
+        totalSales={totalSales}
+        individualSalesOption={individualSalesOption}
+        individualSales={individualSales}
+      />
+      <InfoField>
+        <InfoLabel className={css({ fontWeight: 600 })}>00월 예상 수령액</InfoLabel>
+        <div>4,000,000 원</div>
       </InfoField>
-      <CalculationField>
-        <NoResult
-          description={'인센티브 산정방식이 설정되지 않았어요.'}
-          className={css({ borderRadius: '0.5rem' })}
-        />
-      </CalculationField>
-      <InfoField className={css({ margin: '0 0 12px 0' })}>
-        <InfoLabel className={css({ fontWeight: 600 })}>
-          {'00월 예상 수령액'}
-        </InfoLabel>
-        <InfoValue>4,000,000 원</InfoValue>
-      </InfoField>
-      <CalculationField>
-        <NoResult
-          description={'산정방식이 설정되지 않았어요.'}
-          className={css({ borderRadius: '0.5rem' })}
-        />
-      </CalculationField>
+      <EstimatedReceipt
+        salary={salary}
+        totalSalesOption={totalSalesOption}
+        totalSales={totalSales}
+        individualSalesOption={individualSalesOption}
+        individualSales={individualSales}
+        settlementRateOption={settlementRateOption}
+        settlementRate={settlementRate}
+        vatOption={vatOption}
+        insuranceOption={insuranceOption}
+      />
       <div
         className={flex({
           height: '56px',
@@ -69,25 +132,16 @@ const PaymentContainer = () => {
 
 const InfoField = styled('div', {
   base: {
-    minHeight: '36px',
+    height: '32px',
     display: 'flex',
     alignItems: 'center',
-    gap: '1.5rem',
-    margin: '0 0 20px 0',
+    gap: '2vw',
+    margin: '0 0 12px 0',
   },
 });
 const InfoLabel = styled('div', {
   base: {
-    width: '7rem',
-  },
-});
-
-const InfoValue = styled('div', {});
-
-const CalculationField = styled('section', {
-  base: {
-    height: 'calc((100% - 420px) / 2)',
-    margin: '0 0 24px 0',
+    width: '10vw',
   },
 });
 
