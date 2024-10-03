@@ -23,6 +23,8 @@ const checkList = [
     value: '현금결제',
   },
 ];
+import useModal from '@hooks/useModal';
+import ModalBody from './modal/ModalBody';
 
 const PaymentContainer = () => {
 
@@ -66,6 +68,12 @@ const PaymentContainer = () => {
     if (checked) setCheckedItems((prev) => [...prev, id]);
     else setCheckedItems((prev) => prev.filter((item) => item !== id));
   };
+  const { } = useCenterPaymentSettingStore();
+  const { handleShowModal } = useModal({
+    type: 'full',
+    title: '정산 상세내역',
+    children: <ModalBody />,
+  });
 
   return (
     <>
@@ -122,6 +130,7 @@ const PaymentContainer = () => {
           padding: '0 1rem',
           cursor: 'pointer',
         })}
+        onClick={handleShowModal}
       >
         <InformationIcon fill={'var(--blue500)'} />
         {'정산내역 상세보기 >'}
