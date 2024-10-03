@@ -324,12 +324,14 @@ export const getDiffTimeMinutes = (startTime: string, endTime: string) => {
 };
 
 /** 년도 SelectBox */
-export const getYearList = () => {
+export const getYearList = (paramYear?: number) => {
   const array = [];
   const now = new Date();
   const year = now.getFullYear();
 
-  for (let start = 1900; start <= year; start++) {
+  const startYear = paramYear ? paramYear : 1990;
+
+  for (let start = startYear; start <= year; start++) {
     array.push(start);
   }
 

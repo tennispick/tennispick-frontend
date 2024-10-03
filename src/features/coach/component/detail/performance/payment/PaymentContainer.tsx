@@ -6,10 +6,17 @@ import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';
 import { flex } from 'styled-system/patterns';
 import useCenterPaymentSettingStore from '@lib/zustand/center';
+import useModal from '@hooks/useModal';
+import ModalBody from './modal/ModalBody';
 
 const PaymentContainer = () => {
   // TODO: Implement the logic to fetch the payment list
   const { salary } = useCenterPaymentSettingStore();
+  const { handleShowModal } = useModal({
+    type: 'full',
+    title: '정산 상세내역',
+    children: <ModalBody />,
+  });
 
   return (
     <>
@@ -59,6 +66,7 @@ const PaymentContainer = () => {
           padding: '0 1rem',
           cursor: 'pointer',
         })}
+        onClick={handleShowModal}
       >
         <InformationIcon fill={'var(--blue500)'} />
         {'정산내역 상세보기 >'}
