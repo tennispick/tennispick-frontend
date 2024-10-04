@@ -1,3 +1,4 @@
+import { addNumberCommas } from '@utils/numberForm';
 import { css } from 'styled-system/css';
 import { Divider, Flex, styled } from 'styled-system/jsx';
 
@@ -64,27 +65,23 @@ const Sales = () => {
       </ReceiptTitle>
       <Field>
         <Label>페널티 점수</Label>
-        <Value>10</Value>
+        <Value>0 점</Value>
       </Field>
       <Field>
         <Label>국민연금</Label>
-        <Value>10</Value>
+        <Value>{addNumberCommas(1000)}</Value>
       </Field>
       <Field>
         <Label>건강보험</Label>
-        <Value>10</Value>
+        <Value>{addNumberCommas(1000)}</Value>
       </Field>
       <Field>
         <Label>고용보험</Label>
-        <Value>10</Value>
+        <Value>{addNumberCommas(1000)}</Value>
       </Field>
       <Field>
-        <Label>소득세</Label>
-        <Value>10</Value>
-      </Field>
-      <Field>
-        <Label>지방 소득세</Label>
-        <Value>10</Value>
+        <Label>산재보험</Label>
+        <Value>{addNumberCommas(1000)}</Value>
       </Field>
       <Divider color="var(--grey100)" margin="24px 0" />
     </section>
@@ -97,27 +94,23 @@ const Salary = () => {
       <ReceiptTitle>이번 달 예상 지급 총액</ReceiptTitle>
       <Field>
         <Label>페널티 점수</Label>
-        <Value>10</Value>
+        <Value>0 점</Value>
       </Field>
       <Field>
         <Label>국민연금</Label>
-        <Value>10</Value>
+        <Value>{addNumberCommas(1000)}</Value>
       </Field>
       <Field>
         <Label>건강보험</Label>
-        <Value>10</Value>
+        <Value>{addNumberCommas(1000)}</Value>
       </Field>
       <Field>
         <Label>고용보험</Label>
-        <Value>10</Value>
+        <Value>{addNumberCommas(1000)}</Value>
       </Field>
       <Field>
-        <Label>소득세</Label>
-        <Value>10</Value>
-      </Field>
-      <Field>
-        <Label>지방 소득세</Label>
-        <Value>10</Value>
+        <Label>산재보험</Label>
+        <Value>{addNumberCommas(1000)}</Value>
       </Field>
       <Divider color="var(--grey100)" margin="24px 0" />
       <Field>

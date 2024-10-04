@@ -4,7 +4,11 @@ import { quickButtonPeriodData } from '@features/coach/data/paymentModalData';
 import { useState } from 'react';
 import ModalReceipt from './ModalReceipt';
 
-const ModalBody = () => {
+type Props = {
+  coachId: string;
+};
+
+const ModalBody = ({ coachId }: Props) => {
   const [checkedItem, setCheckedItem] = useState(
     quickButtonPeriodData[0].value,
   );

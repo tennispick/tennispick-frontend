@@ -1,8 +1,8 @@
-import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
-import { getMonthList, getYearList } from '@utils/date';
 import Select from '@components/common/Select';
+import { getMonthList, getYearList } from '@utils/date';
+import { css } from 'styled-system/css';
 import { Flex } from 'styled-system/jsx';
+import { flex } from 'styled-system/patterns';
 
 type Props = {
   year: number;
@@ -11,7 +11,7 @@ type Props = {
   handleMonthChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const ModalSearchPeriod = ({
+const SearchPeriodSelectRow = ({
   year,
   month,
   handleYearChange,
@@ -21,14 +21,14 @@ const ModalSearchPeriod = ({
     <div
       className={flex({
         alignItems: 'center',
-        gap: '1.5rem',
+        gap: '2vw',
         margin: '0 0 24px 0',
       })}
     >
-      <div className={css({ width: '8vw' })}>조회 기간</div>
-      <Flex alignItems="center" gap="1.5">
+      <div className={css({ width: '10vw' })}>조회 기간</div>
+      <Flex alignItems="center" gap="2">
         <Select
-          className={css({ width: '96px' })}
+          className={css({ width: '116px' })}
           onChange={handleYearChange}
           defaultValue={year}
         >
@@ -40,9 +40,8 @@ const ModalSearchPeriod = ({
             );
           })}
         </Select>
-        -
         <Select
-          className={css({ width: '96px' })}
+          className={css({ width: '116px' })}
           onChange={handleMonthChange}
           defaultValue={month}
         >
@@ -59,4 +58,4 @@ const ModalSearchPeriod = ({
   );
 };
 
-export default ModalSearchPeriod;
+export default SearchPeriodSelectRow;

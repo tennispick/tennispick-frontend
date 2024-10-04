@@ -1,15 +1,20 @@
-import { totalSalesRadioGroup } from "@features/setting/data/payment";
-import { addNumberCommas } from "@utils/numberForm";
-import { Flex, styled } from "styled-system/jsx";
+import { totalSalesRadioGroup } from '@features/setting/data/payment';
+import { addNumberCommas } from '@utils/numberForm';
+import { Flex, styled } from 'styled-system/jsx';
 
 type Props = {
-  totalSalesOption: typeof totalSalesRadioGroup[number]["id"];
+  totalSalesOption: (typeof totalSalesRadioGroup)[number]['id'];
   totalSales: number;
-  individualSalesOption: typeof totalSalesRadioGroup[number]["id"];
+  individualSalesOption: (typeof totalSalesRadioGroup)[number]['id'];
   individualSales: number;
-}
+};
 
-const Incentive = ({ totalSalesOption, totalSales, individualSalesOption, individualSales }: Props) => {
+const Incentive = ({
+  totalSalesOption,
+  totalSales,
+  individualSalesOption,
+  individualSales,
+}: Props) => {
   return (
     <Container>
       <Flex alignItems="center">
@@ -21,8 +26,8 @@ const Incentive = ({ totalSalesOption, totalSales, individualSalesOption, indivi
         <Label>{`${addNumberCommas(individualSales)} %`}</Label>
       </Flex>
     </Container>
-  )
-}
+  );
+};
 
 const Container = styled('section', {
   base: {
@@ -32,22 +37,22 @@ const Container = styled('section', {
     backgroundColor: 'var(--grey400)',
     margin: '0 0 12px 0',
     padding: '8px 16px',
-    borderRadius: '8px'
-  }
-})
+    borderRadius: '8px',
+  },
+});
 
 const Field = styled('div', {
   base: {
     width: 'calc(12vw - 16px)',
     fontSize: '0.875rem',
-  }
-})
+  },
+});
 
 const Label = styled('div', {
   base: {
     width: 'calc(12vw - 16px)',
     fontSize: '0.875rem',
-  }
-})
+  },
+});
 
 export default Incentive;

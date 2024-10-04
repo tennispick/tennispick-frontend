@@ -35,6 +35,7 @@ export type CoachDetailData = {
   sex: SexType;
   phone: string;
   email: string;
+  salary: number;
   color: string;
   position: CoachPositionType;
   profileImageUrl: string;

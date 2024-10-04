@@ -1,0 +1,1 @@
+export const SALARY_SETTLEMENT_RATE = 0.03;
