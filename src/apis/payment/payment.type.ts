@@ -43,7 +43,7 @@ export type CoachTotalSalesData = {
   totalAccountTransferPrice: string;
 };
 
-export type CoachSalesByDateData = {
+export type CoachSettlementByDateData = {
   id: number;
   centerId: number;
   centerCoachId: number;

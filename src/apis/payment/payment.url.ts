@@ -5,7 +5,7 @@ const URL_CREATE_REFUND = 'payment/refund';
 const URL_FETCH_TOTAL_SALES = 'payment/totalSales';
 const URL_FETCH_TOTAL_COACH_SALES = 'payment/totalCoachSales';
 const URL_DELETE_REFUND = 'payment/refund';
-export const URL_COACH_MONTH_SALES = 'payment/coachMonthSales';
+export const URL_COACH_MONTH_SETTLEMENT = 'payment/coachMonthSettlement';
 
 export {
   URL_FETCH_PAYMENT_REFUND_LIST,

@@ -8,12 +8,16 @@ import CoachDetailProfile from '../component/detail/CoachDetailProfile';
 import BusinessPerformance from '../component/detail/performance/BusinessPerformance';
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
+import useCenterPaymentSettingStore from '@lib/zustand/center';
 type Props = {
   id: string;
 };
 
 const CoachDetailScreen = ({ id }: Props) => {
   const { data, isFetching } = useCoachDetailQuery(id);
+
+  const { salary, salaryOption, ...rest } = useCenterPaymentSettingStore();
+
   if (isFetching) return <Loading />;
 
   const { name } = data;
@@ -23,8 +27,21 @@ const CoachDetailScreen = ({ id }: Props) => {
       <PageHeader title={`${name} 님`} link="/coach" />
       <div className={css({ height: 'calc(100% - 52px)', overflowY: 'auto' })}>
         <div className={flex({ height: 'calc(100% - 46px)' })}>
-          <CoachDetailProfile coachId={id} data={data} />
-          <BusinessPerformance coachId={id} />
+          <CoachDetailProfile
+            coachId={id}
+            data={data}
+            salary={salary}
+            salaryOption={salaryOption}
+          />
+          <BusinessPerformance
+            coachId={id}
+            paymentSettingStore={{
+              salary:
+                salaryOption === 'individualSalary' ? data.salary : salary,
+              salaryOption,
+              ...rest,
+            }}
+          />
         </div>
         <ButtonContainer coachId={id} />
       </div>

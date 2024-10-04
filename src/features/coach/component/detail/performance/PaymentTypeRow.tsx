@@ -19,11 +19,11 @@ const PaymentTypeRow = ({
     <div
       className={flex({
         alignItems: 'center',
-        gap: '1.5rem',
+        gap: '2vw',
         margin: '0 0 24px 0',
       })}
     >
-      <div className={css({ width: '7rem' })}>결제 유형</div>
+      <div className={css({ width: '10vw' })}>결제 유형</div>
       <CheckboxGroup
         checkList={checkList}
         checkedItems={checkedItems}

@@ -1,7 +1,8 @@
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 
-type State = {
+export type CenterPaymentState = {
+  salaryOption: string;
   salary: number;
   totalSalesOption: string;
   totalSales: number;
@@ -14,10 +15,11 @@ type State = {
 };
 
 type Action = {
-  setCenterPaymentSetting: (payload: State) => void;
+  setCenterPaymentSetting: (payload: CenterPaymentState) => void;
 };
 
-const initialState: State = {
+const initialState: CenterPaymentState = {
+  salaryOption: 'individualSalary',
   salary: 0,
   totalSalesOption: 'totalSalesNone',
   totalSales: 0,
@@ -29,7 +31,7 @@ const initialState: State = {
   insuranceOption: 'insuranceNone',
 };
 
-type Store = State & Action;
+type Store = CenterPaymentState & Action;
 
 const useCenterPaymentSettingStore = create<Store>()(
   devtools(

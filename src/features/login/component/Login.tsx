@@ -33,6 +33,7 @@ const Login = () => {
 
         setUserState(payload);
         setCenterPaymentSetting({
+          salaryOption: payload.salaryOption,
           salary: payload.salary,
           totalSalesOption: payload.totalSalesOption,
           totalSales: payload.totalSales,

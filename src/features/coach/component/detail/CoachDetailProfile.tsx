@@ -30,6 +30,7 @@ const schema = z
       })
       .or(z.literal('')),
     passwordConfirm: z.string().optional(),
+    salary: z.coerce.number({ message: '숫자만 입력해주세요.' }).optional(),
     position: z.string(),
   })
   .superRefine(({ password, passwordConfirm }, ctx) => {
@@ -47,10 +48,18 @@ export type CoachFormSchema = z.infer<typeof schema>;
 type Props = {
   coachId: string;
   data: CoachDetailData;
+  salary: number;
+  salaryOption: string;
 };
 
-const CoachDetailProfile = ({ coachId, data }: Props) => {
-  const { name, email, phone, sex, position, birth, profileImageUrl } = data;
+const CoachDetailProfile = ({
+  coachId,
+  data,
+  salary: centerSalary,
+  salaryOption,
+}: Props) => {
+  const { name, email, phone, sex, position, birth, salary, profileImageUrl } =
+    data;
   const [year, month, date] = birthSplit(birth);
 
   const [file, setFile] = useState<File | null>(null);
@@ -86,6 +95,8 @@ const CoachDetailProfile = ({ coachId, data }: Props) => {
   };
 
   const handleFormSubmit = (data: CoachFormSchema) => {
+    if (confirm('정말 수정하시겠습니까?') === false) return;
+
     const formData = new FormData();
     Object.keys(data).forEach((key) => {
       const typedKey = key as keyof CoachFormSchema;
@@ -94,6 +105,8 @@ const CoachDetailProfile = ({ coachId, data }: Props) => {
 
     file && formData.append('file', file);
     formData.append('color', color.hex);
+    if (salaryOption !== 'individualSalary')
+      formData.set('salary', `${centerSalary}`);
 
     mutate(formData);
   };
@@ -114,8 +127,8 @@ const CoachDetailProfile = ({ coachId, data }: Props) => {
           id="profileImage"
           variant="file"
           className={css({
-            width: '10rem',
-            height: '10rem',
+            width: '5.725vw',
+            height: '5.725vw',
             margin: '0 auto',
           })}
           style={{
@@ -203,6 +216,39 @@ const CoachDetailProfile = ({ coachId, data }: Props) => {
           error={errors.passwordConfirm.message}
           className={css({ margin: '0 0 0 35%', padding: '0 4px' })}
         />
+      )}
+      <ItemRow>
+        <InputHead>기본 급여</InputHead>
+        <InputItem>
+          <Input.TextField
+            {...register('salary')}
+            type="text"
+            placeholder="기본 급여를 입력해주세요."
+            defaultValue={
+              salaryOption === 'individualSalary' ? salary : centerSalary
+            }
+            disabled={salaryOption !== 'individualSalary'}
+          />
+        </InputItem>
+      </ItemRow>
+      {errors.salary?.message ? (
+        <FormError
+          error={errors.salary.message}
+          className={css({ margin: '0 0 0 35%', padding: '0 4px' })}
+        />
+      ) : (
+        <div
+          className={css({
+            width: '65%',
+            margin: '0 0 0 35%',
+            padding: '0 0 0 4px',
+            fontSize: '0.825rem',
+            wordBreak: 'keep-all',
+            color: 'var(--red100)',
+          })}
+        >
+          미 입력시, 센터에서 설정한 급여가 적용되요.
+        </div>
       )}
       <ItemRow>
         <InputHead>직책</InputHead>
