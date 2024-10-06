@@ -14,7 +14,7 @@ import { css } from 'styled-system/css';
 
 type Props = {
   data: CustomerPaymentRefundData[];
-  onClickOpenRefundModalHandler: (
+  handleOpenRefundModal: (
     e: MouseEvent<HTMLButtonElement>,
     target: CustomerPaymentRefundData,
   ) => void;
@@ -22,7 +22,7 @@ type Props = {
 
 const CustomerDetailPaymentRefundPaymentList = ({
   data,
-  onClickOpenRefundModalHandler,
+  handleOpenRefundModal,
 }: Props) => {
   if (data.length === 0) return <NoResult description={'결제내역이 없어요.'} />;
 
@@ -137,7 +137,7 @@ const CustomerDetailPaymentRefundPaymentList = ({
                       cursor: 'not-allowed',
                     },
                   })}
-                  onClick={(e) => onClickOpenRefundModalHandler(e, item)}
+                  onClick={(e) => handleOpenRefundModal(e, item)}
                   disabled={isDisabledRefund}
                 >
                   환불하기

@@ -30,7 +30,7 @@ const CustomerPayment = ({ id }: Props) => {
     setModalType('payment');
   };
 
-  const onClickOpenRefundModalHandler = (
+  const handleOpenRefundModal = (
     e: MouseEvent<HTMLButtonElement>,
     target: CustomerPaymentRefundData,
   ) => {
@@ -61,14 +61,14 @@ const CustomerPayment = ({ id }: Props) => {
             customerId={id}
             type={currentItem}
             handleShowPaymentModalClick={handleShowPaymentModalClick}
-            onClickOpenRefundModalHandler={onClickOpenRefundModalHandler}
+            handleOpenRefundModal={handleOpenRefundModal}
           />
         </Suspense>
       </div>
       {openModal && (
         <Suspense fallback={<Loading />}>
           <PaymentRefundModal
-            id={id}
+            customerId={id}
             type={modalType}
             setOpenModal={setOpenModal}
             checkedItem={checkedItem}

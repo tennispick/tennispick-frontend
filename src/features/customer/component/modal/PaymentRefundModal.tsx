@@ -14,14 +14,14 @@ import { styled } from 'styled-system/jsx';
 import Loading from '@components/common/Loading';
 
 type Props = {
-  id: string;
+  customerId: string;
   type: string;
   setOpenModal: SetStateAction<boolean>;
   checkedItem: CustomerPaymentRefundData | undefined;
 };
 
 const CustomerPaymentRefundModal = ({
-  id,
+  customerId,
   type,
   setOpenModal,
   checkedItem,
@@ -55,20 +55,20 @@ const CustomerPaymentRefundModal = ({
           isPayment={isPayment}
           setOpenModal={setOpenModal}
         />
-        <CustomerInfoContainer isPayment={isPayment} />
+        <CustomerInfoContainer customerId={customerId} isPayment={isPayment} />
         <div className={flex({ height: 'calc(100% - 194px)' })}>
           {
             {
               payment: (
                 <PaymentContainer
-                  customerId={id}
+                  customerId={customerId}
                   lessonList={data!}
                   totalPrice={totalPrice}
                 />
               ),
               refund: (
                 <RefundContainer
-                  customerId={id}
+                  customerId={customerId}
                   checkedItem={checkedItem!}
                   lessonList={data!}
                 />

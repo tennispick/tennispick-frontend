@@ -25,16 +25,7 @@ const RightSideContainer = ({
   const handleCloseDrawerClick = () => setShowRightSide(false);
 
   return (
-    <section
-      className={css({
-        position: 'fixed',
-        width: '100vw',
-        height: '100vh',
-        top: 0,
-        backgroundColor: 'rgb(18, 18, 18, 0.7)',
-        zIndex: 99,
-      })}
-    >
+    <Container>
       <Wrapper
         ref={sideRef}
         className={css({
@@ -67,9 +58,20 @@ const RightSideContainer = ({
           {children}
         </div>
       </Wrapper>
-    </section>
+    </Container>
   );
 };
+
+const Container = styled('div', {
+  base: {
+    position: 'fixed',
+    width: '100vw',
+    height: '100vh',
+    top: 0,
+    backgroundColor: 'rgb(18, 18, 18, 0.7)',
+    zIndex: 99,
+  },
+});
 
 const Wrapper = styled('div', {
   base: {

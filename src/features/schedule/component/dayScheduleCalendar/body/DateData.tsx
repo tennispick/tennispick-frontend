@@ -18,9 +18,8 @@ const BodyDateData = ({ coachList, reservationCustomerList }: Props) => {
 
   const [showDrawer, setShowDrawer] = useState<boolean>(false);
 
-  const handleShowDrawer = () => {
-    setShowDrawer(true);
-  };
+  const handleShowDrawer = (isReservation: boolean) =>
+    isReservation && setShowDrawer(true);
 
   return (
     <>
@@ -31,14 +30,17 @@ const BodyDateData = ({ coachList, reservationCustomerList }: Props) => {
             reservationCustomerList.some(({ coachId }) => coachId === id);
 
           return (
-            <div
+            <Flex
               key={id}
+              justifyContent="center"
+              alignItems="center"
               className={css({
                 width: `calc(100% / ${coachCount})`,
                 height: '100%',
                 textAlign: 'center',
                 borderRight: '1px solid var(--black100)',
                 borderBottom: '1px solid var(--grey1000)',
+                fontSize: '0.625rem',
                 color: `${
                   isReservation ? 'var(--white100)' : 'var(--black100)'
                 }`,
@@ -48,10 +50,10 @@ const BodyDateData = ({ coachList, reservationCustomerList }: Props) => {
                   isReservation ? `var(--${coachColor})` : 'var(--white100)'
                 }`,
               })}
-              onClick={handleShowDrawer}
+              onClick={() => handleShowDrawer(isReservation)}
             >
               {isReservation && name.charAt(0)}
-            </div>
+            </Flex>
           );
         })}
       </Flex>

@@ -161,19 +161,19 @@ export const globalStyles = defineGlobalStyles({
       },
     },
     '&[type="radio"]': {
-      appearance: 'none',
-      '-webkit-appearance': 'none',
-      '-moz-appearance': 'none',
-      width: '1.25rem',
-      height: '1.25rem',
-      border: `1.5px solid var(--business-active-color)`,
-      borderRadius: '50%',
-      outline: 'none',
-      cursor: 'pointer',
+      appearance: 'none !important',
+      '-webkit-appearance': 'none !important',
+      '-moz-appearance': 'none !important',
+      width: '1.25rem !important',
+      height: '1.25rem !important',
+      border: `1.5px solid var(--business-active-color) !important`,
+      borderRadius: '50% !important',
+      outline: 'none !important',
+      cursor: 'pointer !important',
 
       _checked: {
-        backgroundColor: 'var(--white100)',
-        border: '1.5px solid var(--business-active-color)',
+        backgroundColor: 'var(--white100) !important',
+        border: '1.5px solid var(--business-active-color) !important',
 
         _after: {
           content: '""',

@@ -13,27 +13,36 @@ type Props = {
 
 const CustomerDetailDrawerPayment = ({ data }: Props) => {
   return (
-    <form>
-      <DrawerInputContainer label="수강권 이름" value={data.lessonName} />
+    <form className={css({ height: 'calc(100% - 48px)', overflowY: 'scroll' })}>
+      <DrawerInputContainer
+        label="수강권 이름"
+        value={data.lessonName}
+        readOnly
+      />
       <DrawerInputContainer
         label="유형"
         value={transferCategory(data.category)}
+        readOnly
       />
       <DrawerInputContainer
         label="주말 / 평일 여부"
         value={data.isWeekday === 'weekday' ? '평일' : '주말'}
+        readOnly
       />
       <DrawerInputContainer
         label="레슨유형"
         value={`${data.lessonType === 'private' ? '개인' : '그룹'} 레슨`}
+        readOnly
       />
       <DrawerInputContainer
         label="결제유형"
         value={transferPaymentType(data.type)}
+        readOnly
       />
       <DrawerInputContainer
         label="결제금액"
         value={addNumberCommas(data.totalPrice)}
+        readOnly
       />
       <DrawerInputContainer
         label="할인유형"
@@ -41,6 +50,7 @@ const CustomerDetailDrawerPayment = ({ data }: Props) => {
         className={css({
           color: data.refundPrice ? 'var(--blue100)' : 'var(--black100)',
         })}
+        readOnly
       />
       <DrawerInputContainer
         label="할인금액"
@@ -48,6 +58,7 @@ const CustomerDetailDrawerPayment = ({ data }: Props) => {
         className={css({
           color: data.refundPrice ? 'var(--blue100)' : 'var(--black100)',
         })}
+        readOnly
       />
       <DrawerInputContainer
         label="환불금액"
@@ -55,6 +66,7 @@ const CustomerDetailDrawerPayment = ({ data }: Props) => {
         className={css({
           color: data.refundPrice ? 'var(--red100)' : 'var(--black100)',
         })}
+        readOnly
       />
       <DrawerInputContainer
         label="환불유형"
@@ -62,10 +74,12 @@ const CustomerDetailDrawerPayment = ({ data }: Props) => {
         className={css({
           color: data.refundPrice ? 'var(--red100)' : 'var(--black100)',
         })}
+        readOnly
       />
       <DrawerInputContainer
         label="환불 사유"
         value={data.reason ? data.reason : '-'}
+        readOnly
       />
       <DrawerInputContainer
         label="총 금액"
@@ -74,6 +88,7 @@ const CustomerDetailDrawerPayment = ({ data }: Props) => {
             ? addNumberCommas(data.remainPrice)
             : addNumberCommas(data.totalPrice)
         }
+        readOnly
       />
     </form>
   );

@@ -9,7 +9,7 @@ type Props = {
   customerId: string;
   type: PaymentRefundType;
   handleShowPaymentModalClick: () => void;
-  onClickOpenRefundModalHandler: (
+  handleOpenRefundModal: (
     e: MouseEvent<HTMLButtonElement>,
     target: CustomerPaymentRefundData,
   ) => void;
@@ -19,7 +19,7 @@ const CustomerDetailPaymentRefundContainer = ({
   customerId,
   type,
   handleShowPaymentModalClick,
-  onClickOpenRefundModalHandler,
+  handleOpenRefundModal,
 }: Props) => {
   const { data } = usePaymentListQuery({ type, customerId });
 
@@ -33,7 +33,7 @@ const CustomerDetailPaymentRefundContainer = ({
       <PaymentRefundBodyContainer
         type={type}
         data={data}
-        onClickOpenRefundModalHandler={onClickOpenRefundModalHandler}
+        handleOpenRefundModal={handleOpenRefundModal}
       />
     </>
   );

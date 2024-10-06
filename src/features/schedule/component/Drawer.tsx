@@ -1,4 +1,3 @@
-import { Button } from '@components/index';
 import useInput from '@hooks/useInput';
 import { EditWhiteIcon, DeleteWhiteIcon } from '@icons/index';
 import ScheduleDrawerInputField from './drawer/InputField';
@@ -9,6 +8,8 @@ import {
 } from '@apis/schedule/schedule.api';
 import { useRouter } from 'next/navigation';
 import { flex } from 'styled-system/patterns';
+import { css } from 'styled-system/css';
+import IconButton from '@components/button/IconButton';
 
 type Props = {
   customer: any;
@@ -78,7 +79,7 @@ const ScheduleDrawer = ({ customer }: Props) => {
     }
   };
 
-  const onClickDeleteScheduleHandler = async () => {
+  const handleDeleteSchedule = async () => {
     const id = customer.map((item: any) => item.id).join(', ');
 
     const data = await deleteScheduleLesson(id);
@@ -92,7 +93,10 @@ const ScheduleDrawer = ({ customer }: Props) => {
   };
 
   return (
-    <form onSubmit={onSubmitHandler}>
+    <form
+      onSubmit={onSubmitHandler}
+      className={css({ height: 'calc(100% - 48px)' })}
+    >
       <ScheduleDrawerInputField
         formData={formData}
         onChangeFormData={onChangeFormData}
@@ -100,35 +104,30 @@ const ScheduleDrawer = ({ customer }: Props) => {
         customerName={customer.map((item: any) => item.customerName).join(', ')}
         lessonTime={customer[0].timeDiff}
       />
-      <div className={flex({ bottom: '20px' })}>
-        <Button
+      <div
+        className={flex({
+          width: '100%',
+          position: 'relative',
+          gap: '16px',
+        })}
+      >
+        <IconButton
           type="submit"
+          iconAlign="left"
+          iconSrc={EditWhiteIcon}
+          iconAlt="modify schedule"
+          variant="primary"
+          size="half"
           label={'스케줄 수정하기'}
-          variant={'iconBtn'}
-          src={EditWhiteIcon}
-          css={{
-            width: 'calc(40vw - 40px)',
-            justifyContent: 'center',
-            border: 0,
-            backgroundColor: 'var(--business-active-color)',
-            color: 'var(--white100)',
-            padding: '12px 16px',
-            margin: '0 0 12px 0',
-          }}
         />
-        <Button
+        <IconButton
+          iconAlign="left"
+          iconSrc={DeleteWhiteIcon}
+          iconAlt="delete schedule"
+          variant="negative"
+          size="half"
           label={'스케줄 삭제하기'}
-          variant={'iconBtn'}
-          src={DeleteWhiteIcon}
-          css={{
-            width: 'calc(40vw - 40px)',
-            justifyContent: 'center',
-            border: 0,
-            backgroundColor: 'var(--red200)',
-            color: 'var(--white100)',
-            padding: '12px 16px',
-          }}
-          onClick={onClickDeleteScheduleHandler}
+          onClick={handleDeleteSchedule}
         />
       </div>
     </form>

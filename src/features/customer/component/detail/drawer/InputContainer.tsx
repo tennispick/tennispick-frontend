@@ -9,6 +9,7 @@ type Props = {
   className?: string;
   disabled?: boolean;
   Error?: ReactNode;
+  readOnly?: boolean;
 } & PropsWithChildren;
 
 const CustomerDetailDrawerInputContainer = forwardRef(

@@ -7,7 +7,7 @@ import { css } from 'styled-system/css';
 type Props = {
   type: string;
   data: CustomerPaymentRefundData[];
-  onClickOpenRefundModalHandler: (
+  handleOpenRefundModal: (
     e: MouseEvent<HTMLButtonElement>,
     target: CustomerPaymentRefundData,
   ) => void;
@@ -16,7 +16,7 @@ type Props = {
 const CustomerDetailPaymentRefundBodyContainer = ({
   type,
   data,
-  onClickOpenRefundModalHandler,
+  handleOpenRefundModal,
 }: Props) => {
   return (
     <div
@@ -32,7 +32,7 @@ const CustomerDetailPaymentRefundBodyContainer = ({
           payment: (
             <PaymentList
               data={data}
-              onClickOpenRefundModalHandler={onClickOpenRefundModalHandler}
+              handleOpenRefundModal={handleOpenRefundModal}
             />
           ),
           refund: <RefundList data={data} />,

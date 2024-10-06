@@ -24,7 +24,7 @@ const SettingScreen = () => {
   };
 
   return (
-    <div>
+    <>
       <TabLists
         currentItem={currentItem}
         setCurrentItem={setCurrentItem}
@@ -38,7 +38,7 @@ const SettingScreen = () => {
           4: isFetching ? <Loading /> : <SettingPayment data={data} />,
         }[currentItem]
       }
-    </div>
+    </>
   );
 };
 
