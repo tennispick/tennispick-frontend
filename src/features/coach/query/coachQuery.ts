@@ -4,6 +4,7 @@ import {
   getCoachDetail,
   getCoachLessonList,
   getCoachList,
+  getCoachPerformance,
   getCoachTotalSales,
   getCoachTotalSalesList,
 } from '@apis/coach/coach.api';
@@ -11,6 +12,7 @@ import {
   CoachCustomersPayload,
   CoachDetailData,
   CoachListData,
+  CoachPerformanceData,
   CoachTotalSalesData,
   CoachTotalSalesPayload,
 } from '@apis/coach/coach.type';
@@ -18,6 +20,7 @@ import {
   URL_COACH,
   URL_COACH_CUSTOMERS,
   URL_COACH_DETAIL,
+  URL_COACH_PERFORMANCE,
 } from '@apis/coach/coach.url';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
@@ -109,5 +112,42 @@ export const useCoachCustomersQuery = (params: CoachCustomersPayload) => {
       pages: data.pages.flatMap((page) => page.data),
       pageParams: [...data.pageParams],
     }),
+  });
+};
+
+const initialCoachPerformance: CoachPerformanceData = {
+  lessonCount: [
+    {
+      lessonDateCount: 0,
+    },
+  ],
+  lesson: [
+    {
+      additionalLessonCount: 0,
+      regularLessonCount: 0,
+    },
+  ],
+  customerAttendance: [
+    {
+      absentLessons: 0,
+      attendanceRate: 0,
+      attendedLessons: 0,
+      totalLessons: 0,
+    },
+  ],
+};
+
+export const useCoachPerformanceQuery = (
+  coachId: string,
+  startDate: string,
+  endDate: string,
+) => {
+  return useQuery({
+    queryKey: [URL_COACH_PERFORMANCE(coachId), { startDate, endDate }],
+    queryFn: () => getCoachPerformance({ coachId, startDate, endDate }),
+    select: (data) => data.data,
+    initialData: createInitialData(
+      initialCoachPerformance as CoachPerformanceData,
+    ),
   });
 };

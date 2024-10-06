@@ -7,3 +7,5 @@ export const URL_COACH_LESSON_LIST = '/coach/lesson';
 export const URL_COACH_DETAIL = (coachId: string) => `/coach/${coachId}`;
 export const URL_COACH_CUSTOMERS = (coachId: string) =>
   `/coach/${coachId}/customers`;
+export const URL_COACH_PERFORMANCE = (coachId: string) =>
+  `/coach/${coachId}/performance`;

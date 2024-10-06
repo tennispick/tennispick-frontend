@@ -1,4 +1,5 @@
 import { addNumberCommas } from '@utils/numberForm';
+import { css } from 'styled-system/css';
 import { Flex, styled } from 'styled-system/jsx';
 
 type Props = {
@@ -20,28 +21,28 @@ const EstimatedReceipt = ({
     <Container>
       <BlockTitle>고정 지급 항목</BlockTitle>
       <Block>
-        <Flex alignItems="center">
+        <Flex alignItems="center" className={css({ marginBottom: '6px' })}>
           <Field>급여</Field>
           <Label>{`${addNumberCommas(salary)} 원`}</Label>
         </Flex>
       </Block>
       <BlockTitle>변동 지급 항목</BlockTitle>
       <Block>
-        <Flex alignItems="center">
+        <Flex alignItems="center" className={css({ marginBottom: '6px' })}>
           <Field>총 매출 인센티브</Field>
           <Label>{`${addNumberCommas(totalSales)} %`}</Label>
         </Flex>
-        <Flex alignItems="center">
+        <Flex alignItems="center" className={css({ marginBottom: '6px' })}>
           <Field>개별 인센티브</Field>
           <Label>{`${addNumberCommas(individualSales)} %`}</Label>
         </Flex>
       </Block>
       <Block>
-        <Flex alignItems="center">
+        <Flex alignItems="center" className={css({ marginBottom: '6px' })}>
           <Field>매출</Field>
           <Label>{`${addNumberCommas(settlement)} 원`}</Label>
         </Flex>
-        <Flex alignItems="center">
+        <Flex alignItems="center" className={css({ marginBottom: '6px' })}>
           <Field>공제내역</Field>
           <Label>{`- ${addNumberCommas(totalTax)} 원`}</Label>
         </Flex>
@@ -69,12 +70,15 @@ const BlockTitle = styled('div', { base: { fontWeight: 600 } });
 const Field = styled('div', {
   base: {
     width: 'calc(12vw - 16px)',
+    fontSize: '0.925rem',
   },
 });
 
 const Label = styled('div', {
   base: {
-    width: 'calc(12vw - 16px)',
+    width: 'calc(10vw - 16px)',
+    fontSize: '0.925rem',
+    textAlign: 'right',
   },
 });
 

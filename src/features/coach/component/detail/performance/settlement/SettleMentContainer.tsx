@@ -41,28 +41,38 @@ const SettleMentContainer = ({ coachId, paymentSettingStore }: Props) => {
     lastDayOfMonth(startOfDay(new Date(year, month - 1, 1))),
   );
 
-  const handleYearChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
-    setYear(Number(e.target.value));
-
-  const handleMonthChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
-    setMonth(Number(e.target.value));
-
-  const { handleShowModal } = useModal({
-    type: 'full',
-    title: '정산 상세내역',
-    children: <ModalBody coachId={coachId} />,
-  });
-
   const { data } = useCoachMonthSettlementQuery(coachId, lastDay);
+
   const incentive = getIncentiveBySales(
     data?.settlement ?? 0,
     totalSales,
     individualSales,
   );
+
+  const tax = getSalaryApplyTaxRateBySales(salary);
   const totalTax =
-    insuranceOption === 'insuranceNone'
-      ? salary * 0.033
-      : getSalaryApplyTaxRateBySales(salary).totalTax;
+    insuranceOption === 'insuranceNone' ? salary * 0.033 : tax.totalTax;
+
+  // TODO 개별적용이냐, 전체적용이냐
+  const { handleShowModal } = useModal({
+    type: 'full',
+    title: '정산 상세내역',
+    children: (
+      <ModalBody
+        coachId={coachId}
+        salary={salary}
+        totalSales={totalSales}
+        individualSales={individualSales}
+        insuranceOption={insuranceOption}
+      />
+    ),
+  });
+
+  const handleYearChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
+    setYear(Number(e.target.value));
+
+  const handleMonthChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
+    setMonth(Number(e.target.value));
 
   return (
     <>
@@ -80,7 +90,11 @@ const SettleMentContainer = ({ coachId, paymentSettingStore }: Props) => {
         <InfoLabel className={css({ fontWeight: 600 })}>
           지급 인센티브
         </InfoLabel>
-        <div>{addNumberCommas(incentive)} 원</div>
+        <div
+          className={css({ width: 'calc(10vw - 16px)', textAlign: 'right' })}
+        >
+          {addNumberCommas(incentive)} 원
+        </div>
       </InfoField>
       <Incentive
         totalSalesOption={totalSalesOption}
@@ -92,7 +106,11 @@ const SettleMentContainer = ({ coachId, paymentSettingStore }: Props) => {
         <InfoLabel className={css({ fontWeight: 600 })}>
           {numberZeroFillFormat(month, 2)}월 예상 수령액
         </InfoLabel>
-        <div>{addNumberCommas(salary + incentive - totalTax)} 원</div>
+        <div
+          className={css({ width: 'calc(10vw - 16px)', textAlign: 'right' })}
+        >
+          {addNumberCommas(salary + incentive - totalTax)} 원
+        </div>
       </InfoField>
       <EstimatedReceipt
         salary={salary}
