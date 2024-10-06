@@ -50,8 +50,9 @@ const Field = styled('div', {
 
 const Label = styled('div', {
   base: {
-    width: 'calc(12vw - 16px)',
-    fontSize: '0.875rem',
+    width: 'calc(10vw - 16px)',
+    fontSize: '0.925rem',
+    textAlign: 'right',
   },
 });
 

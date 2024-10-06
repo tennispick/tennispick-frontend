@@ -4,6 +4,7 @@ import {
   URL_COACH_CUSTOMERS,
   URL_COACH_DETAIL,
   URL_COACH_LESSON_LIST,
+  URL_COACH_PERFORMANCE,
 } from './coach.url';
 import {
   CoachCustomersPayload,
@@ -11,6 +12,8 @@ import {
   CoachDetailData,
   CoachLessonListData,
   CoachListData,
+  CoachPerformanceData,
+  CoachPerformancePayload,
   CoachTotalSalesData,
   CoachTotalSalesListData,
   CoachTotalSalesPayload,
@@ -77,4 +80,15 @@ export const updateCoachDetail = async (coachId: string, params: FormData) => {
   return await axios.put(`${URL_COACH_DETAIL(coachId)}`, params, {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
+};
+
+export const getCoachPerformance = async (
+  params: CoachPerformancePayload,
+): Promise<Response<CoachPerformanceData>> => {
+  const { coachId, startDate, endDate } = params;
+  return await axios.get(
+    `${URL_COACH_PERFORMANCE(
+      coachId,
+    )}?startDate=${startDate}&endDate=${endDate}`,
+  );
 };

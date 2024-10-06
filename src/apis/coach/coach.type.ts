@@ -112,3 +112,31 @@ export type CoachCustomersPayload = {
   keyword: string;
   searchCondition: string;
 };
+
+export type CoachPerformancePayload = {
+  coachId: string;
+  startDate: string;
+  endDate: string;
+};
+
+export type CoachLessonCountPerformanceData = {
+  lessonDateCount: number;
+};
+
+export type CoachLessonPerformanceData = {
+  additionalLessonCount: number;
+  regularLessonCount: number;
+};
+
+export type CoachCustomerAttendancePerformance = {
+  absentLessons: number;
+  attendanceRate: number;
+  attendedLessons: number;
+  totalLessons: number;
+};
+
+export type CoachPerformanceData = {
+  lessonCount: CoachLessonCountPerformanceData[];
+  lesson: CoachLessonPerformanceData[];
+  customerAttendance: CoachCustomerAttendancePerformance[];
+};
