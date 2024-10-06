@@ -17,6 +17,7 @@ import { styled } from 'styled-system/jsx';
 type Props = {
   type: PaymentRefundType;
   lesson: LessonListQueryData | undefined;
+  lessonName?: string;
   paymentType: PaymentType;
   discountType: string;
   discountPrice: number;
@@ -38,6 +39,7 @@ const CustomerModalReceiptContainer = ({
   refundRange,
   refundPrice,
   totalPrice,
+  lessonName,
   price,
   onClickRefundHandler,
 }: Props) => {
@@ -57,6 +59,7 @@ const CustomerModalReceiptContainer = ({
           refund: (
             <CustomerModalReceiptContainer.RefundReceipt
               lesson={lesson}
+              lessonName={lessonName}
               paymentType={paymentType}
               refundType={refundType}
               refundRange={refundRange}
@@ -172,6 +175,7 @@ const PaymentReceipt = ({
 
 const RefundReceipt = ({
   lesson,
+  lessonName,
   paymentType,
   refundType,
   refundRange,
@@ -181,6 +185,7 @@ const RefundReceipt = ({
 }: Pick<
   Props,
   | 'lesson'
+  | 'lessonName'
   | 'paymentType'
   | 'refundType'
   | 'refundRange'
@@ -193,12 +198,17 @@ const RefundReceipt = ({
       <div className={css({ height: '50%', padding: '1.5rem 32px 0 28px' })}>
         <ReceiptRow>
           <div>상품명</div>
-          <div>{lesson?.name}</div>
+          <div>{lesson?.name ?? lessonName}</div>
         </ReceiptRow>
         <ReceiptRow>
           <div>상품금액</div>
           <div>
-            {addNumberCommas(Number(lesson?.price.replaceAll(',', '')))} 원
+            {addNumberCommas(
+              lesson?.price
+                ? Number(lesson?.price.replaceAll(',', ''))
+                : price!,
+            )}{' '}
+            원
           </div>
         </ReceiptRow>
         <ReceiptRow>

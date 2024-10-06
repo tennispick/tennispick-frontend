@@ -153,35 +153,6 @@ const DetailCourt = ({ id, handleHideRightSideClick }: Props) => {
               label={'코트 삭제하기'}
               onClick={handleDeleteCourtClick}
             />
-            {/* <Button
-              label={'코트 수정하기'}
-              variant={'iconBtn'}
-              src={EditWhiteIcon}
-              className={css({
-                width: 'calc(40vw - 40px)',
-                justifyContent: 'center',
-                border: 0,
-                backgroundColor: 'var(--business-active-color)',
-                color: 'var(--white100)',
-                padding: '12px 16px',
-                margin: '0 0 12px 0',
-              })}
-              onClick={handleCourtModifyClick}
-            />
-            <Button
-              label={'코트 삭제하기'}
-              variant={'iconBtn'}
-              src={DeleteWhiteIcon}
-              className={css({
-                width: 'calc(40vw - 40px)',
-                justifyContent: 'center',
-                border: 0,
-                backgroundColor: 'var(--red200)',
-                color: 'var(--white100)',
-                padding: '12px 16px',
-              })}
-              onClick={handleDeleteCourtClick}
-            /> */}
           </div>
         </>
       )}

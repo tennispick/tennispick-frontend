@@ -31,7 +31,7 @@ const ScheduleDrawerInputField = ({
   const { data: lessonList } = useLessonListQuery({ type: 'all' });
 
   return (
-    <>
+    <div className={css({ height: '100%' })}>
       <CalendarContainer
         formData={formData}
         onChangeFormData={onChangeFormData}
@@ -84,7 +84,7 @@ const ScheduleDrawerInputField = ({
           label: item.name,
         }))}
       />
-    </>
+    </div>
   );
 };
 
@@ -178,6 +178,7 @@ const CalendarContainer = ({
             name={'startTime'}
             className={css({
               width: '120px',
+              height: '43px',
               backgroundColor: 'var(--white100)',
               margin: '0 4px 0 0',
             })}
@@ -193,6 +194,7 @@ const CalendarContainer = ({
             name={'endTime'}
             className={css({
               width: '120px',
+              height: '43px',
               backgroundColor: 'var(--white100)',
               margin: '0 0 0 4px',
             })}
@@ -231,7 +233,11 @@ const LessonTypeContainer = ({
             type="radio"
             name="isRegularLesson"
             value="Y"
-            className={css({ width: 'auto', margin: '0 6px 0 2px' })}
+            className={css({
+              width: 'auto',
+              margin: '0 6px 0 2px',
+              border: '1px solid red',
+            })}
             defaultChecked={formData.isRegularLesson.value === 'Y'}
             onChange={onChangeFormData}
           />
@@ -255,62 +261,62 @@ const LessonTypeContainer = ({
   );
 };
 
-const IsAttendanceContainer = ({
-  formData,
-  onChangeFormData,
-}: Pick<Props, 'formData' | 'onChangeFormData'>) => {
-  return (
-    <div className={css({ margin: '0 0 20px' })}>
-      <div>출석현황</div>
-      <div
-        className={flex({
-          alignItems: 'center',
-          margin: '12px 0 0 0',
-        })}
-      >
-        <InputContainer
-          id="before"
-          label="시작전"
-          className={css({ margin: '0 12px 0 0' })}
-        >
-          <Input.TextField
-            type="radio"
-            name="isAttendance"
-            value="before"
-            className={css({ width: 'auto', margin: '0 6px 0 2px' })}
-            onChange={onChangeFormData}
-          />
-        </InputContainer>
-        <InputContainer
-          id="attendance"
-          label="출석"
-          className={css({ margin: '0 12px 0 0' })}
-        >
-          <Input.TextField
-            type="radio"
-            name="isAttendance"
-            value="attendance"
-            className={css({ width: 'auto', margin: '0 6px 0 2px' })}
-            onChange={onChangeFormData}
-          />
-        </InputContainer>
-        <InputContainer
-          id="absent"
-          label="결석"
-          className={css({ margin: '0 12px 0 0' })}
-        >
-          <Input.TextField
-            type="radio"
-            name="isAttendance"
-            value="absent"
-            className={css({ width: 'auto', margin: '0 6px 0 2px' })}
-            onChange={onChangeFormData}
-          />
-        </InputContainer>
-      </div>
-    </div>
-  );
-};
+// const IsAttendanceContainer = ({
+//   formData,
+//   onChangeFormData,
+// }: Pick<Props, 'formData' | 'onChangeFormData'>) => {
+//   return (
+//     <div className={css({ margin: '0 0 20px' })}>
+//       <div>출석현황</div>
+//       <div
+//         className={flex({
+//           alignItems: 'center',
+//           margin: '12px 0 0 0',
+//         })}
+//       >
+//         <InputContainer
+//           id="before"
+//           label="시작전"
+//           className={css({ margin: '0 12px 0 0' })}
+//         >
+//           <Input.TextField
+//             type="radio"
+//             name="isAttendance"
+//             value="before"
+//             className={css({ width: 'auto', margin: '0 6px 0 2px' })}
+//             onChange={onChangeFormData}
+//           />
+//         </InputContainer>
+//         <InputContainer
+//           id="attendance"
+//           label="출석"
+//           className={css({ margin: '0 12px 0 0' })}
+//         >
+//           <Input.TextField
+//             type="radio"
+//             name="isAttendance"
+//             value="attendance"
+//             className={css({ width: 'auto', margin: '0 6px 0 2px' })}
+//             onChange={onChangeFormData}
+//           />
+//         </InputContainer>
+//         <InputContainer
+//           id="absent"
+//           label="결석"
+//           className={css({ margin: '0 12px 0 0' })}
+//         >
+//           <Input.TextField
+//             type="radio"
+//             name="isAttendance"
+//             value="absent"
+//             className={css({ width: 'auto', margin: '0 6px 0 2px' })}
+//             onChange={onChangeFormData}
+//           />
+//         </InputContainer>
+//       </div>
+//     </div>
+//   );
+// };
 
 const SelectContainer = ({
   name,
@@ -354,6 +360,7 @@ const InputWrapper = styled(Input, {
     },
   },
 });
+
 const InputContainer = styled(Input, {
   base: {
     display: 'flex',
@@ -362,9 +369,11 @@ const InputContainer = styled(Input, {
     alignItems: 'center',
   },
 });
+
 const TextField = styled(Input.TextField, {
   base: {
     width: '30%',
+    height: '40px',
     padding: '10px 0 10px 10px',
     margin: '12px 0 0 0',
   },

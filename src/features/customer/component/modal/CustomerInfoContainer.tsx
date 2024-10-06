@@ -1,14 +1,22 @@
+import { useCustomerDetailQuery } from '@features/customer/query/CustomerQuery';
 import { ProfileManIcon } from '@icons/index';
+import { transferSexType } from '@utils/switch';
 import Image from 'next/image';
 import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';
 import { flex } from 'styled-system/patterns';
 
 type Props = {
+  customerId: string;
   isPayment: boolean;
 };
 
-const CustomerModalCustomerInfoContainer = ({ isPayment }: Props) => {
+const CustomerModalCustomerInfoContainer = ({
+  customerId,
+  isPayment,
+}: Props) => {
+  const { data } = useCustomerDetailQuery({ id: customerId });
+  const { name, email, birth, phone, sex } = data;
   return (
     <div className={flex({ height: '130px' })}>
       <div
@@ -38,25 +46,25 @@ const CustomerModalCustomerInfoContainer = ({ isPayment }: Props) => {
         >
           <InfoRow>
             <div className={css({ width: '96px', fontWeight: 600 })}>이름</div>
-            <div>광개토 대왕</div>
+            <div>{name}</div>
           </InfoRow>
           <InfoRow>
             <div className={css({ width: '96px', fontWeight: 600 })}>
               이메일
             </div>
-            <div>admin@gmail.com</div>
+            <div>{email}</div>
           </InfoRow>
           <InfoRow>
             <div className={css({ width: '96px', fontWeight: 600 })}>
               생년월일
             </div>
-            <div>2002.12.31</div>
+            <div>{birth}</div>
           </InfoRow>
           <InfoRow>
             <div className={css({ width: '96px', fontWeight: 600 })}>
               연락처
             </div>
-            <div>010-1234-5678</div>
+            <div>{phone}</div>
           </InfoRow>
         </div>
         <div
@@ -68,7 +76,7 @@ const CustomerModalCustomerInfoContainer = ({ isPayment }: Props) => {
         >
           <InfoRow>
             <div className={css({ width: '96px', fontWeight: 600 })}>성별</div>
-            <div>남성</div>
+            <div>{transferSexType(sex)}</div>
           </InfoRow>
           <InfoRow>
             <div className={css({ width: '96px', fontWeight: 600 })}>상태</div>

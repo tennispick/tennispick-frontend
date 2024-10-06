@@ -218,6 +218,7 @@ const CustomerModalRefundContainer = ({
         refundType={formData.refundType}
         refundRange={formData.refundRange}
         refundPrice={formData.refundPrice}
+        lessonName={lessonName}
         price={totalPrice}
         onClickRefundHandler={() => setOpenModal(true)}
       />
