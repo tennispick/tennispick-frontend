@@ -5,7 +5,7 @@ import { flex } from 'styled-system/patterns';
 import { CenterPaymentState } from '@lib/zustand/center';
 import Incentive from './Incentive';
 import EstimatedReceipt from './EstimatedReceipt';
-import { useState } from 'react';
+import { FormEventHandler, useState } from 'react';
 import useModal from '@hooks/useModal';
 import ModalBody from './modal/ModalBody';
 import SearchPeriodSelectRow from '../SearchPeriodSelectRow';
@@ -17,6 +17,10 @@ import {
 import { useCoachMonthSettlementQuery } from '@features/home/query/salesQuery';
 import { lastDayOfMonth, startOfDay } from 'date-fns';
 import { getDateToKoreanString } from '@utils/date';
+import Button from '@components/button/Button';
+import LayerConfirmModal from '@components/layer/ConfirmModal';
+import Input from '@components/input/Input';
+import { useUpdateCoachIncentiveMutation } from '@features/coach/mutate/coach';
 
 type Props = {
   coachId: string;
@@ -37,11 +41,19 @@ const SettleMentContainer = ({ coachId, paymentSettingStore }: Props) => {
 
   const [year, setYear] = useState(today.getFullYear());
   const [month, setMonth] = useState(today.getMonth() + 1);
+  const [showLayerConfirmModal, setShowLayerConfirmModal] = useState(false);
+
   const lastDay = getDateToKoreanString(
     lastDayOfMonth(startOfDay(new Date(year, month - 1, 1))),
   );
 
+  const handleMutationSettled = () => setShowLayerConfirmModal(false);
+
   const { data } = useCoachMonthSettlementQuery(coachId, lastDay);
+  const { mutate } = useUpdateCoachIncentiveMutation(
+    coachId,
+    handleMutationSettled,
+  );
 
   const incentive = getIncentiveBySales(
     data?.settlement ?? 0,
@@ -74,6 +86,24 @@ const SettleMentContainer = ({ coachId, paymentSettingStore }: Props) => {
   const handleMonthChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
     setMonth(Number(e.target.value));
 
+  const handleSetIncentive: FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const incentive = Number(formData.get('incentive'));
+    if (isNaN(incentive)) {
+      alert('숫자만 입력해주세요.');
+      return;
+    }
+
+    if (incentive < 0) {
+      alert('0보다 큰 숫자를 입력해주세요.');
+      return;
+    }
+
+    mutate(formData);
+  };
+
   return (
     <>
       <SearchPeriodSelectRow
@@ -95,6 +125,13 @@ const SettleMentContainer = ({ coachId, paymentSettingStore }: Props) => {
         >
           {addNumberCommas(incentive)} 원
         </div>
+        <Button
+          variant="positive"
+          size="sm"
+          label="인센티브 설정하기"
+          className={css({ marginLeft: 'auto' })}
+          onClick={() => setShowLayerConfirmModal(true)}
+        />
       </InfoField>
       <Incentive
         totalSalesOption={totalSalesOption}
@@ -136,6 +173,29 @@ const SettleMentContainer = ({ coachId, paymentSettingStore }: Props) => {
         <InformationIcon fill={'var(--blue500)'} />
         {'정산내역 상세보기 >'}
       </div>
+      {showLayerConfirmModal && (
+        <LayerConfirmModal
+          formId="incentiveForm"
+          title="인센티브 설정"
+          subTitle="코치님의 개별 인센티브를 설정해주세요."
+          onCancelHandler={() => setShowLayerConfirmModal(false)}
+        >
+          <form id="incentiveForm" onSubmit={handleSetIncentive}>
+            <Input
+              type="text"
+              name="incentive"
+              placeholder="인센티브를 입력해주세요."
+              className={css({
+                width: '100%',
+                fontSize: '0.925rem',
+                border: '1px solid var(--grey300)',
+                borderRadius: '8px',
+                padding: '10px 32px 10px 12px',
+              })}
+            />
+          </form>
+        </LayerConfirmModal>
+      )}
     </>
   );
 };
