@@ -5,6 +5,7 @@ import {
   URL_COACH_DETAIL,
   URL_COACH_LESSON_LIST,
   URL_COACH_PERFORMANCE,
+  URL_COACH_UPDATE_INCENTIVE,
 } from './coach.url';
 import {
   CoachCustomersPayload,
@@ -92,3 +93,8 @@ export const getCoachPerformance = async (
     )}?startDate=${startDate}&endDate=${endDate}`,
   );
 };
+
+export const updateCoachIncentive = async (coachId: string, params: FormData) =>
+  await axios.put(`${URL_COACH_UPDATE_INCENTIVE(coachId)}`, params, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
