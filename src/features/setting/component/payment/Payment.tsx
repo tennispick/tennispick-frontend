@@ -18,6 +18,7 @@ import { FormError } from '@components/FormError';
 import { useEffect } from 'react';
 import { PaymentSettingSchema } from '@features/setting/util/zod';
 import { useUpdatePaymentSettingMutation } from '@features/setting/mutation/settingMutation';
+import { salaryRadioGroup } from '@features/setting/data/payment';
 
 export type PaymentFormSchema = z.infer<typeof PaymentSettingSchema>;
 
@@ -27,6 +28,7 @@ type Props = {
 
 const SettingPayment = ({ data }: Props) => {
   const {
+    salaryOption,
     salary,
     totalSalesOption,
     totalSales,
@@ -46,6 +48,7 @@ const SettingPayment = ({ data }: Props) => {
     formState: { errors },
   } = useForm<PaymentFormSchema>({
     defaultValues: {
+      salaryOption: salaryOption,
       salary: salary,
       totalSalesOption: totalSalesOption,
       totalSales: totalSales,
@@ -57,6 +60,8 @@ const SettingPayment = ({ data }: Props) => {
     resolver: zodResolver(PaymentSettingSchema),
   });
 
+  const isDisabledSalary =
+    useWatch({ name: 'salaryOption', control }) === 'individualSalary';
   const isDisabledTotalSales =
     useWatch({ name: 'totalSalesOption', control }) !== 'totalSalesAll';
   const isDisabledIndividualSales =
@@ -65,6 +70,13 @@ const SettingPayment = ({ data }: Props) => {
   const isDisabledSettlementRate =
     useWatch({ name: 'settlementRateOption', control }) !==
     'settlementRateApply';
+
+  useEffect(() => {
+    if (isDisabledSalary) {
+      setValue('salary', 0);
+      clearErrors('salary');
+    } else setValue('salary', salary);
+  }, [isDisabledSalary, setValue, clearErrors, salary]);
 
   useEffect(() => {
     if (isDisabledTotalSales) {
@@ -110,6 +122,20 @@ const SettingPayment = ({ data }: Props) => {
         subTitle="코치님에게 정산되는 지급 항목이에요."
       >
         <ItemRow label="기본급">
+          <Controller
+            name="salaryOption"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <RadioSelectorGroup
+                name="salaryOption"
+                checkedItem={value}
+                handleCheckedChange={(selectedValue) =>
+                  onChange(selectedValue.currentTarget.id)
+                }
+                data={salaryRadioGroup}
+              />
+            )}
+          />
           <Input
             {...register('salary')}
             type="text"
@@ -123,6 +149,7 @@ const SettingPayment = ({ data }: Props) => {
               margin: '0 0 0 8px',
             })}
             placeholder="기본급여를 입력해주세요."
+            disabled={isDisabledSalary}
           />
           {errors.salary?.message && (
             <FormError
