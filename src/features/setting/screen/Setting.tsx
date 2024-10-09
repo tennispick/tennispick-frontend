@@ -12,7 +12,7 @@ import { usePaymentSettingQuery } from '../query/settingQuery';
 import Loading from '@components/common/Loading';
 
 const SettingScreen = () => {
-  const [currentItem, setCurrentItem] = useState<number>(tabLists[0].id);
+  const [currentItem, setCurrentItem] = useState<number>(tabLists[3].id);
 
   const { data, isFetching } = usePaymentSettingQuery();
   const { mutate } = useSettingMutation();

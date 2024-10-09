@@ -1,3 +1,16 @@
+export const salaryRadioGroup = [
+  {
+    id: 'individualSalary',
+    label: '개별 적용',
+    value: 'individual',
+  },
+  {
+    id: 'salaryAll',
+    label: '일괄 적용',
+    value: 'all',
+  },
+];
+
 export const totalSalesRadioGroup = [
   {
     id: 'totalSalesNone',

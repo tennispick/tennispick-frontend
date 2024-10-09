@@ -2,20 +2,20 @@ import { z } from 'zod';
 import {
   individualSalesRadioGroup,
   insuranceRadioGroup,
+  salaryRadioGroup,
   settlementRateRadioGroup,
   totalSalesRadioGroup,
   vatRadioGroup,
 } from '../data/payment';
 
-const numberCasting = z.coerce
-  .number({ message: '숫자만 입력해주세요.' })
-  .min(1, { message: '0원 보다 큰 숫자를 입력해야 해요.' });
+const numberCasting = z.coerce.number({ message: '숫자만 입력해주세요.' });
 const enumCasting = <T extends { id: string }>(array: Array<T>) =>
   z.enum([...array.map((item) => item.id)] as [string, ...string[]]);
 
 export const PaymentSettingSchema = z
   .object({
-    salary: numberCasting,
+    salaryOption: enumCasting(salaryRadioGroup),
+    salary: numberCasting.optional(),
     totalSalesOption: enumCasting(totalSalesRadioGroup),
     totalSales: numberCasting.optional(),
     individualSalesOption: enumCasting(individualSalesRadioGroup),
@@ -28,6 +28,8 @@ export const PaymentSettingSchema = z
   .superRefine(
     (
       {
+        salaryOption,
+        salary,
         totalSalesOption,
         totalSales,
         individualSalesOption,
@@ -37,6 +39,14 @@ export const PaymentSettingSchema = z
       },
       ctx,
     ) => {
+      if (salaryOption === 'salaryAll' && salary === 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: '기본급을 입력해주세요.',
+          path: ['salary'],
+        });
+      }
+
       if (totalSalesOption === 'totalSalesAll' && !totalSales) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
