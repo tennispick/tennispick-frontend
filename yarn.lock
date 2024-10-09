@@ -6375,6 +6375,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nanoid@npm:^5.0.7":
+  version: 5.0.7
+  resolution: "nanoid@npm:5.0.7"
+  bin:
+    nanoid: bin/nanoid.js
+  checksum: a3fb1c157e3e35378f44e5a7130c70f80c9037f66c9a37285e5e3d8298e8405fcb2399baaa420980b0fe5fd9c2e4186a6a31c3526f21de03cf34c1b459871401
+  languageName: node
+  linkType: hard
+
 "nanomatch@npm:^1.2.9":
   version: 1.2.13
   resolution: "nanomatch@npm:1.2.13"
@@ -7561,6 +7570,19 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18
   checksum: 09c016213ed09771e6e0c2f85b816a52ef5dc975324fbd676d2b056dd22de7447ac3fb38997f05c92e7cecc8f14f6fa931a8cc8c24ba569e72fe621333b835b2
+  languageName: node
+  linkType: hard
+
+"react-intersection-observer@npm:^9.13.1":
+  version: 9.13.1
+  resolution: "react-intersection-observer@npm:9.13.1"
+  peerDependencies:
+    react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+  checksum: c64722db407e0ca83945bf97621ab4618fa74f3a70b528ff43988818d46feee8962bd12e70203d2d92b31030889a1f813d00e0aa3d781a7bc39fb293c277ee04
   languageName: node
   linkType: hard
 
@@ -8769,6 +8791,7 @@ __metadata:
     eslint-plugin-unused-imports: "npm:^4.0.0"
     js-cookie: "npm:^3.0.5"
     jwt-decode: "npm:^3.1.2"
+    nanoid: "npm:^5.0.7"
     next: "npm:^14.2.5"
     prettier: "npm:^3.0.3"
     react: "npm:^18.3.1"
@@ -8777,6 +8800,7 @@ __metadata:
     react-datepicker: "npm:^4.24.0"
     react-dom: "npm:^18.3.1"
     react-hook-form: "npm:^7.45.2"
+    react-intersection-observer: "npm:^9.13.1"
     react-responsive: "npm:^9.0.2"
     react-time-range: "npm:^1.0.4"
     recoil: "npm:^0.7.7"

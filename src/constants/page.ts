@@ -1,0 +1,1 @@
+export const INFINITEQUERY_PAGE_LIMIT = 15;

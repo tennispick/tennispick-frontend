@@ -6,6 +6,7 @@ import CustomerList from './CustomerList';
 import { css } from 'styled-system/css';
 import { useCustomerListQuery } from '@features/customer/query/CustomerQuery';
 import Loading from '@components/common/Loading';
+import { INFINITEQUERY_PAGE_LIMIT } from '@/constants/page';
 
 const searchOptions = [
   { label: '회원명', value: 'name' },
@@ -13,7 +14,9 @@ const searchOptions = [
 ];
 
 const CustomerDashboard = () => {
-  const { data, isLoading } = useCustomerListQuery();
+  const { data, isLoading, hasNextPage, fetchNextPage } = useCustomerListQuery({
+    limit: INFINITEQUERY_PAGE_LIMIT,
+  });
 
   const [keyword, setKeyword] = useState<string>('');
   const [searchOption, setSearchOption] = useState<string>(
@@ -26,6 +29,8 @@ const CustomerDashboard = () => {
   const handleSearchOption = (e: React.ChangeEvent<HTMLInputElement>) =>
     setSearchOption(e.target.value);
 
+  const handleFetchNextPage = () => fetchNextPage();
+
   if (isLoading || !data)
     return (
       <div className={css({ width: '65%' })}>
@@ -33,7 +38,7 @@ const CustomerDashboard = () => {
       </div>
     );
 
-  const totalCustomerCount = data.length;
+  const totalCustomerCount = data?.pages.length;
 
   return (
     <div className={css({ width: '65%', height: '100%' })}>
@@ -43,7 +48,12 @@ const CustomerDashboard = () => {
         handleChangeKeyword={handleChangeKeyword}
         handleSearchOption={handleSearchOption}
       />
-      <CustomerList data={data} keyword={keyword} />
+      <CustomerList
+        data={data?.pages}
+        keyword={keyword}
+        hasNextPage={hasNextPage}
+        handleFetchNextPage={handleFetchNextPage}
+      />
     </div>
   );
 };

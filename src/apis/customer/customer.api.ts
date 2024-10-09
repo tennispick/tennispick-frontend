@@ -10,6 +10,7 @@ import {
   URL_UPDATE_CUSTOMER_LESSON_CANCEL,
   URL_CUSTOMER_ADDITIONAL_LESSON,
   URL_CUSTOMER_DETAIL,
+  URL_CUSTOMER,
 } from './customer.url';
 import { axios } from '@utils/axios';
 import {
@@ -30,9 +31,13 @@ import { URL_DELETE_CUSTOMER_LESSON_HISTORY } from './customer.url';
 import { AxiosResponse } from 'axios';
 import { CustomerListQueryData } from '@features/customer/type/customer.type';
 
-export const getCustomerFetch = async (): Promise<
-  AxiosResponse<CustomerListQueryData[]>
-> => await axios.get('/customer');
+export const getCustomerFetch = async (params: {
+  limit: number;
+  page: number;
+}): Promise<AxiosResponse<CustomerListQueryData[]>> => {
+  const { limit, page } = params;
+  return await axios.get(`${URL_CUSTOMER}?page=${page}&limit=${limit}`);
+};
 
 export const getCustomerAllLessonList = async (
   params: Pick<CustomerLessonListApiPayload, 'id'>,

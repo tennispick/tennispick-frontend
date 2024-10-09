@@ -14,16 +14,20 @@ import Loading from '@components/common/Loading';
 import Tab from '@widgets/Tab';
 import IconButton from '@components/button/IconButton';
 import { useState } from 'react';
+import { INFINITEQUERY_PAGE_LIMIT } from '@/constants/page';
 
 const CustomerScreen = () => {
   const { Tabs, TabLists, TabList, TabPanels, TabPanel } = Tab();
-  const { isLoading, data } = useCustomerListQuery();
+
+  // TODO isFetchingNextPage Skelton
+  const { isLoading, data, hasNextPage, fetchNextPage } = useCustomerListQuery({
+    limit: INFINITEQUERY_PAGE_LIMIT,
+  });
 
   const [openModal, setOpenModal] = useState(false);
+  const handleFetchNextPage = () => fetchNextPage();
 
   if (isLoading || !data) return <Loading />;
-
-  const handleCreateCustomerClick = () => setOpenModal(true);
 
   return (
     <>
@@ -42,12 +46,16 @@ const CustomerScreen = () => {
             variant="primary"
             size="md"
             label={'회원 등록하기'}
-            onClick={handleCreateCustomerClick}
+            onClick={() => setOpenModal(true)}
           />
         </div>
         <TabPanels className={css({ height: 'calc(100% - 2.875rem - 52px)' })}>
           <TabPanel activeKey={'all'} className={css({ height: '100%' })}>
-            <CustomerList data={data} />
+            <CustomerList
+              data={data?.pages}
+              hasNextPage={hasNextPage}
+              handleFetchNextPage={handleFetchNextPage}
+            />
           </TabPanel>
         </TabPanels>
       </Tabs>
