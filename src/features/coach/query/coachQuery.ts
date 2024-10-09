@@ -28,11 +28,7 @@ export const useGetCoachListQuery = ({
   enabled = true,
 }: {
   enabled?: boolean;
-}): {
-  data: CoachListData[] | undefined;
-  isLoading?: boolean;
-  error: unknown;
-} => {
+}) => {
   return useQuery({
     queryKey: [URL_COACH],
     queryFn: async () => await getCoachList(),

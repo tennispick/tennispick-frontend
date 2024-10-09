@@ -9,6 +9,7 @@ import { numberZeroFillFormat } from '@utils/numberForm';
 import { css } from 'styled-system/css';
 import { Flex, styled } from 'styled-system/jsx';
 import { flex } from 'styled-system/patterns';
+import Loading from '@components/common/Loading';
 
 type Props = {
   formData: any;
@@ -29,6 +30,12 @@ const ScheduleDrawerInputField = ({
   const { data: coachList } = useGetCoachListQuery({});
   const { data: courtList } = useCourtListQuery({});
   const { data: lessonList } = useLessonListQuery({ type: 'all' });
+
+  if (!lessonList) return <Loading />;
+
+  const defaultLessonValue =
+    lessonList.find(({ id }) => id === formData.lesson.value)?.name ||
+    lessonList[0]?.name;
 
   return (
     <div className={css({ height: '100%' })}>
@@ -64,13 +71,7 @@ const ScheduleDrawerInputField = ({
       <InputWrapper label="수강권">
         <TextField
           name="lesson"
-          defaultValue={
-            lessonList && lessonList.length > 0
-              ? lessonList.filter(
-                  (item: any) => item.id === formData.lesson.value,
-                )[0].name
-              : []
-          }
+          defaultValue={defaultLessonValue}
           disabled={true}
         />
       </InputWrapper>
