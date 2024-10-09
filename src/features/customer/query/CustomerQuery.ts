@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import {
   CustomerLessonListQueryPayload,
   CustomerLessonHistoryQueryPayload,
@@ -21,16 +21,26 @@ import {
   URL_FETCH_CUSTOMER_LESSON_SCHEDULE_HISTORY_LIST,
   URL_CUSTOMER_ADDITIONAL_LESSON,
   URL_CUSTOMER_DETAIL,
+  URL_CUSTOMER,
 } from '@apis/customer/customer.url';
 import { createInitialData } from '@/types/response';
 import { getCustomerAdditionalLessonList } from '@apis/customer/customer.api';
 import { CustomerDetailData } from '@apis/customer/customer.type';
 
-export const useCustomerListQuery = () => {
-  return useQuery({
-    queryKey: ['customer'],
-    queryFn: async () => await getCustomerFetch(),
-    select: (data) => data?.data,
+export const useCustomerListQuery = (params: { limit: number }) => {
+  const { limit } = params;
+  return useInfiniteQuery({
+    queryKey: [URL_CUSTOMER, { limit }],
+    queryFn: ({ pageParam }) => getCustomerFetch({ limit, page: pageParam }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      const hasNextPage = lastPage?.data && lastPage.data.length >= limit;
+      return hasNextPage ? allPages.length + 1 : undefined;
+    },
+    select: ({ pages, pageParams }) => ({
+      pages: pages.flatMap((page) => page.data),
+      pageParams: pageParams,
+    }),
   });
 };
 

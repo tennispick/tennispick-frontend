@@ -2,15 +2,28 @@
 
 import { CustomerListQueryData } from '@features/customer/type/customer.type';
 import { transferSexType } from '@utils/switch';
+import { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
 
 type Props = {
   data: CustomerListQueryData[];
   keyword: string;
+  hasNextPage: boolean;
+  handleFetchNextPage: () => void;
 };
 
-const CustomerList = ({ data }: Props) => {
+const CustomerList = ({ data, hasNextPage, handleFetchNextPage }: Props) => {
+  const { ref, inView } = useInView({
+    threshold: 0.25,
+  });
+  const intersectionItemIndex = data.length - 1;
+
+  useEffect(() => {
+    inView && handleFetchNextPage();
+  }, [inView, handleFetchNextPage]);
+
   return (
     <div className={css({ height: 'calc(100% - 3.75rem - 8px)' })}>
       <Header />
@@ -37,6 +50,12 @@ const CustomerList = ({ data }: Props) => {
               </div>
             );
           },
+        )}
+        {intersectionItemIndex && (
+          <div
+            ref={hasNextPage ? ref : null}
+            className={css({ height: '1px' })}
+          ></div>
         )}
       </div>
     </div>
