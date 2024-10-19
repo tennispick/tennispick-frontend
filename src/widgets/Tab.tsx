@@ -91,7 +91,6 @@ const TabList = ({
 
   const deactiveStyle = css.raw({
     color: 'var(--deactive-color)',
-    borderBottom: '2px solid var(--white100)',
   });
 
   const handleTabePanelClick = () => {
