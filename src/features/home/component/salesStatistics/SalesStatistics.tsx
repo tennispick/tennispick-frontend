@@ -18,7 +18,7 @@ const SalesStatistics = ({ date }: Props) => {
 
   if (isFetching || !data) return null;
 
-  const [accountTransfer, card, cash, all] = data;
+  const [accountTransfer = 0, card = 0, cash = 0, all = 0] = data;
 
   return (
     <div className={css({ width: 'calc(35% - 20px)' })}>

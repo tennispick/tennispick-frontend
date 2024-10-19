@@ -27,7 +27,7 @@ const CustomerList = ({ data, hasNextPage, handleFetchNextPage }: Props) => {
   return (
     <div className={css({ height: 'calc(100% - 3.75rem - 8px)' })}>
       <Header />
-      <div className={css({ height: '100%', overflowY: 'scroll' })}>
+      <div className={css({ height: 'calc(100% - (1.5rem + 8px))', overflowY: 'scroll' })}>
         {data.map(
           ({ id, name, sex, age, birth, email, created_at, updated_at }) => {
             return (
@@ -64,7 +64,7 @@ const CustomerList = ({ data, hasNextPage, handleFetchNextPage }: Props) => {
 
 const Header = () => {
   return (
-    <div className={flex({ margin: '8px 0', '& div': { fontWeight: 600 } })}>
+    <div className={flex({ height: '1.5rem', margin: '8px 0', '& div': { fontWeight: 600 } })}>
       <div className={css({ width: '10%' })}>회원명</div>
       <div className={css({ width: '5%' })}>성별</div>
       <div className={css({ width: '10%' })}>나이</div>
