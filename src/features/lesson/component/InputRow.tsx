@@ -100,7 +100,12 @@ const ToggleInput = ({
         borderRadius: '24px',
         width: '54px',
         height: '28px',
+        border: 0,
         backgroundColor: 'var(--grey100)',
+
+        _after: {
+          display: 'none',
+        },
 
         _before: {
           content: '""',
@@ -111,7 +116,7 @@ const ToggleInput = ({
           height: '20px',
           borderRadius: '50%',
           backgroundColor: 'var(--white100)',
-          transition: 'left 300ms linear',
+          transition: 'left 0.2s linear',
         },
 
         _checked: {
