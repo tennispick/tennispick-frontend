@@ -25,6 +25,20 @@ const DaySchedule = ({ isMobile, date, coachList }: Props) => {
     endDate: nextWeekSunday,
   });
 
+  const initCoach = [{
+    id: 0,
+    name: '',
+    phone: '',
+    email: '',
+    sex: '',
+    birth: '',
+    age: '',
+    coachColor: '',
+    position: '',
+    createdAt: '',
+    updatedAt: '',
+  }];
+
   return (
     <>
       {isLoading && <Loading />}
@@ -39,7 +53,7 @@ const DaySchedule = ({ isMobile, date, coachList }: Props) => {
         <ScheduleCalendarContainer>
           <DayTitle>평일</DayTitle>
           <ScheduleTimeTable
-            coachList={coachList}
+            coachList={coachList.length === 0 ? initCoach : coachList}
             data={data}
             timeTableMapList={getDayOfWeekList(date, GET_WEEK_LIST_COUNT, true)}
           />
@@ -47,7 +61,7 @@ const DaySchedule = ({ isMobile, date, coachList }: Props) => {
         <ScheduleCalendarContainer>
           <DayTitle>주말</DayTitle>
           <ScheduleTimeTable
-            coachList={coachList}
+            coachList={coachList.length === 0 ? initCoach : coachList}
             data={data}
             timeTableMapList={getDayOfWeekList(
               date,
