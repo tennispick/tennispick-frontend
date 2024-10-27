@@ -38,6 +38,7 @@ const CustomerList = ({ data, hasNextPage, handleFetchNextPage }: Props) => {
                 >
                   <div
                     className={css({
+                      position: 'relative',
                       width: '5%',
                       minHeight: '40px',
                       textAlign: 'center',

@@ -58,7 +58,7 @@ const Login = () => {
   };
 
   return (
-    <section className={css({ width: '50%' })}>
+    <section className={css({ position: 'relative', width: '50%' })}>
       <LoginContainer>
         <LoginTitle>Ten Sports</LoginTitle>
         <form onSubmit={handleSubmit}>

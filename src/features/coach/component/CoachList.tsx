@@ -23,6 +23,7 @@ const CoachList = ({ data }: Props) => {
               <NormalList key={id} onClick={() => handleCoachDetailClick(id)}>
                 <div
                   className={css({
+                    position: 'relative',
                     width: '5%',
                     minHeight: '40px',
                     textAlign: 'center',

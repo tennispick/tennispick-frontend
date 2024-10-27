@@ -9,24 +9,20 @@ import {
   PageHeader,
   Portal,
 } from '@components/index';
-import Modal from '@components/layer/Modal';
 import IconButton from '@components/button/IconButton';
 import { EditWhiteIcon } from '@icons/index';
 import { useState } from 'react';
 import { css } from 'styled-system/css';
 import Tab from '@widgets/Tab';
 import RightSideContainer from '@components/layer/RightSideContainer';
+import useModal from '@hooks/useModal';
 
 const CourtScreen = () => {
   const { Tabs, TabLists, TabList, TabPanels, TabPanel } = Tab();
   const { isLoading, isFetching, data } = useCourtListQuery({ enabled: true });
+
   const [courtId, setCourtId] = useState<string>('');
-  const [openModal, setOpenModal] = useState<boolean>(false);
   const [showRightSide, setShowRightSide] = useState<boolean>(false);
-
-  if (isLoading || isFetching) return <Loading />;
-
-  const handleCreateCourtlClick = () => setOpenModal(true);
 
   const handleShowCourtDetailClick = (id: string) => {
     setCourtId(id);
@@ -34,6 +30,14 @@ const CourtScreen = () => {
   };
 
   const handleHideRightSideClick = () => setShowRightSide(false);
+
+  const { handleShowModal: handleShowRegularModal } = useModal({
+    type: 'md',
+    title: '코트 생성하기',
+    children: <GenerateCourtModal />,
+  });
+
+  if (isLoading || isFetching) return <Loading />;
 
   return (
     <>
@@ -52,7 +56,7 @@ const CourtScreen = () => {
             variant="primary"
             size="md"
             label={'코트 생성하기'}
-            onClick={handleCreateCourtlClick}
+            onClick={handleShowRegularModal}
             className={css({ marginLeft: 'auto' })}
           />
         </div>
@@ -65,13 +69,6 @@ const CourtScreen = () => {
           </TabPanel>
         </TabPanels>
       </Tabs>
-      {openModal && (
-        <Portal id={'portal'}>
-          <Modal title={'코트 생성'} setOpenModal={setOpenModal}>
-            <GenerateCourtModal setOpenModal={setOpenModal} />
-          </Modal>
-        </Portal>
-      )}
       {showRightSide && (
         <Portal id={'drawer'}>
           <RightSideContainer

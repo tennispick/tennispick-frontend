@@ -36,6 +36,7 @@ const DividerLine = styled('div', {
     textAlign: 'center',
 
     _before: {
+      position: 'relative',
       fontSize: '1rem',
       fontWeight: 600,
       backgroundColor: 'var(--white100)',

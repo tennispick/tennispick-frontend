@@ -79,6 +79,7 @@ const Container = styled('div', {
 
 const TitleContainer = styled('div', {
   base: {
+    position: 'relative',
     textAlign: 'center',
     color: 'var(--black100)',
     padding: '4px 0',

@@ -51,6 +51,7 @@ const RightSideContainer = ({
         </div>
         <div
           className={css({
+            position: 'relative',
             height: 'calc(100% - 48px)',
             margin: '16px 0 0 0',
           })}
