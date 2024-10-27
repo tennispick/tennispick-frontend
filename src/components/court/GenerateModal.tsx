@@ -89,7 +89,7 @@ const GenerateModal = ({ setOpenModal }: Props) => {
         iconAlt="court"
         size="full"
         label={'코트 생성하기'}
-        variant='primary'
+        variant="primary"
         className={css({ marginLeft: 'auto' })}
       />
     </form>

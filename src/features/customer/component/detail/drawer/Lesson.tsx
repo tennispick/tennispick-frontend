@@ -60,7 +60,11 @@ const DrawerLesson = ({ data }: Props) => {
 
   return (
     <>
-      <form id="customerDetailDrawerForm" onSubmit={onSubmitHandler} className={css({ height: 'calc(100% - 56px)', overflowY: 'scroll' })}>
+      <form
+        id="customerDetailDrawerForm"
+        onSubmit={onSubmitHandler}
+        className={css({ height: 'calc(100% - 56px)', overflowY: 'scroll' })}
+      >
         <DrawerInputContainer
           label="상태"
           value={LessonStatus(
@@ -71,9 +75,21 @@ const DrawerLesson = ({ data }: Props) => {
           readOnly
         />
         <DrawerInputContainer label="레슨명" value={lessonName} readOnly />
-        <DrawerInputContainer label="레슨유형" value={transferLessonType(type)} readOnly />
-        <DrawerInputContainer label="담당코치" value={coachName ?? '-'} readOnly />
-        <DrawerInputContainer label="결제날짜" value={paymentDt ?? '-'} readOnly />
+        <DrawerInputContainer
+          label="레슨유형"
+          value={transferLessonType(type)}
+          readOnly
+        />
+        <DrawerInputContainer
+          label="담당코치"
+          value={coachName ?? '-'}
+          readOnly
+        />
+        <DrawerInputContainer
+          label="결제날짜"
+          value={paymentDt ?? '-'}
+          readOnly
+        />
         <DrawerInputContainer
           label="수강현황"
           value={`${remainLessonCount}회 / ${registerAbleCount}회`}

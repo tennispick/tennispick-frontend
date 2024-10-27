@@ -20,7 +20,7 @@ import useModal from '@hooks/useModal';
 const CourtScreen = () => {
   const { Tabs, TabLists, TabList, TabPanels, TabPanel } = Tab();
   const { isLoading, isFetching, data } = useCourtListQuery({ enabled: true });
-  
+
   const [courtId, setCourtId] = useState<string>('');
   const [showRightSide, setShowRightSide] = useState<boolean>(false);
 
@@ -34,7 +34,7 @@ const CourtScreen = () => {
   const { handleShowModal: handleShowRegularModal } = useModal({
     type: 'md',
     title: '코트 생성하기',
-    children: <GenerateCourtModal />
+    children: <GenerateCourtModal />,
   });
 
   if (isLoading || isFetching) return <Loading />;

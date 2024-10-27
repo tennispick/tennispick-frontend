@@ -34,7 +34,9 @@ const CustomerList = ({ data, hasNextPage, handleFetchNextPage }: Props) => {
         })}
       >
         {data.length === 0 ? (
-          <div className={css({ textAlign: 'center', margin: '32px 0 0 0' })}>데이터가 없어요.</div>
+          <div className={css({ textAlign: 'center', margin: '32px 0 0 0' })}>
+            데이터가 없어요.
+          </div>
         ) : (
           <>
             {data.map(

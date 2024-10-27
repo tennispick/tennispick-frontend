@@ -25,19 +25,21 @@ const DaySchedule = ({ isMobile, date, coachList }: Props) => {
     endDate: nextWeekSunday,
   });
 
-  const initCoach = [{
-    id: 0,
-    name: '',
-    phone: '',
-    email: '',
-    sex: '',
-    birth: '',
-    age: '',
-    coachColor: '',
-    position: '',
-    createdAt: '',
-    updatedAt: '',
-  }];
+  const initCoach = [
+    {
+      id: 0,
+      name: '',
+      phone: '',
+      email: '',
+      sex: '',
+      birth: '',
+      age: '',
+      coachColor: '',
+      position: '',
+      createdAt: '',
+      updatedAt: '',
+    },
+  ];
 
   return (
     <>

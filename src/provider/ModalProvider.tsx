@@ -21,10 +21,13 @@ const ModalProvider = () => {
 
   const isOverlay = type === 'overlay';
 
-  const middleStyle = type !== 'full' ? css({
-    padding: 0,
-    textAlign: 'center',
-  }) : ''
+  const middleStyle =
+    type !== 'full'
+      ? css({
+          padding: 0,
+          textAlign: 'center',
+        })
+      : '';
 
   return (
     <Provider>
@@ -37,7 +40,10 @@ const ModalProvider = () => {
               alt={'close button'}
               width={28}
               height={28}
-              style={{ margin: type !== 'full' ? '' : '0 24px 0 0', cursor: 'pointer' }}
+              style={{
+                margin: type !== 'full' ? '' : '0 24px 0 0',
+                cursor: 'pointer',
+              }}
               onClick={handleCloseModal}
             />
           </TitleContainer>

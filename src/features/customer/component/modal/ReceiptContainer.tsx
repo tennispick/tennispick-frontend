@@ -44,7 +44,9 @@ const CustomerModalReceiptContainer = ({
   onClickRefundHandler,
 }: Props) => {
   return (
-    <div className={css({ position: 'relative', width: '30%', height: '100%' })}>
+    <div
+      className={css({ position: 'relative', width: '30%', height: '100%' })}
+    >
       {
         {
           payment: (
