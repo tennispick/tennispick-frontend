@@ -6,6 +6,7 @@ import CancelBtnIcon from '@icons/cancel_black_btn.svg';
 import Image from 'next/image';
 import { styled } from 'styled-system/jsx';
 import { modal } from '@/recipes/modal';
+import { css } from 'styled-system/css';
 
 const ModalProvider = () => {
   const {
@@ -20,18 +21,23 @@ const ModalProvider = () => {
 
   const isOverlay = type === 'overlay';
 
+  const middleStyle = type !== 'full' ? css({
+    padding: 0,
+    textAlign: 'center',
+  }) : ''
+
   return (
     <Provider>
       <Container type={type}>
         {!isOverlay && title && (
           <TitleContainer>
-            <Title>{title}</Title>
+            <Title className={middleStyle}>{title}</Title>
             <Image
               src={CancelBtnIcon}
               alt={'close button'}
               width={28}
               height={28}
-              style={{ margin: '0 24px 0 0', cursor: 'pointer' }}
+              style={{ margin: type !== 'full' ? '' : '0 24px 0 0', cursor: 'pointer' }}
               onClick={handleCloseModal}
             />
           </TitleContainer>
@@ -72,7 +78,6 @@ const Title = styled('div', {
   base: {
     color: 'var(--business-color)',
     fontSize: '1.2rem',
-    padding: '0 0 0 24px',
     fontWeight: 600,
   },
 });

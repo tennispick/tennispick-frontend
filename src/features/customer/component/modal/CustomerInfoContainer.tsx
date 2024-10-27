@@ -86,6 +86,7 @@ const CustomerModalCustomerInfoContainer = ({
       </div>
       <div
         className={css({
+          position: 'relative',
           width: '30%',
           height: '130px',
           borderBottom: '1px solid var(--grey100)',

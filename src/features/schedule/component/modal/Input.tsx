@@ -29,6 +29,7 @@ const ScheduleModalInput = ({
   return (
     <div
       className={flex({
+        position: 'relative',
         alignItems: 'center',
         gap: type !== 'text' ? '6px' : 0,
         margin: type !== 'text' ? '0 16px 0 0' : '',

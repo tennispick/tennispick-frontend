@@ -9,7 +9,7 @@ type Props = {
 
 const ScheduleModalRecentHistoryModalHeader = ({ handleCloseModal }: Props) => {
   return (
-    <Flex>
+    <Flex className={css({ position: 'relative' })}>
       <div className={css({ margin: '0 0 28px 0' })}>
         <div
           className={css({

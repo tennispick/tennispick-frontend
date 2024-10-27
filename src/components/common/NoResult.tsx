@@ -27,6 +27,7 @@ const NoResult = ({ description, margin = '0', ...rest }: Props) => {
 
 const Container = styled('div', {
   base: {
+    position: 'relative',
     width: '100%',
     height: '100%',
     backgroundColor: 'var(--grey400)',

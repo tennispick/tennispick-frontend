@@ -53,7 +53,6 @@ export const globalStyles = defineGlobalStyles({
     src: `url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')format('woff')`,
   },
   '*, *:after, *:before': {
-    position: 'relative',
     boxSizing: 'border-box',
     fontFamily: `'Pretendard-Regular', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif`,
     fontWeight: 400,
@@ -102,6 +101,7 @@ export const globalStyles = defineGlobalStyles({
     color: 'inherit',
   },
   input: {
+    position: 'relative',
     margin: 0,
 
     _focus: {

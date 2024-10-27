@@ -23,6 +23,7 @@ const CONTAINER_VARIANT_STYLE = cva({
     variant: {
       default: {},
       labelBox: {
+        position: 'relative',
         margin: '0 auto 24px auto',
         border: '1px solid var(--grey100)',
         borderRadius: '4px',

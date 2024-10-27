@@ -2,14 +2,15 @@ import { Dispatch, FormEvent, SetStateAction } from 'react';
 import { useRouter } from 'next/navigation';
 
 import useInput from '@hooks/useInput';
-import { Button, Input } from '@components/index';
+import { Input } from '@components/index';
 import { generateCourt } from '@queries/index';
 import { EditWhiteIcon } from '@icons/index';
 import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';
+import IconButton from '@components/button/IconButton';
 
 type Props = {
-  setOpenModal: Dispatch<SetStateAction<boolean>>;
+  setOpenModal?: Dispatch<SetStateAction<boolean>>;
 };
 
 const GenerateModal = ({ setOpenModal }: Props) => {
@@ -48,7 +49,7 @@ const GenerateModal = ({ setOpenModal }: Props) => {
       const { data } = await generateCourt(formData);
       if (data.affectedRows > 0) {
         alert('생성이 완료되었습니다.');
-        setOpenModal(false);
+        setOpenModal?.(false);
         router.refresh();
       }
     } else return false;
@@ -81,20 +82,15 @@ const GenerateModal = ({ setOpenModal }: Props) => {
           onChange={onChangeFormData}
         />
       </InputWrapper>
-      <Button
-        type={'submit'}
-        variant={'iconBtn'}
+      <IconButton
+        type="submit"
+        iconAlign="left"
+        iconSrc={EditWhiteIcon}
+        iconAlt="court"
+        size="full"
         label={'코트 생성하기'}
-        src={EditWhiteIcon}
-        className={css({
-          width: '100%',
-          justifyContent: 'center',
-          border: 0,
-          backgroundColor: 'var(--business-sub-color)',
-          color: 'var(--white100)',
-          padding: '12px 16px',
-          margin: '96px 0 0 0',
-        })}
+        variant='primary'
+        className={css({ marginLeft: 'auto' })}
       />
     </form>
   );
@@ -115,6 +111,7 @@ const TextField = styled(Input.TextField, {
     width: '60%',
     padding: '10px 0 10px 10px',
     margin: '12px 0 0 0',
+    height: 'calc(0.95rem * 2.725)',
   },
 });
 
