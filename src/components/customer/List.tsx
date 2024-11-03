@@ -39,18 +39,18 @@ const CustomerList = ({ data, hasNextPage, handleFetchNextPage }: Props) => {
                   <div
                     className={css({
                       position: 'relative',
-                      width: '5%',
-                      minHeight: '40px',
+                      padding: '0 8px',
                       textAlign: 'center',
                     })}
                   >
                     <Image
                       src={sex === 'man' ? ProfileManIcon : ProfileWomanIcon}
                       alt={'profile'}
-                      fill
+                      width={40}
+                      height={40}
                     />
                   </div>
-                  <div className={css({ width: '70%' })}>
+                  <div className={css({ width: '70%', padding: '0 8px' })}>
                     <div className={css({ fontWeight: 600 })}>
                       {name} &#40;{age}, {sex === 'man' ? '남' : '여'}&#41;
                     </div>
