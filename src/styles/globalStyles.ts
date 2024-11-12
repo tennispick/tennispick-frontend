@@ -4,6 +4,7 @@ export const globalStyles = defineGlobalStyles({
   ':root': {
     '--business-color': 'rgba(41, 77, 97, 100);', // #294D61
     '--business-sub-color': 'rgba(101, 165, 185, 100)',
+    '--white': 'rgba(255, 255, 255, 100)', // #FFFFFF
     '--white100': 'rgba(254, 254, 254, 100)', // #FEFEFE
     '--red100': 'rgba(250, 8, 95, 100)',
     '--red200': 'rgba(250, 86, 95, 100)', // #FA565F
@@ -36,12 +37,14 @@ export const globalStyles = defineGlobalStyles({
     '--grey200': 'rgba(234, 234, 234, 100)', // #EAEAEA
     '--grey300': 'rgba(206, 206, 206, 100)', // #CECECE
     '--grey400': 'rgba(248, 248, 248, 100)', // #F8F8F8
+    '--grey450': 'rgba(245, 245, 245, 100)', // #F5F5F5
     '--grey500': 'rgba(243, 243, 243, 100)', // #F3F3F3
     '--grey600': 'rgba(249, 249, 249, 100)', // #F9F9F9
     '--grey800': 'rgba(174, 174, 174, 100)', // #AEAEAE
     '--grey1000': 'rgba(146, 146, 146, 100)', // #929292
     '--grey1500': 'rgba(102, 102, 102, 100)', // #666666
     '--grey1600': 'rgba(98, 98, 98, 100)', // #626262
+    '--grey1700': 'rgba(80, 90, 96, 100)', // #565A60
     '--business-active-color': 'rgba(101, 165, 185, 100)', // #65A5B9
     '--deactive-color': 'rgba(204, 204, 204, 100)', // #CCCCCC
   },
@@ -76,7 +79,7 @@ export const globalStyles = defineGlobalStyles({
   'html, body': {
     width: '100%',
     height: 'auto',
-    fontSize: '16px',
+    fontSize: '15px',
     color: `var(--black100)`,
   },
   '*, html, body': {
