@@ -1,4 +1,4 @@
-import CoachDetailScreen from '@features/coach/screen/CoachDetail';
+import CoachDetailScreen from 'app/src/features/coach/screen/CoachDetail';
 
 const CoachDetailPage = ({ params }: { params: { slug: string } }) => {
   const { slug } = params;

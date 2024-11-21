@@ -1,5 +1,5 @@
-import LoginScreen from '@features/login/screen/Login';
+import LoginPage from "app/src/pages/Login";
 
-const Login = () => <LoginScreen />;
+const Login = () => <LoginPage />;
 
 export default Login;

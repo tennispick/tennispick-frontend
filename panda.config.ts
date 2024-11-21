@@ -1,6 +1,6 @@
 import { defineConfig } from '@pandacss/dev';
-import { keyframes } from '@styles/animation';
-import { globalStyles } from '@styles/globalStyles';
+import { keyframes } from 'app/src/styles/animation';
+import { globalStyles } from 'app/src/styles/globalStyles';
 
 export default defineConfig({
   // Whether to use css reset

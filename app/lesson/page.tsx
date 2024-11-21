@@ -1,4 +1,4 @@
-import LessonScreen from '@features/lesson/screen/Lesson';
+import LessonScreen from 'app/src/features/lesson/screen/Lesson';
 
 const LessonPage = () => {
   return <LessonScreen />;

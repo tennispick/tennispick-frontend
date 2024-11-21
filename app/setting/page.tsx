@@ -1,7 +1,5 @@
-import SettingScreen from '@features/setting/screen/Setting';
+import SettingScreen from 'app/src/features/setting/screen/Setting';
 
-const SettingPage = () => {
-  return <SettingScreen />;
-};
+const SettingPage = () => <SettingScreen />;
 
 export default SettingPage;

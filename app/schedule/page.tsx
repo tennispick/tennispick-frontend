@@ -1,4 +1,4 @@
-import ScheduleScreen from '@features/schedule/screen/Schedule';
+import ScheduleScreen from 'app/src/features/schedule/screen/Schedule';
 
 const SchedulePage = () => {
   return <ScheduleScreen />;

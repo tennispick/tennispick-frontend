@@ -1,4 +1,4 @@
-import CommunityScreen from '@features/community/screen/Community';
+import CommunityScreen from 'app/src/features/community/screen/Community';
 
 const CommunityPage = () => {
   return <CommunityScreen />;

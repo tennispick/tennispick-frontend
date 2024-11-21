@@ -1,11 +1,13 @@
+import '@styles/globals.css'
+
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { PropsWithChildren } from 'react';
-import QueryProvider from 'src/provider/QueryProvider';
-import RecoilProvider from 'src/provider/RecoilProvider';
+import QueryProvider from 'app/src/app/provider/QueryProvider';
+import RecoilProvider from 'app/src/app/provider/RecoilProvider';
 import './global.css';
-import '@styles/react-date-picker.css';
-import AppLayout from '@components/layout/AppLayout';
-import ModalProvider from 'src/provider/ModalProvider';
+import './src/styles/react-date-picker.css';
+import AppLayout from 'app/src/components/layout/AppLayout';
+import ModalProvider from 'app/src/app/provider/ModalProvider';
 
 export default async function RootLayout({ children }: PropsWithChildren) {
   return (

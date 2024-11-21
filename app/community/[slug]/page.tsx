@@ -1,4 +1,4 @@
-import CommunityDetailScreen from '@features/community/screen/CommunityDetail';
+import CommunityDetailScreen from 'app/src/features/community/screen/CommunityDetail';
 
 const CommunityDetailPage = ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
