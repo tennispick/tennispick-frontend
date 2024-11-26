@@ -1,6 +1,5 @@
 import { getCookie } from 'app/src/shared/lib/cookie';
 import axios from 'axios';
-import { getToken } from './token/getToken';
 
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -11,13 +10,10 @@ const instance = axios.create({
 instance.interceptors.request.use(
   async (config) => {
     const contentType = config.headers['Content-Type'];
-    // const accessToken = getCookie('userACT');
-    const accessToken = await getToken();
-
-    console.log(accessToken);
+    const accessToken = getCookie('userACT');
 
     config.headers['Content-type'] = contentType ?? 'application/json';
-    config.headers['Authorization'] = `Bearer ${accessToken}`;
+    if (accessToken) config.headers['Authorization'] = `Bearer ${accessToken}`;
     return config;
   },
   (error) => {

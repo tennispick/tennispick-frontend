@@ -1,13 +1,13 @@
 import { useHomeCustomerStatisticsQuery } from 'app/src/entities/home/hooks/customer-statistics';
 import Cards from './Cards';
+import { Skeleton } from '@/components/ui/skeleton';
 
 type Props = { date: Date };
 
 const CustomerChart = ({ date }: Props) => {
-  console.log("커스터머 차트 호출");
-  const { data, isFetching } = useHomeCustomerStatisticsQuery(date);
+  const { data } = useHomeCustomerStatisticsQuery(date);
 
-  console.log(data);
+  if (!data) return <Skeleton className="w-full h-full" />;
 
   return (
     <Cards data={data} />

@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import trendingUpIcon from '@icons/trending_up.svg';
 import trendingDownIcon from '@icons/trending_down.svg';
-import { css } from 'styled-system/css';
-import { Flex } from 'styled-system/jsx';
 
 type ChartChangeType = 'Up' | 'Down' | 'NoChange';
 
@@ -15,9 +13,9 @@ type Props = {
 
 const Card = ({ title, subTitle, chartType, content }: Props) => {
   const chartTypeColor = {
-    Up: 'var(--red200)',
-    Down: 'var(--blue100)',
-    NoChange: 'var(--gray500)',
+    Up: 'text-[var(--red200)]',
+    Down: 'text-[var(--blue100)]',
+    NoChange: 'text-[var(--gray500)]',
   };
 
   const chartTypePrefix = {
@@ -33,31 +31,15 @@ const Card = ({ title, subTitle, chartType, content }: Props) => {
   };
 
   return (
-    <div
-      className={css({
-        width: '200px',
-        flex: '0 0 auto',
-        backgroundColor: 'var(--grey400)',
-        borderRadius: '8px',
-        padding: '16px',
-        margin: '0 12px 0 0',
-      })}
-    >
-      <div className={css({ fontSize: '0.875rem', fontWeight: 600 })}>
-        {title}
-      </div>
-      <div className={css({ fontSize: '0.75rem', margin: '8px 0 20px 0' })}>
-        {subTitle}
-      </div>
-      <Flex justify={'space-between'}>
-        <div
-          className={css({
-            fontWeight: 600,
-            color: chartTypeColor[chartType],
-          })}
-        >{`${chartTypePrefix[chartType]} ${content}`}</div>
+    <div className="w-[200px] flex-none bg-[var(--grey400)] py-3 mr-4 border-r border-[#F4F4F4]">
+      <div className="text-sm font-semibold">{title}</div>
+      <div className="text-xs my-2 mb-5">{subTitle}</div>
+      <div className="flex justify-between">
+        <div className={`font-semibold ${chartTypeColor[chartType]}`}>
+          {`${chartTypePrefix[chartType]} ${content}`}
+        </div>
         {chartType !== 'NoChange' && (
-          <div className={css({ width: '20px', height: '20px' })}>
+          <div className="w-5 h-5">
             <Image
               src={chartTypeImage[chartType]}
               alt="arrow"
@@ -66,7 +48,7 @@ const Card = ({ title, subTitle, chartType, content }: Props) => {
             />
           </div>
         )}
-      </Flex>
+      </div>
     </div>
   );
 };

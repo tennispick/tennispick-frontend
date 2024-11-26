@@ -3,15 +3,16 @@ import Card from './Card';
 import { css } from 'styled-system/css';
 import { addNumberCommas } from 'app/src/utils/numberForm';
 import { useHomeSalesStatisticsQuery } from 'app/src/entities/home/hooks/customer-statistics';
+import { Skeleton } from '@/components/ui/skeleton';
 
 type Props = {
   date: Date;
 };
 
 const SalesChart = ({ date }: Props) => {
-  const { isFetching, data } = useHomeSalesStatisticsQuery(date);
+  const { data } = useHomeSalesStatisticsQuery(date);
 
-  if (isFetching || !data) return null;
+  if (!data) return <Skeleton className="w-full h-full" />;
 
   const { currentCustomer, totalSalesPrice } = data;
   const { lastMonth, thisMonth } = currentCustomer;
@@ -23,17 +24,11 @@ const SalesChart = ({ date }: Props) => {
   };
 
   return (
-    <div className={css({ width: 'calc(35% - 20px)' })}>
-      <div
-        className={css({
-          margin: '0 0 16px 0',
-          fontSize: '1.25rem',
-          fontWeight: 600,
-        })}
-      >
+    <div className="w-[calc(35%-20px)]">
+      <div className="text-xl font-semibold">
         매출 통계
       </div>
-      <Flex>
+      <div className="flex">
         <Card
           title={'이번 달 매출금액'}
           subTitle={'1개월 전보다'}
@@ -46,7 +41,7 @@ const SalesChart = ({ date }: Props) => {
           chartType={'NoChange'}
           content={`${addNumberCommas(totalSalesPrice.paymentPrice)} 원`}
         />
-      </Flex>
+      </div>
     </div>
   );
 };

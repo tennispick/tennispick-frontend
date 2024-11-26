@@ -1,8 +1,7 @@
-'use client';
-
+import { CustomerStatistics } from '@/entities/home/type/customer-statistics';
 import Card from './Card';
 
-const Cards = ({ data }: { data: any }) => {
+const Cards = ({ data }: { data: CustomerStatistics }) => {
   const { currentCustomer, expiredCustomer, newCustomer, reRegisterRate } =
     data;
 
@@ -11,7 +10,7 @@ const Cards = ({ data }: { data: any }) => {
     expiredCustomer.lastMonthExpiredCustomerCount;
   return (
     <div className="w-[65%]">
-      <div className="mb-4 text-xl font-semibold">
+      <div className="text-xl font-semibold">
         회원 통계
       </div>
       <div className="flex overflow-x-auto">

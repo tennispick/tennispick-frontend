@@ -16,8 +16,8 @@ const NavigationHeader = ({
   const month = initialDate.getMonth() + 1;
 
   return (
-    <div className="h-10 flex items-center">
-      <div className="text-2xl mr-2">{`${year}년 ${month}월`}</div>
+    <div className="h-7 flex items-center">
+      <div className="text-xl mr-2">{`${year}년 ${month}월`}</div>
       <div className="flex gap-2 mx-3">
         <ArrowLeftButton
           className="cursor-pointer hover:opacity-70"
