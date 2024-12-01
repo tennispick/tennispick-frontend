@@ -57,27 +57,27 @@ export const globalStyles = defineGlobalStyles({
     fontFamily: `'Pretendard-Regular', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif`,
     fontWeight: 400,
     lineHeight: 'normal',
-    sm: {
-      fontSize: '10px',
-    },
-    md: {
-      fontSize: '12px',
-    },
-    lg: {
-      fontSize: '12px',
-    },
-    xl: {
-      fontSize: '14px',
-    },
-    '2xl': {
-      fontSize: '16px',
-    },
+    fontSize: '13px',
+    // sm: {
+    //   fontSize: '10px',
+    // },
+    // md: {
+    //   fontSize: '12px',
+    // },
+    // lg: {
+    //   fontSize: '12px',
+    // },
+    // xl: {
+    //   fontSize: '14px',
+    // },
+    // '2xl': {
+    //   fontSize: '16px',
+    // },
   },
   'html, body': {
     width: '100%',
     height: 'auto',
-    fontSize: '16px',
-    color: `var(--black100)`,
+    color: 'var(--black100)',
   },
   '*, html, body': {
     '::-webkit-scrollbar': {

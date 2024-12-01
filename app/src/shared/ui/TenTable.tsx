@@ -1,19 +1,16 @@
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "app/src/components/ui/table";
-import useTable from "../hooks/useTable";
+import { Table, TableBody } from "app/src/components/ui/table";
+import useTable, { UseTableOptions } from "../hooks/useTable";
+import { TableRowItem } from "../types/table";
 
-type Props = {
-  data: [],
-  columns: any[],
-}
-
-const TenTable = ({ data, columns }: Props) => {
+const TenTable = <T extends TableRowItem>({
+  data,
+  columns
+}: UseTableOptions<T>) => {
 
   const table = useTable({
     data,
     columns
   })
-
-  console.log(table);
 
   return (
     <Table>

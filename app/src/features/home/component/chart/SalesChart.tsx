@@ -24,7 +24,7 @@ const SalesChart = ({ date }: Props) => {
   };
 
   return (
-    <div className="w-[calc(35%-20px)]">
+    <div>
       <div className="text-xl font-semibold">
         매출 통계
       </div>

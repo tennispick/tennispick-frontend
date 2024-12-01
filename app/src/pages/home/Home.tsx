@@ -19,17 +19,20 @@ const HomeScreen = () => {
     setDate((prev) => new Date(prev.getFullYear(), prev.getMonth() + 1));
 
   return (
-    <div className="relative h-full">
-      <NavigationHeader
-        date={date}
-        handlePrevClick={handlePrevClick}
-        handleNextClick={handleNextClick}
-      />
-      <div className="flex py-4 mb-6 gap-5 border-b border-[#DEDEDE]">
-        <CustomerChart date={date} />
-        <SalesChart date={date} />
+    <div>
+      <div className="bg-white rounded-lg p-6">
+        <NavigationHeader
+          date={date}
+          handlePrevClick={handlePrevClick}
+          handleNextClick={handleNextClick}
+        />
+        <div className="h-[140px] flex gap-5 mt-4">
+          <CustomerChart date={date} />
+          <SalesChart date={date} />
+        </div>
       </div>
-      <div className="flex h-[calc(100%-248px)] gap-5">
+      <div className="h-[calc(100%-248px)] bg-white p-6 rounded-lg mt-3">
+        <CustomerDashboard />
         {/* <CustomerDashboard />
         <SalesStatistics date={date} /> */}
       </div>

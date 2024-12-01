@@ -33,16 +33,15 @@ const AppLayout = ({ children }: PropsWithChildren) => {
       {firstPathName === 'login' ? (
         <>{children}</>
       ) : (
-        <div className="relative w-screen h-screen">
+        <div className="relative w-screen min-h-screen">
           <AppHeader name={name} account={account} />
-          <div className="relative flex h-[calc(100%-60px)] bg-[#F8F8F8]">
+          <div className="relative h-[calc(100vh-60px)] flex bg-[#F8F8F8]">
             <NavigationLayout
               firstPathName={firstPathName ?? ''}
             />
-            <main className="relative p-3 w-full">
-              <div className="relative w-full h-full bg-white rounded-lg p-6">
-                {children}
-              </div>
+            {/* TODO 글로벌 스택에 쌓아놓고, 그게 또 path가 있으면 width 조절 */}
+            <main className="relative m-3 w-full h-[calc(100%-12px)] rounded-lg overflow-y-scroll">
+              {children}
             </main>
           </div>
         </div>

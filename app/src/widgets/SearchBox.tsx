@@ -1,6 +1,4 @@
-import { css } from 'styled-system/css';
-import { styled } from 'styled-system/jsx';
-import { flex } from 'styled-system/patterns';
+import { twMerge } from 'tailwind-merge';
 
 type Options = {
   label: string;
@@ -21,21 +19,16 @@ const SearchBox = ({
   handleSearchOption,
 }: Props) => {
   return (
-    <div
-      className={flex({
-        alignItems: 'center',
-        gap: '0.5rem',
-      })}
-    >
+    <div className="flex items-center gap-2">
       {searchOptions?.map(({ label, value }) => {
         return (
-          <div key={label} className={flex({ alignItems: 'center' })}>
+          <div key={label} className="flex items-center">
             <input
               type="radio"
               id={value}
               name={'searchOption'}
               value={value}
-              className={css({ margin: '0 8px 0 0' })}
+              className="m-0 mr-2"
               checked={searchOption === value}
               onChange={handleSearchOption}
             />
@@ -43,37 +36,16 @@ const SearchBox = ({
           </div>
         );
       })}
-      <SearchInput
+      <input
         type="text"
         placeholder={'검색어를 입력해주세요.'}
-        css={{
-          height: '40px',
-          border: '1px solid var(--grey300)',
-        }}
+        className="min-w-[320px] h-10 text-sm rounded-lg px-3 py-1.5 ml-2 border border-[#D1D5DB] 
+          placeholder:pl-6 placeholder:bg-[url('/icons/search_black_icon.svg')] placeholder:bg-no-repeat placeholder:bg-left 
+          placeholder:bg-[length:16px] placeholder:bg-[4px_center]"
         onChange={handleChangeKeyword}
       />
     </div>
   );
 };
-
-const SearchInput = styled('input', {
-  base: {
-    minWidth: '320px',
-    fontSize: '0.9rem',
-    borderRadius: '8px',
-    padding: '6px 32px 6px 12px',
-    margin: '0 0 0 8px',
-
-    '&::placeholder': {
-      padding: '0 0 0 24px',
-      backgroundImage: 'url(/icons/search_black_icon.svg)',
-      backgroundSize: '',
-      backgroundPosition: '1px center',
-      backgroundRepeat: 'no-repeat',
-      textAlign: 'left',
-      textIndent: '0',
-    },
-  },
-});
 
 export default SearchBox;

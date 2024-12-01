@@ -9,7 +9,7 @@ const Cards = ({ data }: { data: CustomerStatistics }) => {
     expiredCustomer.thisMonthExpiredCustomerCount -
     expiredCustomer.lastMonthExpiredCustomerCount;
   return (
-    <div className="w-[65%]">
+    <div>
       <div className="text-xl font-semibold">
         회원 통계
       </div>

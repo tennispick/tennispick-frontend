@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import DashboardHeader from './DashboardHeader';
 import CustomerList from './CustomerList';
-import { css } from 'styled-system/css';
 import { useCustomerListQuery } from 'app/src/features/customer/query/CustomerQuery';
 import Loading from 'app/src/components/common/Loading';
 import { INFINITEQUERY_PAGE_LIMIT } from 'app/src/constants/page';
@@ -33,7 +32,7 @@ const CustomerDashboard = () => {
 
   if (isLoading || !data)
     return (
-      <div className={css({ width: '65%' })}>
+      <div className="w-full h-full">
         <Loading />
       </div>
     );
@@ -41,7 +40,7 @@ const CustomerDashboard = () => {
   const totalCustomerCount = data?.pages.length;
 
   return (
-    <div className={css({ width: '65%', height: '100%' })}>
+    <div className="w-full h-full">
       <DashboardHeader
         totalCount={totalCustomerCount}
         searchOption={searchOption}

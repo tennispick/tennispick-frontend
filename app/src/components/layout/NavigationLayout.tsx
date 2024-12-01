@@ -29,8 +29,8 @@ const NavigationLayout = ({ firstPathName }: Props) => {
   };
 
   return (
-    <div className="relative w-[240px] h-full bg-white">
-      <ul className="relative p-[10px] h-[calc(100%-250px)] overflow-y-scroll">
+    <div className="relative w-[240px] bg-white">
+      <ul className="relative p-[10px] overflow-y-scroll">
         {NavigationList.map((item) => (
           <li
             key={item.id}
@@ -45,14 +45,14 @@ const NavigationLayout = ({ firstPathName }: Props) => {
           </li>
         ))}
       </ul>
-      {/* <div className="relative h-[250px]">
+      <div className="relative h-[250px]">
         {!isMobile && (
           <Calendar
             // className={!isNavSpread ? 'hidden' : ''}
             handleClick={handleDateClick}
           />
         )}
-      </div> */}
+      </div>
       {openModal && (
         <Portal id={'portal'}>
           <Modal

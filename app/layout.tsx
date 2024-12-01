@@ -5,7 +5,7 @@ import { PropsWithChildren } from 'react';
 import QueryProvider from 'app/src/app/provider/QueryProvider';
 import RecoilProvider from 'app/src/app/provider/RecoilProvider';
 import './global.css';
-import './src/styles/react-date-picker.css';
+// import './src/styles/react-date-picker.css';
 import AppLayout from 'app/src/components/layout/AppLayout';
 import ModalProvider from 'app/src/app/provider/ModalProvider';
 

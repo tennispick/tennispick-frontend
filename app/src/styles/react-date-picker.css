@@ -20,6 +20,7 @@
 
 .react-datepicker {
   border: 1px solid var(--grey300) !important;
+  background-color: red;
 }
 
 .react-datepicker__month-container {
