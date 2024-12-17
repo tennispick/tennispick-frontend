@@ -13,9 +13,8 @@
   "eslint.workingDirectories": [
     {
       "pattern": "./apps/*/"
-    },
+    }
   ],
   "typescript.tsdk": ".yarn/sdks/typescript/lib",
-  "eslint.codeActionsOnSave.mode": "all",
-
+  "eslint.codeActionsOnSave.mode": "all"
 }

@@ -1,13 +1,13 @@
-import '@styles/globals.css'
+import '@styles/globals.css';
 
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { PropsWithChildren } from 'react';
-import QueryProvider from 'app/src/app/provider/QueryProvider';
-import RecoilProvider from 'app/src/app/provider/RecoilProvider';
+import QueryProvider from 'src/app/provider/QueryProvider';
+import RecoilProvider from 'src/app/provider/RecoilProvider';
 import './global.css';
-// import './src/styles/react-date-picker.css';
-import AppLayout from 'app/src/components/layout/AppLayout';
-import ModalProvider from 'app/src/app/provider/ModalProvider';
+import '../src/이전 파일들/styles/react-date-picker.css';
+import AppLayout from '@/app/layout/AppLayout';
+import ModalProvider from 'src/app/provider/ModalProvider';
 
 export default async function RootLayout({ children }: PropsWithChildren) {
   return (

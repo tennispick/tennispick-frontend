@@ -1,4 +1,4 @@
-import LoginPage from "app/src/pages/Login";
+import LoginPage from '@/screens/Login';
 
 const Login = () => <LoginPage />;
 
