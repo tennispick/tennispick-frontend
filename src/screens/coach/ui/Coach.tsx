@@ -17,7 +17,7 @@ const CoachScreen = () => {
     pageSize: DEFAULT_PAGE_SIZE,
   });
 
-  const handleRowSelection = (row: Coach) => router.push(`/coach/${row.id}`);
+  const handleRowClick = (row: Coach) => router.push(`/coach/${row.id}`);
 
   if (isLoading || !data) return <Loading />;
 
@@ -27,7 +27,7 @@ const CoachScreen = () => {
         <TenTable
           data={data?.pages}
           columns={columns}
-          rowSelection={handleRowSelection}
+          handleRowClick={handleRowClick}
         />
       </Section>
     </Body>

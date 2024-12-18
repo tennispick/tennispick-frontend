@@ -22,7 +22,7 @@ const CustomerScreen = () => {
 
   const handleFetchNextPage = () => fetchNextPage();
 
-  const handleRowSelection = (row: Customer) =>
+  const handleRowClick = (row: Customer) =>
     router.push(`/customer/${row.id}`);
 
   if (isLoading || !data) return <Loading />;
@@ -33,7 +33,7 @@ const CustomerScreen = () => {
         <TenTable
           data={data?.pages}
           columns={columns}
-          rowSelection={handleRowSelection}
+          handleRowClick={handleRowClick}
         />
       </Section>
 

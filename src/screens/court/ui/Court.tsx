@@ -27,7 +27,7 @@ export const CourtScreen = () => {
         <TenTable
           data={data?.pages}
           columns={columns}
-          rowSelection={handleRowClick}
+          handleRowClick={handleRowClick}
         />
       </Section>
       <TenDrawer

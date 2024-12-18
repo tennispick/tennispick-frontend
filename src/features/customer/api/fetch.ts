@@ -3,7 +3,7 @@ import { FSDResponse } from '@/shared/lib/axios/response';
 import { Coach } from '@/shared/types/coach';
 import { axios } from '@/이전 파일들/utils/axios';
 
-export const getCoach = async (
+export const getCoachs = async (
   params?: Record<string, any>,
 ): Promise<FSDResponse<Coach[]>> => {
   const response = await axios.get(URL_COACH, { params: params });

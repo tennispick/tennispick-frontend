@@ -10,7 +10,7 @@ import { cn } from '@/이전 파일들/lib/utils';
 export type UseTableOptions<T extends TableRowItem> = {
   data: T[];
   columns: Columns<T>;
-  rowSelection?: (row: T) => void;
+  handleRowClick?: (row: T) => void;
 };
 
 type UseTable = <T extends TableRowItem>(
@@ -20,7 +20,7 @@ type UseTable = <T extends TableRowItem>(
   getRows: () => React.ReactNode;
 };
 
-const useTable: UseTable = ({ data, columns, rowSelection }) => {
+const useTable: UseTable = ({ data, columns, handleRowClick }) => {
   return {
     getHeaderGroups: () => {
       return (
@@ -42,9 +42,9 @@ const useTable: UseTable = ({ data, columns, rowSelection }) => {
         <TableRow
           key={row.id}
           className={cn({
-            'cursor-pointer': rowSelection,
+            'cursor-pointer': handleRowClick,
           })}
-          onClick={() => rowSelection?.(row)}
+          onClick={() => handleRowClick?.(row)}
         >
           {columns.map((column) => (
             <TableCell key={column.accessorKey}>{column.cell(row)}</TableCell>

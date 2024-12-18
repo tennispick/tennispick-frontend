@@ -1,7 +1,5 @@
-import CommunityScreen from '@/이전 파일들/features/community/screen/Community';
+import { CommunityScreen } from "@/screens/community/ui";
 
-const CommunityPage = () => {
-  return <CommunityScreen />;
-};
+const CommunityPage = () => <CommunityScreen />
 
 export default CommunityPage;

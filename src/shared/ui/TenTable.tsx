@@ -5,12 +5,12 @@ import { TableRowItem } from '../types/table';
 const TenTable = <T extends TableRowItem>({
   data,
   columns,
-  rowSelection,
+  handleRowClick,
 }: UseTableOptions<T>) => {
   const table = useTable({
     data,
     columns,
-    rowSelection,
+    handleRowClick,
   });
 
   return (
