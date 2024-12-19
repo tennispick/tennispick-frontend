@@ -1,6 +1,6 @@
 import { useHomeCustomerStatisticsQuery } from 'src/entities/home/hooks/customer-statistics';
 import Cards from './Cards';
-import { Skeleton } from 'src/이전 파일들/components/ui/skeleton';
+import { Skeleton } from '@/shared/ui/components/skeleton';
 
 type Props = { date: Date };
 

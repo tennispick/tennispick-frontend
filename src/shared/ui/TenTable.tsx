@@ -1,8 +1,8 @@
-import { Table, TableBody } from 'src/이전 파일들/components/ui/table';
+import { Table, TableBody } from '@/shared/ui/components/table';
 import useTable, { UseTableOptions } from '../hooks/useTable';
 import { TableRowItem } from '../types/table';
 
-const TenTable = <T extends TableRowItem>({
+export const TenTable = <T extends TableRowItem>({
   data,
   columns,
   handleRowClick,
@@ -20,5 +20,3 @@ const TenTable = <T extends TableRowItem>({
     </Table>
   );
 };
-
-export default TenTable;

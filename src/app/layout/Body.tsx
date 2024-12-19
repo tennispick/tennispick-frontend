@@ -1,4 +1,4 @@
-import { cn } from 'src/이전 파일들/lib/utils';
+import { cn } from '@/이전 파일들/lib/utils';
 import { PropsWithChildren, ReactNode } from 'react';
 
 type Props = {

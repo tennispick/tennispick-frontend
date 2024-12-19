@@ -1,4 +1,4 @@
-import { cn } from 'src/이전 파일들/lib/utils';
+import { cn } from '@/이전 파일들/lib/utils';
 import {
   Children,
   ForwardedRef,
@@ -28,7 +28,7 @@ const CONTAINER_VARIANT_STYLE = {
 const LABEL_VARIANT_STYLE = {
   default: '',
   labelBox:
-    'block absolute top-[-10px] left-[14px] px-3 text-business bg-white z-[2]',
+    'block absolute top-[-10px] left-[14px] px-3 text-business bg-white-100 z-[2]',
   file: 'relative block w-full h-full',
 };
 

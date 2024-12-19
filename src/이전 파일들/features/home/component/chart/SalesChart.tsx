@@ -3,7 +3,7 @@ import Card from './Card';
 import { css } from 'styled-system/css';
 import { addNumberCommas } from 'src/이전 파일들/utils/numberForm';
 import { useHomeSalesStatisticsQuery } from 'src/entities/home/hooks/customer-statistics';
-import { Skeleton } from 'src/이전 파일들/components/ui/skeleton';
+import { Skeleton } from '@/shared/ui/components/skeleton';
 
 type Props = {
   date: Date;

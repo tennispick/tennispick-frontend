@@ -5,7 +5,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuItem,
-} from 'src/이전 파일들/components/ui/dropdown-menu';
+} from '@/shared/ui/components/dropdown-menu';
 
 type Props = {
   triggerLabel: string;
@@ -17,7 +17,7 @@ type Props = {
   }>;
 };
 
-const TenDropDownMenu = ({
+export const TenDropDownMenu = ({
   triggerLabel,
   triggerClassName,
   menuTitle,
@@ -42,5 +42,3 @@ const TenDropDownMenu = ({
     </DropdownMenu>
   );
 };
-
-export default TenDropDownMenu;

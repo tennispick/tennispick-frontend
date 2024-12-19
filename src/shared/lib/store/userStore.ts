@@ -1,47 +1,46 @@
 import { create } from 'zustand';
-import { AdminInfo } from '../../types/admin';
 import { devtools, persist } from 'zustand/middleware';
+import { LoginResponse } from '@/features/auth/type/login.type';
 
-export type State = AdminInfo;
+export type State = LoginResponse["payload"];
 
 export type Action = {
-  setAdminInfo: (payload: AdminInfo) => void;
+  setAdminInfo: (payload: LoginResponse["payload"]) => void;
 };
 
 type Store = State & Action;
 
-const initialState = {
+const initialState: State = {
+  id: '',
   account: '',
-  address: '',
-  business_end_hours: 0,
-  business_hours: 0,
-  business_number: '',
-  business_type: '',
-  center_id: 0,
-  contact_number: '',
-  email: '',
-  exp: 0,
-  iat: 0,
-  id: 0,
-  individualSales: 0,
-  individualSalesOption: '',
-  insuranceOption: '',
-  lesson_setting_time: 0,
-  name: '',
-  owner_name: '',
   password: '',
+  name: '',
   phone: '',
   role: '',
-  salary: 0,
+  centerId: '',
+  centerName: '',
+  ownerName: '',
+  businessNumber: '',
+  email: '',
+  businessType: '',
+  address: '',
+  contactNumber: '',
+  lessonSettingTime: '',
+  businessHours: '',
+  businessEndHours: '',
   salaryOption: '',
-  settlementRate: 0,
-  settlementRateOption: '',
+  salary: 0,
   totalSales: 0,
   totalSalesOption: '',
+  individualSalesOption: '',
+  individualSales: 0,
+  settlementRateOption: '',
+  settlementRate: 0,
   vatOption: '',
+  insuranceOption: '',
 };
 
-const useUserStore = create<Store>()(
+export const useUserStore = create<Store>()(
   devtools(
     persist(
       (set) => ({
@@ -52,5 +51,3 @@ const useUserStore = create<Store>()(
     ),
   ),
 );
-
-export default useUserStore;

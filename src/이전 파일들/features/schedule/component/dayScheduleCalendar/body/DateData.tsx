@@ -4,7 +4,7 @@ import Portal from 'src/이전 파일들/components/Portal';
 import RightSideContainer from 'src/이전 파일들/components/layer/RightSideContainer';
 import { useState } from 'react';
 import ScheduleDrawer from '../../Drawer';
-import { cn } from 'src/이전 파일들/lib/utils';
+import { cn } from '@/이전 파일들/lib/utils';
 
 type Props = {
   coachList: CoachListData[];

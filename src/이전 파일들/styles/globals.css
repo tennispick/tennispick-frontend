@@ -59,7 +59,6 @@
   *,
   *::before,
   *::after {
-    color: #565a60;
     font-size: 15px;
   }
 }
@@ -69,6 +68,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    color: #565a60;
   }
 }
 

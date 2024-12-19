@@ -1,5 +1,5 @@
 import { URL_COACH } from '@/entities/coach/url';
-import { FSDResponse } from '@/shared/lib/axios/response';
+import { FSDResponse } from '@/shared/lib/fetcher/response';
 import { Coach } from '@/shared/types/coach';
 import { axios } from '@/이전 파일들/utils/axios';
 

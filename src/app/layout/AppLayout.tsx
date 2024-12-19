@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import GlobalNavigation from './GNB';
 import AppHeader from './AppHeader';
 
-import useUserStore from 'src/shared/lib/store/userStore';
+import { useUserStore } from '@/shared/lib/store/userStore';
 
 const AppLayout = ({ children }: PropsWithChildren) => {
   const pathName = usePathname();

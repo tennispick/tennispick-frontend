@@ -1,4 +1,4 @@
-import TenDropDownMenu from 'src/shared/ui/TenDropDownMenu';
+import { TenDropDownMenu } from '@/shared/ui';
 import Logo from '@icons/white_bg_logo.svg';
 
 type Props = {
@@ -17,7 +17,7 @@ const AppHeader = ({ name, account }: Props) => {
   ];
 
   return (
-    <div className="relative w-full h-[60px] border-b border-#ECECEC2 bg-[#65A5B9]">
+    <div className="relative w-full h-[60px] border-b border-#ECECEC2 bg-primary-500">
       <div className="h-full flex items-center justify-between py-3 px-6">
         <div className="flex items-center gap-2">
           <Logo />

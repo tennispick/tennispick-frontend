@@ -3,7 +3,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from 'src/이전 파일들/components/ui/table';
+} from '@/shared/ui/components/table';
 import { Columns, TableRowItem } from '../types/table';
 import { cn } from '@/이전 파일들/lib/utils';
 

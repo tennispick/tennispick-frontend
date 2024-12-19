@@ -7,8 +7,8 @@ import {
   SheetTrigger,
   SheetFooter,
   SheetClose,
-} from 'src/이전 파일들/components/ui/sheet';
-import TenButton from './TenButton';
+} from '@/shared/ui/components/sheet';
+import { TenButton } from './TenButton';
 
 const SHEET_SIDES = ['top', 'right', 'bottom', 'left'] as const;
 
@@ -23,7 +23,7 @@ interface Props {
   handleOpenChange?: (state: boolean) => void;
 }
 
-const TenDrawer = ({
+export const TenDrawer = ({
   side = 'right',
   label,
   title,
@@ -51,5 +51,3 @@ const TenDrawer = ({
     </Sheet>
   );
 };
-
-export default TenDrawer;

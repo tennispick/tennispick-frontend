@@ -2,7 +2,7 @@
 
 import { NavigationList } from 'src/이전 파일들/mocks/navigation';
 import { useEffect, useState } from 'react';
-import { cn } from 'src/이전 파일들/lib/utils';
+import { cn } from '@/이전 파일들/lib/utils';
 import { useRouter } from 'next/navigation';
 
 type Props = {
@@ -32,7 +32,7 @@ const GlobalNavigation = ({ firstPathName }: Props) => {
   return (
     <div
       className={cn(
-        'relative h-[60px] bg-white border-b border-#ECECEC2',
+        'relative h-[60px] bg-white-100 border-b border-#ECECEC2',
         isFixed ? 'fixed top-0 left-0 right-0 z-50' : '',
       )}
     >
