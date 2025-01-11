@@ -14,24 +14,40 @@ import { LoginSchema } from '@/features/auth/schema';
 import { useLoginMutation } from '@/features/auth/api/mutations';
 import { LoginResponse } from '@/features/auth/type/login.type';
 import { useUserStore } from '@/shared/lib/store/userStore';
+
 import useCenterPaymentSettingStore from '@/shared/lib/store/centerStore';
 
 const LoginScreen = () => {
-
   const router = useRouter();
   const { setAdminInfo } = useUserStore();
   const { setCenterPaymentSetting } = useCenterPaymentSettingStore();
-  const { control, handleSubmit, formState: { errors } } = useForm<LoginSchemaType>({
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginSchemaType>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
       id: '',
       password: '',
-    }
-  })
+    },
+  });
 
   const handleMutateSuccess = (response: LoginResponse) => {
     const { accessToken, payload } = camelcaseKeys(response, { deep: true });
-    const { salaryOption, salary, totalSalesOption, totalSales, individualSalesOption, individualSales, settlementRateOption, settlementRate, vatOption, insuranceOption } = payload;
+    const {
+      salaryOption,
+      salary,
+      totalSalesOption,
+      totalSales,
+      individualSalesOption,
+      individualSales,
+      settlementRateOption,
+      settlementRate,
+      vatOption,
+      insuranceOption,
+    } = payload;
 
     setCookie(accessToken);
     setAdminInfo(payload);
@@ -49,7 +65,7 @@ const LoginScreen = () => {
     });
 
     router.push('/');
-  }
+  };
 
   const { mutate } = useLoginMutation(handleMutateSuccess);
 
@@ -107,7 +123,7 @@ const LoginScreen = () => {
         </div>
       </div>
     </Section>
-  )
-}
+  );
+};
 
 export default LoginScreen;

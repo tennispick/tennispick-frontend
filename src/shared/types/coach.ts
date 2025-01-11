@@ -1,4 +1,4 @@
-import { Sex } from "./customer";
+import { Sex } from './customer';
 
 export type Coach = {
   id: number;

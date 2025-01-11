@@ -1,17 +1,17 @@
 'use client';
 
 import { useCustomerListQuery } from '../../../이전 파일들/features/customer/query/CustomerQuery';
-import Loading from 'src/이전 파일들/components/common/Loading';
 
 import { useState } from 'react';
 import { INFINITEQUERY_PAGE_LIMIT } from 'src/이전 파일들/constants/page';
 import { Body, Section } from '@/app/layout';
 import { Toolbar } from './Toolbar';
-import TenTable from '@/shared/ui/TenTable';
+import { TenTable } from '@/shared/ui';
 import { columns } from '@/features/customer/ui/CustomerTable';
 import { Customer } from '@/shared/types';
 import { CustomerList } from '@/이전 파일들/components';
 import { useRouter } from 'next/navigation';
+import { TenSpinner } from '@/shared/ui/TenSpinner';
 
 const CustomerScreen = () => {
   const router = useRouter();
@@ -22,10 +22,9 @@ const CustomerScreen = () => {
 
   const handleFetchNextPage = () => fetchNextPage();
 
-  const handleRowClick = (row: Customer) =>
-    router.push(`/customer/${row.id}`);
+  const handleRowClick = (row: Customer) => router.push(`/customer/${row.id}`);
 
-  if (isLoading || !data) return <Loading />;
+  if (isLoading || !data) return <TenSpinner />;
 
   return (
     <Body title="회원 관리" toolbar={<Toolbar />}>

@@ -1,5 +1,5 @@
-import { addNumberCommas } from 'src/이전 파일들/utils/numberForm';
-import SearchBox from 'src/widgets/SearchBox';
+import { addNumberCommas } from '@/shared/utils/number';
+import SearchBox from '@/widgets/SearchBox';
 
 type Props = {
   totalCount: number;

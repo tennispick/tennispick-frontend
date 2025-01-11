@@ -56,19 +56,19 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
+  html {
+    font-size: 16px;
+  }
+  body {
+    @apply border-border;
+    @apply bg-background text-foreground;
+    color: #565a60;
+    font-size: 15px;
+  }
   *,
   *::before,
   *::after {
-    font-size: 15px;
-  }
-}
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    color: #565a60;
+    font-size: inherit;
   }
 }
 

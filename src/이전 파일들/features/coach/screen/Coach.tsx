@@ -3,7 +3,6 @@
 import { useState } from 'react';
 
 import { PageHeader, Portal, Modal } from 'src/이전 파일들/components/index';
-import { CustomerWhiteIcon } from 'src/이전 파일들/assets/icons/index';
 import CoachList from '../component/CoachList';
 import { useGetCoachListQuery } from '../query/coachQuery';
 import Loading from 'src/이전 파일들/components/common/Loading';
@@ -34,7 +33,7 @@ const CoachScreen = () => {
         >
           <IconButton
             iconAlign="left"
-            iconSrc={CustomerWhiteIcon}
+            iconSrc={""}
             iconAlt="coach"
             variant="primary"
             size="md"

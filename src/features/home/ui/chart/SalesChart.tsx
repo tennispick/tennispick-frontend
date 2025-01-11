@@ -1,18 +1,16 @@
-import { Flex } from 'styled-system/jsx';
 import Card from './Card';
-import { css } from 'styled-system/css';
-import { addNumberCommas } from 'src/이전 파일들/utils/numberForm';
-import { useHomeSalesStatisticsQuery } from 'src/entities/home/hooks/customer-statistics';
-import { Skeleton } from '@/shared/ui/components/skeleton';
+import { TenSkeleton } from '@/shared/ui';
+import { useSalesStatistics } from '@/features/home/api/queries';
+import { addNumberCommas } from '@/shared/utils/number';
 
 type Props = {
   date: Date;
 };
 
 const SalesChart = ({ date }: Props) => {
-  const { data } = useHomeSalesStatisticsQuery(date);
+  const { data } = useSalesStatistics(date);
 
-  if (!data) return <Skeleton className="w-full h-full" />;
+  if (!data) return <TenSkeleton className="w-full h-full" />;
 
   const { currentCustomer, totalSalesPrice } = data;
   const { lastMonth, thisMonth } = currentCustomer;

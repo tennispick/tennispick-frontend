@@ -1,5 +1,6 @@
 import { getCookie } from '@/shared/lib/cookie';
 import axios from 'axios';
+import camelcaseKeys from 'camelcase-keys';
 
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -26,7 +27,10 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (response) => {
     if (response.status === 404) console.log('Page Not Fount 404 Error');
-    return response;
+    return {
+      ...response,
+      data: camelcaseKeys(response.data, { deep: true }),
+    };
   },
   async (error) => {
     if (error?.response?.status === 401) {

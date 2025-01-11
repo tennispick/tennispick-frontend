@@ -1,7 +1,10 @@
-export { TenInput } from './TenInput';
+export { TenInput } from './input/TenInput';
+export { TenToggleRadio } from './input/TenToggleRadio';
 export { TenButton } from './TenButton';
 export { TenTable } from './TenTable';
 export { TenSwitch } from './TenSwitch';
 export { TenDrawer } from './TenDrawer';
 export { TenSeparator } from './TenSeparator';
 export { TenDropDownMenu } from './TenDropDownMenu';
+export { TenSkeleton } from './TenSkeleton';
+export { TenInfoNote } from './TenInfoNote';

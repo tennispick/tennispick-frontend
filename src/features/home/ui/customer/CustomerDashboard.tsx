@@ -1,20 +1,20 @@
 'use client';
 
 import { useState } from 'react';
-import DashboardHeader from './DashboardHeader';
-import CustomerList from './CustomerList';
+import { DEFAULT_INFINITE_QUERY_PAGE_LIMIT } from '@/shared/constants/pagination';
+
 import { useCustomerListQuery } from '@/이전 파일들/features/customer/query/CustomerQuery';
-import Loading from 'src/이전 파일들/components/common/Loading';
-import { INFINITEQUERY_PAGE_LIMIT } from 'src/이전 파일들/constants/page';
+import DashboardHeader from '@/이전 파일들/features/home/component/customerDashboard/DashboardHeader';
+import CustomerList from '@/이전 파일들/features/home/component/customerDashboard/CustomerList';
 
 const searchOptions = [
   { label: '회원명', value: 'name' },
   { label: '연락처', value: 'phone' },
 ];
 
-const CustomerDashboard = () => {
+export const CustomerDashboard = () => {
   const { data, isLoading, hasNextPage, fetchNextPage } = useCustomerListQuery({
-    limit: INFINITEQUERY_PAGE_LIMIT,
+    limit: DEFAULT_INFINITE_QUERY_PAGE_LIMIT,
   });
 
   const [keyword, setKeyword] = useState<string>('');
@@ -33,7 +33,7 @@ const CustomerDashboard = () => {
   if (isLoading || !data)
     return (
       <div className="w-full h-full">
-        <Loading />
+        <>로딩중</>
       </div>
     );
 
@@ -56,5 +56,3 @@ const CustomerDashboard = () => {
     </div>
   );
 };
-
-export default CustomerDashboard;

@@ -1,5 +1,5 @@
-import { LessonTicketScreen } from "@/screens/lessonTicket/ui";
+import { LessonTicketScreen } from '@/screens/lessonTicket/ui';
 
-const LessonTicketPage = () => <LessonTicketScreen />
+const LessonTicketPage = () => <LessonTicketScreen />;
 
 export default LessonTicketPage;

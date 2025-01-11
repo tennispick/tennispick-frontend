@@ -1,8 +1,7 @@
 'use client';
 
-import TenButton from 'src/shared/ui/TenButton';
-import TenDrawer from 'src/shared/ui/TenDrawer';
-import CreateFunnel from './funnel/CreateFunnel';
+import { TenButton, TenDrawer } from '@/shared/ui';
+import { CreateRegularLesson } from './CreateRegularLesson';
 
 export const Toolbar = () => {
   // 일정 등록하기
@@ -27,16 +26,12 @@ export const Toolbar = () => {
   return (
     <div className="flex gap-2">
       <TenDrawer
+        className="h-[calc(100%-12px)]"
         label="일정 등록하기"
         title="일정 등록"
-        footer={
-          <>
-            <TenButton label="닫기" />
-            <TenButton label="일정 등록" />
-          </>
-        }
+        handleClose={() => { }}
       >
-        <CreateFunnel />
+        <CreateRegularLesson />
       </TenDrawer>
       <TenButton label="보강 등록하기" />
     </div>

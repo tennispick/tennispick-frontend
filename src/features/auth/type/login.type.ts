@@ -1,5 +1,5 @@
-import { z } from "zod";
-import { LoginSchema } from "../schema";
+import { z } from 'zod';
+import { LoginSchema } from '../schema';
 
 export type LoginSchemaType = z.infer<typeof LoginSchema>;
 
@@ -33,5 +33,5 @@ export type LoginResponse = {
     settlementRate: number;
     vatOption: string;
     insuranceOption: string;
-  }
-}
+  };
+};

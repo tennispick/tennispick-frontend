@@ -1,5 +1,5 @@
-import { Court } from "@/entities/court/type";
-import { Columns } from "@/shared/types/table";
+import { Court } from '@/entities/court/type';
+import { Columns } from '@/shared/types/table';
 
 export const columns: Columns<Court> = [
   {

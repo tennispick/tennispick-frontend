@@ -1,13 +1,14 @@
 'use client';
 
-import NavigationHeader from '../../이전 파일들/features/home/component/NavigationHeader';
-import CustomerChart from '../../이전 파일들/features/home/component/chart/CustomerChart';
-import SalesChart from '../../이전 파일들/features/home/component/chart/SalesChart';
-import CustomerDashboard from '../../이전 파일들/features/home/component/customerDashboard/CustomerDashboard';
+import NavigationHeader from '@/features/home/ui/NavigationHeader';
+import CustomerChart from '../../features/home/ui/CustomerChart';
+import SalesChart from '../../features/home/ui/chart/SalesChart';
+
 // import SalesStatistics from '../../features/home/component/salesStatistics/SalesStatistics';
 import { useState } from 'react';
 import Body from '@/app/layout/Body';
 import { Section } from '@/app/layout';
+import { CustomerDashboard } from '@/features/home/ui/customer/CustomerDashboard';
 
 const HomeScreen = () => {
   const today = new Date();
@@ -32,7 +33,7 @@ const HomeScreen = () => {
           <SalesChart date={date} />
         </div>
       </Section>
-      <Section>
+      <Section className="pt-0">
         <CustomerDashboard />
         {/* <CustomerDashboard />
       <SalesStatistics date={date} /> */}

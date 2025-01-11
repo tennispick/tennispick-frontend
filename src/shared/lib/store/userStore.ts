@@ -2,10 +2,10 @@ import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 import { LoginResponse } from '@/features/auth/type/login.type';
 
-export type State = LoginResponse["payload"];
+export type State = LoginResponse['payload'];
 
 export type Action = {
-  setAdminInfo: (payload: LoginResponse["payload"]) => void;
+  setAdminInfo: (payload: LoginResponse['payload']) => void;
 };
 
 type Store = State & Action;

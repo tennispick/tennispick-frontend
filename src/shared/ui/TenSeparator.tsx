@@ -1,7 +1,5 @@
-import { Separator } from "@/shared/ui/components/separator";
+import { Separator } from '@/shared/ui/components/separator';
 
 export const TenSeparator = () => {
-  return (
-    <Separator />
-  )
+  return <Separator />;
 };

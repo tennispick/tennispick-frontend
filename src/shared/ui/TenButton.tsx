@@ -8,10 +8,7 @@ interface Props extends ButtonProps {
 export const TenButton = forwardRef<HTMLButtonElement, Props>(
   ({ label, ...props }, ref) => {
     return (
-      <Button
-        ref={ref}
-        {...props}
-      >
+      <Button ref={ref} {...props}>
         {label}
       </Button>
     );

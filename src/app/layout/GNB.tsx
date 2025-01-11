@@ -32,7 +32,7 @@ const GlobalNavigation = ({ firstPathName }: Props) => {
   return (
     <div
       className={cn(
-        'relative h-[60px] bg-white-100 border-b border-#ECECEC2',
+        'relative h-[60px] bg-white-100 border-b border-white-600',
         isFixed ? 'fixed top-0 left-0 right-0 z-50' : '',
       )}
     >

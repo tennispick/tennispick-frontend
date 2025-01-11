@@ -1,7 +1,7 @@
 'use client';
 
-import TenButton from '@/shared/ui/TenButton';
-import TenDrawer from '@/shared/ui/TenDrawer';
+import { TenButton, TenDrawer } from "@/shared/ui";
+
 
 export const Toolbar = () => {
   return (

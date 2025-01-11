@@ -4,8 +4,8 @@ export type Response<T> = AxiosResponse<T>;
 
 export type FSDResponse<T> = {
   data: T;
-  status: number,
-  message: string
+  status: number;
+  message: string;
 };
 
 export const createInitialData = <T>(

@@ -1,5 +1,5 @@
-import { CommunityScreen } from "@/screens/community/ui";
+import { CommunityScreen } from '@/screens/community/ui';
 
-const CommunityPage = () => <CommunityScreen />
+const CommunityPage = () => <CommunityScreen />;
 
 export default CommunityPage;

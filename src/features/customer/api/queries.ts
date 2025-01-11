@@ -1,38 +1,21 @@
-import { URL_COACH } from '@/entities/coach/url';
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
-import { getCoachs } from './fetch';
-import camelcaseKeys from 'camelcase-keys';
-import { DEFAULT_PAGE_SIZE } from '@/shared/constants/pagination';
+import { URL_CUSTOMER, URL_CUSTOMER_AVAILABLE_LESSONS } from "@/entities/customer/url";
+import { useQuery } from "@tanstack/react-query";
+import { getCustomerAvailableLessons, getCustomers } from "./fetch";
+import { QueryParams } from "@/shared/types/commons";
 
-export const useCoachsQuery = (enabled = false) => {
+export const useCustomersQuery = (params: QueryParams) => {
   return useQuery({
-    queryKey: [URL_COACH],
-    queryFn: () => getCoachs(),
-    select: (data) => data?.data,
-    enabled: enabled,
-  });
-};
+    queryKey: [URL_CUSTOMER, {...params}],
+    queryFn: () => getCustomers(params),
+    enabled: params.keyword !== '',
+  })
+}
 
-export const useCoachsInfiniteQuery = ({
-  pageSize = DEFAULT_PAGE_SIZE,
-}: {
-  pageSize: number;
-}) => {
-  return useInfiniteQuery({
-    queryKey: [URL_COACH],
-    queryFn: ({ pageParam }) =>
-      getCoachs({ page: pageParam, pageSize: pageSize }),
-    initialPageParam: 1,
-    getNextPageParam: (lastPage, allPages) => {
-      const hasNextPage = lastPage?.data && lastPage.data.length >= pageSize;
-      return hasNextPage ? allPages.length + 1 : undefined;
-    },
-    select: ({ pages, pageParams }) => ({
-      pages: camelcaseKeys(
-        pages.flatMap((page) => page.data),
-        { deep: true },
-      ),
-      pageParams: pageParams,
-    })
+export const useCustomersInfiniteQuery = () => {};
+
+export const useCustomerAvailableLessons = (keyword: string) => {
+  return useQuery({
+    queryKey: [URL_CUSTOMER_AVAILABLE_LESSONS, keyword],
+    queryFn: () => getCustomerAvailableLessons(keyword),
   });
-};
+}

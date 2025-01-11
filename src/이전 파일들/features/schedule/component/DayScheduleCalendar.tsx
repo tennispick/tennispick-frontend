@@ -1,11 +1,11 @@
-import { getDayOfWeek } from 'src/이전 파일들/utils/date';
 import { useLessonScheduleByPeriodQuery } from '../query/scheduleQuery';
-import { GET_WEEK_LIST_COUNT } from '@/이전 파일들/features/constant/schedule';
-import Loading from 'src/이전 파일들/components/common/Loading';
 import ScheduleTimeTable from './ScheduleTimeTable';
 
 import { getDayOfWeekList } from 'src/이전 파일들/utils/date';
 import { CoachListData } from 'src/이전 파일들/apis/coach/coach.type';
+import { getDayOfWeek } from '@/shared/utils/date';
+import { DEFAULT_WEEK_LIST_COUNT } from '@/shared/constants/weekList';
+import { TenSpinner } from '@/shared/ui/TenSpinner';
 
 type Props = {
   date: Date;
@@ -13,9 +13,10 @@ type Props = {
 };
 
 const DaySchedule = ({ date, coachList }: Props) => {
+
   const thisWeekSunday = getDayOfWeek(date, 'sunday');
   const nextWeekSunday = new Date(thisWeekSunday);
-  nextWeekSunday.setDate(thisWeekSunday.getDate() + GET_WEEK_LIST_COUNT * 7);
+  nextWeekSunday.setDate(thisWeekSunday.getDate() + DEFAULT_WEEK_LIST_COUNT * 7);
 
   const { data, isLoading } = useLessonScheduleByPeriodQuery({
     startDate: thisWeekSunday,
@@ -40,24 +41,24 @@ const DaySchedule = ({ date, coachList }: Props) => {
 
   return (
     <>
-      {isLoading && <Loading />}
+      {isLoading && <TenSpinner />}
       <div className="flex w-full h-[calc(100%-176px)] gap-4">
-        <div className="w-[calc(50%-8px)] h-full">
+        <div className="relative w-[calc(50%-8px)] h-full">
           <div className="h-6 text-lg font-bold mb-4">평일</div>
           <ScheduleTimeTable
             coachList={coachList.length === 0 ? initCoach : coachList}
             data={data}
-            timeTableMapList={getDayOfWeekList(date, GET_WEEK_LIST_COUNT, true)}
+            timeTableMapList={getDayOfWeekList(date, DEFAULT_WEEK_LIST_COUNT, true)}
           />
         </div>
-        <div className="w-[calc(50%-8px)] h-full">
+        <div className="relative w-[calc(50%-8px)] h-full">
           <div className="h-6 text-lg font-bold mb-4">주말</div>
           <ScheduleTimeTable
             coachList={coachList.length === 0 ? initCoach : coachList}
             data={data}
             timeTableMapList={getDayOfWeekList(
               date,
-              GET_WEEK_LIST_COUNT,
+              DEFAULT_WEEK_LIST_COUNT,
               false,
             )}
           />

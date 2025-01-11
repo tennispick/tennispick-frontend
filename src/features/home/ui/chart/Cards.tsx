@@ -1,4 +1,4 @@
-import { CustomerStatistics } from 'src/entities/home/type/customer-statistics';
+import { CustomerStatistics } from '@/entities/home/type/customer-statistics';
 import Card from './Card';
 
 const Cards = ({ data }: { data: CustomerStatistics }) => {

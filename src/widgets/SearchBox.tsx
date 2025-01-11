@@ -1,5 +1,3 @@
-import { twMerge } from 'tailwind-merge';
-
 type Options = {
   label: string;
   value: string;

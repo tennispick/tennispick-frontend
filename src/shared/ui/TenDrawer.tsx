@@ -5,10 +5,9 @@ import {
   SheetTitle,
   SheetDescription,
   SheetTrigger,
-  SheetFooter,
-  SheetClose,
 } from '@/shared/ui/components/sheet';
 import { TenButton } from './TenButton';
+import { cn } from '@/shared/lib/utils';
 
 const SHEET_SIDES = ['top', 'right', 'bottom', 'left'] as const;
 
@@ -20,7 +19,9 @@ interface Props {
   children?: React.ReactNode;
   footer?: React.ReactNode;
   open?: boolean;
+  className?: string;
   handleOpenChange?: (state: boolean) => void;
+  handleClose?: () => void;
 }
 
 export const TenDrawer = ({
@@ -30,24 +31,29 @@ export const TenDrawer = ({
   description,
   children,
   footer,
+  className,
   open: initialOpen,
   handleOpenChange,
+  handleClose,
 }: Props) => {
   return (
     <Sheet open={initialOpen} onOpenChange={handleOpenChange}>
       <SheetTrigger asChild>
         {label && <TenButton label={label} />}
       </SheetTrigger>
-      <SheetContent className="w-[760px] sm:w-[540px]" side={side}>
+      <SheetContent className="w-[760px] sm:w-[540px]" side={side} >
         <SheetHeader>
-          <SheetTitle>{title}</SheetTitle>
-          <SheetDescription>{description}</SheetDescription>
-          {children}
-          <div className="absolute flex gap-4 justify-end items-center w-full left-0 bottom-0 px-6 py-4 border-t border-gray-200">
-            {footer}
-          </div>
+          <SheetTitle className="h-7">{title}</SheetTitle>
+          <SheetDescription className="m-0 hidden" />
         </SheetHeader>
+        <div className={cn("relative h-[calc(100%-84px)] overflow-y-auto", className)}>
+          {children}
+        </div>
+        {footer && <div className="absolute h-[72px] flex gap-4 justify-end items-center w-full left-0 bottom-0 px-6 py-4 border-t border-white-600">
+          <TenButton label="닫기" onClick={handleClose} />
+          {footer}
+        </div>}
       </SheetContent>
-    </Sheet>
+    </Sheet >
   );
 };

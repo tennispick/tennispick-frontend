@@ -29,7 +29,7 @@ type TabListProps = {
 
 const defaultTabContext = {
   activeKey: '',
-  setActiveKey: () => { },
+  setActiveKey: () => {},
 };
 
 const TabContext = createContext<TabContextType>(defaultTabContext);

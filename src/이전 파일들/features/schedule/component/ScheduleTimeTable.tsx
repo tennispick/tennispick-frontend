@@ -1,9 +1,8 @@
 import DayScheduleCalendarHeader from './dayScheduleCalendar/header/Header';
 import { STRING_WEEK_LIST } from '../constants/schedule';
-import Loading from 'src/이전 파일들/components/common/Loading';
 import { CoachListData } from 'src/이전 파일들/apis/coach/coach.type';
-import { css } from 'styled-system/css';
 import DayScheduleCalendarBody from './dayScheduleCalendar/Body';
+import { TenSpinner } from '@/shared/ui/TenSpinner';
 
 type Props = {
   timeTableMapList: Map<string, Map<number, Array<number>>>;
@@ -12,7 +11,7 @@ type Props = {
 };
 
 const ScheduleTimeTable = ({ timeTableMapList, coachList, data }: Props) => {
-  if (!data) return <Loading />;
+  if (!data) return <TenSpinner />;
 
   return (
     <section className="h-[calc(100%-40px)] overflow-y-scroll">

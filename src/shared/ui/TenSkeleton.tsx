@@ -1,6 +1,6 @@
-import { cn } from '@/이전 파일들/lib/utils';
+import { cn } from '@/shared/lib/utils';
 
-function Skeleton({
+export function TenSkeleton({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
@@ -11,5 +11,3 @@ function Skeleton({
     />
   );
 }
-
-export { Skeleton };

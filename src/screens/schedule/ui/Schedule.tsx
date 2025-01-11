@@ -1,23 +1,27 @@
 'use client';
 
 import { useState } from 'react';
-import { useGetCoachListQuery } from '@/이전 파일들/features/coach/query/coachQuery';
+
 import CourtContainer from '../../../이전 파일들/features/schedule/component/CourtContainer';
 import ModalAdditionalLesson from '../../../이전 파일들/features/schedule/component/modal/additionalLesson/ModalAdditionalLesson';
 import ModalRegularLesson from '../../../이전 파일들/features/schedule/component/modal/regularLesson/ModalRegularLesson';
 import useModal from 'src/이전 파일들/hooks/useModal';
+
 import DayScheduleCalendar from '../../../이전 파일들/features/schedule/component/DayScheduleCalendar';
-import ButtonToolbar from '../../../이전 파일들/features/schedule/component/buttonToolbar/ButtonToolBar';
 import { PeriodNavigation, Toolbar } from '..';
-import TenButton from 'src/shared/ui/TenButton';
-import TenDrawer from 'src/shared/ui/TenDrawer';
 import { Body, Section } from '@/app/layout';
+import { useCoachsQuery } from '@/features/coach/api/queries';
+import { useCourtsQuery } from '@/features/court/api/queries';
+import { CoachsBadges } from './badges/Coachs';
+import { CourtsBadges } from './badges/Courts';
 
 export const Schedule = () => {
-  const today = new Date();
 
+  const today = new Date();
   const [calendarDate, setCalendarDate] = useState(today);
-  const { data } = useGetCoachListQuery({});
+
+  const { data: coachData } = useCoachsQuery();
+  const { data: courtData } = useCourtsQuery();
 
   // const { handleShowModal: handleShowRegularModal } = useModal({
   //   type: 'full',
@@ -45,20 +49,20 @@ export const Schedule = () => {
   return (
     <Body title={'스케줄 관리'} toolbar={<Toolbar />}>
       <Section>
+        <CoachsBadges data={coachData} />
+        <CourtsBadges data={courtData} />
         <PeriodNavigation
           date={calendarDate}
           handlePrevClick={handlePrevClick}
           handleNextClick={handleNextClick}
         />
-        {/* <DayScheduleCalendar date={calendarDate} coachList={data ?? []} /> */}
+        <DayScheduleCalendar
+          date={calendarDate}
+          coachList={[]}
+        />
       </Section>
       {/* <CourtContainer /> */}
-      {/* <ButtonToolbar
-        calendarDate={calendarDate}
-        handleChangeDate={handleChangeDate}
-        handleShowRegularModal={handleShowRegularModal}
-        handleShowAdditionalModal={handleShowAdditionalModal}
-      />
+      {/*
       <ScheduleCalendarTable
         isMobile={isMobile}
         date={calendarDate}
