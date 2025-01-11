@@ -1,4 +1,4 @@
-import useModal from '@hooks/useModal';
+import useModal from 'src/이전 파일들/hooks/useModal';
 import { ColorPicker, IColor } from 'react-color-palette';
 import 'react-color-palette/css';
 import { css } from 'styled-system/css';

@@ -1,7 +1,5 @@
-import CourtScreen from '@features/court/screen/Court';
+import { CourtScreen } from '@/screens/court/ui';
 
-const CourtPage = () => {
-  return <CourtScreen />;
-};
+const CourtPage = () => <CourtScreen />;
 
 export default CourtPage;

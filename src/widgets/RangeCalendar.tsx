@@ -1,7 +1,7 @@
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/locale';
-import CalendarIcon from '@icons/calendar/calendar';
+import CalendarIcon from 'src/이전 파일들/assets/icons/calendar/calendar';
 import { Flex } from 'styled-system/jsx';
 import { css } from 'styled-system/css';
 

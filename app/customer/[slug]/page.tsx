@@ -1,4 +1,4 @@
-import CustomerDetailScreen from '@features/customer/screen/CustomerDetail';
+import CustomerDetailScreen from '@/screens/customer/ui/detail/CustomerDetail';
 
 const CustomerDetailPage = ({ params }: { params: { slug: string } }) => {
   const { slug } = params;

@@ -1,7 +1,5 @@
-import CustomerScreen from '@features/customer/screen/Customer';
+import CustomerScreen from '@/screens/customer/ui/Customer';
 
-const CustomerPage = () => {
-  return <CustomerScreen />;
-};
+const CustomerPage = () => <CustomerScreen />;
 
 export default CustomerPage;

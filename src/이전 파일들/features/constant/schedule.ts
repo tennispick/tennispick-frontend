@@ -1,0 +1,1 @@
+export const GET_WEEK_LIST_COUNT = 7;
