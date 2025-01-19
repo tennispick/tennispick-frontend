@@ -1,5 +1,5 @@
 import { TenDropDownMenu } from '@/shared/ui';
-import Logo from '@icons/white_bg_logo.svg';
+import Logo from '@/public/icons/logo/logo.svg';
 
 type Props = {
   name: string;
@@ -20,7 +20,9 @@ const AppHeader = ({ name, account }: Props) => {
     <div className="relative w-full h-[60px] border-b border-gray-100 bg-primary-500">
       <div className="h-full flex items-center justify-between py-3 px-6">
         <div className="flex items-center gap-2">
-          <Logo />
+          <div className="w-6 h-6">
+            <Logo />
+          </div>
           <span className="text-white-100 font-bold">TenPick</span>
         </div>
         <div className="flex items-center gap-6">

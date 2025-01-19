@@ -1,24 +1,32 @@
 import { cn } from "@/shared/lib/utils";
 
 interface Props {
-  size?: 'sm' | 'md' | 'lg' | 'full';
+  size?: 'sm' | 'md' | 'lg';
   position?: 'fixed' | 'absolute' | 'relative' | 'static';
   align?: 'center' | 'start' | 'end';
+  wrapperClassName?: string;
+  className?: string;
 }
 
-export const TenSpinner = ({ size = 'md', position, align = 'center' }: Props) => {
-  const spinnerSize = {
-    sm: 'w-8 h-8',
-    md: 'w-12 h-12',
-    lg: 'w-16 h-16',
-    full: 'fixed inset-0 w-full h-full',
-  };
+const spinnerPosition = {
+  fixed: 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
+  absolute: 'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
+  relative: 'relative top-1/2 left-1/2',
+  static: 'static top-1/2 left-1/2',
+};
 
+const spinnerSize = {
+  sm: 'w-8 h-8',
+  md: 'w-12 h-12',
+  lg: 'w-16 h-16',
+  full: 'w-full h-full',
+};
+export const TenSpinner = ({ size = 'md', position, align = 'center', wrapperClassName, className }: Props) => {
   return (
-    <div className={cn("flex items-center justify-center", position)}>
-      <div className="grid min-h-[140px] w-full place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible">
+    <div className={cn("flex items-center justify-center", position, spinnerPosition[position ?? 'static'], wrapperClassName)}>
+      <div className="grid w-full place-items-center overflow-x-scroll rounded-lg lg:overflow-visible">
         <svg
-          className={cn("animate-spin text-gray-900/50", spinnerSize[size], align)}
+          className={cn("animate-spin text-gray-900/50", spinnerSize[size], align, className)}
           viewBox="0 0 64 64"
           fill="none"
           xmlns="http://www.w3.org/2000/svg" width="24" height="24">
@@ -35,6 +43,14 @@ export const TenSpinner = ({ size = 'md', position, align = 'center' }: Props) =
           ></path>
         </svg>
       </div>
+    </div>
+  );
+};
+
+TenSpinner.Full = () => {
+  return (
+    <div className="fixed inset-0 w-full h-full">
+      <TenSpinner size="lg" position="fixed" />
     </div>
   );
 };

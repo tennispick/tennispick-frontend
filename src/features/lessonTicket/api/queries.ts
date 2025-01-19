@@ -1,8 +1,15 @@
 import { URL_LESSON_TICKET } from '@/entities/lessonTicket/url';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { getLessonTickets } from './fetch';
 import { DEFAULT_PAGE_SIZE } from '@/shared/constants/pagination';
 import camelcaseKeys from 'camelcase-keys';
+
+export const useLessonTicketsQuery = () => {
+  return useQuery({
+    queryKey: [URL_LESSON_TICKET],
+    queryFn: () => getLessonTickets(),
+  });
+};
 
 export const useLessonTicketsInfiniteQuery = () => {
   return useInfiniteQuery({

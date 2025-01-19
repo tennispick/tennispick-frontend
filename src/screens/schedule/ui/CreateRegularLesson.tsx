@@ -1,78 +1,115 @@
 import { useState } from "react";
-import { Customer } from "@/shared/types";
-import { useFunnel } from "@/shared/hooks";
+import { Coach, Customer, LessonType } from "@/shared/types";
 import { CustomerStep } from "./funnel/regularLesson/CustomerStep";
 import { ScheduleStep } from "./funnel/regularLesson/ScheduleStep";
+import { useFunnel } from '@use-funnel/browser';
 import { AnimatePresence, motion } from "framer-motion";
-
-const STEPS = {
-  CUSTOMER: "customer",
-  SCHEDULE: "schedule",
-}
+import { Lesson } from "@/entities/lessonTicket/type";
+import { Court } from "@/entities/court/type";
+import { ScheduleType } from "@/shared/types/schedule";
+import { FormProvider, useForm } from "react-hook-form";
+import { z } from "zod";
 
 interface Props {
 
 }
 
+const CustomerStepSchema = z.object({
+  lessonType: z.nativeEnum(LessonType).optional(),
+  customers: z.array(z.object({
+    customer: z.custom<Customer>()
+  })).optional(),
+  lessonTicket: z.custom<Lesson>().optional(),
+  scheduleType: z.nativeEnum(ScheduleType).optional(),
+}).partial();
+
+const ScheduleStepSchema = CustomerStepSchema.required({
+  lessonType: true,
+  lessonTicket: true,
+  scheduleType: true,
+})
+
+export type CreateRegularLessonFunnelContext = {
+  customerStep: {
+    lessonType?: LessonType,
+    customers?: {
+      customer: Customer
+    }[],
+    lessonTicket?: Lesson,
+    scheduleType?: ScheduleType
+  },
+  ScheduleStep: {
+    lessonType?: LessonType,
+    lessonTicket: Lesson,
+    scheduleType: ScheduleType,
+    customers: {
+      customer: Customer,
+      startDate?: string,
+      endDate?: string,
+      startTime?: string,
+      endTime?: string,
+      lessonTime?: string,
+      coach?: Coach,
+      court?: Court
+    }[],
+  }
+}
+
 export const CreateRegularLesson = ({ }: Props) => {
 
-  const [currentStep, currentSetStep] = useState(STEPS.CUSTOMER);
-  const { Funnel, Step } = useFunnel({
-    steps: [
-      {
-        key: "customer",
-      },
-      {
-        key: "schedule",
-      }
-    ]
-  });
-  const [selectedCustomers, setSelectedCustomers] = useState<Customer[]>([]);
-  const totalSteps = Object.keys(STEPS).length;
-  const currentStepIndex = Object.values(STEPS).findIndex(step => step === currentStep) + 1;
+  const funnel = useFunnel({
+    id: "regular-lesson-create-drawer",
+    steps: {
+      customerStep: { parse: CustomerStepSchema.parse },
+      ScheduleStep: { parse: ScheduleStepSchema.parse }
+    },
+    initial: {
+      step: "customerStep",
+      context: {}
+    }
+  })
 
-  const handleClickStep = (step: string) => currentSetStep(step);
+  const methods = useForm();
 
-  const stepComponents = {
-    [STEPS.CUSTOMER]: (
-      <CustomerStep
-        key={STEPS.CUSTOMER}
-        onNext={() => handleClickStep(STEPS.SCHEDULE)}
-      />
-    ),
-    [STEPS.SCHEDULE]: <ScheduleStep key={STEPS.SCHEDULE} onNext={() => { }} />,
-  };
+  const handleFormSubmit = (data: any) => {
+    console.log(data);
+  }
 
   return (
-    <form className="relative h-full">
-      {/* <Funnel
-        currentStep={currentStep}
-        handleCurrentStep={handleClickStep}
-      >
-        <Step name="customer">
-          <CustomerStep
-            onNext={() => handleClickStep(STEPS.SCHEDULE)}
-          />
-        </Step>
-        <Step name="schedule">
-          <ScheduleStep />
-        </Step>
-      </Funnel> */}
-      <div className="text-right h-6">{`(${currentStepIndex} / ${totalSteps})`}</div>
-      <Funnel currentStep={currentStep} handleCurrentStep={handleClickStep}>
+    <FormProvider {...methods}>
+      <form className="relative h-full pt-3" onSubmit={methods.handleSubmit(handleFormSubmit)}>
         <AnimatePresence mode="wait">
           <motion.div
             className="h-full"
-            key={currentStep} // 단계별로 고유 키를 설정
+            key={funnel.index}
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            {stepComponents[currentStep]}
+            <funnel.Render
+              customerStep={({ history }) => {
+                return (
+                  <CustomerStep handleNext={({ lessonType, customers, lessonTicket, scheduleType }) => {
+                    history.push("ScheduleStep", {
+                      lessonType,
+                      customers,
+                      lessonTicket,
+                      scheduleType
+                    })
+                  }} />
+                )
+              }}
+              ScheduleStep={({ history }) => {
+                return (
+                  <ScheduleStep
+                    handleBack={() => history.back()}
+                  />
+                )
+              }}
+            />
           </motion.div>
-        </AnimatePresence>
-      </Funnel>
-    </form>
+        </AnimatePresence >
+      </form >
+    </FormProvider>
   );
 };

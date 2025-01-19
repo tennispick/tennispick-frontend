@@ -1,7 +1,6 @@
 'use client';
 
 import { TenTable } from '@/shared/ui/TenTable';
-import { transferSexType } from 'src/이전 파일들/utils/switch';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Customer } from '@/shared/types';
@@ -23,6 +22,8 @@ const CustomerList = ({ data, hasNextPage, handleFetchNextPage }: Props) => {
   useEffect(() => {
     inView && handleFetchNextPage();
   }, [inView, handleFetchNextPage]);
+
+  console.log(data);
 
   return (
     <div className="h-[calc(100%-3.75rem-8px)]">

@@ -6,6 +6,7 @@ import { DEFAULT_INFINITE_QUERY_PAGE_LIMIT } from '@/shared/constants/pagination
 import { useCustomerListQuery } from '@/이전 파일들/features/customer/query/CustomerQuery';
 import DashboardHeader from '@/이전 파일들/features/home/component/customerDashboard/DashboardHeader';
 import CustomerList from '@/이전 파일들/features/home/component/customerDashboard/CustomerList';
+import { TenSpinner } from '@/shared/ui/TenSpinner';
 
 const searchOptions = [
   { label: '회원명', value: 'name' },
@@ -30,12 +31,7 @@ export const CustomerDashboard = () => {
 
   const handleFetchNextPage = () => fetchNextPage();
 
-  if (isLoading || !data)
-    return (
-      <div className="w-full h-full">
-        <>로딩중</>
-      </div>
-    );
+  if (isLoading || !data) return <TenSpinner />
 
   const totalCustomerCount = data?.pages.length;
 
@@ -47,12 +43,12 @@ export const CustomerDashboard = () => {
         handleChangeKeyword={handleChangeKeyword}
         handleSearchOption={handleSearchOption}
       />
-      <CustomerList
+      {/* <CustomerList
         data={data?.pages}
         keyword={keyword}
         hasNextPage={hasNextPage}
         handleFetchNextPage={handleFetchNextPage}
-      />
+      /> */}
     </div>
   );
 };

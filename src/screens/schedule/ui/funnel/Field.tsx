@@ -9,11 +9,11 @@ interface Props extends ComponentProps<typeof TenInput> {
   note?: ReactNode;
 }
 
-export const Field = ({ className, label, note, children, ...props }: Props) => {
+export const Field = ({ className, label, note, children, errors, ...props }: Props) => {
   return (
     <div className={cn('py-3', className)}>
       <div className="mb-2">{label}</div>
-      {children ? children : <TenInput {...props} />}
+      {children ? children : <TenInput errors={errors} {...props} />}
       {note}
     </div>
   )

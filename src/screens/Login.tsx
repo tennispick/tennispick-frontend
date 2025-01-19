@@ -16,6 +16,7 @@ import { LoginResponse } from '@/features/auth/type/login.type';
 import { useUserStore } from '@/shared/lib/store/userStore';
 
 import useCenterPaymentSettingStore from '@/shared/lib/store/centerStore';
+import { TenSpinner } from '@/shared/ui/TenSpinner';
 
 const LoginScreen = () => {
   const router = useRouter();
@@ -67,7 +68,7 @@ const LoginScreen = () => {
     router.push('/');
   };
 
-  const { mutate } = useLoginMutation(handleMutateSuccess);
+  const { mutate, isPending } = useLoginMutation(handleMutateSuccess);
 
   const handleLogin = async (data: LoginSchemaType) => mutate(data);
 
@@ -75,6 +76,7 @@ const LoginScreen = () => {
     <Section className="w-screen h-screen bg-white-300">
       <div className="flex items-center justify-center">
         <div className="px-[64px] py-[100px] min-w-[520px] mt-12 bg-white-100 shadow-[0_4px_12px_rgba(0,0,0,0.05)] rounded-lg">
+          {isPending && <TenSpinner.Full />}
           <div className="font-bold text-2xl mb-10">테니스 픽 관리자 센터</div>
           <div className="font-medium text-xl mb-10">로그인</div>
           <form onSubmit={handleSubmit(handleLogin)}>
