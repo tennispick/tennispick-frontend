@@ -92,13 +92,13 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
                       },
                     })}
                   >
-                    <Image
+                    {/* <Image
                       src={item.src}
                       alt={item.alt}
                       width={20}
                       height={20}
                       priority
-                    />
+                    /> */}
                     <span>{item.label}</span>
                   </NavList>
                 </Link>

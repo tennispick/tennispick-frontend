@@ -19,8 +19,13 @@ const Calendar = ({ ...props }) => {
 
 const CalendarContainer = styled(ReactCalendar, {
   base: {
+    position: 'absolute',
+    width: '236px !important',
+    bottom: '12px',
     color: 'var(--black100)',
-    borderRadius: '16px',
+    borderRadius: '8px',
+    border: '0 !important',
+    boxShadow: '0px 0px 20px 0px rgba(0, 0, 0, 0.10)',
     padding: '12px',
 
     '& .react-calendar__navigation': {
@@ -44,6 +49,7 @@ const CalendarContainer = styled(ReactCalendar, {
       },
 
       '& abbr': {
+        fontSize: '14px',
         fontWeight: 500,
         textDecoration: 'none',
       },
@@ -56,6 +62,10 @@ const CalendarContainer = styled(ReactCalendar, {
       },
       '&:nth-of-type(7n)': {
         color: 'var(--blue100) !important',
+      },
+
+      '& abbr': {
+        fontSize: '14px',
       },
     },
 
@@ -76,7 +86,7 @@ const CalendarContainer = styled(ReactCalendar, {
     },
 
     '& .react-calendar__tile': {
-      padding: '7px 8px !important',
+      padding: '5px 6px !important',
 
       _hover: {
         backgroundColor: 'var(--blue100) !important',

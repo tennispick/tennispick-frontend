@@ -4,8 +4,8 @@ import QueryProvider from 'src/provider/QueryProvider';
 import RecoilProvider from 'src/provider/RecoilProvider';
 import './global.css';
 import '@styles/react-date-picker.css';
-import AppLayout from '@components/layout/AppLayout';
 import ModalProvider from 'src/provider/ModalProvider';
+import Layout from '@components/layout/Layout';
 
 export default async function RootLayout({ children }: PropsWithChildren) {
   return (
@@ -14,7 +14,8 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         <RecoilProvider>
           <QueryProvider>
             <ReactQueryDevtools initialIsOpen={true} />
-            <AppLayout>{children}</AppLayout>
+            {/* <AppLayout>{children}</AppLayout> */}
+            <Layout>{children}</Layout>
             <div id="portal" />
             <div id="layerPortal" />
             <div id="confirmModal" />
