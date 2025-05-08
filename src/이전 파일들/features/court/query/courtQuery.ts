@@ -1,0 +1,24 @@
+import { getCourtList } from 'src/이전 파일들/apis/court/court.api';
+import { CourtListData } from 'src/이전 파일들/apis/court/court.type';
+import { URL_FETCH_COURT_LIST } from 'src/이전 파일들/apis/court/court.url';
+import { useQuery } from '@tanstack/react-query';
+
+export const useCourtListQuery = ({
+  enabled = true,
+}: {
+  enabled?: boolean;
+}) => {
+  return useQuery({
+    queryKey: [URL_FETCH_COURT_LIST],
+    queryFn: async (): Promise<{ data: CourtListData[] }> => {
+      try {
+        return await getCourtList();
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    },
+    select: (data) => data.data,
+    enabled: enabled,
+  });
+};

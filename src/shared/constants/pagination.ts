@@ -1,0 +1,2 @@
+export const DEFAULT_PAGE_SIZE = 15;
+export const DEFAULT_INFINITE_QUERY_PAGE_LIMIT = 15;

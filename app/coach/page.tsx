@@ -1,7 +1,5 @@
-import CoachScreen from '@features/coach/screen/Coach';
+import CoachScreen from '@/screens/coach/ui/Coach';
 
-const CoachPage = () => {
-  return <CoachScreen />;
-};
+const CoachPage = () => <CoachScreen />;
 
 export default CoachPage;

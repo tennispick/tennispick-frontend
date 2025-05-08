@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -17,24 +17,36 @@
     "baseUrl": "./",
     "types": ["react"],
     "paths": {
-      "@icons/*": ["src/assets/icons/*"],
-      "@images/*": ["src/assets/images/*"],
-      "@apis/*": ["src/apis/*"],
-      "@components/*": ["src/components/*"],
-      "@features/*": ["src/features/*"],
-      "@data/*": ["src/data/*"],
-      "@hooks/*": ["src/hooks/*"],
+      "@/*": ["src/*"],
+      "@icons/*": ["src/이전 파일들/assets/icons/*"],
+      "@images/*": ["src/이전 파일들/assets/images/*"],
+      "@apis/*": ["src/이전 파일들/apis/*"],
+      "@components/*": ["src/이전 파일들/components/*"],
+
+      "@features/*": ["src/이전 파일들/features/*"],
+
+      "@data/*": ["src/이전 파일들/data/*"],
+      "@hooks/*": ["src/이전 파일들/hooks/*"],
       "@containers/*": ["src/containers/*"],
-      "@interfaces/*": ["src/interfaces/*"],
-      "@lib/*": ["src/lib/*"],
-      "@mocks/*": ["src/mocks/*"],
-      "@queries/*": ["src/queries/*"],
-      "@styles/*": ["src/styles/*"],
-      "@utils/*": ["src/utils/*"],
+      "@interfaces/*": ["src/이전 파일들/interfaces/*"],
+      "@lib/*": ["src/이전 파일들/lib/*"],
+      "@mocks/*": ["src/이전 파일들/mocks/*"],
+      "@queries/*": ["src/이전 파일들/queries/*"],
+      "@styles/*": ["src/이전 파일들/styles/*"],
+      "@utils/*": ["src/이전 파일들/utils/*"],
       "@widgets/*": ["src/widgets/*"],
-      "@/types/*": ["src/types/*"],
-      "@/constants/*": ["src/constants/*"],
-      "@/recipes/*": ["src/recipes/*"]
+      "@/public/*": ["public/*"],
+      "@/types/*": ["src/이전 파일들/types/*"],
+      "@/constants/*": ["src/이전 파일들/constants/*"],
+      "@/recipes/*": ["src/이전 파일들/recipes/*"],
+
+      "@/pages/*": ["src/screens/*"],
+      "@/layout/*": ["src/app/layout/*"],
+      "@/provider/*": ["src/app/provider/*"],
+      "@/features/*": ["src/features/*"],
+      "@/shared/*": ["src/shared/*"],
+      "@/widgets/*": ["src/widgets/*"],
+      "@/entities/*": ["src/entities/*"]
     },
     "plugins": [
       {
@@ -46,7 +58,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/hooks/useMobile.tsx",
+    "src/이전 파일들/hooks/useMobile.tsx",
     ".next/types/**/*.ts",
     "styled-system"
   ],

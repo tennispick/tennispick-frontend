@@ -1,0 +1,1 @@
+export { LessonTicketScreen } from './LessonTicket';

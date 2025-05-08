@@ -7,9 +7,8 @@ import {
   Children,
   Fragment,
 } from 'react';
-import { SetStateAction } from '../types';
-import { flex } from 'styled-system/patterns';
-import { css } from 'styled-system/css';
+import { SetStateAction } from '../이전 파일들/types';
+import { cn } from '@/이전 파일들/lib/utils';
 
 type TabContextType = {
   activeKey: string;
@@ -61,14 +60,7 @@ const TabLists = ({
   ...rest
 }: PropsWithChildren<HTMLAttributes<HTMLUListElement>>) => {
   return (
-    <ul
-      className={flex({
-        height: '2.875rem',
-        alignItems: 'center',
-        borderBottom: '1px solid var(--grey100)',
-      })}
-      {...rest}
-    >
+    <ul className="flex h-12 items-center border-b border-gray-100" {...rest}>
       {Children.map(children, (child, index) => {
         return <Fragment key={index}>{child}</Fragment>;
       })}
@@ -83,15 +75,9 @@ const TabList = ({
 }: TabListProps) => {
   const { activeKey, setActiveKey } = useContext(TabContext);
 
-  const activeStyle = css.raw({
-    color: 'var(--black100)',
-    fontWeight: 500,
-    borderBottom: '2px solid var(--black100)',
-  });
+  const activeStyle = 'text-black100 font-medium border-b-2 border-black100';
 
-  const deactiveStyle = css.raw({
-    color: 'var(--deactive-color)',
-  });
+  const deactiveStyle = 'text-black100 font-medium border-b-2 border-black100';
 
   const handleTabePanelClick = () => {
     if (handleActiveKeyClick) handleActiveKeyClick();
@@ -104,16 +90,7 @@ const TabList = ({
     <li
       key={panelKey}
       onClick={handleTabePanelClick}
-      className={css(
-        {
-          height: '2.875rem',
-          margin: '0 24px 0 0',
-          padding: '8px 0 12px 0',
-          transition: 'all 0.1s',
-          cursor: 'pointer',
-        },
-        style,
-      )}
+      className={cn('h-12 px-0 pt-2 pb-3 transition-all cursor-pointer', style)}
     >
       {children}
     </li>

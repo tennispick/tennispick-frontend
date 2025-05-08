@@ -1,4 +1,4 @@
-import CommunityDetailScreen from '@features/community/screen/CommunityDetail';
+import CommunityDetailScreen from '@/이전 파일들/features/community/screen/CommunityDetail';
 
 const CommunityDetailPage = ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
