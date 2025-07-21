@@ -24,6 +24,7 @@
     "@typescript-eslint/parser": "^6.19.1",
     "@vercel/analytics": "^1.0.1",
     "axios": "^1.4.0",
+    "class-variance-authority": "^0.7.1",
     "date-fns": "^3.6.0",
     "dayjs": "^1.11.10",
     "eslint-config-next": "^14.2.5",
@@ -44,6 +45,7 @@
     "react-time-range": "^1.0.4",
     "recoil": "^0.7.7",
     "recoil-persist": "^5.1.0",
+    "tailwind-merge": "^3.3.1",
     "typescript": "5.0.4",
     "uuid": "^9.0.0",
     "yup": "^1.2.0",
@@ -51,14 +53,16 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
-    "@pandacss/dev": "^0.45.1",
     "@types/js-cookie": "^3",
     "@types/react-datepicker": "^4.19.3",
     "@types/uuid": "^9.0.1",
+    "autoprefixer": "^10.4.21",
     "eslint": "^8.48.0",
     "eslint-plugin-simple-import-sort": "^12.1.0",
     "eslint-plugin-unused-imports": "^4.0.0",
-    "prettier": "^3.0.3"
+    "postcss": "^8.5.6",
+    "prettier": "^3.0.3",
+    "tailwindcss": "^4.1.11"
   },
   "resolutions": {
     "@types/react": "18.2.6",

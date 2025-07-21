@@ -13,7 +13,7 @@ import RemoveIcon from '@icons/remove.svg';
 import { LessonDateType } from '@features/lesson/type/lesson.type';
 import { DayType } from '@features/schedule/type/schedule.type';
 import { useDuplicateCheckScheduleLessonQuery } from '@features/schedule/query/scheduleQuery';
-import { numberZeroFillFormat } from '@utils/numberForm';
+import { numberZeroFillFormat } from 'src/shared/utils/numberForm';
 import { flex } from 'styled-system/patterns';
 import { css } from 'styled-system/css';
 

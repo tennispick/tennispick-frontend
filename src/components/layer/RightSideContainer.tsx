@@ -1,7 +1,7 @@
 import { Dispatch, PropsWithChildren, SetStateAction, useRef } from 'react';
 import Image from 'next/image';
 
-import { OnClickRefOutSideCloseHandler } from '@utils/onClick';
+import { OnClickRefOutSideCloseHandler } from 'src/shared/utils/onClick';
 import { CloseBtnIcon } from '@icons/index';
 import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';

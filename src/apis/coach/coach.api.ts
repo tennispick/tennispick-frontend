@@ -1,4 +1,4 @@
-import { axios } from '@utils/axios';
+import { axios } from 'src/shared/utils/axios';
 import {
   URL_COACH,
   URL_COACH_CUSTOMERS,

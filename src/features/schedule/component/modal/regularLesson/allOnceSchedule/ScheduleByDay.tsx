@@ -1,8 +1,8 @@
 import { SetStateAction } from '@/types/index';
 import { DayType, ScheduleType } from '@features/schedule/type/schedule.type';
 import ScheduleModalSelect from '../../Select';
-import { dayList } from '@utils/day';
-import { getDayOfThisWeek } from '@utils/date';
+import { dayList } from 'src/shared/utils/day';
+import { getDayOfThisWeek } from 'src/shared/utils/date';
 import { css } from 'styled-system/css';
 
 type Props = {

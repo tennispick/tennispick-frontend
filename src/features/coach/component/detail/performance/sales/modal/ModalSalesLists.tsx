@@ -6,7 +6,7 @@ import {
   useCoachTotalSalesQuery,
 } from '@features/coach/query/coachQuery';
 import { SearchConditionType } from '@features/coach/data/salesModalData';
-import { getDateToKoreanString } from '@utils/date';
+import { getDateToKoreanString } from 'src/shared/utils/date';
 import { CoachTotalSalesListData } from '@apis/coach/coach.type';
 import Loading from '@components/common/Loading';
 import {
@@ -14,7 +14,7 @@ import {
   transferDiscountType,
   transferPaymentType,
 } from '@features/customer/util/payment';
-import { addNumberCommas } from '@utils/numberForm';
+import { addNumberCommas } from 'src/shared/utils/numberForm';
 import { NoResult } from '@components/index';
 import { styled } from 'styled-system/jsx';
 

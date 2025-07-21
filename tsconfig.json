@@ -30,7 +30,7 @@
       "@mocks/*": ["src/mocks/*"],
       "@queries/*": ["src/queries/*"],
       "@styles/*": ["src/styles/*"],
-      "@utils/*": ["src/utils/*"],
+      "@utils/*": ["src/shared/utils/*"],
       "@widgets/*": ["src/widgets/*"],
       "@/types/*": ["src/types/*"],
       "@/constants/*": ["src/constants/*"],

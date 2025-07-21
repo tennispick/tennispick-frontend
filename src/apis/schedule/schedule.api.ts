@@ -8,7 +8,7 @@ import {
   URL_IS_DUPLICATE_CHECK_SCHEDULE_LESSON,
   URL_CREATE_ADDITIONAL_SCHEDULE_LESSON,
 } from './schedule.url';
-import { axios } from '@utils/axios';
+import { axios } from 'src/shared/utils/axios';
 import {
   ScheduleLessonByDateApiPayload,
   LessonScheduleByPeriodPayload,

@@ -1,6 +1,6 @@
 import { DayType } from '@features/schedule/type/schedule.type';
 import ScheduleModalSelect from '../../Select';
-import { dayList } from '@utils/day';
+import { dayList } from 'src/shared/utils/day';
 import { ChangeEvent } from 'react';
 import { css } from 'styled-system/css';
 

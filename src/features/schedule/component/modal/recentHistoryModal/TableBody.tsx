@@ -1,6 +1,6 @@
 import { CustomerLessonHistoryData } from '@apis/customer/customer.type';
 import { transferLessonDateType } from '@features/schedule/util/transfer';
-import { isEmptyObj } from '@utils/object';
+import { isEmptyObj } from 'src/shared/utils/object';
 import { MouseEvent } from 'react';
 import { css } from 'styled-system/css';
 

@@ -8,8 +8,8 @@ import { SetStateAction } from '@/types/index';
 import { EditWhiteIcon } from '@icons/index';
 import { useDuplicateCheckScheduleLessonQuery } from '@features/schedule/query/scheduleQuery';
 import { CustomerLessonScheduleHistoryData } from '@apis/customer/customer.type';
-import { isEmptyObj } from '@utils/object';
-import { getEndTimeByStartTime } from '@utils/date';
+import { isEmptyObj } from 'src/shared/utils/object';
+import { getEndTimeByStartTime } from 'src/shared/utils/date';
 import { css } from 'styled-system/css';
 import IconButton from '@components/button/IconButton';
 

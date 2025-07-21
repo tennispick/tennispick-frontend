@@ -5,7 +5,7 @@ import ButtonContainer from './ButtonContainer';
 import useInput from '@hooks/useInput';
 
 import { useDuplicateCheckScheduleLessonQuery } from '@features/schedule/query/scheduleQuery';
-import { getEndTimeByStartTime } from '@utils/date';
+import { getEndTimeByStartTime } from 'src/shared/utils/date';
 import { Flex } from 'styled-system/jsx';
 import { css } from 'styled-system/css';
 

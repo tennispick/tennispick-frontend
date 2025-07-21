@@ -8,7 +8,7 @@ import { SetStateAction } from '@/types/index';
 import StartTimeSelect from '../../StartTimeSelect';
 import EndTimeSelect from '../../EndTimeSelect';
 import { DuplicateCheckScheduleLessonData } from '@apis/schedule/schedule.type';
-import { numberZeroFillFormat } from '@utils/numberForm';
+import { numberZeroFillFormat } from 'src/shared/utils/numberForm';
 import { Flex } from 'styled-system/jsx';
 import { css } from 'styled-system/css';
 

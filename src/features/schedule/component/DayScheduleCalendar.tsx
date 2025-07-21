@@ -1,10 +1,10 @@
-import { getDayOfWeek } from '@utils/date';
+import { getDayOfWeek } from 'src/shared/utils/date';
 import { useLessonScheduleByPeriodQuery } from '../query/scheduleQuery';
 import { GET_WEEK_LIST_COUNT } from '@features/constant/schedule';
 import Loading from '@components/common/Loading';
 import ScheduleTimeTable from './ScheduleTimeTable';
 
-import { getDayOfWeekList } from '@utils/date';
+import { getDayOfWeekList } from 'src/shared/utils/date';
 import { CoachListData } from '@apis/coach/coach.type';
 import { styled } from 'styled-system/jsx';
 import { flex } from 'styled-system/patterns';

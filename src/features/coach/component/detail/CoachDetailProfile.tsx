@@ -1,8 +1,8 @@
 import { Divider, Input, Select } from '@components/index';
 import { ProfileManIcon, ProfileWomanIcon } from '@icons/index';
 import { CoachDetailData } from '@apis/coach/coach.type';
-import { birthSplit } from '@utils/split';
-import { transferSexType } from '@utils/switch';
+import { birthSplit } from 'src/shared/utils/split';
+import { transferSexType } from 'src/shared/utils/switch';
 import { useColor } from 'react-color-palette';
 
 import ColorPalettePicker from '@widgets/ColorPalettePicker';
@@ -12,7 +12,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { FormError } from '@components/FormError';
-import { passwordRegex, phoneNumberRegex } from '@utils/validation';
+import { passwordRegex, phoneNumberRegex } from 'src/shared/utils/validation';
 import { ChangeEventHandler, useState } from 'react';
 import { useUpdateCoachDetailMutation } from '@features/coach/mutate/coach';
 

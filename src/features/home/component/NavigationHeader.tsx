@@ -1,5 +1,5 @@
 import Button from '@components/button/Button';
-import { getDateToKoreanString } from '@utils/date';
+import { getDateToKoreanString } from 'src/shared/utils/date';
 import { css } from 'styled-system/css';
 import { Flex } from 'styled-system/jsx';
 import { flex } from 'styled-system/patterns';

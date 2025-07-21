@@ -1,6 +1,6 @@
 import { CustomerDetailData } from '@apis/customer/customer.type';
 import { Input, Select } from '@components/index';
-import { getYearList, getMonthList, getDayList } from '@utils/date';
+import { getYearList, getMonthList, getDayList } from 'src/shared/utils/date';
 import {
   ProfileManIcon,
   ProfileWomanIcon,
@@ -19,7 +19,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { ChangeEventHandler, useState } from 'react';
-import { passwordRegex } from '@utils/validation';
+import { passwordRegex } from 'src/shared/utils/validation';
 import { FormError } from '@components/FormError';
 import { useUpdateCustomerDetailMutation } from '../mutate/profile';
 

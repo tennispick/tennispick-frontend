@@ -1,4 +1,4 @@
-import { addNumberCommas } from '@utils/numberForm';
+import { addNumberCommas } from 'src/shared/utils/numberForm';
 import { css } from 'styled-system/css';
 import { Flex, styled } from 'styled-system/jsx';
 

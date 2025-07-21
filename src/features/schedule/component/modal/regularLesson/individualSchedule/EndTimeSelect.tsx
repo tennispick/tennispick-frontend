@@ -1,4 +1,4 @@
-import { getEndTimeByStartTime } from '@utils/date';
+import { getEndTimeByStartTime } from 'src/shared/utils/date';
 import ScheduleModalSelect from '../../Select';
 import { useEffect } from 'react';
 import { SetStateAction } from '@/types/index';

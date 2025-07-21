@@ -1,4 +1,4 @@
-import { axios } from '@utils/axios';
+import { axios } from 'src/shared/utils/axios';
 import {
   URL_CHANGE_SETTING_ACTIVE_STATUS,
   URL_FETCH_SETTING_LIST,

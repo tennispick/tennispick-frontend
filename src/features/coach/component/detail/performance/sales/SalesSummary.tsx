@@ -4,7 +4,7 @@ import TotalSalesIcon from '@icons/payment/group_total_sales.svg';
 import AccountTransferIcon from '@icons/payment/group_atm.svg';
 import CardIcon from '@icons/payment/group_credit_card.svg';
 import CashIcon from '@icons/payment/group_attach_money.svg';
-import { addNumberCommas } from '@utils/numberForm';
+import { addNumberCommas } from 'src/shared/utils/numberForm';
 import { CoachTotalSalesData } from '@apis/coach/coach.type';
 
 type Props = { data: CoachTotalSalesData };

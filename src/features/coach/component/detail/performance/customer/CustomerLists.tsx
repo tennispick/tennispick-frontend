@@ -4,7 +4,7 @@ import { flex } from 'styled-system/patterns';
 import { NoResult } from '@components/index';
 import { styled } from 'styled-system/jsx';
 import { CoachCustomersData } from '@apis/coach/coach.type';
-import { transferSexType } from '@utils/switch';
+import { transferSexType } from 'src/shared/utils/switch';
 
 type Props = {
   coachId: string;

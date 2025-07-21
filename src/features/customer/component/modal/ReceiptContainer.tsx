@@ -10,7 +10,7 @@ import {
   transferRefundRange,
 } from '@features/customer/util/payment';
 import { LessonListQueryData } from '@features/lesson/type/lesson.type';
-import { addNumberCommas } from '@utils/numberForm';
+import { addNumberCommas } from 'src/shared/utils/numberForm';
 import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';
 

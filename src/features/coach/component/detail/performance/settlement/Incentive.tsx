@@ -1,5 +1,5 @@
 import { totalSalesRadioGroup } from '@features/setting/data/payment';
-import { addNumberCommas } from '@utils/numberForm';
+import { addNumberCommas } from 'src/shared/utils/numberForm';
 import { Flex, styled } from 'styled-system/jsx';
 
 type Props = {

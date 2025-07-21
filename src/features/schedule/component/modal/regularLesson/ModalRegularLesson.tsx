@@ -17,9 +17,9 @@ import {
   ScheduleInputType,
 } from '@features/schedule/type/schedule.type';
 import { CustomerLessonListQueryData } from '@features/customer/type/customer.type';
-import { getTimeGap } from '@utils/date';
+import { getTimeGap } from 'src/shared/utils/date';
 import ScheduleModalRegularLessonIndividualSchedule from './individualSchedule/IndividualSchedule';
-import { handleInputArrayValidationCheck } from '@utils/validation';
+import { handleInputArrayValidationCheck } from 'src/shared/utils/validation';
 
 import { individualCreateFormValidationSet } from '@features/schedule/util/inputFormValidationSet';
 import { flex } from 'styled-system/patterns';

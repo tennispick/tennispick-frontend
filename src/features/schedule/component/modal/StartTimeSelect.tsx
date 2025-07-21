@@ -1,5 +1,5 @@
 import ScheduleModalSelect from './Select';
-import { getTimeList } from '@utils/date';
+import { getTimeList } from 'src/shared/utils/date';
 import { ChangeEvent } from 'react';
 import { css } from 'styled-system/css';
 

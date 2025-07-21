@@ -5,7 +5,7 @@ import {
   transferDiscountType,
   transferPaymentType,
 } from '@features/customer/util/payment';
-import { addNumberCommas } from '@utils/numberForm';
+import { addNumberCommas } from 'src/shared/utils/numberForm';
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
 

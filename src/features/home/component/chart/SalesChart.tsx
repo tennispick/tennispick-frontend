@@ -1,7 +1,7 @@
 import { Flex } from 'styled-system/jsx';
 import Card from './Card';
 import { css } from 'styled-system/css';
-import { addNumberCommas } from '@utils/numberForm';
+import { addNumberCommas } from 'src/shared/utils/numberForm';
 import { useHomeSalesStatisticsQuery } from '@features/home/query/statisticsQuery';
 
 type Props = {

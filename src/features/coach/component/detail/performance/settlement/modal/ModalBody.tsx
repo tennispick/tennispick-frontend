@@ -2,10 +2,10 @@ import { css } from 'styled-system/css';
 import ModalSearchPeriod from './ModalSearchPeriod';
 import { useState } from 'react';
 import ModalReceipt from './ModalReceipt';
-import { getDateToKoreanString } from '@utils/date';
+import { getDateToKoreanString } from 'src/shared/utils/date';
 import { lastDayOfMonth, startOfDay } from 'date-fns';
 import { useCoachMonthSettlementQuery } from '@features/home/query/salesQuery';
-import { getSalaryApplyTaxRateBySales } from '@utils/settlement';
+import { getSalaryApplyTaxRateBySales } from 'src/shared/utils/settlement';
 import { useCoachPerformanceQuery } from '@features/coach/query/coachQuery';
 
 type Props = {

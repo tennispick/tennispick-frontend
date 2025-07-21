@@ -8,7 +8,7 @@ import {
   transferDiscountType,
   transferPaymentType,
 } from '@features/customer/util/payment';
-import { addNumberCommas } from '@utils/numberForm';
+import { addNumberCommas } from 'src/shared/utils/numberForm';
 import CustomerModalReceiptContainer from './ReceiptContainer';
 import { LessonListQueryData } from '@features/lesson/type/lesson.type';
 import useInput from '@hooks/useInput';

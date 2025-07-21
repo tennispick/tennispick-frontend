@@ -1,5 +1,5 @@
 import { CoachPerformanceData } from '@apis/coach/coach.type';
-import { addNumberCommas } from '@utils/numberForm';
+import { addNumberCommas } from 'src/shared/utils/numberForm';
 import { css } from 'styled-system/css';
 import { Divider, Flex, styled } from 'styled-system/jsx';
 

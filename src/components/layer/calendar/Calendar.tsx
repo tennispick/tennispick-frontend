@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { getWeekList } from '@utils/date';
+import { getWeekList } from 'src/shared/utils/date';
 import { STRING_WEEK_LIST_KR } from '@features/schedule/constants/schedule';
 import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';

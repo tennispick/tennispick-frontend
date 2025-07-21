@@ -6,7 +6,7 @@ import AccountTransferIcon from '@icons/payment/group_atm.svg';
 import CardIcon from '@icons/payment/group_credit_card.svg';
 import CashIcon from '@icons/payment/group_attach_money.svg';
 import { css } from 'styled-system/css';
-import { addNumberCommas } from '@utils/numberForm';
+import { addNumberCommas } from 'src/shared/utils/numberForm';
 import { useTotalSalesQuery } from '@features/home/query/statisticsQuery';
 
 type Props = {

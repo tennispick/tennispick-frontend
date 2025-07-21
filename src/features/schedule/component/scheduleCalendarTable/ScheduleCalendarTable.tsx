@@ -2,7 +2,7 @@ import { CoachListData } from '@apis/coach/coach.type';
 import Loading from '@components/common/Loading';
 import { GET_WEEK_LIST_COUNT } from '@features/constant/schedule';
 import { useLessonScheduleByPeriodQuery } from '@features/schedule/query/scheduleQuery';
-import { getDayOfWeek, getDayOfWeekList } from '@utils/date';
+import { getDayOfWeek, getDayOfWeekList } from 'src/shared/utils/date';
 import { styled } from 'styled-system/jsx';
 import { flex } from 'styled-system/patterns';
 
