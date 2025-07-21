@@ -1,4 +1,4 @@
-import { addNumberCommas } from '@utils/numberForm';
+import { addNumberCommas } from 'src/shared/utils/numberForm';
 import SearchBox from '@widgets/SearchBox';
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';

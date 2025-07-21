@@ -1,5 +1,5 @@
 import Button from '@components/button/Button';
-import { addDays } from '@utils/date';
+import { addDays } from 'src/shared/utils/date';
 import { Flex } from 'styled-system/jsx';
 
 type Props = {

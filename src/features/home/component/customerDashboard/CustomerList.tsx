@@ -1,7 +1,7 @@
 'use client';
 
 import { CustomerListQueryData } from '@features/customer/type/customer.type';
-import { transferSexType } from '@utils/switch';
+import { transferSexType } from 'src/shared/utils/switch';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { css } from 'styled-system/css';

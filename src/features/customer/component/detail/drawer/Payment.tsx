@@ -2,7 +2,7 @@ import { CustomerPaymentRefundData } from '@apis/payment/payment.type';
 import DrawerInputContainer from './InputContainer';
 import { transferCategory } from '@features/customer/util/payment';
 import { transferPaymentType } from '@features/customer/util/payment';
-import { addNumberCommas } from '@utils/numberForm';
+import { addNumberCommas } from 'src/shared/utils/numberForm';
 import { transferDiscountType } from '@features/customer/util/payment';
 import { transferRefundRange } from '@features/customer/util/payment';
 import { css } from 'styled-system/css';

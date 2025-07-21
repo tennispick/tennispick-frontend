@@ -1,6 +1,6 @@
 import { useCustomerDetailQuery } from '@features/customer/query/CustomerQuery';
 import { ProfileManIcon } from '@icons/index';
-import { transferSexType } from '@utils/switch';
+import { transferSexType } from 'src/shared/utils/switch';
 import Image from 'next/image';
 import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';

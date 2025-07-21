@@ -1,6 +1,6 @@
 import { css, cx } from 'styled-system/css';
 import ScheduleSelect from '../Select';
-import { getTimeList } from '@utils/date';
+import { getTimeList } from 'src/shared/utils/date';
 
 type Props = {
   className?: string;

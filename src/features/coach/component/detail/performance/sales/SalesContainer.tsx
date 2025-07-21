@@ -12,7 +12,7 @@ import {
   useCoachTotalSalesListQuery,
   useCoachTotalSalesQuery,
 } from '@features/coach/query/coachQuery';
-import { getDateToKoreanString } from '@utils/date';
+import { getDateToKoreanString } from 'src/shared/utils/date';
 import { useState } from 'react';
 import Loading from '@components/common/Loading';
 

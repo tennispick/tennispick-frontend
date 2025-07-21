@@ -3,7 +3,7 @@ import CalendarBlackIcon from '@icons/calendar_black.svg';
 import CourtBlackIcon from '@icons/court_black.svg';
 import CoachBlackIcon from '@icons/coach_black.svg';
 import ItemRow from './ItemRow';
-import { transferSexType } from '@utils/switch';
+import { transferSexType } from 'src/shared/utils/switch';
 import ScheduleSelect from '@features/customer/component/detail/modal/scheduleChange/Select';
 import { CustomerLessonHistoryData } from '@apis/customer/customer.type';
 import { useCustomerDetailQuery } from '@features/customer/query/CustomerQuery';

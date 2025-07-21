@@ -1,7 +1,7 @@
 import {
   getTimezoneListByTime,
   transferTimeZoneToSettingLessonTime,
-} from '@utils/date';
+} from 'src/shared/utils/date';
 import { useRecoilState } from 'recoil';
 import { userState } from '@lib/recoil/userState';
 import { TransferTimeList } from '@interfaces/calendar';

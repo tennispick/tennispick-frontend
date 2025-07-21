@@ -6,7 +6,7 @@ import Loading from '@components/common/Loading';
 import CustomerInfo from '../component/CustomerInfo';
 import CustomerPayment from '../component/Payment';
 import ManageContainer from '../component/detail/manage/ManageContainer';
-import { isEmptyObj } from '@utils/object';
+import { isEmptyObj } from 'src/shared/utils/object';
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
 

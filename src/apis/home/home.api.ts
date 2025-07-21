@@ -1,4 +1,4 @@
-import { axios } from '@utils/axios';
+import { axios } from 'src/shared/utils/axios';
 import {
   URL_HOME_CUSTOMER_STATISTICS,
   URL_HOME_SALES_STATISTICS,

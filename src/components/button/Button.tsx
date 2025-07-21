@@ -1,121 +1,59 @@
 import { ButtonType } from '@/types/button';
-import { css, cva, cx } from 'styled-system/css';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from '@/utils/cn';
+
+const buttonVariants = cva(
+  'border-0 cursor-pointer disabled:bg-gray-500 disabled:text-gray-800 disabled:border-gray-100 disabled:cursor-not-allowed',
+  {
+    variants: {
+      variant: {
+        primary: 'text-white bg-blue-500',
+        secondary: 'text-gray-800 bg-gray-400',
+        ghost: 'text-black bg-transparent',
+        text: 'text-black bg-transparent border border-gray-100',
+        positive: 'text-white bg-blue-500',
+        negative: 'text-white bg-red-500',
+      },
+      size: {
+        xs: 'h-7 text-xs px-3 rounded',
+        sm: 'h-8 text-sm px-3 rounded',
+        md: 'h-9 text-base px-5 rounded-md',
+        lg: 'h-11 text-lg px-8 rounded-md',
+        xl: 'h-12 text-xl px-10 rounded-md',
+        full: 'w-full h-12 text-xl px-10 rounded-md',
+        half: 'w-1/2 h-12 text-base px-10 rounded-md',
+      },
+    },
+    defaultVariants: {
+      variant: 'primary',
+      size: 'md',
+    },
+  },
+);
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  label?: string;
+  full?: boolean;
+}
 
 const Button = ({
-  size,
+  className,
   variant,
+  size,
   label,
   children,
   full,
   ...props
-}: ButtonType) => {
-  const { className, ...rest } = props;
-
-  const sizeStyles = cva({
-    base: {
-      border: 0,
-      cursor: 'pointer',
-
-      _disabled: {
-        backgroundColor: 'var(--grey500)',
-        color: 'var(--grey800)',
-        borderColor: 'var(--grey100)',
-        cursor: 'not-allowed',
-      },
-    },
-    variants: {
-      variant: {
-        xs: {
-          height: '1.75rem',
-          fontSize: '0.75rem',
-          padding: '0 0.75rem',
-          borderRadius: '0.25rem',
-        },
-        sm: {
-          height: '2rem',
-          fontSize: '0.875rem',
-          padding: '0 0.75rem',
-          borderRadius: '0.25rem',
-        },
-        md: {
-          height: '2.25rem',
-          fontSize: '1rem',
-          padding: '0 1.25rem',
-          borderRadius: '0.375rem',
-        },
-        lg: {
-          height: '2.75rem',
-          fontSize: '1.125rem',
-          padding: '0 2rem',
-          borderRadius: '0.375rem',
-        },
-        xl: {
-          height: '3rem',
-          fontSize: '1.25rem',
-          padding: '0 2.5rem',
-          borderRadius: '0.375rem',
-        },
-        full: {
-          width: '100%',
-          height: '3rem',
-          fontSize: '1.25rem',
-          padding: '0 2.5rem',
-          borderRadius: '0.375rem',
-        },
-        half: {
-          width: '50%',
-          height: '3rem',
-          fontSize: '1rem',
-          padding: '0 2.5rem',
-          borderRadius: '0.375rem',
-        },
-      },
-    },
-  });
-
-  const variantStyles = cva({
-    variants: {
-      variant: {
-        primary: {
-          color: 'var(--white100)',
-          backgroundColor: 'var(--business-active-color)',
-        },
-        secondary: {
-          color: 'var(--grey1600)',
-          backgroundColor: 'var(--grey400)',
-        },
-        ghost: {
-          color: 'var(--black100)',
-          backgroundColor: 'transparent',
-        },
-        text: {
-          color: 'var(--black100)',
-          backgroundColor: 'transparent',
-          border: '1px solid var(--grey100)',
-        },
-        positive: {
-          color: 'var(--white100)',
-          backgroundColor: 'var(--blue500)',
-        },
-        negative: {
-          color: 'var(--white100)',
-          backgroundColor: 'var(--red200)',
-        },
-      },
-    },
-  });
-
+}: ButtonProps) => {
   return (
     <button
-      className={cx(
-        css(
-          sizeStyles.raw({ variant: size }),
-          variantStyles.raw({ variant }),
-          full && { width: '100%' },
-        ),
-        className,
+      className={cn(
+        buttonVariants({ variant, size, className }),
+        full ? 'w-full' : '',
       )}
-      {...rest}
+      {...props}
     >
       {children || label}
     </button>

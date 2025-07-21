@@ -1,4 +1,4 @@
-import { SexType } from '../types';
+import { SexType } from '../../types';
 
 export const transferSexType = (sex: SexType) => {
   switch (sex) {

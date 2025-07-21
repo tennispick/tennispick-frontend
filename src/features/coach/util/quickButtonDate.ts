@@ -1,4 +1,4 @@
-import { setDateToStartOfDay } from '@utils/date';
+import { setDateToStartOfDay } from 'src/shared/utils/date';
 import {
   endOfMonth,
   endOfToday,

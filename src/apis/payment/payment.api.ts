@@ -7,7 +7,7 @@ import {
   URL_FETCH_TOTAL_COACH_SALES,
   URL_FETCH_TOTAL_SALES,
 } from './payment.url';
-import { axios } from '@utils/axios';
+import { axios } from 'src/shared/utils/axios';
 import {
   CustomerPaymentCreateApiPayload,
   CustomerPaymentRefundListApiPayload,

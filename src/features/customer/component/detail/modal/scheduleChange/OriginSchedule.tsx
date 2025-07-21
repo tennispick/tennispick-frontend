@@ -5,7 +5,7 @@ import {
   transferLessonDateType,
   transferLessonType,
 } from '@features/schedule/util/transfer';
-import { isEmptyObj } from '@utils/object';
+import { isEmptyObj } from 'src/shared/utils/object';
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
 
