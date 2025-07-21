@@ -30,11 +30,12 @@
       "@mocks/*": ["src/mocks/*"],
       "@queries/*": ["src/queries/*"],
       "@styles/*": ["src/styles/*"],
-      "@utils/*": ["src/shared/utils/*"],
       "@widgets/*": ["src/widgets/*"],
       "@/types/*": ["src/types/*"],
       "@/constants/*": ["src/constants/*"],
-      "@/recipes/*": ["src/recipes/*"]
+      "@/recipes/*": ["src/recipes/*"],
+      "@/shared/*": ["src/shared/*"],
+      "@/utils/*": ["src/shared/utils/*"],
     },
     "plugins": [
       {
