@@ -12,7 +12,7 @@ import {
   URL_CUSTOMER_DETAIL,
   URL_CUSTOMER,
 } from './customer.url';
-import { axios } from 'src/shared/utils/axios';
+import { authAxiosInstance } from '@lib/axios';
 import {
   CustomerLessonListApiPayload,
   CustomerLessonHistoryPayload,

@@ -1,6 +1,6 @@
-import { axios } from 'src/shared/utils/axios';
+import { axiosInstance } from '@lib/axios';
 import { URL_AUTH_LOGIN } from './auth.url';
 import { LoginPayload } from './auth.type';
 
 export const login = async (params: LoginPayload) =>
-  await axios.post(URL_AUTH_LOGIN, { ...params });
+  await axiosInstance.post(URL_AUTH_LOGIN, { ...params });
