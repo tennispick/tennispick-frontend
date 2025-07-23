@@ -28,7 +28,7 @@ const ModalSearchCondition = ({
         margin: '0 0 24px 0',
       })}
     >
-      <div className={css({ width: '7rem' })}>검색 조건</div>
+      <div className="w-28">검색 조건</div>
       <SearchBox
         searchOption={searchCondition}
         searchOptions={searchConditions}

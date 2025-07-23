@@ -72,9 +72,7 @@ const FileInput = ({ onChangeFileHandler }: Props) => {
           })}
         >
           <Image src={uploadIcon} alt="upload icon" width={24} height={24} />
-          <div className={css({ margin: '0 0 0 8px' })}>
-            이미지를 첨부해주세요.
-          </div>
+          <div className="ml-2">
         </label>
       </div>
     </div>

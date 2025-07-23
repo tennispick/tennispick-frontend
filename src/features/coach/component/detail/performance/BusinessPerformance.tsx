@@ -24,7 +24,7 @@ const BusinessPerformance = ({
           <TabList activeKey={'payment'}>정산내역</TabList>
           <TabList activeKey={'customer'}>수강생 목록</TabList>
         </TabLists>
-        <TabPanels className={css({ height: 'calc(100% - 2.875rem)' })}>
+        <TabPanels className="h-[calc(100%-2.875rem)]">
           <TabPanel
             activeKey={'sales'}
             className={css({ height: '100%', padding: '12px 0' })}
@@ -42,7 +42,7 @@ const BusinessPerformance = ({
           </TabPanel>
           <TabPanel
             activeKey={'customer'}
-            className={css({ height: '100%', padding: '12px 0' })}
+            className="h-full py-3"
           >
             <CustomerContainer coachId={coachId} />
           </TabPanel>

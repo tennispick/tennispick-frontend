@@ -1,5 +1,5 @@
 import { addNumberCommas } from 'src/shared/utils/numberForm';
-import { css } from 'styled-system/css';
+
 import { Flex, styled } from 'styled-system/jsx';
 
 type Props = {
@@ -47,7 +47,7 @@ const EstimatedReceipt = ({
           <Label>{`- ${addNumberCommas(totalTax)} 원`}</Label>
         </Flex>
       </Block>
-    </Container>
+    </section>
   );
 };
 

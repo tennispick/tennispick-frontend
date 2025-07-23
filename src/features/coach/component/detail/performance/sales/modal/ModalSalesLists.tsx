@@ -116,7 +116,7 @@ const SalesLists = ({ data }: { data: CoachTotalSalesListData[] }) => {
     return (
       <NoResultContainer>
         <NoResult description={'데이터가 없어요.'} />
-      </NoResultContainer>
+      </div>
     );
 
   return (
@@ -188,13 +188,6 @@ const SalesLists = ({ data }: { data: CoachTotalSalesListData[] }) => {
   );
 };
 
-const NoResultContainer = styled('div', {
-  base: {
-    width: '100%',
-    height: '100%',
-    padding: '16px 0',
-    borderRadius: '8px',
-  },
-});
+
 
 export default ModalSalesLists;

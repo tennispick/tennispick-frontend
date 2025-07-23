@@ -188,13 +188,7 @@ const SettleMentContainer = ({ coachId, paymentSettingStore }: Props) => {
               type="text"
               name="incentive"
               placeholder="인센티브를 입력해주세요."
-              className={css({
-                width: '100%',
-                fontSize: '0.925rem',
-                border: '1px solid var(--grey300)',
-                borderRadius: '8px',
-                padding: '10px 32px 10px 12px',
-              })}
+              className="w-full text-sm border border-gray-300 rounded-lg px-3 py-2"
             />
           </form>
         </LayerConfirmModal>
@@ -203,19 +197,7 @@ const SettleMentContainer = ({ coachId, paymentSettingStore }: Props) => {
   );
 };
 
-const InfoField = styled('div', {
-  base: {
-    height: '32px',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '2vw',
-    margin: '0 0 12px 0',
-  },
-});
-const InfoLabel = styled('div', {
-  base: {
-    width: '10vw',
-  },
-});
+
+
 
 export default SettleMentContainer;

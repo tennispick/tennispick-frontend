@@ -41,7 +41,7 @@ const ModalSearchPeriod = ({
           })}
         </Select>
         <Select
-          className={css({ width: '116px' })}
+          className="w-[116px]"
           onChange={handleMonthChange}
           defaultValue={month}
         >
@@ -53,7 +53,7 @@ const ModalSearchPeriod = ({
             );
           })}
         </Select>
-      </Flex>
+      </div>
     </div>
   );
 };

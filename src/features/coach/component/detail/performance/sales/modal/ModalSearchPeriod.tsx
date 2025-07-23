@@ -31,7 +31,7 @@ const ModalSearchPeriod = ({
         margin: '0 0 24px 0',
       })}
     >
-      <div className={css({ width: '7rem' })}>조회 기간</div>
+      <div className="w-28">조회 기간</div>
       <SearchQuickButton
         data={initialData}
         checkedItem={checkedItem}

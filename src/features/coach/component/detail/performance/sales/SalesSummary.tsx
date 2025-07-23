@@ -36,10 +36,7 @@ const SalesSummary = ({ data }: Props) => {
         <span>{addNumberCommas(totalSales)} 원</span>
       </div>
       <div
-        className={flex({
-          alignItems: 'center',
-          gap: '1rem',
-        })}
+        className="flex items-center gap-4"
       >
         <div
           className={flex({
@@ -62,10 +59,7 @@ const SalesSummary = ({ data }: Props) => {
           <span>{addNumberCommas(totalCardPrice)} 원</span>
         </div>
         <div
-          className={flex({
-            alignItems: 'center',
-            gap: '0.5rem',
-          })}
+          className="flex items-center gap-2"
         >
           <Image src={CashIcon} alt={'cash'} />
           현금결제

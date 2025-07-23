@@ -23,7 +23,7 @@ const PaymentTypeRow = ({
         margin: '0 0 24px 0',
       })}
     >
-      <div className={css({ width: '10vw' })}>결제 유형</div>
+      <div className="w-[10vw]">결제 유형</div>
       <CheckboxGroup
         checkList={checkList}
         checkedItems={checkedItems}

@@ -153,7 +153,7 @@ const Salary = ({
       <Divider color="var(--grey100)" margin="24px 0" />
       <Field>
         <Label>지급액</Label>
-        <Value>{addNumberCommas(totalSettlement)} 원</Value>
+        <div className="font-semibold">{addNumberCommas(totalSettlement)} 원</div>
       </Field>
     </section>
   );

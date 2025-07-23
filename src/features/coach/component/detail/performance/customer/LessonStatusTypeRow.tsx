@@ -28,7 +28,7 @@ const LessonStatusTypeRow = ({
         margin: '0 0 24px 0',
       })}
     >
-      <div className={css({ width: '7rem' })}>수강 상태</div>
+      <div className="w-28">수강 상태</div>
       <CheckboxGroup
         checkList={checkList}
         checkedItems={checkedItems}

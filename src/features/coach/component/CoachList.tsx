@@ -3,7 +3,7 @@ import { NoResult, NormalList } from '@/shared/components/index';
 import { useRouter } from 'next/navigation';
 import { ProfileManIcon, ProfileWomanIcon } from '@icons/index';
 import Image from 'next/image';
-import { css } from 'styled-system/css';
+
 
 type Props = {
   data: CoachListData[];
@@ -22,12 +22,7 @@ const CoachList = ({ data }: Props) => {
             return (
               <NormalList key={id} onClick={() => handleCoachDetailClick(id)}>
                 <div
-                  className={css({
-                    position: 'relative',
-                    width: '5%',
-                    minHeight: '40px',
-                    textAlign: 'center',
-                  })}
+                  className="relative w-[5%] min-h-[40px] text-center"
                 >
                   <Image
                     src={sex === 'man' ? ProfileManIcon : ProfileWomanIcon}
@@ -36,35 +31,24 @@ const CoachList = ({ data }: Props) => {
                   />
                 </div>
                 <div
-                  className={css({
-                    width: '52px',
-                    height: '24px',
-                    lineHeight: '24px',
-                    textAlign: 'center',
-                    margin: '0 16px 0 0',
+                  className="w-[52px] h-[24px] leading-[24px] text-center mr-4 rounded-[4px]"
+                  style={{
                     backgroundColor:
                       position === 'coach'
                         ? 'var(--business-active-color)'
                         : 'var(--green200)',
                     color: 'var(--white100)',
-                    borderRadius: '4px',
-                  })}
+                  }}
                 >
                   {position === 'coach' ? '코치' : '헤드코치'}
                 </div>
-                <div className={css({ width: 'calc(60% - 52px)' })}>
-                  <div className={css({ fontWeight: 600 })}>
+                <div className="w-[calc(60%-52px)]">
+                  <div className="font-semibold">
                     {name} &#40;{age}, {sex === 'man' ? '남' : '여'}&#41;
                   </div>
                 </div>
                 <div
-                  className={css({
-                    width: '35%',
-                    backgroundColor: 'var(--grey400)',
-                    borderRadius: '16px',
-                    padding: '12px 0',
-                    textAlign: 'center',
-                  })}
+                  className="w-[35%] bg-[var(--grey400)] rounded-[16px] py-3 text-center"
                 >
                   {phone} &#183; {email}
                 </div>
@@ -74,10 +58,7 @@ const CoachList = ({ data }: Props) => {
         </NormalList.UnOrderList>
       ) : (
         <div
-          className={css({
-            height: '20vh',
-            borderRadius: '25px',
-          })}
+          className="h-[20vh] rounded-[25px]"
         >
           <NoResult
             description={'코치님이 존재하지 않아요.'}

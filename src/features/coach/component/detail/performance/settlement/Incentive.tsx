@@ -17,15 +17,15 @@ const Incentive = ({
 }: Props) => {
   return (
     <Container>
-      <Flex alignItems="center">
+      <div className="flex items-center">
         <Field>총 매출 인센티브</Field>
         <Label>{`${addNumberCommas(totalSales)} %`}</Label>
       </Flex>
-      <Flex alignItems="center">
-        <Field>개별 인센티브</Field>
-        <Label>{`${addNumberCommas(individualSales)} %`}</Label>
+      <div className="flex items-center">
+        <div className="w-[calc(12vw-16px)] text-sm">개별 인센티브</div>
+        <div className="w-[calc(10vw-16px)] text-base text-right">{`${addNumberCommas(individualSales)} %`}</div>
       </Flex>
-    </Container>
+    </section>
   );
 };
 

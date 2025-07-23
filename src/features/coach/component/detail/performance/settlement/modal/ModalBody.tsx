@@ -54,12 +54,7 @@ const ModalBody = ({
 
   return (
     <div
-      className={css({
-        height: 'calc(100% - 66px)',
-        backgroundColor: 'var(--white100)',
-        borderRadius: '8px',
-        padding: '24px',
-      })}
+      className="h-[calc(100%-66px)] bg-white rounded-lg p-6"
     >
       <ModalSearchPeriod
         year={year}

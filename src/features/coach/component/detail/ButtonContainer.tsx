@@ -28,7 +28,7 @@ const ButtonContainer = ({ coachId }: Props) => {
 
   return (
     <div
-      className={flex({ height: '46px', justifyContent: 'end', gap: '8px' })}
+      className="flex h-[46px] justify-end gap-2"
     >
       <IconButton
         size="lg"

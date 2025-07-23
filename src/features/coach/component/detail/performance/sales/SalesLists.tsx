@@ -118,7 +118,7 @@ const SalesListsBody = ({ data }: { data: CoachTotalSalesListData[] }) => {
               <li className={css({ width: '10%' })}>
                 {addNumberCommas(remainPrice)}
               </li>
-              <li className={css({ width: '20%' })}>{createdAt}</li>
+              <li className="w-[20%]">{createdAt}</li>
             </ul>
           );
         },

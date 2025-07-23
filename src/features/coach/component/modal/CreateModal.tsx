@@ -220,6 +220,7 @@ const CoachCreateModal = ({ handleClose }: Props) => {
         label="코치 등록하기"
         src={EditWhiteIcon}
         css={{
+          css={{
           position: 'relative',
           width: '100%',
           justifyContent: 'center',
@@ -227,6 +228,7 @@ const CoachCreateModal = ({ handleClose }: Props) => {
           backgroundColor: 'var(--business-sub-color)',
           color: 'var(--white100)',
           padding: '12px 16px',
+        }}
         }}
       />
     </>

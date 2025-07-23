@@ -133,7 +133,7 @@ const SalesContainer = ({ coachId }: Props) => {
           onClick={handleShowDetail}
         >
           <div
-            className={css({ color: 'var(--business-color)', fontWeight: 600 })}
+            className="text-[var(--business-color)] font-semibold"
           >
             내역 상세보기
           </div>
