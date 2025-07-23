@@ -1,7 +1,6 @@
 import Input from '@/shared/components/common/Input';
 import { ForwardedRef, HTMLAttributes, forwardRef } from 'react';
-import { Styles, css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
+import { twMerge } from 'tailwind-merge';
 
 type Props = Omit<HTMLAttributes<HTMLInputElement>, 'type'> & {
   name: string;
@@ -9,7 +8,7 @@ type Props = Omit<HTMLAttributes<HTMLInputElement>, 'type'> & {
   rowHeadStyle?: { [key: string]: string };
   type?: string;
   disabled?: boolean;
-  css?: Styles;
+  className?: string;
 };
 
 const CustomerInputRow = forwardRef(
@@ -21,40 +20,32 @@ const CustomerInputRow = forwardRef(
       name,
       placeholder,
       defaultValue,
+      className,
       ...props
     }: Props,
     ref?: ForwardedRef<HTMLInputElement>,
   ) => {
-    const { css: cssProp = {}, ...rest } = props;
-
-    const defaultStyle = flex.raw({
-      alignItems: 'center',
-      height: 'calc((100%/ 5) - 16px)',
-    });
-
-    const className = css(defaultStyle, cssProp);
-
     return (
-      <div className={className}>
+      <div
+        className={twMerge(
+          'flex items-center h-[calc((100%/5)-16px)]',
+          className
+        )}
+      >
         <div
-          className={css({
-            fontSize: '1rem',
-            fontWeight: 600,
-            width: '25%',
-            padding: '4px 0',
-            ...rowHeadStyle,
-          })}
+          className="text-base font-semibold w-1/4 py-1"
+          style={rowHeadStyle}
         >
           {rowHeadLabel}
         </div>
-        <Input className={css({ width: 'calc(75% - 48px)', height: '100%' })}>
+        <Input className="w-[calc(75%-48px)] h-full">
           <Input.TextField
             ref={ref}
             type={type}
             name={name}
             placeholder={placeholder}
             defaultValue={defaultValue}
-            {...rest}
+            {...props}
           />
         </Input>
       </div>

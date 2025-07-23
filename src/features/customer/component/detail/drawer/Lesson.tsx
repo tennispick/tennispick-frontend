@@ -13,8 +13,6 @@ import { FormEventHandler } from 'react';
 import { deleteCustomerLesson } from '@apis/customer/customer.api';
 import { useQueryClient } from '@tanstack/react-query';
 import { URL_FETCH_CUSTOMER_ALL_LESSON_LIST } from '@apis/customer/customer.url';
-import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
 import IconButton from '@/shared/components/button/IconButton';
 
 type Props = {
@@ -63,7 +61,7 @@ const DrawerLesson = ({ data }: Props) => {
       <form
         id="customerDetailDrawerForm"
         onSubmit={onSubmitHandler}
-        className={css({ height: 'calc(100% - 56px)', overflowY: 'scroll' })}
+        className="h-[calc(100%-56px)] overflow-y-scroll"
       >
         <DrawerInputContainer
           label="상태"
@@ -82,12 +80,12 @@ const DrawerLesson = ({ data }: Props) => {
         />
         <DrawerInputContainer
           label="담당코치"
-          value={coachName ?? '-'}
+          value={coachName ?? '-'}|
           readOnly
         />
         <DrawerInputContainer
           label="결제날짜"
-          value={paymentDt ?? '-'}
+          value={paymentDt ?? '-'}|
           readOnly
         />
         <DrawerInputContainer
@@ -96,46 +94,24 @@ const DrawerLesson = ({ data }: Props) => {
           readOnly
         />
         <div
-          className={css({
-            fontWeight: 600,
-            fontSize: '0.925rem',
-            padding: '0 0 0 4px',
-          })}
+          className="font-semibold text-sm pl-1"
         >
           수강이력
         </div>
         <div
-          className={flex({
-            height: '28px',
-            alignItems: 'center',
-            textAlign: 'center',
-            margin: '12px 0 0 0',
-            padding: '6px 8px',
-
-            '& div': {
-              fontSize: '0.875rem',
-            },
-          })}
+          className="flex h-7 items-center text-center mt-3 px-2 [&_div]:text-sm"
         >
-          <div className={css({ width: '10%' })}>출석여부</div>
-          <div className={css({ width: '15%' })}>코치</div>
-          <div className={css({ width: '10%' })}>보강유무</div>
-          <div className={css({ width: '15%' })}>레슨 유형</div>
-          <div className={css({ width: '15%' })}>예약 유형</div>
-          <div className={css({ width: '15%' })}>날짜</div>
-          <div className={css({ width: '10%' })}>시작시간</div>
-          <div className={css({ width: '10%' })}>종료시간</div>
+          <div className="w-[10%]">출석여부</div>
+          <div className="w-[15%]">코치</div>
+          <div className="w-[10%]">보강유무</div>
+          <div className="w-[15%]">레슨 유형</div>
+          <div className="w-[15%]">예약 유형</div>
+          <div className="w-[15%]">날짜</div>
+          <div className="w-[10%]">시작시간</div>
+          <div className="w-[10%]">종료시간</div>
         </div>
         <div
-          className={css({
-            height: 'calc(100% - (17.15rem + 312px))',
-            padding: '8px 0',
-            overflowY: 'auto',
-
-            '& div': {
-              fontSize: '0.875rem',
-            },
-          })}
+          className="h-[calc(100%-(17.15rem+312px))] py-2 overflow-y-auto [&_div]:text-sm"
         >
           {initialLessonScheduleHistoryData &&
           initialLessonScheduleHistoryData.length > 0 ? (
@@ -156,36 +132,32 @@ const DrawerLesson = ({ data }: Props) => {
                 return (
                   <ManageListRow
                     key={`${index}-${centerCoachId}`}
-                    className={css({
-                      color: isAttendance === 'Y' ? '' : 'var(--red100)',
-                      opacity: isAttendance === 'Y' ? 1 : 0.65,
-                      cursor: 'default',
-                    })}
+                    className={`${isAttendance === 'Y' ? '' : 'text-red-500 opacity-65'} cursor-default`}
                   >
-                    <div className={css({ width: '10%' })}>
+                    <div className="w-[10%]">
                       {isAttendance === 'Y' ? '출석' : '결석'}
                     </div>
-                    <div className={css({ width: '15%' })}>
+                    <div className="w-[15%]">
                       {coachName ?? '-'}
                     </div>
-                    <div className={css({ width: '10%' })}>
+                    <div className="w-[10%]">
                       {isRegularLesson === 'Y' ? '정규레슨' : '보강레슨'}
                     </div>
-                    <div className={css({ width: '15%' })}>
+                    <div className="w-[15%]">
                       {transferLessonType(lessonType)}강습
                     </div>
-                    <div className={css({ width: '15%' })}>
+                    <div className="w-[15%]">
                       {transferLessonDateType(lessonDateType)}로 예약
                     </div>
-                    <div className={css({ width: '15%' })}>{date}</div>
-                    <div className={css({ width: '10%' })}>{startTime}</div>
-                    <div className={css({ width: '10%' })}>{endTime}</div>
+                    <div className="w-[15%]">{date}</div>
+                    <div className="w-[10%"]>{startTime}</div>
+                    <div className="w-[10%]">{endTime}</div>
                   </ManageListRow>
                 );
               },
             )
           ) : (
-            <div className={css({ textAlign: 'center', margin: '16px 0 0 0' })}>
+            <div className="text-center mt-4">
               수강이력이 존재하지 않아요.
             </div>
           )}
@@ -201,7 +173,7 @@ const DrawerLesson = ({ data }: Props) => {
         variant="negative"
         label={'수강 삭제하기'}
         full={true}
-        className={css({ margin: '12px 0 0 0' })}
+        className="mt-3"
       />
     </>
   );

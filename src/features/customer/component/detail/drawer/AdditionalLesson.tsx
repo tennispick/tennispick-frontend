@@ -4,7 +4,6 @@ import { DeleteWhiteIcon } from '@icons/index';
 import { FormEventHandler } from 'react';
 import { deleteCustomerAdditionalLesson } from '@apis/customer/customer.api';
 import IconButton from '@/shared/components/button/IconButton';
-import { css } from 'styled-system/css';
 
 type Props = {
   item: CustomerAdditionalLessonListData;
@@ -37,7 +36,7 @@ const DrawerAdditionalLesson = ({ item }: Props) => {
   };
 
   return (
-    <form onSubmit={onSubmitHandler} className={css({ height: '100%' })}>
+    <form onSubmit={onSubmitHandler} className="h-full">
       <DrawerInputContainer label="코트명" value={courtName} />
       <DrawerInputContainer label="코치명" value={coachName} />
       <DrawerInputContainer label="기존 강습 예약날짜" value={originDate} />
@@ -58,11 +57,7 @@ const DrawerAdditionalLesson = ({ item }: Props) => {
         variant="negative"
         label={'보강 취소하기'}
         full={true}
-        className={css({
-          position: 'absolute',
-          bottom: 0,
-          margin: '12px 0 0 0',
-        })}
+        className="absolute bottom-0 mt-3"
       />
     </form>
   );

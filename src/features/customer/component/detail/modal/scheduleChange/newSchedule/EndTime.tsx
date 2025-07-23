@@ -1,5 +1,5 @@
-import { css, cx } from 'styled-system/css';
 import ScheduleSelect from '../Select';
+import { twMerge } from 'tailwind-merge';
 
 type Props = {
   className?: string;
@@ -7,27 +7,20 @@ type Props = {
   onChangeFormData?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const EndTimeSelect = ({ endTime, onChangeFormData, ...props }: Props) => {
+const EndTimeSelect = ({ endTime, onChangeFormData, className, ...props }: Props) => {
   const data = [{ value: endTime, label: endTime }];
-
-  const { className, ...rest } = props;
-
-  const style = {
-    width: '120px',
-    height: '36px',
-    lineHeight: '32px',
-    margin: '0 0 0 12px',
-    fontSize: '0.875rem',
-  };
 
   return (
     <ScheduleSelect
       name="endTime"
       data={data ?? []}
-      className={cx(css(style), className)}
+      className={twMerge(
+        'w-[120px] h-9 leading-8 ml-3 text-sm',
+        className
+      )}
       selected={endTime}
       onChangeHandler={onChangeFormData}
-      {...rest}
+      {...props}
     />
   );
 };

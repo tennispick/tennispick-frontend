@@ -9,8 +9,6 @@ import RightSideContainer from '@/shared/components/layer/RightSideContainer';
 import DrawerLesson from '../../drawer/Lesson';
 import { useState } from 'react';
 import { LessonStatus } from '@features/customer/util/lesson';
-import { flex } from 'styled-system/patterns';
-import { css } from 'styled-system/css';
 
 type Props = {
   data: CustomerAllLessonListQueryData[];
@@ -20,16 +18,6 @@ type Props = {
   showScheduleChangeModal: boolean;
   handleShowModalClick: () => void;
   handleHideModalClick: () => void;
-};
-
-const ButtonStyle = {
-  color: 'var(--white100)',
-  fontWeight: 500,
-  padding: '8px 4px',
-  borderRadius: '6px',
-  border: 0,
-  fontSize: '0.725rem',
-  cursor: 'pointer',
 };
 
 const ManageLessonList = ({
@@ -60,36 +48,18 @@ const ManageLessonList = ({
   return (
     <>
       <div
-        className={flex({
-          height: '28px',
-          alignItems: 'center',
-          textAlign: 'center',
-          padding: '6px 8px',
-          gap: '2px',
-
-          '& div': {
-            fontSize: '0.875rem',
-          },
-        })}
+        className="flex h-7 items-center text-center p-1.5 gap-0.5 [&_div]:text-sm"
       >
-        <div className={css({ width: '10%' })}>상태</div>
-        <div className={css({ width: '20%' })}>상품명</div>
-        <div className={css({ width: '10%' })}>강습유형</div>
-        <div className={css({ width: '15%' })}>코치</div>
-        <div className={css({ width: '10%' })}>수강현황</div>
-        <div className={css({ width: '20%' })}>결제날짜</div>
-        <div className={css({ width: '20%' })} />
+        <div className="w-[10%]">상태</div>
+        <div className="w-[20%]">상품명</div>
+        <div className="w-[10%]">강습유형</div>
+        <div className="w-[15%]">코치</div>
+        <div className="w-[10%]">수강현황</div>
+        <div className="w-[20%]">결제날짜</div>
+        <div className="w-[20%]" />
       </div>
       <div
-        className={css({
-          height: 'calc(100% - 28px)',
-          padding: '8px 0',
-          overflowY: 'auto',
-
-          '& div': {
-            fontSize: '0.875rem',
-          },
-        })}
+        className="h-[calc(100%-28px)] py-2 overflow-y-auto [&_div]:text-sm"
       >
         {data.map((item, index) => {
           const {
@@ -106,7 +76,7 @@ const ManageLessonList = ({
           return (
             <ManageListRow
               key={`${index}-${id}`}
-              className={css({ cursor: 'default' })}
+              className="cursor-default"
             >
               {LessonStatusCell(
                 LessonStatus(
@@ -116,45 +86,29 @@ const ManageLessonList = ({
                 ),
               )}
               <div
-                className={css({
-                  width: '20%',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textAlign: 'left',
-                  padding: '0 0 0 8px',
-                })}
+                className="w-[20%] truncate whitespace-nowrap overflow-hidden text-left pl-2"
               >
                 {lessonName}
               </div>
-              <div className={css({ width: '10%' })}>
+              <div className="w-[10%]">
                 {transferLessonType(type)}
               </div>
-              <div className={css({ width: '15%' })}>{coachName ?? '-'}</div>
+              <div className="w-[15%]">{coachName ?? '-'}</div>
               <div
-                className={css({ width: '10%' })}
+                className="w-[10%]"
               >{`${remainLessonCount}회 / ${registerAbleCount}회`}</div>
-              <div className={css({ width: '20%' })}>{paymentDt}</div>
-              <div className={flex({ width: '20%' })}>
+              <div className="w-[20%]">{paymentDt}</div>
+              <div className="flex w-[20%]">
                 <Button
                   type="button"
                   label="수강변경"
-                  css={{
-                    width: '46%',
-                    backgroundColor: 'var(--business-active-color)',
-                    margin: '0 4% 0 4%',
-                    ...ButtonStyle,
-                  }}
+                  className="w-[46%] bg-blue-600 text-white font-medium py-2 px-1.5 rounded-md border-0 text-xs cursor-pointer"
                   onClick={() => handleOpenScheduleChangeModalClick(item)}
                 />
                 <Button
                   type="button"
                   label="상세보기"
-                  css={{
-                    width: '46%',
-                    backgroundColor: 'var(--business-color)',
-                    ...ButtonStyle,
-                  }}
+                  className="w-[46%] bg-blue-500 text-white font-medium py-2 px-1.5 rounded-md border-0 text-xs cursor-pointer"
                   onClick={() => onClickLessonRowHandler(item)}
                 />
               </div>
@@ -167,7 +121,7 @@ const ManageLessonList = ({
           <Modal
             title="강습일정 변경"
             setOpenModal={handleHideModalClick}
-            css={{ top: '47.5%' }}
+            className="top-1/2"
           >
             <ScheduleChangeModal
               customerId={lessonItem.customerId}

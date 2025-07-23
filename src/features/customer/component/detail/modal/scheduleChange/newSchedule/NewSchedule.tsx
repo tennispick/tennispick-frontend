@@ -10,7 +10,6 @@ import { useDuplicateCheckScheduleLessonQuery } from '@features/schedule/query/s
 import { CustomerLessonScheduleHistoryData } from '@apis/customer/customer.type';
 import { isEmptyObj } from 'src/shared/utils/object';
 import { getEndTimeByStartTime } from 'src/shared/utils/date';
-import { css } from 'styled-system/css';
 import IconButton from '@/shared/components/button/IconButton';
 
 type Props = {
@@ -87,19 +86,15 @@ const NewSchedule = ({
   return (
     <>
       <section>
-        <div className={css({ fontWeight: 600 })}>변경 후 일정</div>
-        <div className={css({ margin: '12px 0 8px 0' })}>
-          <div className={css({ fontSize: '0.9rem', margin: '0 0 8px 0' })}>
+        <div className="font-semibold">변경 후 일정</div>
+        <div className="my-3">
+          <div className="text-sm mb-2">
             코치
           </div>
           <ScheduleSelect
             name="coach"
             data={transferCoachListFormat(coachList || [])}
-            className={css({
-              width: '160px',
-              height: '36px',
-              borderRadius: '6px',
-            })}
+            className="w-40 h-9 rounded-md"
             selected={formData.coach ?? initialSelectedCoach?.id}
             onChangeHandler={onChangeFormData}
             disabled={isSelectedSchedule}
@@ -115,51 +110,33 @@ const NewSchedule = ({
         />
         {isDuplicated() && (
           <div
-            className={css({
-              margin: '8px 0 0 2px',
-              color: 'var(--red200)',
-              fontSize: '0.875rem ',
-            })}
+            className="mt-2 ml-0.5 text-red-500 text-sm"
           >
             예약이 불가능한 날짜에요.
           </div>
         )}
-        <div className={css({ margin: '12px 0 8px 0' })}>
-          <div className={css({ fontSize: '0.875rem', margin: '0 0 8px 0' })}>
+        <div className="my-3">
+          <div className="text-sm mb-2">
             코트
           </div>
           <ScheduleSelect
             name="court"
             data={transferCourtListFormat(courtList || [])}
-            className={css({
-              width: '160px',
-              height: '36px',
-              borderRadius: '6px',
-            })}
+            className="w-40 h-9 rounded-md"
             selected={formData.court ?? initialSelectedCourt?.id}
             onChangeHandler={onChangeFormData}
             disabled={isSelectedSchedule}
           />
         </div>
-        <div className={css({ margin: '12px 0 8px 0' })}>
-          <div className={css({ fontSize: '0.875rem', margin: '0 0 8px 0' })}>
+        <div className="my-3">
+          <div className="text-sm mb-2">
             사유 입력
           </div>
           <input
             type="text"
             name="reason"
             placeholder="사유를 입력해주세요."
-            className={css({
-              width: '100%',
-              height: '36px',
-              borderRadius: '6px',
-              padding: '10px 0 10px 10px',
-              fontSize: '0.9rem',
-              marginRight: 0,
-              border: '1px solid var(--grey300)',
-              outline: 0,
-              zIndex: '1',
-            })}
+            className="w-full h-9 rounded-md px-2.5 text-base mr-0 border border-gray-300 outline-none z-10"
             disabled={isSelectedSchedule}
             maxLength={200}
           />
@@ -174,7 +151,7 @@ const NewSchedule = ({
         size="lg"
         full={true}
         disabled={lessonChangeDisabled}
-        className={css({ margin: '24px 0 0 0' })}
+        className="mt-6"
       />
     </>
   );

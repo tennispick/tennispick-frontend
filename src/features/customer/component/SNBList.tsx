@@ -1,7 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
 import { SNBList } from '../type/snbList.type';
-import { flex } from 'styled-system/patterns';
-import { css } from 'styled-system/css';
 
 type Props = {
   currentItem: string;
@@ -12,10 +10,7 @@ type Props = {
 const SNBList = ({ currentItem, setCurrentItem, tabLists }: Props) => {
   return (
     <ul
-      className={flex({
-        width: '100%',
-        margin: '0 0 12px 12px',
-      })}
+      className="flex w-full ml-3 mb-3"
     >
       {tabLists.map(({ id, name }) => {
         const selectedItem = currentItem === id;
@@ -23,12 +18,7 @@ const SNBList = ({ currentItem, setCurrentItem, tabLists }: Props) => {
         return (
           <li
             key={id}
-            className={css({
-              margin: '0 16px 0 0',
-              color: selectedItem ? 'var(--black100)' : 'var(--grey800)',
-              fontWeight: selectedItem ? 600 : 400,
-              cursor: 'pointer',
-            })}
+            className={`mr-4 cursor-pointer ${selectedItem ? 'text-black font-semibold' : 'text-gray-500 font-normal'}`}
             onClick={() => setCurrentItem(id)}
           >
             {name}

@@ -1,6 +1,4 @@
 import { ReactNode } from 'react';
-import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
 
 type Props = {
   rowHeadLabel: string;
@@ -10,20 +8,8 @@ type Props = {
 
 const CustomerSelectRow = ({ rowHeadLabel, selectChildren }: Props) => {
   return (
-    <div
-      className={flex({
-        alignItems: 'center',
-        height: 'calc((100%/ 5) - 16px)',
-      })}
-    >
-      <div
-        className={css({
-          width: '25%',
-          padding: '4px 0',
-          fontSize: '1rem',
-          fontWeight: 600,
-        })}
-      >
+    <div className="flex items-center h-[calc((100%/5)-16px)]">
+      <div className="w-1/4 py-1 text-base font-semibold">
         {rowHeadLabel}
       </div>
       {selectChildren}

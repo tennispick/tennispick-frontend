@@ -2,7 +2,6 @@ import { CustomerPaymentRefundData } from '@apis/payment/payment.type';
 import PaymentList from './payment/List';
 import RefundList from './refund/List';
 import { MouseEvent } from 'react';
-import { css } from 'styled-system/css';
 
 type Props = {
   type: string;
@@ -20,12 +19,7 @@ const CustomerDetailPaymentRefundBodyContainer = ({
 }: Props) => {
   return (
     <div
-      className={css({
-        height: 'calc(100% - 60px)',
-        padding: '12px 4px',
-        backgroundColor: 'var(--white100)',
-        borderRadius: '8px',
-      })}
+      className="h-[calc(100%-60px)] p-3 bg-white rounded-lg"
     >
       {
         {

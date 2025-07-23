@@ -1,8 +1,6 @@
 import { CustomerPaymentRefundData } from '@apis/payment/payment.type';
 import { PaymentRefundType } from '@features/customer/type/payment.type';
 import { addNumberCommas } from 'src/shared/utils/numberForm';
-import { css } from 'styled-system/css';
-import { Flex, styled } from 'styled-system/jsx';
 
 type Props = {
   type: PaymentRefundType;
@@ -20,53 +18,37 @@ const CustomerDetailPaymentRefundHeaderContainer = ({
   const totalRefundPrice = data.reduce((acc, cur) => acc + cur.refundPrice, 0);
 
   return (
-    <HeaderContainer>
-      <Flex alignItems="center" justifyContent="space-between">
-        <Flex alignItems="center">
-          <div className={css({ margin: '0 16px 0 0' })}>
+    <div className="h-12 leading-6 bg-white mt-0 mb-3 p-3 rounded-lg">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center">
+          <div className="mr-4">
             총{' '}
-            <span className={css({ fontWeight: 600 })}>
+            <span className="font-semibold">
               {addNumberCommas(totalLength)}
             </span>
             건
           </div>
           <div>
             총 {type === 'payment' ? '결제' : '환불'}금액 :{' '}
-            <span className={css({ fontWeight: 600 })}>
+            <span className="font-semibold">
               {addNumberCommas(
                 type === 'payment' ? totalPrice : totalRefundPrice,
               )}
             </span>
             원
           </div>
-        </Flex>
+        </div>
         {type === 'payment' && (
           <div
-            className={css({
-              color: 'var(--business-color)',
-              fontWeight: 600,
-              margin: '0 8px 0 0',
-              cursor: 'pointer',
-            })}
+            className="text-blue-600 font-semibold mr-2 cursor-pointer"
             onClick={handleShowPaymentModalClick}
           >
             결제하기
           </div>
         )}
-      </Flex>
-    </HeaderContainer>
+      </div>
+    </div>
   );
 };
-
-const HeaderContainer = styled('div', {
-  base: {
-    height: '48px',
-    lineHeight: '24px',
-    backgroundColor: 'var(--white100)',
-    margin: '0 0 12px 0',
-    padding: '12px',
-    borderRadius: '8px',
-  },
-});
 
 export default CustomerDetailPaymentRefundHeaderContainer;
