@@ -3,7 +3,6 @@ import ScheduleModalSelect from '../../Select';
 import { CourtListData } from '@apis/court/court.type';
 import { SetStateAction } from '@/types/index';
 import { IndividualFormDataProps } from '@features/schedule/type/regularLesson';
-import { css } from 'styled-system/css';
 
 type Props = {
   index: number;
@@ -65,10 +64,7 @@ const ScheduleModalRegularLessonIndividualScheduleCourtSelect = ({
           ? transferCourtListFormat(data!)
           : [{ value: '', label: '코트 선택' }]
       }
-      className={css({
-        width: 'calc(15% - 8px)',
-        margin: '0 0 0 8px',
-      })}
+      className="w-[calc(15%-8px)] ml-2"
       selected={courtId}
       onChangeHandler={onChangeHandler}
       disabled={disabled}

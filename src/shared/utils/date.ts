@@ -397,8 +397,8 @@ export const getTimeList = ({
       let minute = isInclude
         ? afterTimeMinute
         : hour === afterTimeHour
-        ? afterTimeMinute + step
-        : 0;
+          ? afterTimeMinute + step
+          : 0;
       minute < 60;
       minute += step
     ) {

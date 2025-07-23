@@ -3,7 +3,7 @@ import { deleteCoach } from '@apis/coach/coach.api';
 import { URL_COACH } from '@apis/coach/coach.url';
 import { useQueryClient } from '@tanstack/react-query';
 import { flex } from 'styled-system/patterns';
-import IconButton from '@components/button/IconButton';
+import IconButton from '@/shared/components/button/IconButton';
 
 type Props = {
   coachId: string;

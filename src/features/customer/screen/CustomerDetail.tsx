@@ -1,8 +1,8 @@
 'use client';
 
-import { PageHeader } from '@components/index';
+import { PageHeader } from '@/shared/components/index';
 import { useCustomerDetailQuery } from '../query/CustomerQuery';
-import Loading from '@components/common/Loading';
+import Loading from '@/shared/components/common/Loading';
 import CustomerInfo from '../component/CustomerInfo';
 import CustomerPayment from '../component/Payment';
 import ManageContainer from '../component/detail/manage/ManageContainer';

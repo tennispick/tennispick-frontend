@@ -1,5 +1,4 @@
 import { ChangeEvent, PropsWithChildren } from 'react';
-import { flex } from 'styled-system/patterns';
 
 type Props = Pick<HTMLInputElement, 'type' | 'name' | 'value'> & {
   id?: string;
@@ -28,12 +27,7 @@ const ScheduleModalInput = ({
 
   return (
     <div
-      className={flex({
-        position: 'relative',
-        alignItems: 'center',
-        gap: type !== 'text' ? '6px' : 0,
-        margin: type !== 'text' ? '0 16px 0 0' : '',
-      })}
+      className={`relative flex items-center ${type !== 'text' ? 'gap-1.5 mr-4' : ''}`}
     >
       <input
         id={id}

@@ -5,7 +5,6 @@ import StartTimeSelect from '@features/customer/component/detail/modal/scheduleC
 import EndTimeSelect from '@features/customer/component/detail/modal/scheduleChange/newSchedule/EndTime';
 import { SetStateAction } from '@/types/index';
 import ItemRow from './ItemRow';
-import { css } from 'styled-system/css';
 
 type Props = {
   formData: any;
@@ -32,7 +31,7 @@ const ScheduleContainer = ({
   return (
     <>
       <ItemRow label="날짜">
-        <div className={css({ width: 'calc(100% - 152px)' })}>
+        <div className="w-[calc(100%-152px)]">
           <DatePicker
             name="date"
             locale={ko}
@@ -44,7 +43,7 @@ const ScheduleContainer = ({
                 height="12"
                 viewBox="0 0 16 18"
                 fill="none"
-                className={css({ zIndex: 99 })}
+                className="z-10"
               >
                 <path
                   d="M2.16667 17.3334C1.70833 17.3334 1.31597 17.1702 0.989583 16.8438C0.663194 16.5174 0.5 16.1251 0.5 15.6667V4.00008C0.5 3.54175 0.663194 3.14939 0.989583 2.823C1.31597 2.49661 1.70833 2.33341 2.16667 2.33341H3V0.666748H4.66667V2.33341H11.3333V0.666748H13V2.33341H13.8333C14.2917 2.33341 14.684 2.49661 15.0104 2.823C15.3368 3.14939 15.5 3.54175 15.5 4.00008V15.6667C15.5 16.1251 15.3368 16.5174 15.0104 16.8438C14.684 17.1702 14.2917 17.3334 13.8333 17.3334H2.16667ZM2.16667 15.6667H13.8333V7.33341H2.16667V15.6667ZM2.16667 5.66675H13.8333V4.00008H2.16667V5.66675Z"
@@ -52,14 +51,7 @@ const ScheduleContainer = ({
                 />
               </svg>
             }
-            className={css({
-              width: '100%',
-              height: '36px',
-              padding: '2px 0px 2px 32px !important',
-              border: '1px solid var(--grey300)',
-              borderRadius: '8px',
-              fontSize: '0.875rem',
-            })}
+            className="w-full h-9 py-0.5 pl-8 border border-gray-300 rounded-lg text-sm"
             dateFormat="yyyy.MM.dd"
             selected={date ?? today}
             minDate={today}
@@ -72,13 +64,13 @@ const ScheduleContainer = ({
           disabled={false}
           startTime={formData.startTime ?? initialStartTime}
           onChangeFormData={onChangeFormData}
-          className={css({ width: 'calc(100% - 152px)', margin: 0 })}
+          className="w-[calc(100%-152px)] m-0"
         />
       </ItemRow>
       <ItemRow label="종료시간">
         <EndTimeSelect
           endTime={initialEndTime}
-          className={css({ width: 'calc(100% - 152px)', margin: 0 })}
+          className="w-[calc(100%-152px)] m-0"
           onChangeFormData={onChangeFormData}
         />
       </ItemRow>

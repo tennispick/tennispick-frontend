@@ -1,4 +1,4 @@
-import { PORTAL_Z_INDEX } from '@/constants/portal';
+import { PORTAL_Z_INDEX } from '@/shared/constants/portal';
 import { cva } from 'styled-system/css';
 
 export const modal = cva({

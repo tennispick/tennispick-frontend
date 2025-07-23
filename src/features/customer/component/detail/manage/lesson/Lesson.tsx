@@ -1,4 +1,4 @@
-import { NoResult } from '@components/index';
+import { NoResult } from '@/shared/components/index';
 import { useCustomerAllLessonListQuery } from '@features/customer/query/CustomerQuery';
 import ManageLessonList from './LessonList';
 import { css } from 'styled-system/css';

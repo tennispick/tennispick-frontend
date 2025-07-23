@@ -2,24 +2,24 @@ import { getCookie } from '@lib/cookie';
 import axios, { AxiosInstance } from 'axios';
 
 const createInstance = (): AxiosInstance => {
-    const instance = axios.create({
-        baseURL: process.env.NEXT_PUBLIC_API_URL,
-        timeout: 5000,
-        headers: { 'Content-Type': 'application/json' },
-    });
+  const instance = axios.create({
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
+    timeout: 5000,
+    headers: { 'Content-Type': 'application/json' },
+  });
 
-    instance.interceptors.response.use(
-        (response) => response,
-        (error) => {
-            if (error.response?.status === 404) {
-                console.error('404 Page Not Found');
-            }
-            return Promise.reject(error);
-        }
-    );
+  instance.interceptors.response.use(
+    (response) => response,
+    (error) => {
+      if (error.response?.status === 404) {
+        console.error('404 Page Not Found');
+      }
+      return Promise.reject(error);
+    },
+  );
 
-    return instance;
-}
+  return instance;
+};
 
 const axiosInstance = createInstance();
 
@@ -30,11 +30,11 @@ authAxiosInstance.interceptors.request.use(
     const accessToken = getCookie('userACT');
 
     if (accessToken) {
-        config.headers.Authorization = `Bearer ${accessToken}`;
+      config.headers.Authorization = `Bearer ${accessToken}`;
     }
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 authAxiosInstance.interceptors.response.use(
@@ -47,7 +47,7 @@ authAxiosInstance.interceptors.response.use(
       }
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export { axiosInstance, authAxiosInstance };

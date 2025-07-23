@@ -1,4 +1,4 @@
-import { Select } from '@components/index';
+import { Select } from '@/shared/components/index';
 import { CommonListType } from '@features/schedule/type/data.type';
 import { useState } from 'react';
 import { UseInputType } from 'src/types';
@@ -20,7 +20,7 @@ const ScheduleModalSelectBox = ({
   return (
     <Select
       name={type}
-      width={'80%'}
+      className="w-4/5"
       defaultValue={dataValue}
       onChange={onChangeFormData}
     >

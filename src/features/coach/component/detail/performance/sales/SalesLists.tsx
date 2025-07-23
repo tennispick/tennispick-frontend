@@ -1,5 +1,5 @@
 import { CoachTotalSalesListData } from '@apis/coach/coach.type';
-import { NoResult } from '@components/index';
+import { NoResult } from '@/shared/components/index';
 import {
   transferCategory,
   transferDiscountType,

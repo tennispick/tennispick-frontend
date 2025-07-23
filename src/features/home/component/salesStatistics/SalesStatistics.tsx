@@ -1,4 +1,4 @@
-import IconButton from '@components/button/IconButton';
+import IconButton from '@/shared/components/button/IconButton';
 import SingleRightArrowIcon from '@icons/single_right_arrow.svg';
 import ItemRow from './ItemRow';
 import TotalSalesIcon from '@icons/payment/group_total_sales.svg';

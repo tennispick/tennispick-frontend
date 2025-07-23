@@ -1,10 +1,10 @@
-import Loading from '@components/common/Loading';
-import { NoResult, Select } from '@components/index';
+import Loading from '@/shared/components/common/Loading';
+import { NoResult, Select } from '@/shared/components/index';
 import { useCustomerMemoListQuery } from '@features/customer/query/CustomerQuery';
 import ManageMemoList from './MemoList';
 import { FormEventHandler, useState } from 'react';
-import LayerConfirmModal from '@components/layer/ConfirmModal';
-import { Input } from '@components/index';
+import LayerConfirmModal from '@/shared/components/layer/ConfirmModal';
+import { Input } from '@/shared/components/index';
 import useInput from '@hooks/useInput';
 import { useCreateMemoMutate } from '@features/customer/mutate/memo';
 import { css } from 'styled-system/css';

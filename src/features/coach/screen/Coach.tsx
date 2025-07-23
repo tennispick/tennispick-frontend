@@ -2,15 +2,15 @@
 
 import { useState } from 'react';
 
-import { PageHeader, Portal, Modal } from '@components/index';
+import { PageHeader, Portal, Modal } from '@/shared/components/index';
 import { CustomerWhiteIcon } from '@icons/index';
 import CoachList from '../component/CoachList';
 import { useGetCoachListQuery } from '../query/coachQuery';
-import Loading from '@components/common/Loading';
+import Loading from '@/shared/components/common/Loading';
 import CoachCreateModal from '../component/modal/CreateModal';
 import { css } from 'styled-system/css';
 import Tab from '@widgets/Tab';
-import IconButton from '@components/button/IconButton';
+import IconButton from '@/shared/components/button/IconButton';
 
 const CoachScreen = () => {
   const { Tabs, TabLists, TabList, TabPanels, TabPanel } = Tab();

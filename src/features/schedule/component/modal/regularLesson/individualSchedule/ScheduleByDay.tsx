@@ -2,7 +2,6 @@ import { DayType } from '@features/schedule/type/schedule.type';
 import ScheduleModalSelect from '../../Select';
 import { dayList } from 'src/shared/utils/day';
 import { ChangeEvent } from 'react';
-import { css } from 'styled-system/css';
 
 type Props = {
   day: DayType;
@@ -24,10 +23,7 @@ const ScheduleModalRegularLessonIndividualScheduleByDay = ({
     <ScheduleModalSelect
       name="startTime"
       data={data}
-      className={css({
-        width: 'calc(15% - 16px)',
-        margin: '0 0 0 8px',
-      })}
+      className="w-[calc(15%-16px)] ml-2"
       selected={day}
       onChangeHandler={onChangeHandler}
       disabled={disabled}

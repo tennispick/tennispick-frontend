@@ -16,8 +16,8 @@ import { refundTypeList } from '@features/customer/data/paymentRefund';
 import { ChangeEventHandler, FormEvent, useEffect, useState } from 'react';
 import { createCustomerRefund } from '@apis/payment/payment.api';
 import { useRouter } from 'next/navigation';
-import ConfirmModal from '@components/layer/ConfirmModal';
-import { Input } from '@components/index';
+import ConfirmModal from '@/shared/components/layer/ConfirmModal';
+import { Input } from '@/shared/components/index';
 import { flex } from 'styled-system/patterns';
 import { css } from 'styled-system/css';
 

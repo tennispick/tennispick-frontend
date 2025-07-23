@@ -1,20 +1,20 @@
 'use client';
 
-import Modal from '@components/layer/Modal';
+import Modal from '@/shared/components/layer/Modal';
 import {
   PageHeader,
   CustomerList,
   Portal,
   GenerateCustomerModal,
-} from '@components/index';
+} from '@/shared/components/index';
 import { CustomerWhiteIcon } from '@icons/index';
 import { css } from 'styled-system/css';
 import { useCustomerListQuery } from '../query/CustomerQuery';
-import Loading from '@components/common/Loading';
+import Loading from '@/shared/components/common/Loading';
 import Tab from '@widgets/Tab';
-import IconButton from '@components/button/IconButton';
+import IconButton from '@/shared/components/button/IconButton';
 import { useState } from 'react';
-import { INFINITEQUERY_PAGE_LIMIT } from '@/constants/page';
+import { INFINITEQUERY_PAGE_LIMIT } from '@/shared/constants/page';
 
 const CustomerScreen = () => {
   const { Tabs, TabLists, TabList, TabPanels, TabPanel } = Tab();

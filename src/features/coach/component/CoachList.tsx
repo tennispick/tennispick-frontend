@@ -1,5 +1,5 @@
 import { CoachListData } from '@apis/coach/coach.type';
-import { NoResult, NormalList } from '@components/index';
+import { NoResult, NormalList } from '@/shared/components/index';
 import { useRouter } from 'next/navigation';
 import { ProfileManIcon, ProfileWomanIcon } from '@icons/index';
 import Image from 'next/image';

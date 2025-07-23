@@ -6,7 +6,6 @@ import { useGetCoachListQuery } from '@features/coach/query/coachQuery';
 import { CoachListData } from '@apis/coach/coach.type';
 import ScheduleWrapper from './ScheduleWrapper';
 import { SetStateAction } from '@/types/index';
-import { css } from 'styled-system/css';
 
 type Props = {
   formData: any;
@@ -42,11 +41,7 @@ const AdditionalLessonSchedule = ({
 
   return (
     <section
-      className={css({
-        width: '50%',
-        top: '240px',
-        padding: '0 0 0 12px',
-      })}
+      className="w-1/2 absolute top-60 pl-3"
     >
       <ScheduleWrapper
         date={new Date(formData.date ?? date)}
@@ -60,7 +55,7 @@ const AdditionalLessonSchedule = ({
         <ScheduleSelect
           name="coach"
           data={transferCoachListFormat(coachList || [])}
-          className={css({ width: 'calc(100% - 152px)' })}
+          className="w-[calc(100%-152px)]"
           selected={`${coachId}`}
           onChangeHandler={onChangeFormData}
         />
@@ -69,7 +64,7 @@ const AdditionalLessonSchedule = ({
         <ScheduleSelect
           name="court"
           data={transferCourtListFormat(courtList || [])}
-          className={css({ width: 'calc(100% - 152px)' })}
+          className="w-[calc(100%-152px)]"
           selected={`${courtId}`}
           onChangeHandler={onChangeFormData}
         />

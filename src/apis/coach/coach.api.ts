@@ -53,18 +53,24 @@ export const getCoachTotalSales = async (
   params: CoachTotalSalesPayload,
 ): Promise<Response<CoachTotalSalesData[]>> => {
   const { coachId, ...rest } = params;
-  return await authAxiosInstance.get(`${URL_COACH_DETAIL(coachId)}/totalSales`, {
-    params: { ...rest },
-  });
+  return await authAxiosInstance.get(
+    `${URL_COACH_DETAIL(coachId)}/totalSales`,
+    {
+      params: { ...rest },
+    },
+  );
 };
 
 export const getCoachTotalSalesList = async (
   params: CoachTotalSalesPayload,
 ): Promise<Response<CoachTotalSalesListData[]>> => {
   const { coachId, ...rest } = params;
-  return await authAxiosInstance.get(`${URL_COACH_DETAIL(coachId)}/totalSalesList`, {
-    params: { ...rest },
-  });
+  return await authAxiosInstance.get(
+    `${URL_COACH_DETAIL(coachId)}/totalSalesList`,
+    {
+      params: { ...rest },
+    },
+  );
 };
 
 // DETAIL
@@ -95,6 +101,10 @@ export const getCoachPerformance = async (
 };
 
 export const updateCoachIncentive = async (coachId: string, params: FormData) =>
-  await authAxiosInstance.put(`${URL_COACH_UPDATE_INCENTIVE(coachId)}`, params, {
-    headers: { 'Content-Type': 'multipart/form-data' },
-  });
+  await authAxiosInstance.put(
+    `${URL_COACH_UPDATE_INCENTIVE(coachId)}`,
+    params,
+    {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    },
+  );

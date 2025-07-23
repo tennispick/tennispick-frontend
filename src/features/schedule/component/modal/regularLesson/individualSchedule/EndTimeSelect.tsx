@@ -3,7 +3,6 @@ import ScheduleModalSelect from '../../Select';
 import { useEffect } from 'react';
 import { SetStateAction } from '@/types/index';
 import { IndividualFormDataProps } from '@features/schedule/type/regularLesson';
-import { css } from 'styled-system/css';
 
 type Props = {
   index: number;
@@ -41,10 +40,7 @@ const ScheduleModalRegularLessonIndividualScheduleEndTimeSelect = ({
     <ScheduleModalSelect
       name="endTime"
       data={data}
-      className={css({
-        width: '100px',
-        margin: '0 0 0 12px',
-      })}
+      className="w-[100px] ml-3"
       selected={endTime}
       onChangeHandler={() => {}}
       disabled={disabled}

@@ -4,11 +4,11 @@ import { useRouter } from 'next/navigation';
 import { EditWhiteIcon } from '@icons/index';
 
 import useInput from '@hooks/useInput';
-import { Input, Select } from '@components/index';
+import { Input, Select } from '@/shared/components/index';
 import { createLesson } from '@apis/lesson/lesson.api';
 import { Flex, styled } from 'styled-system/jsx';
 import { css } from 'styled-system/css';
-import IconButton from '@components/button/IconButton';
+import IconButton from '@/shared/components/button/IconButton';
 
 type Props = {
   setOpenModal: SetStateAction<boolean>;

@@ -5,8 +5,8 @@ import DashboardHeader from './DashboardHeader';
 import CustomerList from './CustomerList';
 import { css } from 'styled-system/css';
 import { useCustomerListQuery } from '@features/customer/query/CustomerQuery';
-import Loading from '@components/common/Loading';
-import { INFINITEQUERY_PAGE_LIMIT } from '@/constants/page';
+import Loading from '@/shared/components/common/Loading';
+import { INFINITEQUERY_PAGE_LIMIT } from '@/shared/constants/page';
 
 const searchOptions = [
   { label: '회원명', value: 'name' },

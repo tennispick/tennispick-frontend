@@ -1,5 +1,5 @@
 import { CustomerDetailData } from '@apis/customer/customer.type';
-import { Input, Select } from '@components/index';
+import { Input, Select } from '@/shared/components/index';
 import { getYearList, getMonthList, getDayList } from 'src/shared/utils/date';
 import {
   ProfileManIcon,
@@ -7,20 +7,20 @@ import {
   DeleteWhiteIcon,
   EditWhiteIcon,
 } from '@icons/index';
-import CustomerInputRow from '@components/customer/detail/InputRow';
-import CustomerSelectRow from '@components/customer/detail/SelectRow';
+import CustomerInputRow from '@/shared/components/customer/detail/InputRow';
+import CustomerSelectRow from '@/shared/components/customer/detail/SelectRow';
 import { deleteCustomer } from '@apis/customer/customer.api';
 import { useQueryClient } from '@tanstack/react-query';
 import { flex } from 'styled-system/patterns';
 import { css } from 'styled-system/css';
 import { Flex } from 'styled-system/jsx';
-import IconButton from '@components/button/IconButton';
+import IconButton from '@/shared/components/button/IconButton';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { ChangeEventHandler, useState } from 'react';
 import { passwordRegex } from 'src/shared/utils/validation';
-import { FormError } from '@components/FormError';
+import { FormError } from '@/shared/components/FormError';
 import { useUpdateCustomerDetailMutation } from '../mutate/profile';
 
 const schema = z
@@ -79,8 +79,8 @@ const CustomerInfo = ({ customerId, customer }: Props) => {
   const profileImage = profileImageUrl
     ? profileImageUrl
     : sex === 'man'
-    ? ProfileManIcon.src
-    : ProfileWomanIcon.src;
+      ? ProfileManIcon.src
+      : ProfileWomanIcon.src;
 
   const { mutate } = useUpdateCustomerDetailMutation(customerId);
 

@@ -2,15 +2,15 @@
 
 import { useState } from 'react';
 
-import { PageHeader, Portal } from '@components/index';
+import { PageHeader, Portal } from '@/shared/components/index';
 import { EditWhiteIcon } from '@icons/index';
 
 import LessonList from '../component/LessonList';
-import Modal from '@components/layer/Modal';
+import Modal from '@/shared/components/layer/Modal';
 import LessonModal from '../component/modal/LessonModal';
 import { css } from 'styled-system/css';
 import Tab from '@widgets/Tab';
-import IconButton from '@components/button/IconButton';
+import IconButton from '@/shared/components/button/IconButton';
 
 const LessonScreen = () => {
   const { Tabs, TabLists, TabList, SingleTabPanel } = Tab();

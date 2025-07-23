@@ -1,4 +1,4 @@
-import { css } from 'styled-system/css';
+import { twMerge } from 'tailwind-merge';
 
 type Props = {
   data: {
@@ -11,36 +11,15 @@ type Props = {
 const InputAutoComplete = ({ data, onClickCustomerHandler }: Props) => {
   return (
     <section
-      className={css({
-        position: 'absolute',
-        width: '100%',
-        minHeight: '40px',
-        maxHeight: '180px',
-        top: '44px',
-        left: 0,
-        backgroundColor: 'var(--white100)',
-        boxShadow: '0px 8px 12px 0px rgba(0, 0, 0, 0.25)',
-        border: '1px solid var(--grey100)',
-        borderRadius: '8px',
-        overflowY: 'scroll',
-        zIndex: 1,
-      })}
+      className="absolute w-full min-h-10 max-h-[180px] top-11 left-0 bg-white shadow-lg border border-gray-200 rounded-lg overflow-y-scroll z-10"
     >
-      <ul className={css({ minHeight: '40px', padding: '4px 0' })}>
+      <ul className="min-h-10 py-1">
         {data.map(({ id, name }) => {
           return (
             <li
               key={id}
               id={id}
-              className={css({
-                cursor: 'pointer',
-                padding: '8px 12px',
-
-                _hover: {
-                  borderRadius: '4px',
-                  backgroundColor: 'var(--grey400)',
-                },
-              })}
+              className="cursor-pointer px-3 py-2 hover:rounded-md hover:bg-gray-200"
               value={name}
               onClick={() => onClickCustomerHandler(id, name)}
             >

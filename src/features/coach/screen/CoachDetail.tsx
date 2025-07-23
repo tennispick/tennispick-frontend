@@ -1,9 +1,9 @@
 'use client';
 
-import { PageHeader } from '@components/index';
+import { PageHeader } from '@/shared/components/index';
 import ButtonContainer from '../component/detail/ButtonContainer';
 import { useCoachDetailQuery } from '../query/coachQuery';
-import Loading from '@components/common/Loading';
+import Loading from '@/shared/components/common/Loading';
 import CoachDetailProfile from '../component/detail/CoachDetailProfile';
 import BusinessPerformance from '../component/detail/performance/BusinessPerformance';
 import { css } from 'styled-system/css';

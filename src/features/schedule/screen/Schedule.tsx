@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import PageHeader from '@components/common/PageHeader';
+import PageHeader from '@/shared/components/common/PageHeader';
 import ButtonToolbar from '@features/schedule/component/buttonToolbar/ButtonToolBar';
 import { useGetCoachListQuery } from '@features/coach/query/coachQuery';
 import useMobile from '@hooks/useMobile';

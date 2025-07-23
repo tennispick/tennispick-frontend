@@ -1,6 +1,6 @@
 'use client';
 
-import Loading from '@components/common/Loading';
+import Loading from '@/shared/components/common/Loading';
 import { useLessonDetailQuery } from '@features/lesson/query/LessonQuery';
 import LessonDetail from '@features/lesson/screen/LessonDetail';
 

@@ -1,5 +1,5 @@
 import { useScheduleByDateQuery } from '@features/schedule/query/scheduleQuery';
-import { NormalList as Li } from '@components/index';
+import { NormalList as Li } from '@/shared/components/index';
 import { ScheduleLessonByDateData } from '@apis/schedule/schedule.type';
 import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';

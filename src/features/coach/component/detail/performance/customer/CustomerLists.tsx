@@ -1,7 +1,7 @@
 import { css } from 'styled-system/css';
 import { useCoachCustomersQuery } from '@features/coach/query/coachQuery';
 import { flex } from 'styled-system/patterns';
-import { NoResult } from '@components/index';
+import { NoResult } from '@/shared/components/index';
 import { styled } from 'styled-system/jsx';
 import { CoachCustomersData } from '@apis/coach/coach.type';
 import { transferSexType } from 'src/shared/utils/switch';

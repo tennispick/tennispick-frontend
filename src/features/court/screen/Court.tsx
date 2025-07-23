@@ -1,6 +1,6 @@
 'use client';
 
-import Loading from '@components/common/Loading';
+import Loading from '@/shared/components/common/Loading';
 import { useCourtListQuery } from '../query/courtQuery';
 import {
   CourtList,
@@ -8,13 +8,13 @@ import {
   GenerateCourtModal,
   PageHeader,
   Portal,
-} from '@components/index';
-import IconButton from '@components/button/IconButton';
+} from '@/shared/components/index';
+import IconButton from '@/shared/components/button/IconButton';
 import { EditWhiteIcon } from '@icons/index';
 import { useState } from 'react';
 import { css } from 'styled-system/css';
 import Tab from '@widgets/Tab';
-import RightSideContainer from '@components/layer/RightSideContainer';
+import RightSideContainer from '@/shared/components/layer/RightSideContainer';
 import useModal from '@hooks/useModal';
 
 const CourtScreen = () => {

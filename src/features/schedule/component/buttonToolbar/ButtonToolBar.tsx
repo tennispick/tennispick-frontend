@@ -1,7 +1,5 @@
 import DateButtonContainer from './DateButtonContainer';
 import LessonButtonContainer from './LessonButtonContainer';
-import { Flex } from 'styled-system/jsx';
-import { css } from 'styled-system/css';
 
 type Props = {
   calendarDate: Date;
@@ -17,7 +15,7 @@ const ButtonToolbar = ({
   handleShowAdditionalModal,
 }: Props) => {
   return (
-    <Flex justifyContent="space-between" className={css({ margin: '16px 0' })}>
+    <div className="flex justify-between my-4">
       <DateButtonContainer
         calendarDate={calendarDate}
         handleChangeDate={handleChangeDate}
@@ -26,7 +24,7 @@ const ButtonToolbar = ({
         handleShowRegularModal={handleShowRegularModal}
         handleShowAdditionalModal={handleShowAdditionalModal}
       />
-    </Flex>
+    </div>
   );
 };
 

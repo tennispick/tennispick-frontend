@@ -4,7 +4,7 @@ import QueryProvider from 'src/provider/QueryProvider';
 import RecoilProvider from 'src/provider/RecoilProvider';
 import './global.css';
 import '@styles/react-date-picker.css';
-import AppLayout from '@components/layout/AppLayout';
+import AppLayout from '@/shared/components/layout/AppLayout';
 import ModalProvider from 'src/provider/ModalProvider';
 
 export default async function RootLayout({ children }: PropsWithChildren) {

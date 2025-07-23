@@ -1,5 +1,5 @@
-import Loading from '@components/common/Loading';
-import { NoResult } from '@components/index';
+import Loading from '@/shared/components/common/Loading';
+import { NoResult } from '@/shared/components/index';
 import { useCustomerAdditionalLessonListQuery } from '@features/customer/query/CustomerQuery';
 import AdditionalLessonList from './additionalLesson/AdditionalLessonList';
 import { css } from 'styled-system/css';

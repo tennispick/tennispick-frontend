@@ -1,4 +1,4 @@
-import Input from '@components/input/Input';
+import Input from '@/shared/components/input/Input';
 import RadioSelectorGroup from '@widgets/RadioSelectorGroup';
 import { css } from 'styled-system/css';
 import BlockContainer from './BlockContainer';
@@ -10,11 +10,11 @@ import {
   totalSalesRadioGroup,
   vatRadioGroup,
 } from '@features/setting/data/payment';
-import Button from '@components/button/Button';
+import Button from '@/shared/components/button/Button';
 import { Controller, useForm, useWatch } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FormError } from '@components/FormError';
+import { FormError } from '@/shared/components/FormError';
 import { useEffect } from 'react';
 import { PaymentSettingSchema } from '@features/setting/util/zod';
 import { useUpdatePaymentSettingMutation } from '@features/setting/mutation/settingMutation';

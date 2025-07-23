@@ -1,12 +1,10 @@
 'use client';
 
-import { flex } from 'styled-system/patterns';
 import NavigationHeader from '../component/NavigationHeader';
 import CustomerChart from '../component/chart/CustomerChart';
 import SalesChart from '../component/chart/SalesChart';
 import CustomerDashboard from '../component/customerDashboard/CustomerDashboard';
 import SalesStatistics from '../component/salesStatistics/SalesStatistics';
-import { css } from 'styled-system/css';
 import { useState } from 'react';
 
 const HomeScreen = () => {
@@ -20,28 +18,17 @@ const HomeScreen = () => {
     setDate((prev) => new Date(prev.getFullYear(), prev.getMonth() + 1));
 
   return (
-    <div className={css({ height: '100%', overflowY: 'hidden' })}>
+    <div className="h-full overflow-y-hidden">
       <NavigationHeader
         date={date}
         handlePrevClick={handlePrevClick}
         handleNextClick={handleNextClick}
       />
-      <div
-        className={flex({
-          height: '11rem',
-          margin: '0 0 24px 0',
-          gap: '20px',
-        })}
-      >
+      <div className="flex h-[11rem] mb-6 gap-5">
         <CustomerChart date={date} />
         <SalesChart date={date} />
       </div>
-      <div
-        className={flex({
-          height: 'calc(100% - 248px)',
-          gap: '20px',
-        })}
-      >
+      <div className="flex h-[calc(100%-248px)] gap-5">
         <CustomerDashboard />
         <SalesStatistics date={date} />
       </div>

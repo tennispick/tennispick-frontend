@@ -1,4 +1,4 @@
-import Input from '@components/common/Input';
+import Input from '@/shared/components/common/Input';
 import { Styles, css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
 

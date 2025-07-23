@@ -3,13 +3,13 @@ import { DeleteWhiteIcon, EditWhiteIcon } from '@icons/index';
 import { CustomerMemoListApiData } from '@apis/customer/customer.type';
 import { deleteCustomerMemo } from '@apis/customer/customer.api';
 import { css } from 'styled-system/css';
-import IconButton from '@components/button/IconButton';
+import IconButton from '@/shared/components/button/IconButton';
 import { flex } from 'styled-system/patterns';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Select } from '@components/index';
-import { FormError } from '@components/FormError';
+import { Select } from '@/shared/components/index';
+import { FormError } from '@/shared/components/FormError';
 import { useUpdateMemoMutate } from '@features/customer/mutate/memo';
 
 const schema = z.object({

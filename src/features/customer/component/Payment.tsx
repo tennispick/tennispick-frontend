@@ -7,7 +7,7 @@ import { PaymentRefundType } from '../type/payment.type';
 import { CustomerPaymentRefundData } from '@apis/payment/payment.type';
 import { SetStateAction } from '@/types/index';
 import PaymentRefundModal from './modal/PaymentRefundModal';
-import Loading from '@components/common/Loading';
+import Loading from '@/shared/components/common/Loading';
 import { css } from 'styled-system/css';
 
 type Props = {

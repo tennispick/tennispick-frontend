@@ -11,7 +11,7 @@ import { CustomerLessonScheduleHistoryData } from '@apis/customer/customer.type'
 import { isEmptyObj } from 'src/shared/utils/object';
 import { getEndTimeByStartTime } from 'src/shared/utils/date';
 import { css } from 'styled-system/css';
-import IconButton from '@components/button/IconButton';
+import IconButton from '@/shared/components/button/IconButton';
 
 type Props = {
   formData: any;

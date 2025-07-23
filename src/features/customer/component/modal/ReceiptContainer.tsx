@@ -1,5 +1,5 @@
 import { PaymentType } from '@/types/payment';
-import { Button } from '@components/index';
+import { Button } from '@/shared/components/index';
 import {
   discountTypeList,
   paymentTypeList,

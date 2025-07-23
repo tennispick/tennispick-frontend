@@ -1,5 +1,5 @@
-import Portal from '@components/Portal';
-import { Modal } from '@components/index';
+import Portal from '@/shared/components/Portal';
+import { Modal } from '@/shared/components/index';
 import { SetStateAction } from '@/types/index';
 import CancelBtnIcon from '@icons/cancel_black_btn.svg';
 import CustomerInfoContainer from './CustomerInfoContainer';
@@ -11,7 +11,7 @@ import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
 import Image from 'next/image';
 import { styled } from 'styled-system/jsx';
-import Loading from '@components/common/Loading';
+import Loading from '@/shared/components/common/Loading';
 
 type Props = {
   customerId: string;

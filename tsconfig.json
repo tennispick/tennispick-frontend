@@ -20,7 +20,7 @@
       "@icons/*": ["src/assets/icons/*"],
       "@images/*": ["src/assets/images/*"],
       "@apis/*": ["src/apis/*"],
-      "@components/*": ["src/components/*"],
+      "@components/*": ["src/shared/components/*"],
       "@features/*": ["src/features/*"],
       "@data/*": ["src/data/*"],
       "@hooks/*": ["src/hooks/*"],
@@ -32,10 +32,10 @@
       "@styles/*": ["src/styles/*"],
       "@widgets/*": ["src/widgets/*"],
       "@/types/*": ["src/types/*"],
-      "@/constants/*": ["src/constants/*"],
+      "@/constants/*": ["src/shared/constants/*"],
       "@/recipes/*": ["src/recipes/*"],
       "@/shared/*": ["src/shared/*"],
-      "@/utils/*": ["src/shared/utils/*"],
+      "@/utils/*": ["src/shared/utils/*"]
     },
     "plugins": [
       {

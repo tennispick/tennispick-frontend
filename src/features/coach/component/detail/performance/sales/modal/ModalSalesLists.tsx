@@ -8,14 +8,14 @@ import {
 import { SearchConditionType } from '@features/coach/data/salesModalData';
 import { getDateToKoreanString } from 'src/shared/utils/date';
 import { CoachTotalSalesListData } from '@apis/coach/coach.type';
-import Loading from '@components/common/Loading';
+import Loading from '@/shared/components/common/Loading';
 import {
   transferCategory,
   transferDiscountType,
   transferPaymentType,
 } from '@features/customer/util/payment';
 import { addNumberCommas } from 'src/shared/utils/numberForm';
-import { NoResult } from '@components/index';
+import { NoResult } from '@/shared/components/index';
 import { styled } from 'styled-system/jsx';
 
 type Props = {

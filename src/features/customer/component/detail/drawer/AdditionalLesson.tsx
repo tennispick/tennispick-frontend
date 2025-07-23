@@ -3,7 +3,7 @@ import DrawerInputContainer from './InputContainer';
 import { DeleteWhiteIcon } from '@icons/index';
 import { FormEventHandler } from 'react';
 import { deleteCustomerAdditionalLesson } from '@apis/customer/customer.api';
-import IconButton from '@components/button/IconButton';
+import IconButton from '@/shared/components/button/IconButton';
 import { css } from 'styled-system/css';
 
 type Props = {

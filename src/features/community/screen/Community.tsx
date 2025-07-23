@@ -1,8 +1,8 @@
 'use client';
 
-import IconButton from '@components/button/IconButton';
+import IconButton from '@/shared/components/button/IconButton';
 import NoticeList from '@features/community/component/List';
-import { PageHeader } from '@components/index';
+import { PageHeader } from '@/shared/components/index';
 import Tab from '@widgets/Tab';
 import { EditWhiteIcon } from '@icons/index';
 

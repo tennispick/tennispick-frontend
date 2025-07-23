@@ -1,6 +1,6 @@
 'use client';
 
-import { Input, PageHeader } from '@components/index';
+import { Input, PageHeader } from '@/shared/components/index';
 import { css } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';
 

@@ -1,9 +1,13 @@
-import { Button, Input, Select } from '@components/index';
+import { Button, Input, Select } from '@/shared/components/index';
 import useInput from '@hooks/useInput';
 import { EditWhiteIcon } from '@icons/index';
 import { getYearList, getMonthList, getDayList } from 'src/shared/utils/date';
 import { FormEventHandler, useState } from 'react';
-import { emailRegex, passwordRegex, phoneNumberRegex } from 'src/shared/utils/validation';
+import {
+  emailRegex,
+  passwordRegex,
+  phoneNumberRegex,
+} from 'src/shared/utils/validation';
 import FileInput from './FileInput';
 import { createCoach } from '@apis/coach/coach.api';
 import { useRouter } from 'next/navigation';

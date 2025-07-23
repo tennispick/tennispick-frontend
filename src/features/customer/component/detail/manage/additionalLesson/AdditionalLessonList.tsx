@@ -1,7 +1,7 @@
-import Portal from '@components/Portal';
+import Portal from '@/shared/components/Portal';
 import ManageListRow from '../ListRow';
 import { CustomerAdditionalLessonListData } from '@features/customer/type/customer.type';
-import RightSideContainer from '@components/layer/RightSideContainer';
+import RightSideContainer from '@/shared/components/layer/RightSideContainer';
 import DrawerAdditionalLesson from '../../drawer/AdditionalLesson';
 import { useState } from 'react';
 import { flex } from 'styled-system/patterns';

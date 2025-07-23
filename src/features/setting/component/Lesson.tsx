@@ -1,6 +1,6 @@
-import ToggleInput from '@components/common/ToggleInput';
+import ToggleInput from '@/shared/components/common/ToggleInput';
 import { useSettingListQuery } from '../query/settingQuery';
-import Loading from '@components/common/Loading';
+import Loading from '@/shared/components/common/Loading';
 import { SettingListData } from '@apis/setting/setting.type';
 import { css } from 'styled-system/css';
 

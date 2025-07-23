@@ -1,4 +1,4 @@
-import Select from '@components/common/Select';
+import Select from '@/shared/components/common/Select';
 import { getMonthList, getYearList } from 'src/shared/utils/date';
 import { css } from 'styled-system/css';
 import { Flex } from 'styled-system/jsx';

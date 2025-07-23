@@ -1,13 +1,11 @@
 import { getDayOfWeek } from 'src/shared/utils/date';
 import { useLessonScheduleByPeriodQuery } from '../query/scheduleQuery';
 import { GET_WEEK_LIST_COUNT } from '@features/constant/schedule';
-import Loading from '@components/common/Loading';
+import Loading from '@/shared/components/common/Loading';
 import ScheduleTimeTable from './ScheduleTimeTable';
 
 import { getDayOfWeekList } from 'src/shared/utils/date';
 import { CoachListData } from '@apis/coach/coach.type';
-import { styled } from 'styled-system/jsx';
-import { flex } from 'styled-system/patterns';
 
 type Props = {
   isMobile: boolean;
@@ -45,23 +43,18 @@ const DaySchedule = ({ isMobile, date, coachList }: Props) => {
     <>
       {isLoading && <Loading />}
       <div
-        className={flex({
-          width: '100%',
-          height: 'calc(100% - 176px)',
-          flexDirection: isMobile ? 'column' : 'row',
-          gap: '16px',
-        })}
+        className={`w-full h-[calc(100%-176px)] flex ${isMobile ? 'flex-col' : 'flex-row'} gap-4`}
       >
-        <ScheduleCalendarContainer>
-          <DayTitle>평일</DayTitle>
+        <div className="w-[calc(50%-8px)] h-full">
+          <div className="h-6 text-xl font-semibold mb-4">평일</div>
           <ScheduleTimeTable
             coachList={coachList.length === 0 ? initCoach : coachList}
             data={data}
             timeTableMapList={getDayOfWeekList(date, GET_WEEK_LIST_COUNT, true)}
           />
-        </ScheduleCalendarContainer>
-        <ScheduleCalendarContainer>
-          <DayTitle>주말</DayTitle>
+        </div>
+        <div className="w-[calc(50%-8px)] h-full">
+          <div className="h-6 text-xl font-semibold mb-4">주말</div>
           <ScheduleTimeTable
             coachList={coachList.length === 0 ? initCoach : coachList}
             data={data}
@@ -71,26 +64,10 @@ const DaySchedule = ({ isMobile, date, coachList }: Props) => {
               false,
             )}
           />
-        </ScheduleCalendarContainer>
+        </div>
       </div>
     </>
   );
 };
-
-const ScheduleCalendarContainer = styled('div', {
-  base: {
-    width: 'calc(50% - 8px)',
-    height: '100%',
-  },
-});
-
-const DayTitle = styled('div', {
-  base: {
-    height: '24px',
-    fontSize: '1.25rem',
-    fontWeight: 600,
-    margin: '0 0 16px 0',
-  },
-});
 
 export default DaySchedule;

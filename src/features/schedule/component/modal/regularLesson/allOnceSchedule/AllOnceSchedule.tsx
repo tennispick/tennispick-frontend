@@ -10,7 +10,6 @@ import { AllOnceFormDataProps } from '@features/schedule/type/regularLesson';
 import ScheduleModalRegularLessonAllOnceScheduleSelectContainer from './ScheduleSelectContainer';
 import { ScheduleType } from '@features/schedule/type/schedule.type';
 import { DuplicateCheckScheduleLessonData } from '@apis/schedule/schedule.type';
-import { css } from 'styled-system/css';
 
 type Props = {
   allOnceData: AllOnceFormDataProps;
@@ -44,7 +43,7 @@ const ScheduleModalRegularLessonAllOnceSchedule = ({
 
   return (
     <>
-      <div className={css({ width: '25%' })}>
+      <div className="w-1/4">
         <LessonDateTypeInput
           lessonDateType={lessonDateType}
           setFormData={setAllOnceData}

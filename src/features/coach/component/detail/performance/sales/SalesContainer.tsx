@@ -1,4 +1,4 @@
-import { Divider } from '@components/index';
+import { Divider } from '@/shared/components/index';
 import PaymentTypeRow from '../PaymentTypeRow';
 import SearchPeriodRow from '../SearchPeriodRow';
 import Image from 'next/image';
@@ -14,7 +14,7 @@ import {
 } from '@features/coach/query/coachQuery';
 import { getDateToKoreanString } from 'src/shared/utils/date';
 import { useState } from 'react';
-import Loading from '@components/common/Loading';
+import Loading from '@/shared/components/common/Loading';
 
 const checkList = [
   {

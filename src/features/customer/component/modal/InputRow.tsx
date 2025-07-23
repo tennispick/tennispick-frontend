@@ -1,4 +1,4 @@
-import { Input, Select } from '@components/index';
+import { Input, Select } from '@/shared/components/index';
 import { ChangeEventHandler } from 'react';
 import { InputHTMLAttributes, SelectHTMLAttributes } from 'react';
 import { css } from 'styled-system/css';

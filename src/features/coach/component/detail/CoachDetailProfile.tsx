@@ -1,4 +1,4 @@
-import { Divider, Input, Select } from '@components/index';
+import { Divider, Input, Select } from '@/shared/components/index';
 import { ProfileManIcon, ProfileWomanIcon } from '@icons/index';
 import { CoachDetailData } from '@apis/coach/coach.type';
 import { birthSplit } from 'src/shared/utils/split';
@@ -11,7 +11,7 @@ import { Flex, styled } from 'styled-system/jsx';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { FormError } from '@components/FormError';
+import { FormError } from '@/shared/components/FormError';
 import { passwordRegex, phoneNumberRegex } from 'src/shared/utils/validation';
 import { ChangeEventHandler, useState } from 'react';
 import { useUpdateCoachDetailMutation } from '@features/coach/mutate/coach';
@@ -68,8 +68,8 @@ const CoachDetailProfile = ({
   const profileImage = profileImageUrl
     ? profileImageUrl
     : sex === 'man'
-    ? ProfileManIcon.src
-    : ProfileWomanIcon.src;
+      ? ProfileManIcon.src
+      : ProfileWomanIcon.src;
 
   const {
     register,

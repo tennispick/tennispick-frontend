@@ -2,7 +2,6 @@ import { CustomerLessonHistoryData } from '@apis/customer/customer.type';
 import { transferLessonDateType } from '@features/schedule/util/transfer';
 import { isEmptyObj } from 'src/shared/utils/object';
 import { MouseEvent } from 'react';
-import { css } from 'styled-system/css';
 
 type Props = {
   checkHistoryId: string;
@@ -18,34 +17,18 @@ const ScheduleModalRecentHistoryModalTableBody = ({
   const isEmptyData = data.length === 0 || isEmptyObj(data[0]);
 
   return (
-    <table
-      className={css({
-        width: '100%',
-        borderCollapse: 'collapse',
-        tableLayout: 'fixed',
-      })}
-    >
+    <table className="w-full border-collapse table-fixed">
       <colgroup>
-        <col className={css({ width: '36px' })} />
-        <col className={css({ width: '72px' })} />
-        <col className={css({ width: '152px' })} />
-        <col className={css({ width: '100px' })} />
-        <col className={css({ width: '150px' })} />
-        <col className={css({ width: '120px' })} />
-        <col className={css({ width: '110px' })} />
-        <col className={css({ width: '120px' })} />
+        <col className="w-[36px]" />
+        <col className="w-[72px]" />
+        <col className="w-[152px]" />
+        <col className="w-[100px]" />
+        <col className="w-[150px]" />
+        <col className="w-[120px]" />
+        <col className="w-[110px]" />
+        <col className="w-[120px]" />
       </colgroup>
-      <thead
-        className={css({
-          '& tr > th': {
-            textAlign: 'left',
-            backgroundColor: 'var(--business-color)',
-            color: 'var(--white100)',
-            padding: '10px 8px ',
-            fontSize: '1rem',
-          },
-        })}
-      >
+      <thead className="[&_tr>th]:text-left [&_tr>th]:bg-blue-600 [&_tr>th]:text-white [&_tr>th]:p-2.5 [&_tr>th]:text-base">
         <tr>
           <th></th>
           <th>회원명</th>
@@ -57,28 +40,7 @@ const ScheduleModalRecentHistoryModalTableBody = ({
           <th>강습시간</th>
         </tr>
       </thead>
-      <tbody
-        className={css({
-          minHeight: '210px',
-
-          '& tr': {
-            borderBottom: '1px solid var(--grey200)',
-
-            '& td': {
-              textAlign: 'left',
-              padding: '12px 8px',
-              textOverflow: 'ellipsis',
-              overflow: 'hidden',
-              whiteSpace: 'nowrap',
-              fontSize: '0.925rem',
-
-              _first: {
-                textAlign: 'center',
-              },
-            },
-          },
-        })}
-      >
+      <tbody className="min-h-[210px] [&_tr]:border-b [&_tr]:border-gray-300 [&_tr>td]:text-left [&_tr>td]:py-3 [&_tr>td]:px-2 [&_tr>td]:truncate [&_tr>td]:overflow-hidden [&_tr>td]:whitespace-nowrap [&_tr>td]:text-sm [&_tr>td:first-child]:text-center">
         {isEmptyData ? (
           <tr>
             <td colSpan={8}>최근 수강이력이 없어요.</td>

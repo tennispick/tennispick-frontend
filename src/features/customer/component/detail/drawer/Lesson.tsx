@@ -15,7 +15,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { URL_FETCH_CUSTOMER_ALL_LESSON_LIST } from '@apis/customer/customer.url';
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
-import IconButton from '@components/button/IconButton';
+import IconButton from '@/shared/components/button/IconButton';
 
 type Props = {
   data: CustomerAllLessonListQueryData;

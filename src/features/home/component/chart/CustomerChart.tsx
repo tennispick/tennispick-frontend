@@ -36,8 +36,8 @@ const CustomerChart = ({ date }: Props) => {
             currentCustomer.increasedMembers === 0
               ? 'NoChange'
               : currentCustomer.increasedMembers > 0
-              ? 'Up'
-              : 'Down'
+                ? 'Up'
+                : 'Down'
           }
           content={`${currentCustomer.increasedMembers} 명`}
         />
@@ -48,8 +48,8 @@ const CustomerChart = ({ date }: Props) => {
             newCustomer.increasedMembers === 0
               ? 'NoChange'
               : newCustomer.increasedMembers > 0
-              ? 'Up'
-              : 'Down'
+                ? 'Up'
+                : 'Down'
           }
           content={`${Math.abs(newCustomer.increasedMembers)} 명`}
         />
@@ -60,8 +60,8 @@ const CustomerChart = ({ date }: Props) => {
             expiredIncreasedMembers === 0
               ? 'NoChange'
               : expiredIncreasedMembers > 0
-              ? 'Up'
-              : 'Down'
+                ? 'Up'
+                : 'Down'
           }
           content={`${Math.abs(expiredIncreasedMembers)} 명`}
         />
@@ -72,8 +72,8 @@ const CustomerChart = ({ date }: Props) => {
             reRegisterRate.increasedRegisterCount === 0
               ? 'NoChange'
               : reRegisterRate.increasedRegisterCount > 0
-              ? 'Up'
-              : 'Down'
+                ? 'Up'
+                : 'Down'
           }
           content={`${Math.abs(reRegisterRate.increasedRegisterCount)} 명`}
         />

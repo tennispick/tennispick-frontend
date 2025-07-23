@@ -1,8 +1,6 @@
 import { CoachListData } from '@apis/coach/coach.type';
 import { ScheduleLessonByDateData } from '@apis/schedule/schedule.type';
 import { GET_WEEK_LIST_COUNT } from '@features/constant/schedule';
-import { css } from 'styled-system/css';
-import { Flex } from 'styled-system/jsx';
 import BodyDateData from './DateData';
 
 type Props = {
@@ -15,12 +13,7 @@ const RowData = ({ monthMaps, coachList, data }: Props) => {
   const filterCustomerData: ScheduleLessonByDateData[] = [];
 
   return (
-    <Flex
-      className={css({
-        width: '92%',
-        borderBottom: '1px solid var(--black100)',
-      })}
-    >
+    <div className="flex w-[92%] border-b border-black">
       {Array.from(monthMaps).map(([month, monthDateList]) => {
         const dateLength = monthDateList.length;
         const rowDataWidth = `calc((100% / ${GET_WEEK_LIST_COUNT}) * ${dateLength})`;
@@ -32,9 +25,10 @@ const RowData = ({ monthMaps, coachList, data }: Props) => {
         );
 
         return (
-          <Flex
+          <div
             key={month}
-            className={css({ width: rowDataWidth, height: 'calc(100% + 1px)' })}
+            className={`flex h-[calc(100%+1px)]`}
+            style={{ width: rowDataWidth }}
           >
             {monthDateList.map((date) => {
               const reservationCustomerList = filterCustomerData.filter(
@@ -43,7 +37,7 @@ const RowData = ({ monthMaps, coachList, data }: Props) => {
               );
 
               return (
-                <div key={date} className={css({ width: monthDateWidth })}>
+                <div key={date} className={`w-full`} style={{ width: monthDateWidth }}>
                   <BodyDateData
                     coachList={coachList}
                     reservationCustomerList={
@@ -53,10 +47,10 @@ const RowData = ({ monthMaps, coachList, data }: Props) => {
                 </div>
               );
             })}
-          </Flex>
+          </div>
         );
       })}
-    </Flex>
+    </div>
   );
 };
 

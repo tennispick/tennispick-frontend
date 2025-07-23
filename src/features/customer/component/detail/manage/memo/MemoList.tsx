@@ -1,8 +1,8 @@
 import { CustomerMemoListApiData } from '@apis/customer/customer.type';
 import ManageListRow from '../ListRow';
 import { transferCoachPosition } from '@features/customer/util/memo';
-import Portal from '@components/Portal';
-import RightSideContainer from '@components/layer/RightSideContainer';
+import Portal from '@/shared/components/Portal';
+import RightSideContainer from '@/shared/components/layer/RightSideContainer';
 import DrawerMemo from '../../drawer/Memo';
 import { useState } from 'react';
 import { transformMemoType } from '@features/customer/util/memo';

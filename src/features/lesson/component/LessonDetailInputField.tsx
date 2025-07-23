@@ -1,4 +1,4 @@
-import { Select } from '@components/index';
+import { Select } from '@/shared/components/index';
 import { LessonDetailData } from '../type/lesson.type';
 import InputRow from './InputRow';
 import { css } from 'styled-system/css';

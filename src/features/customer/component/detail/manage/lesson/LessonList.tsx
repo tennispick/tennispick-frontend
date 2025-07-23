@@ -1,11 +1,11 @@
 import ManageListRow from '../ListRow';
-import { Modal, Portal } from '@components/index';
+import { Modal, Portal } from '@/shared/components/index';
 import ScheduleChangeModal from '../../modal/scheduleChange/ScheduleChange';
 import { CustomerAllLessonListQueryData } from '@features/customer/type/customer.type';
-import { Button } from '@components/index';
+import { Button } from '@/shared/components/index';
 import { transferLessonType } from '@features/schedule/util/transfer';
 import { LessonStatusCell } from './LessonStatusCell';
-import RightSideContainer from '@components/layer/RightSideContainer';
+import RightSideContainer from '@/shared/components/layer/RightSideContainer';
 import DrawerLesson from '../../drawer/Lesson';
 import { useState } from 'react';
 import { LessonStatus } from '@features/customer/util/lesson';

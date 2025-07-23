@@ -1,5 +1,5 @@
 import { CustomerPaymentRefundData } from '@apis/payment/payment.type';
-import { NoResult, Portal } from '@components/index';
+import { NoResult, Portal } from '@/shared/components/index';
 import CustomerDetailPaymentRefundTableRow from '../TableRow';
 import {
   transferDiscountType,
@@ -7,7 +7,7 @@ import {
 } from '@features/customer/util/payment';
 import { addNumberCommas } from 'src/shared/utils/numberForm';
 import { MouseEvent, useState } from 'react';
-import RightSideContainer from '@components/layer/RightSideContainer';
+import RightSideContainer from '@/shared/components/layer/RightSideContainer';
 import DrawerPayment from '../../drawer/Payment';
 import { flex } from 'styled-system/patterns';
 import { css } from 'styled-system/css';

@@ -8,8 +8,6 @@ import { TransferTimeList } from '@interfaces/calendar';
 import { CoachListData } from '@apis/coach/coach.type';
 import { ScheduleLessonByDateData } from '@apis/schedule/schedule.type';
 
-import { css } from 'styled-system/css';
-import { Flex } from 'styled-system/jsx';
 import RowHeader from './body/RowHeader';
 import RowData from './body/RowData';
 
@@ -42,21 +40,21 @@ const DayScheduleCalendarBody = ({ monthList, coachList, data }: Props) => {
   );
 
   return (
-    <div className={css({ width: '100%' })}>
+    <div className="w-full">
       {lessonTimeList.map(({ startTime }) => {
         const filterStartTimeList = data.filter(
           ({ startTime: filterStartTime }) => filterStartTime === startTime,
         );
 
         return (
-          <Flex key={startTime}>
+          <div key={startTime} className="flex">
             <RowHeader startTime={startTime} />
             <RowData
               monthMaps={monthList}
               coachList={coachList}
               data={filterStartTimeList}
             />
-          </Flex>
+          </div>
         );
       })}
     </div>

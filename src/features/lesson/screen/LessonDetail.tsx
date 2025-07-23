@@ -1,7 +1,7 @@
 'use client';
 
-import { PageHeader } from '@components/index';
-import { Button } from '@components/index';
+import { PageHeader } from '@/shared/components/index';
+import { Button } from '@/shared/components/index';
 import { DeleteWhiteIcon, EditWhiteIcon } from '@icons/index';
 import LessonDetailInputField from '../component/LessonDetailInputField';
 import { deleteLesson, updateLesson } from '@apis/lesson/lesson.api';

@@ -4,8 +4,6 @@ import ScheduleModalInput from '../Input';
 import { useState, useEffect } from 'react';
 import { getSearchCustomerListByKeyword } from '@apis/customer/customer.api';
 import InputAutoComplete from '../regularLesson/commonSchedule/customerInput/AutoComplete';
-import { flex } from 'styled-system/patterns';
-import { css } from 'styled-system/css';
 
 type Props = {
   setCustomerLesson: any;
@@ -50,29 +48,14 @@ const CustomerSearch = ({ setCustomerLesson, setCustomerIdHandler }: Props) => {
   const isShowAutoComplete = keyword && searchedCustomerData.length > 0;
 
   return (
-    <div
-      className={flex({
-        alignItems: 'center',
-        height: '48px',
-        borderBottom: '1px solid var(--grey100)',
-        padding: '0 0 12px 0',
-        margin: '0 0 12px 0',
-      })}
-    >
-      <div
-        className={flex({
-          alignItems: 'center',
-          width: '140px',
-          height: '100%',
-          margin: '0 12px 0 0',
-        })}
-      >
+    <div className="flex items-center h-12 border-b border-gray-200 pb-3 mb-3">
+      <div className="flex items-center w-[140px] h-full mr-3">
         <Image
           src={CustomerBlackIcon}
           alt="customer"
           width={20}
           height={20}
-          className={css({ margin: '0 8px 0 0' })}
+          className="mr-2"
         />
         회원 선택
       </div>
@@ -83,17 +66,7 @@ const CustomerSearch = ({ setCustomerLesson, setCustomerIdHandler }: Props) => {
         value={keyword}
         onChange={onChangeInputHandler}
         placeholder="회원명으로 검색해주세요."
-        className={css({
-          position: 'relative',
-          width: '100%',
-          height: '100%',
-          padding: '8px 0 8px 12px',
-          fontSize: '0.875rem',
-          marginRight: 0,
-          border: '1px solid var(--grey300)',
-          borderRadius: '8px',
-          zIndex: '1',
-        })}
+        className="relative w-full h-full py-2 pl-3 text-sm mr-0 border border-gray-300 rounded-lg z-10"
       >
         {isShowAutoComplete && (
           <InputAutoComplete

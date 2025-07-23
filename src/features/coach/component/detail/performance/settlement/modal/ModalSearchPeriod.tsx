@@ -1,7 +1,7 @@
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
 import { getMonthList, getYearList } from 'src/shared/utils/date';
-import Select from '@components/common/Select';
+import Select from '@/shared/components/common/Select';
 import { Flex } from 'styled-system/jsx';
 
 type Props = {

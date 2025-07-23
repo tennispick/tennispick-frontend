@@ -1,7 +1,7 @@
 'use client';
 
 import useModalStore from '@lib/zustand/modal';
-import { PORTAL_Z_INDEX } from '@/constants/portal';
+import { PORTAL_Z_INDEX } from '@/shared/constants/portal';
 import CancelBtnIcon from '@icons/cancel_black_btn.svg';
 import Image from 'next/image';
 import { styled } from 'styled-system/jsx';

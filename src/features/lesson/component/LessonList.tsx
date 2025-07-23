@@ -1,8 +1,8 @@
-import { NoResult, NormalList } from '@components/index';
+import { NoResult, NormalList } from '@/shared/components/index';
 import { useRouter } from 'next/navigation';
 import { css } from 'styled-system/css';
 import { useLessonListQuery } from '../query/LessonQuery';
-import Loading from '@components/common/Loading';
+import Loading from '@/shared/components/common/Loading';
 
 type Props = {
   type: string;

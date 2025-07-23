@@ -5,7 +5,6 @@ import { SetStateAction } from '@/types/index';
 import { CourtListData } from '@apis/court/court.type';
 import { CoachListData } from '@apis/coach/coach.type';
 import { CustomerLessonListQueryData } from '@features/customer/type/customer.type';
-import { css } from 'styled-system/css';
 
 type Props = {
   lesson: string;
@@ -30,7 +29,7 @@ const ScheduleModalRegularLessonIndividualSchedule = ({
   );
 
   return (
-    <div className={css({ width: 'calc(100% - 260px)' })}>
+    <div className="w-[calc(100%-260px)]">
       <ScheduleTableHeader />
       {individualData.map((data, index) => {
         return (

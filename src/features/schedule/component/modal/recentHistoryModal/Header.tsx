@@ -1,6 +1,4 @@
 import CancelBtnIcon from '@icons/cancel_black_btn.svg';
-import { Flex } from 'styled-system/jsx';
-import { css } from 'styled-system/css';
 import Image from 'next/image';
 
 type Props = {
@@ -9,15 +7,9 @@ type Props = {
 
 const ScheduleModalRecentHistoryModalHeader = ({ handleCloseModal }: Props) => {
   return (
-    <Flex className={css({ position: 'relative' })}>
-      <div className={css({ margin: '0 0 28px 0' })}>
-        <div
-          className={css({
-            margin: '0 0 12px 0',
-            fontSize: '1.125rem',
-            fontWeight: 600,
-          })}
-        >
+    <div className="relative flex">
+      <div className="mb-7">
+        <div className="mb-3 text-lg font-semibold">
           최근 수강이력
         </div>
         <div>회원의 최근 수강이력을 확인할 수 있어요.</div>
@@ -27,15 +19,10 @@ const ScheduleModalRecentHistoryModalHeader = ({ handleCloseModal }: Props) => {
         alt={'close button'}
         width={36}
         height={36}
-        className={css({
-          position: 'absolute',
-          top: 0,
-          right: 0,
-          cursor: 'pointer',
-        })}
+        className="absolute top-0 right-0 cursor-pointer"
         onClick={handleCloseModal}
       />
-    </Flex>
+    </div>
   );
 };
 

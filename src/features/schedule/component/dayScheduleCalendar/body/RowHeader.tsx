@@ -1,5 +1,4 @@
 import { checkOnTime } from '@features/schedule/util/time';
-import { css } from 'styled-system/css';
 
 type Props = {
   startTime: string;
@@ -10,15 +9,7 @@ const RowHeader = ({ startTime }: Props) => {
 
   return (
     <div
-      className={css({
-        width: '8%',
-        borderBottom: '1px solid var(--black100)',
-        borderRight: '1px solid var(--black100)',
-        color: 'var(--black100)',
-        backgroundColor: highLightStartTime
-          ? 'var(--grey100)'
-          : 'var(--white100)',
-      })}
+      className={`w-[8%] border-b border-r border-black text-black ${highLightStartTime ? 'bg-gray-200' : 'bg-white'}`}
     >
       {startTime}
     </div>

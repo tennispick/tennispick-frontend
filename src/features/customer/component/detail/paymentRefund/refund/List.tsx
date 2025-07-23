@@ -1,5 +1,5 @@
 import { CustomerPaymentRefundData } from '@apis/payment/payment.type';
-import { NoResult } from '@components/index';
+import { NoResult } from '@/shared/components/index';
 import CustomerDetailPaymentRefundTableRow from '../TableRow';
 import {
   transferDiscountType,

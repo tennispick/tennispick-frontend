@@ -1,7 +1,5 @@
 import { CoachListData } from '@apis/coach/coach.type';
 import { GET_WEEK_LIST_COUNT } from '@features/constant/schedule';
-import { css } from 'styled-system/css';
-import { Center, Flex } from 'styled-system/jsx';
 import HeaderCoachData from './CoachData';
 
 type Props = {
@@ -11,42 +9,31 @@ type Props = {
 
 const RowData = ({ coachList, monthMaps }: Props) => {
   return (
-    <Flex
-      className={css({
-        width: '92%',
-        borderBottom: '1px solid var(--black100)',
-      })}
-    >
+    <div className="flex w-[92%] border-b border-black">
       {Array.from(monthMaps).map(([month, monthDateList]) => {
         const dateLength = monthDateList.length;
         const rowDataWidth = `calc((100% / ${GET_WEEK_LIST_COUNT}) * ${dateLength})`;
         const monthDateWidth = `calc(100% / ${dateLength})`;
 
         return (
-          <Flex
-            key={month}
-            className={css({ width: rowDataWidth, height: 'calc(100% + 1px)' })}
-          >
+          <div key={month} className={`flex h-[calc(100%+1px)]`} style={{ width: rowDataWidth }}>
             {monthDateList.map((date) => {
               return (
-                <div key={date} className={css({ width: monthDateWidth })}>
+                <div key={date} className={`w-full`} style={{ width: monthDateWidth }}>
                   <HeaderCoachData coachList={coachList} />
-                  <Center
-                    className={css({
-                      height: '50%',
-                      fontSize: '0.925rem',
-                      borderTop: '1px solid var(--black100)',
-
-                      _last: { borderRight: '1px solid var(--black100)' },
-                    })}
-                  >{`${month}/${date}`}</Center>
+                  <div
+                    className={
+                      "h-1/2 text-sm border-t border-black flex items-center justify-center " +
+                      "last:border-r last:border-black"
+                    }
+                  >{`${month}/${date}`}</div>
                 </div>
               );
             })}
-          </Flex>
+          </div>
         );
       })}
-    </Flex>
+    </div>
   );
 };
 

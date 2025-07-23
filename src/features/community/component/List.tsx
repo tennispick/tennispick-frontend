@@ -1,4 +1,4 @@
-import { NoResult } from '../../../components';
+import { NoResult } from '../../../shared/components';
 
 type Props = {
   data?: Array<{ [key: string]: string | number }>;
