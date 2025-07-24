@@ -8,7 +8,6 @@ import { EditWhiteIcon } from '@icons/index';
 import LessonList from '../component/LessonList';
 import Modal from '@/shared/components/layer/Modal';
 import LessonModal from '../component/modal/LessonModal';
-import { css } from 'styled-system/css';
 import Tab from '@widgets/Tab';
 import IconButton from '@/shared/components/button/IconButton';
 
@@ -52,9 +51,7 @@ const LessonScreen = () => {
             쿠폰 레슨
           </TabList>
         </TabLists>
-        <div
-          className={css({ position: 'absolute', top: '76px', right: '24px' })}
-        >
+        <div className="absolute top-[76px] right-6">
           <IconButton
             iconAlign="left"
             iconSrc={EditWhiteIcon}
@@ -67,7 +64,7 @@ const LessonScreen = () => {
         </div>
         <SingleTabPanel
           stateKey={stateKey}
-          className={css({ height: 'calc(100% - 2.875rem - 52px)' })}
+          className="h-[calc(100%-2.875rem-52px)]"
         >
           <LessonList type={stateKey} />
         </SingleTabPanel>
@@ -77,7 +74,7 @@ const LessonScreen = () => {
           <Modal
             title={'레슨권 생성'}
             setOpenModal={setOpenModal}
-            css={{ top: '47.5%' }}
+            className="top-[47.5%]"
           >
             <LessonModal setOpenModal={setOpenModal} />
           </Modal>

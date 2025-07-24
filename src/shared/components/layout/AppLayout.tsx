@@ -6,8 +6,6 @@ import Image from 'next/image';
 import doubleArrowLeft from '@icons/keyboard_double_arrow_left.svg';
 import useMobile from '@hooks/useMobile';
 
-import { css } from 'styled-system/css';
-import { styled } from 'styled-system/jsx';
 import NavigationLayout from './NavigationLayout';
 
 const AppLayout = ({ children }: PropsWithChildren) => {
@@ -32,104 +30,51 @@ const AppLayout = ({ children }: PropsWithChildren) => {
       {firstPathName === 'login' ? (
         <>{children}</>
       ) : (
-        <LayoutContainer
-          className={css({
-            padding: isNavSpread ? '20px' : '20px 20px 20px 0',
-            ...(isMobile && mobileLayoutStyle),
-          })}
+        <div
+          className={`w-screen h-screen bg-[var(--business-color)] relative text-[var(--white100)] flex ${
+            isMobile 
+              ? 'h-[calc(100vh-76px)] top-[76px] overflow-y-scroll'
+              : isNavSpread 
+                ? 'p-5' 
+                : 'pr-5 pt-5 pb-5 pl-0'
+          }`}
         >
           <NavigationLayout
             isNavSpread={isNavSpread}
             firstPathName={firstPathName}
           />
-          <MainContainer
-            width={isNavSpread ? 'calc(100% - 280px)' : 'calc(100% - 80px)'}
-            className={css({
-              ...(isMobile && mobileLayoutStyle),
-            })}
+          <main
+            className={`h-[calc(100vh-48px)] bg-[var(--white100)] rounded-xl transition-all duration-[350ms] ease-in-out ${
+              isMobile 
+                ? 'h-[calc(100vh-76px)] top-[76px] overflow-y-scroll'
+                : isNavSpread 
+                  ? 'w-[calc(100%-280px)]' 
+                  : 'w-[calc(100%-80px)]'
+            }`}
           >
             {!isMobile && (
-              <NavButtonController>
-                <NavControlBtn
+              <i className="absolute inline-block w-9 h-9 bg-[var(--white100)] -left-9 top-5 rounded-tl-xl rounded-bl-xl cursor-pointer">
+                <Image
                   src={doubleArrowLeft}
                   alt="double arrow left"
                   width={24}
                   height={24}
                   onClick={() => setIsNavSpread(!isNavSpread)}
-                  rotate={isNavSpread ? 'rotate(0deg)' : 'rotate(180deg)'}
+                  className={`absolute top-1/2 left-1/2 transition-all duration-300 ease-out transform -translate-x-1/2 -translate-y-1/2 ${
+                    isNavSpread ? 'rotate-0' : 'rotate-180'
+                  }`}
                   style={{ width: '28px', height: '28px' }}
                 />
-              </NavButtonController>
+              </i>
             )}
-            <ChildrenContainer>{children}</ChildrenContainer>
-          </MainContainer>
-        </LayoutContainer>
+            <div className="relative w-full h-full p-6 text-[var(--black100)] overflow-hidden">
+              {children}
+            </div>
+          </main>
+        </div>
       )}
     </>
   );
 };
-
-const LayoutContainer = styled('div', {
-  base: {
-    width: '100vw',
-    height: '100vh',
-    backgroundColor: 'var(--business-color)',
-    position: 'relative',
-    color: 'var(--white100)',
-    display: 'flex',
-  },
-});
-
-const MainContainer = styled('main', {
-  base: {
-    height: 'calc(100vh - 48px)',
-    backgroundColor: 'var(--white100)',
-    borderRadius: '12px',
-    transition: 'all 0.35s ease-in-out',
-  },
-});
-
-const NavButtonController = styled('i', {
-  base: {
-    position: 'absolute',
-    display: 'inline-block',
-    width: '36px',
-    height: '36px',
-    backgroundColor: 'var(--white100)',
-    left: '-36px',
-    top: '20px',
-    borderTopLeftRadius: '12px',
-    borderBottomLeftRadius: '12px',
-    cursor: 'pointer',
-  },
-});
-
-const ChildrenContainer = styled('div', {
-  base: {
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    padding: '24px',
-    color: 'var(--black100)',
-    overflow: 'hidden',
-  },
-});
-
-const NavControlBtn = styled(Image, {
-  base: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transition: 'all 0.3s ease-out',
-    transform: 'translate(-50%, -50%)',
-  },
-  // variants: {
-  //   rotate: {
-  //     custom: (value: string) => ({
-  //       transform: `translate(-50%, -50%) ${value}`,
-  //     }),
-  //   },
-  // } ,
-});
 
 export default AppLayout;

@@ -1,10 +1,9 @@
 import Input from '@/shared/components/common/Input';
-import { Styles, css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
+import clsx from 'clsx';
 
 type Props = {
   rowHeadLabel: string;
-  rowHeadStyle?: Styles;
+  rowHeadClassName?: string;
   type?: string;
   defaultValue: string | number;
   maxLength?: number;
@@ -16,7 +15,7 @@ type Props = {
 
 const InputRow = ({
   rowHeadLabel,
-  rowHeadStyle,
+  rowHeadClassName,
   type = 'text',
   name,
   placeholder,
@@ -27,36 +26,22 @@ const InputRow = ({
   requiredStatus,
   requiredText,
 }: Props) => {
-  const className = css(
-    {
-      width: '160px',
-      padding: '4px 0',
-      fontSize: '1rem',
-      fontWeight: 600,
-    },
-    rowHeadStyle,
+  const className = clsx(
+    'w-40 py-1 text-base font-semibold',
+    rowHeadClassName
   );
 
   return (
-    <div
-      className={flex({
-        alignItems: 'baseline',
-        minHeight: '40px',
-        margin: '0 0 20px 0',
-      })}
-    >
+    <div className="flex items-baseline min-h-[40px] mb-5">
       <div className={className}>{rowHeadLabel}</div>
       {type === 'text' && (
         <Input
-          css={{
-            width: '50%',
-            height: '100%',
-          }}
+          className="w-1/2 h-full"
         >
           <Input.TextField
             type={type}
             name={name}
-            className={css({ height: '40px' })}
+            className="h-10"
             placeholder={placeholder}
             defaultValue={`${defaultValue}`}
             maxLength={maxLength}
@@ -95,48 +80,7 @@ const ToggleInput = ({
       id={`${id}`}
       name={name}
       type="checkbox"
-      className={css({
-        appearance: 'none',
-        borderRadius: '24px',
-        width: '54px',
-        height: '28px',
-        border: 0,
-        backgroundColor: 'var(--grey100)',
-
-        _after: {
-          display: 'none',
-        },
-
-        _before: {
-          content: '""',
-          position: 'absolute',
-          top: '4px',
-          left: '4px',
-          width: '20px',
-          height: '20px',
-          borderRadius: '50%',
-          backgroundColor: 'var(--white100)',
-          transition: 'left 0.2s linear',
-        },
-
-        _checked: {
-          backgroundColor: 'var(--blue500)',
-
-          _before: {
-            left: '30px',
-          },
-        },
-
-        _disabled: {
-          borderColor: 'var(--grey100)',
-          backgroundColor: 'var(--grey100)',
-          cursor: 'not-allowed',
-
-          _before: {
-            backgroundColor: 'var(--grey100)',
-          },
-        },
-      })}
+      className="appearance-none rounded-3xl w-[54px] h-7 border-0 bg-[var(--grey100)] relative before:content-[''] before:absolute before:top-1 before:left-1 before:w-5 before:h-5 before:rounded-full before:bg-[var(--white100)] before:transition-[left] before:duration-200 before:linear checked:bg-[var(--blue500)] checked:before:left-[30px] disabled:border-[var(--grey100)] disabled:bg-[var(--grey100)] disabled:cursor-not-allowed disabled:before:bg-[var(--grey100)]"
       onClick={(e) => {
         const { name, checked } = e.currentTarget;
         const isActive = checked ? 'Y' : 'N';

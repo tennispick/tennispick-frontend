@@ -1,4 +1,3 @@
-import { css } from 'styled-system/css';
 import ModalSearchPeriod from './ModalSearchPeriod';
 import ModalSearchCondition from './ModalSearchCondition';
 import { useState, MouseEvent } from 'react';
@@ -47,9 +46,7 @@ const ModalBody = ({ coachId }: Props) => {
   const handleChangeEndDate = (date: Date) => setEndDate(date);
 
   return (
-    <div
-      className="h-[calc(100%-66px)] bg-white rounded-lg p-6"
-    >
+    <div className="h-[calc(100%-66px)] bg-white rounded-lg p-6">
       <ModalSearchPeriod
         data={quickButtonPeriodData}
         checkedItem={checkedItem}

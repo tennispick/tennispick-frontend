@@ -1,6 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { css } from 'styled-system/css';
-import { Flex } from 'styled-system/jsx';
 
 type CheckboxType = {
   id: string;
@@ -20,13 +18,6 @@ const getCheckboxState =
     if (checkedItems.length === checkList.length) return 'all';
     return 'indeterminate';
   };
-
-const checkboxStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: '8px',
-  margin: '0 8px 0 0',
-};
 
 const CheckboxGroup = ({
   checkList = [],
@@ -54,8 +45,8 @@ const CheckboxGroup = ({
   });
 
   return (
-    <Flex alignItems="center">
-      <div key={'all'} className={css(checkboxStyle)}>
+    <div className="flex items-center">
+      <div key={'all'} className="flex items-center gap-2 mr-2">
         <input
           ref={allCheckboxRef}
           type="checkbox"
@@ -69,7 +60,7 @@ const CheckboxGroup = ({
       </div>
       {checkList.map((item, index) => {
         return (
-          <div key={index} className={css(checkboxStyle)}>
+          <div key={index} className="flex items-center gap-2 mr-2">
             <input
               type="checkbox"
               id={item.id}
@@ -81,7 +72,7 @@ const CheckboxGroup = ({
           </div>
         );
       })}
-    </Flex>
+    </div>
   );
 };
 

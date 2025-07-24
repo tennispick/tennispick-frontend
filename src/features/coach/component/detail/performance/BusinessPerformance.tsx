@@ -2,7 +2,6 @@ import Tab from '@widgets/Tab';
 import SalesContainer from './sales/SalesContainer';
 import SettleMentContainer from './settlement/SettleMentContainer';
 import CustomerContainer from './customer/CustomerContainer';
-import { css } from 'styled-system/css';
 import { CenterPaymentState } from '@lib/zustand/center';
 
 type Props = {
@@ -17,7 +16,7 @@ const BusinessPerformance = ({
   const { Tabs, TabLists, TabList, TabPanels, TabPanel } = Tab();
 
   return (
-    <div className={css({ width: '70%', height: '100%' })}>
+    <div className="w-[70%] h-full">
       <Tabs defaultActiveKey={'sales'}>
         <TabLists>
           <TabList activeKey={'sales'}>매출내역</TabList>
@@ -27,13 +26,13 @@ const BusinessPerformance = ({
         <TabPanels className="h-[calc(100%-2.875rem)]">
           <TabPanel
             activeKey={'sales'}
-            className={css({ height: '100%', padding: '12px 0' })}
+            className="h-full py-3"
           >
             <SalesContainer coachId={coachId} />
           </TabPanel>
           <TabPanel
             activeKey={'payment'}
-            className={css({ height: '100%', padding: '12px 0' })}
+            className="h-full py-3"
           >
             <SettleMentContainer
               coachId={coachId}

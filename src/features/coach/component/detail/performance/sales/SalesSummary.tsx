@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { flex } from 'styled-system/patterns';
 import TotalSalesIcon from '@icons/payment/group_total_sales.svg';
 import AccountTransferIcon from '@icons/payment/group_atm.svg';
 import CardIcon from '@icons/payment/group_credit_card.svg';
@@ -17,50 +16,24 @@ const SalesSummary = ({ data }: Props) => {
     totalCardPrice,
   } = data ?? {};
   return (
-    <div
-      className={flex({
-        height: '2rem',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        margin: '0 0 1rem 0',
-      })}
-    >
-      <div
-        className={flex({
-          alignItems: 'center',
-          gap: '0.5rem',
-        })}
-      >
+    <div className="flex h-8 items-center justify-between mb-4">
+      <div className="flex items-center gap-2">
         <Image src={TotalSalesIcon} alt={'total sales'} />
         전체 매출현황
         <span>{addNumberCommas(totalSales)} 원</span>
       </div>
-      <div
-        className="flex items-center gap-4"
-      >
-        <div
-          className={flex({
-            alignItems: 'center',
-            gap: '0.5rem',
-          })}
-        >
+      <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <Image src={AccountTransferIcon} alt={'account transfer'} />
           계좌이체
           <span>{addNumberCommas(totalAccountTransferPrice)} 원</span>
         </div>
-        <div
-          className={flex({
-            alignItems: 'center',
-            gap: '0.5rem',
-          })}
-        >
+        <div className="flex items-center gap-2">
           <Image src={CardIcon} alt={'card'} />
           카드결제
           <span>{addNumberCommas(totalCardPrice)} 원</span>
         </div>
-        <div
-          className="flex items-center gap-2"
-        >
+        <div className="flex items-center gap-2">
           <Image src={CashIcon} alt={'cash'} />
           현금결제
           <span>{addNumberCommas(totalCashPrice)} 원</span>

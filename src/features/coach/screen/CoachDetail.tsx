@@ -6,9 +6,8 @@ import { useCoachDetailQuery } from '../query/coachQuery';
 import Loading from '@/shared/components/common/Loading';
 import CoachDetailProfile from '../component/detail/CoachDetailProfile';
 import BusinessPerformance from '../component/detail/performance/BusinessPerformance';
-import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
 import useCenterPaymentSettingStore from '@lib/zustand/center';
+
 type Props = {
   id: string;
 };
@@ -23,10 +22,10 @@ const CoachDetailScreen = ({ id }: Props) => {
   const { name } = data;
 
   return (
-    <div className={css({ width: '100%', height: '100%' })}>
+    <div className="w-full h-full">
       <PageHeader title={`${name} 님`} link="/coach" />
-      <div className={css({ height: 'calc(100% - 52px)', overflowY: 'auto' })}>
-        <div className={flex({ height: 'calc(100% - 46px)' })}>
+      <div className="h-[calc(100%-52px)] overflow-y-auto">
+        <div className="flex h-[calc(100%-46px)]">
           <CoachDetailProfile
             coachId={id}
             data={data}

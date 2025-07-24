@@ -8,7 +8,6 @@ import CoachList from '../component/CoachList';
 import { useGetCoachListQuery } from '../query/coachQuery';
 import Loading from '@/shared/components/common/Loading';
 import CoachCreateModal from '../component/modal/CreateModal';
-import { css } from 'styled-system/css';
 import Tab from '@widgets/Tab';
 import IconButton from '@/shared/components/button/IconButton';
 
@@ -29,9 +28,7 @@ const CoachScreen = () => {
         <TabLists>
           <TabList activeKey={'all'}>전체</TabList>
         </TabLists>
-        <div
-          className={css({ position: 'absolute', top: '76px', right: '24px' })}
-        >
+        <div className="absolute top-[76px] right-6">
           <IconButton
             iconAlign="left"
             iconSrc={CustomerWhiteIcon}
@@ -42,23 +39,24 @@ const CoachScreen = () => {
             onClick={handleCreateCoachClick}
           />
         </div>
-        <TabPanels className={css({ height: 'calc(100% - 2.875rem - 52px)' })}>
-          <TabPanel activeKey={'all'} className={css({ height: '100%' })}>
+        <TabPanels className="h-[calc(100%-2.875rem-52px)]">
+          <TabPanel activeKey={'all'} className="h-full">
             <CoachList data={data} />
           </TabPanel>
         </TabPanels>
       </Tabs>
-      {openModal && (
-        <Portal id="portal">
+
+      <Portal id="modal">
+        {openModal && (
           <Modal
-            title="코치 생성"
+            title={'코치 등록하기'}
+            openModal={openModal}
             setOpenModal={setOpenModal}
-            css={{ height: '90%', top: '47.5%' }}
           >
-            <CoachCreateModal handleClose={handleCreateCoachClick} />
+            <CoachCreateModal setOpenModal={setOpenModal} />
           </Modal>
-        </Portal>
-      )}
+        )}
+      </Portal>
     </>
   );
 };

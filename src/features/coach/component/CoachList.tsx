@@ -31,14 +31,9 @@ const CoachList = ({ data }: Props) => {
                   />
                 </div>
                 <div
-                  className="w-[52px] h-[24px] leading-[24px] text-center mr-4 rounded-[4px]"
-                  style={{
-                    backgroundColor:
-                      position === 'coach'
-                        ? 'var(--business-active-color)'
-                        : 'var(--green200)',
-                    color: 'var(--white100)',
-                  }}
+                  className={`w-[52px] h-[24px] leading-[24px] text-center mr-4 rounded-[4px] text-white ${
+                    position === 'coach' ? 'bg-sky-400' : 'bg-green-600'
+                  }`}
                 >
                   {position === 'coach' ? '코치' : '헤드코치'}
                 </div>
@@ -47,9 +42,7 @@ const CoachList = ({ data }: Props) => {
                     {name} &#40;{age}, {sex === 'man' ? '남' : '여'}&#41;
                   </div>
                 </div>
-                <div
-                  className="w-[35%] bg-[var(--grey400)] rounded-[16px] py-3 text-center"
-                >
+                <div className="w-[35%] bg-gray-50 rounded-[16px] py-3 text-center">
                   {phone} &#183; {email}
                 </div>
               </NormalList>
@@ -57,9 +50,7 @@ const CoachList = ({ data }: Props) => {
           })}
         </NormalList.UnOrderList>
       ) : (
-        <div
-          className="h-[20vh] rounded-[25px]"
-        >
+        <div className="h-[20vh] rounded-[25px]">
           <NoResult
             description={'코치님이 존재하지 않아요.'}
             margin="16px 0 0 0"

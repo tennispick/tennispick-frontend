@@ -3,8 +3,6 @@ import PaymentTypeRow from '../PaymentTypeRow';
 import SearchPeriodRow from '../SearchPeriodRow';
 import Image from 'next/image';
 import SalesLists from './SalesLists';
-import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
 import useModal from '@hooks/useModal';
 import ModalBody from './modal/ModalBody';
 import SalesSummary from './SalesSummary';
@@ -103,7 +101,7 @@ const SalesContainer = ({ coachId }: Props) => {
 
   return (
     <>
-      <div className={css({ height: '8rem' })}>
+      <div className="h-32">
         <SearchPeriodRow
           startDate={startDate}
           endDate={endDate}
@@ -117,24 +115,13 @@ const SalesContainer = ({ coachId }: Props) => {
           handleCheckboxClick={handleCheckboxClick}
         />
       </div>
-      <div
-        className={flex({
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          height: '1.25rem',
-        })}
-      >
+      <div className="flex items-center justify-between h-5">
         <div>매출 내역조회</div>
         <div
-          className={flex({
-            alignItems: 'center',
-            cursor: 'pointer',
-          })}
+          className="flex items-center cursor-pointer"
           onClick={handleShowDetail}
         >
-          <div
-            className="text-[var(--business-color)] font-semibold"
-          >
+          <div className="text-slate-700 font-semibold">
             내역 상세보기
           </div>
           <Image

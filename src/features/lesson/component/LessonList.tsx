@@ -1,6 +1,5 @@
 import { NoResult, NormalList } from '@/shared/components/index';
 import { useRouter } from 'next/navigation';
-import { css } from 'styled-system/css';
 import { useLessonListQuery } from '../query/LessonQuery';
 import Loading from '@/shared/components/common/Loading';
 
@@ -38,44 +37,30 @@ const LessonList = ({ type }: Props) => {
                   onClick={() => handleLessonDetailClick(id)}
                 >
                   <div
-                    className={css({
-                      width: '56px',
-                      height: '24px',
-                      lineHeight: '24px',
-                      textAlign: 'center',
-                      margin: '0 auto',
-                      backgroundColor:
-                        isWeekday === 'weekend'
-                          ? 'var(--business-active-color)'
-                          : 'var(--green200)',
-                      color: 'var(--white100)',
-                      borderRadius: '4px',
-                    })}
+                    className={`w-14 h-6 leading-6 text-center mx-auto rounded ${
+                      isWeekday === 'weekend'
+                        ? 'bg-[var(--business-active-color)]'
+                        : 'bg-[var(--green200)]'
+                    } text-[var(--white100)]`}
                   >
                     {isWeekday === 'weekend' ? '주말' : '평일'}
                   </div>
-                  <div className={css({ width: '65%', padding: '0 0 0 16px' })}>
+                  <div className="w-[65%] pl-4">
                     {name}
                   </div>
-                  <div className={css({ width: '9%', textAlign: 'center' })}>
+                  <div className="w-[9%] text-center">
                     총 레슨횟수: {lessonCount}회
                   </div>
-                  <div
-                    className={css({
-                      width: 'calc(10% - 32px)',
-                      textAlign: 'right',
-                      margin: '0 32px 0 0',
-                    })}
-                  >
+                  <div className="w-[calc(10%-32px)] text-right mr-8">
                     {price}원
                   </div>
-                  <div className={css({ width: '4%', textAlign: 'center' })}>
+                  <div className="w-[4%] text-center">
                     {type === 'private' ? '개인' : '그룹'}
                   </div>
-                  <div className={css({ width: '4%', textAlign: 'center' })}>
+                  <div className="w-[4%] text-center">
                     {time}분
                   </div>
-                  <div className={css({ width: '4%', textAlign: 'center' })}>
+                  <div className="w-[4%] text-center">
                     주 {timesAWeek}회
                   </div>
                 </NormalList>
@@ -84,7 +69,7 @@ const LessonList = ({ type }: Props) => {
           )}
         </NormalList.UnOrderList>
       ) : (
-        <div className={css({ height: '20vh', borderRadius: '25px' })}>
+        <div className="h-[20vh] rounded-[25px]">
           <NoResult
             description={'생성된 레슨권이 존재하지 않아요.'}
             margin="16px 0 0 0"

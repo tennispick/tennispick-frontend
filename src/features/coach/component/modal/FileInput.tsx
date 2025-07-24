@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import uploadIcon from '@icons/drive_folder_upload.svg';
 import { ChangeEventHandler, useState } from 'react';
-import { flex } from 'styled-system/patterns';
-import { css } from 'styled-system/css';
 
 const PREVIEW_IMAGE_WIDTH_SIZE = 117;
 const PREVIEW_IMAGE_HEIGHT_SIZE = 156;
@@ -31,12 +29,10 @@ const FileInput = ({ onChangeFileHandler }: Props) => {
   return (
     <div>
       <div>프로필 이미지 업로드(선택)</div>
-      <div
-        className={flex({
-          alignItems: 'end',
-          height: preview ? `${PREVIEW_IMAGE_HEIGHT_SIZE}px` : 'auto',
-          margin: '12px 0',
-        })}
+      <div 
+        className={`flex items-end my-3 ${
+          preview ? `h-[${PREVIEW_IMAGE_HEIGHT_SIZE}px]` : 'h-auto'
+        }`}
       >
         {preview && (
           <Image
@@ -44,7 +40,7 @@ const FileInput = ({ onChangeFileHandler }: Props) => {
             alt="preview image"
             width={PREVIEW_IMAGE_WIDTH_SIZE}
             height={PREVIEW_IMAGE_HEIGHT_SIZE}
-            className={css({ margin: '0 16px 0 0' })}
+            className="mr-4"
           />
         )}
         <input
@@ -52,27 +48,14 @@ const FileInput = ({ onChangeFileHandler }: Props) => {
           type="file"
           accept="image/jpeg,image/jpg"
           onChange={onChangeFileInputHandler}
-          className={css({
-            position: 'absolute',
-            visibility: 'hidden',
-            width: 0,
-            height: 0,
-          })}
+          className="absolute invisible w-0 h-0"
         />
         <label
           htmlFor="image"
-          className={flex({
-            alignItems: 'center',
-            width: 'calc(100% - 160px)',
-            height: '44px',
-            padding: '10px 0 10px 10px',
-            borderRadius: 8,
-            border: '1px solid var(--grey300)',
-            cursor: 'pointer',
-          })}
+          className="flex items-center w-[calc(100%-160px)] h-11 py-[10px] pl-[10px] pr-0 rounded-lg border border-gray-300 cursor-pointer"
         >
           <Image src={uploadIcon} alt="upload icon" width={24} height={24} />
-          <div className="ml-2">
+          <div className="ml-2">이미지를 선택해주세요</div>
         </label>
       </div>
     </div>

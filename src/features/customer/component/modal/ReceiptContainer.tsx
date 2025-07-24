@@ -11,8 +11,6 @@ import {
 } from '@features/customer/util/payment';
 import { LessonListQueryData } from '@features/lesson/type/lesson.type';
 import { addNumberCommas } from 'src/shared/utils/numberForm';
-import { css } from 'styled-system/css';
-import { styled } from 'styled-system/jsx';
 
 type Props = {
   type: PaymentRefundType;
@@ -44,9 +42,7 @@ const CustomerModalReceiptContainer = ({
   onClickRefundHandler,
 }: Props) => {
   return (
-    <div
-      className={css({ position: 'relative', width: '30%', height: '100%' })}
-    >
+    <div className="relative w-[30%] h-full">
       {
         {
           payment: (
@@ -91,30 +87,30 @@ const PaymentReceipt = ({
 
   return (
     <>
-      <div className={css({ height: '45%', padding: '1.5rem 32px 0 28px' })}>
-        <ReceiptRow>
+      <div className="h-[45%] pt-6 px-8 pr-7">
+        <div className="flex items-center justify-between text-lg mb-5">
           <div>상품명</div>
           <div>{lesson?.name}</div>
-        </ReceiptRow>
-        <ReceiptRow>
+        </div>
+        <div className="flex items-center justify-between text-lg mb-5">
           <div>결제유형</div>
           <div>
             {paymentTypeList.find(({ value }) => value === paymentType)
               ?.label || ''}
           </div>
-        </ReceiptRow>
-        <ReceiptRow>
+        </div>
+        <div className="flex items-center justify-between text-lg mb-5">
           <div>상품금액</div>
           <div>{lesson?.price} 원</div>
-        </ReceiptRow>
-        <ReceiptRow>
+        </div>
+        <div className="flex items-center justify-between text-lg mb-5">
           <div>할인유형</div>
           <div>
             {discountTypeList.find(({ value }) => value === discountType)
               ?.label || ''}
           </div>
-        </ReceiptRow>
-        <ReceiptRow>
+        </div>
+        <div className="flex items-center justify-between text-lg mb-5">
           <div>할인금액</div>
           <div>
             {addNumberCommas(discountPrice) === ''
@@ -122,8 +118,8 @@ const PaymentReceipt = ({
               : addNumberCommas(discountPrice)}{' '}
             원
           </div>
-        </ReceiptRow>
-        <ReceiptRow>
+        </div>
+        <div className="flex items-center justify-between text-lg mb-5">
           <div>결제 예정금액</div>
           <div>
             {addNumberCommas(
@@ -131,45 +127,25 @@ const PaymentReceipt = ({
             )}{' '}
             원
           </div>
-        </ReceiptRow>
+        </div>
       </div>
-      <div
-        className={css({
-          height: '96px',
-          padding: '1.5rem 32px 0 28px',
-          borderTop: '1px solid var(--grey100)',
-        })}
-      >
-        <ReceiptRow>
-          <div
-            className={css({
-              fontWeight: 600,
-              fontSize: '1.2rem',
-              color: 'var(--red200)',
-            })}
-          >
+      <div className="h-24 pt-6 px-8 pr-7 border-t border-gray-300">
+        <div className="flex items-center justify-between text-lg mb-5">
+          <div className="font-semibold text-xl text-red-400">
             결제 예정금액
           </div>
-          <div className={css({ fontWeight: 600, fontSize: '1.2rem' })}>
+          <div className="font-semibold text-xl">
             {addNumberCommas(
               totalPrice!(numberFormatPrice, numberFormatDiscountPrice),
             )}{' '}
             원
           </div>
-        </ReceiptRow>
+        </div>
       </div>
       <Button
         type="submit"
         label="결제하기"
-        css={{
-          position: 'absolute',
-          width: 'calc(100% - 56px)',
-          bottom: '24px',
-          left: '28px',
-          backgroundColor: 'var(--business-active-color)',
-          color: 'var(--white100)',
-          border: 0,
-        }}
+        className="absolute w-[calc(100%-56px)] bottom-6 left-7 bg-sky-400 text-white border-0"
       />
     </>
   );
@@ -197,12 +173,12 @@ const RefundReceipt = ({
 >) => {
   return (
     <>
-      <div className={css({ height: '50%', padding: '1.5rem 32px 0 28px' })}>
-        <ReceiptRow>
+      <div className="h-1/2 pt-6 px-8 pr-7">
+        <div className="flex items-center justify-between text-lg mb-5">
           <div>상품명</div>
           <div>{lesson?.name ?? lessonName}</div>
-        </ReceiptRow>
-        <ReceiptRow>
+        </div>
+        <div className="flex items-center justify-between text-lg mb-5">
           <div>상품금액</div>
           <div>
             {addNumberCommas(
@@ -212,77 +188,47 @@ const RefundReceipt = ({
             )}{' '}
             원
           </div>
-        </ReceiptRow>
-        <ReceiptRow>
+        </div>
+        <div className="flex items-center justify-between text-lg mb-5">
           <div>결제유형</div>
           <div>{transferPaymentType(paymentType!)}</div>
-        </ReceiptRow>
-        <ReceiptRow>
+        </div>
+        <div className="flex items-center justify-between text-lg mb-5">
           <div>결제금액</div>
           <div>{addNumberCommas(Number(price))}원</div>
-        </ReceiptRow>
-        <ReceiptRow className={css({ color: 'var(--red200)' })}>
+        </div>
+        <div className="flex items-center justify-between text-lg mb-5 text-red-400">
           <div>환불유형</div>
           <div>{transferPaymentType(refundType!)}</div>
-        </ReceiptRow>
-        <ReceiptRow className={css({ color: 'var(--red200)' })}>
+        </div>
+        <div className="flex items-center justify-between text-lg mb-5 text-red-400">
           <div>환불범위</div>
           <div>{transferRefundRange(refundRange!)}</div>
-        </ReceiptRow>
-        <ReceiptRow className={css({ color: 'var(--red200)' })}>
+        </div>
+        <div className="flex items-center justify-between text-lg mb-5 text-red-400">
           <div>환불금액</div>
           <div>{addNumberCommas(refundPrice!)} 원</div>
-        </ReceiptRow>
+        </div>
       </div>
-      <div
-        className={css({
-          height: '96px',
-          padding: '1.5rem 32px 0 28px',
-          borderTop: '1px solid var(--grey100)',
-        })}
-      >
-        <ReceiptRow>
-          <div
-            className={css({
-              fontWeight: 600,
-              fontSize: '1.2rem',
-              color: 'var(--red200)',
-            })}
-          >
+      <div className="h-24 pt-6 px-8 pr-7 border-t border-gray-300">
+        <div className="flex items-center justify-between text-lg mb-5">
+          <div className="font-semibold text-xl text-red-400">
             예정 환불금액
           </div>
-          <div className={css({ fontWeight: 600, fontSize: '1.2rem' })}>
+          <div className="font-semibold text-xl">
             {addNumberCommas(refundPrice!)} 원
           </div>
-        </ReceiptRow>
+        </div>
       </div>
       <Button
         label="환불하기"
-        css={{
-          position: 'absolute',
-          width: 'calc(100% - 56px)',
-          bottom: '24px',
-          left: '28px',
-          backgroundColor: 'var(--red200)',
-          color: 'var(--white100)',
-          border: 0,
-        }}
+        className="absolute w-[calc(100%-56px)] bottom-6 left-7 bg-red-400 text-white border-0"
         disabled={refundPrice! <= 0}
         onClick={onClickRefundHandler}
       />
     </>
   );
 };
-
-const ReceiptRow = styled('div', {
-  base: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    fontSize: '1.05rem',
-    margin: '0 0 20px 0',
-  },
-});
 
 CustomerModalReceiptContainer.PaymentReceipt = PaymentReceipt;
 CustomerModalReceiptContainer.RefundReceipt = RefundReceipt;

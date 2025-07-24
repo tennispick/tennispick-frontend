@@ -1,6 +1,4 @@
 import CheckboxGroup from '@widgets/CheckboxGroup';
-import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
 
 type CheckboxType = {
   id: string;
@@ -21,13 +19,7 @@ const LessonStatusTypeRow = ({
   handleCheckboxClick,
 }: Props) => {
   return (
-    <div
-      className={flex({
-        alignItems: 'center',
-        gap: '1.5rem',
-        margin: '0 0 24px 0',
-      })}
-    >
+    <div className="flex items-center gap-6 mb-6">
       <div className="w-28">수강 상태</div>
       <CheckboxGroup
         checkList={checkList}

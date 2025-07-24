@@ -1,8 +1,5 @@
 import Select from '@/shared/components/common/Select';
 import { getMonthList, getYearList } from 'src/shared/utils/date';
-import { css } from 'styled-system/css';
-import { Flex } from 'styled-system/jsx';
-import { flex } from 'styled-system/patterns';
 
 type Props = {
   year: number;
@@ -18,17 +15,11 @@ const SearchPeriodSelectRow = ({
   handleMonthChange,
 }: Props) => {
   return (
-    <div
-      className={flex({
-        alignItems: 'center',
-        gap: '2vw',
-        margin: '0 0 24px 0',
-      })}
-    >
-      <div className={css({ width: '10vw' })}>조회 기간</div>
-      <Flex alignItems="center" gap="2">
+    <div className="flex items-center gap-[2vw] mb-6">
+      <div className="w-[10vw]">조회 기간</div>
+      <div className="flex items-center gap-2">
         <Select
-          className={css({ width: '116px' })}
+          className="w-[116px]"
           onChange={handleYearChange}
           defaultValue={year}
         >

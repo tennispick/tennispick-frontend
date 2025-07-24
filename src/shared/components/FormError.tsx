@@ -1,18 +1,14 @@
-import { css, cx } from 'styled-system/css';
+import clsx from 'clsx';
 
 type Props = {
   error: string;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-export const FormError = ({ error, ...rest }: Props) => {
-  const { className } = rest;
+export const FormError = ({ error, className, ...rest }: Props) => {
+  const style = clsx(
+    'text-[var(--red100)] text-[0.925rem]',
+    className
+  );
 
-  const defaultStyle = css({
-    color: 'var(--red100)',
-    fontSize: '0.925rem',
-  });
-
-  const style = cx(defaultStyle, className);
-
-  return <div className={style}>{error}</div>;
+  return <div className={style} {...rest}>{error}</div>;
 };

@@ -10,9 +10,6 @@ import { FormEvent } from 'react';
 import { createCustomerPayment } from '@apis/payment/payment.api';
 import { useRouter } from 'next/navigation';
 import { LessonListQueryData } from '@features/lesson/type/lesson.type';
-import { css } from 'styled-system/css';
-import { styled } from 'styled-system/jsx';
-import { flex } from 'styled-system/patterns';
 
 type Props = {
   customerId: string;
@@ -92,17 +89,10 @@ const CustomerModalPaymentContainer = ({
   }, [formData.discountType]);
 
   return (
-    <form className={flex({ width: '100%' })} onSubmit={onSubmitHandler}>
-      <div
-        className={css({
-          width: '70%',
-          height: '100%',
-          padding: '16px 28px',
-          borderRight: '1px solid var(--grey100)',
-        })}
-      >
-        <div className={flex({ height: 'calc(100% - 24px)' })}>
-          <div className={css({ width: '50%' })}>
+    <form className="flex w-full" onSubmit={onSubmitHandler}>
+      <div className="w-[70%] h-full px-7 py-4 border-r border-gray-300">
+        <div className="flex h-[calc(100%-24px)]">
+          <div className="w-1/2">
             <InputRow
               name="name"
               label="상품명"
@@ -152,11 +142,17 @@ const CustomerModalPaymentContainer = ({
             />
           </div>
         </div>
-        <PaymentDescription>
-          <span>미수금 금액: 미수금 금액에 대한 설명</span>
-          <span>결제 예정일: 결제 예정일에 대한 설명</span>
-          <span>실제 결제일: 실제 결제일에 대한 설명</span>
-        </PaymentDescription>
+        <div className="absolute h-10 bottom-0">
+          <span className="text-red-400 mr-6 font-semibold before:content-['*'] before:top-0.5 before:mr-1">
+            미수금 금액: 미수금 금액에 대한 설명
+          </span>
+          <span className="text-red-400 mr-6 font-semibold before:content-['*'] before:top-0.5 before:mr-1">
+            결제 예정일: 결제 예정일에 대한 설명
+          </span>
+          <span className="text-red-400 mr-6 font-semibold before:content-['*'] before:top-0.5 before:mr-1">
+            실제 결제일: 실제 결제일에 대한 설명
+          </span>
+        </div>
       </div>
       <CustomerModalReceiptContainer
         type={'payment'}
@@ -169,25 +165,5 @@ const CustomerModalPaymentContainer = ({
     </form>
   );
 };
-
-const PaymentDescription = styled('div', {
-  base: {
-    position: 'absolute',
-    height: '40px',
-    bottom: 0,
-
-    '& span': {
-      color: 'var(--red200)',
-      margin: '0 24px 0 0',
-      fontWeight: 600,
-
-      _before: {
-        content: "'*'",
-        top: '2px',
-        margin: '0 4px 0 0',
-      },
-    },
-  },
-});
 
 export default CustomerModalPaymentContainer;

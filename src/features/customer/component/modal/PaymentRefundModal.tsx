@@ -7,10 +7,7 @@ import PaymentContainer from './PaymentContainer';
 import RefundContainer from './RefundContainer';
 import { CustomerPaymentRefundData } from '@apis/payment/payment.type';
 import { useLessonListQuery } from '@features/lesson/query/LessonQuery';
-import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
 import Image from 'next/image';
-import { styled } from 'styled-system/jsx';
 import Loading from '@/shared/components/common/Loading';
 
 type Props = {
@@ -44,19 +41,14 @@ const CustomerPaymentRefundModal = ({
         title=""
         titleContainer={false}
         setOpenModal={setOpenModal}
-        css={{
-          width: 'calc(75vw - 3%)',
-          height: 'calc(100vh - 5%)',
-          top: '50%',
-          padding: 0,
-        }}
+        className="w-[calc(75vw-3%)] h-[calc(100vh-5%)] top-1/2 p-0"
       >
         <CustomerPaymentRefundModalHeader
           isPayment={isPayment}
           setOpenModal={setOpenModal}
         />
         <CustomerInfoContainer customerId={customerId} isPayment={isPayment} />
-        <div className={flex({ height: 'calc(100% - 194px)' })}>
+        <div className="flex h-[calc(100%-194px)]">
           {
             {
               payment: (
@@ -89,8 +81,8 @@ const CustomerPaymentRefundModalHeader = ({
   setOpenModal: SetStateAction<boolean>;
 }) => {
   return (
-    <Header>
-      <span className={css({ fontWeight: 600, fontSize: '1.1rem' })}>
+    <div className="flex items-center justify-between h-16 border-b border-gray-300 px-7 py-4">
+      <span className="font-semibold text-lg">
         {isPayment ? '결제하기' : '환불하기'}
       </span>
       <Image
@@ -98,22 +90,11 @@ const CustomerPaymentRefundModalHeader = ({
         alt={'close button'}
         width={28}
         height={28}
-        className={css({ cursor: 'pointer' })}
+        className="cursor-pointer"
         onClick={() => setOpenModal(false)}
       />
-    </Header>
+    </div>
   );
 };
-
-const Header = styled('div', {
-  base: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    height: '64px',
-    borderBottom: '1px solid var(--grey100)',
-    padding: '16px 28px',
-  },
-});
 
 export default CustomerPaymentRefundModal;

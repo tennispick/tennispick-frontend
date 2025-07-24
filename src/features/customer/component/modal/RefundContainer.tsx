@@ -18,8 +18,6 @@ import { createCustomerRefund } from '@apis/payment/payment.api';
 import { useRouter } from 'next/navigation';
 import ConfirmModal from '@/shared/components/layer/ConfirmModal';
 import { Input } from '@/shared/components/index';
-import { flex } from 'styled-system/patterns';
-import { css } from 'styled-system/css';
 
 type Props = {
   customerId: string;
@@ -118,19 +116,12 @@ const CustomerModalRefundContainer = ({
   return (
     <form
       id="refundForm"
-      className={flex({ width: '100%' })}
+      className="flex w-full"
       onSubmit={onSubmitHandler}
     >
-      <div
-        className={css({
-          width: '70%',
-          padding: '16px 28px',
-          height: '100%',
-          borderRight: '1px solid var(--grey100)',
-        })}
-      >
-        <div className={flex({ height: 'calc(100% - 24px)' })}>
-          <div className={css({ width: '50%' })}>
+      <div className="w-[70%] px-7 py-4 h-full border-r border-gray-300">
+        <div className="flex h-[calc(100%-24px)]">
+          <div className="w-1/2">
             <InputRow
               name="name"
               label="상품명"
@@ -167,7 +158,7 @@ const CustomerModalRefundContainer = ({
               value={String(addNumberCommas(totalPrice))}
             />
           </div>
-          <div className={css({ width: '50%' })}>
+          <div className="w-1/2">
             <InputRow
               name="refundMethod"
               label="환불수단"
@@ -230,11 +221,11 @@ const CustomerModalRefundContainer = ({
           onCancelHandler={() => setOpenModal(false)}
           onClickDisabled={formData.reason === ''}
         >
-          <Input css={{ height: '44px' }}>
+          <Input className="h-11">
             <Input.TextField
               name="reason"
               placeholder="환불 사유를 입력해주세요."
-              className={css({ padding: '16px' })}
+              className="p-4"
               onChange={onChangeFormData}
             />
           </Input>

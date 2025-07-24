@@ -11,14 +11,12 @@ import {
 import FileInput from './FileInput';
 import { createCoach } from '@apis/coach/coach.api';
 import { useRouter } from 'next/navigation';
-import { styled } from 'styled-system/jsx';
-import { css } from 'styled-system/css';
 
 type Props = {
-  handleClose: () => void;
+  setOpenModal: (open: boolean) => void;
 };
 
-const CoachCreateModal = ({ handleClose }: Props) => {
+const CoachCreateModal = ({ setOpenModal }: Props) => {
   const router = useRouter();
 
   const { yearArray, year } = getYearList();
@@ -90,7 +88,7 @@ const CoachCreateModal = ({ handleClose }: Props) => {
       } else {
         alert('생성에 실패했어요.\n관리자에게 문의해주세요.');
       }
-      handleClose();
+      setOpenModal(false);
       router.refresh();
     } else return false;
   };
@@ -100,62 +98,78 @@ const CoachCreateModal = ({ handleClose }: Props) => {
       <form
         id="coachCreateForm"
         onSubmit={handleSubmit}
-        className={css({
-          height: 'calc(90% - (1.2rem + 16px))',
-          overflowY: 'auto',
-          margin: '0 0 16px 0',
-        })}
+        className="h-[calc(90%-(1.2rem+16px))] overflow-y-auto mb-4"
       >
-        <InputWrapper label="이메일">
-          <TextField
-            name="email"
-            placeholder="이메일을 입력해주세요."
-            onChange={onChangeFormData}
-            requiredStatus={formData.email.isRequired}
-            requiredText="이메일이 입력되지 않았어요."
-            isRegexCheck={onCheckInputRegexTestHandler(
-              formData.email.value,
-              emailRegex,
+        <div className="mb-3">
+          <label className="block">이메일</label>
+          <div className="w-1/2 h-[calc(0.95rem*2.725)] py-[10px] pl-[10px] pr-0 mt-2">
+            <input
+              name="email"
+              placeholder="이메일을 입력해주세요."
+              onChange={onChangeFormData}
+              className="w-full border border-gray-300 rounded px-3 py-2"
+            />
+            {formData.email.isRequired && (
+              <span className="text-red-500 text-xs">이메일이 입력되지 않았어요.</span>
             )}
-            regexText="이메일의 형식이 아니에요."
-          />
-        </InputWrapper>
-        <InputWrapper label="비밀번호">
-          <TextField
-            type="password"
-            name="password"
-            placeholder="비밀번호를 입력해주세요."
-            onChange={onChangeFormData}
-            requiredStatus={formData.password.isRequired}
-            requiredText="비밀번호가 입력되지 않았어요."
-            isRegexCheck={onCheckInputRegexTestHandler(
-              formData.password.value,
-              passwordRegex,
+            {onCheckInputRegexTestHandler(formData.email.value, emailRegex) && (
+              <span className="text-red-500 text-xs">이메일의 형식이 아니에요.</span>
             )}
-            regexText="영문, 숫자, 특수문자를 포함해서 8~25자리를 충족해주세요."
-          />
-        </InputWrapper>
-        <InputWrapper label={'비밀번호 확인'}>
-          <TextField
-            type="password"
-            name="passwordConfirm"
-            placeholder="비밀번호를 다시 입력해주세요."
-            onChange={onChangeFormData}
-            requiredStatus={formData.passwordConfirm.isRequired}
-            requiredText="비밀번호를 다시 한 번 확인해주세요."
-          />
-        </InputWrapper>
-        <InputWrapper label="성명">
-          <TextField
-            name="name"
-            placeholder="성명을 입력해주세요."
-            onChange={onChangeFormData}
-            requiredStatus={formData.name.isRequired}
-            requiredText="성명이 입력되지 않았어요."
-          />
-        </InputWrapper>
+          </div>
+        </div>
+        
+        <div className="mb-3">
+          <label className="block">비밀번호</label>
+          <div className="w-1/2 h-[calc(0.95rem*2.725)] py-[10px] pl-[10px] pr-0 mt-2">
+            <input
+              type="password"
+              name="password"
+              placeholder="비밀번호를 입력해주세요."
+              onChange={onChangeFormData}
+              className="w-full border border-gray-300 rounded px-3 py-2"
+            />
+            {formData.password.isRequired && (
+              <span className="text-red-500 text-xs">비밀번호가 입력되지 않았어요.</span>
+            )}
+            {onCheckInputRegexTestHandler(formData.password.value, passwordRegex) && (
+              <span className="text-red-500 text-xs">영문, 숫자, 특수문자를 포함해서 8~25자리를 충족해주세요.</span>
+            )}
+          </div>
+        </div>
+        
+        <div className="mb-3">
+          <label className="block">비밀번호 확인</label>
+          <div className="w-1/2 h-[calc(0.95rem*2.725)] py-[10px] pl-[10px] pr-0 mt-2">
+            <input
+              type="password"
+              name="passwordConfirm"
+              placeholder="비밀번호를 다시 입력해주세요."
+              onChange={onChangeFormData}
+              className="w-full border border-gray-300 rounded px-3 py-2"
+            />
+            {formData.passwordConfirm.isRequired && (
+              <span className="text-red-500 text-xs">비밀번호를 다시 한 번 확인해주세요.</span>
+            )}
+          </div>
+        </div>
+        
+        <div className="mb-3">
+          <label className="block">성명</label>
+          <div className="w-1/2 h-[calc(0.95rem*2.725)] py-[10px] pl-[10px] pr-0 mt-2">
+            <input
+              name="name"
+              placeholder="성명을 입력해주세요."
+              onChange={onChangeFormData}
+              className="w-full border border-gray-300 rounded px-3 py-2"
+            />
+            {formData.name.isRequired && (
+              <span className="text-red-500 text-xs">성명이 입력되지 않았어요.</span>
+            )}
+          </div>
+        </div>
+        
         <div>생년월일</div>
-        <Row>
+        <div className="flex items-center h-[46px] leading-[30px] py-1 my-2 mb-3">
           <Select name="year" width="calc(20% - 4px)" defaultValue={year}>
             {yearArray.map((item, index) => (
               <option key={index} value={item}>
@@ -182,87 +196,55 @@ const CoachCreateModal = ({ handleClose }: Props) => {
               </option>
             ))}
           </Select>
-        </Row>
+        </div>
+        
         <div>성별</div>
-        <Row>
+        <div className="flex items-center h-[46px] leading-[30px] py-1 my-2 mb-3">
           <Select name="sex" width="calc(30% - 4px)">
             <option value="man">남자</option>
             <option value="woman">여자</option>
           </Select>
-        </Row>
-        <InputWrapper label="연락처">
-          <TextField
-            name="phoneNumber"
-            placeholder="연락처를 입력해주세요."
-            onChange={onChangeFormData}
-            requiredStatus={formData.phoneNumber.isRequired}
-            requiredText="연락처를 입력하지 않았어요."
-            isRegexCheck={onCheckInputRegexTestHandler(
-              formData.phoneNumber.value,
-              phoneNumberRegex,
+        </div>
+        
+        <div className="mb-3">
+          <label className="block">연락처</label>
+          <div className="w-1/2 h-[calc(0.95rem*2.725)] py-[10px] pl-[10px] pr-0 mt-2">
+            <input
+              name="phoneNumber"
+              placeholder="연락처를 입력해주세요."
+              onChange={onChangeFormData}
+              className="w-full border border-gray-300 rounded px-3 py-2"
+            />
+            {formData.phoneNumber.isRequired && (
+              <span className="text-red-500 text-xs">연락처를 입력하지 않았어요.</span>
             )}
-            regexText="연락처의 형식이 아니에요."
-          />
-        </InputWrapper>
+            {onCheckInputRegexTestHandler(formData.phoneNumber.value, phoneNumberRegex) && (
+              <span className="text-red-500 text-xs">연락처의 형식이 아니에요.</span>
+            )}
+          </div>
+        </div>
+        
         <div>직책</div>
-        <Row>
+        <div className="flex items-center h-[46px] leading-[30px] py-1 my-2 mb-3">
           <Select name="position" width="calc(30% - 4px)">
             <option value="coach">코치</option>
             <option value="admin">관리자</option>
           </Select>
-        </Row>
+        </div>
+        
         <FileInput onChangeFileHandler={onChangeFileInputHandler} />
       </form>
+      
       <Button
         type="submit"
         form="coachCreateForm"
         variant="iconBtn"
         label="코치 등록하기"
         src={EditWhiteIcon}
-        css={{
-          css={{
-          position: 'relative',
-          width: '100%',
-          justifyContent: 'center',
-          border: 0,
-          backgroundColor: 'var(--business-sub-color)',
-          color: 'var(--white100)',
-          padding: '12px 16px',
-        }}
-        }}
+        className="relative w-full justify-center border-0 bg-sky-400 text-white py-3 px-4"
       />
     </>
   );
 };
-
-const Row = styled('div', {
-  base: {
-    display: 'flex',
-    alignItems: 'center',
-    height: '46px',
-    lineHeight: '30px',
-    padding: '4px 0',
-    margin: '8px 0 12px 0',
-  },
-});
-
-const InputWrapper = styled(Input, {
-  base: {
-    margin: '0 0 12px 0',
-
-    '& label': {
-      display: 'block',
-    },
-  },
-});
-
-const TextField = styled(Input.TextField, {
-  base: {
-    width: '50%',
-    height: 'calc(0.95rem * 2.725)',
-    padding: '10px 0 10px 10px',
-    margin: '8px 0 0 0',
-  },
-});
 
 export default CoachCreateModal;

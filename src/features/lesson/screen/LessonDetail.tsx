@@ -8,9 +8,6 @@ import { deleteLesson, updateLesson } from '@apis/lesson/lesson.api';
 import { FormEvent } from 'react';
 import useInput from '@hooks/useInput';
 import { useRouter } from 'next/navigation';
-import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
-import { Flex } from 'styled-system/jsx';
 import { LessonDetailData } from '../type/lesson.type';
 
 type Props = {
@@ -86,28 +83,22 @@ const LessonDetailScreen = ({ data }: Props) => {
 
   return (
     <form
-      className={css({ height: '100%' })}
+      className="h-full"
       onSubmit={onClickEditLessonHandler}
     >
       <PageHeader title={`레슨권: ${data.name}`} link="/lesson" />
-      <div className={flex({ height: '88%' })}>
+      <div className="flex h-[88%]">
         <LessonDetailInputField
           formData={formData}
           onChangeFormData={onChangeFormData}
         />
       </div>
-      <Flex justifyContent="end">
+      <div className="flex justify-end">
         <Button
           label={'정보 삭제하기'}
           variant={'iconBtn'}
           src={DeleteWhiteIcon}
-          css={{
-            border: 0,
-            backgroundColor: 'var(--red200)',
-            color: 'var(--white100)',
-            padding: '12px 16px',
-            margin: '0 12px 0 0',
-          }}
+          className="border-0 bg-[var(--red200)] text-[var(--white100)] py-3 px-4 mr-3"
           onClick={onClickDeleteLessonHandler}
         />
         <Button
@@ -115,14 +106,9 @@ const LessonDetailScreen = ({ data }: Props) => {
           label={'정보 수정하기'}
           variant={'iconBtn'}
           src={EditWhiteIcon}
-          css={{
-            border: 0,
-            backgroundColor: 'var(--business-active-color)',
-            color: 'var(--white100)',
-            padding: '12px 16px',
-          }}
+          className="border-0 bg-[var(--business-active-color)] text-[var(--white100)] py-3 px-4"
         />
-      </Flex>
+      </div>
     </form>
   );
 };
