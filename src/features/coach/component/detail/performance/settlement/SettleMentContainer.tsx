@@ -3,7 +3,6 @@ import InformationIcon from '@icons/information';
 import { CenterPaymentState } from '@lib/zustand/center';
 import Incentive from './Incentive';
 import EstimatedReceipt from './EstimatedReceipt';
-import { FormEventHandler, useState } from 'react';
 import useModal from '@hooks/useModal';
 import ModalBody from './modal/ModalBody';
 import SearchPeriodSelectRow from '../SearchPeriodSelectRow';

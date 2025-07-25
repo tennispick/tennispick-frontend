@@ -7,6 +7,7 @@ import { Modal, Portal } from '@/shared/components/index';
 import ScheduleByDate from '@features/layer/scheduleByDate/screen/ScheduleByDate';
 import Logo from '@icons/white_bg_logo.svg';
 import useMobile from '@hooks/useMobile';
+import { cn } from '@lib/utils';
 
 type Props = {
   firstPathName: string;
@@ -25,23 +26,13 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
     setDay(day);
   };
 
-  const mobileNavigationStyle = {
-    position: 'fixed',
-    width: '100vw',
-    height: '76px',
-    top: 0,
-    left: 0,
-    backgroundColor: 'var(--white100)',
-    flexDirection: 'row',
-    zIndex: 9999,
-  };
-
   return (
     <div
-      className={`relative flex flex-col justify-between h-[calc(100vh_-_48px)] transition-all duration-350 ease-in-out overflow-y-scroll ${
-        isNavSpread ? 'w-[280px] pr-5' : 'w-20'
-      }`}
-      style={isMobile ? mobileNavigationStyle : {}}
+      className={cn(
+        'relative flex flex-col justify-between h-[calc(100vh_-_48px)] transition-all duration-350 ease-in-out overflow-y-scroll',
+        isNavSpread ? 'w-[280px] pr-5' : 'w-20',
+        isMobile && 'fixed w-screen h-[76px] top-0 left-0 bg-[var(--white100)] flex-row z-[9999]',
+      )}
     >
       <div>
         {isNavSpread && (

@@ -6,7 +6,7 @@ import {
   transferPaymentType,
 } from '@features/customer/util/payment';
 import { addNumberCommas } from 'src/shared/utils/numberForm';
-import { MouseEvent, useState }的同时 } from 'react';
+import { MouseEvent, useState } from 'react';
 import RightSideContainer from '@/shared/components/layer/RightSideContainer';
 import DrawerPayment from '../../drawer/Payment';
 

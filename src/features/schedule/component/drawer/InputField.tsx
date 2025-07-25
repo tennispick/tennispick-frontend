@@ -4,9 +4,10 @@ import { useGetCoachListQuery } from '@features/coach/query/coachQuery';
 import { useLessonListQuery } from '@features/lesson/query/LessonQuery';
 import { useCourtListQuery } from '@features/court/query/courtQuery';
 import { getTimeList } from 'src/shared/utils/date';
-import { useEffect, useMemo } from 'react';
+import { ReactNode, useEffect, useMemo } from 'react';
 import { numberZeroFillFormat } from 'src/shared/utils/numberForm';
 import Loading from '@/shared/components/common/Loading';
+import { cn } from '@/shared/lib/utils';
 
 type Props = {
   formData: any;
@@ -261,7 +262,7 @@ const InputWrapper = ({
   children,
 }: {
   label: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) => {
   return (
     <div className="mb-5">
@@ -280,11 +281,11 @@ const InputContainer = ({
   id: string;
   label: string;
   className?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) => {
   return (
     <div
-      className={twMerge(
+      className={cn(
         'flex flex-row-reverse justify-end items-center',
         className,
       )}

@@ -1,3 +1,4 @@
+import React, { ChangeEvent } from 'react';
 import ScheduleSelect from '../Select';
 import { useGetCoachListQuery } from '@features/coach/query/coachQuery';
 import { CoachListData } from '@apis/coach/coach.type';
@@ -15,7 +16,7 @@ import IconButton from '@/shared/components/button/IconButton';
 type Props = {
   formData: any;
   selectSchedule: CustomerLessonScheduleHistoryData;
-  onChangeFormData: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onChangeFormData: (e: ChangeEvent<HTMLSelectElement>) => void;
   setFormData: SetStateAction<any>;
 };
 

@@ -7,7 +7,7 @@ type Props = {
   tabLists: SNBList;
 };
 
-const SNBList = ({ currentItem, setCurrentItem, tabLists }: Props) => {
+const CustomerSNBList = ({ currentItem, setCurrentItem, tabLists }: Props) => {
   return (
     <ul className="flex w-full ml-3 mb-3">
       {tabLists.map(({ id, name }) => {
@@ -27,4 +27,4 @@ const SNBList = ({ currentItem, setCurrentItem, tabLists }: Props) => {
   );
 };
 
-export default SNBList;
+export default CustomerSNBList;

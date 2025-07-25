@@ -9,8 +9,8 @@ import useInput from '@hooks/useInput';
 import { setCookie } from '@lib/cookie';
 import { useRecoilState } from 'recoil';
 import { userState } from '@lib/recoil/userState';
-import { useLoginMutation } from '../mutate/login';
 import useCenterPaymentSettingStore from '@lib/zustand/center';
+import { useLoginMutation } from '../mutations/login';
 
 const Login = () => {
   const router = useRouter();

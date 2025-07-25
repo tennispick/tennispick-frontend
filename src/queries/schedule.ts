@@ -39,7 +39,7 @@ const getScheduleFetch = async ({
   startWeekDate,
   endWeekDate,
 }: ScheduleProps): Promise<Response> =>
-  await axios.get(
+  await axiosInstance.get(
     `/calendar?coachId=${coachId}&startWeekDate=${startWeekDate}&endWeekDate=${endWeekDate}`,
   );
 

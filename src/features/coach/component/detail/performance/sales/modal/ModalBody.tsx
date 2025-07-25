@@ -7,6 +7,7 @@ import {
   searchConditions,
 } from '@features/coach/data/salesModalData';
 import { getDateByQuickButton } from '@features/coach/util/quickButtonDate';
+import ModalSearchCondition from './ModalSearchCondition';
 
 type Props = {
   coachId: string;

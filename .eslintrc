@@ -4,12 +4,20 @@
     "prettier",
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended",
     "next/core-web-vitals"
   ],
   "plugins": [
     "react",
     "eslint-plugin-simple-import-sort"
   ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react-hooks/rules-of-hooks": "off",
@@ -24,5 +32,9 @@
     "browser": true,
     "node": true,
     "es6": true
+  },
+  "globals": {
+    "React": "readonly",
+    "JSX": "readonly"
   }
 }

@@ -10,7 +10,6 @@ import { LessonStatus } from '@features/customer/util/lesson';
 import ManageListRow from '../manage/ListRow';
 import { useCustomerLessonScheduleHistoryQuery } from '@features/customer/query/CustomerQuery';
 import { CustomerLessonScheduleHistoryData } from '@apis/customer/customer.type';
-import { FormEventHandler } from 'react';
 import { deleteCustomerLesson } from '@apis/customer/customer.api';
 import { useQueryClient } from '@tanstack/react-query';
 import { URL_FETCH_CUSTOMER_ALL_LESSON_LIST } from '@apis/customer/customer.url';
@@ -81,12 +80,12 @@ const DrawerLesson = ({ data }: Props) => {
         />
         <DrawerInputContainer
           label="담당코치"
-          value={coachName ?? '-'}|
+          value={coachName ?? '-'}
           readOnly
         />
         <DrawerInputContainer
           label="결제날짜"
-          value={paymentDt ?? '-'}|
+          value={paymentDt ?? '-'}
           readOnly
         />
         <DrawerInputContainer
@@ -151,7 +150,7 @@ const DrawerLesson = ({ data }: Props) => {
                       {transferLessonDateType(lessonDateType)}로 예약
                     </div>
                     <div className="w-[15%]">{date}</div>
-                    <div className="w-[10%"]>{startTime}</div>
+                    <div className="w-[10%">{startTime}</div>
                     <div className="w-[10%]">{endTime}</div>
                   </ManageListRow>
                 );
