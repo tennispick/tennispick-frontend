@@ -9,10 +9,7 @@ import {
   updateCourtDetailInfo,
 } from '@queries/index';
 import { EditWhiteIcon, DeleteWhiteIcon } from '@icons/index';
-import { css } from 'styled-system/css';
-import { styled } from 'styled-system/jsx';
 import IconButton from '@/shared/components/button/IconButton';
-import { flex } from 'styled-system/patterns';
 
 type Props = {
   id: string;
@@ -94,29 +91,31 @@ const DetailCourt = ({ id, handleHideRightSideClick }: Props) => {
     <>
       {data && (
         <>
-          <div className={css({ height: 'calc(100% - 48px)' })}>
-            <InputWrapper label={'코트 이름'}>
-              <TextField
+          <div className="h-[calc(100%_-_48px)]">
+            <Input label={'코트 이름'} className="mb-7 block">
+              <Input.TextField
                 name={'name'}
                 placeholder={'코트 이름을 입력해주세요.'}
                 defaultValue={data.data[0].name}
                 onChange={onChangeFormData}
                 requiredStatus={formData.name.isRequired}
                 requiredText={'코트 이름이 입력되지 않았어요.'}
+                className="w-[60%] !pl-2.5 !pt-2.5 mt-3"
               />
-            </InputWrapper>
-            <InputWrapper label={'위치(층수)'}>
-              <TextField
+            </Input>
+            <Input label={'위치(층수)'} className="mb-7 block">
+              <Input.TextField
                 name={'floor'}
                 placeholder={'위치(층수)를 입력해주세요. ex)3 '}
                 defaultValue={data.data[0].floor}
                 onChange={onChangeFormData}
                 requiredStatus={formData.floor.isRequired}
                 requiredText={'위치(층수)가 입력되지 않았어요.'}
+                className="w-[60%] !pl-2.5 !pt-2.5 mt-3"
               />
-            </InputWrapper>
-            <InputWrapper label={'코트 설명(선택)'}>
-              <TextField
+            </Input>
+            <Input label={'코트 설명(선택)'} className="mb-7 block">
+              <Input.TextField
                 name={'description'}
                 placeholder={'코트 설명을 입력해주세요.'}
                 defaultValue={
@@ -125,16 +124,11 @@ const DetailCourt = ({ id, handleHideRightSideClick }: Props) => {
                     : undefined
                 }
                 onChange={onChangeFormData}
+                className="w-[60%] !pl-2.5 !pt-2.5 mt-3"
               />
-            </InputWrapper>
+            </Input>
           </div>
-          <div
-            className={flex({
-              width: '100%',
-              position: 'relative',
-              gap: '16px',
-            })}
-          >
+          <div className="relative flex w-full gap-4">
             <IconButton
               iconAlign="left"
               iconSrc={EditWhiteIcon}
@@ -159,23 +153,5 @@ const DetailCourt = ({ id, handleHideRightSideClick }: Props) => {
     </>
   );
 };
-
-const InputWrapper = styled(Input, {
-  base: {
-    margin: '0 0 28px 0',
-
-    '& label': {
-      display: 'block',
-    },
-  },
-});
-
-const TextField = styled(Input.TextField, {
-  base: {
-    width: '60%',
-    padding: '10px 0 10px 10px !important', // TODO: !important 제거
-    margin: '12px 0 0 0',
-  },
-});
 
 export default DetailCourt;

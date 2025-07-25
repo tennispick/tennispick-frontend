@@ -4,9 +4,7 @@ import useModalStore from '@lib/zustand/modal';
 import { PORTAL_Z_INDEX } from '@/shared/constants/portal';
 import CancelBtnIcon from '@icons/cancel_black_btn.svg';
 import Image from 'next/image';
-import { styled } from 'styled-system/jsx';
 import { modal } from '@/recipes/modal';
-import { css } from 'styled-system/css';
 
 const ModalProvider = () => {
   const {
@@ -21,20 +19,21 @@ const ModalProvider = () => {
 
   const isOverlay = type === 'overlay';
 
-  const middleStyle =
-    type !== 'full'
-      ? css({
-          padding: 0,
-          textAlign: 'center',
-        })
-      : '';
+  const middleStyle = type !== 'full' ? 'p-0 text-center' : '';
 
   return (
-    <Provider>
-      <Container type={type}>
+    <div
+      className="fixed top-0 h-screen w-screen bg-[rgb(18,18,18,0.7)]"
+      style={{ zIndex: PORTAL_Z_INDEX }}
+    >
+      <div className={modal({ type })}>
         {!isOverlay && title && (
-          <TitleContainer>
-            <Title className={middleStyle}>{title}</Title>
+          <div className="mb-4 flex h-[52px] items-center justify-between rounded-lg bg-[var(--white100)] text-[var(--black100)]">
+            <div
+              className={`text-xl font-semibold text-[var(--business-color)] ${middleStyle}`}
+            >
+              {title}
+            </div>
             <Image
               src={CancelBtnIcon}
               alt={'close button'}
@@ -46,46 +45,12 @@ const ModalProvider = () => {
               }}
               onClick={handleCloseModal}
             />
-          </TitleContainer>
+          </div>
         )}
         {modalChildren}
-      </Container>
-    </Provider>
+      </div>
+    </div>
   );
 };
-
-const Provider = styled('div', {
-  base: {
-    position: 'fixed',
-    width: '100vw',
-    height: '100vh',
-    top: 0,
-    backgroundColor: 'rgb(18, 18, 18, 0.7)',
-    zIndex: PORTAL_Z_INDEX,
-  },
-});
-
-const Container = styled('div', modal);
-
-const TitleContainer = styled('div', {
-  base: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    height: '52px',
-    backgroundColor: 'var(--white100)',
-    borderRadius: '8px',
-    color: 'var(--black100)',
-    margin: '0 0 16px 0',
-  },
-});
-
-const Title = styled('div', {
-  base: {
-    color: 'var(--business-color)',
-    fontSize: '1.2rem',
-    fontWeight: 600,
-  },
-});
 
 export default ModalProvider;

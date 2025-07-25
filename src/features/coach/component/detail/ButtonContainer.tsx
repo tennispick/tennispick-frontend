@@ -26,9 +26,7 @@ const ButtonContainer = ({ coachId }: Props) => {
   };
 
   return (
-    <div
-      className="flex h-[46px] justify-end gap-2"
-    >
+    <div className="flex h-[46px] justify-end gap-2">
       <IconButton
         size="lg"
         variant="negative"

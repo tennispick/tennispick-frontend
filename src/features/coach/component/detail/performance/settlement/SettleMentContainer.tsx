@@ -1,3 +1,4 @@
+import React, { FormEventHandler, useState } from 'react';
 import InformationIcon from '@icons/information';
 import { CenterPaymentState } from '@lib/zustand/center';
 import Incentive from './Incentive';

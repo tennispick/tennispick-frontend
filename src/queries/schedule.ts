@@ -1,4 +1,4 @@
-import { axios } from 'src/shared/utils/axios';
+import { axiosInstance } from '@lib/axios';
 import { useQuery } from '@tanstack/react-query';
 
 type ScheduleProps = {
@@ -9,7 +9,7 @@ type ScheduleProps = {
 
 // 특정 날짜의 스케줄 일정 조회
 const getScheduleByDate = async ({ day }: { day: Date }): Promise<Response> =>
-  await axios.get(`/calendar/schedule?date=${day}`);
+  await axiosInstance.get(`/calendar/schedule?date=${day}`);
 const getScheduleByDateQuery = ({ ...props }) => {
   try {
     const { day } = props;

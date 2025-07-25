@@ -11,9 +11,7 @@ const ScheduleModalRegularLessonCommonScheduleCustomerInputCheckedCustomer = ({
   onClickCancelCustomerHandler,
 }: Props) => {
   return (
-    <ul
-      className="flex justify-between flex-wrap w-4/5 mt-3"
-    >
+    <ul className="flex justify-between flex-wrap w-4/5 mt-3">
       {customer.map(({ id, name }) => {
         return (
           <div

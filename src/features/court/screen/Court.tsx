@@ -12,7 +12,6 @@ import {
 import IconButton from '@/shared/components/button/IconButton';
 import { EditWhiteIcon } from '@icons/index';
 import { useState } from 'react';
-import { css } from 'styled-system/css';
 import Tab from '@widgets/Tab';
 import RightSideContainer from '@/shared/components/layer/RightSideContainer';
 import useModal from '@hooks/useModal';
@@ -46,9 +45,7 @@ const CourtScreen = () => {
         <TabLists>
           <TabList activeKey={'all'}>전체</TabList>
         </TabLists>
-        <div
-          className={css({ position: 'absolute', top: '76px', right: '24px' })}
-        >
+        <div className="absolute right-6 top-[76px]">
           <IconButton
             iconAlign="left"
             iconSrc={EditWhiteIcon}
@@ -57,11 +54,11 @@ const CourtScreen = () => {
             size="md"
             label={'코트 생성하기'}
             onClick={handleShowRegularModal}
-            className={css({ marginLeft: 'auto' })}
+            className="ml-auto"
           />
         </div>
-        <TabPanels className={css({ height: 'calc(100% - 2.875rem - 52px)' })}>
-          <TabPanel activeKey={'all'} className={css({ height: '100%' })}>
+        <TabPanels className="h-[calc(100%_-_2.875rem_-_52px)]">
+          <TabPanel activeKey={'all'} className="h-full">
             <CourtList
               data={data!}
               handleShowCourtDetailClick={handleShowCourtDetailClick}

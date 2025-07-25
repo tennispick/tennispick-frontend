@@ -29,18 +29,14 @@ const AdditionalLessonList = ({
 
   return (
     <>
-      <div
-        className="flex h-7 items-center text-center p-1.5 gap-0.5 [&_div]:text-sm"
-      >
+      <div className="flex h-7 items-center text-center p-1.5 gap-0.5 [&_div]:text-sm">
         <div className="w-[12%]">코트</div>
         <div className="w-[12%]">코치</div>
         <div className="w-[33%]">날짜</div>
         <div className="w-[20%]">시작시간</div>
         <div className="w-[20%]">종료시간</div>
       </div>
-      <div
-        className="h-[calc(100%-28px)] py-2 overflow-y-auto [&_div]:text-sm"
-      >
+      <div className="h-[calc(100%-28px)] py-2 overflow-y-auto [&_div]:text-sm">
         {data.map((item, index) => {
           const {
             id,
@@ -59,25 +55,15 @@ const AdditionalLessonList = ({
               key={`${index}-${id}`}
               onClick={() => onClickRowHandler(item)}
             >
-              <div
-                className="w-[12%] truncate whitespace-nowrap overflow-hidden"
-              >
+              <div className="w-[12%] truncate whitespace-nowrap overflow-hidden">
                 {courtName}
               </div>
-              <div
-                className="w-[12%] truncate whitespace-nowrap overflow-hidden"
-              >
+              <div className="w-[12%] truncate whitespace-nowrap overflow-hidden">
                 {coachName}
               </div>
-              <div
-                className="w-[36%]"
-              >{`${originDate} -> ${additionalDate}`}</div>
-              <div
-                className="w-[20%]"
-              >{`${originStartTime} -> ${additionalStartTime}`}</div>
-              <div
-                className="w-[20%]"
-              >{`${originEndTime} -> ${additionalEndTime}`}</div>
+              <div className="w-[36%]">{`${originDate} -> ${additionalDate}`}</div>
+              <div className="w-[20%]">{`${originStartTime} -> ${additionalStartTime}`}</div>
+              <div className="w-[20%]">{`${originEndTime} -> ${additionalEndTime}`}</div>
             </ManageListRow>
           );
         })}

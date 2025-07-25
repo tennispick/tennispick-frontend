@@ -90,9 +90,7 @@ const ScheduleModalRegularLessonAllOnceScheduleSelectContainer = ({
             <div key={`${date}-${day}-${startTime}-${endTime}-${index}`}>
               <div className="flex items-center">
                 <div className="flex items-center">
-                  <span className="mr-4">
-                    {index + 1}.
-                  </span>
+                  <span className="mr-4">{index + 1}.</span>
                   <div className="w-[140px]">
                     {
                       {
@@ -131,9 +129,7 @@ const ScheduleModalRegularLessonAllOnceScheduleSelectContainer = ({
                   lessonTime={lessonTime}
                 />
               </div>
-              <div
-                className="pl-7 mt-2 text-red-500"
-              >
+              <div className="pl-7 mt-2 text-red-500">
                 {isDuplicate && <>예약이 불가능한 날짜에요.</>}
               </div>
             </div>

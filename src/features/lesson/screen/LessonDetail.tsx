@@ -82,10 +82,7 @@ const LessonDetailScreen = ({ data }: Props) => {
   };
 
   return (
-    <form
-      className="h-full"
-      onSubmit={onClickEditLessonHandler}
-    >
+    <form className="h-full" onSubmit={onClickEditLessonHandler}>
       <PageHeader title={`레슨권: ${data.name}`} link="/lesson" />
       <div className="flex h-[88%]">
         <LessonDetailInputField

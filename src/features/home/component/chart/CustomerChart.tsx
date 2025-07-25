@@ -1,6 +1,4 @@
-import { css } from 'styled-system/css';
 import Card from './Card';
-import { flex } from 'styled-system/patterns';
 import { useHomeCustomerStatisticsQuery } from '@features/home/query/statisticsQuery';
 
 type Props = { date: Date };
@@ -18,17 +16,9 @@ const CustomerChart = ({ date }: Props) => {
     expiredCustomer.lastMonthExpiredCustomerCount;
 
   return (
-    <div className={css({ width: '65%' })}>
-      <div
-        className={css({
-          margin: '0 0 16px 0',
-          fontSize: '1.25rem',
-          fontWeight: 600,
-        })}
-      >
-        회원 통계
-      </div>
-      <div className={flex({ overflowX: 'auto' })}>
+    <div className="w-[65%]">
+      <div className="mb-4 text-xl font-semibold">회원 통계</div>
+      <div className="flex overflow-x-auto">
         <Card
           title={'현재 회원 수'}
           subTitle={'1개월 전보다'}
@@ -84,17 +74,9 @@ const CustomerChart = ({ date }: Props) => {
 
 const Suspense = () => {
   return (
-    <div className={css({ width: '65%' })}>
-      <div
-        className={css({
-          margin: '0 0 16px 0',
-          fontSize: '1.25rem',
-          fontWeight: 600,
-        })}
-      >
-        회원 통계
-      </div>
-      <div className={flex({ overflowX: 'auto' })}>
+    <div className="w-[65%]">
+      <div className="mb-4 text-xl font-semibold">회원 통계</div>
+      <div className="flex overflow-x-auto">
         <Card
           title={'현재 회원 수'}
           subTitle={'1개월 전보다'}

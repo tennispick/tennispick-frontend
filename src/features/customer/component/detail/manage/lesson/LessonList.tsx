@@ -47,9 +47,7 @@ const ManageLessonList = ({
 
   return (
     <>
-      <div
-        className="flex h-7 items-center text-center p-1.5 gap-0.5 [&_div]:text-sm"
-      >
+      <div className="flex h-7 items-center text-center p-1.5 gap-0.5 [&_div]:text-sm">
         <div className="w-[10%]">상태</div>
         <div className="w-[20%]">상품명</div>
         <div className="w-[10%]">강습유형</div>
@@ -58,9 +56,7 @@ const ManageLessonList = ({
         <div className="w-[20%]">결제날짜</div>
         <div className="w-[20%]" />
       </div>
-      <div
-        className="h-[calc(100%-28px)] py-2 overflow-y-auto [&_div]:text-sm"
-      >
+      <div className="h-[calc(100%-28px)] py-2 overflow-y-auto [&_div]:text-sm">
         {data.map((item, index) => {
           const {
             id,
@@ -74,10 +70,7 @@ const ManageLessonList = ({
           } = item;
 
           return (
-            <ManageListRow
-              key={`${index}-${id}`}
-              className="cursor-default"
-            >
+            <ManageListRow key={`${index}-${id}`} className="cursor-default">
               {LessonStatusCell(
                 LessonStatus(
                   centerCoachId,
@@ -85,18 +78,12 @@ const ManageLessonList = ({
                   registerAbleCount,
                 ),
               )}
-              <div
-                className="w-[20%] truncate whitespace-nowrap overflow-hidden text-left pl-2"
-              >
+              <div className="w-[20%] truncate whitespace-nowrap overflow-hidden text-left pl-2">
                 {lessonName}
               </div>
-              <div className="w-[10%]">
-                {transferLessonType(type)}
-              </div>
+              <div className="w-[10%]">{transferLessonType(type)}</div>
               <div className="w-[15%]">{coachName ?? '-'}</div>
-              <div
-                className="w-[10%]"
-              >{`${remainLessonCount}회 / ${registerAbleCount}회`}</div>
+              <div className="w-[10%]">{`${remainLessonCount}회 / ${registerAbleCount}회`}</div>
               <div className="w-[20%]">{paymentDt}</div>
               <div className="flex w-[20%]">
                 <Button

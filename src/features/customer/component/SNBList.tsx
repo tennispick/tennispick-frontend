@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { SNBList } from '../type/snbList.type';
 
 type Props = {
@@ -9,9 +9,7 @@ type Props = {
 
 const SNBList = ({ currentItem, setCurrentItem, tabLists }: Props) => {
   return (
-    <ul
-      className="flex w-full ml-3 mb-3"
-    >
+    <ul className="flex w-full ml-3 mb-3">
       {tabLists.map(({ id, name }) => {
         const selectedItem = currentItem === id;
 

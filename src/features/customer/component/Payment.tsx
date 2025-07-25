@@ -47,9 +47,7 @@ const CustomerPayment = ({ id }: Props) => {
         setCurrentItem={setCurrentItem as SetStateAction<string>}
         tabLists={paymentList}
       />
-      <div
-        className="h-[50vh] bg-gray-200 rounded-2xl p-3"
-      >
+      <div className="h-[50vh] bg-gray-200 rounded-2xl p-3">
         <Suspense fallback={<Loading />}>
           <CustomerDetailPaymentRefundContainer
             customerId={id}

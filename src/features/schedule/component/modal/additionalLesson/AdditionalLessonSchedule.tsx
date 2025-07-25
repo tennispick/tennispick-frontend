@@ -40,9 +40,7 @@ const AdditionalLessonSchedule = ({
   };
 
   return (
-    <section
-      className="w-1/2 absolute top-60 pl-3"
-    >
+    <section className="w-1/2 absolute top-60 pl-3">
       <ScheduleWrapper
         date={new Date(formData.date ?? date)}
         startTime={startTime}

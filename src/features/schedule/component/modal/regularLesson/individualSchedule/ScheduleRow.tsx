@@ -141,9 +141,7 @@ const ScheduleModalRegularLessonIndividualScheduleRow = ({
           setFormData={setIndividualData}
           disabled={disabled}
         />
-        <div
-          className="flex w-14 items-center ml-2 pl-1 !pr-0"
-        >
+        <div className="flex w-14 items-center ml-2 pl-1 !pr-0">
           <Image
             src={AddIcon}
             alt="add iocn"
@@ -165,11 +163,7 @@ const ScheduleModalRegularLessonIndividualScheduleRow = ({
         </div>
       </div>
       {isDuplicate() && (
-        <div
-          className="text-red-500 py-4 pl-3"
-        >
-          예약이 불가능한 날짜에요.
-        </div>
+        <div className="text-red-500 py-4 pl-3">예약이 불가능한 날짜에요.</div>
       )}
     </>
   );

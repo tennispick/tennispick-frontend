@@ -27,9 +27,7 @@ const CustomerDetailPaymentRefundRefundList = ({ data }: Props) => {
 
   return (
     <>
-      <div
-        className="flex h-7 items-center text-center p-1.5 gap-0.5 [&_div]:text-sm"
-      >
+      <div className="flex h-7 items-center text-center p-1.5 gap-0.5 [&_div]:text-sm">
         <div className="w-[20%]">레슨권</div>
         <div className="w-[15%]">환불일</div>
         <div className="w-[12%]">결제유형</div>
@@ -39,9 +37,7 @@ const CustomerDetailPaymentRefundRefundList = ({ data }: Props) => {
         <div className="w-[10%]">환불금액</div>
         <div className="w-[11%]" />
       </div>
-      <div
-        className="h-[calc(100%-28px)] py-2 overflow-y-auto [&_div]:text-sm"
-      >
+      <div className="h-[calc(100%-28px)] py-2 overflow-y-auto [&_div]:text-sm">
         {data.map((item) => {
           const {
             id,
@@ -55,19 +51,12 @@ const CustomerDetailPaymentRefundRefundList = ({ data }: Props) => {
           } = item;
 
           return (
-            <CustomerDetailPaymentRefundTableRow
-              key={id}
-              className="p-3"
-            >
-              <div
-                className="w-[20%] truncate whitespace-nowrap overflow-hidden text-left"
-              >
+            <CustomerDetailPaymentRefundTableRow key={id} className="p-3">
+              <div className="w-[20%] truncate whitespace-nowrap overflow-hidden text-left">
                 {lessonName}
               </div>
               <div className="w-[15%]">{createdAt}</div>
-              <div className="w-[12%]">
-                {transferPaymentType(type)}
-              </div>
+              <div className="w-[12%]">{transferPaymentType(type)}</div>
               <div className="w-[12%]">
                 {discountType ? transferDiscountType(discountType) : '-'}
               </div>
@@ -76,9 +65,7 @@ const CustomerDetailPaymentRefundRefundList = ({ data }: Props) => {
                   ? '-'
                   : addNumberCommas(discountPrice)}
               </div>
-              <div className="w-[10%]">
-                {addNumberCommas(totalPrice)}
-              </div>
+              <div className="w-[10%]">{addNumberCommas(totalPrice)}</div>
               <div className="w-[10%]">
                 {refundPrice ? addNumberCommas(refundPrice) : '-'}
               </div>

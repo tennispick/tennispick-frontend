@@ -1,6 +1,4 @@
-import { Flex } from 'styled-system/jsx';
 import Card from './Card';
-import { css } from 'styled-system/css';
 import { addNumberCommas } from 'src/shared/utils/numberForm';
 import { useHomeSalesStatisticsQuery } from '@features/home/query/statisticsQuery';
 
@@ -23,17 +21,9 @@ const SalesChart = ({ date }: Props) => {
   };
 
   return (
-    <div className={css({ width: 'calc(35% - 20px)' })}>
-      <div
-        className={css({
-          margin: '0 0 16px 0',
-          fontSize: '1.25rem',
-          fontWeight: 600,
-        })}
-      >
-        매출 통계
-      </div>
-      <Flex>
+    <div className="w-[calc(35%_-_20px)]">
+      <div className="mb-4 text-xl font-semibold">매출 통계</div>
+      <div className="flex">
         <Card
           title={'이번 달 매출금액'}
           subTitle={'1개월 전보다'}
@@ -46,7 +36,7 @@ const SalesChart = ({ date }: Props) => {
           chartType={'NoChange'}
           content={`${addNumberCommas(totalSalesPrice.paymentPrice)} 원`}
         />
-      </Flex>
+      </div>
     </div>
   );
 };

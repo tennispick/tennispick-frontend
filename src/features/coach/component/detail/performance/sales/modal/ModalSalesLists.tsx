@@ -75,10 +75,7 @@ const ModalSalesLists = ({
 
 const SalesListsHeader = () => {
   return (
-    <ul
-      role="rowheader"
-      className="flex px-4"
-    >
+    <ul role="rowheader" className="flex px-4">
       <li className="w-[5%] text-sm font-semibold">{'이름'}</li>
       <li className="w-[10%] text-sm font-semibold">{'연락처'}</li>
       <li className="w-[14%] text-sm font-semibold">{'상품명'}</li>

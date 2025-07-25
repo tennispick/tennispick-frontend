@@ -3,8 +3,6 @@ import Loading from '@/shared/components/common/Loading';
 import { GET_WEEK_LIST_COUNT } from '@features/constant/schedule';
 import { useLessonScheduleByPeriodQuery } from '@features/schedule/query/scheduleQuery';
 import { getDayOfWeek, getDayOfWeekList } from 'src/shared/utils/date';
-import { styled } from 'styled-system/jsx';
-import { flex } from 'styled-system/patterns';
 
 type Props = {
   isMobile: boolean;
@@ -26,22 +24,20 @@ const ScheduleCalendarTable = ({ isMobile, date, coachList }: Props) => {
 
   return (
     <div
-      className={flex({
-        width: '100%',
-        height: 'calc(100% - 176px)',
-        flexDirection: isMobile ? 'column' : 'row',
-      })}
+      className={`flex h-[calc(100%_-_176px)] w-full ${
+        isMobile ? 'flex-col' : 'flex-row'
+      }`}
     >
-      <Container>
-        <CalendarWeekName>평일</CalendarWeekName>
+      <div className="h-full w-full">
+        <div className="mb-4 h-6 text-xl font-semibold">평일</div>
         {/* <ScheduleTimeTable
           coach={coachList}
           data={data}
           timeTableMapList={getDayOfWeekList(date, GET_WEEK_LIST_COUNT, true)}
         /> */}
-      </Container>
-      <Container>
-        <CalendarWeekName>주말</CalendarWeekName>
+      </div>
+      <div className="h-full w-full">
+        <div className="mb-4 h-6 text-xl font-semibold">주말</div>
         {/* <ScheduleTimeTable
           coach={coachList}
           data={data}
@@ -51,25 +47,9 @@ const ScheduleCalendarTable = ({ isMobile, date, coachList }: Props) => {
             false,
           )}
         /> */}
-      </Container>
+      </div>
     </div>
   );
 };
-
-const Container = styled('div', {
-  base: {
-    width: '100%',
-    height: '100%',
-  },
-});
-
-const CalendarWeekName = styled('div', {
-  base: {
-    height: '24px',
-    fontSize: '1.25rem',
-    fontWeight: 600,
-    margin: '0 0 16px 0',
-  },
-});
 
 export default ScheduleCalendarTable;

@@ -4,9 +4,7 @@ import { useRouter } from 'next/navigation';
 import { NoResult, NormalList } from '@/shared/components/index';
 import { DefaultCourt } from '@images/index';
 import { deleteCourtDetailInfo } from '@queries/index';
-import { css } from 'styled-system/css';
 import Button from '@/shared/components/button/Button';
-import { flex } from 'styled-system/patterns';
 
 type Props = {
   data: Array<{ [key: string]: string | number }>;
@@ -36,43 +34,17 @@ const CourtList = ({ data, handleShowCourtDetailClick }: Props) => {
                 key={id}
                 onClick={() => handleShowCourtDetailClick(`${id}`)}
               >
-                <div
-                  className={css({
-                    width: '5%',
-                    minHeight: '40px',
-                    textAlign: 'center',
-                  })}
-                >
+                <div className="w-[5%] min-h-10 text-center">
                   <Image
                     src={DefaultCourt}
                     alt={'court'}
-                    className={css({
-                      width: '40px',
-                      height: '40px',
-                    })}
+                    className="w-10 h-10"
                   />
                 </div>
-                <div className={css({ width: '5%', fontWeight: 600 })}>
-                  {name}
-                </div>
-                <div className={css({ width: '5%', fontWeight: 600 })}>
-                  {floor}층
-                </div>
-                <div
-                  className={css({
-                    width: '60%',
-                    padding: '12px 0',
-                  })}
-                >
-                  {description}
-                </div>
-                <div
-                  className={flex({
-                    justifyContent: 'flex-end',
-                    width: '25%',
-                    gap: '8px',
-                  })}
-                >
+                <div className="w-[5%] font-semibold">{name}</div>
+                <div className="w-[5%] font-semibold">{floor}층</div>
+                <div className="w-[60%] py-3">{description}</div>
+                <div className="flex justify-end w-[25%] gap-2">
                   <Button
                     variant="primary"
                     size="md"
@@ -91,7 +63,7 @@ const CourtList = ({ data, handleShowCourtDetailClick }: Props) => {
           })}
         </NormalList.UnOrderList>
       ) : (
-        <div className={css({ height: '20vh', borderRadius: '25px' })}>
+        <div className="h-[20vh] rounded-3xl">
           <NoResult description={'생성된 코트가 없어요.'} margin="16px 0 0 0" />
         </div>
       )}

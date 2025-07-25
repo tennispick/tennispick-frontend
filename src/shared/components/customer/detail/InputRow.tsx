@@ -29,7 +29,7 @@ const CustomerInputRow = forwardRef(
       <div
         className={twMerge(
           'flex items-center h-[calc((100%/5)-16px)]',
-          className
+          className,
         )}
       >
         <div

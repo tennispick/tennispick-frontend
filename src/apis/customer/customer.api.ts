@@ -13,6 +13,7 @@ import {
   URL_CUSTOMER,
 } from './customer.url';
 import { authAxiosInstance } from '@lib/axios';
+import axios from 'axios';
 import {
   CustomerLessonListApiPayload,
   CustomerLessonHistoryPayload,

@@ -18,9 +18,7 @@ const CustomerDetailPaymentRefundBodyContainer = ({
   handleOpenRefundModal,
 }: Props) => {
   return (
-    <div
-      className="h-[calc(100%-60px)] p-3 bg-white rounded-lg"
-    >
+    <div className="h-[calc(100%-60px)] p-3 bg-white rounded-lg">
       {
         {
           payment: (

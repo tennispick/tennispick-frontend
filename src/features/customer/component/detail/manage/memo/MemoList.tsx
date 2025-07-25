@@ -29,18 +29,14 @@ const ManageMemoList = ({
 
   return (
     <>
-      <div
-        className="flex h-7 items-center text-center p-1.5 gap-0.5 [&_div]:text-sm"
-      >
+      <div className="flex h-7 items-center text-center p-1.5 gap-0.5 [&_div]:text-sm">
         <div className="w-[20%]">제목</div>
         <div className="w-[35%]">내용</div>
         <div className="w-[15%]">담당코치</div>
         <div className="w-[10%]">유형</div>
         <div className="w-[20%]">등록날짜</div>
       </div>
-      <div
-        className="h-[calc(100%-28px)] py-2 overflow-y-auto [&_div]:text-sm"
-      >
+      <div className="h-[calc(100%-28px)] py-2 overflow-y-auto [&_div]:text-sm">
         {data.map((item, index) => {
           const {
             customerCommentId,
@@ -57,22 +53,14 @@ const ManageMemoList = ({
               key={`${index}-${customerCommentId}`}
               onClick={() => onClickRowHandler(item)}
             >
-              <div
-                className="w-[20%] truncate whitespace-nowrap overflow-hidden text-left"
-              >
+              <div className="w-[20%] truncate whitespace-nowrap overflow-hidden text-left">
                 {title}
               </div>
-              <div
-                className="w-[35%] truncate whitespace-nowrap overflow-hidden text-left"
-              >
+              <div className="w-[35%] truncate whitespace-nowrap overflow-hidden text-left">
                 {content ? content : '-'}
               </div>
-              <div
-                className="w-[15%]"
-              >{`${name} ${transferCoachPosition(position)}`}</div>
-              <div className="w-[10%]">
-                {transformMemoType(type)}
-              </div>
+              <div className="w-[15%]">{`${name} ${transferCoachPosition(position)}`}</div>
+              <div className="w-[10%]">{transformMemoType(type)}</div>
               <div className="w-[20%]">{createdAt}</div>
             </ManageListRow>
           );

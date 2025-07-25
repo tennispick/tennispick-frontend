@@ -10,9 +10,7 @@ type Props = {
 
 const InputAutoComplete = ({ data, onClickCustomerHandler }: Props) => {
   return (
-    <section
-      className="absolute w-full min-h-10 max-h-[180px] top-11 left-0 bg-white shadow-lg border border-gray-200 rounded-lg overflow-y-scroll z-10"
-    >
+    <section className="absolute w-full min-h-10 max-h-[180px] top-11 left-0 bg-white shadow-lg border border-gray-200 rounded-lg overflow-y-scroll z-10">
       <ul className="min-h-10 py-1">
         {data.map(({ id, name }) => {
           return (

@@ -88,9 +88,7 @@ const NewSchedule = ({
       <section>
         <div className="font-semibold">변경 후 일정</div>
         <div className="my-3">
-          <div className="text-sm mb-2">
-            코치
-          </div>
+          <div className="text-sm mb-2">코치</div>
           <ScheduleSelect
             name="coach"
             data={transferCoachListFormat(coachList || [])}
@@ -109,16 +107,12 @@ const NewSchedule = ({
           endTime={transFerEndTime}
         />
         {isDuplicated() && (
-          <div
-            className="mt-2 ml-0.5 text-red-500 text-sm"
-          >
+          <div className="mt-2 ml-0.5 text-red-500 text-sm">
             예약이 불가능한 날짜에요.
           </div>
         )}
         <div className="my-3">
-          <div className="text-sm mb-2">
-            코트
-          </div>
+          <div className="text-sm mb-2">코트</div>
           <ScheduleSelect
             name="court"
             data={transferCourtListFormat(courtList || [])}
@@ -129,9 +123,7 @@ const NewSchedule = ({
           />
         </div>
         <div className="my-3">
-          <div className="text-sm mb-2">
-            사유 입력
-          </div>
+          <div className="text-sm mb-2">사유 입력</div>
           <input
             type="text"
             name="reason"

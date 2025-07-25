@@ -27,14 +27,15 @@ const RadioButtonGroup = ({
               value={value}
               className="appearance-none hidden peer"
             />
-            <label 
-              htmlFor={value} 
+            <label
+              htmlFor={value}
               onClick={handleCheckedChange}
               className={`
                 inline-block h-8 leading-8 px-4 rounded-lg text-sm cursor-pointer
-                ${isChecked 
-                  ? 'bg-[var(--business-active-color)] text-[var(--white100)]' 
-                  : 'bg-[var(--grey400)] text-[var(--grey1600)]'
+                ${
+                  isChecked
+                    ? 'bg-[var(--business-active-color)] text-[var(--white100)]'
+                    : 'bg-[var(--grey400)] text-[var(--grey1600)]'
                 }
               `}
             >

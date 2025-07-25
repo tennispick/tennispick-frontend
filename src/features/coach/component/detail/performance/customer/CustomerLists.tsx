@@ -36,10 +36,7 @@ const CustomerLists = ({
 
 const SalesListsHeader = () => {
   return (
-    <ul
-      role="rowheader"
-      className="flex px-4"
-    >
+    <ul role="rowheader" className="flex px-4">
       <li className="w-[10%] text-sm font-semibold">{'이름'}</li>
       <li className="w-[5%] text-sm font-semibold">{'성별'}</li>
       <li className="w-[15%] text-sm font-semibold">{'연락처'}</li>
@@ -87,14 +84,10 @@ const SalesLists = ({ data }: { data: CoachCustomersData[] }) => {
               <li className="w-[10%]">{name}</li>
               <li className="w-[5%]">{transferSexType(sex)}</li>
               <li className="w-[15%]">{phone}</li>
-              <li className="w-[15%]">
-                {recentLessonTime ?? '-'}
-              </li>
+              <li className="w-[15%]">{recentLessonTime ?? '-'}</li>
               <li className="w-[15%]">{nextLessonTime ?? '-'}</li>
               <li className="w-[17.5%]">{lessonName}</li>
-              <li className="w-[12.5%]">
-                {remainLessonCount} 회
-              </li>
+              <li className="w-[12.5%]">{remainLessonCount} 회</li>
               <li className="w-[10%]">{price}</li>
             </ul>
           );

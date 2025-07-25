@@ -50,12 +50,8 @@ const ScheduleModalRecentHistoryModal = ({
 
   return (
     <Portal id="layerPortal">
-      <div
-        className="fixed w-screen h-screen top-0 bg-black bg-opacity-70 z-[99999]"
-      >
-        <section
-          className="absolute w-[900px] min-h-[320px] h-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-5 bg-white rounded-xl"
-        >
+      <div className="fixed w-screen h-screen top-0 bg-black bg-opacity-70 z-[99999]">
+        <section className="absolute w-[900px] min-h-[320px] h-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-5 bg-white rounded-xl">
           <ModalHeader handleCloseModal={handleCloseModal} />
           <ScheduleModalRecentHistoryModalTableBody
             checkHistoryId={checkHistoryId}

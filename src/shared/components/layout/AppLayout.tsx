@@ -32,10 +32,10 @@ const AppLayout = ({ children }: PropsWithChildren) => {
       ) : (
         <div
           className={`w-screen h-screen bg-[var(--business-color)] relative text-[var(--white100)] flex ${
-            isMobile 
+            isMobile
               ? 'h-[calc(100vh-76px)] top-[76px] overflow-y-scroll'
-              : isNavSpread 
-                ? 'p-5' 
+              : isNavSpread
+                ? 'p-5'
                 : 'pr-5 pt-5 pb-5 pl-0'
           }`}
         >
@@ -45,10 +45,10 @@ const AppLayout = ({ children }: PropsWithChildren) => {
           />
           <main
             className={`h-[calc(100vh-48px)] bg-[var(--white100)] rounded-xl transition-all duration-[350ms] ease-in-out ${
-              isMobile 
+              isMobile
                 ? 'h-[calc(100vh-76px)] top-[76px] overflow-y-scroll'
-                : isNavSpread 
-                  ? 'w-[calc(100%-280px)]' 
+                : isNavSpread
+                  ? 'w-[calc(100%-280px)]'
                   : 'w-[calc(100%-80px)]'
             }`}
           >

@@ -25,16 +25,12 @@ const ManageLesson = ({
 
   return (
     <>
-      <div
-        className="h-12 leading-6 bg-white mt-0 mb-3 p-3 rounded-lg"
-      >
+      <div className="h-12 leading-6 bg-white mt-0 mb-3 p-3 rounded-lg">
         <div className="mr-3">
           총 <span>{data ? data.length : '0'}</span>건
         </div>
       </div>
-      <div
-        className="bg-white rounded-lg h-[calc(100%-60px)] p-2"
-      >
+      <div className="bg-white rounded-lg h-[calc(100%-60px)] p-2">
         {data && data.length > 0 ? (
           <ManageLessonList
             data={data}

@@ -45,9 +45,7 @@ const LessonList = ({ type }: Props) => {
                   >
                     {isWeekday === 'weekend' ? '주말' : '평일'}
                   </div>
-                  <div className="w-[65%] pl-4">
-                    {name}
-                  </div>
+                  <div className="w-[65%] pl-4">{name}</div>
                   <div className="w-[9%] text-center">
                     총 레슨횟수: {lessonCount}회
                   </div>
@@ -57,12 +55,8 @@ const LessonList = ({ type }: Props) => {
                   <div className="w-[4%] text-center">
                     {type === 'private' ? '개인' : '그룹'}
                   </div>
-                  <div className="w-[4%] text-center">
-                    {time}분
-                  </div>
-                  <div className="w-[4%] text-center">
-                    주 {timesAWeek}회
-                  </div>
+                  <div className="w-[4%] text-center">{time}분</div>
+                  <div className="w-[4%] text-center">주 {timesAWeek}회</div>
                 </NormalList>
               );
             },

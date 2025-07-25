@@ -114,11 +114,7 @@ const CustomerModalRefundContainer = ({
   }, [formData.refundRange]);
 
   return (
-    <form
-      id="refundForm"
-      className="flex w-full"
-      onSubmit={onSubmitHandler}
-    >
+    <form id="refundForm" className="flex w-full" onSubmit={onSubmitHandler}>
       <div className="w-[70%] px-7 py-4 h-full border-r border-gray-300">
         <div className="flex h-[calc(100%-24px)]">
           <div className="w-1/2">

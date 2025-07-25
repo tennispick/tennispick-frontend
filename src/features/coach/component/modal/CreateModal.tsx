@@ -110,14 +110,18 @@ const CoachCreateModal = ({ setOpenModal }: Props) => {
               className="w-full border border-gray-300 rounded px-3 py-2"
             />
             {formData.email.isRequired && (
-              <span className="text-red-500 text-xs">이메일이 입력되지 않았어요.</span>
+              <span className="text-red-500 text-xs">
+                이메일이 입력되지 않았어요.
+              </span>
             )}
             {onCheckInputRegexTestHandler(formData.email.value, emailRegex) && (
-              <span className="text-red-500 text-xs">이메일의 형식이 아니에요.</span>
+              <span className="text-red-500 text-xs">
+                이메일의 형식이 아니에요.
+              </span>
             )}
           </div>
         </div>
-        
+
         <div className="mb-3">
           <label className="block">비밀번호</label>
           <div className="w-1/2 h-[calc(0.95rem*2.725)] py-[10px] pl-[10px] pr-0 mt-2">
@@ -129,14 +133,21 @@ const CoachCreateModal = ({ setOpenModal }: Props) => {
               className="w-full border border-gray-300 rounded px-3 py-2"
             />
             {formData.password.isRequired && (
-              <span className="text-red-500 text-xs">비밀번호가 입력되지 않았어요.</span>
+              <span className="text-red-500 text-xs">
+                비밀번호가 입력되지 않았어요.
+              </span>
             )}
-            {onCheckInputRegexTestHandler(formData.password.value, passwordRegex) && (
-              <span className="text-red-500 text-xs">영문, 숫자, 특수문자를 포함해서 8~25자리를 충족해주세요.</span>
+            {onCheckInputRegexTestHandler(
+              formData.password.value,
+              passwordRegex,
+            ) && (
+              <span className="text-red-500 text-xs">
+                영문, 숫자, 특수문자를 포함해서 8~25자리를 충족해주세요.
+              </span>
             )}
           </div>
         </div>
-        
+
         <div className="mb-3">
           <label className="block">비밀번호 확인</label>
           <div className="w-1/2 h-[calc(0.95rem*2.725)] py-[10px] pl-[10px] pr-0 mt-2">
@@ -148,11 +159,13 @@ const CoachCreateModal = ({ setOpenModal }: Props) => {
               className="w-full border border-gray-300 rounded px-3 py-2"
             />
             {formData.passwordConfirm.isRequired && (
-              <span className="text-red-500 text-xs">비밀번호를 다시 한 번 확인해주세요.</span>
+              <span className="text-red-500 text-xs">
+                비밀번호를 다시 한 번 확인해주세요.
+              </span>
             )}
           </div>
         </div>
-        
+
         <div className="mb-3">
           <label className="block">성명</label>
           <div className="w-1/2 h-[calc(0.95rem*2.725)] py-[10px] pl-[10px] pr-0 mt-2">
@@ -163,11 +176,13 @@ const CoachCreateModal = ({ setOpenModal }: Props) => {
               className="w-full border border-gray-300 rounded px-3 py-2"
             />
             {formData.name.isRequired && (
-              <span className="text-red-500 text-xs">성명이 입력되지 않았어요.</span>
+              <span className="text-red-500 text-xs">
+                성명이 입력되지 않았어요.
+              </span>
             )}
           </div>
         </div>
-        
+
         <div>생년월일</div>
         <div className="flex items-center h-[46px] leading-[30px] py-1 my-2 mb-3">
           <Select name="year" width="calc(20% - 4px)" defaultValue={year}>
@@ -197,7 +212,7 @@ const CoachCreateModal = ({ setOpenModal }: Props) => {
             ))}
           </Select>
         </div>
-        
+
         <div>성별</div>
         <div className="flex items-center h-[46px] leading-[30px] py-1 my-2 mb-3">
           <Select name="sex" width="calc(30% - 4px)">
@@ -205,7 +220,7 @@ const CoachCreateModal = ({ setOpenModal }: Props) => {
             <option value="woman">여자</option>
           </Select>
         </div>
-        
+
         <div className="mb-3">
           <label className="block">연락처</label>
           <div className="w-1/2 h-[calc(0.95rem*2.725)] py-[10px] pl-[10px] pr-0 mt-2">
@@ -216,14 +231,21 @@ const CoachCreateModal = ({ setOpenModal }: Props) => {
               className="w-full border border-gray-300 rounded px-3 py-2"
             />
             {formData.phoneNumber.isRequired && (
-              <span className="text-red-500 text-xs">연락처를 입력하지 않았어요.</span>
+              <span className="text-red-500 text-xs">
+                연락처를 입력하지 않았어요.
+              </span>
             )}
-            {onCheckInputRegexTestHandler(formData.phoneNumber.value, phoneNumberRegex) && (
-              <span className="text-red-500 text-xs">연락처의 형식이 아니에요.</span>
+            {onCheckInputRegexTestHandler(
+              formData.phoneNumber.value,
+              phoneNumberRegex,
+            ) && (
+              <span className="text-red-500 text-xs">
+                연락처의 형식이 아니에요.
+              </span>
             )}
           </div>
         </div>
-        
+
         <div>직책</div>
         <div className="flex items-center h-[46px] leading-[30px] py-1 my-2 mb-3">
           <Select name="position" width="calc(30% - 4px)">
@@ -231,10 +253,10 @@ const CoachCreateModal = ({ setOpenModal }: Props) => {
             <option value="admin">관리자</option>
           </Select>
         </div>
-        
+
         <FileInput onChangeFileHandler={onChangeFileInputHandler} />
       </form>
-      
+
       <Button
         type="submit"
         form="coachCreateForm"

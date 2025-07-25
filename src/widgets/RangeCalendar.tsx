@@ -2,8 +2,6 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/locale';
 import CalendarIcon from '@icons/calendar/calendar';
-import { Flex } from 'styled-system/jsx';
-import { css } from 'styled-system/css';
 
 type Props = {
   startDate: Date | null;
@@ -29,17 +27,12 @@ const RangeCalendar = ({
   };
 
   return (
-    <Flex alignItems="center">
+    <div className="flex items-center">
       <DatePicker
         locale={ko}
         showIcon={true}
-        icon={<CalendarIcon className={css({ fill: 'var(--grey300)' })} />}
-        className={css({
-          ...calendarStyle,
-          borderRight: '0 !important',
-          borderTopRightRadius: 0,
-          borderBottomRightRadius: 0,
-        })}
+        icon={<CalendarIcon className="fill-[var(--grey300)]" />}
+        className="!w-40 !h-10 !border !border-[var(--grey300)] !rounded-lg !pl-9 !pr-3 !py-1.5 !border-r-0 !rounded-r-none"
         selected={startDate}
         onChange={handleChangeStartDate}
         selectsStart
@@ -48,27 +41,14 @@ const RangeCalendar = ({
         dateFormat="yyyy.MM.dd"
         disabled={disabled}
       />
-      <div
-        className={css({
-          height: '40px',
-          lineHeight: '40px',
-          padding: '0 12px 0 0',
-          borderTop: '1px solid var(--grey300)',
-          borderBottom: '1px solid var(--grey300)',
-        })}
-      >
+      <div className="h-10 border-y border-y-[var(--grey300)] py-0 pr-3 leading-10">
         {'-'}
       </div>
       <DatePicker
         locale={ko}
         showIcon={true}
-        icon={<CalendarIcon className={css({ fill: 'var(--grey300)' })} />}
-        className={css({
-          ...calendarStyle,
-          borderLeft: '0 !important',
-          borderTopLeftRadius: 0,
-          borderBottomLeftRadius: 0,
-        })}
+        icon={<CalendarIcon className="fill-[var(--grey300)]" />}
+        className="!w-40 !h-10 !border !border-[var(--grey300)] !rounded-lg !pl-9 !pr-3 !py-1.5 !border-l-0 !rounded-l-none"
         selected={endDate}
         onChange={handleChangeEndDate}
         selectsEnd
@@ -78,7 +58,7 @@ const RangeCalendar = ({
         dateFormat="yyyy.MM.dd"
         disabled={disabled}
       />
-    </Flex>
+    </div>
   );
 };
 

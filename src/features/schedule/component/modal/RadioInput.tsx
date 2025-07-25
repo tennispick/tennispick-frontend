@@ -48,9 +48,24 @@ const ScheduleModalRadioInput = ({
   );
 };
 
-const InputContainer = ({ id, label, className, children }: { id: string; label: string; className?: string; children: React.ReactNode }) => {
+const InputContainer = ({
+  id,
+  label,
+  className,
+  children,
+}: {
+  id: string;
+  label: string;
+  className?: string;
+  children: React.ReactNode;
+}) => {
   return (
-    <div className={twMerge("flex flex-row-reverse justify-end items-center", className)}>
+    <div
+      className={twMerge(
+        'flex flex-row-reverse justify-end items-center',
+        className,
+      )}
+    >
       <label htmlFor={id}>{label}</label>
       {children}
     </div>

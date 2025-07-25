@@ -1,3 +1,4 @@
+import React from 'react';
 import { Divider } from '@/shared/components/index';
 import PaymentTypeRow from '../PaymentTypeRow';
 import SearchPeriodRow from '../SearchPeriodRow';
@@ -121,9 +122,7 @@ const SalesContainer = ({ coachId }: Props) => {
           className="flex items-center cursor-pointer"
           onClick={handleShowDetail}
         >
-          <div className="text-slate-700 font-semibold">
-            내역 상세보기
-          </div>
+          <div className="text-slate-700 font-semibold">내역 상세보기</div>
           <Image
             width={20}
             height={20}

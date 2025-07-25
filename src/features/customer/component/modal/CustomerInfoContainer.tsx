@@ -32,21 +32,15 @@ const CustomerModalCustomerInfoContainer = ({
             <div>{name}</div>
           </div>
           <div className="flex items-center">
-            <div className="w-24 font-semibold">
-              이메일
-            </div>
+            <div className="w-24 font-semibold">이메일</div>
             <div>{email}</div>
           </div>
           <div className="flex items-center">
-            <div className="w-24 font-semibold">
-              생년월일
-            </div>
+            <div className="w-24 font-semibold">생년월일</div>
             <div>{birth}</div>
           </div>
           <div className="flex items-center">
-            <div className="w-24 font-semibold">
-              연락처
-            </div>
+            <div className="w-24 font-semibold">연락처</div>
             <div>{phone}</div>
           </div>
         </div>
@@ -62,9 +56,11 @@ const CustomerModalCustomerInfoContainer = ({
         </div>
       </div>
       <div className="relative w-[30%] h-[130px] border-b border-gray-300 px-7">
-        <span className={`absolute bottom-4 text-xl font-semibold ${
-          isPayment ? 'text-slate-700' : 'text-red-400'
-        }`}>
+        <span
+          className={`absolute bottom-4 text-xl font-semibold ${
+            isPayment ? 'text-slate-700' : 'text-red-400'
+          }`}
+        >
           {isPayment ? '결제 상세내역' : '환불 상세내역'}
         </span>
       </div>

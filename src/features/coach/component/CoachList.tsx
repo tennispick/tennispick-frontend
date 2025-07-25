@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 import { ProfileManIcon, ProfileWomanIcon } from '@icons/index';
 import Image from 'next/image';
 
-
 type Props = {
   data: CoachListData[];
 };
@@ -21,9 +20,7 @@ const CoachList = ({ data }: Props) => {
           {data.map(({ id, name, position, sex, email, phone, age }) => {
             return (
               <NormalList key={id} onClick={() => handleCoachDetailClick(id)}>
-                <div
-                  className="relative w-[5%] min-h-[40px] text-center"
-                >
+                <div className="relative w-[5%] min-h-[40px] text-center">
                   <Image
                     src={sex === 'man' ? ProfileManIcon : ProfileWomanIcon}
                     alt={'profile'}

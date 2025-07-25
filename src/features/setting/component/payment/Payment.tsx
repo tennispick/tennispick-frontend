@@ -1,6 +1,5 @@
 import Input from '@/shared/components/input/Input';
 import RadioSelectorGroup from '@widgets/RadioSelectorGroup';
-import { css } from 'styled-system/css';
 import BlockContainer from './BlockContainer';
 import ItemRow from './ItemRow';
 import {
@@ -102,20 +101,13 @@ const SettingPayment = ({ data }: Props) => {
   const handleFormSubmit = (data: PaymentFormSchema) => mutate({ ...data });
 
   return (
-    <form
-      className={css({ margin: '24px 0 0 0' })}
-      onSubmit={handleSubmit(handleFormSubmit)}
-    >
+    <form className="mt-6" onSubmit={handleSubmit(handleFormSubmit)}>
       <Button
         type="submit"
         label="저장하기"
         size="md"
         variant="primary"
-        className={css({
-          position: 'absolute',
-          right: 0,
-          zIndex: 1,
-        })}
+        className="absolute right-0 z-10"
       />
       <BlockContainer
         title="기본 지급 항목"
@@ -139,23 +131,12 @@ const SettingPayment = ({ data }: Props) => {
           <Input
             {...register('salary')}
             type="text"
-            className={css({
-              minWidth: '320px',
-              height: '40px',
-              fontSize: '0.9rem',
-              border: '1px solid var(--grey300)',
-              borderRadius: '8px',
-              padding: '6px 32px 6px 12px',
-              margin: '0 0 0 8px',
-            })}
+            className="ml-2 h-10 min-w-80 rounded-lg border border-[var(--grey300)] px-3 py-1.5 text-sm"
             placeholder="기본급여를 입력해주세요."
             disabled={isDisabledSalary}
           />
           {errors.salary?.message && (
-            <FormError
-              error={errors.salary?.message}
-              className={css({ margin: '0 0 0 8px' })}
-            />
+            <FormError error={errors.salary?.message} className="ml-2" />
           )}
         </ItemRow>
       </BlockContainer>
@@ -181,23 +162,12 @@ const SettingPayment = ({ data }: Props) => {
           <Input
             {...register('totalSales')}
             type="text"
-            className={css({
-              minWidth: '320px',
-              height: '40px',
-              fontSize: '0.9rem',
-              border: '1px solid var(--grey300)',
-              borderRadius: '8px',
-              padding: '6px 32px 6px 12px',
-              margin: '0 0 0 8px',
-            })}
+            className="ml-2 h-10 min-w-80 rounded-lg border border-[var(--grey300)] px-3 py-1.5 text-sm"
             placeholder="총 매출 인센티브를 입력해주세요. (단위: %)"
             disabled={isDisabledTotalSales}
           />
           {errors.totalSales?.message && (
-            <FormError
-              error={errors.totalSales?.message}
-              className={css({ margin: '0 0 0 8px' })}
-            />
+            <FormError error={errors.totalSales?.message} className="ml-2" />
           )}
         </ItemRow>
         <ItemRow label="개별 인센티브 (단위: %)">
@@ -218,22 +188,14 @@ const SettingPayment = ({ data }: Props) => {
           <Input
             {...register('individualSales')}
             type="text"
-            className={css({
-              minWidth: '320px',
-              height: '40px',
-              fontSize: '0.9rem',
-              border: '1px solid var(--grey300)',
-              borderRadius: '8px',
-              padding: '6px 32px 6px 12px',
-              margin: '0 0 0 8px',
-            })}
+            className="ml-2 h-10 min-w-80 rounded-lg border border-[var(--grey300)] px-3 py-1.5 text-sm"
             placeholder="개별 인센티브를 입력해주세요. (단위: %)"
             disabled={isDisabledIndividualSales}
           />
           {errors.individualSales?.message && (
             <FormError
               error={errors.individualSales?.message}
-              className={css({ margin: '0 0 0 8px' })}
+              className="ml-2"
             />
           )}
         </ItemRow>
@@ -262,22 +224,14 @@ const SettingPayment = ({ data }: Props) => {
           <Input
             {...register('settlementRate')}
             type="text"
-            className={css({
-              minWidth: '320px',
-              height: '40px',
-              fontSize: '0.9rem',
-              border: '1px solid var(--grey300)',
-              borderRadius: '8px',
-              padding: '6px 32px 6px 12px',
-              margin: '0 0 0 8px',
-            })}
+            className="ml-2 h-10 min-w-80 rounded-lg border border-[var(--grey300)] px-3 py-1.5 text-sm"
             placeholder="정산비율을 입력해주세요. (단위: %)"
             disabled={isDisabledSettlementRate}
           />
           {errors.settlementRate?.message && (
             <FormError
               error={errors.settlementRate?.message}
-              className={css({ margin: '0 0 0 8px' })}
+              className="ml-2"
             />
           )}
         </ItemRow>

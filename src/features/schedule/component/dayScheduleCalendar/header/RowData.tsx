@@ -16,15 +16,23 @@ const RowData = ({ coachList, monthMaps }: Props) => {
         const monthDateWidth = `calc(100% / ${dateLength})`;
 
         return (
-          <div key={month} className={`flex h-[calc(100%+1px)]`} style={{ width: rowDataWidth }}>
+          <div
+            key={month}
+            className={`flex h-[calc(100%+1px)]`}
+            style={{ width: rowDataWidth }}
+          >
             {monthDateList.map((date) => {
               return (
-                <div key={date} className={`w-full`} style={{ width: monthDateWidth }}>
+                <div
+                  key={date}
+                  className={`w-full`}
+                  style={{ width: monthDateWidth }}
+                >
                   <HeaderCoachData coachList={coachList} />
                   <div
                     className={
-                      "h-1/2 text-sm border-t border-black flex items-center justify-center " +
-                      "last:border-r last:border-black"
+                      'h-1/2 text-sm border-t border-black flex items-center justify-center ' +
+                      'last:border-r last:border-black'
                     }
                   >{`${month}/${date}`}</div>
                 </div>

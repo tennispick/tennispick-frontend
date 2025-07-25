@@ -73,10 +73,7 @@ const DrawerMemo = ({ item, handleHideDrawerClick }: Props) => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(handleFormSubmit)}
-      className="h-full"
-    >
+    <form onSubmit={handleSubmit(handleFormSubmit)} className="h-full">
       <DrawerInputContainer
         {...register('title')}
         label="제목"
@@ -92,11 +89,7 @@ const DrawerMemo = ({ item, handleHideDrawerClick }: Props) => {
         disabled
       />
       <div className="mb-3">
-        <div
-          className="font-semibold h-6 text-sm pl-1"
-        >
-          유형
-        </div>
+        <div className="font-semibold h-6 text-sm pl-1">유형</div>
         <Select
           {...register('type')}
           className="mt-2 w-[280px]"
@@ -115,8 +108,8 @@ const DrawerMemo = ({ item, handleHideDrawerClick }: Props) => {
           name="content"
           placeholder="메모 내용을 입력해주세요."
           className={
-            "p-2 w-full min-h-[198px] leading-tight outline-none resize-none rounded-lg text-sm mt-2 bg-transparent text-gray-600 border border-gray-200 " +
-            (errors.content?.message ? "min-h-[176px]" : "")
+            'p-2 w-full min-h-[198px] leading-tight outline-none resize-none rounded-lg text-sm mt-2 bg-transparent text-gray-600 border border-gray-200 ' +
+            (errors.content?.message ? 'min-h-[176px]' : '')
           }
           defaultValue={content ?? '-'}
         />
@@ -124,9 +117,7 @@ const DrawerMemo = ({ item, handleHideDrawerClick }: Props) => {
           <FormError error={errors.content.message} />
         )}
       </DrawerInputContainer>
-      <div
-        className="flex w-full gap-4"
-      >
+      <div className="flex w-full gap-4">
         <IconButton
           type="button"
           iconSrc={DeleteWhiteIcon}

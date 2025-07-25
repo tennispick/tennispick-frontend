@@ -50,9 +50,7 @@ const ManageMemo = ({
 
   return (
     <>
-      <div
-        className="h-12 leading-6 bg-white mt-0 mb-3 p-3 rounded-lg"
-      >
+      <div className="h-12 leading-6 bg-white mt-0 mb-3 p-3 rounded-lg">
         <div className="flex items-center justify-between">
           <div className="mr-3">
             총 <span>{data.length}</span>건
@@ -65,9 +63,7 @@ const ManageMemo = ({
           </div>
         </div>
       </div>
-      <div
-        className="bg-white rounded-lg h-[calc(100%-60px)] p-2"
-      >
+      <div className="bg-white rounded-lg h-[calc(100%-60px)] p-2">
         {data && data.length > 0 ? (
           <ManageMemoList
             data={data}
@@ -90,10 +86,7 @@ const ManageMemo = ({
           <form id="memoForm" onSubmit={handleSubmitMemoClick}>
             <div className="my-3">
               <div className="mb-2">메모 유형</div>
-              <Select
-                name="type"
-                className="w-2/5 text-sm"
-              >
+              <Select name="type" className="w-2/5 text-sm">
                 <option value="normal">일반</option>
                 <option value="payment">결제</option>
                 <option value="etc">기타</option>

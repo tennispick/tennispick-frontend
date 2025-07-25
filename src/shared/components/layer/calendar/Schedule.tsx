@@ -17,8 +17,6 @@ import { useRecoilState } from 'recoil';
 import { userState } from '@lib/recoil/userState';
 import { TransferTimeList } from '@interfaces/calendar';
 import { CustomerLessonType } from 'src/types/customer';
-import { css } from 'styled-system/css';
-import { styled } from 'styled-system/jsx';
 
 type LessonCustomerItemType = TransferTimeList & { isAttendance?: boolean };
 type LessonTimeType = LessonCustomerItemType[];
@@ -109,30 +107,16 @@ const ModalSchedule = ({ ...props }: Props) => {
     });
 
   return (
-    <Container>
-      <NormalList.UnOrderList
-        className={css({ height: '100%', margin: '12px 12px 0 0' })}
-      >
+    <section className="w-[30%] border-r border-r-[var(--grey100)] pb-8">
+      <NormalList.UnOrderList className="h-full mt-3 mr-3">
         {lessonTimeList.map((item: any) => {
           return (
             <NormalList
               key={uuidV4()}
-              className={css({
-                width: '100%',
-                padding: '8px 4px 8px 16px',
-                backgroundColor:
-                  customerInfo?.id &&
-                  (customerInfo?.id === item.id ? 'var(--grey500)' : ''),
-
-                _hover: {
-                  borderRadius: '8px',
-                },
-
-                '& div': {
-                  padding: '6px auto',
-                  fontWeight: 500,
-                },
-              })}
+              className={`w-full px-1 py-2 font-medium hover:rounded ${
+                customerInfo?.id &&
+                (customerInfo?.id === item.id ? 'bg-[var(--grey500)]' : '')
+              }`}
               onClick={() => {
                 item.id && setCustomerInfo(item);
               }}
@@ -142,16 +126,9 @@ const ModalSchedule = ({ ...props }: Props) => {
                   {(() => {
                     if (item.isAttendance) {
                       return (
-                        <Status
-                          className={css({
-                            width: '12%',
-                            textAlign: 'center',
-                            backgroundColor: 'var(--blue900)',
-                            color: 'var(--blue100)',
-                          })}
-                        >
+                        <div className="w-[12%] rounded bg-[var(--blue900)] px-2 py-1.5 text-center font-bold text-[var(--blue100)]">
                           출석
-                        </Status>
+                        </div>
                       );
                     }
 
@@ -159,97 +136,43 @@ const ModalSchedule = ({ ...props }: Props) => {
                       const isAfterNow = now < new Date(item.origin_end_time);
                       if (isAfterNow) {
                         return (
-                          <Status
-                            className={css({
-                              width: '12%',
-                              textAlign: 'center',
-                              backgroundColor: 'var(--green900)',
-                              color: 'var(--green150)',
-                            })}
-                          >
+                          <div className="w-[12%] rounded bg-[var(--green900)] px-2 py-1.5 text-center font-bold text-[var(--green150)]">
                             예약
-                          </Status>
+                          </div>
                         );
                       } else {
                         return (
-                          <Status
-                            className={css({
-                              width: '12%',
-                              textAlign: 'center',
-                              backgroundColor: 'var(--pink900)',
-                              color: 'var(--pink100)',
-                            })}
-                          >
+                          <div className="w-[12%] rounded bg-[var(--pink900)] px-2 py-1.5 text-center font-bold text-[var(--pink100)]">
                             결석
-                          </Status>
+                          </div>
                         );
                       }
                     }
                   })()}
-                  <div
-                    className={css({ width: '29%', textAlign: 'center' })}
-                  >{`${item.startTime} - ${item.endTime}`}</div>
-                  <div className={css({ width: '10%', textAlign: 'center' })}>
-                    개인
-                  </div>
-                  <div className={css({ width: '15%', textAlign: 'center' })}>
-                    3번 코트
-                  </div>
-                  <div className={css({ width: '20%', textAlign: 'center' })}>
-                    루카스
-                  </div>
-                  <div className={css({ width: '17%', textAlign: 'center' })}>
-                    광개토대왕
-                  </div>
+                  <div className="w-[29%] text-center">{`${item.startTime} - ${item.endTime}`}</div>
+                  <div className="w-[10%] text-center">개인</div>
+                  <div className="w-[15%] text-center">3번 코트</div>
+                  <div className="w-[20%] text-center">루카스</div>
+                  <div className="w-[17%] text-center">광개토대왕</div>
                 </>
               ) : (
                 <>
-                  <Status
-                    className={css({ width: '12%', textAlign: 'center' })}
-                  >
+                  <div className="w-[12%] rounded bg-[var(--grey1000)] px-2 py-1.5 text-center font-bold text-[var(--white100)]">
                     미예약
-                  </Status>
-                  <div
-                    className={css({ width: '29%', textAlign: 'center' })}
-                  >{`${item.startTime} - ${item.endTime}`}</div>
-                  <div className={css({ width: '10%', textAlign: 'center' })}>
-                    -
                   </div>
-                  <div className={css({ width: '15%', textAlign: 'center' })}>
-                    -
-                  </div>
-                  <div className={css({ width: '20%', textAlign: 'center' })}>
-                    -
-                  </div>
-                  <div className={css({ width: '17%', textAlign: 'center' })}>
-                    -
-                  </div>
+                  <div className="w-[29%] text-center">{`${item.startTime} - ${item.endTime}`}</div>
+                  <div className="w-[10%] text-center">-</div>
+                  <div className="w-[15%] text-center">-</div>
+                  <div className="w-[20%] text-center">-</div>
+                  <div className="w-[17%] text-center">-</div>
                 </>
               )}
             </NormalList>
           );
         })}
       </NormalList.UnOrderList>
-    </Container>
+    </section>
   );
 };
-
-const Container = styled('section', {
-  base: {
-    width: '30%',
-    borderRight: '1px solid var(--grey100)',
-    padding: '0 0 32px 0',
-  },
-});
-
-const Status = styled('div', {
-  base: {
-    fontWeight: 700,
-    padding: '6px 8px',
-    borderRadius: '4px',
-    backgroundColor: 'var(--grey1000)',
-    color: 'var(--white100)',
-  },
-});
 
 export default ModalSchedule;

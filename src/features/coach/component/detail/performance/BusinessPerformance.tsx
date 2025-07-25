@@ -24,25 +24,16 @@ const BusinessPerformance = ({
           <TabList activeKey={'customer'}>수강생 목록</TabList>
         </TabLists>
         <TabPanels className="h-[calc(100%-2.875rem)]">
-          <TabPanel
-            activeKey={'sales'}
-            className="h-full py-3"
-          >
+          <TabPanel activeKey={'sales'} className="h-full py-3">
             <SalesContainer coachId={coachId} />
           </TabPanel>
-          <TabPanel
-            activeKey={'payment'}
-            className="h-full py-3"
-          >
+          <TabPanel activeKey={'payment'} className="h-full py-3">
             <SettleMentContainer
               coachId={coachId}
               paymentSettingStore={initPaymentSettingStore}
             />
           </TabPanel>
-          <TabPanel
-            activeKey={'customer'}
-            className="h-full py-3"
-          >
+          <TabPanel activeKey={'customer'} className="h-full py-3">
             <CustomerContainer coachId={coachId} />
           </TabPanel>
         </TabPanels>

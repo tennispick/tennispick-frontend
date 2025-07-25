@@ -1,6 +1,3 @@
-import { css } from 'styled-system/css';
-import { Flex, styled } from 'styled-system/jsx';
-
 type Props = {
   name: string;
   checkedItem: string;
@@ -15,64 +12,35 @@ const RadioSelectorGroup = ({
   handleCheckedChange,
 }: Props) => {
   return (
-    <Flex
-      alignItems="center"
-      className={css({
-        backgroundColor: 'var(--grey400)',
-        padding: '4px',
-        borderRadius: '8px',
-      })}
-    >
+    <div className="flex items-center rounded-lg bg-[var(--grey400)] p-1">
       {data.map(({ id, label, value }, index) => {
         const key = `${label}-${value}-${index}`;
         const isChecked = checkedItem === id;
 
         return (
           <div key={key}>
-            <Input
+            <input
               type="radio"
               id={id}
               name={name}
               value={value}
-              className={css({
-                '& + label': {
-                  backgroundColor: isChecked
-                    ? 'var(--white100)'
-                    : 'var(--grey400)',
-                },
-              })}
+              className={`appearance-none webkit-appearance-none outline-none hidden cursor-pointer ${
+                isChecked ? 'bg-white' : 'bg-gray-200'
+              }`}
             />
-            <label id={id} htmlFor={id} onClick={handleCheckedChange}>
+            <label
+              id={id}
+              htmlFor={id}
+              onClick={handleCheckedChange}
+              className="inline-block h-8 cursor-pointer rounded-lg px-4 text-sm leading-8 text-[var(--grey1600)]"
+            >
               {label}
             </label>
           </div>
         );
       })}
-    </Flex>
+    </div>
   );
 };
-
-const Input = styled('input', {
-  base: {
-    '&[type="radio"]': {
-      appearance: 'none',
-      WebkitAppearance: 'none',
-      outline: 'none',
-      display: 'none',
-      cursor: 'pointer',
-
-      '& + label': {
-        display: 'inline-block',
-        height: '32px',
-        lineHeight: '32px',
-        padding: '0 16px',
-        borderRadius: '8px',
-        fontSize: '0.875rem',
-        color: 'var(--grey1600)',
-        cursor: 'pointer',
-      },
-    },
-  },
-});
 
 export default RadioSelectorGroup;

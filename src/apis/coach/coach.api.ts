@@ -1,4 +1,3 @@
-import { authAxiosInstance } from '@lib/authAxiosInstance';
 import {
   URL_COACH,
   URL_COACH_CUSTOMERS,
@@ -21,6 +20,7 @@ import {
 } from './coach.type';
 import { Response } from '@/types/response';
 import { CoachCustomersData } from './coach.type';
+import { authAxiosInstance } from '@lib/axios';
 
 export const getCoachList = async (): Promise<Response<CoachListData[]>> =>
   await authAxiosInstance.get(`${URL_COACH}`);

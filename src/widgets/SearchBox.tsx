@@ -1,7 +1,3 @@
-import { css } from 'styled-system/css';
-import { styled } from 'styled-system/jsx';
-import { flex } from 'styled-system/patterns';
-
 type Options = {
   label: string;
   value: string;
@@ -21,21 +17,16 @@ const SearchBox = ({
   handleSearchOption,
 }: Props) => {
   return (
-    <div
-      className={flex({
-        alignItems: 'center',
-        gap: '0.5rem',
-      })}
-    >
+    <div className="flex items-center gap-2">
       {searchOptions?.map(({ label, value }) => {
         return (
-          <div key={label} className={flex({ alignItems: 'center' })}>
+          <div key={label} className="flex items-center">
             <input
               type="radio"
               id={value}
               name={'searchOption'}
               value={value}
-              className={css({ margin: '0 8px 0 0' })}
+              className="mr-2"
               checked={searchOption === value}
               onChange={handleSearchOption}
             />
@@ -43,37 +34,14 @@ const SearchBox = ({
           </div>
         );
       })}
-      <SearchInput
+      <input
         type="text"
         placeholder={'검색어를 입력해주세요.'}
-        css={{
-          height: '40px',
-          border: '1px solid var(--grey300)',
-        }}
+        className="min-w-80 h-10 rounded-lg border border-[var(--grey300)] px-3 py-1.5 text-sm placeholder:bg-[url(/icons/search_black_icon.svg)] placeholder:bg-[length:auto] placeholder:bg-left placeholder:bg-no-repeat placeholder:pl-6 placeholder:text-left placeholder:indent-0"
         onChange={handleChangeKeyword}
       />
     </div>
   );
 };
-
-const SearchInput = styled('input', {
-  base: {
-    minWidth: '320px',
-    fontSize: '0.9rem',
-    borderRadius: '8px',
-    padding: '6px 32px 6px 12px',
-    margin: '0 0 0 8px',
-
-    '&::placeholder': {
-      padding: '0 0 0 24px',
-      backgroundImage: 'url(/icons/search_black_icon.svg)',
-      backgroundSize: '',
-      backgroundPosition: '1px center',
-      backgroundRepeat: 'no-repeat',
-      textAlign: 'left',
-      textIndent: '0',
-    },
-  },
-});
 
 export default SearchBox;

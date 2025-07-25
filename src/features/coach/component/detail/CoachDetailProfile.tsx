@@ -7,7 +7,6 @@ import { useColor } from 'react-color-palette';
 
 import ColorPalettePicker from '@widgets/ColorPalettePicker';
 
-
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -129,16 +128,16 @@ const CoachDetailProfile = ({
         >
           <Input.TextField type={'file'} onChange={handleFileChange} />
         </Input>
-        <div className="text-center my-5 text-lg font-semibold">
-          {email}
-        </div>
+        <div className="text-center my-5 text-lg font-semibold">{email}</div>
         <div className="flex">
           <div className="w-1/3 text-center">
             <div className="mb-2 text-lg font-semibold">{name}</div>
             <div className="text-gray-500">이름</div>
           </div>
           <div className="w-1/3 text-center">
-            <div className="mb-2 text-lg font-semibold">{transferSexType(sex)}</div>
+            <div className="mb-2 text-lg font-semibold">
+              {transferSexType(sex)}
+            </div>
             <div className="text-gray-500">성별</div>
           </div>
           <div className="w-1/3 text-center">
@@ -148,7 +147,7 @@ const CoachDetailProfile = ({
         </div>
       </div>
       <Divider margin="24px 0" />
-      
+
       <div className="flex items-center h-[46px] leading-[30px] px-3 py-1 my-3">
         <div className="w-[35%] text-base font-semibold py-1">연락처</div>
         <div className="w-[65%] h-full">
@@ -182,7 +181,9 @@ const CoachDetailProfile = ({
         />
       )}
       <div className="flex items-center h-[46px] leading-[30px] px-3 py-1 my-3">
-        <div className="w-[35%] text-base font-semibold py-1">비밀번호 확인</div>
+        <div className="w-[35%] text-base font-semibold py-1">
+          비밀번호 확인
+        </div>
         <div className="w-[65%] h-full">
           <Input.TextField
             {...register('passwordConfirm')}

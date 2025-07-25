@@ -24,7 +24,7 @@ const Modal = ({
 
   const modalClassName = clsx(
     'absolute min-w-[640px] min-h-[220px] top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 bg-[var(--white100)] rounded-2xl shadow-[2px_4px_12px_2px_rgba(255,255,255,0.15)] animate-[fadeUp_0.3s_ease-out]',
-    className
+    className,
   );
 
   return (
@@ -32,7 +32,9 @@ const Modal = ({
       <div className={modalClassName} {...rest}>
         {titleContainer && (
           <div className="relative text-center text-[var(--black100)] py-1 mb-3">
-            <div className="text-[var(--business-color)] text-xl font-medium">{title}</div>
+            <div className="text-[var(--business-color)] text-xl font-medium">
+              {title}
+            </div>
             <Image
               src={CancelBtnIcon}
               alt={'close button'}

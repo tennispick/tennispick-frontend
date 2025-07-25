@@ -1,8 +1,6 @@
 import CancelBtnIcon from '@icons/cancel_black_btn.svg';
 import { ScheduleLessonByDateData } from '@apis/schedule/schedule.type';
 import Image from 'next/image';
-import { css } from 'styled-system/css';
-import { styled } from 'styled-system/jsx';
 
 type Props = {
   day: Date;
@@ -20,27 +18,16 @@ const ScheduleByDateHeader = ({
   const date = day.getDate();
 
   return (
-    <Header>
-      <div
-        className={css({
-          width: '30%',
-          fontSize: '1.1rem',
-          fontWeight: 500,
-        })}
-      >
+    <div className="flex h-16 items-center border-b border-b-[var(--grey100)] px-7 py-4">
+      <div className="w-[30%] text-lg font-medium">
         {year}년 {month}월 {date}일
       </div>
-      <HeaderCautionWrapper>
+      <div className="flex w-[70%] items-center justify-between">
         {/* TODO 남은횟수 2회 이하일 때, 색상 변경 */}
         {customerInfo ? (
-          <RemainLessonCount
-            className={css({
-              color: 'var(--yellow300)',
-              backgroundColor: 'var(--yellow200)',
-            })}
-          >
+          <div className="w-30 rounded-lg bg-[var(--yellow200)] px-4 py-2 font-medium text-[var(--yellow300)]">
             남은횟수: 3회
-          </RemainLessonCount>
+          </div>
         ) : (
           <div></div>
         )}
@@ -50,39 +37,11 @@ const ScheduleByDateHeader = ({
           width={28}
           height={28}
           onClick={handleCloseModalClick}
-          className={css({ cursor: 'pointer' })}
+          className="cursor-pointer"
         />
-      </HeaderCautionWrapper>
-    </Header>
+      </div>
+    </div>
   );
 };
-
-const Header = styled('div', {
-  base: {
-    display: 'flex',
-    alignItems: 'center',
-    height: '64px',
-    borderBottom: '1px solid var(--grey100)',
-    padding: '16px 28px',
-  },
-});
-
-const HeaderCautionWrapper = styled('div', {
-  base: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '70%',
-  },
-});
-
-const RemainLessonCount = styled('div', {
-  base: {
-    width: '120px',
-    padding: '8px 16px',
-    borderRadius: '8px',
-    fontWeight: 500,
-  },
-});
 
 export default ScheduleByDateHeader;

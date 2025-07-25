@@ -51,9 +51,7 @@ const InputRow = ({
 }: Props) => {
   return (
     <div className="flex items-center h-10 mb-3">
-      <div className="w-[120px] text-lg font-semibold">
-        {label}
-      </div>
+      <div className="w-[120px] text-lg font-semibold">{label}</div>
       {
         {
           text: (

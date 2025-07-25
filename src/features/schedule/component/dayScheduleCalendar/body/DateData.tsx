@@ -33,7 +33,9 @@ const BodyDateData = ({ coachList, reservationCustomerList }: Props) => {
               className={`flex justify-center items-center text-center text-xs border-r border-black border-b border-gray-900 ${isReservation ? 'cursor-pointer' : 'cursor-default'}`}
               style={{
                 width: `calc(100% / ${coachCount})`,
-                backgroundColor: isReservation ? `var(--${coachColor})` : 'white',
+                backgroundColor: isReservation
+                  ? `var(--${coachColor})`
+                  : 'white',
                 color: isReservation ? 'white' : 'black',
               }}
               onClick={() => handleShowDrawer(isReservation)}

@@ -1,7 +1,7 @@
-import { axios } from 'src/shared/utils/axios';
+import { axiosInstance } from '@lib/axios';
 import { useQuery } from '@tanstack/react-query';
 
-const getCoachFetch = async (): Promise<any> => await axios.get('/coach');
+const getCoachFetch = async (): Promise<any> => await axiosInstance.get('/coach');
 
 const getCoachQuery = (): any => {
   try {

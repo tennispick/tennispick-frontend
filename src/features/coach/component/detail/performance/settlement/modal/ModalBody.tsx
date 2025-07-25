@@ -1,6 +1,5 @@
-import { css } from 'styled-system/css';
+import React, { useState } from 'react';
 import ModalSearchPeriod from './ModalSearchPeriod';
-import { useState } from 'react';
 import ModalReceipt from './ModalReceipt';
 import { getDateToKoreanString } from 'src/shared/utils/date';
 import { lastDayOfMonth, startOfDay } from 'date-fns';
@@ -53,9 +52,7 @@ const ModalBody = ({
     setMonth(Number(e.target.value));
 
   return (
-    <div
-      className="h-[calc(100%-66px)] bg-white rounded-lg p-6"
-    >
+    <div className="h-[calc(100%-66px)] bg-white rounded-lg p-6">
       <ModalSearchPeriod
         year={year}
         month={month}

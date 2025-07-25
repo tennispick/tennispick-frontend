@@ -25,10 +25,7 @@ const StartTimeSelect = ({
     <ScheduleSelect
       name="startTime"
       data={data}
-      className={twMerge(
-        'w-[120px] h-9 leading-8 ml-3 text-sm',
-        className
-      )}
+      className={twMerge('w-[120px] h-9 leading-8 ml-3 text-sm', className)}
       selected={startTime}
       onChangeHandler={onChangeFormData}
       disabled={disabled}

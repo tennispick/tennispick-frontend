@@ -7,9 +7,6 @@ import {
   useAttendanceMutate,
   useLessonCancelMutate,
 } from '@features/customer/mutate/manage';
-import { css } from 'styled-system/css';
-import { styled } from 'styled-system/jsx';
-import { flex } from 'styled-system/patterns';
 
 type Props = {
   day: Date;
@@ -58,70 +55,30 @@ const ModalCustomer = ({
   };
 
   return (
-    <Container>
+    <section className="relative flex h-[18%] justify-between border-b border-b-[var(--grey100)] px-6 py-2">
       <CustomerInfo data={data} />
-      <div
-        className={flex({
-          flexDirection: 'column',
-          justifyContent: 'space-evenly',
-        })}
-      >
+      <div className="flex flex-col justify-evenly">
         <Button
           label="출석체크"
-          className={css({
-            width: '100px',
-            padding: '8px 10px',
-            borderRadius: '8px',
-            backgroundColor: 'var(--business-active-color)',
-            color: 'var(--white100)',
-            fontWeight: 500,
-            border: 0,
-          })}
+          className="w-25 rounded-lg border-0 bg-[var(--business-active-color)] px-2.5 py-2 font-medium text-[var(--white100)]"
           onClick={onClickCustomerAttendanceHandler}
           disabled={!data || isAbleAttendacne}
         />
         <Button
           label="강습취소"
-          className={css({
-            width: '100px',
-            padding: '8px 10px',
-            borderRadius: '8px',
-            backgroundColor: 'var(--red200)',
-            color: 'var(--white100)',
-            fontWeight: 500,
-            border: 0,
-          })}
+          className="w-25 rounded-lg border-0 bg-[var(--red200)] px-2.5 py-2 font-medium text-[var(--white100)]"
           disabled={!data}
           onClick={onClickCustomerLessonCancelHandler}
         />
         <Button
           label="상세보기"
-          className={css({
-            width: '100px',
-            padding: '8px 10px',
-            borderRadius: '8px',
-            backgroundColor: 'var(--navy100)',
-            color: 'var(--white100)',
-            fontWeight: 500,
-            border: 0,
-          })}
+          className="w-25 rounded-lg border-0 bg-[var(--navy100)] px-2.5 py-2 font-medium text-[var(--white100)]"
           onClick={onClickCustomerDetailRouterHandler}
           disabled={!data}
         />
       </div>
-    </Container>
+    </section>
   );
 };
-
-const Container = styled('section', {
-  base: {
-    position: 'relative',
-    height: '18%',
-    borderBottom: '1px solid var(--grey100)',
-    display: 'flex',
-    justifyContent: 'space-between',
-    padding: '8px 24px',
-  },
-});
 
 export default ModalCustomer;

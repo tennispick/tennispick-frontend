@@ -1,13 +1,13 @@
 import ReactCalendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import dayjs from 'dayjs';
-import { styled } from 'styled-system/jsx';
 
 const Calendar = ({ ...props }) => {
   const { onClick, ...rest } = props;
 
   return (
-    <CalendarContainer
+    <ReactCalendar
+      className="rounded-2xl p-3 text-[var(--black100)] react-calendar__navigation:!flex !h-8 !mb-2 react-calendar__navigation_button:!min-w-8 !bg-none react-calendar__month-view__weekdays__weekday--abbr:font-medium no-underline react-calendar__month-view__weekdays__weekday:first:!text-[var(--red100)] react-calendar__month-view__weekdays__weekday:last:!text-[var(--blue100)] react-calendar__month-view__days__day:nth-of-type(7n+1):text-[var(--red100)] react-calendar__month-view__days__day:nth-of-type(7n):!text-[var(--blue100)] react-calendar__tile--now:!bg-[var(--business-color)] !text-white !rounded-lg react-calendar__tile--now:hover:!bg-[var(--business-color)] !text-white react-calendar__tile--now:nth-of-type(7n):!text-white react-calendar__tile:p-2 react-calendar__tile:hover:!bg-[var(--blue100)] !text-white !rounded-lg react-calendar__tile--active:!bg-[var(--blue100)] !text-white !rounded-lg react-calendar__month-view__days__day--neighboringMonth:!text-[var(--grey100)]"
       locale={'ko-kr'}
       calendarType={'gregory'}
       formatDay={(locale, date) => dayjs(date).format('DD')}
@@ -16,85 +16,5 @@ const Calendar = ({ ...props }) => {
     />
   );
 };
-
-const CalendarContainer = styled(ReactCalendar, {
-  base: {
-    color: 'var(--black100)',
-    borderRadius: '16px',
-    padding: '12px',
-
-    '& .react-calendar__navigation': {
-      display: 'flex !important',
-      height: '32px !important',
-      marginBottom: '0.5em !important',
-    },
-
-    '& .react-calendar__navigation button': {
-      minWidth: '32px !important',
-      background: 'none !important',
-    },
-
-    // 요일
-    '& .react-calendar__month-view__weekdays__weekday': {
-      _first: {
-        color: 'var(--red100) !important',
-      },
-      _last: {
-        color: 'var(--blue100) !important',
-      },
-
-      '& abbr': {
-        fontWeight: 500,
-        textDecoration: 'none',
-      },
-    },
-
-    // 일
-    '& .react-calendar__month-view__days__day': {
-      '&:nth-of-type(7n + 1)': {
-        color: 'var(--red100)',
-      },
-      '&:nth-of-type(7n)': {
-        color: 'var(--blue100) !important',
-      },
-    },
-
-    // 현재날짜
-    '& .react-calendar__tile--now': {
-      backgroundColor: 'var(--business-color) !important',
-      color: 'var(--white100) !important',
-      borderRadius: '8px !important',
-
-      _hover: {
-        backgroundColor: 'var(--business-color) !important',
-        color: 'var(--white100) !important',
-      },
-
-      '&:nth-of-type(7n)': {
-        color: 'var(--white100) !important',
-      },
-    },
-
-    '& .react-calendar__tile': {
-      padding: '7px 8px !important',
-
-      _hover: {
-        backgroundColor: 'var(--blue100) !important',
-        color: 'var(--white100) !important',
-        borderRadius: '8px !important',
-      },
-    },
-
-    '& .react-calendar__tile--active': {
-      backgroundColor: 'var(--blue100) !important',
-      color: 'var(--white100) !important',
-      borderRadius: '8px !important',
-    },
-
-    '& .react-calendar__month-view__days__day--neighboringMonth': {
-      color: 'var(--grey100) !important',
-    },
-  },
-});
 
 export default Calendar;

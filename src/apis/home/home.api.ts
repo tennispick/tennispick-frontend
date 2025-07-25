@@ -1,4 +1,4 @@
-import { axios } from 'src/shared/utils/axios';
+import { axiosInstance } from '@lib/axios';
 import {
   URL_HOME_CUSTOMER_STATISTICS,
   URL_HOME_SALES_STATISTICS,
@@ -6,9 +6,9 @@ import {
 } from './home.url';
 
 export const getCustomerStatistics = async (date: Date) =>
-  await axios.get(`${URL_HOME_CUSTOMER_STATISTICS}?date=${date}`);
+  await axiosInstance.get(`${URL_HOME_CUSTOMER_STATISTICS}?date=${date}`);
 
 export const getSalesStatistics = async (date: Date) =>
-  await axios.get(`${URL_HOME_SALES_STATISTICS}?date=${date}`);
+  await axiosInstance.get(`${URL_HOME_SALES_STATISTICS}?date=${date}`);
 
-export const getTotalSales = async () => await axios.get(URL_HOME_TOTAL_SALES);
+export const getTotalSales = async () => await axiosInstance.get(URL_HOME_TOTAL_SALES);

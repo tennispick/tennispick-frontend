@@ -1,7 +1,5 @@
 import { addNumberCommas } from 'src/shared/utils/numberForm';
 import SearchBox from '@widgets/SearchBox';
-import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
 
 type Props = {
   totalCount: number;
@@ -22,23 +20,10 @@ const DashboardHeader = ({
   handleSearchOption,
 }: Props) => {
   return (
-    <div
-      className={flex({
-        width: '100%',
-        height: '3.75rem',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: '0 0 16px 0',
-        fontSize: '1.25rem',
-        fontWeight: 600,
-        borderBottom: '1px solid var(--grey100)',
-      })}
-    >
-      <div className={css({ fontSize: '1.175rem', fontWeight: 600 })}>
+    <div className="flex h-15 w-full items-center justify-between border-b border-b-[var(--grey100)] pb-4 text-xl font-semibold">
+      <div className="text-lg font-semibold">
         회원목록
-        <span className={css({ margin: '0 0 0 8px' })}>
-          {addNumberCommas(totalCount)} 명
-        </span>
+        <span className="ml-2">{addNumberCommas(totalCount)} 명</span>
       </div>
       <SearchBox
         searchOption={searchOption}

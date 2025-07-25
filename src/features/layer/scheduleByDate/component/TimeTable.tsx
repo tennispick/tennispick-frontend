@@ -1,9 +1,6 @@
 import { useScheduleByDateQuery } from '@features/schedule/query/scheduleQuery';
 import { NormalList as Li } from '@/shared/components/index';
 import { ScheduleLessonByDateData } from '@apis/schedule/schedule.type';
-import { css } from 'styled-system/css';
-import { styled } from 'styled-system/jsx';
-import { flex } from 'styled-system/patterns';
 
 type Props = {
   day: Date;
@@ -26,29 +23,29 @@ const ScheduleByDateTimeTable = ({
   ) => {
     if (isPassNowTime) {
       return isAttendance ? (
-        <Status className={css({ backgroundColor: 'var(--green100)' })}>
+        <div className="w-[15%] rounded px-2 py-1.5 font-bold bg-[var(--green100)]">
           출석
-        </Status>
+        </div>
       ) : (
-        <Status className={css({ backgroundColor: 'var(--red100)' })}>
+        <div className="w-[15%] rounded px-2 py-1.5 font-bold bg-[var(--red100)]">
           결석
-        </Status>
+        </div>
       );
     } else {
       return isAttendance ? (
-        <Status className={css({ backgroundColor: 'var(--green100)' })}>
+        <div className="w-[15%] rounded px-2 py-1.5 font-bold bg-[var(--green100)]">
           출석
-        </Status>
+        </div>
       ) : (
-        <Status className={css({ backgroundColor: 'var(--grey100)' })}>
+        <div className="w-[15%] rounded px-2 py-1.5 font-bold bg-[var(--grey100)]">
           강습전
-        </Status>
+        </div>
       );
     }
   };
 
   // backgroundColor: props.backgroundColor
-  //     ? props.backgroundColor
+  //     ?
   //     : 'var(--grey1000)',
   //   color: props.color ? props.color : 'var(--white100)',
 
@@ -60,22 +57,9 @@ const ScheduleByDateTimeTable = ({
   };
 
   return (
-    <div
-      className={css({
-        position: 'relative',
-        width: '35%',
-        borderRight: '1px solid var(--grey100)',
-        padding: '0 0 32px 0',
-      })}
-    >
+    <div className="relative w-[35%] border-r border-r-[var(--grey100)] pb-8">
       <ScheduleByDateTimeTable.Header />
-      <Li.UnOrderList
-        className={css({
-          height: 'calc(100% - 60px)',
-          margin: '12px 0 0 0',
-          padding: '0 12px 0 12px',
-        })}
-      >
+      <Li.UnOrderList className="h-[calc(100%_-_60px)] mt-3 px-3">
         {data?.map((item: ScheduleLessonByDateData) => {
           const {
             id,
@@ -98,42 +82,24 @@ const ScheduleByDateTimeTable = ({
           return (
             <Li
               key={id}
-              className={css({
-                padding: '8px 0',
-                borderRadius: '8px',
-
-                '&div': {
-                  textAlign: 'center',
-                },
-
-                '&:hover': {
-                  borderRadius: '8px',
-                },
-              })}
+              className="rounded py-2 text-center hover:rounded"
               onClick={() => onClickScheduleRowHandler(item)}
             >
               {handleAttendanceCheck(isAttendance, isPassNowTime)}
-              <div className={css({ width: '30%' })}>
+              <div className="w-[30%]">
                 {startTime} ~ {endTime}
               </div>
-              <div className={css({ width: '20%' })}>
+              <div className="w-[20%]">
                 {lessonType === 'private' ? '개인레슨' : '그룹레슨'}
               </div>
-              <div className={css({ width: '20%' })}>{coachName}</div>
-              <div className={css({ width: '15%' })}>{customerName}</div>
+              <div className="w-[20%]">{coachName}</div>
+              <div className="w-[15%]">{customerName}</div>
             </Li>
           );
         })}
       </Li.UnOrderList>
       {(!data || data?.length === 0) && (
-        <div
-          className={css({
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-          })}
-        >
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           오늘은 스케줄이 없어요.
         </div>
       )}
@@ -143,32 +109,15 @@ const ScheduleByDateTimeTable = ({
 
 const Header = () => {
   return (
-    <ul
-      className={flex({
-        alignItems: 'center',
-        textAlign: 'center',
-        borderBottom: '1px solid var(--grey100)',
-        padding: '12px 12px 12px 24px',
-      })}
-    >
-      <li className={css({ width: '15%' })}>강습현황</li>
-      <li className={css({ width: '30%' })}>강습시간</li>
-      <li className={css({ width: '20%' })}>강습유형</li>
-      <li className={css({ width: '20%' })}>담당코치</li>
-      <li className={css({ width: '15%' })}>회원</li>
+    <ul className="flex items-center border-b border-b-[var(--grey100)] px-3 py-3 text-center">
+      <li className="w-[15%]">강습현황</li>
+      <li className="w-[30%]">강습시간</li>
+      <li className="w-[20%]">강습유형</li>
+      <li className="w-[20%]">담당코치</li>
+      <li className="w-[15%]">회원</li>
     </ul>
   );
 };
-
-const Status = styled('div', {
-  base: {
-    width: '15%',
-    fontWeight: 700,
-    padding: '6px 8px',
-    borderRadius: '4px',
-    margin: '0 0 0 12px',
-  },
-});
 
 ScheduleByDateTimeTable.Header = Header;
 export default ScheduleByDateTimeTable;

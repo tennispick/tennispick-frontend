@@ -15,7 +15,7 @@ const CustomerDetailPaymentRefundTableRow = ({
     <div
       className={twMerge(
         'flex h-11 items-center text-center p-2 gap-0.5 rounded-md border-t border-gray-200 cursor-pointer hover:bg-gray-200',
-        className
+        className,
       )}
       onClick={onClick}
       {...props}

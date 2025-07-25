@@ -26,18 +26,13 @@ const InputRow = ({
   requiredStatus,
   requiredText,
 }: Props) => {
-  const className = clsx(
-    'w-40 py-1 text-base font-semibold',
-    rowHeadClassName
-  );
+  const className = clsx('w-40 py-1 text-base font-semibold', rowHeadClassName);
 
   return (
     <div className="flex items-baseline min-h-[40px] mb-5">
       <div className={className}>{rowHeadLabel}</div>
       {type === 'text' && (
-        <Input
-          className="w-1/2 h-full"
-        >
+        <Input className="w-1/2 h-full">
           <Input.TextField
             type={type}
             name={name}

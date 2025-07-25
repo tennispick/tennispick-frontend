@@ -37,7 +37,11 @@ const RowData = ({ monthMaps, coachList, data }: Props) => {
               );
 
               return (
-                <div key={date} className={`w-full`} style={{ width: monthDateWidth }}>
+                <div
+                  key={date}
+                  className={`w-full`}
+                  style={{ width: monthDateWidth }}
+                >
                   <BodyDateData
                     coachList={coachList}
                     reservationCustomerList={

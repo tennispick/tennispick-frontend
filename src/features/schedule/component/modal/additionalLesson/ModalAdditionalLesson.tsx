@@ -52,10 +52,7 @@ const ModalAdditionalLesson = () => {
   const isSelectCustomerLessonData = !!customerLessonData;
 
   return (
-    <form
-      onSubmit={onSubmitHandler}
-      className="bg-white p-6 rounded-xl"
-    >
+    <form onSubmit={onSubmitHandler} className="bg-white p-6 rounded-xl">
       <div className="min-h-[420px]">
         <CustomerSearch
           setCustomerLesson={setCustomerLesson}

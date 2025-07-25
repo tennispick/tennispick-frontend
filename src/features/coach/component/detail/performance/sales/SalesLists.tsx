@@ -28,10 +28,7 @@ const SalesLists = ({ data }: Props) => {
 
 const SalesListsHeader = () => {
   return (
-    <ul
-      role="rowheader"
-      className="flex px-4"
-    >
+    <ul role="rowheader" className="flex px-4">
       <li className="w-[7%] text-sm font-semibold">{'이름'}</li>
       <li className="w-[20%] text-sm font-semibold">{'상품명'}</li>
       <li className="w-[8%] text-sm font-semibold">{'결제유형'}</li>

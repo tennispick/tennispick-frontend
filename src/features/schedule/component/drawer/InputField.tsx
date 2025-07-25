@@ -202,11 +202,7 @@ const LessonTypeContainer = ({
     <div className="mb-5">
       <div>레슨유형</div>
       <div className="flex items-center mt-3">
-        <InputContainer
-          id="regular"
-          label="정규레슨"
-          className="mr-3"
-        >
+        <InputContainer id="regular" label="정규레슨" className="mr-3">
           <Input.TextField
             type="radio"
             name="isRegularLesson"
@@ -216,11 +212,7 @@ const LessonTypeContainer = ({
             onChange={onChangeFormData}
           />
         </InputContainer>
-        <InputContainer
-          id="additional"
-          label="보강레슨"
-          className="mr-3"
-        >
+        <InputContainer id="additional" label="보강레슨" className="mr-3">
           <Input.TextField
             type="radio"
             name="isRegularLesson"
@@ -264,7 +256,13 @@ const SelectContainer = ({
   );
 };
 
-const InputWrapper = ({ label, children }: { label: string; children: React.ReactNode }) => {
+const InputWrapper = ({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) => {
   return (
     <div className="mb-5">
       <label className="block">{label}</label>
@@ -273,9 +271,24 @@ const InputWrapper = ({ label, children }: { label: string; children: React.Reac
   );
 };
 
-const InputContainer = ({ id, label, className, children }: { id: string; label: string; className?: string; children: React.ReactNode }) => {
+const InputContainer = ({
+  id,
+  label,
+  className,
+  children,
+}: {
+  id: string;
+  label: string;
+  className?: string;
+  children: React.ReactNode;
+}) => {
   return (
-    <div className={twMerge("flex flex-row-reverse justify-end items-center", className)}>
+    <div
+      className={twMerge(
+        'flex flex-row-reverse justify-end items-center',
+        className,
+      )}
+    >
       <label htmlFor={id}>{label}</label>
       {children}
     </div>

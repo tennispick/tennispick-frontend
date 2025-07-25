@@ -1,7 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { Portal } from '..';
-import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
+import { Portal } from '../';
 import Button from '@/shared/components/button/Button';
 
 type Props = {
@@ -25,38 +23,14 @@ const LayerConfirmModal = ({
   return (
     <Portal id="confirmModal">
       <div
-        className={css({
-          position: 'fixed',
-          width: '100vw',
-          height: '100vh',
-          top: 0,
-          backgroundColor: 'rgb(18, 18, 18, 0.7)',
-          zIndex: 999,
-        })}
+        className="fixed top-0 h-screen w-screen bg-[rgb(18,18,18,0.7)]"
+        style={{ zIndex: 999 }}
       >
-        <section
-          className={css({
-            position: 'absolute',
-            width: '400px',
-            height: 'auto',
-            top: '45%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            padding: '20px',
-            backgroundColor: 'var(--white100)',
-            borderRadius: '12px',
-          })}
-        >
-          <div className={css({ fontWeight: 600, fontSize: '1.125rem' })}>
-            {title}
-          </div>
-          {subTitle && (
-            <div className={css({ margin: '8px 0 0 0' })}>{subTitle}</div>
-          )}
-          {children && (
-            <div className={css({ margin: '20px 0 0 0' })}>{children}</div>
-          )}
-          <div className={flex({ gap: '8px', margin: '40px 0 0 0' })}>
+        <section className="absolute left-1/2 top-[45%] h-auto w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-[var(--white100)] p-5">
+          <div className="text-lg font-semibold">{title}</div>
+          {subTitle && <div className="mt-2">{subTitle}</div>}
+          {children && <div className="mt-5">{children}</div>}
+          <div className="mt-10 flex gap-2">
             <Button
               type="reset"
               variant="ghost"

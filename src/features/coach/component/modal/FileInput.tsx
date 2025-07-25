@@ -29,7 +29,7 @@ const FileInput = ({ onChangeFileHandler }: Props) => {
   return (
     <div>
       <div>프로필 이미지 업로드(선택)</div>
-      <div 
+      <div
         className={`flex items-end my-3 ${
           preview ? `h-[${PREVIEW_IMAGE_HEIGHT_SIZE}px]` : 'h-auto'
         }`}

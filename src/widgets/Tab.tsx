@@ -90,10 +90,10 @@ const TabList = ({
       key={panelKey}
       onClick={handleTabePanelClick}
       className={clsx(
-        "h-[2.875rem] mr-6 py-2 pb-3 transition-all duration-100 cursor-pointer",
-        isActive 
-          ? "text-[var(--black100)] font-medium border-b-2 border-[var(--black100)]"
-          : "text-[var(--deactive-color)]"
+        'h-[2.875rem] mr-6 py-2 pb-3 transition-all duration-100 cursor-pointer',
+        isActive
+          ? 'text-[var(--black100)] font-medium border-b-2 border-[var(--black100)]'
+          : 'text-[var(--deactive-color)]',
       )}
     >
       {children}

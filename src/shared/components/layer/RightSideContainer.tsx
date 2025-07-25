@@ -3,9 +3,6 @@ import Image from 'next/image';
 
 import { OnClickRefOutSideCloseHandler } from 'src/shared/utils/onClick';
 import { CloseBtnIcon } from '@icons/index';
-import { css } from 'styled-system/css';
-import { styled } from 'styled-system/jsx';
-import { flex } from 'styled-system/patterns';
 
 type Props = {
   title?: string;
@@ -25,66 +22,26 @@ const RightSideContainer = ({
   const handleCloseDrawerClick = () => setShowRightSide(false);
 
   return (
-    <Container>
-      <Wrapper
+    <div className="fixed top-0 h-screen w-screen bg-[rgb(18,18,18,0.7)] z-99">
+      <div
         ref={sideRef}
-        className={css({
-          animationName: showRightSide ? 'fadeRight' : 'fadeOutRight',
-          animationDuration: '0.45s',
-        })}
+        className={`absolute right-0 h-screen w-[40vw] rounded-bl-2xl rounded-tl-2xl bg-[var(--grey600)] p-5 animate-fadeRight animation-duration-450 ${
+          showRightSide ? 'animate-fadeRight' : 'animate-fadeOutRight'
+        }`}
       >
-        <div
-          className={flex({
-            height: '32px',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            fontSize: '1.2rem',
-          })}
-        >
-          <div className={css({ fontWeight: 600 })}>{title}</div>
+        <div className="flex h-8 items-center justify-between text-xl">
+          <div className="font-semibold">{title}</div>
           <Image
             src={CloseBtnIcon}
             alt={'close'}
-            className={css({ cursor: 'pointer' })}
+            className="cursor-pointer"
             onClick={handleCloseDrawerClick}
           />
         </div>
-        <div
-          className={css({
-            position: 'relative',
-            height: 'calc(100% - 48px)',
-            margin: '16px 0 0 0',
-          })}
-        >
-          {children}
-        </div>
-      </Wrapper>
-    </Container>
+        <div className="relative mt-4 h-[calc(100%_-_48px)]">{children}</div>
+      </div>
+    </div>
   );
 };
-
-const Container = styled('div', {
-  base: {
-    position: 'fixed',
-    width: '100vw',
-    height: '100vh',
-    top: 0,
-    backgroundColor: 'rgb(18, 18, 18, 0.7)',
-    zIndex: 99,
-  },
-});
-
-const Wrapper = styled('div', {
-  base: {
-    position: 'absolute',
-    width: '40vw',
-    height: '100vh',
-    right: 0,
-    padding: '20px',
-    backgroundColor: 'var(--grey600)',
-    borderTopLeftRadius: '16px',
-    borderBottomLeftRadius: '16px',
-  },
-});
 
 export default RightSideContainer;

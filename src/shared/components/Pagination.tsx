@@ -8,8 +8,6 @@ import SingleLeftDisabledArrow from '@icons/paging_single_left_disabled_arrow.sv
 import SingleRightDisabledArrow from '@icons/paging_single_right_disabled_arrow.svg';
 import DoubleRightDisabledArrow from '@icons/paging_double_right_disabled_arrow.svg';
 import Image from 'next/image';
-import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
 
 type Props = {
   totalPage: number;
@@ -31,19 +29,13 @@ const Pagination = ({
   const endPage = Math.min(startPage + offset - 1, totalPage);
 
   return (
-    <div
-      className={flex({
-        alignItems: 'center',
-        justifyContent: 'center',
-        margin: '16px 0 0 0',
-      })}
-    >
+    <div className="flex items-center justify-center mt-4">
       <Image
         src={currentSet > 1 ? DoubleLeftArrow : DoubleLeftDisabledArrow}
         alt="double left arrow"
         width={28}
         height={28}
-        className={css({ cursor: currentSet > 1 ? 'pointer' : 'not-allowed' })}
+        className={currentSet > 1 ? 'cursor-pointer' : 'cursor-not-allowed'}
         onClick={() => (currentSet > 1 ? setCurrentPage(1) : null)}
       />
       <Image
@@ -51,32 +43,23 @@ const Pagination = ({
         alt="single left arrow"
         width={28}
         height={28}
-        className={css({ cursor: currentSet > 1 ? 'pointer' : 'not-allowed' })}
+        className={currentSet > 1 ? 'cursor-pointer' : 'cursor-not-allowed'}
         onClick={() =>
           currentSet > 1 ? setCurrentPage(startPage - offset) : null
         }
       />
-      <ul className={flex({ alignItems: 'center' })}>
+      <ul className="flex items-center">
         {Array.from(
           { length: endPage - startPage + 1 },
           (_, i) => i + startPage,
         ).map((page) => (
           <li
             key={page}
-            className={css({
-              width: '28px',
-              height: '28px',
-              padding: '4px 8px',
-              textAlign: 'center',
-              margin: '0 2px',
-              borderRadius: '50%',
-              color:
-                currentPage === page
-                  ? 'var(--business-color)'
-                  : 'var(--grey300)',
-              fontWeight: currentPage === page ? 600 : 400,
-              cursor: 'pointer',
-            })}
+            className={`w-7 h-7 p-1 text-center mx-0.5 rounded-full cursor-pointer ${
+              currentPage === page
+                ? 'text-[var(--business-color)] font-semibold'
+                : 'text-[var(--grey300)] font-normal'
+            }`}
             onClick={() => setCurrentPage(page)}
           >
             {page}
@@ -90,9 +73,9 @@ const Pagination = ({
         alt="single right arrow"
         width={28}
         height={28}
-        className={css({
-          cursor: currentSet < totalSets ? 'pointer' : 'not-allowed',
-        })}
+        className={
+          currentSet < totalSets ? 'cursor-pointer' : 'cursor-not-allowed'
+        }
         onClick={() =>
           currentSet < totalSets ? setCurrentPage(startPage + offset) : null
         }
@@ -104,9 +87,9 @@ const Pagination = ({
         alt="double right arrow"
         width={28}
         height={28}
-        className={css({
-          cursor: currentSet < totalSets ? 'pointer' : 'not-allowed',
-        })}
+        className={
+          currentSet < totalSets ? 'cursor-pointer' : 'cursor-not-allowed'
+        }
         onClick={() =>
           currentSet < totalSets ? setCurrentPage(totalPage) : null
         }

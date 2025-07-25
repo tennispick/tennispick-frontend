@@ -239,12 +239,8 @@ const ModalRegularLesson = () => {
             }[scheduleType]
           }
         </div>
-        <div
-          className="flex items-center justify-between h-11"
-        >
-          <div
-            className="text-sm text-blue-600"
-          >
+        <div className="flex items-center justify-between h-11">
+          <div className="text-sm text-blue-600">
             <span className="font-semibold">
               &#45; 회원이 검색되지 않는 경우, 결제가 진행되었는지 우선
               확인해주세요.

@@ -28,9 +28,7 @@ const ManageContainer = ({ customerId }: Props) => {
           setCurrentItem={setCurrentItem}
           tabLists={lessonList}
         />
-        <div
-          className="h-[50vh] bg-gray-200 rounded-2xl p-3"
-        >
+        <div className="h-[50vh] bg-gray-200 rounded-2xl p-3">
           {
             {
               lesson: (

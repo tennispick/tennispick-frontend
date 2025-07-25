@@ -27,7 +27,7 @@ const ScheduleSelect = ({
       name={name}
       className={twMerge(
         'w-full h-full leading-8 py-0.5 pl-2.5 text-base border border-gray-300 rounded-lg outline-none',
-        className
+        className,
       )}
       value={selected}
       onChange={onChangeHandler}

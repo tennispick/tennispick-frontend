@@ -2,7 +2,6 @@ import ToggleInput from '@/shared/components/common/ToggleInput';
 import { useSettingListQuery } from '../query/settingQuery';
 import Loading from '@/shared/components/common/Loading';
 import { SettingListData } from '@apis/setting/setting.type';
-import { css } from 'styled-system/css';
 
 type Props = {
   handleToggleClick: (e: React.MouseEvent<HTMLInputElement>) => void;
@@ -15,7 +14,7 @@ const SettingLesson = ({ handleToggleClick }: Props) => {
   if (!data) return <>준비중이에요.</>;
 
   return (
-    <div className={css({ margin: '24px 0 0 0' })}>
+    <div className="mt-6">
       {data &&
         data.map((configuration: SettingListData) => {
           const { id, name_kr: name, is_active: isActive } = configuration;
@@ -25,7 +24,7 @@ const SettingLesson = ({ handleToggleClick }: Props) => {
               id={`${id}`}
               label={name}
               checked={isActive === 'Y'}
-              className={css({ margin: '0 0 16px 0' })}
+              className="mb-4"
               onClick={handleToggleClick}
             />
           );

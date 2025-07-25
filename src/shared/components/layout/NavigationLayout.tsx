@@ -7,8 +7,6 @@ import { Modal, Portal } from '@/shared/components/index';
 import ScheduleByDate from '@features/layer/scheduleByDate/screen/ScheduleByDate';
 import Logo from '@icons/white_bg_logo.svg';
 import useMobile from '@hooks/useMobile';
-import { css } from 'styled-system/css';
-import { styled } from 'styled-system/jsx';
 
 type Props = {
   firstPathName: string;
@@ -39,58 +37,41 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
   };
 
   return (
-    <NavContainer
-      width={isNavSpread ? '280px' : '80px'}
-      padding={isNavSpread ? '0 20px 0 0' : '0'}
-      className={css({
-        ...(isMobile && { ...mobileNavigationStyle }),
-      })}
+    <div
+      className={`relative flex flex-col justify-between h-[calc(100vh_-_48px)] transition-all duration-350 ease-in-out overflow-y-scroll ${
+        isNavSpread ? 'w-[280px] pr-5' : 'w-20'
+      }`}
+      style={isMobile ? mobileNavigationStyle : {}}
     >
       <div>
         {isNavSpread && (
-          <div
-            className={css({
-              width: '100%',
-              minHeight: '48px',
-              padding: '8px 0 0 0',
-            })}
-          >
+          <div className="w-full min-h-12 pt-2">
             <Image
               src={Logo}
               alt="logo"
               placeholder="empty"
-              className={css({
-                width: '100%',
-                height: '3rem',
-                margin: '0 auto 0 auto',
-              })}
+              className="w-full h-12 mx-auto"
               priority={true}
             />
           </div>
         )}
-        <NavLists
-          className={css({ margin: isNavSpread ? '16px 0 0 0' : '90px 0 0 0' })}
-        >
+        <ul className={`relative w-full ${isNavSpread ? 'mt-4' : 'mt-[90px]'}`}>
           {NavigationList &&
             NavigationList.map((item) => {
               return (
                 <Link key={item.id} href="" as={`/${item.path}`} passHref>
-                  <NavList
-                    className={css({
-                      flexDirection: isNavSpread ? 'row' : 'column',
-                      padding: isNavSpread ? '0.875rem' : '0.875rem 0',
-                      margin: isNavSpread ? '0 0 12px 0' : '2px 0',
-
-                      _before: {
-                        width: firstPathName === item.path ? '100%' : '0',
-                        borderRadius: isNavSpread ? '16px' : '0',
-                      },
-
-                      '& span': {
-                        fontSize: isNavSpread ? '1rem' : '0.925rem',
-                        margin: isNavSpread ? '0 0 0 16px' : '4px 0 0 0',
-                      },
-                    })}
+                  <li
+                    className={`flex relative items-center text-base cursor-pointer before:transition-width before:duration-250 before:absolute before:content-[''] before:h-full before:top-0 before:left-0 before:bg-[var(--business-sub-color)] before:z-10 ${
+                      isNavSpread
+                        ? 'flex-row p-3.5 mb-3'
+                        : 'flex-col py-3.5 my-0.5'
+                    } ${
+                      firstPathName === item.path
+                        ? `before:w-full ${
+                            isNavSpread ? 'before:rounded-2xl' : ''
+                          }`
+                        : 'before:w-0'
+                    }`}
                   >
                     <Image
                       src={item.src}
@@ -98,17 +79,24 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
                       width={20}
                       height={20}
                       priority
+                      className="z-20"
                     />
-                    <span>{item.label}</span>
-                  </NavList>
+                    <span
+                      className={`z-20 ${
+                        isNavSpread ? 'text-base ml-4' : 'text-[0.925rem] mt-1'
+                      }`}
+                    >
+                      {item.label}
+                    </span>
+                  </li>
                 </Link>
               );
             })}
-        </NavLists>
+        </ul>
       </div>
       {!isMobile && (
         <Calendar
-          css={!isNavSpread && { display: 'none' }}
+          className={!isNavSpread ? 'hidden' : ''}
           onClick={handleDateClick}
         />
       )}
@@ -117,12 +105,7 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
           <Modal
             title={'스케줄 등록'}
             titleContainer={false}
-            css={{
-              width: 'calc(100vw - 3%)',
-              height: 'calc(100vh - 5%)',
-              top: '50%',
-              padding: 0,
-            }}
+            className="w-[calc(100vw_-_3%)] h-[calc(100vh_-_5%)] top-1/2 p-0"
           >
             <ScheduleByDate
               day={day}
@@ -131,56 +114,8 @@ const NavigationLayout = ({ firstPathName, isNavSpread }: Props) => {
           </Modal>
         </Portal>
       )}
-    </NavContainer>
+    </div>
   );
 };
-
-const NavContainer = styled('div', {
-  base: {
-    position: 'relative',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    height: 'calc(100vh - 48px)',
-    transition: 'all 0.35s ease-in-out',
-    overflowY: 'scroll',
-  },
-});
-
-const NavLists = styled('ul', {
-  base: {
-    position: 'relative',
-    width: '100%',
-  },
-});
-
-const NavList = styled('li', {
-  base: {
-    display: 'flex',
-    position: 'relative',
-    alignItems: 'center',
-    fontSize: '16px',
-    cursor: 'pointer',
-
-    '& img': {
-      zIndex: 2,
-    },
-
-    _before: {
-      transition: 'width 0.25s',
-      position: 'absolute',
-      content: "''",
-      height: '100%',
-      top: 0,
-      left: 0,
-      backgroundColor: 'var(--business-sub-color)',
-      zIndex: 1,
-    },
-
-    '& span': {
-      zIndex: 2,
-    },
-  },
-});
 
 export default NavigationLayout;

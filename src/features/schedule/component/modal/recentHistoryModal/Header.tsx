@@ -9,9 +9,7 @@ const ScheduleModalRecentHistoryModalHeader = ({ handleCloseModal }: Props) => {
   return (
     <div className="relative flex">
       <div className="mb-7">
-        <div className="mb-3 text-lg font-semibold">
-          최근 수강이력
-        </div>
+        <div className="mb-3 text-lg font-semibold">최근 수강이력</div>
         <div>회원의 최근 수강이력을 확인할 수 있어요.</div>
       </div>
       <Image

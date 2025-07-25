@@ -1,3 +1,4 @@
+import React from 'react';
 import CheckboxGroup from '@widgets/CheckboxGroup';
 
 type CheckboxType = {

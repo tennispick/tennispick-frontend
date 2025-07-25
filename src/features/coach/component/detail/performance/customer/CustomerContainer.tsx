@@ -1,3 +1,4 @@
+import React from 'react';
 import LessonStatusTypeRow from './LessonStatusTypeRow';
 import SearchRow from './SearchRow';
 import { useState } from 'react';
