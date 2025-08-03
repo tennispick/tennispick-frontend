@@ -1,72 +1,22 @@
-import { defineKeyframes } from '@pandacss/dev';
+// Tailwind CSS로 마이그레이션 완료
+// 모든 애니메이션은 tailwind.config.js에서 관리됩니다.
 
-export const keyframes = defineKeyframes({
-  fadeUp: {
-    '0%': {
-      opacity: 0,
-      transform: 'translateX(-50%) translateY(calc(-50% + 50px))',
-    },
-    '100%': {
-      opacity: 1,
-      transform: 'translateX(-50%) translateY(-50%)',
-    },
-  },
-  fadeRight: {
-    '0%': {
-      transform: 'translateX(100%)',
-    },
-    '100%': {
-      transform: 'translateX(0)',
-    },
-  },
-  fadeOutRight: {
-    '0%': {
-      transform: 'translateX(100%)',
-    },
-    '100%': {
-      transform: 'translateX(200%)',
-    },
-  },
-  dropDownActive: {
-    '0%': {
-      opacity: 0,
-    },
-    '100%': {
-      opacity: 1,
-    },
-  },
-  dropDownDeActive: {
-    '0%': {
-      opacity: 1,
-    },
-    '100%': {
-      opacity: 0,
-    },
-  },
-  spinner: {
-    '0%': {
-      transform: 'rotate(0deg)',
-    },
-    '25%': {
-      transform: 'rotate(90deg)',
-    },
-    '50%': {
-      transform: 'rotate(180deg)',
-    },
-    '75%': {
-      transform: 'rotate(270deg)',
-    },
-    '100%': {
-      transform: 'rotate(360deg)',
-    },
-  },
-});
+// 기존에 사용된 애니메이션들을 Tailwind 클래스명으로 매핑
+export const animations = {
+  fadeUp: 'animate-fade-up',
+  fadeRight: 'animate-fade-right',
+  fadeOutRight: 'animate-fade-out-right',
+  dropDownActive: 'animate-dropdown-active',
+  dropDownDeActive: 'animate-dropdown-deactive',
+  spinner: 'animate-spinner',
+} as const;
 
-// animation: {
-//     fadeUp: 'fadeUp 0.65s ease',
-//     fadeRight: 'fadeRight 0.65s ease',
-//     fadeOutRight: 'fadeOutRight 0.65s ease',
-//     dropDownActive: 'dropDownActive 0.2s ease-in-out',
-//     dropDownDeActive: 'dropDownDeActive 0.2s ease-in-out',
-//     spinner: 'spinner 1s linear infinite',
-//   },
+// 커스텀 애니메이션 클래스 (필요한 경우)
+export const customAnimations = {
+  fadeUpCustom: 'animate-[fade-up_0.65s_ease]',
+  fadeRightCustom: 'animate-[fade-right_0.65s_ease]',
+  fadeOutRightCustom: 'animate-[fade-out-right_0.65s_ease]',
+  dropDownActiveCustom: 'animate-[dropdown-active_0.2s_ease-in-out]',
+  dropDownDeActiveCustom: 'animate-[dropdown-deactive_0.2s_ease-in-out]',
+  spinnerCustom: 'animate-[spinner_1s_linear_infinite]',
+} as const;
