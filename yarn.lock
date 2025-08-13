@@ -4419,6 +4419,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-plugin-react-hooks@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "eslint-plugin-react-hooks@npm:5.2.0"
+  peerDependencies:
+    eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
+  checksum: 1c8d50fa5984c6dea32470651807d2922cc3934cf3425e78f84a24c2dfd972e7f019bee84aefb27e0cf2c13fea0ac1d4473267727408feeb1c56333ca1489385
+  languageName: node
+  linkType: hard
+
 "eslint-plugin-react@npm:^7.33.2":
   version: 7.37.5
   resolution: "eslint-plugin-react@npm:7.37.5"
@@ -9341,6 +9350,7 @@ __metadata:
     eslint-config-next: "npm:^14.2.5"
     eslint-config-prettier: "npm:^9.0.0"
     eslint-plugin-prettier: "npm:^5.0.1"
+    eslint-plugin-react-hooks: "npm:^5.2.0"
     eslint-plugin-simple-import-sort: "npm:^12.1.0"
     eslint-plugin-unused-imports: "npm:^4.0.0"
     js-cookie: "npm:^3.0.5"
@@ -9376,6 +9386,9 @@ __metadata:
     yup: "npm:^1.2.0"
     zod: "npm:^3.23.8"
     zustand: "npm:^4.5.4"
+  dependenciesMeta:
+    eslint-plugin-prettier@5.5.3:
+      unplugged: true
   languageName: unknown
   linkType: soft
 

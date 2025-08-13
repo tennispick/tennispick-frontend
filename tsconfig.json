@@ -15,7 +15,8 @@
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": "./",
-    "types": ["react"],
+    "types": ["react", "react-dom"],
+    "jsxImportSource": "react",
     "paths": {
       "@icons/*": ["src/assets/icons/*"],
       "@images/*": ["src/assets/images/*"],
@@ -49,7 +50,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/hooks/useMobile.tsx",
-    ".next/types/**/*.ts",
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }

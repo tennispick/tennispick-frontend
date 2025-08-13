@@ -4,7 +4,6 @@
     "prettier",
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended",
     "next/core-web-vitals"
@@ -20,7 +19,6 @@
   },
   "rules": {
     "react/react-in-jsx-scope": "off",
-    "react-hooks/rules-of-hooks": "off",
     "no-unused-vars": "off",
     "no-useless-escape": "off",
     "no-empty-pattern": "off",
