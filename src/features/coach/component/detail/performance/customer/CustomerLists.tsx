@@ -1,10 +1,7 @@
-import { css } from 'styled-system/css';
 import { useCoachCustomersQuery } from '@features/coach/query/coachQuery';
-import { flex } from 'styled-system/patterns';
-import { NoResult } from '@components/index';
-import { styled } from 'styled-system/jsx';
+import { NoResult } from '@/shared/components/index';
 import { CoachCustomersData } from '@apis/coach/coach.type';
-import { transferSexType } from '@utils/switch';
+import { transferSexType } from 'src/shared/utils/switch';
 
 type Props = {
   coachId: string;
@@ -30,13 +27,7 @@ const CustomerLists = ({
   if (isLoading || !data) return <></>;
 
   return (
-    <div
-      className={css({
-        height: 'calc(100% - (128px + 3rem))',
-        borderTop: '1px solid var(--grey100)',
-        padding: '0.825rem 0',
-      })}
-    >
+    <div className="h-[calc(100%-(128px+3rem))] border-t border-gray-300 py-[0.825rem]">
       <SalesListsHeader />
       <SalesLists data={data?.pages} />
     </div>
@@ -45,25 +36,15 @@ const CustomerLists = ({
 
 const SalesListsHeader = () => {
   return (
-    <ul
-      role="rowheader"
-      className={flex({
-        padding: '0 16px',
-
-        '& li': {
-          fontSize: '0.875rem',
-          fontWeight: 600,
-        },
-      })}
-    >
-      <li className={css({ width: '10%' })}>{'이름'}</li>
-      <li className={css({ width: '5%' })}>{'성별'}</li>
-      <li className={css({ width: '15%' })}>{'연락처'}</li>
-      <li className={css({ width: '15%' })}>{'최근 레슨'}</li>
-      <li className={css({ width: '15%' })}>{'다음 레슨'}</li>
-      <li className={css({ width: '17.5%' })}>{'레슨권'}</li>
-      <li className={css({ width: '12.5%' })}>{'남은 수강횟수'}</li>
-      <li className={css({ width: '10%' })}>{'레슨금액'}</li>
+    <ul role="rowheader" className="flex px-4">
+      <li className="w-[10%] text-sm font-semibold">{'이름'}</li>
+      <li className="w-[5%] text-sm font-semibold">{'성별'}</li>
+      <li className="w-[15%] text-sm font-semibold">{'연락처'}</li>
+      <li className="w-[15%] text-sm font-semibold">{'최근 레슨'}</li>
+      <li className="w-[15%] text-sm font-semibold">{'다음 레슨'}</li>
+      <li className="w-[17.5%] text-sm font-semibold">{'레슨권'}</li>
+      <li className="w-[12.5%] text-sm font-semibold">{'남은 수강횟수'}</li>
+      <li className="w-[10%] text-sm font-semibold">{'레슨금액'}</li>
     </ul>
   );
 };
@@ -71,9 +52,9 @@ const SalesListsHeader = () => {
 const SalesLists = ({ data }: { data: CoachCustomersData[] }) => {
   if (data.length === 0)
     return (
-      <NoResultContainer>
+      <div>
         <NoResult description={'데이터가 없어요.'} />
-      </NoResultContainer>
+      </div>
     );
 
   return (
@@ -98,32 +79,16 @@ const SalesLists = ({ data }: { data: CoachCustomersData[] }) => {
             <ul
               key={`${centerId}-${customerId}-${name}-${index}`}
               role="row"
-              className={flex({
-                padding: '10px 16px',
-                margin: '4px 0 0 0',
-
-                '& li': {
-                  fontSize: '0.825rem',
-                },
-
-                _hover: {
-                  backgroundColor: 'var(--blue1200)',
-                  borderRadius: '8px',
-                },
-              })}
+              className="flex py-[10px] px-4 mt-1 text-[0.825rem] hover:bg-blue-50 hover:rounded-lg"
             >
-              <li className={css({ width: '10%' })}>{name}</li>
-              <li className={css({ width: '5%' })}>{transferSexType(sex)}</li>
-              <li className={css({ width: '15%' })}>{phone}</li>
-              <li className={css({ width: '15%' })}>
-                {recentLessonTime ?? '-'}
-              </li>
-              <li className={css({ width: '15%' })}>{nextLessonTime ?? '-'}</li>
-              <li className={css({ width: '17.5%' })}>{lessonName}</li>
-              <li className={css({ width: '12.5%' })}>
-                {remainLessonCount} 회
-              </li>
-              <li className={css({ width: '10%' })}>{price}</li>
+              <li className="w-[10%]">{name}</li>
+              <li className="w-[5%]">{transferSexType(sex)}</li>
+              <li className="w-[15%]">{phone}</li>
+              <li className="w-[15%]">{recentLessonTime ?? '-'}</li>
+              <li className="w-[15%]">{nextLessonTime ?? '-'}</li>
+              <li className="w-[17.5%]">{lessonName}</li>
+              <li className="w-[12.5%]">{remainLessonCount} 회</li>
+              <li className="w-[10%]">{price}</li>
             </ul>
           );
         },
@@ -131,14 +96,5 @@ const SalesLists = ({ data }: { data: CoachCustomersData[] }) => {
     </>
   );
 };
-
-const NoResultContainer = styled('div', {
-  base: {
-    width: '100%',
-    height: '100%',
-    padding: '16px 0',
-    borderRadius: '8px',
-  },
-});
 
 export default CustomerLists;

@@ -1,20 +1,19 @@
 'use client';
 
-import Modal from '@components/layer/Modal';
+import Modal from '@/shared/components/layer/Modal';
 import {
   PageHeader,
   CustomerList,
   Portal,
   GenerateCustomerModal,
-} from '@components/index';
+} from '@/shared/components/index';
 import { CustomerWhiteIcon } from '@icons/index';
-import { css } from 'styled-system/css';
 import { useCustomerListQuery } from '../query/CustomerQuery';
-import Loading from '@components/common/Loading';
+import Loading from '@/shared/components/common/Loading';
 import Tab from '@widgets/Tab';
-import IconButton from '@components/button/IconButton';
+import IconButton from '@/shared/components/button/IconButton';
 import { useState } from 'react';
-import { INFINITEQUERY_PAGE_LIMIT } from '@/constants/page';
+import { INFINITEQUERY_PAGE_LIMIT } from '@/shared/constants/page';
 
 const CustomerScreen = () => {
   const { Tabs, TabLists, TabList, TabPanels, TabPanel } = Tab();
@@ -36,9 +35,7 @@ const CustomerScreen = () => {
         <TabLists>
           <TabList activeKey={'all'}>전체</TabList>
         </TabLists>
-        <div
-          className={css({ position: 'absolute', top: '76px', right: '24px' })}
-        >
+        <div className="absolute top-[76px] right-6">
           <IconButton
             iconAlign="left"
             iconSrc={CustomerWhiteIcon}
@@ -49,8 +46,8 @@ const CustomerScreen = () => {
             onClick={() => setOpenModal(true)}
           />
         </div>
-        <TabPanels className={css({ height: 'calc(100% - 2.875rem - 52px)' })}>
-          <TabPanel activeKey={'all'} className={css({ height: '100%' })}>
+        <TabPanels className="h-[calc(100%-2.875rem-52px)]">
+          <TabPanel activeKey={'all'} className="h-full">
             <CustomerList
               data={data?.pages}
               hasNextPage={hasNextPage}
@@ -64,7 +61,7 @@ const CustomerScreen = () => {
           <Modal
             title={'회원 등록'}
             setOpenModal={setOpenModal}
-            css={{ top: '47.5%' }}
+            className="top-[47.5%]"
           >
             <GenerateCustomerModal setOpenModal={setOpenModal} />
           </Modal>

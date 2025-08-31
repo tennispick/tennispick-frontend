@@ -8,8 +8,6 @@ import AutoComplete from './AutoComplete';
 import { SetStateAction } from '@/types/index';
 import CheckedCustomer from './CheckedCustomer';
 import { CommonDataProps } from '@features/schedule/type/regularLesson';
-import { css } from 'styled-system/css';
-import { Flex } from 'styled-system/jsx';
 
 type Props = {
   lessonType: LessonType;
@@ -79,24 +77,18 @@ const ScheduleModalRegularLessonCommonScheduleCustomerInput = ({
   const isShowAutoComplete = keyword && searchedCustomerData.length > 0;
 
   return (
-    <div className={css({ margin: '0 0 20px 0' })}>
-      <Flex alignItems="center">
+    <div className="mb-5">
+      <div className="flex items-center">
         <Image
           src={CustomerBlackIcon}
           alt="scheduleType"
           width={20}
           height={20}
-          className={css({ margin: '0 6px 0 0' })}
+          className="mr-1.5"
         />
         회원 선택
-      </Flex>
-      <div
-        className={css({
-          width: ' 80%',
-          margin: '12px 0 0 0',
-          padding: '0 0 0 2px',
-        })}
-      >
+      </div>
+      <div className="w-4/5 mt-3 pl-0.5">
         <ScheduleModalInput
           id="customer"
           type="text"
@@ -104,17 +96,7 @@ const ScheduleModalRegularLessonCommonScheduleCustomerInput = ({
           value={keyword}
           onChange={onChangeCustomerInputHandler}
           placeholder="회원명으로 검색해주세요."
-          className={css({
-            width: '100%',
-            height: '100%',
-            padding: '10px 0 10px 10px',
-            fontSize: '0.95rem',
-            marginRight: 0,
-            border: '1px solid var(--grey300)',
-            borderRadius: '8px',
-            outline: 0,
-            zIndex: 1,
-          })}
+          className="w-full h-full py-2.5 pl-2.5 text-base mr-0 border border-gray-300 rounded-lg outline-none z-10"
         >
           {isShowAutoComplete && (
             <AutoComplete

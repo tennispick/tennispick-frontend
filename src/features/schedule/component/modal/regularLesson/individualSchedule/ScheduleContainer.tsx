@@ -4,7 +4,7 @@ import ScheduleByDate from './ScheduleByDate';
 import ScheduleByDay from './ScheduleByDay';
 import { SetStateAction } from '@/types/index';
 import { IndividualFormDataProps } from '@features/schedule/type/regularLesson';
-import { getDayOfThisWeek } from '@utils/date';
+import { getDayOfThisWeek } from 'src/shared/utils/date';
 import StartTimeSelect from './StartTimeSelect';
 import EndTimeSelect from './EndTimeSelect';
 

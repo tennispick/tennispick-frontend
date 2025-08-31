@@ -1,11 +1,10 @@
 import { FormEventHandler, useState } from 'react';
 import CustomerSearch from './CustomerSearch';
-import { NoResult } from '@components/index';
+import { NoResult } from '@/shared/components/index';
 import ScheduleModalRecentHistoryModal from '../recentHistoryModal/RecentHistoryModal';
 import { CustomerLessonHistoryData } from '@apis/customer/customer.type';
 import ScheduleLessonContainer from './ScheduleLessonContainer';
 import { createAdditionalScheduleLesson } from '@apis/schedule/schedule.api';
-import { css } from 'styled-system/css';
 
 const EMPTY_CUSTOMER_LESSON = { id: '', name: '' };
 
@@ -53,15 +52,8 @@ const ModalAdditionalLesson = () => {
   const isSelectCustomerLessonData = !!customerLessonData;
 
   return (
-    <form
-      onSubmit={onSubmitHandler}
-      className={css({
-        backgroundColor: 'var(--white100)',
-        padding: '24px',
-        borderRadius: '12px',
-      })}
-    >
-      <div className={css({ minHeight: '420px' })}>
+    <form onSubmit={onSubmitHandler} className="bg-white p-6 rounded-xl">
+      <div className="min-h-[420px]">
         <CustomerSearch
           setCustomerLesson={setCustomerLesson}
           setCustomerIdHandler={setCustomerIdHandler}
@@ -73,7 +65,7 @@ const ModalAdditionalLesson = () => {
             handleCloseModal={handleCloseModal}
           />
         ) : (
-          <div className={css({ height: '420px' })}>
+          <div className="h-[420px]">
             <NoResult description="회원을 검색해주세요." />
           </div>
         )}

@@ -7,7 +7,6 @@ import {
   URL_FETCH_TOTAL_COACH_SALES,
   URL_FETCH_TOTAL_SALES,
 } from './payment.url';
-import { axios } from '@utils/axios';
 import {
   CustomerPaymentCreateApiPayload,
   CustomerPaymentRefundListApiPayload,
@@ -18,11 +17,12 @@ import {
   CoachSettlementByDateData,
 } from './payment.type';
 import { Response } from '@/types/response';
+import { axiosInstance } from '@lib/axios';
 
 export const getPaymentRefundList = async (
   params: CustomerPaymentRefundListApiPayload,
 ): Promise<Response<CustomerPaymentRefundData[]>> => {
-  return await axios.get(`${URL_FETCH_PAYMENT_REFUND_LIST}`, {
+  return await axiosInstance.get(`${URL_FETCH_PAYMENT_REFUND_LIST}`, {
     params: {
       type: params.type,
       customerId: params.customerId,
@@ -32,11 +32,11 @@ export const getPaymentRefundList = async (
 
 export const getTotalSales = async (): Promise<
   Response<LessonTotalPaymentData[]>
-> => await axios.get(`${URL_FETCH_TOTAL_SALES}`);
+> => await axiosInstance.get(`${URL_FETCH_TOTAL_SALES}`);
 
 export const getCoachTotalSales = async (): Promise<
   Response<CoachTotalSalesData[]>
-> => await axios.get(`${URL_FETCH_TOTAL_COACH_SALES}`);
+> => await axiosInstance.get(`${URL_FETCH_TOTAL_COACH_SALES}`);
 
 export const getCoachMonthSettlement = async (
   coachId: string,
@@ -46,18 +46,18 @@ export const getCoachMonthSettlement = async (
     sales: CoachSettlementByDateData[];
     settlement: CoachSettlementByDateData[];
   }>
-> => await axios.get(`${URL_COACH_MONTH_SETTLEMENT}/${coachId}?date=${date}`);
+> => await axiosInstance.get(`${URL_COACH_MONTH_SETTLEMENT}/${coachId}?date=${date}`);
 
 export const createCustomerPayment = async (
   params: CustomerPaymentCreateApiPayload,
-) => await axios.post(`${URL_CREATE_PAYMENT}`, params);
+) => await axiosInstance.post(`${URL_CREATE_PAYMENT}`, params);
 
 export const createCustomerRefund = async (
   params: CustomerRefundCreateApiPayload,
-) => await axios.post(`${URL_CREATE_REFUND}`, params);
+) => await axiosInstance.post(`${URL_CREATE_REFUND}`, params);
 
 export const cancelCustomerRefund = async (id: number) =>
-  await axios.delete(`${URL_DELETE_REFUND}`, {
+  await axiosInstance.delete(`${URL_DELETE_REFUND}`, {
     params: {
       id,
     },

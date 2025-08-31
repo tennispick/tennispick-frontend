@@ -1,13 +1,12 @@
 'use client';
 
-import IconButton from '@components/button/IconButton';
+import IconButton from '@/shared/components/button/IconButton';
 import NoticeList from '@features/community/component/List';
-import { PageHeader } from '@components/index';
+import { PageHeader } from '@/shared/components/index';
 import Tab from '@widgets/Tab';
 import { EditWhiteIcon } from '@icons/index';
 
 import { useRouter } from 'next/navigation';
-import { css } from 'styled-system/css';
 
 const CommunityScreen = () => {
   const { Tabs, TabLists, TabList, TabPanels, TabPanel } = Tab();
@@ -23,9 +22,7 @@ const CommunityScreen = () => {
         <TabLists>
           <TabList activeKey={'all'}>전체</TabList>
         </TabLists>
-        <div
-          className={css({ position: 'absolute', top: '76px', right: '24px' })}
-        >
+        <div className="absolute right-6 top-[76px]">
           <IconButton
             iconAlign="left"
             iconSrc={EditWhiteIcon}
@@ -36,8 +33,8 @@ const CommunityScreen = () => {
             onClick={handleCreateNoticeClick}
           />
         </div>
-        <TabPanels className={css({ height: 'calc(100% - 2.875rem - 52px)' })}>
-          <TabPanel activeKey={'all'} className={css({ height: '100%' })}>
+        <TabPanels className="h-[calc(100%_-_2.875rem_-_52px)]">
+          <TabPanel activeKey={'all'} className="h-full">
             <NoticeList />
           </TabPanel>
         </TabPanels>

@@ -8,8 +8,7 @@ import {
   Fragment,
 } from 'react';
 import { SetStateAction } from '../types';
-import { flex } from 'styled-system/patterns';
-import { css } from 'styled-system/css';
+import clsx from 'clsx';
 
 type TabContextType = {
   activeKey: string;
@@ -62,11 +61,7 @@ const TabLists = ({
 }: PropsWithChildren<HTMLAttributes<HTMLUListElement>>) => {
   return (
     <ul
-      className={flex({
-        height: '2.875rem',
-        alignItems: 'center',
-        borderBottom: '1px solid var(--grey100)',
-      })}
+      className="flex h-[2.875rem] items-center border-b border-[var(--grey100)]"
       {...rest}
     >
       {Children.map(children, (child, index) => {
@@ -83,36 +78,22 @@ const TabList = ({
 }: TabListProps) => {
   const { activeKey, setActiveKey } = useContext(TabContext);
 
-  const activeStyle = css.raw({
-    color: 'var(--black100)',
-    fontWeight: 500,
-    borderBottom: '2px solid var(--black100)',
-  });
-
-  const deactiveStyle = css.raw({
-    color: 'var(--deactive-color)',
-  });
-
   const handleTabePanelClick = () => {
     if (handleActiveKeyClick) handleActiveKeyClick();
     setActiveKey(panelKey);
   };
 
-  const style = activeKey === panelKey ? activeStyle : deactiveStyle;
+  const isActive = activeKey === panelKey;
 
   return (
     <li
       key={panelKey}
       onClick={handleTabePanelClick}
-      className={css(
-        {
-          height: '2.875rem',
-          margin: '0 24px 0 0',
-          padding: '8px 0 12px 0',
-          transition: 'all 0.1s',
-          cursor: 'pointer',
-        },
-        style,
+      className={clsx(
+        'h-[2.875rem] mr-6 py-2 pb-3 transition-all duration-100 cursor-pointer',
+        isActive
+          ? 'text-[var(--black100)] font-medium border-b-2 border-[var(--black100)]'
+          : 'text-[var(--deactive-color)]',
       )}
     >
       {children}

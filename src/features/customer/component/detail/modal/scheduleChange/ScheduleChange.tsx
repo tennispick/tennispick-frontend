@@ -4,7 +4,7 @@ import OriginSchedule from './OriginSchedule';
 import { FormEventHandler, useEffect, useState } from 'react';
 import { CustomerLessonScheduleHistoryData } from '@apis/customer/customer.type';
 import useInput from '@hooks/useInput';
-import { isEmptyObj } from '@utils/object';
+import { isEmptyObj } from 'src/shared/utils/object';
 import { useScheduleChangeMutation } from '@features/schedule/mutation/scheduleMutation';
 
 type CustomerLessonItem = Pick<

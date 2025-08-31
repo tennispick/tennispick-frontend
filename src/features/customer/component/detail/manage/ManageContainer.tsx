@@ -4,7 +4,6 @@ import SNBList from '../../SNBList';
 import ManageLesson from './lesson/Lesson';
 import ManageAdditionalLesson from './AdditionalLesson';
 import ManageMemo from './memo/Memo';
-import { css } from 'styled-system/css';
 
 type Props = {
   customerId: string;
@@ -23,20 +22,13 @@ const ManageContainer = ({ customerId }: Props) => {
 
   return (
     <>
-      <section className={css({ width: '49%' })}>
+      <section className="w-[49%]">
         <SNBList
           currentItem={currentItem}
           setCurrentItem={setCurrentItem}
           tabLists={lessonList}
         />
-        <div
-          className={css({
-            height: '50vh',
-            backgroundColor: 'var(--grey400)',
-            borderRadius: '16px',
-            padding: '12px',
-          })}
-        >
+        <div className="h-[50vh] bg-gray-200 rounded-2xl p-3">
           {
             {
               lesson: (

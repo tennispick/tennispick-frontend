@@ -8,9 +8,7 @@ import { SetStateAction } from '@/types/index';
 import StartTimeSelect from '../../StartTimeSelect';
 import EndTimeSelect from '../../EndTimeSelect';
 import { DuplicateCheckScheduleLessonData } from '@apis/schedule/schedule.type';
-import { numberZeroFillFormat } from '@utils/numberForm';
-import { Flex } from 'styled-system/jsx';
-import { css } from 'styled-system/css';
+import { numberZeroFillFormat } from 'src/shared/utils/numberForm';
 
 type Props = {
   lessonDateType: LessonDateType;
@@ -52,17 +50,17 @@ const ScheduleModalRegularLessonAllOnceScheduleSelectContainer = ({
 
   return (
     <div>
-      <Flex alignItems="center">
+      <div className="flex items-center">
         <Image
           src={CalendarBlackIcon}
           alt={'scheduleType'}
           width={20}
           height={20}
-          className={css({ margin: '0 6px 0 0' })}
+          className="mr-1.5"
         />
         스케줄 일정 입력
-      </Flex>
-      <div className={css({ margin: '12px 0 0 0' })}>
+      </div>
+      <div className="mt-3">
         {allOnceSchedule.map((item, index) => {
           const { date, day, startTime, endTime } = item;
 
@@ -79,7 +77,7 @@ const ScheduleModalRegularLessonAllOnceScheduleSelectContainer = ({
           const isDuplicate =
             isDuplicateList &&
             isDuplicateList.length > 0 &&
-            isDuplicateList.map((el: any) => {
+            isDuplicateList.some((el: any) => {
               const { result } = el;
               return (
                 item.startTime === result.startTime &&
@@ -90,12 +88,10 @@ const ScheduleModalRegularLessonAllOnceScheduleSelectContainer = ({
 
           return (
             <div key={`${date}-${day}-${startTime}-${endTime}-${index}`}>
-              <Flex alignItems="center">
-                <Flex alignItems="center">
-                  <span className={css({ margin: '0 16px 0 0' })}>
-                    {index + 1}.
-                  </span>
-                  <div className={css({ width: '140px' })}>
+              <div className="flex items-center">
+                <div className="flex items-center">
+                  <span className="mr-4">{index + 1}.</span>
+                  <div className="w-[140px]">
                     {
                       {
                         date: (
@@ -118,7 +114,7 @@ const ScheduleModalRegularLessonAllOnceScheduleSelectContainer = ({
                       }[lessonDateType]
                     }
                   </div>
-                </Flex>
+                </div>
                 <StartTimeSelect
                   index={index}
                   startTime={item.startTime}
@@ -132,14 +128,8 @@ const ScheduleModalRegularLessonAllOnceScheduleSelectContainer = ({
                   setAllOnceSchedule={setAllOnceSchedule}
                   lessonTime={lessonTime}
                 />
-              </Flex>
-              <div
-                className={css({
-                  padding: '0 0 0 28px',
-                  margin: '8px 0 0 0',
-                  color: 'var(--red200)',
-                })}
-              >
+              </div>
+              <div className="pl-7 mt-2 text-red-500">
                 {isDuplicate && <>예약이 불가능한 날짜에요.</>}
               </div>
             </div>

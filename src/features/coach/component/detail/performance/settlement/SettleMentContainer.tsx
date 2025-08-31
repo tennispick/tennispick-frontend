@@ -1,25 +1,25 @@
+import React, { FormEventHandler, useState } from 'react';
 import InformationIcon from '@icons/information';
-import { css } from 'styled-system/css';
-import { styled } from 'styled-system/jsx';
-import { flex } from 'styled-system/patterns';
 import { CenterPaymentState } from '@lib/zustand/center';
 import Incentive from './Incentive';
 import EstimatedReceipt from './EstimatedReceipt';
-import { FormEventHandler, useState } from 'react';
 import useModal from '@hooks/useModal';
 import ModalBody from './modal/ModalBody';
 import SearchPeriodSelectRow from '../SearchPeriodSelectRow';
-import { addNumberCommas, numberZeroFillFormat } from '@utils/numberForm';
+import {
+  addNumberCommas,
+  numberZeroFillFormat,
+} from 'src/shared/utils/numberForm';
 import {
   getIncentiveBySales,
   getSalaryApplyTaxRateBySales,
-} from '@utils/settlement';
+} from 'src/shared/utils/settlement';
 import { useCoachMonthSettlementQuery } from '@features/home/query/salesQuery';
 import { lastDayOfMonth, startOfDay } from 'date-fns';
-import { getDateToKoreanString } from '@utils/date';
-import Button from '@components/button/Button';
-import LayerConfirmModal from '@components/layer/ConfirmModal';
-import Input from '@components/input/Input';
+import { getDateToKoreanString } from 'src/shared/utils/date';
+import Button from '@/shared/components/button/Button';
+import LayerConfirmModal from '@/shared/components/layer/ConfirmModal';
+import Input from '@/shared/components/input/Input';
 import { useUpdateCoachIncentiveMutation } from '@features/coach/mutate/coach';
 
 type Props = {
@@ -112,43 +112,39 @@ const SettleMentContainer = ({ coachId, paymentSettingStore }: Props) => {
         handleYearChange={handleYearChange}
         handleMonthChange={handleMonthChange}
       />
-      <InfoField>
-        <InfoLabel>월 기본 급여</InfoLabel>
+      <div className="flex items-center mb-1.5">
+        <div className="w-[calc(12vw-16px)] text-sm">월 기본 급여</div>
         <div>{addNumberCommas(salary)} 원</div>
-      </InfoField>
-      <InfoField>
-        <InfoLabel className={css({ fontWeight: 600 })}>
+      </div>
+      <div className="flex items-center mb-1.5">
+        <div className="w-[calc(12vw-16px)] text-sm font-semibold">
           지급 인센티브
-        </InfoLabel>
-        <div
-          className={css({ width: 'calc(10vw - 16px)', textAlign: 'right' })}
-        >
+        </div>
+        <div className="w-[calc(10vw-16px)] text-right">
           {addNumberCommas(incentive)} 원
         </div>
         <Button
           variant="positive"
           size="sm"
           label="인센티브 설정하기"
-          className={css({ marginLeft: 'auto' })}
+          className="ml-auto"
           onClick={() => setShowLayerConfirmModal(true)}
         />
-      </InfoField>
+      </div>
       <Incentive
         totalSalesOption={totalSalesOption}
         totalSales={totalSales}
         individualSalesOption={individualSalesOption}
         individualSales={individualSales}
       />
-      <InfoField>
-        <InfoLabel className={css({ fontWeight: 600 })}>
+      <div className="flex items-center mb-1.5">
+        <div className="w-[calc(12vw-16px)] text-sm font-semibold">
           {numberZeroFillFormat(month, 2)}월 예상 수령액
-        </InfoLabel>
-        <div
-          className={css({ width: 'calc(10vw - 16px)', textAlign: 'right' })}
-        >
+        </div>
+        <div className="w-[calc(10vw-16px)] text-right">
           {addNumberCommas(salary + incentive - totalTax)} 원
         </div>
-      </InfoField>
+      </div>
       <EstimatedReceipt
         salary={salary}
         settlement={data?.settlement ?? 0}
@@ -157,20 +153,10 @@ const SettleMentContainer = ({ coachId, paymentSettingStore }: Props) => {
         individualSales={individualSales}
       />
       <div
-        className={flex({
-          height: '56px',
-          alignItems: 'center',
-          gap: '8px',
-          backgroundColor: 'var(--blue1200)',
-          color: 'var(--blue500)',
-          borderRadius: '0.5rem',
-          fontWeight: 600,
-          padding: '0 1rem',
-          cursor: 'pointer',
-        })}
+        className="flex h-14 items-center gap-2 bg-blue-50 text-blue-500 rounded-lg font-semibold px-4 cursor-pointer"
         onClick={handleShowModal}
       >
-        <InformationIcon fill={'var(--blue500)'} />
+        <InformationIcon fill={'#0077F0'} />
         {'정산내역 상세보기 >'}
       </div>
       {showLayerConfirmModal && (
@@ -185,13 +171,7 @@ const SettleMentContainer = ({ coachId, paymentSettingStore }: Props) => {
               type="text"
               name="incentive"
               placeholder="인센티브를 입력해주세요."
-              className={css({
-                width: '100%',
-                fontSize: '0.925rem',
-                border: '1px solid var(--grey300)',
-                borderRadius: '8px',
-                padding: '10px 32px 10px 12px',
-              })}
+              className="w-full text-sm border border-gray-300 rounded-lg px-3 py-2"
             />
           </form>
         </LayerConfirmModal>
@@ -199,20 +179,5 @@ const SettleMentContainer = ({ coachId, paymentSettingStore }: Props) => {
     </>
   );
 };
-
-const InfoField = styled('div', {
-  base: {
-    height: '32px',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '2vw',
-    margin: '0 0 12px 0',
-  },
-});
-const InfoLabel = styled('div', {
-  base: {
-    width: '10vw',
-  },
-});
 
 export default SettleMentContainer;

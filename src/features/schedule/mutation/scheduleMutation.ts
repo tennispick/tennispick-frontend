@@ -4,7 +4,7 @@ import {
   createScheduleLesson,
 } from '@apis/schedule/schedule.api';
 import { ResponseType } from 'src/types';
-import { isEmptyObj } from '@utils/object';
+import { isEmptyObj } from 'src/shared/utils/object';
 
 export const useScheduleMutation = () => {
   return useMutation({

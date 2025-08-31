@@ -5,8 +5,6 @@ import { CustomerLessonListQueryData } from '@features/customer/type/customer.ty
 import { ChangeEvent, useEffect, useState } from 'react';
 import { SetStateAction } from '@/types/index';
 import { CommonDataProps } from '@features/schedule/type/regularLesson';
-import { css } from 'styled-system/css';
-import { Flex } from 'styled-system/jsx';
 
 type Props = {
   lessonId: string;
@@ -50,24 +48,18 @@ const ScheduleModalRegularLessonCommonScheduleLessonSelect = ({
   }, [id]);
 
   return (
-    <div className={css({ margin: '0 0 20px 0' })}>
-      <Flex alignItems="center">
+    <div className="mb-5">
+      <div className="flex items-center">
         <Image
           src={LessonCouponBlackIcon}
           alt={'scheduleType'}
           width={20}
           height={20}
-          className={css({ margin: '0 6px 0 0' })}
+          className="mr-1.5"
         />
         수강권 선택
-      </Flex>
-      <div
-        className={css({
-          width: ' 80%',
-          margin: '12px 0 0 0',
-          padding: '0 0 0 2px',
-        })}
-      >
+      </div>
+      <div className="w-4/5 mt-3 pl-0.5">
         <ScheduleModalSelect
           name="lesson"
           data={

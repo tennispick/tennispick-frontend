@@ -1,6 +1,5 @@
+import React from 'react';
 import CheckboxGroup from '@widgets/CheckboxGroup';
-import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
 
 type Props = {
   checkList: Array<{ id: string; value: string }>;
@@ -16,14 +15,8 @@ const PaymentTypeRow = ({
   handleCheckboxClick,
 }: Props) => {
   return (
-    <div
-      className={flex({
-        alignItems: 'center',
-        gap: '2vw',
-        margin: '0 0 24px 0',
-      })}
-    >
-      <div className={css({ width: '10vw' })}>결제 유형</div>
+    <div className="flex items-center gap-[2vw] mb-6">
+      <div className="w-[10vw]">결제 유형</div>
       <CheckboxGroup
         checkList={checkList}
         checkedItems={checkedItems}

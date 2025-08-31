@@ -3,10 +3,9 @@
 import { useState } from 'react';
 import DashboardHeader from './DashboardHeader';
 import CustomerList from './CustomerList';
-import { css } from 'styled-system/css';
 import { useCustomerListQuery } from '@features/customer/query/CustomerQuery';
-import Loading from '@components/common/Loading';
-import { INFINITEQUERY_PAGE_LIMIT } from '@/constants/page';
+import Loading from '@/shared/components/common/Loading';
+import { INFINITEQUERY_PAGE_LIMIT } from '@/shared/constants/page';
 
 const searchOptions = [
   { label: '회원명', value: 'name' },
@@ -33,7 +32,7 @@ const CustomerDashboard = () => {
 
   if (isLoading || !data)
     return (
-      <div className={css({ width: '65%' })}>
+      <div className="w-[65%]">
         <Loading />
       </div>
     );
@@ -41,7 +40,7 @@ const CustomerDashboard = () => {
   const totalCustomerCount = data?.pages.length;
 
   return (
-    <div className={css({ width: '65%', height: '100%' })}>
+    <div className="h-full w-[65%]">
       <DashboardHeader
         totalCount={totalCustomerCount}
         searchOption={searchOption}

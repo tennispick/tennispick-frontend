@@ -1,10 +1,7 @@
 import { useCustomerDetailQuery } from '@features/customer/query/CustomerQuery';
 import { ProfileManIcon } from '@icons/index';
-import { transferSexType } from '@utils/switch';
+import { transferSexType } from 'src/shared/utils/switch';
 import Image from 'next/image';
-import { css } from 'styled-system/css';
-import { styled } from 'styled-system/jsx';
-import { flex } from 'styled-system/patterns';
 
 type Props = {
   customerId: string;
@@ -18,89 +15,51 @@ const CustomerModalCustomerInfoContainer = ({
   const { data } = useCustomerDetailQuery({ id: customerId });
   const { name, email, birth, phone, sex } = data;
   return (
-    <div className={flex({ height: '130px' })}>
-      <div
-        className={flex({
-          width: '70%',
-          height: '130px',
-          borderBottom: '1px solid var(--grey100)',
-          borderRight: '1px solid var(--grey100)',
-          padding: '12px 28px 12px 28px',
-        })}
-      >
-        <div className={css({ width: '20%' })}>
+    <div className="flex h-[130px]">
+      <div className="flex w-[70%] h-[130px] border-b border-r border-gray-300 p-3 px-7">
+        <div className="w-[20%]">
           <Image
             src={ProfileManIcon}
             alt="profile man"
             placeholder="empty"
             priority={true}
-            className={css({ width: '100%', height: '100%' })}
+            className="w-full h-full"
           />
         </div>
-        <div
-          className={flex({
-            width: '40%',
-            flexDirection: 'column',
-            gap: '4px',
-          })}
-        >
-          <InfoRow>
-            <div className={css({ width: '96px', fontWeight: 600 })}>이름</div>
+        <div className="flex w-[40%] flex-col gap-1">
+          <div className="flex items-center">
+            <div className="w-24 font-semibold">이름</div>
             <div>{name}</div>
-          </InfoRow>
-          <InfoRow>
-            <div className={css({ width: '96px', fontWeight: 600 })}>
-              이메일
-            </div>
+          </div>
+          <div className="flex items-center">
+            <div className="w-24 font-semibold">이메일</div>
             <div>{email}</div>
-          </InfoRow>
-          <InfoRow>
-            <div className={css({ width: '96px', fontWeight: 600 })}>
-              생년월일
-            </div>
+          </div>
+          <div className="flex items-center">
+            <div className="w-24 font-semibold">생년월일</div>
             <div>{birth}</div>
-          </InfoRow>
-          <InfoRow>
-            <div className={css({ width: '96px', fontWeight: 600 })}>
-              연락처
-            </div>
+          </div>
+          <div className="flex items-center">
+            <div className="w-24 font-semibold">연락처</div>
             <div>{phone}</div>
-          </InfoRow>
+          </div>
         </div>
-        <div
-          className={flex({
-            width: '40%',
-            flexDirection: 'column',
-            gap: '4px',
-          })}
-        >
-          <InfoRow>
-            <div className={css({ width: '96px', fontWeight: 600 })}>성별</div>
+        <div className="flex w-[40%] flex-col gap-1">
+          <div className="flex items-center">
+            <div className="w-24 font-semibold">성별</div>
             <div>{transferSexType(sex)}</div>
-          </InfoRow>
-          <InfoRow>
-            <div className={css({ width: '96px', fontWeight: 600 })}>상태</div>
+          </div>
+          <div className="flex items-center">
+            <div className="w-24 font-semibold">상태</div>
             <div>수강없음</div>
-          </InfoRow>
+          </div>
         </div>
       </div>
-      <div
-        className={css({
-          position: 'relative',
-          width: '30%',
-          height: '130px',
-          borderBottom: '1px solid var(--grey100)',
-          padding: '0 28px',
-        })}
-      >
+      <div className="relative w-[30%] h-[130px] border-b border-gray-300 px-7">
         <span
-          className={css({
-            position: 'absolute',
-            bottom: '16px',
-            color: isPayment ? 'var(--business-color)' : 'var(--red200)',
-            fontSize: '1.3rem',
-            fontWeight: 600,
-          })}
+          className={`absolute bottom-4 text-xl font-semibold ${
+            isPayment ? 'text-slate-700' : 'text-red-400'
+          }`}
         >
           {isPayment ? '결제 상세내역' : '환불 상세내역'}
         </span>
@@ -108,12 +67,5 @@ const CustomerModalCustomerInfoContainer = ({
     </div>
   );
 };
-
-const InfoRow = styled('div', {
-  base: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-});
 
 export default CustomerModalCustomerInfoContainer;

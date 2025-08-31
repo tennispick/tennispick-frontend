@@ -2,11 +2,9 @@ import { useState } from 'react';
 import ScheduleByDateHeader from '../component/Header';
 import useKeyEscEvent from '@hooks/useKeyEscEvent';
 import ScheduleByDateTimeTable from '../component/TimeTable';
-import ModalCustomer from '@components/layer/calendar/customer/Customer';
-import ModalCalendar from '@components/layer/calendar/Calendar';
+import ModalCustomer from '@/shared/components/layer/calendar/customer/Customer';
+import ModalCalendar from '@/shared/components/layer/calendar/Calendar';
 import { ScheduleLessonByDateData } from '@apis/schedule/schedule.type';
-import { flex } from 'styled-system/patterns';
-import { css } from 'styled-system/css';
 
 type Props = {
   day: Date;
@@ -28,19 +26,19 @@ const ScheduleByDate = ({ handleCloseModalClick, day }: Props) => {
   useKeyEscEvent({ event: handleCloseModalClick });
 
   return (
-    <div className={css({ width: '100%', height: '100%' })}>
+    <div className="h-full w-full">
       <ScheduleByDateHeader
         day={day}
         handleCloseModalClick={handleCloseModalClick}
         customerInfo={customerInfo}
       />
-      <div className={flex({ height: 'calc(100% - 64px)' })}>
+      <div className="flex h-[calc(100%_-_64px)]">
         <ScheduleByDateTimeTable
           day={day}
           onChangeCustomerIdHandler={onChangeCustomerIdHandler}
           onChangeCustomerInfoHandler={onChangeCustomerInfoHandler}
         />
-        <div className={flex({ flexDirection: 'column', width: '70%' })}>
+        <div className="flex w-[70%] flex-col">
           <ModalCustomer
             day={day}
             customerId={customerId}

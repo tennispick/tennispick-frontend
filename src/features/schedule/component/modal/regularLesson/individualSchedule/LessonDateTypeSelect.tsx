@@ -3,7 +3,6 @@ import ScheduleModalSelect from '../../Select';
 import { SetStateAction } from '@/types/index';
 import { IndividualFormDataProps } from '@features/schedule/type/regularLesson';
 import { LessonDateType } from '@features/lesson/type/lesson.type';
-import { css } from 'styled-system/css';
 
 const data = [
   {
@@ -51,10 +50,7 @@ const ScheduleModalRegularLessonIndividualScheduleLessonDateTypeSelect = ({
     <ScheduleModalSelect
       name="lessonDateType"
       data={data}
-      className={css({
-        width: 'calc(15% - 8px)',
-        margin: '0 0 0 8px',
-      })}
+      className="w-[calc(15%-8px)] ml-2"
       selected={lessonDateType}
       onChangeHandler={onChangeHandler}
       disabled={disabled}

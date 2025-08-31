@@ -4,11 +4,9 @@ import { useRouter } from 'next/navigation';
 import { EditWhiteIcon } from '@icons/index';
 
 import useInput from '@hooks/useInput';
-import { Input, Select } from '@components/index';
+import { Input, Select } from '@/shared/components/index';
 import { createLesson } from '@apis/lesson/lesson.api';
-import { Flex, styled } from 'styled-system/jsx';
-import { css } from 'styled-system/css';
-import IconButton from '@components/button/IconButton';
+import IconButton from '@/shared/components/button/IconButton';
 
 type Props = {
   setOpenModal: SetStateAction<boolean>;
@@ -77,37 +75,61 @@ const LessonModal = ({ setOpenModal }: Props) => {
 
   return (
     <form onSubmit={onSubmitHandler}>
-      <InputWrapper label={'레슨권 이름'}>
-        <TextField
-          name={'name'}
-          placeholder={'레슨권 이름을 입력해주세요.'}
-          onChange={onChangeFormData}
-          requiredStatus={formData.name.isRequired}
-          requiredText={'레슨권 이름이 입력되지 않았어요.'}
-        />
-      </InputWrapper>
-      <InputWrapper label={'총 레슨횟수'}>
-        <TextField
-          name={'lessonCount'}
-          placeholder={'총 레슨 횟수를 입력해주세요. ex)3 '}
-          onChange={onChangeFormData}
-          requiredStatus={formData.lessonCount.isRequired}
-          requiredText={'총 레슨 횟수가 입력되지 않았어요.'}
-        />
-      </InputWrapper>
-      <InputWrapper label={'가격'}>
-        <TextField
-          name={'price'}
-          placeholder={'레슨권 가격 입력해주세요.'}
-          onChange={onChangeFormData}
-          requiredStatus={formData.price.isRequired}
-          requiredText={'가격이 입력되지 않았어요.'}
-        />
-      </InputWrapper>
-      <Flex>
-        <div className={css({ width: 'calc(50%)' })}>
+      <div className="text-sm mb-3">
+        <label className="block">레슨권 이름</label>
+        <div className="w-1/2 p-[10px_0_10px_10px] mt-3">
+          <input
+            name={'name'}
+            placeholder={'레슨권 이름을 입력해주세요.'}
+            onChange={onChangeFormData}
+            className="w-full border border-gray-300 rounded px-3 py-2"
+          />
+          {formData.name.isRequired && (
+            <span className="text-red-500 text-xs">
+              레슨권 이름이 입력되지 않았어요.
+            </span>
+          )}
+        </div>
+      </div>
+
+      <div className="text-sm mb-3">
+        <label className="block">총 레슨횟수</label>
+        <div className="w-1/2 p-[10px_0_10px_10px] mt-3">
+          <input
+            name={'lessonCount'}
+            placeholder={'총 레슨 횟수를 입력해주세요. ex)3 '}
+            onChange={onChangeFormData}
+            className="w-full border border-gray-300 rounded px-3 py-2"
+          />
+          {formData.lessonCount.isRequired && (
+            <span className="text-red-500 text-xs">
+              총 레슨 횟수가 입력되지 않았어요.
+            </span>
+          )}
+        </div>
+      </div>
+
+      <div className="text-sm mb-3">
+        <label className="block">가격</label>
+        <div className="w-1/2 p-[10px_0_10px_10px] mt-3">
+          <input
+            name={'price'}
+            placeholder={'레슨권 가격 입력해주세요.'}
+            onChange={onChangeFormData}
+            className="w-full border border-gray-300 rounded px-3 py-2"
+          />
+          {formData.price.isRequired && (
+            <span className="text-red-500 text-xs">
+              가격이 입력되지 않았어요.
+            </span>
+          )}
+        </div>
+      </div>
+
+      <div className="flex">
+        <div className="w-1/2">
           <div>평일/주말 여부</div>
-          <Row>
+          <div className="flex items-center h-[46px] leading-[30px] py-1 my-2 mb-3">
             <Select
               name={'isWeekday'}
               width={'calc(70% - 4px)'}
@@ -117,11 +139,11 @@ const LessonModal = ({ setOpenModal }: Props) => {
               <option value={'weekday'}>평일</option>
               <option value={'weekend'}>주말</option>
             </Select>
-          </Row>
+          </div>
         </div>
-        <div className={css({ width: 'calc(50%)', padding: '0 0 0 16px' })}>
+        <div className="w-1/2 pl-4">
           <div>수강권 유형</div>
-          <Row>
+          <div className="flex items-center h-[46px] leading-[30px] py-1 my-2 mb-3">
             <Select
               name={'type'}
               width={'calc(70% + 12px)'}
@@ -131,34 +153,56 @@ const LessonModal = ({ setOpenModal }: Props) => {
               <option value={'private'}>개인</option>
               <option value={'group'}>그룹</option>
             </Select>
-          </Row>
+          </div>
         </div>
-      </Flex>
-      <InputWrapper label={'1회 레슨시간'}>
-        <TextField
-          name={'time'}
-          placeholder={'1회 레슨시간을 입력해주세요.'}
-          onChange={onChangeFormData}
-          requiredStatus={formData.time.isRequired}
-          requiredText={'1회 레슨시간이 입력되지 않았어요.'}
-        />
-      </InputWrapper>
-      <InputWrapper label={'일주일 당 레슨횟수'}>
-        <TextField
-          name={'timesAweek'}
-          placeholder={'일주일 당 레슨횟수을 입력해주세요.'}
-          onChange={onChangeFormData}
-          requiredStatus={formData.timesAweek.isRequired}
-          requiredText={'일주일 당 레슨횟수가 입력되지 않았어요.'}
-        />
-      </InputWrapper>
-      <InputWrapper label={'레슨권 설명'}>
-        <TextField
-          name={'description'}
-          placeholder={'레슨권 설명을 입력해주세요.'}
-          onChange={onChangeFormData}
-        />
-      </InputWrapper>
+      </div>
+
+      <div className="text-sm mb-3">
+        <label className="block">1회 레슨시간</label>
+        <div className="w-1/2 p-[10px_0_10px_10px] mt-3">
+          <input
+            name={'time'}
+            placeholder={'1회 레슨시간을 입력해주세요.'}
+            onChange={onChangeFormData}
+            className="w-full border border-gray-300 rounded px-3 py-2"
+          />
+          {formData.time.isRequired && (
+            <span className="text-red-500 text-xs">
+              1회 레슨시간이 입력되지 않았어요.
+            </span>
+          )}
+        </div>
+      </div>
+
+      <div className="text-sm mb-3">
+        <label className="block">일주일 당 레슨횟수</label>
+        <div className="w-1/2 p-[10px_0_10px_10px] mt-3">
+          <input
+            name={'timesAweek'}
+            placeholder={'일주일 당 레슨횟수을 입력해주세요.'}
+            onChange={onChangeFormData}
+            className="w-full border border-gray-300 rounded px-3 py-2"
+          />
+          {formData.timesAweek.isRequired && (
+            <span className="text-red-500 text-xs">
+              일주일 당 레슨횟수가 입력되지 않았어요.
+            </span>
+          )}
+        </div>
+      </div>
+
+      <div className="text-sm mb-3">
+        <label className="block">레슨권 설명</label>
+        <div className="w-1/2 p-[10px_0_10px_10px] mt-3">
+          <input
+            name={'description'}
+            placeholder={'레슨권 설명을 입력해주세요.'}
+            onChange={onChangeFormData}
+            className="w-full border border-gray-300 rounded px-3 py-2"
+          />
+        </div>
+      </div>
+
       <IconButton
         type="submit"
         iconAlign="left"
@@ -168,40 +212,10 @@ const LessonModal = ({ setOpenModal }: Props) => {
         size="lg"
         label={'레슨권 생성하기'}
         full={true}
-        className={css({ marginLeft: 'auto' })}
+        className="ml-auto"
       />
     </form>
   );
 };
-
-const Row = styled('div', {
-  base: {
-    display: 'flex',
-    alignItems: 'center',
-    height: '46px',
-    lineHeight: '30px',
-    padding: '4px 0',
-    margin: '8px 0 12px 0',
-  },
-});
-
-const InputWrapper = styled(Input, {
-  base: {
-    fontSize: '0.875rem',
-    margin: '0 0 12px 0',
-
-    '& label': {
-      display: 'block',
-    },
-  },
-});
-
-const TextField = styled(Input.TextField, {
-  base: {
-    width: '50%',
-    padding: '10px 0 10px 10px !important', // TODO !important 제거
-    margin: '12px 0 0 0',
-  },
-});
 
 export default LessonModal;

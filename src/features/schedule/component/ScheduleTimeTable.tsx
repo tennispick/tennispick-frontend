@@ -1,8 +1,7 @@
 import DayScheduleCalendarHeader from './dayScheduleCalendar/header/Header';
 import { STRING_WEEK_LIST } from '../constants/schedule';
-import Loading from '@components/common/Loading';
+import Loading from '@/shared/components/common/Loading';
 import { CoachListData } from '@apis/coach/coach.type';
-import { css } from 'styled-system/css';
 import DayScheduleCalendarBody from './dayScheduleCalendar/Body';
 
 type Props = {
@@ -15,24 +14,13 @@ const ScheduleTimeTable = ({ timeTableMapList, coachList, data }: Props) => {
   if (!data) return <Loading />;
 
   return (
-    <section
-      className={css({
-        height: 'calc(100% - 40px)',
-        overflowY: 'scroll',
-      })}
-    >
+    <section className="h-[calc(100%-40px)] overflow-y-scroll">
       {Array.from(timeTableMapList).map(([key, monthMapList]) => {
         const weekKrIndex = STRING_WEEK_LIST.findIndex((week) => week === key);
         return (
           <div
             key={key}
-            className={css({
-              textAlign: 'center',
-              width: '100%',
-              margin: '0 0 24px 0',
-              borderTop: '1px solid var(--black100)',
-              borderLeft: '1px solid var(--black100)',
-            })}
+            className="text-center w-full mb-6 border-t border-l border-black"
           >
             <DayScheduleCalendarHeader
               weekKrIndex={weekKrIndex}

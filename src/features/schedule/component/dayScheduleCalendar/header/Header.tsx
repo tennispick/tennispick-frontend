@@ -1,6 +1,5 @@
 import { STRING_WEEK_LIST_KR } from '@features/schedule/constants/schedule';
 import { CoachListData } from '@apis/coach/coach.type';
-import { flex } from 'styled-system/patterns';
 import RowHeader from './RowHeader';
 import RowData from './RowData';
 
@@ -16,7 +15,7 @@ const DayScheduleCalendarHeader = ({
   coachList,
 }: Props) => {
   return (
-    <div className={flex({ width: '100%' })}>
+    <div className="flex w-full">
       <RowHeader dateKr={STRING_WEEK_LIST_KR[weekKrIndex]} />
       <RowData coachList={coachList} monthMaps={monthList} />
     </div>

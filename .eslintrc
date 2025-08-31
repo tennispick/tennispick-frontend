@@ -4,30 +4,35 @@
     "prettier",
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended",
     "next/core-web-vitals"
   ],
-  "parser": "@typescript-eslint/parser",
   "plugins": [
-    "@typescript-eslint",
     "react",
     "eslint-plugin-simple-import-sort"
   ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
     "react/react-in-jsx-scope": "off",
-    "react-hooks/rules-of-hooks": "off",
     "no-unused-vars": "off",
     "no-useless-escape": "off",
     "no-empty-pattern": "off",
-    "@typescript-eslint/no-explicit-any": 0, // any 허용
     "react-hooks/exhaustive-deps": "warn",
     "react/no-unescaped-entities": "off",
-    "@next/next/no-page-custom-font": "off",
-    "@typescript-eslint/no-unused-vars": ["warn"]
+    "@next/next/no-page-custom-font": "off"
   },
   "env": {
     "browser": true,
     "node": true,
     "es6": true
+  },
+  "globals": {
+    "React": "readonly",
+    "JSX": "readonly"
   }
 }

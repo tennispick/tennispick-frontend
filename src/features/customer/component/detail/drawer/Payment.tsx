@@ -2,10 +2,9 @@ import { CustomerPaymentRefundData } from '@apis/payment/payment.type';
 import DrawerInputContainer from './InputContainer';
 import { transferCategory } from '@features/customer/util/payment';
 import { transferPaymentType } from '@features/customer/util/payment';
-import { addNumberCommas } from '@utils/numberForm';
+import { addNumberCommas } from 'src/shared/utils/numberForm';
 import { transferDiscountType } from '@features/customer/util/payment';
 import { transferRefundRange } from '@features/customer/util/payment';
-import { css } from 'styled-system/css';
 
 type Props = {
   data: CustomerPaymentRefundData;
@@ -13,7 +12,7 @@ type Props = {
 
 const CustomerDetailDrawerPayment = ({ data }: Props) => {
   return (
-    <form className={css({ height: 'calc(100% - 48px)', overflowY: 'scroll' })}>
+    <form className="h-[calc(100%-48px)] overflow-y-scroll">
       <DrawerInputContainer
         label="수강권 이름"
         value={data.lessonName}
@@ -47,33 +46,25 @@ const CustomerDetailDrawerPayment = ({ data }: Props) => {
       <DrawerInputContainer
         label="할인유형"
         value={transferDiscountType(data.discountType)}
-        className={css({
-          color: data.refundPrice ? 'var(--blue100)' : 'var(--black100)',
-        })}
+        className={data.refundPrice ? 'text-blue-500' : 'text-black'}
         readOnly
       />
       <DrawerInputContainer
         label="할인금액"
         value={addNumberCommas(data.discountPrice)}
-        className={css({
-          color: data.refundPrice ? 'var(--blue100)' : 'var(--black100)',
-        })}
+        className={data.refundPrice ? 'text-blue-500' : 'text-black'}
         readOnly
       />
       <DrawerInputContainer
         label="환불금액"
         value={data.refundPrice ? addNumberCommas(data.refundPrice) : '0'}
-        className={css({
-          color: data.refundPrice ? 'var(--red100)' : 'var(--black100)',
-        })}
+        className={data.refundPrice ? 'text-red-500' : 'text-black'}
         readOnly
       />
       <DrawerInputContainer
         label="환불유형"
         value={data.refundRange ? transferRefundRange(data.refundRange) : '-'}
-        className={css({
-          color: data.refundPrice ? 'var(--red100)' : 'var(--black100)',
-        })}
+        className={data.refundPrice ? 'text-red-500' : 'text-black'}
         readOnly
       />
       <DrawerInputContainer

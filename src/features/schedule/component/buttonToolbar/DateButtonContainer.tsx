@@ -1,6 +1,5 @@
-import Button from '@components/button/Button';
-import { addDays } from '@utils/date';
-import { Flex } from 'styled-system/jsx';
+import Button from '@/shared/components/common/Button';
+import { addDays } from 'src/shared/utils/date';
 
 type Props = {
   calendarDate: Date;
@@ -21,20 +20,20 @@ const DateButtonContainer = ({ calendarDate, handleChangeDate }: Props) => {
   };
 
   return (
-    <Flex gap="8px">
+    <div className="flex gap-2">
       <Button
-        size="md"
-        variant={'text'}
+        size="sm"
+        variant={'outline'}
         label={'이전'}
         onClick={() => handleWeekClick(-7)}
       />
       <Button
-        size="md"
-        variant={'text'}
+        size="sm"
+        variant={'outline'}
         label={'다음'}
         onClick={() => handleWeekClick(7)}
       />
-    </Flex>
+    </div>
   );
 };
 

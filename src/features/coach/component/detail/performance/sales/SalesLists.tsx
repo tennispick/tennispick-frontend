@@ -1,13 +1,11 @@
 import { CoachTotalSalesListData } from '@apis/coach/coach.type';
-import { NoResult } from '@components/index';
+import { NoResult } from '@/shared/components/index';
 import {
   transferCategory,
   transferDiscountType,
   transferPaymentType,
 } from '@features/customer/util/payment';
-import { addNumberCommas } from '@utils/numberForm';
-import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
+import { addNumberCommas } from 'src/shared/utils/numberForm';
 
 type Props = {
   data: CoachTotalSalesListData[];
@@ -15,12 +13,7 @@ type Props = {
 
 const SalesLists = ({ data }: Props) => {
   return (
-    <div
-      className={css({
-        height: 'calc(100% - 14.25rem)',
-        borderRadius: '1.25rem',
-      })}
-    >
+    <div className="h-[calc(100%-14.25rem)] rounded-xl">
       {data.length === 0 ? (
         <NoResult description={'매출내역이 아직 존재하지 않아요.'} />
       ) : (
@@ -35,27 +28,17 @@ const SalesLists = ({ data }: Props) => {
 
 const SalesListsHeader = () => {
   return (
-    <ul
-      role="rowheader"
-      className={flex({
-        padding: '0 16px',
-
-        '& li': {
-          fontSize: '0.875rem',
-          fontWeight: 600,
-        },
-      })}
-    >
-      <li className={css({ width: '7%' })}>{'이름'}</li>
-      <li className={css({ width: '20%' })}>{'상품명'}</li>
-      <li className={css({ width: '8%' })}>{'결제유형'}</li>
-      <li className={css({ width: '5%' })}>{'유형'}</li>
-      <li className={css({ width: '10%' })}>{'결제금액'}</li>
-      <li className={css({ width: '10%' })}>{'환불금액'}</li>
-      <li className={css({ width: '10%' })}>{'할인유형'}</li>
-      <li className={css({ width: '10%' })}>{'할인금액'}</li>
-      <li className={css({ width: '10%' })}>{'총 금액'}</li>
-      <li className={css({ width: '20%' })}>{'결제날짜'}</li>
+    <ul role="rowheader" className="flex px-4">
+      <li className="w-[7%] text-sm font-semibold">{'이름'}</li>
+      <li className="w-[20%] text-sm font-semibold">{'상품명'}</li>
+      <li className="w-[8%] text-sm font-semibold">{'결제유형'}</li>
+      <li className="w-[5%] text-sm font-semibold">{'유형'}</li>
+      <li className="w-[10%] text-sm font-semibold">{'결제금액'}</li>
+      <li className="w-[10%] text-sm font-semibold">{'환불금액'}</li>
+      <li className="w-[10%] text-sm font-semibold">{'할인유형'}</li>
+      <li className="w-[10%] text-sm font-semibold">{'할인금액'}</li>
+      <li className="w-[10%] text-sm font-semibold">{'총 금액'}</li>
+      <li className="w-[20%] text-sm font-semibold">{'결제날짜'}</li>
     </ul>
   );
 };
@@ -81,44 +64,32 @@ const SalesListsBody = ({ data }: { data: CoachTotalSalesListData[] }) => {
             <ul
               key={customerLessonId}
               role="row"
-              className={flex({
-                padding: '10px 16px',
-                margin: '4px 0 0 0',
-
-                '& li': {
-                  fontSize: '0.825rem',
-                },
-
-                _hover: {
-                  backgroundColor: 'var(--blue1200)',
-                  borderRadius: '8px',
-                },
-              })}
+              className="flex py-[10px] px-4 mt-1 hover:bg-blue-50 hover:rounded-lg"
             >
-              <li className={css({ width: '7%' })}>{customerName}</li>
-              <li className={css({ width: '20%' })}>{lessonName}</li>
-              <li className={css({ width: '8%' })}>
+              <li className="w-[7%] text-[0.825rem]">{customerName}</li>
+              <li className="w-[20%] text-[0.825rem]">{lessonName}</li>
+              <li className="w-[8%] text-[0.825rem]">
                 {transferPaymentType(type)}
               </li>
-              <li className={css({ width: '5%' })}>
+              <li className="w-[5%] text-[0.825rem]">
                 {transferCategory(category)}
               </li>
-              <li className={css({ width: '10%' })}>
+              <li className="w-[10%] text-[0.825rem]">
                 {addNumberCommas(totalPrice)}
               </li>
-              <li className={css({ width: '10%' })}>
+              <li className="w-[10%] text-[0.825rem]">
                 {addNumberCommas(refundPrice)}
               </li>
-              <li className={css({ width: '10%' })}>
+              <li className="w-[10%] text-[0.825rem]">
                 {transferDiscountType(discountType)}
               </li>
-              <li className={css({ width: '10%' })}>
+              <li className="w-[10%] text-[0.825rem]">
                 {addNumberCommas(discountPrice)}
               </li>
-              <li className={css({ width: '10%' })}>
+              <li className="w-[10%] text-[0.825rem]">
                 {addNumberCommas(remainPrice)}
               </li>
-              <li className={css({ width: '20%' })}>{createdAt}</li>
+              <li className="w-[20%] text-[0.825rem]">{createdAt}</li>
             </ul>
           );
         },

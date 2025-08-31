@@ -1,8 +1,6 @@
 import RadioButtonGroup from '@widgets/RadioButtonGroup';
 import RangeCalendar from '@widgets/RangeCalendar';
 import { MouseEvent } from 'react';
-import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
 
 type Props = {
   data: Array<{ label: string; value: string }>;
@@ -24,14 +22,8 @@ const ModalSearchPeriod = ({
   handleChangeEndDate,
 }: Props) => {
   return (
-    <div
-      className={flex({
-        alignItems: 'center',
-        gap: '1.5rem',
-        margin: '0 0 24px 0',
-      })}
-    >
-      <div className={css({ width: '7rem' })}>조회 기간</div>
+    <div className="mb-6 flex items-center gap-6">
+      <div className="w-28">조회 기간</div>
       <SearchQuickButton
         data={initialData}
         checkedItem={checkedItem}

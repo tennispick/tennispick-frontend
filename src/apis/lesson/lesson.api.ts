@@ -1,4 +1,3 @@
-import { axios } from '@utils/axios';
 import {
   LessonListApiPayload,
   LessonDetailApiPayload,
@@ -15,17 +14,18 @@ import {
 import { Response } from '@/types/response';
 import { LessonDetailData } from '@features/lesson/type/lesson.type';
 import { LessonListQueryData } from '@features/lesson/type/lesson.type';
+import { axiosInstance } from '@lib/axios';
 
 const getLessonList = async (
   params: LessonListApiPayload,
 ): Promise<Response<LessonListQueryData[]>> =>
-  await axios.get(`${URL_FETCH_LESSON_LIST}/${params.type}`);
+  await axiosInstance.get(`${URL_FETCH_LESSON_LIST}/${params.type}`);
 
 const getLessonDetail = async (
   params: LessonDetailApiPayload,
 ): Promise<Response<LessonDetailData>> => {
   try {
-    const result = await axios.get(`${URL_FETCH_LESSON_DETAIL}/${params.id}`);
+    const result = await axiosInstance.get(`${URL_FETCH_LESSON_DETAIL}/${params.id}`);
     return result;
   } catch (error) {
     console.error(error);
@@ -34,14 +34,14 @@ const getLessonDetail = async (
 };
 
 const createLesson = async (params: LessonCreateApiPayload) =>
-  await axios.post(`${URL_CREATE_LESSON}`, params);
+  await axiosInstance.post(`${URL_CREATE_LESSON}`, params);
 
 const updateLesson = async (params: LessonUpdateApiPayload) =>
-  await axios.put(`${URL_MODIFY_LESSON}`, params);
+  await axiosInstance.put(`${URL_MODIFY_LESSON}`, params);
 
 const deleteLesson = async (id: string) => {
   try {
-    const { status, data } = await axios.delete(`${URL_DELETE_LESSON}/${id}`);
+    const { status, data } = await axiosInstance.delete(`${URL_DELETE_LESSON}/${id}`);
     if (status === 200 && data.affectedRows > 0)
       alert('레슨권이 삭제되었어요.');
     else alert('레슨권 삭제에 실패했어요.\n관리자에게 문의해주세요.');

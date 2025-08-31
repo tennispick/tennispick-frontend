@@ -13,9 +13,7 @@ import RemoveIcon from '@icons/remove.svg';
 import { LessonDateType } from '@features/lesson/type/lesson.type';
 import { DayType } from '@features/schedule/type/schedule.type';
 import { useDuplicateCheckScheduleLessonQuery } from '@features/schedule/query/scheduleQuery';
-import { numberZeroFillFormat } from '@utils/numberForm';
-import { flex } from 'styled-system/patterns';
-import { css } from 'styled-system/css';
+import { numberZeroFillFormat } from 'src/shared/utils/numberForm';
 
 type Props = {
   index: number;
@@ -107,15 +105,7 @@ const ScheduleModalRegularLessonIndividualScheduleRow = ({
   return (
     <>
       <div
-        className={flex({
-          width: '100%',
-          alignItems: 'center',
-          margin: isDuplicate() ? '0' : '0 0 16px 0',
-
-          '& div': {
-            padding: '0 0 0 8px',
-          },
-        })}
+        className={`flex w-full items-center ${isDuplicate() ? '' : 'mb-4'} [&_div]:pl-2`}
       >
         <LessonDateTypeSelect
           index={index}
@@ -151,20 +141,13 @@ const ScheduleModalRegularLessonIndividualScheduleRow = ({
           setFormData={setIndividualData}
           disabled={disabled}
         />
-        <div
-          className={flex({
-            width: '56px',
-            alignItems: 'center',
-            margin: '0 0 0 8px',
-            padding: '0 0 0 4px!important',
-          })}
-        >
+        <div className="flex w-14 items-center ml-2 pl-1 !pr-0">
           <Image
             src={AddIcon}
             alt="add iocn"
             width={24}
             height={24}
-            className={css({ cursor: 'pointer' })}
+            className="cursor-pointer"
             onClick={onClickAppendScheduleRowHandler}
           />
           {index > 0 && (
@@ -173,21 +156,14 @@ const ScheduleModalRegularLessonIndividualScheduleRow = ({
               alt="remove iocn"
               width={24}
               height={24}
-              className={css({ cursor: 'pointer', margin: '0 0 0 4px' })}
+              className="cursor-pointer ml-1"
               onClick={onClickRemoveScheduleRowHandler}
             />
           )}
         </div>
       </div>
       {isDuplicate() && (
-        <div
-          className={css({
-            color: 'var(--red200)',
-            padding: '16px 0 16px 12px',
-          })}
-        >
-          예약이 불가능한 날짜에요.
-        </div>
+        <div className="text-red-500 py-4 pl-3">예약이 불가능한 날짜에요.</div>
       )}
     </>
   );

@@ -1,10 +1,8 @@
 import { CoachListData } from '@apis/coach/coach.type';
 import { ScheduleLessonByDateData } from '@apis/schedule/schedule.type';
-import Portal from '@components/Portal';
-import RightSideContainer from '@components/layer/RightSideContainer';
+import Portal from '@/shared/components/Portal';
+import RightSideContainer from '@/shared/components/layer/RightSideContainer';
 import { useState } from 'react';
-import { css } from 'styled-system/css';
-import { Flex } from 'styled-system/jsx';
 import ScheduleDrawer from '../../Drawer';
 
 type Props = {
@@ -23,40 +21,30 @@ const BodyDateData = ({ coachList, reservationCustomerList }: Props) => {
 
   return (
     <>
-      <Flex className={css({ height: '100%' })}>
+      <div className="flex h-full">
         {coachList.map(({ id, name, coachColor }) => {
           const isReservation =
             reservationCount > 0 &&
             reservationCustomerList.some(({ coachId }) => coachId === id);
 
           return (
-            <Flex
+            <div
               key={id}
-              justifyContent="center"
-              alignItems="center"
-              className={css({
+              className={`flex justify-center items-center text-center text-xs border-r border-black border-b border-gray-900 ${isReservation ? 'cursor-pointer' : 'cursor-default'}`}
+              style={{
                 width: `calc(100% / ${coachCount})`,
-                height: '100%',
-                textAlign: 'center',
-                borderRight: '1px solid var(--black100)',
-                borderBottom: '1px solid var(--grey1000)',
-                fontSize: '0.625rem',
-                color: `${
-                  isReservation ? 'var(--white100)' : 'var(--black100)'
-                }`,
-                cursor: isReservation ? 'pointer' : 'default',
-
-                backgroundColor: `${
-                  isReservation ? `var(--${coachColor})` : 'var(--white100)'
-                }`,
-              })}
+                backgroundColor: isReservation
+                  ? `var(--${coachColor})`
+                  : 'white',
+                color: isReservation ? 'white' : 'black',
+              }}
               onClick={() => handleShowDrawer(isReservation)}
             >
               {isReservation && name.charAt(0)}
-            </Flex>
+            </div>
           );
         })}
-      </Flex>
+      </div>
       {showDrawer && (
         <Portal id={'drawer'}>
           <RightSideContainer

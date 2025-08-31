@@ -1,7 +1,5 @@
 import { CoachPerformanceData } from '@apis/coach/coach.type';
-import { addNumberCommas } from '@utils/numberForm';
-import { css } from 'styled-system/css';
-import { Divider, Flex, styled } from 'styled-system/jsx';
+import { addNumberCommas } from 'src/shared/utils/numberForm';
 
 type Props = {
   salary: number;
@@ -28,7 +26,7 @@ const ModalReceipt = ({
   totalSettlement,
 }: Props) => {
   return (
-    <Flex gap="5" className={css({ height: 'calc(100% - 56px)' })}>
+    <div className="flex gap-5 h-[calc(100%-56px)]">
       <LessonPerformance performance={performance} />
       <Sales
         salary={salary}
@@ -37,39 +35,51 @@ const ModalReceipt = ({
         individualSales={individualSales}
       />
       <Salary tax={tax} totalSettlement={totalSettlement} />
-    </Flex>
+    </div>
   );
 };
 
 const LessonPerformance = ({ performance }: Pick<Props, 'performance'>) => {
   const { lessonCount, lesson, customerAttendance } = performance;
   return (
-    <section className={sectionStyle}>
-      <ReceiptTitle>이번 달 코치님의 성과</ReceiptTitle>
-      <Field>
-        <Label>수업 일 수</Label>
-        <Value>{lessonCount?.[0].lessonDateCount ?? 0} 일</Value>
-      </Field>
-      <Field>
-        <Label>강습 횟수</Label>
-        <Value>{lesson?.[0].regularLessonCount ?? 0} 회</Value>
-      </Field>
-      <Field>
-        <Label>보강 횟수</Label>
-        <Value>{lesson?.[0].additionalLessonCount ?? 0} 회</Value>
-      </Field>
-      <Field>
-        <Label>출석 인원 수</Label>
-        <Value>{customerAttendance?.[0].attendedLessons ?? 0} 명</Value>
-      </Field>
-      <Field>
-        <Label>결석 회원 수</Label>
-        <Value>{customerAttendance?.[0].absentLessons ?? 0} 명</Value>
-      </Field>
-      <Field>
-        <Label>출석률</Label>
-        <Value>{customerAttendance?.[0].attendanceRate ?? 0} %</Value>
-      </Field>
+    <section className="w-1/3 bg-gray-50 rounded-lg p-6">
+      <div className="text-lg font-semibold mb-6">이번 달 코치님의 성과</div>
+      <div className="flex items-center justify-between mb-3 pl-6 relative before:content-[''] before:absolute before:top-1/2 before:-left-4 before:w-3 before:h-3 before:bg-[url('/icons/arrow/item_list_arrow.svg')] before:bg-contain before:bg-no-repeat before:-translate-x-1/2 before:-translate-y-1/2">
+        <div>수업 일 수</div>
+        <div className="font-semibold">
+          {lessonCount?.[0].lessonDateCount ?? 0} 일
+        </div>
+      </div>
+      <div className="flex items-center justify-between mb-3 pl-6 relative before:content-[''] before:absolute before:top-1/2 before:-left-4 before:w-3 before:h-3 before:bg-[url('/icons/arrow/item_list_arrow.svg')] before:bg-contain before:bg-no-repeat before:-translate-x-1/2 before:-translate-y-1/2">
+        <div>강습 횟수</div>
+        <div className="font-semibold">
+          {lesson?.[0].regularLessonCount ?? 0} 회
+        </div>
+      </div>
+      <div className="flex items-center justify-between mb-3 pl-6 relative before:content-[''] before:absolute before:top-1/2 before:-left-4 before:w-3 before:h-3 before:bg-[url('/icons/arrow/item_list_arrow.svg')] before:bg-contain before:bg-no-repeat before:-translate-x-1/2 before:-translate-y-1/2">
+        <div>보강 횟수</div>
+        <div className="font-semibold">
+          {lesson?.[0].additionalLessonCount ?? 0} 회
+        </div>
+      </div>
+      <div className="flex items-center justify-between mb-3 pl-6 relative before:content-[''] before:absolute before:top-1/2 before:-left-4 before:w-3 before:h-3 before:bg-[url('/icons/arrow/item_list_arrow.svg')] before:bg-contain before:bg-no-repeat before:-translate-x-1/2 before:-translate-y-1/2">
+        <div>출석 인원 수</div>
+        <div className="font-semibold">
+          {customerAttendance?.[0].attendedLessons ?? 0} 명
+        </div>
+      </div>
+      <div className="flex items-center justify-between mb-3 pl-6 relative before:content-[''] before:absolute before:top-1/2 before:-left-4 before:w-3 before:h-3 before:bg-[url('/icons/arrow/item_list_arrow.svg')] before:bg-contain before:bg-no-repeat before:-translate-x-1/2 before:-translate-y-1/2">
+        <div>결석 회원 수</div>
+        <div className="font-semibold">
+          {customerAttendance?.[0].absentLessons ?? 0} 명
+        </div>
+      </div>
+      <div className="flex items-center justify-between mb-3 pl-6 relative before:content-[''] before:absolute before:top-1/2 before:-left-4 before:w-3 before:h-3 before:bg-[url('/icons/arrow/item_list_arrow.svg')] before:bg-contain before:bg-no-repeat before:-translate-x-1/2 before:-translate-y-1/2">
+        <div>출석률</div>
+        <div className="font-semibold">
+          {customerAttendance?.[0].attendanceRate ?? 0} %
+        </div>
+      </div>
     </section>
   );
 };
@@ -81,44 +91,50 @@ const Sales = ({
   individualSales,
 }: Omit<Props, 'settlement' | 'performance' | 'totalSettlement'>) => {
   return (
-    <section className={sectionStyle}>
-      <ReceiptTitle>이번 달 매출 및 급여</ReceiptTitle>
-      <Field>
-        <Label>월 기본 급여</Label>
-        <Value>{addNumberCommas(salary)} 원</Value>
-      </Field>
-      <Field>
-        <Label>총 매출 인센티브</Label>
-        <Value>{totalSales} %</Value>
-      </Field>
-      <Field>
-        <Label>개별 인센티브</Label>
-        <Value>{individualSales} %</Value>
-      </Field>
-      <ReceiptTitle className={css({ margin: '24px 0' })}>
-        공제내역
-      </ReceiptTitle>
-      <Field>
-        <Label>페널티 점수</Label>
-        <Value>0 점</Value>
-      </Field>
-      <Field>
-        <Label>국민연금</Label>
-        <Value>{addNumberCommas(tax.nationalPension)} 원</Value>
-      </Field>
-      <Field>
-        <Label>건강보험</Label>
-        <Value>{addNumberCommas(tax.healthInsurance)} 원</Value>
-      </Field>
-      <Field>
-        <Label>고용보험</Label>
-        <Value>{addNumberCommas(tax.employmentInsurance)} 원</Value>
-      </Field>
-      <Field>
-        <Label>산재보험</Label>
-        <Value>{addNumberCommas(tax.workersCompensationInsurance)} 원</Value>
-      </Field>
-      <Divider color="var(--grey100)" margin="24px 0" />
+    <section className="w-1/3 bg-gray-50 rounded-lg p-6">
+      <div className="text-lg font-semibold mb-6">이번 달 매출 및 급여</div>
+      <div className="flex items-center justify-between mb-3 pl-6 relative before:content-[''] before:absolute before:top-1/2 before:-left-4 before:w-3 before:h-3 before:bg-[url('/icons/arrow/item_list_arrow.svg')] before:bg-contain before:bg-no-repeat before:-translate-x-1/2 before:-translate-y-1/2">
+        <div>월 기본 급여</div>
+        <div className="font-semibold">{addNumberCommas(salary)} 원</div>
+      </div>
+      <div className="flex items-center justify-between mb-3 pl-6 relative before:content-[''] before:absolute before:top-1/2 before:-left-4 before:w-3 before:h-3 before:bg-[url('/icons/arrow/item_list_arrow.svg')] before:bg-contain before:bg-no-repeat before:-translate-x-1/2 before:-translate-y-1/2">
+        <div>총 매출 인센티브</div>
+        <div className="font-semibold">{totalSales} %</div>
+      </div>
+      <div className="flex items-center justify-between mb-3 pl-6 relative before:content-[''] before:absolute before:top-1/2 before:-left-4 before:w-3 before:h-3 before:bg-[url('/icons/arrow/item_list_arrow.svg')] before:bg-contain before:bg-no-repeat before:-translate-x-1/2 before:-translate-y-1/2">
+        <div>개별 인센티브</div>
+        <div className="font-semibold">{individualSales} %</div>
+      </div>
+      <div className="text-lg font-semibold my-6">공제내역</div>
+      <div className="flex items-center justify-between mb-3 pl-6 relative before:content-[''] before:absolute before:top-1/2 before:-left-4 before:w-3 before:h-3 before:bg-[url('/icons/arrow/item_list_arrow.svg')] before:bg-contain before:bg-no-repeat before:-translate-x-1/2 before:-translate-y-1/2">
+        <div>페널티 점수</div>
+        <div className="font-semibold">0 점</div>
+      </div>
+      <div className="flex items-center justify-between mb-3 pl-6 relative before:content-[''] before:absolute before:top-1/2 before:-left-4 before:w-3 before:h-3 before:bg-[url('/icons/arrow/item_list_arrow.svg')] before:bg-contain before:bg-no-repeat before:-translate-x-1/2 before:-translate-y-1/2">
+        <div>국민연금</div>
+        <div className="font-semibold">
+          {addNumberCommas(tax.nationalPension)} 원
+        </div>
+      </div>
+      <div className="flex items-center justify-between mb-3 pl-6 relative before:content-[''] before:absolute before:top-1/2 before:-left-4 before:w-3 before:h-3 before:bg-[url('/icons/arrow/item_list_arrow.svg')] before:bg-contain before:bg-no-repeat before:-translate-x-1/2 before:-translate-y-1/2">
+        <div>건강보험</div>
+        <div className="font-semibold">
+          {addNumberCommas(tax.healthInsurance)} 원
+        </div>
+      </div>
+      <div className="flex items-center justify-between mb-3 pl-6 relative before:content-[''] before:absolute before:top-1/2 before:-left-4 before:w-3 before:h-3 before:bg-[url('/icons/arrow/item_list_arrow.svg')] before:bg-contain before:bg-no-repeat before:-translate-x-1/2 before:-translate-y-1/2">
+        <div>고용보험</div>
+        <div className="font-semibold">
+          {addNumberCommas(tax.employmentInsurance)} 원
+        </div>
+      </div>
+      <div className="flex items-center justify-between mb-3 pl-6 relative before:content-[''] before:absolute before:top-1/2 before:-left-4 before:w-3 before:h-3 before:bg-[url('/icons/arrow/item_list_arrow.svg')] before:bg-contain before:bg-no-repeat before:-translate-x-1/2 before:-translate-y-1/2">
+        <div>산재보험</div>
+        <div className="font-semibold">
+          {addNumberCommas(tax.workersCompensationInsurance)} 원
+        </div>
+      </div>
+      <div className="border-t border-gray-300 my-6"></div>
     </section>
   );
 };
@@ -128,83 +144,45 @@ const Salary = ({
   totalSettlement,
 }: Pick<Props, 'tax' | 'totalSettlement'>) => {
   return (
-    <section className={sectionStyle}>
-      <ReceiptTitle>이번 달 예상 지급 총액</ReceiptTitle>
-      <Field>
-        <Label>페널티 점수</Label>
-        <Value>0 점</Value>
-      </Field>
-      <Field>
-        <Label>국민연금</Label>
-        <Value>{addNumberCommas(tax.nationalPension)} 원</Value>
-      </Field>
-      <Field>
-        <Label>건강보험</Label>
-        <Value>{addNumberCommas(tax.healthInsurance)} 원</Value>
-      </Field>
-      <Field>
-        <Label>고용보험</Label>
-        <Value>{addNumberCommas(tax.employmentInsurance)} 원</Value>
-      </Field>
-      <Field>
-        <Label>산재보험</Label>
-        <Value>{addNumberCommas(tax.workersCompensationInsurance)} 원</Value>
-      </Field>
-      <Divider color="var(--grey100)" margin="24px 0" />
-      <Field>
-        <Label>지급액</Label>
-        <Value>{addNumberCommas(totalSettlement)} 원</Value>
-      </Field>
+    <section className="w-1/3 bg-gray-50 rounded-lg p-6">
+      <div className="text-lg font-semibold mb-6">이번 달 예상 지급 총액</div>
+      <div className="flex items-center justify-between mb-3 pl-6 relative before:content-[''] before:absolute before:top-1/2 before:-left-4 before:w-3 before:h-3 before:bg-[url('/icons/arrow/item_list_arrow.svg')] before:bg-contain before:bg-no-repeat before:-translate-x-1/2 before:-translate-y-1/2">
+        <div>페널티 점수</div>
+        <div className="font-semibold">0 점</div>
+      </div>
+      <div className="flex items-center justify-between mb-3 pl-6 relative before:content-[''] before:absolute before:top-1/2 before:-left-4 before:w-3 before:h-3 before:bg-[url('/icons/arrow/item_list_arrow.svg')] before:bg-contain before:bg-no-repeat before:-translate-x-1/2 before:-translate-y-1/2">
+        <div>국민연금</div>
+        <div className="font-semibold">
+          {addNumberCommas(tax.nationalPension)} 원
+        </div>
+      </div>
+      <div className="flex items-center justify-between mb-3 pl-6 relative before:content-[''] before:absolute before:top-1/2 before:-left-4 before:w-3 before:h-3 before:bg-[url('/icons/arrow/item_list_arrow.svg')] before:bg-contain before:bg-no-repeat before:-translate-x-1/2 before:-translate-y-1/2">
+        <div>건강보험</div>
+        <div className="font-semibold">
+          {addNumberCommas(tax.healthInsurance)} 원
+        </div>
+      </div>
+      <div className="flex items-center justify-between mb-3 pl-6 relative before:content-[''] before:absolute before:top-1/2 before:-left-4 before:w-3 before:h-3 before:bg-[url('/icons/arrow/item_list_arrow.svg')] before:bg-contain before:bg-no-repeat before:-translate-x-1/2 before:-translate-y-1/2">
+        <div>고용보험</div>
+        <div className="font-semibold">
+          {addNumberCommas(tax.employmentInsurance)} 원
+        </div>
+      </div>
+      <div className="flex items-center justify-between mb-3 pl-6 relative before:content-[''] before:absolute before:top-1/2 before:-left-4 before:w-3 before:h-3 before:bg-[url('/icons/arrow/item_list_arrow.svg')] before:bg-contain before:bg-no-repeat before:-translate-x-1/2 before:-translate-y-1/2">
+        <div>산재보험</div>
+        <div className="font-semibold">
+          {addNumberCommas(tax.workersCompensationInsurance)} 원
+        </div>
+      </div>
+      <div className="border-t border-gray-300 my-6"></div>
+      <div className="flex items-center justify-between mb-3 pl-6 relative before:content-[''] before:absolute before:top-1/2 before:-left-4 before:w-3 before:h-3 before:bg-[url('/icons/arrow/item_list_arrow.svg')] before:bg-contain before:bg-no-repeat before:-translate-x-1/2 before:-translate-y-1/2">
+        <div>지급액</div>
+        <div className="font-semibold">
+          {addNumberCommas(totalSettlement)} 원
+        </div>
+      </div>
     </section>
   );
 };
-
-const sectionStyle = css({
-  width: 'calc(100%/3)',
-  backgroundColor: 'var(--grey400)',
-  borderRadius: '8px',
-  padding: '24px',
-});
-
-const ReceiptTitle = styled('div', {
-  base: {
-    fontSize: '1.125rem',
-    fontWeight: 600,
-    margin: '0 0 24px 0',
-  },
-});
-
-const Field = styled('div', {
-  base: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    margin: '0 0 12px 0',
-    padding: '0 0 0 24px',
-  },
-});
-
-const Label = styled('div', {
-  base: {
-    _before: {
-      content: '""',
-      position: 'absolute',
-      top: '50%',
-      left: '-16px',
-      width: '0.75rem',
-      height: '0.75rem',
-      backgroundSize: 'contain',
-      backgroundRepeat: 'no-repeat',
-      transform: 'translate(-50%, -50%)',
-      backgroundImage: 'url(/icons/arrow/item_list_arrow.svg)',
-    },
-  },
-});
-
-const Value = styled('div', {
-  base: {
-    fontWeight: 600,
-  },
-});
 
 export default ModalReceipt;

@@ -4,9 +4,6 @@ import ScheduleModalInput from '../../Input';
 import { SetStateAction } from '@/types/index';
 import { AllOnceFormDataProps } from '@features/schedule/type/regularLesson';
 import { LessonDateType } from '@features/lesson/type/lesson.type';
-import { Flex } from 'styled-system/jsx';
-import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
 
 type Props = {
   lessonDateType: LessonDateType;
@@ -29,24 +26,18 @@ const ScheduleModalRegularLessonAllOnceScheduleLessonDateTypeInput = ({
   };
 
   return (
-    <div className={css({ margin: '0 0 20px 0' })}>
-      <Flex alignItems="center">
+    <div className="mb-5">
+      <div className="flex items-center">
         <Image
           src={CalendarBlackIcon}
           alt="lessonDateType"
           width={20}
           height={20}
-          className={css({ margin: '0 6px 0 0' })}
+          className="mr-1.5"
         />
         강습날짜 유형 선택
-      </Flex>
-      <div
-        className={flex({
-          alignItems: 'center',
-          margin: '12px 0 0 0',
-          padding: '0 0 0 2px',
-        })}
-      >
+      </div>
+      <div className="flex items-center mt-3 pl-0.5">
         <ScheduleModalInput
           id="date"
           type="radio"

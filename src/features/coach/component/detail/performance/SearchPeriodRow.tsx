@@ -1,6 +1,4 @@
 import RangeCalendar from '@widgets/RangeCalendar';
-import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
 
 type Props = {
   startDate: Date;
@@ -16,14 +14,8 @@ const SearchPeriodRow = ({
   handleChangeEndDate,
 }: Props) => {
   return (
-    <div
-      className={flex({
-        alignItems: 'center',
-        gap: '2vw',
-        margin: '0 0 24px 0',
-      })}
-    >
-      <div className={css({ width: '10vw' })}>조회 기간</div>
+    <div className="flex items-center gap-[2vw] mb-6">
+      <div className="w-[10vw]">조회 기간</div>
       <RangeCalendar
         startDate={startDate}
         endDate={endDate}

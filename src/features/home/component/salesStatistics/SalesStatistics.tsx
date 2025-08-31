@@ -1,12 +1,11 @@
-import IconButton from '@components/button/IconButton';
+import IconButton from '@/shared/components/button/IconButton';
 import SingleRightArrowIcon from '@icons/single_right_arrow.svg';
 import ItemRow from './ItemRow';
 import TotalSalesIcon from '@icons/payment/group_total_sales.svg';
 import AccountTransferIcon from '@icons/payment/group_atm.svg';
 import CardIcon from '@icons/payment/group_credit_card.svg';
 import CashIcon from '@icons/payment/group_attach_money.svg';
-import { css } from 'styled-system/css';
-import { addNumberCommas } from '@utils/numberForm';
+import { addNumberCommas } from 'src/shared/utils/numberForm';
 import { useTotalSalesQuery } from '@features/home/query/statisticsQuery';
 
 type Props = {
@@ -21,16 +20,8 @@ const SalesStatistics = ({ date }: Props) => {
   const [accountTransfer = 0, card = 0, cash = 0, all = 0] = data;
 
   return (
-    <div className={css({ width: 'calc(35% - 20px)' })}>
-      <div
-        className={css({
-          height: '3.75rem',
-          padding: '0 0 16px 0',
-          fontSize: '1.25rem',
-          fontWeight: 600,
-          borderBottom: '1px solid var(--grey100)',
-        })}
-      >
+    <div className="w-[calc(35%_-_20px)]">
+      <div className="h-15 border-b border-b-[var(--grey100)] pb-4 text-xl font-semibold">
         <IconButton
           size="lg"
           variant="primary"
@@ -38,10 +29,10 @@ const SalesStatistics = ({ date }: Props) => {
           iconAlt="single-right-arrow"
           iconAlign="right"
           label="매출 통계보기"
-          className={css({ marginLeft: 'auto' })}
+          className="ml-auto"
         />
       </div>
-      <ul className={css({ padding: '24px 0' })}>
+      <ul className="py-6">
         <ItemRow
           icon={TotalSalesIcon}
           title={'전체 매출현황'}

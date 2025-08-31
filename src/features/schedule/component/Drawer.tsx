@@ -7,9 +7,7 @@ import {
   updateScheduleLesson,
 } from '@apis/schedule/schedule.api';
 import { useRouter } from 'next/navigation';
-import { flex } from 'styled-system/patterns';
-import { css } from 'styled-system/css';
-import IconButton from '@components/button/IconButton';
+import IconButton from '@/shared/components/button/IconButton';
 
 type Props = {
   customer: any;
@@ -93,10 +91,7 @@ const ScheduleDrawer = ({ customer }: Props) => {
   };
 
   return (
-    <form
-      onSubmit={onSubmitHandler}
-      className={css({ height: 'calc(100% - 48px)' })}
-    >
+    <form onSubmit={onSubmitHandler} className="h-[calc(100%-48px)]">
       <ScheduleDrawerInputField
         formData={formData}
         onChangeFormData={onChangeFormData}
@@ -104,13 +99,7 @@ const ScheduleDrawer = ({ customer }: Props) => {
         customerName={customer.map((item: any) => item.customerName).join(', ')}
         lessonTime={customer[0].timeDiff}
       />
-      <div
-        className={flex({
-          width: '100%',
-          position: 'relative',
-          gap: '16px',
-        })}
-      >
+      <div className="flex w-full relative gap-4">
         <IconButton
           type="submit"
           iconAlign="left"

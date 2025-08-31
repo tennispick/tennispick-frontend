@@ -1,8 +1,5 @@
-import Button from '@components/button/Button';
-import { getDateToKoreanString } from '@utils/date';
-import { css } from 'styled-system/css';
-import { Flex } from 'styled-system/jsx';
-import { flex } from 'styled-system/patterns';
+import Button from '@/shared/components/button/Button';
+import { getDateToKoreanString } from 'src/shared/utils/date';
 
 type Props = {
   date: Date;
@@ -19,18 +16,14 @@ const NavigationHeader = ({
   const month = initialDate.getMonth() + 1;
 
   return (
-    <div className={flex({ height: '48px' })}>
-      <Flex alignItems="baseline">
-        <span
-          className={css({ fontSize: '1.275rem', margin: '0 12px 0 0' })}
-        >{`${year}년 ${month}월`}</span>
-        <span
-          className={css({ fontSize: '0.875rem', color: 'var(--blue100)' })}
-        >
+    <div className="flex h-12">
+      <div className="flex items-baseline">
+        <span className="text-xl mr-3">{`${year}년 ${month}월`}</span>
+        <span className="text-sm text-[--blue100]">
           기준시각: {getDateToKoreanString(initialDate)}
         </span>
-      </Flex>
-      <Flex gap="8px" className={css({ margin: '0 12px' })}>
+      </div>
+      <div className="flex gap-2 mx-3">
         <Button
           variant="text"
           size="md"
@@ -43,7 +36,7 @@ const NavigationHeader = ({
           label="다음"
           onClick={handleNextClick}
         />
-      </Flex>
+      </div>
     </div>
   );
 };

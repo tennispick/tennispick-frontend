@@ -1,9 +1,8 @@
 import { SetStateAction } from '@/types/index';
 import { DayType, ScheduleType } from '@features/schedule/type/schedule.type';
 import ScheduleModalSelect from '../../Select';
-import { dayList } from '@utils/day';
-import { getDayOfThisWeek } from '@utils/date';
-import { css } from 'styled-system/css';
+import { dayList } from 'src/shared/utils/day';
+import { getDayOfThisWeek } from 'src/shared/utils/date';
 
 type Props = {
   allOnceSchedule: ScheduleType[];
@@ -45,7 +44,7 @@ const ScheduleModalRegularLessonAllOnceScheduleByDay = ({
     <ScheduleModalSelect
       name="startTime"
       data={data}
-      className={css({ width: '140px' })}
+      className="w-[140px]"
       selected={item.day}
       onChangeHandler={onChangeHandler}
       disabled={disabled}

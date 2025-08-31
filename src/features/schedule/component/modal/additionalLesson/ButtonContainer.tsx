@@ -1,5 +1,4 @@
-import { Button } from '@components/index';
-import { css } from 'styled-system/css';
+import { Button } from '@/shared/components/index';
 
 type Props = {
   onClickCloseModalHandler: () => void;
@@ -8,31 +7,21 @@ type Props = {
 
 const ButtonContainer = ({ onClickCloseModalHandler, disabled }: Props) => {
   return (
-    <div className={css({ width: 'fit-content', margin: '12px 0 0 auto' })}>
+    <div className="w-fit mt-3 ml-auto">
       <Button
         type="button"
         label="취소"
-        css={{
-          width: '160px',
-          fontSize: '1rem',
-          borderRadius: '12px',
-          padding: '16px 0',
-          border: 0,
-        }}
+        variant="outline"
+        size="lg"
+        className="w-40 text-base rounded-xl py-4 border-0"
         onClick={onClickCloseModalHandler}
       />
       <Button
         type="submit"
         label="등록하기"
-        css={{
-          width: '160px',
-          fontSize: '1rem',
-          borderRadius: '12px',
-          backgroundColor: 'var(--blue500)',
-          color: 'var(--white100)',
-          padding: '16px 0',
-          border: 0,
-        }}
+        variant="default"
+        size="lg"
+        className="w-40 text-base rounded-xl bg-blue-500 text-white py-4 border-0"
         disabled={disabled}
       />
     </div>

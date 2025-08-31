@@ -2,14 +2,12 @@ import DrawerInputContainer from './InputContainer';
 import { DeleteWhiteIcon, EditWhiteIcon } from '@icons/index';
 import { CustomerMemoListApiData } from '@apis/customer/customer.type';
 import { deleteCustomerMemo } from '@apis/customer/customer.api';
-import { css } from 'styled-system/css';
-import IconButton from '@components/button/IconButton';
-import { flex } from 'styled-system/patterns';
+import IconButton from '@/shared/components/button/IconButton';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Select } from '@components/index';
-import { FormError } from '@components/FormError';
+import { Select } from '@/shared/components/index';
+import { FormError } from '@/shared/components/FormError';
 import { useUpdateMemoMutate } from '@features/customer/mutate/memo';
 
 const schema = z.object({
@@ -75,10 +73,7 @@ const DrawerMemo = ({ item, handleHideDrawerClick }: Props) => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(handleFormSubmit)}
-      className={css({ height: '100%' })}
-    >
+    <form onSubmit={handleSubmit(handleFormSubmit)} className="h-full">
       <DrawerInputContainer
         {...register('title')}
         label="제목"
@@ -93,21 +88,11 @@ const DrawerMemo = ({ item, handleHideDrawerClick }: Props) => {
         value={position ?? '관리자'}
         disabled
       />
-      <div className={css({ margin: '0 0 12px 0' })}>
-        <div
-          className={css({
-            fontWeight: 600,
-            height: '1.5rem',
-            fontSize: '0.875rem',
-            padding: '0 0 0 4px',
-          })}
-        >
-          유형
-        </div>
+      <div className="mb-3">
+        <div className="font-semibold h-6 text-sm pl-1">유형</div>
         <Select
           {...register('type')}
-          className={css({ margin: '8px 0 0 0' })}
-          width="280px"
+          className="mt-2 w-[280px]"
           defaultValue={type}
         >
           <option value="normal">일반</option>
@@ -122,32 +107,17 @@ const DrawerMemo = ({ item, handleHideDrawerClick }: Props) => {
           {...register('content')}
           name="content"
           placeholder="메모 내용을 입력해주세요."
-          className={css({
-            padding: '8px',
-            width: '100%',
-            minHeight: errors.content?.message ? '176px' : '198px',
-            lineHeight: '1.375',
-            outline: 'none',
-            resize: 'none',
-            borderRadius: '8px',
-            fontSize: '0.875rem',
-            margin: '8px 0 0 0',
-            backgroundColor: 'transparent',
-            color: 'var(--grey700)',
-            border: '1px solid var(--grey100)',
-          })}
+          className={
+            'p-2 w-full min-h-[198px] leading-tight outline-none resize-none rounded-lg text-sm mt-2 bg-transparent text-gray-600 border border-gray-200 ' +
+            (errors.content?.message ? 'min-h-[176px]' : '')
+          }
           defaultValue={content ?? '-'}
         />
         {errors.content?.message && (
           <FormError error={errors.content.message} />
         )}
       </DrawerInputContainer>
-      <div
-        className={flex({
-          width: '100%',
-          gap: '16px',
-        })}
-      >
+      <div className="flex w-full gap-4">
         <IconButton
           type="button"
           iconSrc={DeleteWhiteIcon}

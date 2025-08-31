@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { css, cx } from 'styled-system/css';
+import { twMerge } from 'tailwind-merge';
 
 type Props = {
   name: string;
@@ -19,29 +19,20 @@ const ScheduleModalSelect = ({
   selected = '',
   onChangeHandler,
   disabled,
+  className,
   ...props
 }: Props) => {
-  const { className, ...rest } = props;
-
-  const style = {
-    width: '100%',
-    height: '100%',
-    lineHeight: '34px',
-    padding: '2px 0 2px 10px',
-    fontSize: '0.95rem',
-    border: '1px solid var(--grey300)',
-    borderRadius: '8px',
-    outline: 0,
-  };
-
   return (
     <select
       name={name}
-      className={cx(css(style), className)}
+      className={twMerge(
+        'w-full h-full leading-8 py-0.5 pl-2.5 text-base border border-gray-300 rounded-lg outline-none',
+        className,
+      )}
       value={selected}
       onChange={onChangeHandler}
       disabled={disabled}
-      {...rest}
+      {...props}
     >
       {data.map(({ label, value }, index) => {
         return (

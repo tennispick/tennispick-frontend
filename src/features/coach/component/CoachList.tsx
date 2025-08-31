@@ -1,9 +1,8 @@
 import { CoachListData } from '@apis/coach/coach.type';
-import { NoResult, NormalList } from '@components/index';
+import { NoResult, NormalList } from '@/shared/components/index';
 import { useRouter } from 'next/navigation';
 import { ProfileManIcon, ProfileWomanIcon } from '@icons/index';
 import Image from 'next/image';
-import { css } from 'styled-system/css';
 
 type Props = {
   data: CoachListData[];
@@ -21,14 +20,7 @@ const CoachList = ({ data }: Props) => {
           {data.map(({ id, name, position, sex, email, phone, age }) => {
             return (
               <NormalList key={id} onClick={() => handleCoachDetailClick(id)}>
-                <div
-                  className={css({
-                    position: 'relative',
-                    width: '5%',
-                    minHeight: '40px',
-                    textAlign: 'center',
-                  })}
-                >
+                <div className="relative w-[5%] min-h-[40px] text-center">
                   <Image
                     src={sex === 'man' ? ProfileManIcon : ProfileWomanIcon}
                     alt={'profile'}
@@ -36,36 +28,18 @@ const CoachList = ({ data }: Props) => {
                   />
                 </div>
                 <div
-                  className={css({
-                    width: '52px',
-                    height: '24px',
-                    lineHeight: '24px',
-                    textAlign: 'center',
-                    margin: '0 16px 0 0',
-                    backgroundColor:
-                      position === 'coach'
-                        ? 'var(--business-active-color)'
-                        : 'var(--green200)',
-                    color: 'var(--white100)',
-                    borderRadius: '4px',
-                  })}
+                  className={`w-[52px] h-[24px] leading-[24px] text-center mr-4 rounded-[4px] text-white ${
+                    position === 'coach' ? 'bg-sky-400' : 'bg-green-600'
+                  }`}
                 >
                   {position === 'coach' ? '코치' : '헤드코치'}
                 </div>
-                <div className={css({ width: 'calc(60% - 52px)' })}>
-                  <div className={css({ fontWeight: 600 })}>
+                <div className="w-[calc(60%-52px)]">
+                  <div className="font-semibold">
                     {name} &#40;{age}, {sex === 'man' ? '남' : '여'}&#41;
                   </div>
                 </div>
-                <div
-                  className={css({
-                    width: '35%',
-                    backgroundColor: 'var(--grey400)',
-                    borderRadius: '16px',
-                    padding: '12px 0',
-                    textAlign: 'center',
-                  })}
-                >
+                <div className="w-[35%] bg-gray-50 rounded-[16px] py-3 text-center">
                   {phone} &#183; {email}
                 </div>
               </NormalList>
@@ -73,12 +47,7 @@ const CoachList = ({ data }: Props) => {
           })}
         </NormalList.UnOrderList>
       ) : (
-        <div
-          className={css({
-            height: '20vh',
-            borderRadius: '25px',
-          })}
-        >
+        <div className="h-[20vh] rounded-[25px]">
           <NoResult
             description={'코치님이 존재하지 않아요.'}
             margin="16px 0 0 0"

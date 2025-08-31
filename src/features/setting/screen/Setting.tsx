@@ -9,7 +9,7 @@ import SettingPayment from '../component/payment/Payment';
 import { useSettingMutation } from '../mutation/settingMutation';
 import SettingLesson from '../component/Lesson';
 import { usePaymentSettingQuery } from '../query/settingQuery';
-import Loading from '@components/common/Loading';
+import Loading from '@/shared/components/common/Loading';
 
 const SettingScreen = () => {
   const [currentItem, setCurrentItem] = useState<number>(tabLists[0].id);

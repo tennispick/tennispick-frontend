@@ -1,7 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
 import { TabLists } from '../type/tabLists.type';
-import { flex } from 'styled-system/patterns';
-import { css } from 'styled-system/css';
 
 type Props = {
   currentItem: number;
@@ -15,37 +13,24 @@ const SettingTabLists = ({ currentItem, setCurrentItem, tabLists }: Props) => {
     display: 'block',
     width: '100%',
     borderBottom: '6px solid var(--business-color)',
-    margin: '12px 0 0 0',
+    marginTop: '12px',
     borderTopLeftRadius: '4px',
     borderTopRightRadius: '4px',
   };
 
   return (
-    <ul
-      className={flex({
-        width: '100%',
-        borderBottom: '1px solid var(--grey100)',
-        margin: '0 0 12px 0',
-        fontSize: '1.2rem',
-      })}
-    >
+    <ul className="flex w-full border-b border-b-[var(--grey100)] mb-3 text-xl">
       {tabLists.map(({ id, name }) => {
         const selectedItem = currentItem === id;
 
         return (
           <li
             key={id}
-            className={css(
-              {
-                margin: '0 28px 0 0',
-                color: selectedItem ? 'var(--black100)' : 'var(--grey800)',
-                fontWeight: selectedItem ? 600 : 400,
-                cursor: 'pointer',
-              },
-              selectedItem && {
-                _after: { ...afterBorderStyle },
-              },
-            )}
+            className={`mr-7 cursor-pointer ${
+              selectedItem
+                ? 'font-semibold text-[var(--black100)] after:block after:w-full after:border-b-[6px] after:border-b-[var(--business-color)] after:mt-3 after:rounded-t-md'
+                : 'font-normal text-[var(--grey800)]'
+            }`}
             onClick={() => setCurrentItem(id)}
           >
             {name}

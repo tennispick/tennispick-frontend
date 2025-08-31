@@ -1,8 +1,6 @@
-import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
-import { getMonthList, getYearList } from '@utils/date';
-import Select from '@components/common/Select';
-import { Flex } from 'styled-system/jsx';
+import React from 'react';
+import { getMonthList, getYearList } from 'src/shared/utils/date';
+import Select from '@/shared/components/common/Select';
 
 type Props = {
   year: number;
@@ -18,17 +16,11 @@ const ModalSearchPeriod = ({
   handleMonthChange,
 }: Props) => {
   return (
-    <div
-      className={flex({
-        alignItems: 'center',
-        gap: '1.5rem',
-        margin: '0 0 24px 0',
-      })}
-    >
-      <div className={css({ width: '8vw' })}>조회 기간</div>
-      <Flex alignItems="center" gap="2">
+    <div className="mb-6 flex items-center gap-6">
+      <div className="w-[8vw]">조회 기간</div>
+      <div className="flex items-center gap-2">
         <Select
-          className={css({ width: '116px' })}
+          className="w-[116px]"
           onChange={handleYearChange}
           defaultValue={year}
         >
@@ -41,7 +33,7 @@ const ModalSearchPeriod = ({
           })}
         </Select>
         <Select
-          className={css({ width: '116px' })}
+          className="w-[116px]"
           onChange={handleMonthChange}
           defaultValue={month}
         >
@@ -53,7 +45,7 @@ const ModalSearchPeriod = ({
             );
           })}
         </Select>
-      </Flex>
+      </div>
     </div>
   );
 };

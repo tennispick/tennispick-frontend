@@ -1,10 +1,9 @@
-import { Divider } from '@components/index';
+import React from 'react';
+import { Divider } from '@/shared/components/index';
 import PaymentTypeRow from '../PaymentTypeRow';
 import SearchPeriodRow from '../SearchPeriodRow';
 import Image from 'next/image';
 import SalesLists from './SalesLists';
-import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
 import useModal from '@hooks/useModal';
 import ModalBody from './modal/ModalBody';
 import SalesSummary from './SalesSummary';
@@ -12,9 +11,9 @@ import {
   useCoachTotalSalesListQuery,
   useCoachTotalSalesQuery,
 } from '@features/coach/query/coachQuery';
-import { getDateToKoreanString } from '@utils/date';
+import { getDateToKoreanString } from 'src/shared/utils/date';
 import { useState } from 'react';
-import Loading from '@components/common/Loading';
+import Loading from '@/shared/components/common/Loading';
 
 const checkList = [
   {
@@ -103,7 +102,7 @@ const SalesContainer = ({ coachId }: Props) => {
 
   return (
     <>
-      <div className={css({ height: '8rem' })}>
+      <div className="h-32">
         <SearchPeriodRow
           startDate={startDate}
           endDate={endDate}
@@ -117,26 +116,13 @@ const SalesContainer = ({ coachId }: Props) => {
           handleCheckboxClick={handleCheckboxClick}
         />
       </div>
-      <div
-        className={flex({
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          height: '1.25rem',
-        })}
-      >
+      <div className="flex items-center justify-between h-5">
         <div>매출 내역조회</div>
         <div
-          className={flex({
-            alignItems: 'center',
-            cursor: 'pointer',
-          })}
+          className="flex items-center cursor-pointer"
           onClick={handleShowDetail}
         >
-          <div
-            className={css({ color: 'var(--business-color)', fontWeight: 600 })}
-          >
-            내역 상세보기
-          </div>
+          <div className="text-slate-700 font-semibold">내역 상세보기</div>
           <Image
             width={20}
             height={20}

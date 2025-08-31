@@ -2,7 +2,6 @@ import { ChangeEvent, useState } from 'react';
 import ScheduleModalSelect from '../../Select';
 import { SetStateAction } from '@/types/index';
 import { IndividualFormDataProps } from '@features/schedule/type/regularLesson';
-import { css } from 'styled-system/css';
 
 const data = [
   {
@@ -57,10 +56,7 @@ const ScheduleModalRegularLessonIndividualScheduleLessonTimeSelect = ({
     <ScheduleModalSelect
       name="lessonTime"
       data={data}
-      className={css({
-        width: 'calc(15% - 8px)',
-        margin: '0 0 0 8px',
-      })}
+      className="w-[calc(15%-8px)] ml-2"
       selected={lessonTime}
       onChangeHandler={onChangeHandler}
       disabled={disabled}

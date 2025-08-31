@@ -1,31 +1,21 @@
-import { css, cx } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
+import React from 'react';
+import { twMerge } from 'tailwind-merge';
 
 type Props = {
   onClick?: () => void;
 } & React.PropsWithChildren &
   React.HTMLAttributes<HTMLDivElement>;
 
-const ManageListRow = ({ children, onClick, ...props }: Props) => {
-  const { className, ...rest } = props;
-
-  const style = flex.raw({
-    height: '44px',
-    alignItems: 'center',
-    textAlign: 'center',
-    padding: '6px 8px',
-    gap: '2px',
-    borderRadius: '4px',
-    borderTop: '1px solid var(--grey500)',
-    cursor: 'pointer',
-
-    _hover: {
-      backgroundColor: 'var(--grey500)',
-    },
-  });
-
+const ManageListRow = ({ children, onClick, className, ...props }: Props) => {
   return (
-    <div className={cx(css(style), className)} onClick={onClick} {...rest}>
+    <div
+      className={twMerge(
+        'flex h-11 items-center text-center p-2 gap-0.5 rounded-md border-t border-gray-200 cursor-pointer hover:bg-gray-200',
+        className,
+      )}
+      onClick={onClick}
+      {...props}
+    >
       {children}
     </div>
   );

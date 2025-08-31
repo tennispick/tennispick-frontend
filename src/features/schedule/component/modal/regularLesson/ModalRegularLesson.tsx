@@ -17,14 +17,12 @@ import {
   ScheduleInputType,
 } from '@features/schedule/type/schedule.type';
 import { CustomerLessonListQueryData } from '@features/customer/type/customer.type';
-import { getTimeGap } from '@utils/date';
+import { getTimeGap } from 'src/shared/utils/date';
 import ScheduleModalRegularLessonIndividualSchedule from './individualSchedule/IndividualSchedule';
-import { handleInputArrayValidationCheck } from '@utils/validation';
+import { handleInputArrayValidationCheck } from 'src/shared/utils/validation';
 
 import { individualCreateFormValidationSet } from '@features/schedule/util/inputFormValidationSet';
-import { flex } from 'styled-system/patterns';
-import { css } from 'styled-system/css';
-import IconButton from '@components/button/IconButton';
+import IconButton from '@/shared/components/button/IconButton';
 
 const ModalRegularLesson = () => {
   const { mutate } = useScheduleMutation();
@@ -200,23 +198,14 @@ const ModalRegularLesson = () => {
   return (
     <>
       <form
-        className={flex({
-          flexDirection: 'column',
-          width: '100%',
-          height: 'calc(100% - 68px)',
-          backgroundColor: 'var(--white100)',
-          padding: '24px',
-          borderRadius: '12px',
-        })}
+        className="flex flex-col w-full h-[calc(100%-68px)] bg-white p-6 rounded-xl"
         onSubmit={
           scheduleType === 'all'
             ? onSubmitAllCreateHandler
             : onSubmitIndividualCreateHandler
         }
       >
-        <div
-          className={flex({ width: '100%', height: 'calc(100% - 2.75rem)' })}
-        >
+        <div className="flex w-full h-[calc(100%-2.75rem)]">
           <CommonSchedule
             commonData={{ scheduleType, lessonType, customer, lesson }}
             setCommonData={setCommonData}
@@ -250,24 +239,13 @@ const ModalRegularLesson = () => {
             }[scheduleType]
           }
         </div>
-        <div
-          className={flex({
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            height: '2.75rem',
-          })}
-        >
-          <div
-            className={css({
-              fontSize: '0.925rem',
-              color: 'var(--business-color)',
-            })}
-          >
-            <span className={css({ fontWeight: 600 })}>
+        <div className="flex items-center justify-between h-11">
+          <div className="text-sm text-blue-600">
+            <span className="font-semibold">
               &#45; 회원이 검색되지 않는 경우, 결제가 진행되었는지 우선
               확인해주세요.
             </span>
-            <span className={css({ margin: '0 0 0 8px' })}>
+            <span className="ml-2">
               결제방법: {`회원 관리 > 회원 선택 > 결제하기`}
             </span>
           </div>
@@ -283,8 +261,8 @@ const ModalRegularLesson = () => {
               scheduleType === 'all'
                 ? submitButtonCheckDisabled
                 : lesson === ''
-                ? true
-                : false
+                  ? true
+                  : false
             }
           />
         </div>

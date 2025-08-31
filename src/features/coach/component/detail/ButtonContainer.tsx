@@ -2,8 +2,7 @@ import { DeleteWhiteIcon, EditWhiteIcon } from '@icons/index';
 import { deleteCoach } from '@apis/coach/coach.api';
 import { URL_COACH } from '@apis/coach/coach.url';
 import { useQueryClient } from '@tanstack/react-query';
-import { flex } from 'styled-system/patterns';
-import IconButton from '@components/button/IconButton';
+import IconButton from '@/shared/components/button/IconButton';
 
 type Props = {
   coachId: string;
@@ -27,9 +26,7 @@ const ButtonContainer = ({ coachId }: Props) => {
   };
 
   return (
-    <div
-      className={flex({ height: '46px', justifyContent: 'end', gap: '8px' })}
-    >
+    <div className="flex h-[46px] justify-end gap-2">
       <IconButton
         size="lg"
         variant="negative"

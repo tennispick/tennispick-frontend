@@ -7,8 +7,7 @@ import { PaymentRefundType } from '../type/payment.type';
 import { CustomerPaymentRefundData } from '@apis/payment/payment.type';
 import { SetStateAction } from '@/types/index';
 import PaymentRefundModal from './modal/PaymentRefundModal';
-import Loading from '@components/common/Loading';
-import { css } from 'styled-system/css';
+import Loading from '@/shared/components/common/Loading';
 
 type Props = {
   id: string;
@@ -42,20 +41,13 @@ const CustomerPayment = ({ id }: Props) => {
   };
 
   return (
-    <section className={css({ width: '49%' })}>
+    <section className="w-[49%]">
       <SNBList
         currentItem={currentItem as string}
         setCurrentItem={setCurrentItem as SetStateAction<string>}
         tabLists={paymentList}
       />
-      <div
-        className={css({
-          height: '50vh',
-          backgroundColor: 'var(--grey400)',
-          borderRadius: '16px',
-          padding: '12px',
-        })}
-      >
+      <div className="h-[50vh] bg-gray-200 rounded-2xl p-3">
         <Suspense fallback={<Loading />}>
           <CustomerDetailPaymentRefundContainer
             customerId={id}

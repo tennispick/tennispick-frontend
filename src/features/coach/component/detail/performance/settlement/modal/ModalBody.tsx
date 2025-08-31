@@ -1,11 +1,10 @@
-import { css } from 'styled-system/css';
+import React, { useState } from 'react';
 import ModalSearchPeriod from './ModalSearchPeriod';
-import { useState } from 'react';
 import ModalReceipt from './ModalReceipt';
-import { getDateToKoreanString } from '@utils/date';
+import { getDateToKoreanString } from 'src/shared/utils/date';
 import { lastDayOfMonth, startOfDay } from 'date-fns';
 import { useCoachMonthSettlementQuery } from '@features/home/query/salesQuery';
-import { getSalaryApplyTaxRateBySales } from '@utils/settlement';
+import { getSalaryApplyTaxRateBySales } from 'src/shared/utils/settlement';
 import { useCoachPerformanceQuery } from '@features/coach/query/coachQuery';
 
 type Props = {
@@ -53,14 +52,7 @@ const ModalBody = ({
     setMonth(Number(e.target.value));
 
   return (
-    <div
-      className={css({
-        height: 'calc(100% - 66px)',
-        backgroundColor: 'var(--white100)',
-        borderRadius: '8px',
-        padding: '24px',
-      })}
-    >
+    <div className="h-[calc(100%-66px)] bg-white rounded-lg p-6">
       <ModalSearchPeriod
         year={year}
         month={month}

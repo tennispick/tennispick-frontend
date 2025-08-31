@@ -1,6 +1,6 @@
-import { css, cx } from 'styled-system/css';
 import ScheduleSelect from '../Select';
-import { getTimeList } from '@utils/date';
+import { getTimeList } from 'src/shared/utils/date';
+import { twMerge } from 'tailwind-merge';
 
 type Props = {
   className?: string;
@@ -13,6 +13,7 @@ const StartTimeSelect = ({
   startTime,
   disabled,
   onChangeFormData,
+  className,
   ...props
 }: Props) => {
   const data = getTimeList({ isInclude: true }).map((item) => ({
@@ -20,25 +21,15 @@ const StartTimeSelect = ({
     label: item,
   }));
 
-  const { className, ...rest } = props;
-
-  const style = {
-    width: '120px',
-    height: '36px',
-    lineHeight: '32px',
-    margin: '0 0 0 12px',
-    fontSize: '0.875rem',
-  };
-
   return (
     <ScheduleSelect
       name="startTime"
       data={data}
-      className={cx(css(style), className)}
+      className={twMerge('w-[120px] h-9 leading-8 ml-3 text-sm', className)}
       selected={startTime}
       onChangeHandler={onChangeFormData}
       disabled={disabled}
-      {...rest}
+      {...props}
     />
   );
 };

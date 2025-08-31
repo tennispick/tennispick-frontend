@@ -3,27 +3,31 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prepare": "panda codegen --clean",
     "dev": "next dev",
     "dev2": "rm -rf .next && next dev",
     "build": "next build",
     "start": "next start",
     "prettier": "prettier --write .",
     "lint": "next lint --fix",
-    "check": "yarn prettier && yarn build && yarn lint"
+    "check": "yarn prettier && yarn build && yarn lint",
+    "test": "vitest"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.1",
     "@next/eslint-plugin-next": "^14.1.0",
+    "@radix-ui/react-dialog": "^1.1.14",
+    "@radix-ui/react-select": "^2.2.6",
+    "@radix-ui/react-slot": "^1.2.3",
     "@tanstack/react-query": "^5.54.1",
     "@tanstack/react-query-devtools": "^5.34.1",
+    "@toss/use-overlay": "^1.4.2",
     "@types/node": "20.2.3",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
-    "@typescript-eslint/eslint-plugin": "^6.5.0",
-    "@typescript-eslint/parser": "^6.19.1",
     "@vercel/analytics": "^1.0.1",
     "axios": "^1.4.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
     "dayjs": "^1.11.10",
     "eslint-config-next": "^14.2.5",
@@ -31,8 +35,10 @@
     "eslint-plugin-prettier": "^5.0.1",
     "js-cookie": "^3.0.5",
     "jwt-decode": "^3.1.2",
+    "lucide-react": "^0.525.0",
     "nanoid": "^5.0.7",
     "next": "^14.2.5",
+    "next-themes": "^0.4.6",
     "react": "^18.3.1",
     "react-calendar": "^4.6.1",
     "react-color-palette": "^7.2.2",
@@ -44,25 +50,46 @@
     "react-time-range": "^1.0.4",
     "recoil": "^0.7.7",
     "recoil-persist": "^5.1.0",
+    "sonner": "^2.0.6",
+    "tailwind-merge": "^3.3.1",
+    "tailwind-variants": "^1.0.0",
+    "tailwindcss-animate": "^1.0.7",
     "typescript": "5.0.4",
     "uuid": "^9.0.0",
+    "vaul": "^1.1.2",
     "yup": "^1.2.0",
     "zod": "^3.23.8",
     "zustand": "^4.5.4"
   },
   "devDependencies": {
-    "@pandacss/dev": "^0.45.1",
+    "@tailwindcss/postcss": "^4.1.12",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
     "@types/js-cookie": "^3",
     "@types/react-datepicker": "^4.19.3",
     "@types/uuid": "^9.0.1",
+    "@vitejs/plugin-react": "^4.7.0",
+    "autoprefixer": "^10.4.21",
     "eslint": "^8.48.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-simple-import-sort": "^12.1.0",
     "eslint-plugin-unused-imports": "^4.0.0",
-    "prettier": "^3.0.3"
+    "jsdom": "^26.1.0",
+    "postcss": "^8.5.6",
+    "postcss-import": "^16.1.1",
+    "prettier": "^3.0.3",
+    "tailwindcss": "^4.1.11",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.2.4"
   },
   "resolutions": {
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4"
   },
-  "packageManager": "yarn@4.0.2"
+  "packageManager": "yarn@4.0.2",
+  "dependenciesMeta": {
+    "eslint-plugin-prettier@5.5.3": {
+      "unplugged": true
+    }
+  }
 }

@@ -8,13 +8,13 @@ import {
   URL_IS_DUPLICATE_CHECK_SCHEDULE_LESSON,
   URL_CREATE_ADDITIONAL_SCHEDULE_LESSON,
 } from './schedule.url';
-import { axios } from '@utils/axios';
 import {
   ScheduleLessonByDateApiPayload,
   LessonScheduleByPeriodPayload,
   DuplicateCheckScheduleLessonPayload,
   LessonSchduleByPeriodData,
 } from './schedule.type';
+import { axiosInstance } from '@lib/axios';
 
 // 특정 기간내에 스케줄이 있는지
 export const getLessonSchduleByPeriod = async (
@@ -22,7 +22,7 @@ export const getLessonSchduleByPeriod = async (
 ): Promise<LessonSchduleByPeriodData> => {
   try {
     const { startDate, endDate } = params;
-    const { data } = await axios.get(
+    const { data } = await axiosInstance.get(
       `${URL_SCHEDULE_LESSON_BY_PERIOD}?startDate=${startDate}&endDate=${endDate}`,
     );
     return data;
@@ -36,7 +36,7 @@ const getScheduleLessonByDate = async (
   params: ScheduleLessonByDateApiPayload,
 ) => {
   const { day } = params;
-  const { data } = await axios.get(
+  const { data } = await axiosInstance.get(
     `${URL_SCHEDULE_LESSON_BY_DATE}?date=${day}`,
   );
   return data;
@@ -48,12 +48,12 @@ const createScheduleLesson = async (params: any) => {
     : {
         ...params,
       };
-  const { data } = await axios.post(`${URL_CREATE_SCHEDULE_LESSON}`, param);
+  const { data } = await axiosInstance.post(`${URL_CREATE_SCHEDULE_LESSON}`, param);
   return data;
 };
 
 export const createAdditionalScheduleLesson = async (param: FormData) => {
-  const { data } = await axios.post(
+  const { data } = await axiosInstance.post(
     `${URL_CREATE_ADDITIONAL_SCHEDULE_LESSON}`,
     param,
   );
@@ -61,21 +61,21 @@ export const createAdditionalScheduleLesson = async (param: FormData) => {
 };
 
 export const createChangeScheduleLesson = async (params: any) => {
-  const { data } = await axios.post(`${URL_CREATE_CHANGE_SCHEDULE_LESSON}`, {
+  const { data } = await axiosInstance.post(`${URL_CREATE_CHANGE_SCHEDULE_LESSON}`, {
     ...params,
   });
   return data;
 };
 
 const updateScheduleLesson = async (params: any) => {
-  const { data } = await axios.put(`${URL_UPDATE_SCHEDULE_LESSON}`, {
+  const { data } = await axiosInstance.put(`${URL_UPDATE_SCHEDULE_LESSON}`, {
     ...params,
   });
   return data;
 };
 
 const deleteScheduleLesson = async (params: any) => {
-  const { data } = await axios.put(`${URL_DELETE_SCHEDULE_LESSON}`, {
+  const { data } = await axiosInstance.put(`${URL_DELETE_SCHEDULE_LESSON}`, {
     id: params,
   });
   return data;
@@ -88,7 +88,7 @@ const isDuplicateCheckScheduleLesson = async (
 
   if (!coachId || !courtId || !schedule) return {};
 
-  const { data } = await axios.post(
+  const { data } = await axiosInstance.post(
     `${URL_IS_DUPLICATE_CHECK_SCHEDULE_LESSON}`,
     {
       coachId,

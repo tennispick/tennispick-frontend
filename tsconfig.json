@@ -9,32 +9,35 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": "./",
-    "types": ["react"],
+    "types": ["react", "react-dom"],
+    "jsxImportSource": "react",
     "paths": {
       "@icons/*": ["src/assets/icons/*"],
       "@images/*": ["src/assets/images/*"],
       "@apis/*": ["src/apis/*"],
-      "@components/*": ["src/components/*"],
+      "@components/*": ["src/shared/ui/*"],
       "@features/*": ["src/features/*"],
       "@data/*": ["src/data/*"],
       "@hooks/*": ["src/hooks/*"],
       "@containers/*": ["src/containers/*"],
       "@interfaces/*": ["src/interfaces/*"],
       "@lib/*": ["src/lib/*"],
+      "@lib/utils": ["src/lib/utils"],
       "@mocks/*": ["src/mocks/*"],
       "@queries/*": ["src/queries/*"],
       "@styles/*": ["src/styles/*"],
-      "@utils/*": ["src/utils/*"],
       "@widgets/*": ["src/widgets/*"],
       "@/types/*": ["src/types/*"],
-      "@/constants/*": ["src/constants/*"],
-      "@/recipes/*": ["src/recipes/*"]
+      "@/constants/*": ["src/shared/constants/*"],
+      "@/recipes/*": ["src/recipes/*"],
+      "@/shared/*": ["src/shared/*"],
+      "@/utils/*": ["src/shared/utils/*"]
     },
     "plugins": [
       {
@@ -47,8 +50,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/hooks/useMobile.tsx",
-    ".next/types/**/*.ts",
-    "styled-system"
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }

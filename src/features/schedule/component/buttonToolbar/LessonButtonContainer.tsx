@@ -1,6 +1,5 @@
-import IconButton from '@components/button/IconButton';
+import IconButton from '@/shared/components/button/IconButton';
 import { CalendarWhiteIcon } from '@icons/index';
-import { Flex } from 'styled-system/jsx';
 
 type Props = {
   handleShowRegularModal: () => void;
@@ -12,9 +11,9 @@ const LessonButtonContainer = ({
   handleShowAdditionalModal,
 }: Props) => {
   return (
-    <Flex gap="8px">
+    <div className="flex gap-2">
       <IconButton
-        size="md"
+        size="sm"
         variant="primary"
         label={'일정 등록하기'}
         iconSrc={CalendarWhiteIcon}
@@ -23,7 +22,7 @@ const LessonButtonContainer = ({
         onClick={handleShowRegularModal}
       />
       <IconButton
-        size="md"
+        size="sm"
         variant="primary"
         label={'보강 등록하기'}
         iconSrc={CalendarWhiteIcon}
@@ -31,7 +30,7 @@ const LessonButtonContainer = ({
         iconAlign="left"
         onClick={handleShowAdditionalModal}
       />
-    </Flex>
+    </div>
   );
 };
 

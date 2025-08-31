@@ -1,6 +1,5 @@
+import React from 'react';
 import SearchBox from '@widgets/SearchBox';
-import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
 
 type Options = {
   label: string;
@@ -21,14 +20,8 @@ const ModalSearchCondition = ({
   handleSearchOption,
 }: Props) => {
   return (
-    <div
-      className={flex({
-        alignItems: 'center',
-        gap: '1.5rem',
-        margin: '0 0 24px 0',
-      })}
-    >
-      <div className={css({ width: '7rem' })}>검색 조건</div>
+    <div className="flex items-center gap-6 mb-6">
+      <div className="w-28">검색 조건</div>
       <SearchBox
         searchOption={searchCondition}
         searchOptions={searchConditions}

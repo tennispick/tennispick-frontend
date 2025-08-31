@@ -1,14 +1,12 @@
 'use client';
 
-import { PageHeader } from '@components/index';
+import { PageHeader } from '@/shared/components/index';
 import { useCustomerDetailQuery } from '../query/CustomerQuery';
-import Loading from '@components/common/Loading';
+import Loading from '@/shared/components/common/Loading';
 import CustomerInfo from '../component/CustomerInfo';
 import CustomerPayment from '../component/Payment';
 import ManageContainer from '../component/detail/manage/ManageContainer';
-import { isEmptyObj } from '@utils/object';
-import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
+import { isEmptyObj } from 'src/shared/utils/object';
 
 type Props = {
   id: string;
@@ -22,16 +20,11 @@ const CustomerDetailScreen = ({ id }: Props) => {
   const customer = data;
 
   return (
-    <div className={css({ height: '100%' })}>
+    <div className="h-full">
       <PageHeader title={`${customer.name} 님`} link="/customer" />
       <CustomerInfo customerId={id} customer={customer} />
-      <div className={css({ height: 'calc(65% - 52px)', overflowY: 'scroll' })}>
-        <div
-          className={flex({
-            height: '100%',
-            justifyContent: 'space-between',
-          })}
-        >
+      <div className="h-[calc(65%-52px)] overflow-y-scroll">
+        <div className="flex h-full justify-between">
           <CustomerPayment id={id} />
           <ManageContainer customerId={id} />
         </div>

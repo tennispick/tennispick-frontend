@@ -1,56 +1,17 @@
-import { PORTAL_Z_INDEX } from '@/constants/portal';
-import { cva } from 'styled-system/css';
+import { PORTAL_Z_INDEX } from '@/shared/constants/portal';
+import { tv } from 'tailwind-variants';
 
-export const modal = cva({
-  base: {
-    position: 'absolute',
-    top: '40%',
-    left: '50%',
-    transform: 'translate(-50%,-50%)',
-    width: '640px',
-    height: '220px',
-    backgroundColor: 'var(--white100)',
-    borderRadius: '16px',
-    boxShadow: '2px 4px 12px 2px rgb(255 255 255 / 15%)',
-    padding: '24px',
-    animationName: 'fadeUp',
-    animationDuration: '0.6s',
-    zIndex: PORTAL_Z_INDEX,
-  },
+export const modal = tv({
+  base: 'absolute top-2/5 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[640px] h-[220px] bg-[var(--white100)] rounded-2xl shadow-[2px_4px_12px_2px_rgb(255_255_255_/_15%)] p-6 animate-fadeUp animation-duration-600',
   variants: {
     type: {
-      sm: {
-        width: '320px',
-        height: '120px',
-      },
-      md: {
-        minWidth: '640px',
-        minHeight: '220px',
-        height: 'auto',
-      },
-      lg: {
-        width: '800px',
-        height: '400px',
-      },
-      confirm: {
-        width: '640px',
-        height: '220px',
-      },
-      download: {
-        width: '640px',
-        height: '220px',
-      },
-      overlay: {
-        width: '400px',
-        height: '200px',
-        padding: 0,
-      },
-      full: {
-        width: '90vw',
-        height: '90vh',
-        top: '50%',
-        backgroundColor: 'var(--grey400)',
-      },
+      sm: 'w-80 h-30',
+      md: 'min-w-[640px] min-h-[220px] h-auto',
+      lg: 'w-[800px] h-[400px]',
+      confirm: 'w-[640px] h-[220px]',
+      download: 'w-[640px] h-[220px]',
+      overlay: 'w-[400px] h-[200px] p-0',
+      full: 'w-[90vw] h-[90vh] top-1/2 bg-[var(--grey400)]',
     },
   },
 });
